@@ -1,0 +1,639 @@
+schema: XDB
+name: DBMS_XSLPROCESSOR
+routineType: PACKAGE
+returnParamater:
+  name: VALUEOF(2).(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: CLOB2FILE.CL
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: CLOB2FILE.FLOCATION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLOB2FILE.FNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLOB2FILE.CSID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: FREEPROCESSOR.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: FREESTYLESHEET.SS
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: NEWSTYLESHEET(1).XMLDOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: NEWSTYLESHEET(1).REFURL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: NEWSTYLESHEET(2).INP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: NEWSTYLESHEET(2).REFURL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSXSL(1).P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(1).SS
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(1).XMLDOC
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(10).P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(10).SS
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(10).XMLDF
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(10).BUFFER
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: PROCESSXSL(11).P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(11).SS
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(11).XMLDF
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(11).CL
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: PROCESSXSL(2).P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(2).SS
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(2).CL
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: PROCESSXSL(3).P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(3).SS
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(3).XMLDOC
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(3).DIR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSXSL(3).FILENAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSXSL(4).P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(4).SS
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(4).URL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSXSL(4).DIR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSXSL(4).FILENAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSXSL(5).P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(5).SS
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(5).XMLDOC
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(5).BUFFER
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: PROCESSXSL(6).P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(6).SS
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(6).XMLDOC
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(6).CL
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: PROCESSXSL(7).P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(7).SS
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(7).XMLDOC
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(7).CL
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: PROCESSXSL(7).ISOUTPUTXML
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: PROCESSXSL(8).P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(8).SS
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(8).XMLDF
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(9).P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(9).SS
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(9).XMLDF
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PROCESSXSL(9).DIR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSXSL(9).FILENAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: READ2CLOB.FLOCATION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: READ2CLOB.FNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: READ2CLOB.CSID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: REMOVEPARAM.SS
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REMOVEPARAM.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESETPARAMS.SS
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SELECTNODES.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SELECTNODES.PATTERN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SELECTNODES.NAMESPACE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SELECTSINGLENODE.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SELECTSINGLENODE.PATTERN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SELECTSINGLENODE.NAMESPACE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETERRORLOG.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETERRORLOG.FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETPARAM.SS
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETPARAM.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETPARAM.VAL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOWWARNINGS.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SHOWWARNINGS.YES
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: TRANSFORMNODE.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: TRANSFORMNODE.SS
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: VALUEOF(1).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: VALUEOF(1).PATTERN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALUEOF(1).VAL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: VALUEOF(1).NAMESPACE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALUEOF(2).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: VALUEOF(2).PATTERN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALUEOF(2).NAMESPACE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package dbms_xslprocessor authid current_user as
+  /**
+
+   * Processor interface type
+
+   */
+  TYPE Processor IS RECORD (id dbms_xmldom.domtype);
+  /* SUBTYPE Processor IS RAW(8); */
+  /**
+
+   * Stylesheet interface type
+
+   */
+  TYPE Stylesheet IS RECORD (id dbms_xmldom.domtype);
+  /* SUBTYPE Stylesheet IS RAW(8); */
+  /**
+
+   * Internal error
+
+   */
+  INTERNAL_ERR CONSTANT NUMBER: = -20000;
+  /**
+
+   * Other errors
+
+   */
+  PROCESSOR_ERR CONSTANT NUMBER: = -20100;
+  FILE_ERR CONSTANT NUMBER: = -20101;
+  CONN_ERR CONSTANT NUMBER: = -20102;
+  NULL_ERR CONSTANT NUMBER: = -20103;
+  /**
+
+   * Read from a file to a clob, return clob
+
+   */
+  function read2clob(
+    flocation VARCHAR2,
+    fname VARCHAR2,
+    csid IN NUMBER: = 0
+  ) RETURN clob;
+  /**
+
+   * Write from a clob to a file with given character encoding.
+
+   * If csid is zero or not given then the file will be in the db charset.
+
+   */
+  procedure clob2file(
+    cl clob,
+    flocation VARCHAR2,
+    fname VARCHAR2,
+    csid IN NUMBER: = 0
+  );
+  /**
+
+   * Returns a new processor instance
+
+   */
+  FUNCTION newProcessor RETURN Processor;
+  /**
+
+   * Free XSL Processor
+
+   */
+  PROCEDURE freeProcessor(p Processor);
+  /**
+
+   * Transforms input XML document using given DOMDocument and stylesheet
+
+   */
+  FUNCTION processXSL(
+    p Processor,
+    ss Stylesheet,
+    xmldoc dbms_xmldom.DOMDocument
+  ) return dbms_xmldom.DOMDocumentFragment;
+  /**
+
+   * Transforms input XML document using given Doc as CLOB
+
+   */
+  FUNCTION processXSL(p Processor, ss Stylesheet, cl clob) return dbms_xmldom.DOMDocumentFragment;
+  /**
+
+   * Transforms input XML document using given DOMDocument and stylesheet
+
+   * and writes output to a file
+
+   */
+  PROCEDURE processXSL(
+    p Processor,
+    ss Stylesheet,
+    xmldoc dbms_xmldom.DOMDocument,
+    dir varchar2,
+    fileName varchar2
+  );
+  /**
+
+   * Transforms input XML document using given as URL and stylesheet
+
+   * and writes output to a file
+
+   */
+  PROCEDURE processXSL(
+    p Processor,
+    ss Stylesheet,
+    url varchar2,
+    dir varchar2,
+    fileName varchar2
+  );
+  /**
+
+   * Transforms input XML document using given DOMDocument and stylesheet
+
+   * and writes output to a buffer
+
+   */
+  PROCEDURE processXSL(
+    p Processor,
+    ss Stylesheet,
+    xmldoc dbms_xmldom.DOMDocument,
+    buffer in out varchar2
+  );
+  /**
+
+   * Transforms input XML document using given DOMDocument and stylesheet
+
+   * and writes output to a CLOB
+
+   */
+  PROCEDURE processXSL(
+    p Processor,
+    ss Stylesheet,
+    xmldoc dbms_xmldom.DOMDocument,
+    cl in out clob
+  );
+  /**
+
+   * Transforms input XML document using given DOMDocument and stylesheet
+
+   * and writes output to a CLOB. Provides information if style sheet output
+
+   * method is xml or not.
+
+   */
+  PROCEDURE processXSL(
+    p Processor,
+    ss Stylesheet,
+    xmldoc dbms_xmldom.DOMDocument,
+    cl in out clob,
+    isoutputxml out boolean
+  );
+  /**
+
+  /**
+
+   * Transforms input XML document fragment using given DOMDocumentFragment and
+
+   * stylesheet
+
+   */
+  FUNCTION processXSL(
+    p Processor,
+    ss Stylesheet,
+    xmldf dbms_xmldom.DOMDocumentFragment
+  ) return dbms_xmldom.DOMDocumentFragment;
+  /**
+
+   * Transforms input XML document fragment using given DOMDocumentFragment
+
+   * and stylesheet and writes output to a file
+
+   */
+  PROCEDURE processXSL(
+    p Processor,
+    ss Stylesheet,
+    xmldf dbms_xmldom.DOMDocumentFragment,
+    dir varchar2,
+    fileName varchar2
+  );
+  /**
+
+   * Transforms input XML document fragment using given DOMDocumentFragment
+
+   * and stylesheet and writes output to a buffer
+
+   */
+  PROCEDURE processXSL(
+    p Processor,
+    ss Stylesheet,
+    xmldf dbms_xmldom.DOMDocumentFragment,
+    buffer in out varchar2
+  );
+  /**
+
+   * Transforms input XML document fragment using given DOMDocumentFragment
+
+   * and stylesheet and writes output to a CLOB
+
+   */
+  PROCEDURE processXSL(
+    p Processor,
+    ss Stylesheet,
+    xmldf dbms_xmldom.DOMDocumentFragment,
+    cl in out clob
+  );
+  /**
+
+   * Sets errors to be sent to the specified file
+
+   */
+  PROCEDURE setErrorLog(p Processor, fileName VARCHAR2);
+  /**
+
+   * Sets warnings TRUE - on, FALSE - off
+
+   */
+  PROCEDURE showWarnings(p Processor, yes BOOLEAN);
+  /**
+
+   * Create a new stylesheet using the given DOMDocument and base directory URL
+
+   */
+  FUNCTION newStylesheet(xmldoc dbms_xmldom.DOMDocument, refurl varchar2) return Stylesheet;
+  /**
+
+   * Create a new stylesheet using the given input file and base directory URLs
+
+   */
+  FUNCTION newStylesheet(inp varchar2, refurl varchar2) return Stylesheet;
+  PROCEDURE freeStylesheet(ss Stylesheet);
+  /**
+
+   * Sets the value of a top-level stylesheet parameter.
+
+   * The parameter value is expected to be a valid XPath expression (note
+
+   * that string literal values would therefore have to be explicitly quoted).
+
+   */
+  PROCEDURE setParam(ss Stylesheet, name VARCHAR2, val VARCHAR2);
+  /**
+
+   * Remove a top-level stylesheet parameter.
+
+   */
+  PROCEDURE removeParam(ss Stylesheet, name VARCHAR2);
+  /**
+
+   * Resets the top-level stylesheet parameters.
+
+   */
+  PROCEDURE resetParams(ss Stylesheet);
+  /**
+
+   * Transforms a node in the tree using the given stylesheet
+
+   */
+  FUNCTION transformNode(n dbms_xmldom.DOMNode, ss Stylesheet) return dbms_xmldom.DOMDocumentFragment;
+  /**
+
+   * Selects nodes from the tree which match the given pattern
+
+   */
+  FUNCTION selectNodes(
+    n dbms_xmldom.DOMNode,
+    pattern VARCHAR2,
+    namespace IN VARCHAR2: = NULL
+  ) return dbms_xmldom.DOMNodeList;
+  /**
+
+   * Selects the first node from the tree that matches the given pattern
+
+   */
+  FUNCTION selectSingleNode(
+    n dbms_xmldom.DOMNode,
+    pattern varchar2,
+    namespace IN VARCHAR2: = NULL
+  ) return dbms_xmldom.DOMNode;
+  /**
+
+   * Retrieves the value of the first node from the tree that matches the given
+
+   * pattern
+
+   */
+  PROCEDURE valueOf(
+    n dbms_xmldom.DOMNode,
+    pattern VARCHAR2,
+    val OUT VARCHAR2,
+    namespace IN VARCHAR2: = NULL
+  );
+  FUNCTION valueOf(
+    n xmldom.DOMNode,
+    pattern varchar2,
+    namespace IN VARCHAR2: = NULL
+  ) return VARCHAR2;
+  end dbms_xslprocessor;

@@ -1,0 +1,95 @@
+schema: APEX_050000
+name: APEX_APPL_LOAD_TABLE_LOOKUPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.id application_id,
+    f.name application_name,
+    f.security_group_id workspace_id,
+    --
+    t.table_name table_name,
+    --
+    l.load_table_id load_table_id,
+    l.load_column_name load_column_name,
+    --
+    l.lookup_owner lookup_owner,
+    l.lookup_table_name lookup_table_name,
+    l.key_column key_column,
+    l.display_column display_column,
+    l.where_clause where_clause,
+    l.alternative_key_column1 alternative_key_column1,
+    l.alternative_display_column1 alternative_display_column1,
+    l.alternative_key_column2 alternative_key_column2,
+    l.alternative_display_column2 alternative_display_column2,
+    decode (
+      l.insert_new_value,
+      null,
+      null,
+      'Y',
+      'Yes',
+      'N',
+      'No'
+    ) insert_new_value,
+    l.error_message error_message,
+    --
+    l.created_by created_by,
+    l.created_on created_on,
+    l.last_updated_by last_updated_by,
+    l.last_updated_on last_updated_on,
+    l.id lookup_id,
+    --
+    t.table_name || ' ldc= ' || l.load_column_name || ' lkt= ' || l.lookup_table_name || ' lkk= ' || l.key_column || ' lkd= ' || l.display_column || ' lkka= ' || nvl(l.alternative_key_column1, 'n/a') || ' lkda= ' || nvl(l.alternative_display_column1, 'n/a') || ' lkka= ' || nvl(l.alternative_key_column2, 'n/a') || ' lkda= ' || nvl(l.alternative_display_column2, 'n/a') || ' nwk= ' || decode (
+      l.insert_new_value,
+      null,
+      null,
+      'Y',
+      'Yes',
+      'N',
+      'No'
+    ) || ' err= ' || nvl(l.error_message, 'null') component_signature
+  from
+    wwv_flow_load_table_lookups l,
+    wwv_flow_load_tables t,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.id = l.flow_id
+    and t.id = l.load_table_id
+    and f.id = t.flow_id
+    and --
+    (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

@@ -1,0 +1,113 @@
+schema: APEX_050000
+name: APEX_TEAM_FEEDBACK
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.PROVISIONING_COMPANY_ID workspace_id,
+    w.short_name workspace_name,
+    w.display_name workspace_display_name,
+    --
+    f.ID feedback_id,
+    f.deployment_system || f.feedback_id feedback_number,
+    f.FEEDBACK_COMMENT feedback,
+    f.FEEDBACK_TYPE feedback_type,
+    f.FEEDBACK_STATUS feedback_status,
+    f.deployment_system deployment_system,
+    --
+    f.APPLICATION_ID application_id,
+    f.APPLICATION_NAME application_name,
+    f.APPLICATION_VERSION application_version,
+    f.PAGE_ID page_id,
+    f.PAGE_NAME page_name,
+    f.PAGE_LAST_UPDATED_BY page_last_updated_by,
+    f.PAGE_LAST_UPDATED_ON page_last_updated,
+    f.SESSION_ID logging_session_id,
+    f.APEX_USER logging_apex_user,
+    f.user_email logging_user_email,
+    --
+    f.SESSION_STATE,
+    f.PARSING_SCHEMA,
+    f.screen_width,
+    f.screen_height,
+    f.HTTP_USER_AGENT,
+    f.REMOTE_ADDR,
+    f.REMOTE_USER,
+    f.HTTP_HOST,
+    f.SERVER_NAME,
+    f.SERVER_PORT,
+    --
+    f.LOGGED_BY_WORKSPACE_NAME logging_workspace_name,
+    f.LOGGING_SECURITY_GROUP_ID logging_workspace_id,
+    f.LOGGING_EMAIL,
+    --
+    f.SESSION_INFO session_info,
+    f.tags tags,
+    f.DEVELOPER_COMMENT developer_comment,
+    f.public_response public_response,
+    f.BUG_ID logged_as_bug_id,
+    f.FEATURE_ID logged_as_feature_id,
+    f.TASK_ID logged_as_todo_id,
+    --
+    f.LABEL_01,
+    f.LABEL_02,
+    f.LABEL_03,
+    f.LABEL_04,
+    f.LABEL_05,
+    f.LABEL_06,
+    f.LABEL_07,
+    f.LABEL_08,
+    --
+    f.ATTRIBUTE_01,
+    f.ATTRIBUTE_02,
+    f.ATTRIBUTE_03,
+    f.ATTRIBUTE_04,
+    f.ATTRIBUTE_05,
+    f.ATTRIBUTE_06,
+    f.ATTRIBUTE_07,
+    f.ATTRIBUTE_08,
+    --
+    f.CREATED_BY,
+    f.CREATED_ON,
+    f.UPDATED_BY,
+    f.UPDATED_ON
+  from
+    wwv_flow_current_sgid sgid,
+    wwv_flow_feedback f,
+    wwv_flow_companies w
+  where
+    f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and w.PROVISIONING_COMPANY_ID in (
+      select
+        security_group_id
+      from
+        wwv_flow_company_schemas s,
+        (
+          select
+            (
+              select
+                sys_context('USERENV', 'CURRENT_USER')
+              from
+                sys.dual
+            ) cu
+          from
+            sys.dual
+        ) d
+      where
+        (
+          s.schema = cu
+          or (
+            select
+              wwv_flow_security.has_apex_administrator_role_yn(cu)
+            from
+              sys.dual
+          ) = 'Y'
+          or sgid.security_group_id = w.PROVISIONING_COMPANY_ID
+        )
+    )
+    and (
+      user in ('SYS', 'SYSTEM', 'APEX_050000')
+      or w.PROVISIONING_COMPANY_ID != 10
+    )
+columns: []
+referencedTables: []

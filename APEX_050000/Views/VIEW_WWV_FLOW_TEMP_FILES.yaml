@@ -1,0 +1,26 @@
+schema: APEX_050000
+name: WWV_FLOW_TEMP_FILES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    id,
+    flow_id application_id,
+    name,
+    filename,
+    mime_type,
+    created_on,
+    blob_content
+  from
+    wwv_flow_current_sgid sgid,
+    wwv_flow_file_objects$ a
+  where
+    a .security_group_id = sgid.security_group_id
+    and session_id = (
+      select
+        nv('SESSION')
+      from
+        sys.dual
+    ) with check option
+columns: []
+referencedTables: []

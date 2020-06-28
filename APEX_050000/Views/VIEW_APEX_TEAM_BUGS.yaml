@@ -1,0 +1,85 @@
+schema: APEX_050000
+name: APEX_TEAM_BUGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.PROVISIONING_COMPANY_ID workspace_id,
+    w.short_name workspace_name,
+    --
+    b.ID bug_id,
+    b.BUG_ID friendly_bug_number,
+    b.BUG_TITLE bug_title,
+    b.ASSIGNED_TO assigned_to,
+    b.BUG_SEVERITY bug_severity,
+    b.BUG_STATUS bug_status,
+    b.PRIORITY priority,
+    b.FIX_BY_RELEASE fix_by_release,
+    --
+    b.ESTIMATED_FIX_DATE,
+    b.ACTUAL_FIX_DATE,
+    --
+    b.BUG_DESCRIPTION,
+    b.REPORTED_PLATFORM,
+    b.REPORTED_BROWSER,
+    b.REPORTED_OPERATING_SYSTEM,
+    b.FEATURE_ID related_feature_id,
+    b.TARGET_MILESTONE_ID target_milestone_id,
+    b.TASK_ID related_todo_id,
+    b.DUPLICATE_OF_BUG,
+    b.TAGS,
+    --
+    b.CUSTOMER_NAME customer_name,
+    b.CUSTOMER_ISSUE customer_issue,
+    --
+    b.COMPONENT product_component,
+    b.PRODUCT product_name,
+    b.PRODUCT_VERSION product_version,
+    b.IMPACT impact_of_fix,
+    b.APPLICATION_ID application_id,
+    b.PAGE_ID page_id,
+    --
+    b.CREATED_BY,
+    b.CREATED_ON,
+    b.UPDATED_BY,
+    b.UPDATED_ON
+  from
+    wwv_flow_current_sgid sgid,
+    wwv_flow_bugs b,
+    wwv_flow_companies w
+  where
+    b.security_group_id = w.PROVISIONING_COMPANY_ID
+    and w.PROVISIONING_COMPANY_ID in (
+      select
+        security_group_id
+      from
+        wwv_flow_company_schemas s,
+        (
+          select
+            (
+              select
+                sys_context('USERENV', 'CURRENT_USER')
+              from
+                sys.dual
+            ) cu
+          from
+            sys.dual
+        ) d
+      where
+        (
+          s.schema = cu
+          or (
+            select
+              wwv_flow_security.has_apex_administrator_role_yn(cu)
+            from
+              sys.dual
+          ) = 'Y'
+          or sgid.security_group_id = w.PROVISIONING_COMPANY_ID
+        )
+    )
+    and (
+      user in ('SYS', 'SYSTEM', 'APEX_050000')
+      or w.PROVISIONING_COMPANY_ID != 10
+    )
+columns: []
+referencedTables: []

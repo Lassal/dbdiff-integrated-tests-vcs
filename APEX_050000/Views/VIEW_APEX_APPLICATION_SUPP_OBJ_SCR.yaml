@@ -1,0 +1,84 @@
+schema: APEX_050000
+name: APEX_APPLICATION_SUPP_OBJ_SCR
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    i.NAME script_name,
+    i.SEQUENCE execution_sequence,
+    decode(
+      i.SCRIPT_TYPE,
+      'UPGRADE',
+      'Upgrade',
+      'INSTALL',
+      'Install',
+      i.SCRIPT_TYPE
+    ) script_type,
+    --
+    i.SCRIPT sql_script,
+    --
+    nvl(
+      (
+        select
+          r
+        from
+          apex_standard_conditions
+        where
+          d = i.condition_type
+      ),
+      i.condition_type
+    ) condition_type,
+    i.CONDITION_TYPE condition_type_code,
+    i.CONDITION condition_expression1,
+    i.CONDITION2 condition_expression2,
+    --
+    i.LAST_UPDATED_BY last_updated_by,
+    i.LAST_UPDATED_ON last_updated_on,
+    i.CREATED_BY created_by,
+    i.CREATED_ON created_on,
+    --
+    i.ID supporting_object_script_id
+  from
+    wwv_flow_install_scripts i,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and f.id = i.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

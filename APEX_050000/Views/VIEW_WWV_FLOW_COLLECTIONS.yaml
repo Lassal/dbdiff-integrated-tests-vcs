@@ -1,0 +1,93 @@
+schema: APEX_050000
+name: WWV_FLOW_COLLECTIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    c .collection_name,
+    m.seq_id,
+    m.c001,
+    m.c002,
+    m.c003,
+    m.c004,
+    m.c005,
+    m.c006,
+    m.c007,
+    m.c008,
+    m.c009,
+    m.c010,
+    m.c011,
+    m.c012,
+    m.c013,
+    m.c014,
+    m.c015,
+    m.c016,
+    m.c017,
+    m.c018,
+    m.c019,
+    m.c020,
+    m.c021,
+    m.c022,
+    m.c023,
+    m.c024,
+    m.c025,
+    m.c026,
+    m.c027,
+    m.c028,
+    m.c029,
+    m.c030,
+    m.c031,
+    m.c032,
+    m.c033,
+    m.c034,
+    m.c035,
+    m.c036,
+    m.c037,
+    m.c038,
+    m.c039,
+    m.c040,
+    m.c041,
+    m.c042,
+    m.c043,
+    m.c044,
+    m.c045,
+    m.c046,
+    m.c047,
+    m.c048,
+    m.c049,
+    m.c050,
+    m.clob001,
+    m.blob001,
+    m.xmltype001,
+    m.n001,
+    m.n002,
+    m.n003,
+    m.n004,
+    m.n005,
+    m.d001,
+    m.d002,
+    m.d003,
+    m.d004,
+    m.d005,
+    m.md5_original
+  from
+    wwv_flow_current_sgid sgid,
+    wwv_flow_collections$ c,
+    wwv_flow_collection_members$ m
+  where
+    c .session_id = (
+      select
+        v('SESSION')
+      from
+        sys.dual
+    )
+    and c .security_group_id = sgid.security_group_id
+    and c .id = m.collection_id
+    and c .flow_id = (
+      select
+        nv('FLOW_ID')
+      from
+        sys.dual
+    )
+columns: []
+referencedTables: []

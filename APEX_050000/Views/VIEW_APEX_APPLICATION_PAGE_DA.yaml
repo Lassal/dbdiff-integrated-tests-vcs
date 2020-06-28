@@ -1,0 +1,263 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_DA
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    e.flow_id application_id,
+    f.name application_name,
+    e.page_id page_id,
+    p.name page_name,
+    --
+    e.name dynamic_action_name,
+    e.event_sequence dynamic_action_sequence,
+    e.triggering_element when_element,
+    decode(
+      e.triggering_element_type,
+      'ITEM',
+      'Item',
+      'BUTTON',
+      'Button',
+      'REGION',
+      'Region',
+      'COLUMN',
+      'Column',
+      'DOM_OBJECT',
+      'DOM Object',
+      'JQUERY_SELECTOR',
+      'jQuery Selector',
+      'JAVASCRIPT_EXPRESSION',
+      'JavaScript Expression',
+      e.triggering_element_type
+    ) when_selection_type,
+    e.triggering_element_type when_selection_type_code,
+    nvl(
+      (
+        select
+          plug_name
+        from
+          wwv_flow_page_plugs
+        where
+          id = e.triggering_region_id
+      ),
+      e.triggering_region_id
+    ) when_region,
+    e.triggering_region_id when_region_id,
+    --
+    decode(
+      e.triggering_button_id,
+      null,
+      null,
+      (
+        select
+          button_name
+        from
+          wwv_flow_step_buttons
+        where
+          id = e.triggering_button_id
+        union
+        select
+          name
+        from
+          wwv_flow_step_items
+        where
+          id = e.triggering_button_id
+      )
+    ) when_button,
+    e.triggering_button_id when_button_id,
+    e.condition_page_item,
+    --
+    decode(
+      e.triggering_condition_type,
+      'EQUALS',
+      'equal to',
+      'NOT_EQUALS',
+      'not equal to',
+      'GREATER_THAN',
+      'greater than',
+      'GREATER_THAN_OR_EQUAL',
+      'greater than or equal to',
+      'LESS_THAN',
+      'less than',
+      'LESS_THAN_OR_EQUAL',
+      'less than or equal to',
+      'NULL',
+      'is null',
+      'NOT_NULL',
+      'is not null',
+      'IN_LIST',
+      'in list',
+      'NOT_IN_LIST',
+      'not in list',
+      'JAVASCRIPT_EXPRESSION',
+      'JavaScript expression',
+      e.triggering_condition_type
+    ) when_condition,
+    e.triggering_expression when_expression,
+    --
+    e.bind_type when_event_scope,
+    e.bind_delegate_to_selector when_event_static_container,
+    e.bind_event_type when_event_internal_name,
+    (
+      select
+        d
+      from
+        wwv_flow_javascript_events
+      where
+        r = e.bind_event_type
+    ) when_event_name,
+    e.bind_event_type_custom when_event_custom_name,
+    --
+    nvl(
+      (
+        select
+          r
+        from
+          apex_standard_conditions
+        where
+          d = e.display_when_type
+      ),
+      e.display_when_type
+    ) condition_type,
+    e.display_when_type condition_type_code,
+    e.display_when_cond condition_expression1,
+    e.display_when_cond2 condition_expression2,
+    --
+    (
+      select
+        case
+          when e.required_patch > 0 then patch_name
+          else '{Not ' || patch_name || '}'
+        end patch_name
+      from
+        wwv_flow_patches
+      where
+        id = abs(e.required_patch)
+    ) build_option,
+    e.required_patch build_option_id,
+    --
+    decode(substr(e.security_scheme, 1, 1), '!', 'Not ') || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(e.security_scheme, '!')
+          and flow_id = e.id
+      ),
+      e.security_scheme
+    ) authorization_scheme,
+    e.security_scheme authorization_scheme_id,
+    --
+    e.last_updated_on last_updated_on,
+    e.last_updated_by last_updated_by,
+    e.da_event_comment component_comment,
+    e.id dynamic_action_id,
+    --
+    (
+      select
+        count(*)
+      from
+        wwv_flow_page_da_actions
+      where
+        event_id = e.id
+    ) number_of_actions,
+    --
+    'name=' || e.name || ',seq=' || lpad(e.event_sequence, 5, '00000') || ',tee=' || substr(e.triggering_element, 1, 30) || ',teet=' || e.triggering_element_type || ',ter=' || nvl(
+      (
+        select
+          plug_name
+        from
+          wwv_flow_page_plugs
+        where
+          id = e.triggering_region_id
+      ),
+      e.triggering_region_id
+    ) || ',teb=' || decode(
+      e.triggering_button_id,
+      null,
+      null,
+      (
+        select
+          button_name
+        from
+          wwv_flow_step_buttons
+        where
+          id = e.triggering_button_id
+        union
+        select
+          name
+        from
+          wwv_flow_step_items
+        where
+          id = e.triggering_button_id
+      )
+    ) || ',tec=' || e.triggering_condition_type || ',teexp=' || substr(e.triggering_expression, 1, 30) || ',tebt=' || e.bind_type || ',tebdts=' || e.bind_delegate_to_selector || ',tebe=' || e.bind_event_type || ',cond=' || e.display_when_type || substr(e.display_when_cond, 1, 20) || length(e.display_when_cond) || length(e.display_when_cond2) || ',build=' || nvl(
+      (
+        select
+          patch_name
+        from
+          wwv_flow_patches
+        where
+          id = abs(e.required_patch)
+      ),
+      e.required_patch
+    ) || ' auth=' || decode(substr(e.security_scheme, 1, 1), '!', 'Not ') || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(e.security_scheme, '!')
+          and flow_id = e.id
+      ),
+      e.security_scheme
+    ) component_signature
+  from
+    wwv_flow_page_da_events e,
+    wwv_flow_steps p,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.security_group_id = p.security_group_id
+    and f.security_group_id = e.security_group_id
+    and f.id = p.flow_id
+    and f.id = e.flow_id
+    and p.id = e.page_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

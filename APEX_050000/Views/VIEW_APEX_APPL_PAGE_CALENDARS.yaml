@@ -1,0 +1,127 @@
+schema: APEX_050000
+name: APEX_APPL_PAGE_CALENDARS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.id application_id,
+    f.name application_name,
+    cal.id calendar_id,
+    p.page_id,
+    p.plug_name region_name,
+    cal.plug_id region_id,
+    cal.template_id calendar_template_id,
+    cal.easy_sql_owner calendar_source_owner,
+    cal.easy_sql_table calendar_source,
+    cal.date_column,
+    case
+      when nvl(cal.include_time_with_date, 'Y') = 'Y' then 'Date and Time'
+      else 'Date Only'
+    end date_format,
+    cal.date_item,
+    cal.end_date_item,
+    cal.date_type_column calendar_type_column,
+    case
+      cal.display_type
+      when 'COL' then 'Column'
+      when 'CUS' then 'Custom'
+      else 'No Display Value'
+    end display_type,
+    cal.display_column,
+    cal.primary_key_column,
+    cal.item_format column_format,
+    case
+      when nvl(cal.begin_at_start_of_interval, 'N') = 'Y' then 'Yes'
+      else 'No'
+    end begin_at_start_of_interval,
+    cal.start_of_week start_day_of_monthly,
+    cal.week_start_day start_day_of_weekly,
+    cal.week_end_day end_day_of_weekly,
+    case
+      when cal.time_format = '12HOUR' then '12 Hour'
+      else '24 Hour'
+    end time_format,
+    cal.start_time,
+    cal.end_time,
+    cal.data_background_color,
+    cal.data_text_color,
+    case
+      cal.agenda_cal_days_type
+      when 'MONTH' then 'Current Month'
+      when 'YEAR' then 'Current Year'
+      else 'Custom'
+    end list_view_days_display,
+    cal.agenda_cal_days list_view_no_of_days,
+    cal.item_link,
+    cal.item_link_primary_key_item,
+    cal.item_link_date_item,
+    case
+      when cal.item_link_open_in = 'S' then 'Same Window'
+      else 'Popup Window'
+    end open_link_in,
+    cal.day_link,
+    cal.drag_drop_process_id,
+    decode(
+      substr(cal.drag_drop_required_role, 1, 1),
+      '!',
+      'Not '
+    ) || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(cal.drag_drop_required_role, '!')
+          and flow_id = f.id
+      ),
+      cal.drag_drop_required_role
+    ) drag_drop_authorization_scheme,
+    cal.drag_drop_required_role drag_drop_authorization_id,
+    cal.last_updated_by,
+    cal.last_updated_on
+  from
+    wwv_flow_cals cal,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    wwv_flow_page_plugs p,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and p.id = cal.plug_id
+    and p.flow_id = f.id
+    and s.schema = f.owner
+    and f.security_group_id = cal.security_group_id
+    and f.id = cal.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

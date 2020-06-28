@@ -1,0 +1,127 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_IR_GRPBY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.id application_id,
+    f.name application_name,
+    r.page_id page_id,
+    r.worksheet_id interactive_report_id,
+    g.websheet_id websheet_id,
+    r.id report_id,
+    r.application_user application_user,
+    r.name report_name,
+    g.id group_by_id,
+    group_by_columns,
+    g.created_on,
+    g.created_by,
+    g.updated_on last_updated_on,
+    g.updated_by last_updated_by,
+    g.function_01,
+    g.function_column_01,
+    g.function_db_column_name_01,
+    g.function_label_01,
+    g.function_format_mask_01,
+    g.function_sum_01,
+    g.function_02,
+    g.function_column_02,
+    g.function_db_column_name_02,
+    g.function_label_02,
+    g.function_format_mask_02,
+    g.function_sum_02,
+    g.function_03,
+    g.function_column_03,
+    g.function_db_column_name_03,
+    g.function_label_03,
+    g.function_format_mask_03,
+    g.function_sum_03,
+    g.function_04,
+    g.function_column_04,
+    g.function_db_column_name_04,
+    g.function_label_04,
+    g.function_format_mask_04,
+    g.function_sum_04,
+    g.function_05,
+    g.function_column_05,
+    g.function_db_column_name_05,
+    g.function_label_05,
+    g.function_format_mask_05,
+    g.function_sum_05,
+    g.function_06,
+    g.function_column_06,
+    g.function_db_column_name_06,
+    g.function_label_06,
+    g.function_format_mask_06,
+    g.function_sum_06,
+    g.function_07,
+    g.function_column_07,
+    g.function_db_column_name_07,
+    g.function_label_07,
+    g.function_format_mask_07,
+    g.function_sum_07,
+    g.function_08,
+    g.function_column_08,
+    g.function_db_column_name_08,
+    g.function_label_08,
+    g.function_format_mask_08,
+    g.function_sum_08,
+    --
+    g.sort_column_01,
+    g.sort_direction_01,
+    g.sort_column_02,
+    g.sort_direction_02,
+    g.sort_column_03,
+    g.sort_direction_03,
+    g.sort_column_04,
+    g.sort_direction_04,
+    g.sort_column_05,
+    g.sort_direction_05,
+    g.sort_column_06,
+    g.sort_direction_06 --
+  from
+    wwv_flow_worksheet_group_by g,
+    wwv_flow_worksheet_rpts r,
+    wwv_flow_worksheets ws,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.security_group_id = r.security_group_id
+    and f.id = ws.flow_id
+    and ws.id = r.worksheet_id
+    and r.id = g.report_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

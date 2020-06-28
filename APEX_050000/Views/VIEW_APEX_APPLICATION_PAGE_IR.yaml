@@ -1,0 +1,460 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_IR
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.id application_id,
+    f.name application_name,
+    ir.page_id page_id,
+    ir.id interactive_report_id,
+    ir.region_id region_id,
+    r.plug_name region_name,
+    --
+    (
+      select
+        count(*)
+      from
+        wwv_flow_worksheet_columns
+      where
+        worksheet_id = ir.id
+    ) number_of_columns,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_worksheet_col_groups
+      where
+        worksheet_id = ir.id
+    ) number_of_column_groups,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_worksheet_rpts
+      where
+        worksheet_id = ir.id
+        and session_id is null
+        and nvl(is_default, 'N') = 'Y'
+        and application_user = 'APXWS_ALTERNATIVE'
+    ) number_of_alt_default_reportS,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_worksheet_rpts
+      where
+        worksheet_id = ir.id
+        and session_id is null
+        and nvl(is_default, 'N') = 'N'
+        and status = 'PUBLIC'
+    ) number_of_public_reports,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_worksheet_rpts
+      where
+        worksheet_id = ir.id
+        and session_id is null
+        and nvl(is_default, 'N') = 'N'
+        and status = 'PRIVATE'
+    ) number_of_private_reports,
+    ir.max_row_count,
+    ir.max_row_count_message,
+    ir.no_data_found_message,
+    ir.max_rows_per_page,
+    ir.search_button_label,
+    r.ajax_items_to_submit page_items_to_submit,
+    /* Only for compatibility */
+    ir.base_table_or_view,
+    r.plug_source sql_query,
+    --
+    ir.show_nulls_as,
+    decode(
+      ir.pagination_type,
+      'ROWS_X_TO_Y_OF_Z',
+      'Row Ranges X to Y of Z (no pagination)',
+      'ROWS_X_TO_Y',
+      'Row Ranges X to Y (no pagination)',
+      'SEARCH_ENGINE',
+      'Search Engine 1,2,3,4 (set based pagination)',
+      'COMPUTED_BUT_NOT_DISPLAYED',
+      'Use Externally Created Pagination Buttons',
+      'ROW_RANGES',
+      'Row Ranges 1-15 16-30 (with set pagination)',
+      'ROW_RANGES_IN_SELECT_LIST',
+      'Row Ranges 1-15 16-30 in select list (with pagination)',
+      'ROW_RANGES_WITH_LINKS',
+      'Row Ranges X to Y of Z (with pagination)',
+      'NEXT_PREVIOUS_LINKS',
+      'Row Ranges X to Y (with next and previous links)',
+      ir.pagination_type
+    ) pagination_scheme,
+    decode(
+      ir.pagination_display_position,
+      'BOTTOM_LEFT',
+      'Bottom - Left',
+      'BOTTOM_RIGHT',
+      'Bottom - Right',
+      'TOP_LEFT',
+      'Top - Left',
+      'TOP_RIGHT',
+      'Top - Right',
+      'TOP_AND_BOTTOM_LEFT',
+      'Top and Bottom - Left',
+      'TOP_AND_BOTTOM_RIGHT',
+      'Top and Bottom - Right',
+      ir.pagination_display_position
+    ) pagination_display_position,
+    cast(null as varchar2(10)) button_template,
+    --
+    decode(
+      ir.show_finder_drop_down,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_finder_drop_down
+    ) show_finder_drop_down,
+    decode(ir.report_list_mode, 'TABS', 'Yes', 'No') show_reports_select_list,
+    decode(
+      ir.show_display_row_count,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_display_row_count
+    ) show_display_row_count,
+    decode(
+      ir.show_search_bar,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_search_bar
+    ) show_search_bar,
+    decode(
+      ir.show_search_textbox,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_search_textbox
+    ) show_search_textbox,
+    decode(
+      ir.show_actions_menu,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_actions_menu
+    ) show_actions_menu,
+    cast(null as varchar2(10)) actions_menu_icon,
+    cast(null as varchar2(10)) finder_icon,
+    decode(
+      ir.show_select_columns,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_select_columns
+    ) show_select_columns,
+    decode(
+      ir.show_rows_per_page,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_rows_per_page
+    ) show_rows_per_page,
+    decode(
+      ir.show_filter,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_filter
+    ) show_filter,
+    decode(
+      ir.show_sort,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_sort
+    ) show_sort,
+    decode(
+      ir.show_control_break,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_control_break
+    ) show_control_break,
+    decode(
+      ir.show_highlight,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_highlight
+    ) show_highlight,
+    decode(
+      ir.show_computation,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_computation
+    ) show_compute,
+    decode(
+      ir.show_aggregate,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_aggregate
+    ) show_aggregate,
+    decode(
+      ir.show_chart,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_chart
+    ) show_chart,
+    decode(
+      ir.show_group_by,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_group_by
+    ) show_group_by,
+    decode(
+      ir.show_pivot,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_pivot
+    ) show_pivot,
+    decode(
+      ir.show_notify,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_notify
+    ) show_notify,
+    decode(
+      ir.show_flashback,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_flashback
+    ) show_flashback,
+    decode(
+      ir.allow_report_saving,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.allow_report_saving
+    ) show_save,
+    decode(
+      ir.allow_save_rpt_public,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.allow_save_rpt_public
+    ) show_save_public,
+    decode(
+      substr(ir.save_rpt_public_auth_scheme, 1, 1),
+      '!',
+      'Not '
+    ) || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(ir.save_rpt_public_auth_scheme, '!')
+          and flow_id = f.id
+      ),
+      ir.save_rpt_public_auth_scheme
+    ) save_public_auth_scheme,
+    ir.save_rpt_public_auth_scheme save_public_auth_scheme_id,
+    decode(
+      ir.show_reset,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_reset
+    ) show_reset,
+    decode(
+      ir.show_download,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_download
+    ) show_download,
+    decode(
+      ir.show_help,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      ir.show_help
+    ) show_help,
+    ir.download_formats,
+    ir.download_filename filename,
+    ir.csv_output_separator separator,
+    ir.csv_output_enclosed_by enclosed_by,
+    --
+    decode(
+      ir.show_detail_link,
+      'Y',
+      'Single Row View',
+      'C',
+      'Custom Link target',
+      'N',
+      'No Link Column'
+    ) detail_link_type,
+    ir.detail_link detail_link_target,
+    ir.detail_link_text detail_link_text,
+    ir.detail_link_attr detail_link_attributes,
+    ir.detail_link_checksum_type detail_link_checksum_type,
+    nvl(
+      (
+        select
+          r
+        from
+          apex_standard_conditions
+        where
+          d = ir.detail_link_condition_type
+      ),
+      ir.detail_link_condition_type
+    ) detail_link_condition_type,
+    ir.detail_link_condition_type detail_link_cond_type_code,
+    ir.detail_link_cond detail_link_cond_expression,
+    ir.detail_link_cond2 detail_link_cond_expression2,
+    decode(
+      substr(ir.detail_link_auth_SCHEME, 1, 1),
+      '!',
+      'Not '
+    ) || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(ir.detail_link_auth_scheme, '!')
+          and flow_id = f.id
+      ),
+      ir.detail_link_auth_scheme
+    ) detail_link_auth_scheme,
+    ir.detail_link_auth_scheme detail_link_auth_scheme_id,
+    --
+    ir.alias alias,
+    ir.report_id_item,
+    ir.max_query_cost,
+    ir.email_from,
+    decode(
+      ir.fixed_header,
+      'NONE',
+      'None',
+      'PAGE',
+      'Page',
+      'REGION',
+      'Region',
+      ir.fixed_header
+    ) fixed_header,
+    ir.fixed_header_max_height,
+    --
+    decode(icon_view_enabled_yn, 'Y', 'Yes', 'N', 'No', 'No') icon_view_enabled_yn,
+    decode(icon_view_use_custom, 'Y', 'Yes', 'N', 'No', 'No') icon_view_use_custom,
+    icon_view_custom_link,
+    icon_view_link_column,
+    icon_view_img_src_column,
+    icon_view_label_column,
+    icon_view_img_attr_text,
+    icon_view_alt_text,
+    icon_view_title_text,
+    icon_view_columns_per_row,
+    --
+    decode(detail_view_enabled_yn, 'Y', 'Yes', 'N', 'No', 'No') detail_view_enabled_yn,
+    detail_view_before_rows,
+    detail_view_for_each_row,
+    detail_view_after_rows,
+    --
+    ir.internal_uid,
+    --
+    ir.created_on,
+    ir.created_by,
+    ir.updated_on,
+    ir.updated_by,
+    --
+    'Interactive Report' || ' rc=' || ir.max_row_count || ' ' || length(ir.max_row_count_message) || length(ir.no_data_found_message) || ir.max_rows_per_page || substr(ir.search_button_label, 1, 30) || length(r.ajax_items_to_submit) || substr(ir.show_nulls_as, 1, 30) || ' p=' || ir.pagination_type || ' ' || ir.pagination_display_position || ' opt=' || ir.show_finder_drop_down || ir.show_display_row_count || ir.show_search_bar || ir.show_search_textbox || ir.show_actions_menu || ir.show_select_columns || ir.show_rows_per_page || ir.show_filter || ir.show_sort || ir.show_control_break || ir.show_highlight || ir.show_computation || ir.show_aggregate || ir.show_chart || ir.show_group_by || ir.show_pivot || ir.show_notify || ir.show_flashback || ir.allow_report_saving || ir.allow_save_rpt_public || ir.save_rpt_public_auth_scheme || ir.show_reset || ir.show_download || ir.show_help || ' rpts=' || ir.report_list_mode || ' dl=' || substr(ir.download_formats, 1, 40) || ' fn=' || substr(ir.download_filename, 1, 30) || ir.csv_output_separator || ir.csv_output_enclosed_by || ir.show_detail_link || ' l=' || substr(ir.detail_link, 1, 30) || ' lt=' || substr(ir.detail_link_text, 1, 30) || substr(ir.detail_link_attr, 1, 30) || ir.detail_link_checksum_type || ' lc=' || ir.detail_link_condition_type || length(ir.detail_link_cond) || length(ir.detail_link_cond2) || nvl(
+      (
+        select
+          name n
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(ir.detail_link_auth_SCHEME, '!')
+          and flow_id = f.id
+      ),
+      'Not found'
+    ) || ' a=' || substr(ir.alias, 1, 30) || ir.report_id_item || ir.max_query_cost || ir.email_from component_signature --
+  from
+    wwv_flow_worksheets ir,
+    wwv_flow_page_plugs r,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.security_group_id = ir.security_group_id
+    and r.id (+) = ir.region_id
+    and f.id = ir.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

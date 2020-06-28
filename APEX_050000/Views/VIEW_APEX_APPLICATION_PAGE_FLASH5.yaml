@@ -1,0 +1,292 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_FLASH5
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.id application_id,
+    f.name application_name,
+    p.id page_id,
+    p.name page_name,
+    c .region_id region_id,
+    (
+      select
+        plug_name
+      from
+        wwv_flow_page_plugs
+      where
+        id = c .region_id
+    ) region_name,
+    c .id chart_id,
+    decode(
+      c .chart_type,
+      '2DColumn',
+      '2D Column',
+      '2DColumn_Line',
+      '2D Column Line',
+      '2DDoughnut',
+      '2D Doughnut',
+      '2DLine',
+      '2D Line',
+      '2DPie',
+      '2D Pie',
+      '3DColumn',
+      '3D Column',
+      '3DPie',
+      '3D Pie',
+      'Candlestick',
+      'Candlestick',
+      'GaugeChart',
+      'Dial',
+      'DIALSWEEP',
+      'Dial (Sweep)',
+      'Horizontal2DColumn',
+      'Horizontal 2D Column',
+      'Horizontal3DColumn',
+      'Horizontal 3D Column',
+      'HorizontalRange3DColumn',
+      'Horizontal Range 3D Column',
+      'HorizontalRange2DColumn',
+      'HorizontalRange 2D Column',
+      'Inverse2DLine',
+      'Inverse 2D Line',
+      'Range2DColumn',
+      'Range 2D Column',
+      'Range3DColumn',
+      'Range 3D Column',
+      'dot',
+      'Scatter',
+      'ScatterMarker',
+      'Scatter',
+      'Stacked2DColumn',
+      'Stacked 2D Column',
+      '2DSTACKED_PCT',
+      'Stacked 2D Column (Percent)',
+      'Stacked3DColumn',
+      'Stacked 3D Column',
+      '3DSTACKED_PCT',
+      'Stacked 3D Column (Percent)',
+      'StackedHorizontal2DColumn',
+      'Stacked Horizontal 2D Column',
+      '2DHSTACKED_PCT',
+      'Stacked Horizontal 2D Column (Percent)',
+      'StackedHorizontal3DColumn',
+      'Stacked Horizontal 3D Column',
+      '3DHSTACKED_PCT',
+      'Stacked Horizontal 3D Column (Percent)',
+      'ProjectGantt',
+      'Project Gantt',
+      'ResourceGantt',
+      'Resource Gantt',
+      'Map',
+      'Map',
+      c .chart_type
+    ) chart_type,
+    decode(
+      c .chart_rendering,
+      'FLASH_PREFERRED',
+      'Flash Chart',
+      'SVG_ONLY',
+      'HTML5 Chart'
+    ) chart_rendering,
+    c .chart_title chart_title,
+    c .chart_name chart_name,
+    c .chart_width chart_width,
+    c .chart_height chart_height,
+    c .chart_animation chart_animation,
+    c .pie_attr pie_attr,
+    c .display_attr display_attr,
+    c .dial_tick_attr dial_tick_attr,
+    c .gantt_attr gantt_attr,
+    c .gantt_date_format gantt_date_format,
+    c .gantt_start_date gantt_start_date,
+    c .gantt_end_date gantt_end_date,
+    c .map_attr map_attr,
+    c .map_source map_source,
+    c .margins margins,
+    c .color_scheme color_scheme,
+    c .custom_colors custom_colors,
+    c .map_undef_color_scheme map_undef_color_scheme,
+    c .map_undef_custom_colors map_undef_custom_colors,
+    c .chart_bgtype chart_bgtype,
+    c .chart_bgcolor chart_bgcolor,
+    c .chart_bgcolor2 chart_bgcolor2,
+    c .chart_bgcorners chart_bgcorners,
+    c .chart_gradient_angle chart_gradient_angle,
+    c .grid_bgtype grid_bgtype,
+    c .grid_bgcolor grid_bgcolor,
+    c .grid_bgcolor2 grid_bgcolor2,
+    c .grid_gradient_angle grid_gradient_angle,
+    c .x_axis_title x_axis_title,
+    c .x_axis_title_font x_axis_title_font,
+    c .x_axis_title_rotation x_axis_title_rotation,
+    c .x_axis_min x_axis_min,
+    c .x_axis_max x_axis_max,
+    c .x_axis_scroll_start x_axis_scroll_start,
+    c .x_axis_scroll_end x_axis_scroll_end,
+    c .x_axis_scroll_range x_axis_scroll_range,
+    c .x_axis_scroll_range_unit x_axis_scroll_range_unit,
+    c .x_axis_label_rotation x_axis_label_rotation,
+    c .x_axis_label_font x_axis_label_font,
+    c .x_axis_prefix x_axis_prefix,
+    c .x_axis_postfix x_axis_postfix,
+    c .x_axis_decimal_place x_axis_decimal_place,
+    c .x_axis_major_interval x_axis_major_interval,
+    c .x_axis_minor_interval x_axis_minor_interval,
+    c .y_axis_title y_axis_title,
+    c .y_axis_title_font y_axis_title_font,
+    c .y_axis_title_rotation y_axis_title_rotation,
+    c .y_axis_min y_axis_min,
+    c .y_axis_max y_axis_max,
+    c .y_axis_scroll_start y_axis_scroll_start,
+    c .y_axis_scroll_end y_axis_scroll_end,
+    c .y_axis_scroll_range y_axis_scroll_range,
+    c .y_axis_scroll_range_unit y_axis_scroll_range_unit,
+    c .y_axis_label_rotation y_axis_label_rotation,
+    c .y_axis_label_font y_axis_label_font,
+    c .y_axis_prefix y_axis_prefix,
+    c .y_axis_postfix y_axis_postfix,
+    c .y_axis_decimal_place y_axis_decimal_place,
+    c .y_axis_major_interval y_axis_major_interval,
+    c .y_axis_minor_interval y_axis_minor_interval,
+    c .extra_y_axis_min extra_y_axis_min,
+    c .extra_y_axis_max extra_y_axis_max,
+    c .values_prefix values_prefix,
+    c .values_postfix values_postfix,
+    c .async_update async_update,
+    c .async_time async_time,
+    c .values_font values_font,
+    c .values_rotation values_rotation,
+    c .tooltip_font tooltip_font,
+    c .legend_title legend_title,
+    c .legend_font legend_font,
+    c .legend_title_font legend_title_font,
+    c .grid_labels_font grid_labels_font,
+    c .chart_title_font chart_title_font,
+    c .gauge_labels_font gauge_labels_font,
+    c .use_chart_xml use_chart_xml,
+    c .chart_xml chart_xml,
+    --
+    c .updated_by last_updated_by,
+    c .updated_on last_updated_on,
+    --
+    decode(
+      c .chart_type,
+      '2DColumn',
+      '2D Column',
+      '2DColumn_Line',
+      '2D Column Line',
+      '2DDoughnut',
+      '2D Doughnut',
+      '2DLine',
+      '2D Line',
+      '2DPie',
+      '2D Pie',
+      '3DColumn',
+      '3D Column',
+      '3DPie',
+      '3D Pie',
+      'Candlestick',
+      'Candlestick',
+      'GaugeChart',
+      'Dial',
+      'DIALSWEEP',
+      'Dial (Sweep)',
+      'Horizontal2DColumn',
+      'Horizontal 2D Column',
+      'Horizontal3DColumn',
+      'Horizontal 3D Column',
+      'HorizontalRange3DColumn',
+      'Horizontal Range 3D Column',
+      'HorizontalRange2DColumn',
+      'HorizontalRange 2D Column',
+      'Inverse2DLine',
+      'Inverse 2D Line',
+      'Range2DColumn',
+      'Range 2D Column',
+      'Range3DColumn',
+      'Range 3D Column',
+      'dot',
+      'Scatter',
+      'ScatterMarker',
+      'Scatter',
+      'Stacked2DColumn',
+      'Stacked 2D Column',
+      '2DSTACKED_PCT',
+      'Stacked 2D Column (Percent)',
+      'Stacked3DColumn',
+      'Stacked 3D Column',
+      '3DSTACKED_PCT',
+      'Stacked 3D Column (Percent)',
+      'StackedHorizontal2DColumn',
+      'Stacked Horizontal 2D Column',
+      '2DHSTACKED_PCT',
+      'Stacked Horizontal 2D Column (Percent)',
+      'StackedHorizontal3DColumn',
+      'Stacked Horizontal 3D Column',
+      '3DHSTACKED_PCT',
+      'Stacked Horizontal 3D Column (Percent)',
+      'ProjectGantt',
+      'Project Gantt',
+      'ResourceGantt',
+      'Resource Gantt',
+      'Map',
+      'Map',
+      c .chart_type
+    ) || ' attr=' || c .chart_width || c .chart_height || c .chart_animation || c .display_attr || c .dial_tick_attr || c .gantt_attr || c .map_attr || c .pie_attr || c .margins || ' rendering=' || decode(
+      c .chart_rendering,
+      'FLASH_PREFERRED',
+      'Flash Chart',
+      'SVG_ONLY',
+      'HTML5 Chart'
+    ) || ' color=' || c .color_scheme || substr(c .custom_colors, 1, 20) || '.' || length(c .custom_colors) || c .map_undef_color_scheme || substr(c .map_undef_custom_colors, 1, 20) || '.' || length(c .map_undef_custom_colors) || c .chart_bgtype || substr(c .chart_bgcolor, 1, 20) || '.' || length(c .chart_bgcolor) || substr(c .chart_bgcolor2, 1, 20) || '.' || length(c .chart_bgcolor2) || c .grid_bgtype || substr(c .grid_bgcolor, 1, 20) || '.' || length(c .grid_bgcolor) || substr(c .grid_bgcolor2, 1, 20) || '.' || length(c .grid_bgcolor2) || ' rotation=' || c .chart_gradient_angle || ':' || c .grid_gradient_angle || ':' || c .x_axis_title_rotation || ':' || c .x_axis_label_rotation || ':' || c .y_axis_title_rotation || ':' || c .y_axis_label_rotation || ':' || c .values_rotation || ' title=' || substr(c .chart_title, 1, 20) || '.' || length(c .chart_title) || substr(c .x_axis_title, 1, 20) || '.' || length(c .x_axis_title) || substr(c .y_axis_title, 1, 20) || '.' || length(c .y_axis_title) || ' name=' || substr(c .chart_name, 1, 20) || '.' || length(c .chart_name) || ' axis=' || c .x_axis_min || ':' || c .x_axis_max || ':' || substr(c .x_axis_prefix, 1, 20) || ':' || substr(c .x_axis_postfix, 1, 20) || ':' || c .x_axis_decimal_place || ':' || c .x_axis_major_interval || ':' || c .x_axis_minor_interval || ':' || c .y_axis_min || ':' || c .y_axis_max || ':' || substr(c .y_axis_prefix, 1, 20) || ':' || substr(c .y_axis_postfix, 1, 20) || ':' || c .y_axis_decimal_place || ':' || c .y_axis_major_interval || ':' || c .y_axis_minor_interval || ':' || substr(c .values_prefix, 1, 20) || ':' || substr(c .values_postfix, 1, 20) || ':' || c .extra_y_axis_min || ':' || c .extra_y_axis_max || ' font=' || c .x_axis_label_font || c .y_axis_label_font || c .values_font || c .tooltip_font || c .legend_title_font || c .legend_font || c .grid_labels_font || c .gauge_labels_font || c .chart_title_font || c .x_axis_title_font || c .y_axis_title_font || ' xml=' || decode(
+      c .use_chart_xml,
+      'Y',
+      sys.dbms_lob.substr(c .chart_xml, 30, 1) || '.' || sys.dbms_lob.getlength(c .chart_xml),
+      null
+    ) || ' refresh=' || c .async_update || c .async_time component_signature
+  from
+    wwv_flow_flash_charts_5 c,
+    wwv_flow_steps p,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.security_group_id = p.security_group_id
+    and f.id = p.flow_id
+    and f.id = c .flow_id
+    and p.id = c .page_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

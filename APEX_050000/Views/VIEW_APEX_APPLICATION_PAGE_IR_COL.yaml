@@ -1,0 +1,252 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_IR_COL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.id application_id,
+    f.name application_name,
+    ir.page_id page_id,
+    ir.id interactive_report_id,
+    ir.region_id region_id,
+    r.plug_name region_name,
+    c .id column_id,
+    c .db_column_name column_alias,
+    c .display_order display_order,
+    (
+      select
+        name
+      from
+        wwv_flow_worksheet_col_groups
+      where
+        id = c .group_id
+    ) column_group,
+    c .group_id column_group_id,
+    c .report_label report_label,
+    c .column_label form_label,
+    c .column_html_expression html_expression,
+    c .column_link,
+    c .column_linktext,
+    c .column_link_attr,
+    c .column_link_checksum_type,
+    --
+    decode(
+      c .allow_sorting,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_sorting
+    ) allow_sorting,
+    decode(
+      c .allow_filtering,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_filtering
+    ) allow_filtering,
+    decode(
+      c .allow_highlighting,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_highlighting
+    ) allow_highlighting,
+    decode(
+      c .allow_ctrl_breaks,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_ctrl_breaks
+    ) allow_ctrl_breaks,
+    decode(
+      c .allow_aggregations,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_aggregations
+    ) allow_aggregations,
+    decode(
+      c .allow_computations,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_computations
+    ) allow_computations,
+    decode(
+      c .allow_charting,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_charting
+    ) allow_charting,
+    decode(
+      c .allow_group_by,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_group_by
+    ) allow_group_by,
+    decode(
+      c .allow_pivot,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_pivot
+    ) allow_pivot,
+    decode(
+      c .allow_hide,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_hide
+    ) allow_hide,
+    --
+    c .column_type,
+    c .display_text_as,
+    c .heading_alignment,
+    c .column_alignment,
+    c .format_mask,
+    c .tz_dependent,
+    c .static_id,
+    c .css_classes,
+    --
+    decode(
+      c .rpt_show_filter_lov,
+      'D',
+      'Default Based on Column Type',
+      'S',
+      'Use Defined List of Values to Filter Exact Match',
+      'C',
+      'Use Defined List of Values to Filter Word Contains',
+      '1',
+      'Use Named List of Values to Filter Exact Match',
+      '2',
+      'Use Named List of Values to Filter Word Contains',
+      'N',
+      'None',
+      c .rpt_show_filter_lov
+    ) filter_lov_source,
+    (
+      select
+        lov_name
+      from
+        wwv_flow_lists_of_values$
+      where
+        id = c .rpt_named_lov
+    ) named_lov,
+    c .rpt_lov,
+    c .rpt_filter_date_ranges filter_date_ranges,
+    --
+    nvl(
+      (
+        select
+          r
+        from
+          apex_standard_conditions
+        where
+          d = c .display_condition_type
+      ),
+      c .display_condition_type
+    ) display_condition_type,
+    c .display_condition_type display_condition_type_code,
+    c .display_condition,
+    c .display_condition2,
+    --
+    c .help_text,
+    --
+    decode(substr(c .SECURITY_SCHEME, 1, 1), '!', 'Not ') || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(c .SECURITY_SCHEME, '!')
+          and flow_id = f.id
+      ),
+      c .SECURITY_SCHEME
+    ) authorization_scheme,
+    c .security_scheme authorization_scheme_id,
+    c .column_expr,
+    c .column_comment component_comment,
+    --
+    c .created_on,
+    c .created_by,
+    c .updated_on,
+    c .updated_by,
+    --
+    'Interactive Report Column-' || c .db_column_name || ' s=' || c .display_order || ' g='(
+      select
+        name
+      from
+        wwv_flow_worksheet_col_groups
+      where
+        id = c .group_id
+    ) || ' l=' || c .report_label || substr(c .column_label, 1, 30) || substr(c .column_link, 1, 30) || substr(c .column_linktext, 1, 30) || substr(c .column_link_attr, 1, 30) || c .column_link_checksum_type || c .allow_sorting || c .allow_filtering || c .allow_highlighting || c .allow_ctrl_breaks || c .allow_aggregations || c .allow_computations || c .allow_charting || c .allow_group_by || c .allow_pivot || c .allow_hide || c .column_type || c .display_text_as || ' ha=' || c .heading_alignment || ' ca=' || c .column_alignment || ' f=' || c .format_mask || c .rpt_show_filter_lov || ' lov=' || length(c .rpt_lov) || ' d=' || c .rpt_filter_date_ranges || ' cond=' || c .display_condition_type || length(c .display_condition) || length(c .display_condition2) || ' h=' || length(c .help_text) || ' as=' || decode(substr(c .SECURITY_SCHEME, 1, 1), '!', 'Not ') || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(c .SECURITY_SCHEME, '!')
+          and flow_id = f.id
+      ),
+      'Not found'
+    ) component_signature
+  from
+    wwv_flow_worksheet_columns c,
+    wwv_flow_worksheets ir,
+    wwv_flow_page_plugs r,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.security_group_id = c .security_group_id
+    and f.id = ir.flow_id
+    and r.id (+) = ir.region_id
+    and ir.id = c .worksheet_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

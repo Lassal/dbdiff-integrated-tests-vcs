@@ -1,0 +1,35 @@
+schema: APEX_050000
+name: WWV_FLOW_AUDIT
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: AUDIT_ACTION.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AUDIT_ACTION.P_ACTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AUDIT_ACTION.P_TABLE_PK
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: AUDIT_ACTION.P_OBJECT_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_AUDIT_TRAIL.P_FLOW_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  package wwv_flow_audit as g_cascade boolean: = false;
+  procedure audit_action (
+    p_table_name in varchar2,
+    p_action in varchar2,
+    p_table_pk in number,
+    p_object_name in varchar2
+  );
+  procedure remove_audit_trail (p_flow_id in number);
+  end wwv_flow_audit;

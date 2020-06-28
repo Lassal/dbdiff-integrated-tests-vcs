@@ -1,0 +1,67 @@
+schema: APEX_050000
+name: APEX_WORKSPACE_SQL_SCRIPTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.PROVISIONING_COMPANY_ID workspace_id,
+    w.short_name workspace_name,
+    w.display_name workspace_display_name,
+    f.filename sql_script_name,
+    (
+      select
+        max(email_address)
+      from
+        wwv_flow_fnd_user
+      where
+        security_group_id = w.PROVISIONING_COMPANY_ID
+        and user_name = f.created_by
+    ) email,
+    --
+    --f.title                     file_name,
+    f.mime_type mime_type,
+    f.doc_size file_size,
+    f.created_by owner,
+    f.blob_content sql_script
+  from
+    wwv_flow_current_sgid sgid,
+    wwv_flow_file_objects$ f,
+    wwv_flow_companies w
+  where
+    f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and to_char(f.deleted_as_of, 'MM.DD.YYYY') = '01.01.0001'
+    and f.file_type = 'SCRIPT'
+    and w.PROVISIONING_COMPANY_ID in (
+      select
+        security_group_id
+      from
+        wwv_flow_company_schemas s,
+        (
+          select
+            (
+              select
+                sys_context('USERENV', 'CURRENT_USER')
+              from
+                sys.dual
+            ) cu
+          from
+            sys.dual
+        ) d
+      where
+        (
+          s.schema = cu
+          or (
+            select
+              wwv_flow_security.has_apex_administrator_role_yn(cu)
+            from
+              sys.dual
+          ) = 'Y'
+          or sgid.security_group_id = s.security_group_id
+        )
+    )
+    and (
+      user in ('SYS', 'SYSTEM', 'APEX_050000')
+      or w.PROVISIONING_COMPANY_ID != 10
+    )
+columns: []
+referencedTables: []

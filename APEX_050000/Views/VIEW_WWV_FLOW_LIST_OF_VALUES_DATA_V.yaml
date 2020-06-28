@@ -1,0 +1,27 @@
+schema: APEX_050000
+name: WWV_FLOW_LIST_OF_VALUES_DATA_V
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    id,
+    lov_id,
+    lov_disp_sequence,
+    lov_disp_value,
+    lov_return_value,
+    lov_template,
+    required_patch
+  from
+    wwv_flow_current_sgid sgid,
+    wwv_flow_list_of_values_data w,
+    (
+      select
+        wwv_flow_security.get_translated_flow_id flow_id
+      from
+        sys.dual
+    ) f
+  where
+    w.flow_id = f.flow_id
+    and w.security_group_id = sgid.security_group_id
+columns: []
+referencedTables: []

@@ -1,0 +1,51 @@
+schema: APEX_050000
+name: APEX_WORKSPACE_STATIC_FILES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    f.id as workspace_file_id,
+    w.short_name as workspace,
+    w.display_name as workspace_display_name,
+    w.provisioning_company_id as workspace_id,
+    f.file_name,
+    f.mime_type,
+    f.file_charset,
+    f.file_content,
+    f.created_by,
+    f.created_on,
+    f.last_updated_by,
+    f.last_updated_on
+  from
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d,
+    wwv_flow_company_schemas s,
+    wwv_flow_companies w,
+    wwv_flow_company_static_files f
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.provisioning_company_id
+    )
+    and d.sgid != 0
+    and w.provisioning_company_id = s.security_group_id
+    and w.provisioning_company_id != 0
+    and f.security_group_id = w.provisioning_company_id
+columns: []
+referencedTables: []

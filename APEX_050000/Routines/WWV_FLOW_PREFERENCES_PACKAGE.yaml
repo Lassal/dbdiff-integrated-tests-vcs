@@ -1,0 +1,145 @@
+schema: APEX_050000
+name: WWV_FLOW_PREFERENCES
+routineType: PACKAGE
+returnParamater:
+  name: GET_PREFERENCE.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: GET_BUILDER_PREFERENCE.P_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_PREFERENCE.P_PREFERENCE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_PREFERENCE.P_USER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_FSP_SORT.P_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_PREFERENCE.P_PREFERENCE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_PREFERENCE.P_USER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_PREFERENCES.P_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESET_SORT_PREFERENCE(1).P_REGION_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: RESET_SORT_PREFERENCE(2).P_PAGE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: RESET_SORT_PREFERENCE(3).P_PAGE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: RESET_SORT_PREFERENCE(3).P_REGION_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_PREFERENCE.P_PREFERENCE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_PREFERENCE.P_VALUE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_PREFERENCE.P_USER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_PREFERENCE.P_FORCE_UPPER
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_PREFERENCES.P_PREFERENCES
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_PREFERENCES.P_VALUES
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_PREFERENCES.P_USER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package wwv_flow_preferences --  Copyright (c) Oracle Corporation 1999 - 2007. All Rights Reserved.
+  --
+  --    DESCRIPTION
+  --      Flow Preferences utility functions
+  --
+  --    SECURITY
+  --
+  --    NOTES
+  --      Use to save information specific to a user.
+  --
+  --    RUNTIME DEPLOYMENT: YES
+  --
+  as empty_vc_arr wwv_flow_global.vc_arr2;
+  procedure set_preference (
+    p_preference in varchar2 default null,
+    p_value in varchar2 default null,
+    p_user in varchar2 default null,
+    p_force_upper in boolean default false
+  );
+  procedure set_preferences (
+    p_preferences in wwv_flow_global.vc_arr2 default empty_vc_arr,
+    p_values in wwv_flow_global.vc_arr2 default empty_vc_arr,
+    p_user in varchar2 default null
+  );
+  function get_preference (
+    p_preference in varchar2 default null,
+    p_user in varchar2 default v('USER')
+  ) return varchar2;
+  procedure remove_preferences (
+    p_user in varchar2 default v('USER')
+  );
+  procedure remove_preference(
+    p_preference in varchar2 default null,
+    p_user in varchar2 default v('USER')
+  );
+  procedure remove_fsp_sort (
+    --
+    -- This procedure removes user's column head sorting preference value.
+    --
+    p_user in varchar2 default v('USER')
+  );
+  procedure reset_sort_preference (
+    -- delete the current users report sorting preferences for a given application and region
+    p_region_id in number
+  );
+  procedure reset_sort_preference (
+    -- delete the current users report sorting preferences for all report regions on a page within an application
+    p_page_id in number
+  );
+  procedure reset_sort_preference (
+    -- delete the current users report sorting preferences for all region on a page within an application
+    p_page_id in number,
+    p_region_name in varchar2
+  );
+  --
+  --------------------------------------------------------------------------------
+  -- Returns the value of the specified preference of the current Builder session.
+  --
+  -- Note: For internal use only!
+  --------------------------------------------------------------------------------
+  function get_builder_preference (p_name in varchar2) return varchar2;
+  --
+  end wwv_flow_preferences;

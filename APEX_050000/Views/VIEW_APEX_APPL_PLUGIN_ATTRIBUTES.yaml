@@ -1,0 +1,94 @@
+schema: APEX_050000
+name: APEX_APPL_PLUGIN_ATTRIBUTES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .id as plugin_attribute_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    a .plugin_id,
+    p.name as plugin_name,
+    case
+      a .attribute_scope
+      when 'APPLICATION' then 'Application'
+      when 'COMPONENT' then 'Component'
+      else a .attribute_scope
+    end as attribute_scope,
+    a .attribute_sequence,
+    a .display_sequence,
+    a .prompt,
+    case
+      a .attribute_type
+      when 'CHECKBOX' then 'Checkbox'
+      when 'SELECT LIST' then 'Select List'
+      when 'TEXT' then 'Text'
+      when 'TEXTAREA' then 'Textarea'
+      when 'NUMBER' then 'Number'
+      when 'INTEGER' then 'Integer'
+      when 'PAGE ITEM' then 'Page Item'
+      when 'PAGE ITEMS' then 'Page Items'
+      when 'PAGE NUMBER' then 'Page Number'
+      when 'SQL' then 'SQL Query'
+      when 'PLSQL' then 'PL/SQL Code'
+      when 'PLSQL EXPRESSION' then 'PL/SQL Expression'
+      else a .attribute_type
+    end as attribute_type,
+    case
+      a .is_required
+      when 'Y' then 'Yes'
+      else 'No'
+    end as is_required,
+    case
+      a .is_common
+      when 'Y' then 'Yes'
+      else 'No'
+    end as is_common,
+    case
+      a .show_in_wizard
+      when 'Y' then 'Yes'
+      else 'No'
+    end as show_in_wizard,
+    a .default_value,
+    a .display_length,
+    a .max_length,
+    a .min_value,
+    a .max_value,
+    a .unit,
+    a .sql_min_column_count,
+    a .sql_max_column_count,
+    a .column_data_types,
+    a .supported_ui_types,
+    a .is_translatable,
+    a .depending_on_attribute_id,
+    a .depending_on_comp_prop_id,
+    case
+      a .depending_on_condition_type
+      when 'EQUALS' then 'equal to'
+      when 'NOT_EQUALS' then 'not equal to'
+      when 'NULL' then 'is null'
+      when 'NOT_NULL' then 'is not null'
+      when 'IN_LIST' then 'in list'
+      when 'NOT_IN_LIST' then 'not in list'
+      else a .depending_on_condition_type
+    end depending_on_condition_type,
+    a .depending_on_expression,
+    a .reference_scope,
+    a .examples,
+    a .help_text,
+    a .attribute_comment as component_comment,
+    a .created_by,
+    a .created_on,
+    a .last_updated_by,
+    a .last_updated_on
+  from
+    wwv_flow_authorized_and_4411 f,
+    wwv_flow_plugins p,
+    wwv_flow_plugin_attributes a
+  where
+    p.flow_id = f.application_id
+    and a .plugin_id = p.id
+columns: []
+referencedTables: []

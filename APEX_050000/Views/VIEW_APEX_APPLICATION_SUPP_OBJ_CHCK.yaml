@@ -1,0 +1,80 @@
+schema: APEX_050000
+name: APEX_APPLICATION_SUPP_OBJ_CHCK
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    c .ID check_id,
+    c .NAME check_name,
+    c .SEQUENCE check_sequence,
+    --
+    c .CHECK_TYPE check_type,
+    c .CHECK_CONDITION check_expression1,
+    c .CHECK_CONDITION2 check_expression2,
+    --
+    --c.SUCCESS_MESSAGE                ,
+    c .FAILURE_MESSAGE error_message,
+    --
+    nvl(
+      (
+        select
+          r
+        from
+          apex_standard_conditions
+        where
+          d = c .condition_type
+      ),
+      c .condition_type
+    ) condition_type,
+    c .CONDITION_TYPE condition_type_code,
+    c .CONDITION condition_expression1,
+    c .CONDITION2 condition_expression2,
+    --
+    c .LAST_UPDATED_BY last_updated_by,
+    c .LAST_UPDATED_ON last_updated_on,
+    c .CREATED_BY created_by,
+    c .CREATED_ON created_on
+  from
+    wwv_flow_install_checks c,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and f.id = c .flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

@@ -1,0 +1,298 @@
+schema: APEX_050000
+name: APEX_APPLICATION_SUBSTITUTIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  with substitution as (
+    select
+      auth.workspace,
+      auth.workspace_display_name,
+      f.id as application_id,
+      f.name as application_name,
+      f.substitution_string_01,
+      f.substitution_value_01,
+      f.substitution_string_02,
+      f.substitution_value_02,
+      f.substitution_string_03,
+      f.substitution_value_03,
+      f.substitution_string_04,
+      f.substitution_value_04,
+      f.substitution_string_05,
+      f.substitution_value_05,
+      f.substitution_string_06,
+      f.substitution_value_06,
+      f.substitution_string_07,
+      f.substitution_value_07,
+      f.substitution_string_08,
+      f.substitution_value_08,
+      f.substitution_string_09,
+      f.substitution_value_09,
+      f.substitution_string_10,
+      f.substitution_value_10,
+      f.substitution_string_11,
+      f.substitution_value_11,
+      f.substitution_string_12,
+      f.substitution_value_12,
+      f.substitution_string_13,
+      f.substitution_value_13,
+      f.substitution_string_14,
+      f.substitution_value_14,
+      f.substitution_string_15,
+      f.substitution_value_15,
+      f.substitution_string_16,
+      f.substitution_value_16,
+      f.substitution_string_17,
+      f.substitution_value_17,
+      f.substitution_string_18,
+      f.substitution_value_18,
+      f.substitution_string_19,
+      f.substitution_value_19,
+      f.substitution_string_20,
+      f.substitution_value_20
+    from
+      wwv_flow_authorized auth,
+      wwv_flows f
+    where
+      f.id = auth.application_id
+  )
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_01 as substitution_string,
+    substitution_value_01 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_01 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_02 as substitution_string,
+    substitution_value_02 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_02 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_03 as substitution_string,
+    substitution_value_03 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_03 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_04 as substitution_string,
+    substitution_value_04 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_04 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_05 as substitution_string,
+    substitution_value_05 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_05 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_06 as substitution_string,
+    substitution_value_06 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_06 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_07 as substitution_string,
+    substitution_value_07 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_07 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_08 as substitution_string,
+    substitution_value_08 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_08 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_09 as substitution_string,
+    substitution_value_09 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_09 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_10 as substitution_string,
+    substitution_value_10 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_10 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_11 as substitution_string,
+    substitution_value_11 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_11 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_12 as substitution_string,
+    substitution_value_12 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_12 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_13 as substitution_string,
+    substitution_value_13 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_13 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_14 as substitution_string,
+    substitution_value_14 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_14 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_15 as substitution_string,
+    substitution_value_15 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_15 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_16 as substitution_string,
+    substitution_value_16 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_16 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_17 as substitution_string,
+    substitution_value_17 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_17 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_18 as substitution_string,
+    substitution_value_18 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_18 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_19 as substitution_string,
+    substitution_value_19 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_19 is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    substitution_string_20 as substitution_string,
+    substitution_value_20 as substitution_value
+  from
+    substitution
+  where
+    substitution_string_20 is not null
+columns: []
+referencedTables: []

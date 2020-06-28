@@ -1,0 +1,28 @@
+schema: APEX_050000
+name: WWV_FLOW_USER_MAIL_LOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    mail_to,
+    mail_from,
+    mail_replyto,
+    mail_subj,
+    mail_cc,
+    mail_bcc,
+    mail_message_created,
+    mail_message_send_begin,
+    mail_message_send_end,
+    mail_body_size,
+    mail_body_html_size,
+    mail_attachment_count,
+    mail_attachment_size,
+    mail_send_error,
+    last_updated_on
+  from
+    wwv_flow_current_sgid sgid,
+    wwv_flow_mail_log a
+  where
+    a .security_group_id = sgid.security_group_id
+columns: []
+referencedTables: []

@@ -1,0 +1,37 @@
+schema: APEX_050000
+name: APEX_APPL_TEMP_PAGE_DP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    d.id as page_tmpl_display_point_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    d.page_template_id as page_template_id,
+    d.name,
+    d.placeholder,
+    case
+      d.has_grid_support
+      when 'Y' then 'Yes'
+      else 'No'
+    end as has_grid_support,
+    case
+      d.glv_new_row
+      when 'Y' then 'Yes'
+      else 'No'
+    end as glv_new_row,
+    d.max_fixed_grid_columns,
+    d.component_comment,
+    d.created_by,
+    d.created_on,
+    d.last_updated_by,
+    d.last_updated_on
+  from
+    wwv_flow_authorized f,
+    wwv_flow_page_tmpl_disp_points d
+  where
+    d.flow_id = f.application_id
+columns: []
+referencedTables: []

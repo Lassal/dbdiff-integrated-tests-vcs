@@ -1,0 +1,156 @@
+name: EMPLOYEES#
+schema: APP_DATA
+columns:
+- name: COUNTRY_CODE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: false
+  dataTypeLength: 5
+- name: DEPARTMENT_ID
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: EMAIL_ADDR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 25
+  nullable: false
+  dataTypeLength: 25
+- name: EMPLOYEE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: FIRST_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: HIRE_DATE
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  defaultValue: "TRUNC(SYSDATE)\n         "
+  dataTypeLength:
+- name: JOB_ID
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  dataTypeLength: 10
+- name: JOB_START_DATE
+  ordinalPosition: 9
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: LAST_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 25
+  nullable: false
+  dataTypeLength: 25
+- name: MANAGER_ID
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 6,0
+- name: PHONE_NUMBER
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: SALARY
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+constraints:
+- !<unique-constraint>
+  name: EMPLOYEES_PK
+  type: PRIMARY_KEY
+  columns:
+  - name: EMPLOYEE_ID
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: EMP_JOBS_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: JOB_ID
+    ordinalPosition: 1
+    referencedSchemaName: APP_DATA
+    referencedTableName: JOBS#
+    referencedTableColumnName: JOB_ID
+- !<fk-constraint>
+  name: EMP_MGR_TO_EMPNO_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: MANAGER_ID
+    ordinalPosition: 1
+    referencedSchemaName: APP_DATA
+    referencedTableName: EMPLOYEES#
+    referencedTableColumnName: EMPLOYEE_ID
+- !<fk-constraint>
+  name: EMP_TO_DEPT_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: DEPARTMENT_ID
+    ordinalPosition: 1
+    referencedSchemaName: APP_DATA
+    referencedTableName: DEPARTMENTS#
+    referencedTableColumnName: DEPARTMENT_ID
+- !<check-constraint>
+  name: EMP_COUNTRY_CODE_NOT_NULL
+  type: CHECK
+  checkClause: '"COUNTRY_CODE" IS NOT NULL'
+- !<check-constraint>
+  name: EMP_EMAIL_ADDR_NOT_NULL
+  type: CHECK
+  checkClause: '"EMAIL_ADDR" IS NOT NULL'
+- !<check-constraint>
+  name: EMP_FIRST_NAME_NOT_NULL
+  type: CHECK
+  checkClause: '"FIRST_NAME" IS NOT NULL'
+- !<check-constraint>
+  name: EMP_HIRE_DATE_CHECK
+  type: CHECK
+  checkClause: TRUNC(hire_date) = hire_date
+- !<check-constraint>
+  name: EMP_HIRE_DATE_NOT_NULL
+  type: CHECK
+  checkClause: '"HIRE_DATE" IS NOT NULL'
+- !<check-constraint>
+  name: EMP_JOB_ID_NOT_NULL
+  type: CHECK
+  checkClause: '"JOB_ID" IS NOT NULL'
+- !<check-constraint>
+  name: EMP_JOB_START_DATE_CHECK
+  type: CHECK
+  checkClause: TRUNC(JOB_START_DATE) = job_start_date
+- !<check-constraint>
+  name: EMP_JOB_START_DATE_NOT_NULL
+  type: CHECK
+  checkClause: '"JOB_START_DATE" IS NOT NULL'
+- !<check-constraint>
+  name: EMP_LAST_NAME_NOT_NULL
+  type: CHECK
+  checkClause: '"LAST_NAME" IS NOT NULL'
+- !<check-constraint>
+  name: EMP_PHONE_NUMBER_NOT_NULL
+  type: CHECK
+  checkClause: '"PHONE_NUMBER" IS NOT NULL'
+- !<check-constraint>
+  name: EMP_SALARY_NOT_NULL
+  type: CHECK
+  checkClause: '"SALARY" IS NOT NULL'

@@ -1,0 +1,61 @@
+schema: APEX_050000
+name: APEX_UI_DEFAULTS_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.schema,
+    t.table_name,
+    c .column_name,
+    c .label,
+    c .help_text,
+    g.group_name,
+    c .mask_form,
+    c .display_seq_form,
+    c .display_in_form,
+    c .display_as_form,
+    c .form_attribute_01,
+    c .form_attribute_02,
+    c .form_attribute_03,
+    c .form_attribute_04,
+    c .form_attribute_05,
+    c .form_attribute_06,
+    c .form_attribute_07,
+    c .form_attribute_08,
+    c .form_attribute_09,
+    c .form_attribute_10,
+    c .form_attribute_11,
+    c .form_attribute_12,
+    c .form_attribute_13,
+    c .form_attribute_14,
+    c .form_attribute_15,
+    c .display_as_tab_form,
+    c .display_seq_report,
+    c .display_in_report,
+    c .display_as_report,
+    c .mask_report,
+    c .aggregate_by,
+    c .default_value,
+    c .required,
+    c .alignment,
+    c .display_width,
+    c .max_width,
+    c .height,
+    c .group_by,
+    c .searchable,
+    c .lov_query,
+    c .created_by,
+    c .created_on,
+    c .last_updated_by,
+    c .last_updated_on
+  from
+    wwv_flow_current_sgid,
+    wwv_flow_hnt_column_info c,
+    wwv_flow_hnt_table_info t,
+    wwv_flow_hnt_groups g
+  where
+    t.schema = user
+    and c .table_id = t.table_id
+    and c .group_id = g.group_id (+)
+columns: []
+referencedTables: []

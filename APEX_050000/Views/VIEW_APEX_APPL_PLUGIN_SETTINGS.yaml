@@ -1,0 +1,63 @@
+schema: APEX_050000
+name: APEX_APPL_PLUGIN_SETTINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    p.id as plugin_setting_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    p.plugin_type,
+    case
+      substr(p.plugin, 1, 7)
+      when 'NATIVE_' then (
+        select
+          display_name
+        from
+          wwv_flow_plugins
+        where
+          flow_id = 4411
+          and plugin_type = p.plugin_type
+          and name = substr(p.plugin, 8)
+      )
+      when 'PLUGIN_' then (
+        select
+          display_name
+        from
+          wwv_flow_plugins
+        where
+          flow_id = p.flow_id
+          and plugin_type = p.plugin_type
+          and name = substr(p.plugin, 8)
+      )
+      else p.plugin
+    end as plugin,
+    p.plugin as plugin_code,
+    p.attribute_01,
+    p.attribute_02,
+    p.attribute_03,
+    p.attribute_04,
+    p.attribute_05,
+    p.attribute_06,
+    p.attribute_07,
+    p.attribute_08,
+    p.attribute_09,
+    p.attribute_10,
+    p.attribute_11,
+    p.attribute_12,
+    p.attribute_13,
+    p.attribute_14,
+    p.attribute_15,
+    p.created_by,
+    p.created_on,
+    p.last_updated_by,
+    p.last_updated_on
+  from
+    wwv_flow_authorized f,
+    wwv_flow_plugin_settings p
+  where
+    p.flow_id = f.application_id
+columns: []
+referencedTables: []
