@@ -1,0 +1,24 @@
+schema: APEX_050000
+name: APEX_APPL_DEVELOPER_COMMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    c .id as comment_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    c .pages,
+    c .app_comment as developer_comment,
+    c .created_by,
+    c .created_on,
+    c .updated_by as last_updated_by,
+    c .updated_on as last_updated_on
+  from
+    wwv_flow_authorized f,
+    wwv_flow_app_comments c
+  where
+    c .flow_id = f.application_id
+columns: []
+referencedTables: []

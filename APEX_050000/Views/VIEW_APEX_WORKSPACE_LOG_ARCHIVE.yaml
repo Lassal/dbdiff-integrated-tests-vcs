@@ -1,0 +1,64 @@
+schema: APEX_050000
+name: APEX_WORKSPACE_LOG_ARCHIVE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    l.LOG_DAY,
+    l.WORKSPACE_ID,
+    l.APPLICATION_ID,
+    l.PAGE_EVENTS,
+    l.PAGE_VIEWS,
+    l.PAGE_ACCEPTS,
+    l.PARTIAL_PAGE_VIEWS,
+    l.WEBSHEET_VIEWS,
+    l.ROWS_FETCHED,
+    l.IR_SEARCHES,
+    l.DISTINCT_PAGES,
+    l.DISTINCT_USERS,
+    l.DISTINCT_SESSIONS,
+    l.AVERAGE_RENDER_TIME,
+    l.MEDIAN_RENDER_TIME,
+    l.MAXIMUM_RENDER_TIME,
+    l.TOTAL_RENDER_TIME,
+    l.ERROR_COUNT,
+    l.content_length
+  from
+    WWV_FLOW_LOG_HISTORY l,
+    wwv_flow_companies w,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      l.workspace_id in (
+        select
+          security_group_id
+        from
+          wwv_flow_company_schemas
+        where
+          schema = cu
+      )
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = l.workspace_id
+    )
+    and l.workspace_id = w.PROVISIONING_COMPANY_ID
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

@@ -1,0 +1,38 @@
+schema: APEX_050000
+name: WWV_FLOW_USER_ACTIVITY_LOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    time_stamp,
+    component_type,
+    component_name,
+    component_attribute,
+    information,
+    elap,
+    num_rows,
+    userid,
+    ip_address,
+    user_agent,
+    flow_id,
+    step_id,
+    session_id,
+    sqlerrm,
+    sqlerrm_component_type,
+    sqlerrm_component_name,
+    page_mode,
+    application_info,
+    worksheet_id,
+    ir_search,
+    ir_report_id,
+    websheet_id,
+    webpage_id,
+    datagrid_id,
+    content_length
+  from
+    wwv_flow_current_sgid sgid,
+    wwv_flow_activity_log a
+  where
+    a .security_group_id = sgid.security_group_id
+columns: []
+referencedTables: []

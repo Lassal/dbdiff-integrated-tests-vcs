@@ -1,0 +1,76 @@
+schema: APEX_050000
+name: APEX_WORKSPACE_UI_TYPES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.id as ui_type_id,
+    w.short_name as workspace,
+    w.display_name as workspace_display_name,
+    w.provisioning_company_id as workspace_id,
+    u.name,
+    u.based_on_ui_type_id,
+    u.autodetect_js_file_urls,
+    u.autodetect_js_function_body,
+    u.autodetect_plsql_function_body,
+    u.created_by,
+    u.created_on,
+    u.last_updated_by,
+    u.last_updated_on
+  from
+    wwv_flow_ui_types u,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) curr_user
+      from
+        sys.dual
+    ) d,
+    wwv_flow_company_schemas s,
+    wwv_flow_companies w
+  where
+    w.provisioning_company_id = u.security_group_id
+    and (
+      w.provisioning_company_id = d.sgid
+      or exists (
+        select
+          1
+        from
+          wwv_flow_company_schemas
+        where
+          security_group_id = w.provisioning_company_id
+          and schema = d.curr_user
+      )
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(d.curr_user)
+        from
+          sys.dual
+      ) = 'Y'
+    )
+  union all
+  select
+    u.id as ui_type_id,
+    to_char(null),
+    to_char(null),
+    to_number(null),
+    u.name,
+    u.based_on_ui_type_id,
+    u.autodetect_js_file_urls,
+    u.autodetect_js_function_body,
+    u.autodetect_plsql_function_body,
+    u.created_by,
+    u.created_on,
+    u.last_updated_by,
+    u.last_updated_on
+  from
+    wwv_flow_ui_types u
+  where
+    u.security_group_id is null
+columns: []
+referencedTables: []

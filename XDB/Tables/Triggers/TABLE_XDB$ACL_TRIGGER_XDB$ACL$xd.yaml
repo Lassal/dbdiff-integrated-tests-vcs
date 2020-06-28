@@ -1,0 +1,25 @@
+targetObjectSchema: XDB
+targetObjectName: XDB$ACL
+targetObjectType: TABLE
+name: XDB$ACL$xd
+eventTiming: AFTER EACH ROW
+event: UPDATE OR DELETE
+eventActionBody: |-
+  BEGIN
+    IF (deleting) THEN xdb.xdb_pitrig_pkg.pitrig_del(
+      'XDB',
+      'XDB$ACL',
+      :old.sys_nc_oid$,
+      'FD9ACFECC08E48A9E043B6A9E80AFB6F'
+    );
+  END IF;
+  IF (updating) THEN xdb.xdb_pitrig_pkg.pitrig_upd(
+    'XDB',
+    'XDB$ACL',
+    :old.sys_nc_oid$,
+    'FD9ACFECC08E48A9E043B6A9E80AFB6F',
+    user
+  );
+  END IF;
+  END;
+executionOrder: 1

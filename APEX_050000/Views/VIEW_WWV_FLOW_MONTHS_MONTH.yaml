@@ -1,0 +1,16 @@
+schema: APEX_050000
+name: WWV_FLOW_MONTHS_MONTH
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    cast(
+      to_char(to_date(to_char(rownum, '00'), 'MM'), 'Month') as varchar2(128)
+    ) as month,
+    rownum as value
+  from
+    wwv_flow_dual100
+  where
+    rownum < 13
+columns: []
+referencedTables: []

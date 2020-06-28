@@ -1,0 +1,27 @@
+schema: APEX_050000
+name: APEX_APPLICATION_TRANS_MAP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    f.workspace workspace,
+    f.workspace_display_name,
+    m.ID map_id,
+    m.primary_language_flow_id primary_application_id,
+    f.application_name primary_application_name,
+    m.translation_flow_id translated_application_id,
+    m.translation_flow_language_code translated_app_language,
+    m.translation_image_directory translated_appl_img_dir,
+    m.translation_comments translation_comments,
+    m.map_comments translation_map_comments,
+    m.last_updated_by,
+    m.last_updated_on,
+    m.created_by,
+    m.created_on
+  from
+    wwv_flow_authorized f,
+    wwv_flow_language_map m
+  where
+    m.primary_language_flow_id = f.application_id
+columns: []
+referencedTables: []

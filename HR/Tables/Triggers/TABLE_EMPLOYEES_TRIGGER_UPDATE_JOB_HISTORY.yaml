@@ -1,0 +1,17 @@
+targetObjectSchema: HR
+targetObjectName: EMPLOYEES
+targetObjectType: TABLE
+name: UPDATE_JOB_HISTORY
+eventTiming: AFTER EACH ROW
+event: UPDATE
+eventActionBody: |-
+  BEGIN
+    add_job_history(
+      :old.employee_id,
+      :old.hire_date,
+      sysdate,
+      :old.job_id,
+      :old.department_id
+    );
+  END;
+executionOrder: 1

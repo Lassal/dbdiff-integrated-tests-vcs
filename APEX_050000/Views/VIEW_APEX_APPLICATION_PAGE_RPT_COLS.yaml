@@ -1,0 +1,324 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_RPT_COLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    p.flow_id application_id,
+    f.name application_name,
+    p.id page_id,
+    p.name page_name,
+    region.plug_Name region_name,
+    --
+    --r.QUERY_COLUMN_ID                     ,
+    --r.FORM_ELEMENT_ID                     ,
+    r.COLUMN_ALIAS column_alias,
+    case
+      substr(r.display_as, 1, 7)
+      when 'NATIVE_' then (
+        select
+          display_name
+        from
+          wwv_flow_plugins
+        where
+          flow_id = 4411
+          and plugin_type = 'REPORT COLUMN TYPE'
+          and name = substr(r.display_as, 8)
+      )
+      when 'PLUGIN_' then (
+        select
+          display_name
+        from
+          wwv_flow_plugins
+        where
+          flow_id = p.flow_id
+          and plugin_type = 'REPORT COLUMN TYPE'
+          and name = substr(r.display_as, 8)
+      )
+      else case
+        r.display_as
+        when 'WITHOUT_MODIFICATION' then 'Standard Report Column'
+        when 'TEXT_FROM_LOV' then 'Display as Text (based on LOV, does not save state)'
+        when 'DISPLAY_AND_SAVE' then 'Display as Text (saves state)'
+        when 'ESCAPE_SC' then 'Display as Text (escape special characters, does not save state)'
+        when 'DATE_POPUP' then 'Date Picker'
+        when 'TEXT' then 'Text Field'
+        when 'TEXTAREA' then 'Text Area'
+        when 'SELECT_LIST' then 'Select List (static LOV)'
+        when 'SELECT_LIST_FROM_LOV' then 'Select List (named LOV)'
+        when 'SELECT_LIST_FROM_QUERY' then 'Select List (query based LOV)'
+        when 'HIDDEN' then 'Hidden'
+        when 'POPUP' then 'Popup LOV (named LOV)'
+        when 'POPUP_QUERY' then 'Popup LOV (query based LOV)'
+        else r.display_as
+      end
+    end display_as,
+    r.display_as display_as_code,
+    r.COLUMN_DISPLAY_SEQUENCE display_sequence,
+    r.COLUMN_HEADING heading,
+    r.USE_AS_ROW_HEADER use_as_row_header,
+    r.COLUMN_FORMAT format_mask,
+    r.COLUMN_HTML_EXPRESSION html_expression,
+    r.COLUMN_CSS_CLASS css_class,
+    r.COLUMN_CSS_STYLE css_style,
+    r.COLUMN_HIT_HIGHLIGHT highlight_words,
+    --
+    r.COLUMN_LINK column_link_url,
+    r.COLUMN_LINKTEXT column_link_text,
+    r.COLUMN_LINK_ATTR column_link_attributes,
+    --
+    r.COLUMN_LINK_CHECKSUM_TYPE page_checksum,
+    --
+    r.COLUMN_ALIGNMENT column_alignment,
+    r.HEADING_ALIGNMENT heading_alignment,
+    --
+    r.DEFAULT_SORT_COLUMN_SEQUENCE default_sort_sequence,
+    r.DEFAULT_SORT_DIR default_sort_direction,
+    decode(
+      r.DISABLE_SORT_COLUMN,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      r.DISABLE_SORT_COLUMN
+    ) sortable_column,
+    decode(
+      r.SUM_COLUMN,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      r.SUM_COLUMN
+    ) sum_column,
+    decode(
+      r.HIDDEN_COLUMN,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      r.HIDDEN_COLUMN
+    ) column_is_hidden,
+    --
+    r.DISPLAY_WHEN_COND_TYPE condition_type,
+    r.display_when_cond_type condition_type_code,
+    r.DISPLAY_WHEN_CONDITION condition_expression1,
+    r.DISPLAY_WHEN_CONDITION2 condition_expression2,
+    --
+    decode(
+      (
+        select
+          lov_name
+        from
+          wwv_flow_lists_of_values$
+        where
+          id = r.NAMED_LOV
+      ),
+      null,
+      null,
+      (
+        select
+          lov_name
+        from
+          wwv_flow_lists_of_values$
+        where
+          id = r.NAMED_LOV
+      )
+    ) named_list_of_values,
+    r.INLINE_LOV inline_list_of_values,
+    decode(
+      r.LOV_SHOW_NULLS,
+      'YES',
+      'Yes',
+      'NO',
+      'No',
+      r.LOV_SHOW_NULLS
+    ) LOV_SHOW_NULLS,
+    decode(
+      r.LOV_DISPLAY_EXTRA,
+      'YES',
+      'Yes',
+      'NO',
+      'No',
+      r.LOV_DISPLAY_EXTRA
+    ) LOV_DISPLAY_EXTRA_VALUES,
+    r.LOV_NULL_TEXT lov_null_text,
+    r.LOV_NULL_VALUE lov_null_value,
+    --
+    r.COLUMN_WIDTH form_element_width,
+    r.COLUMN_HEIGHT form_element_height,
+    r.css_classes form_element_css_classes,
+    r.CATTRIBUTES form_Element_Attributes,
+    r.CATTRIBUTES_ELEMENT form_Element_Option_Attributes,
+    (
+      select
+        template_name
+      from
+        wwv_flow_field_templates
+      where
+        id = to_char(r.COLUMN_FIELD_TEMPLATE)
+        and flow_id = f.id
+    ) column_field_template,
+    r.COLUMN_FIELD_TEMPLATE column_field_template_id,
+    case
+      when r.is_required = 'Y' then 'Yes'
+      else 'No'
+    end is_required,
+    nvl(
+      r.standard_validations,
+      'Application Level Setting'
+    ) standard_validations,
+    --
+    r.attribute_01,
+    r.attribute_02,
+    r.attribute_03,
+    r.attribute_04,
+    r.attribute_05,
+    r.attribute_06,
+    r.attribute_07,
+    r.attribute_08,
+    r.attribute_09,
+    r.attribute_10,
+    r.attribute_11,
+    r.attribute_12,
+    r.attribute_13,
+    r.attribute_14,
+    r.attribute_15,
+    --
+    --r.COLUMN_COMMENT                      ,
+    r.PK_COL_SOURCE_TYPE primary_key_column_source_type,
+    r.PK_COL_SOURCE primary_key_column_source,
+    decode(
+      r.DERIVED_COLUMN,
+      'Y',
+      'Yes',
+      r.DERIVED_COLUMN
+    ) derived_column,
+    --
+    r.COLUMN_DEFAULT column_default,
+    r.COLUMN_DEFAULT_TYPE column_default_type,
+    --
+    r.REF_SCHEMA reference_schema,
+    r.REF_TABLE_NAME reference_table_name,
+    r.REF_COLUMN_NAME reference_column_name,
+    --
+    decode(
+      substr(r.REPORT_COLUMN_REQUIRED_ROLE, 1, 1),
+      '!',
+      'Not '
+    ) || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(r.REPORT_COLUMN_REQUIRED_ROLE, '!')
+          and flow_id = f.id
+      ),
+      r.REPORT_COLUMN_REQUIRED_ROLE
+    ) authorization_scheme,
+    r.REPORT_COLUMN_REQUIRED_ROLE authorization_scheme_id,
+    --
+    decode(include_in_export, 'Y', 'Yes', 'N', 'No') include_in_export,
+    print_col_width print_column_width,
+    print_col_align print_column_alignment,
+    report_column_width report_column_width,
+    COLUMN_COMMENT column_comment,
+    --
+    r.LAST_UPDATED_BY last_updated_by,
+    r.LAST_UPDATED_ON last_updated_on,
+    --
+    region.id region_id,
+    r.id region_report_column_id,
+    --
+    substr(r.COLUMN_ALIAS, 1, 30) || ' s=' || r.COLUMN_DISPLAY_SEQUENCE || ' h=' || substr(r.COLUMN_HEADING, 1, 15) || length(r.COLUMN_HEADING) || substr(r.COLUMN_FORMAT, 1, 15) || length(r.COLUMN_FORMAT) || ' e=' || substr(r.COLUMN_HTML_EXPRESSION, 1, 15) || length(r.COLUMN_HTML_EXPRESSION) || substr(r.COLUMN_CSS_CLASS, 1, 20) || substr(r.COLUMN_CSS_STYLE, 1, 20) || substr(r.COLUMN_HIT_HIGHLIGHT, 1, 15) || length(r.COLUMN_HIT_HIGHLIGHT) || ' l=' || substr(r.COLUMN_LINK, 1, 20) || length(r.COLUMN_LINK) || substr(r.COLUMN_LINKTEXT, 1, 15) || length(r.COLUMN_LINKTEXT) || substr(r.COLUMN_LINK_ATTR, 1, 15) || length(r.COLUMN_LINK_ATTR) || substr(r.COLUMN_LINK_CHECKSUM_TYPE, 1, 15) || ' a=' || substr(r.COLUMN_ALIGNMENT, 1, 6) || substr(r.HEADING_ALIGNMENT, 1, 6) || ' s=' || DEFAULT_SORT_COLUMN_SEQUENCE || substr(DEFAULT_SORT_DIR, 1, 6) || substr(r.DISABLE_SORT_COLUMN, 1, 10) || substr(r.SUM_COLUMN, 1, 10) || substr(r.HIDDEN_COLUMN, 1, 15) || ' c=' || substr(r.DISPLAY_WHEN_COND_TYPE, 1, 20) || substr(r.DISPLAY_WHEN_CONDITION, 1, 15) || length(r.DISPLAY_WHEN_CONDITION) || substr(r.DISPLAY_WHEN_CONDITION2, 1, 15) || length(r.DISPLAY_WHEN_CONDITION2) || ' a=' || substr(
+      decode(
+        substr(r.REPORT_COLUMN_REQUIRED_ROLE, 1, 1),
+        '!',
+        'Not '
+      ) || nvl(
+        (
+          select
+            name
+          from
+            wwv_flow_security_schemes
+          where
+            to_char(id) = ltrim(r.REPORT_COLUMN_REQUIRED_ROLE, '!')
+            and flow_id = f.id
+        ),
+        'Not found'
+      ),
+      1,
+      30
+    ) || ' d=' || substr(r.DISPLAY_AS, 1, 20) || ' l=' || substr(
+      decode(
+        (
+          select
+            lov_name
+          from
+            wwv_flow_lists_of_values$
+          where
+            id = r.NAMED_LOV
+        ),
+        null,
+        null,
+        (
+          select
+            lov_name
+          from
+            wwv_flow_lists_of_values$
+          where
+            id = r.NAMED_LOV
+        )
+      ),
+      1,
+      30
+    ) || substr(r.INLINE_LOV, 1, 30) || substr(r.LOV_SHOW_NULLS, 1, 20) || substr(r.LOV_DISPLAY_EXTRA, 1, 6) || substr(r.LOV_NULL_VALUE, 1, 20) || r.COLUMN_WIDTH || r.COLUMN_HEIGHT || ' c=' || substr(r.CATTRIBUTES, 1, 20) || length(r.CATTRIBUTES) || ' c=' || substr(r.CATTRIBUTES_ELEMENT, 1, 20) || length(r.CATTRIBUTES_ELEMENT) || ' pk=' || r.PK_COL_SOURCE_TYPE || sys.dbms_lob.substr(r.PK_COL_SOURCE, 20, 1) || sys.dbms_lob.getlength(r.PK_COL_SOURCE) || ' d=' || substr(r.DERIVED_COLUMN, 1, 6) || ' d=' || substr(r.COLUMN_DEFAULT, 1, 20) || length(r.COLUMN_DEFAULT) || ' t=' || r.COLUMN_DEFAULT_TYPE || include_in_export || print_col_width || print_col_align component_signature
+  from
+    WWV_FLOW_REGION_REPORT_COLUMN r,
+    wwv_flow_steps p,
+    wwv_flow_page_plugs region,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.security_group_id = p.security_group_id
+    and f.security_group_id = r.security_group_id
+    and f.id = p.flow_id
+    and f.id = region.flow_id
+    and p.id = region.page_id
+    and region.id = r.region_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

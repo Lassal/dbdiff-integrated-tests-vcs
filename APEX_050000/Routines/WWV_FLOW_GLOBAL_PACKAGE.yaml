@@ -1,0 +1,60 @@
+schema: APEX_050000
+name: WWV_FLOW_GLOBAL
+routineType: PACKAGE
+returnParamater: null
+parameters: []
+routineDefinition: |-
+  package wwv_flow_global as --------------------------------------------------------------------------------
+  --
+  --  Copyright (c) Oracle Corporation 1999 - 2013. All Rights Reserved.
+  --
+  --    NAME
+  --      wwv_flow_global.sql
+  --
+  --    DESCRIPTION
+  --      Application Express global package variables.
+  --
+  --    NOTES
+  --      Allows sharing of data within a session that does not belong to any given package.
+  --      Includes type declaration(s).
+  --
+  --      Any change to this file must also be replicated in the same file in cloud/apex_patches.
+  --
+  --    RUNTIME DEPLOYMENT: NO
+  --    PUBLIC:             YES
+  --
+  --    MODIFIED   (MM/DD/YYYY)
+  --     mhichwa    08/04/1999 - Created
+  --     mhichwa    03/18/2003 - Added n_arr (bug 2845535)
+  --     jkallman   09/22/2005 - Added g_xe
+  --     jkallman   09/27/2005 - Change g_xe to be boolean
+  --     jkallman   02/06/2007 - Change g_image_prefix to use wwv_flow_image_prefix
+  --     jkallman   01/14/2010 - Added d_arr
+  --     pawolf     01/21/2010 - Added vc_map
+  --     jstraub    01/13/2012 - Added g_cloud
+  --     jstraub    05/31/2012 - Added g_12c
+  --     pawolf     06/05/2012 - Added b_arr
+  --     vuvarov    04/05/2013 - Moved from flowg.sql to wwv_flow_global.sql
+  --
+  --------------------------------------------------------------------------------
+  --==============================================================================
+  g_v255_result varchar2(255): = null;
+  g_v1_result varchar2(1): = null;
+  g_image_prefix constant varchar2(255): = wwv_flow_image_prefix.g_image_prefix;
+  g_xe boolean: = case
+    '0'
+    when '1' then true
+    else false
+  end;
+  g_cloud constant boolean: = false;
+  $if sys.dbms_db_version.ver_le_10_2 $then g_12c constant boolean: = false;
+  $elsif sys.dbms_db_version.ver_le_11_1 $then g_12c constant boolean: = false;
+  $elsif sys.dbms_db_version.ver_le_11_2 $then g_12c constant boolean: = false;
+  $else g_12c constant boolean: = true;
+  $end --==============================================================================
+  type vc_map is table of varchar2(32767) index by varchar2(255);
+  type vc_arr2 is table of varchar2(32767) index by binary_integer;
+  type n_arr is table of number index by binary_integer;
+  type d_arr is table of date index by binary_integer;
+  type b_arr is table of boolean index by binary_integer;
+  end wwv_flow_global;

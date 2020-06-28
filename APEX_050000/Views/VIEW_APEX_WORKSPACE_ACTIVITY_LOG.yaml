@@ -1,0 +1,128 @@
+schema: APEX_050000
+name: APEX_WORKSPACE_ACTIVITY_LOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    l.userid apex_user,
+    l.flow_id application_id,
+    f.name application_name,
+    f.owner application_schema_owner,
+    l.step_id page_id,
+    (
+      select
+        name
+      from
+        wwv_flow_steps
+      where
+        id = l.step_id
+        and flow_id = f.id
+    ) page_name,
+    l.time_stamp view_date,
+    round(
+      86400 * (
+        l.time_stamp - lag(l.time_stamp) over (
+          order by
+            l.time_stamp,
+            l.flow_id,
+            l.userid,
+            l.session_id
+        )
+      )
+    ) think_time,
+    round(86400 * (sysdate - l.time_stamp)) seconds_ago,
+    --l.component_type          component_type,
+    --l.component_name          component_name,
+    l.component_attribute log_context,
+    --l.information             page_view_information,
+    l.elap elapsed_time,
+    l.num_rows rows_queried,
+    l.ip_address ip_address,
+    l.USER_AGENT agent,
+    l.session_id apex_session_id,
+    l.sqlerrm error_message,
+    l.sqlerrm_component_type error_on_component_type,
+    l.sqlerrm_component_name error_on_component_name,
+    decode(
+      l.page_mode,
+      'D',
+      'Dynamic',
+      'C',
+      'Cache Created',
+      'R',
+      'Cached',
+      'P',
+      'Partial Page',
+      'A',
+      'Page Processing',
+      l.page_mode
+    ) page_view_mode,
+    l.application_info,
+    -- ir log
+    l.worksheet_id interactive_report_id,
+    l.ir_report_id ir_saved_report_id,
+    l.ir_search ir_search,
+    -- websheet log
+    l.websheet_id ws_application_id,
+    l.webpage_id ws_page_id,
+    l.datagrid_id ws_datagrid_id,
+    --
+    l.content_length,
+    --
+    nvl(l.cached_regions, 0) regions_from_cache,
+    l.security_group_id workspace_id,
+    --
+    case
+      l.page_view_type
+      when 0 then 'Other'
+      when 1 then 'Processing'
+      when 2 then 'Rendering'
+      when 3 then 'AJAX'
+      when 4 then 'Logout'
+      when 5 then 'Authentication Callback'
+    end page_view_type,
+    l.request_value,
+    l.debug_page_view_id
+  from
+    wwv_flow_activity_log l,
+    wwv_flow_companies w,
+    wwv_flows f,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      l.security_group_id in (
+        select
+          security_group_id
+        from
+          wwv_flow_company_schemas
+        where
+          schema = cu
+      )
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = l.security_group_id
+    )
+    and --
+    l.security_group_id = w.PROVISIONING_COMPANY_ID
+    and l.flow_id = f.id(+)
+    and l.time_stamp > sysdate - 14
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

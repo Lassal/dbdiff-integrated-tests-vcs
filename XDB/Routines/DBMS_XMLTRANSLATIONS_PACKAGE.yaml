@@ -1,0 +1,124 @@
+schema: XDB
+name: DBMS_XMLTRANSLATIONS
+routineType: PACKAGE
+returnParamater:
+  name: UPDATETRANSLATION.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: EXTRACTXLIFF(1).DOC
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EXTRACTXLIFF(1).XPATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTXLIFF(1).NAMESPACE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTXLIFF(2).ABSPATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTXLIFF(2).XPATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTXLIFF(2).NAMESPACE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETBASEDOCUMENT.DOC
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: MERGEXLIFF(1).DOC
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: MERGEXLIFF(1).XLIFF
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: MERGEXLIFF(2).XLIFF
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: SETSOURCELANG.DOC
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: SETSOURCELANG.XPATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSOURCELANG.LANG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSOURCELANG.NAMESPACE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSLATEXML.DOC
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSLATEXML.LANG
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATETRANSLATION.DOC
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: UPDATETRANSLATION.XPATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATETRANSLATION.LANG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATETRANSLATION.VALUE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATETRANSLATION.NAMESPACE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package dbms_xmltranslations authid current_user is function translatexml (doc in xmltype, lang in varchar2) return xmltype;
+  function getbasedocument (doc in xmltype) return xmltype;
+  function updatetranslation (
+    doc in xmltype,
+    xpath in varchar2,
+    lang in varchar2,
+    value in varchar2,
+    namespace in varchar2: = null
+  ) return xmltype;
+  function setsourcelang (
+    doc in xmltype,
+    xpath in varchar2,
+    lang in varchar2,
+    namespace in varchar2: = null
+  ) return xmltype;
+  function extractxliff (
+    doc in xmltype,
+    xpath in varchar2,
+    namespace in varchar2: = null
+  ) return xmltype;
+  function extractxliff (
+    abspath in varchar2,
+    xpath in varchar2,
+    namespace in varchar2: = null
+  ) return xmltype;
+  function mergexliff (doc in xmltype, xliff in xmltype) return xmltype;
+  procedure mergexliff (xliff in xmltype);
+  procedure enableTranslation;
+  procedure disableTranslation;
+  end dbms_xmltranslations;

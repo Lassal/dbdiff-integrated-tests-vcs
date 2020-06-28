@@ -1,0 +1,40 @@
+name: JOBS
+schema: HR
+columns:
+- name: JOB_ID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  dataTypeLength: 10
+- name: JOB_TITLE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 35
+  nullable: false
+  dataTypeLength: 35
+- name: MAX_SALARY
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 6,0
+- name: MIN_SALARY
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 6,0
+constraints:
+- !<unique-constraint>
+  name: JOB_ID_PK
+  type: PRIMARY_KEY
+  columns:
+  - name: JOB_ID
+    ordinalPosition: 1
+- !<check-constraint>
+  name: JOB_TITLE_NN
+  type: CHECK
+  checkClause: '"JOB_TITLE" IS NOT NULL'

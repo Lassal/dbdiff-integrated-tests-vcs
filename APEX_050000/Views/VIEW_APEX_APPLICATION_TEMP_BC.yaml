@@ -1,0 +1,124 @@
+schema: APEX_050000
+name: APEX_APPLICATION_TEMP_BC
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    t.THEME_ID theme_number,
+    --
+    decode(
+      t.THEME_CLASS_ID,
+      '1',
+      'Breadcrumb',
+      '2',
+      'Hierarchical',
+      '3',
+      'Custom 1',
+      '4',
+      'Custom 2',
+      '5',
+      'Custom 3',
+      '6',
+      'Custom 4',
+      '7',
+      'Custom 5',
+      '8',
+      'Custom 6',
+      '9',
+      'Custom 7',
+      '10',
+      'Custom 10',
+      t.THEME_CLASS_ID
+    ) theme_class,
+    t.default_template_options default_template_options,
+    t.preset_template_options preset_template_options,
+    --
+    t.NAME template_name,
+    t.BEFORE_FIRST,
+    t.CURRENT_PAGE_OPTION,
+    t.NON_CURRENT_PAGE_OPTION,
+    t.MENU_LINK_ATTRIBUTES breadcrumb_link_attributes,
+    t.BETWEEN_LEVELS,
+    t.AFTER_LAST,
+    t.MAX_LEVELS,
+    decode(
+      t.START_WITH_NODE,
+      'CHILD_MENU',
+      'Child Breadcrumb Entries',
+      'CURRENT_MENU',
+      'Current Breadcrumb',
+      'PARENT_MENU',
+      'Parent Breadcrumb Entries',
+      'PARENT_TO_LEAF',
+      'Parent to Leaf (breadcrumb style)',
+      t.START_WITH_NODE
+    ) start_with,
+    --
+    decode(t.REFERENCE_ID, null, 'No', 'Yes') is_subscribed,
+    (
+      select
+        flow_id || '. ' || name
+      from
+        WWV_FLOW_MENU_TEMPLATES
+      where
+        id = t.REFERENCE_ID
+    ) subscribed_from,
+    --
+    t.LAST_UPDATED_BY last_updated_by,
+    t.LAST_UPDATED_ON last_updated_on,
+    decode(
+      t.TRANSLATE_THIS_TEMPLATE,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      'Yes'
+    ) translatable,
+    t.TEMPLATE_COMMENTS component_comments,
+    t.id breadcrumb_template_id,
+    --
+    t.NAME || ' t=' || t.THEME_ID || ' c=' || t.THEME_CLASS_ID || ' 1=' || substr(t.BEFORE_FIRST, 1, 30) || length(t.BEFORE_FIRST) || ' 2=' || substr(t.CURRENT_PAGE_OPTION, 1, 30) || length(t.CURRENT_PAGE_OPTION) || ' 3=' || substr(t.NON_CURRENT_PAGE_OPTION, 1, 30) || length(t.NON_CURRENT_PAGE_OPTION) || ' 4=' || substr(t.MENU_LINK_ATTRIBUTES, 1, 30) || length(t.MENU_LINK_ATTRIBUTES) || ' 5=' || substr(t.BETWEEN_LEVELS, 1, 30) || length(t.BETWEEN_LEVELS) || ' 6=' || substr(t.AFTER_LAST, 1, 30) || length(t.AFTER_LAST) || ' l=' || t.MAX_LEVELS || ' r=' || decode(t.REFERENCE_ID, null, 'N', 'Y') || ' n=' || t.START_WITH_NODE component_signature
+  from
+    WWV_FLOW_MENU_TEMPLATES t,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.id = t.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

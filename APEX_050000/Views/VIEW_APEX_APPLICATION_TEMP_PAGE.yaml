@@ -1,0 +1,263 @@
+schema: APEX_050000
+name: APEX_APPLICATION_TEMP_PAGE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    t.NAME template_name,
+    --t.LOOK
+    --
+    t.is_popup,
+    t.javascript_file_urls,
+    t.javascript_code,
+    t.javascript_code_onload,
+    t.dialog_js_init_code,
+    t.dialog_js_close_code,
+    t.dialog_js_cancel_code,
+    t.css_file_urls,
+    t.inline_css,
+    t.HEADER_TEMPLATE,
+    t.BOX page_body,
+    t.FOOTER_TEMPLATE,
+    --
+    t.SUCCESS_MESSAGE,
+    t.CURRENT_TAB,
+    t.CURRENT_TAB_FONT_ATTR,
+    t.NON_CURRENT_TAB,
+    t.NON_CURRENT_TAB_FONT_ATTR,
+    t.CURRENT_IMAGE_TAB,
+    t.NON_CURRENT_IMAGE_TAB,
+    t.TOP_CURRENT_TAB Current_Parent_Tab,
+    t.TOP_CURRENT_TAB_FONT_ATTR Current_Parent_Tab_attr,
+    t.TOP_NON_CURRENT_TAB NonCurrent_Parent_Tab,
+    t.TOP_NON_CURRENT_TAB_FONT_ATTR NonCurrent_Parent_Tab_attr,
+    --
+    t.NAVIGATION_BAR,
+    t.NAVBAR_ENTRY,
+    --t.BODY_TITLE                     ,
+    t.MESSAGE,
+    --t.ATTRIBUTE1                     ,
+    --t.ATTRIBUTE2                     ,
+    --t.ATTRIBUTE3                     ,
+    --t.ATTRIBUTE4                     ,
+    --t.ATTRIBUTE5                     ,
+    --t.ATTRIBUTE6                     ,
+    --t.DEFAULT_BUTTON_POSITION        ,
+    --t.TABLE_BGCOLOR                  ,
+    --t.HEADING_BGCOLOR                ,
+    --t.TABLE_CATTRIBUTES              ,
+    --t.FONT_SIZE                      ,
+    --t.FONT_FACE                      ,
+    case
+      t.grid_type
+      when 'TABLE' then 'Table'
+      when 'FIXED' then 'Fixed'
+      when 'VARIABLE' then 'Variable'
+    end as grid_type,
+    t.grid_type as grid_type_code,
+    t.grid_max_columns,
+    case
+      t.grid_always_use_max_columns
+      when 'Y' then 'Yes'
+      when 'N' then 'No'
+    end as grid_always_use_max_columns,
+    case
+      t.grid_has_column_span
+      when 'Y' then 'Yes'
+      when 'N' then 'No'
+    end as grid_has_column_span,
+    case
+      t.grid_always_emit
+      when 'Y' then 'Yes'
+      when 'N' then 'No'
+    end as grid_always_emit,
+    case
+      t.grid_emit_empty_leading_cols
+      when 'Y' then 'Yes'
+      when 'N' then 'No'
+    end as grid_emit_empty_leading_cols,
+    case
+      t.grid_emit_empty_trailing_cols
+      when 'Y' then 'Yes'
+      when 'N' then 'No'
+    end as grid_emit_empty_trailing_cols,
+    t.grid_default_label_col_span,
+    t.grid_template,
+    t.grid_row_template,
+    t.grid_column_template,
+    t.grid_first_column_attributes,
+    t.grid_last_column_attributes,
+    t.grid_javascript_debug_code,
+    t.dialog_height,
+    t.dialog_width,
+    t.dialog_max_width,
+    t.dialog_css_classes,
+    t.dialog_browser_frame,
+    t.REGION_TABLE_CATTRIBUTES as grid_table_attributes,
+    t.REGION_TABLE_CATTRIBUTES as MultiColumn_Region_Table_Attr,
+    /* for backward compatibility */
+    --
+    --t.APP_TAB_BEFORE_TABS            ,
+    --t.APP_TAB_CURRENT_TAB            ,
+    --t.APP_TAB_NON_CURRENT_TAB        ,
+    --t.APP_TAB_AFTER_TABS             ,
+    --
+    'Y' as has_edit_links,
+    --
+    t.ERROR_PAGE_TEMPLATE,
+    --
+    decode(t.REFERENCE_ID, null, 'No', 'Yes') is_subscribed,
+    (
+      select
+        flow_id || '. ' || name
+      from
+        wwv_flow_templates
+      where
+        id = t.REFERENCE_ID
+    ) subscribed_from,
+    --
+    --t.BREADCRUMB_DEF_REG_POS         ,
+    --t.SIDEBAR_DEF_REG_POS            ,
+    --t.REQUIRED_PATCH                 ,
+    t.THEME_ID theme_number,
+    decode(
+      t.THEME_CLASS_ID,
+      '1',
+      'One Level Tabs',
+      '2',
+      'Two Level Tabs',
+      '3',
+      'No Tabs',
+      '4',
+      'Popup',
+      '5',
+      'Printer Friendly',
+      '6',
+      'Login',
+      '7',
+      'Unknown',
+      '8',
+      'Custom 1',
+      '9',
+      'Custom 2',
+      '10',
+      'Custom 3',
+      '11',
+      'Custom 4',
+      '12',
+      'Custom 5',
+      '13',
+      'Custom 6',
+      '14',
+      'Custom 7',
+      '15',
+      'Custom 8',
+      '16',
+      'One Level Tabs with Sidebar',
+      '17',
+      'No Tabs with Sidebar',
+      '18',
+      'Two Level Tabs with Sidebar',
+      t.THEME_CLASS_ID
+    ) theme_class,
+    t.default_template_options default_template_options,
+    t.preset_template_options preset_template_options,
+    t.LAST_UPDATED_BY last_updated_by,
+    t.LAST_UPDATED_ON last_updated_on,
+    decode(
+      t.TRANSLATE_THIS_TEMPLATE,
+      'N',
+      'No',
+      'Y',
+      'Yes',
+      'Yes'
+    ) translatable,
+    t.TEMPLATE_COMMENT component_comment,
+    t.id template_id,
+    t.id page_template_id,
+    --
+    substr(t.NAME, 1, 40) || '.' || length(t.NAME) || ' h=' || sys.dbms_lob.substr(t.HEADER_TEMPLATE, 40, 1) || '.' || sys.dbms_lob.getlength(t.HEADER_TEMPLATE) || ' b=' || sys.dbms_lob.substr(t.BOX, 40, 1) || '.' || sys.dbms_lob.getlength(t.BOX) || ' f=' || sys.dbms_lob.substr(t.FOOTER_TEMPLATE, 40, 1) || '.' || sys.dbms_lob.getlength(t.FOOTER_TEMPLATE) || ' s=' || substr(t.SUCCESS_MESSAGE, 1, 40) || '.' || length(t.SUCCESS_MESSAGE) || ' t=' || substr(t.CURRENT_TAB, 1, 40) || '.' || length(t.CURRENT_TAB) || ' t=' || substr(t.CURRENT_TAB_FONT_ATTR, 1, 40) || '.' || length(t.CURRENT_TAB_FONT_ATTR) || ' n=' || substr(t.NON_CURRENT_TAB, 1, 40) || '.' || length(t.NON_CURRENT_TAB) || ' n=' || substr(t.NON_CURRENT_TAB_FONT_ATTR, 1, 40) || '.' || length(t.NON_CURRENT_TAB_FONT_ATTR) || ' i=' || substr(t.CURRENT_IMAGE_TAB, 1, 40) || '.' || length(t.CURRENT_IMAGE_TAB) || ' i=' || substr(t.NON_CURRENT_IMAGE_TAB, 1, 40) || '.' || length(t.NON_CURRENT_IMAGE_TAB) || ' t=' || substr(t.TOP_CURRENT_TAB, 1, 40) || '.' || length(t.TOP_CURRENT_TAB) || ' t=' || substr(t.TOP_CURRENT_TAB_FONT_ATTR, 1, 40) || '.' || length(t.TOP_CURRENT_TAB_FONT_ATTR) || ' t=' || substr(t.TOP_NON_CURRENT_TAB, 1, 40) || '.' || length(t.TOP_NON_CURRENT_TAB) || ' t=' || substr(t.TOP_NON_CURRENT_TAB_FONT_ATTR, 1, 40) || '.' || length(t.TOP_NON_CURRENT_TAB_FONT_ATTR) || ' n=' || substr(t.NAVIGATION_BAR, 1, 40) || '.' || length(t.NAVIGATION_BAR) || ' n=' || substr(t.NAVBAR_ENTRY, 1, 40) || '.' || length(t.NAVBAR_ENTRY) || ' m=' || substr(t.MESSAGE, 1, 40) || '.' || length(t.MESSAGE) || ' e=' || substr(t.ERROR_PAGE_TEMPLATE, 1, 40) || '.' || length(t.ERROR_PAGE_TEMPLATE) --
+    || ' s=' || decode(t.REFERENCE_ID, null, 'No', 'Yes') || ' t=' || t.THEME_ID || ' c=' || decode(
+      t.THEME_CLASS_ID,
+      '1',
+      'One Level Tabs',
+      '2',
+      'Two Level Tabs',
+      '3',
+      'No Tabs',
+      '4',
+      'Popup',
+      '5',
+      'Printer Friendly',
+      '6',
+      'Login',
+      '7',
+      'Unknown',
+      '8',
+      'Custom 1',
+      '9',
+      'Custom 2',
+      '10',
+      'Custom 3',
+      '11',
+      'Custom 4',
+      '12',
+      'Custom 5',
+      '13',
+      'Custom 6',
+      '14',
+      'Custom 7',
+      '15',
+      'Custom 8',
+      '16',
+      'One Level Tabs with Sidebar',
+      '17',
+      'No Tabs with Sidebar',
+      '18',
+      'Two Level Tabs with Sidebar',
+      t.THEME_CLASS_ID
+    ) || ' t=' || t.TRANSLATE_THIS_TEMPLATE component_signature
+  from
+    wwv_flow_templates t,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.id = t.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

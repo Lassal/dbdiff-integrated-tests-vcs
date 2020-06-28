@@ -1,0 +1,124 @@
+schema: APEX_050000
+name: APEX_DEBUG_MESSAGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    id,
+    page_view_id,
+    message_timestamp,
+    elap as elapsed_time,
+    extract(
+      second
+      from
+        (
+          lead(message_timestamp) over (
+            partition by page_view_id
+            order by
+              id
+          ) - message_timestamp
+        )
+    ) + extract(
+      minute
+      from
+        (
+          lead(message_timestamp) over (
+            partition by page_view_id
+            order by
+              id
+          ) - message_timestamp
+        )
+    ) * 60 as execution_time,
+    message,
+    flow_id as application_id,
+    page_id,
+    session_id,
+    apex_user,
+    message_level,
+    security_group_id as workspace_id
+  from
+    (
+      select
+        m. *
+      from
+        wwv_flow_current_sgid sgid,
+        wwv_flow_debug_messages m,
+        wwv_flow_companies w
+      where
+        m.security_group_id = w.provisioning_company_id
+        and w.provisioning_company_id in (
+          select
+            security_group_id
+          from
+            wwv_flow_company_schemas s,
+            (
+              select
+                (
+                  select
+                    sys_context('USERENV', 'CURRENT_USER')
+                  from
+                    sys.dual
+                ) cu
+              from
+                sys.dual
+            ) d
+          where
+            (
+              s.schema = cu
+              or (
+                select
+                  wwv_flow_security.has_apex_administrator_role_yn(cu)
+                from
+                  sys.dual
+              ) = 'Y'
+              or sgid.security_group_id = w.PROVISIONING_COMPANY_ID
+            )
+        )
+        and (
+          user in ('SYS', 'SYSTEM', 'APEX_050000')
+          or w.PROVISIONING_COMPANY_ID != 10
+        )
+      union all
+      select
+        m. *
+      from
+        wwv_flow_current_sgid sgid,
+        wwv_flow_debug_messages2 m,
+        wwv_flow_companies w
+      where
+        m.security_group_id = w.provisioning_company_id
+        and w.provisioning_company_id in (
+          select
+            security_group_id
+          from
+            wwv_flow_company_schemas s,
+            (
+              select
+                (
+                  select
+                    sys_context('USERENV', 'CURRENT_USER')
+                  from
+                    sys.dual
+                ) cu
+              from
+                sys.dual
+            ) d
+          where
+            (
+              s.schema = cu
+              or (
+                select
+                  wwv_flow_security.has_apex_administrator_role_yn(cu)
+                from
+                  sys.dual
+              ) = 'Y'
+              or sgid.security_group_id = w.PROVISIONING_COMPANY_ID
+            )
+        )
+        and (
+          user in ('SYS', 'SYSTEM', 'APEX_050000')
+          or w.PROVISIONING_COMPANY_ID != 10
+        )
+    )
+columns: []
+referencedTables: []

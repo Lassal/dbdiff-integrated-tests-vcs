@@ -1,0 +1,49 @@
+schema: APEX_050000
+name: APEX_WORKSPACE_GROUPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.PROVISIONING_COMPANY_ID,
+    w.short_name,
+    w.display_name,
+    g.group_name,
+    g.group_desc
+  from
+    wwv_flow_fnd_user_groups g,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = g.security_group_id
+    and w.PROVISIONING_COMPANY_ID ! = 0
+  group by
+    w.PROVISIONING_COMPANY_ID,
+    w.short_name,
+    w.display_name,
+    g.group_name,
+    g.group_desc
+columns: []
+referencedTables: []

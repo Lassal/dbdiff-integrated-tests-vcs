@@ -1,0 +1,67 @@
+schema: APEX_050000
+name: APEX_APPLICATION_BREADCRUMBS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    m.NAME breadcrumb_name,
+    --
+    (
+      select
+        count(*)
+      from
+        wwv_flow_menu_options
+      where
+        menu_id = m.id
+    ) breadcrumb_entries,
+    --
+    m.LAST_UPDATED_BY last_updated_by,
+    m.LAST_UPDATED_ON last_updated_on,
+    m.MENU_COMMENT component_comment,
+    m.id breadcrumb_id,
+    --
+    m.NAME component_signature
+  from
+    wwv_flow_menus m,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.id = m.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

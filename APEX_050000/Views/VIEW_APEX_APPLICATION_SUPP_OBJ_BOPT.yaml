@@ -1,0 +1,84 @@
+schema: APEX_050000
+name: APEX_APPLICATION_SUPP_OBJ_BOPT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    (
+      select
+        patch_name
+      from
+        wwv_flow_patches
+      where
+        id = i.BUILD_OPT_ID
+    ) build_option,
+    --
+    decode(
+      (
+        select
+          patch_status
+        from
+          wwv_flow_patches
+        where
+          id = i.BUILD_OPT_ID
+      ),
+      'INCLUDE',
+      'Include',
+      'EXCLUDE',
+      'Exclude',
+      i.BUILD_OPT_ID
+    ) default_status,
+    --
+    (
+      select
+        patch_comment
+      from
+        wwv_flow_patches
+      where
+        id = i.BUILD_OPT_ID
+    ) developer_comment,
+    i.id install_build_option_id
+  from
+    wwv_flow_install_build_opt i,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and f.id = i.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

@@ -1,0 +1,19 @@
+schema: XDB
+name: JSON$USER_COLLECTION_METADATA
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    URI_NAME,
+    OBJECT_TYPE,
+    OBJECT_SCHEMA,
+    OBJECT_NAME,
+    CREATED_ON,
+    CREATE_MODE,
+    JSON_DESCRIPTOR
+  from
+    XDB.JSON$COLLECTION_METADATA
+  where
+    OWNER = USER
+columns: []
+referencedTables: []

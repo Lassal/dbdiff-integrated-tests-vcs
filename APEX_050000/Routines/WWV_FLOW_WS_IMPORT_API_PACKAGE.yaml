@@ -1,0 +1,1282 @@
+schema: APEX_050000
+name: WWV_FLOW_WS_IMPORT_API
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: COPY_DATA_GRID.P_WS_APP_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: COPY_DATA_GRID.P_OLD_DATA_GRID_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: COPY_DATA_GRID.P_NEW_DATA_GRID_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: COPY_PAGE_SECTIONS.P_WS_APP_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: COPY_PAGE_SECTIONS.P_OLD_WEBPAGE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: COPY_PAGE_SECTIONS.P_NEW_WEBPAGE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ACL.P_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ACL.P_WS_APP_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ACL.P_USERNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ACL.P_PRIV
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FILE.P_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_FILE.P_WS_APP_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_FILE.P_DATA_GRID_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_FILE.P_ROW_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_FILE.P_WEBPAGE_ID
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_FILE.P_COMPONENT_LEVEL
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FILE.P_NAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FILE.P_VARCHAR2_TABLE
+  ordinalPosition: 8
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: CREATE_FILE.P_CONTENT_LAST_UPDATE
+  ordinalPosition: 9
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_FILE.P_MIME_TYPE
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FILE.P_CONTENT_CHARSET
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FILE.P_CONTENT_FILENAME
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FILE.P_DESCRIPTION
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FILE.P_IMAGE_ATTRIBUTES
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FILE.P_IMAGE_ALIAS
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_LINK.P_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_LINK.P_WS_APP_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_LINK.P_DATA_GRID_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_LINK.P_ROW_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_LINK.P_WEBPAGE_ID
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_LINK.P_COMPONENT_LEVEL
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_LINK.P_TAGS
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_LINK.P_SHOW_ON_HOMEPAGE
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_LINK.P_LINK_NAME
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_LINK.P_URL
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_LINK.P_LINK_DESCRIPTION
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_LINK.P_DISPLAY_SEQUENCE
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_NOTE.P_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_NOTE.P_WS_APP_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_NOTE.P_DATA_GRID_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_NOTE.P_ROW_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_NOTE.P_WEBPAGE_ID
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_NOTE.P_COMPONENT_LEVEL
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_NOTE.P_CONTENT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_WS_APP_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_DATA_GRID_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_UNIQUE_VALUE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_TAGS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_PARENT_ROW_ID
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_OWNER
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_GEOCODE
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_LOAD_ORDER
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_C001
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C002
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C003
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C004
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C005
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C006
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C007
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C008
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C009
+  ordinalPosition: 18
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C010
+  ordinalPosition: 19
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C011
+  ordinalPosition: 20
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C012
+  ordinalPosition: 21
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C013
+  ordinalPosition: 22
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C014
+  ordinalPosition: 23
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C015
+  ordinalPosition: 24
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C016
+  ordinalPosition: 25
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C017
+  ordinalPosition: 26
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C018
+  ordinalPosition: 27
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C019
+  ordinalPosition: 28
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C020
+  ordinalPosition: 29
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C021
+  ordinalPosition: 30
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C022
+  ordinalPosition: 31
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C023
+  ordinalPosition: 32
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C024
+  ordinalPosition: 33
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C025
+  ordinalPosition: 34
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C026
+  ordinalPosition: 35
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C027
+  ordinalPosition: 36
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C028
+  ordinalPosition: 37
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C029
+  ordinalPosition: 38
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C030
+  ordinalPosition: 39
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C031
+  ordinalPosition: 40
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C032
+  ordinalPosition: 41
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C033
+  ordinalPosition: 42
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C034
+  ordinalPosition: 43
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C035
+  ordinalPosition: 44
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C036
+  ordinalPosition: 45
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C037
+  ordinalPosition: 46
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C038
+  ordinalPosition: 47
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C039
+  ordinalPosition: 48
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C040
+  ordinalPosition: 49
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C041
+  ordinalPosition: 50
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C042
+  ordinalPosition: 51
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C043
+  ordinalPosition: 52
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C044
+  ordinalPosition: 53
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C045
+  ordinalPosition: 54
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C046
+  ordinalPosition: 55
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C047
+  ordinalPosition: 56
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C048
+  ordinalPosition: 57
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C049
+  ordinalPosition: 58
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_C050
+  ordinalPosition: 59
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_N001
+  ordinalPosition: 60
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N002
+  ordinalPosition: 61
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N003
+  ordinalPosition: 62
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N004
+  ordinalPosition: 63
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N005
+  ordinalPosition: 64
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N006
+  ordinalPosition: 65
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N007
+  ordinalPosition: 66
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N008
+  ordinalPosition: 67
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N009
+  ordinalPosition: 68
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N010
+  ordinalPosition: 69
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N011
+  ordinalPosition: 70
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N012
+  ordinalPosition: 71
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N013
+  ordinalPosition: 72
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N014
+  ordinalPosition: 73
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N015
+  ordinalPosition: 74
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N016
+  ordinalPosition: 75
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N017
+  ordinalPosition: 76
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N018
+  ordinalPosition: 77
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N019
+  ordinalPosition: 78
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N020
+  ordinalPosition: 79
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N021
+  ordinalPosition: 80
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N022
+  ordinalPosition: 81
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N023
+  ordinalPosition: 82
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N024
+  ordinalPosition: 83
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N025
+  ordinalPosition: 84
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N026
+  ordinalPosition: 85
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N027
+  ordinalPosition: 86
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N028
+  ordinalPosition: 87
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N029
+  ordinalPosition: 88
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N030
+  ordinalPosition: 89
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N031
+  ordinalPosition: 90
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N032
+  ordinalPosition: 91
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N033
+  ordinalPosition: 92
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N034
+  ordinalPosition: 93
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N035
+  ordinalPosition: 94
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N036
+  ordinalPosition: 95
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N037
+  ordinalPosition: 96
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N038
+  ordinalPosition: 97
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N039
+  ordinalPosition: 98
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N040
+  ordinalPosition: 99
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N041
+  ordinalPosition: 100
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N042
+  ordinalPosition: 101
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N043
+  ordinalPosition: 102
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N044
+  ordinalPosition: 103
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N045
+  ordinalPosition: 104
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N046
+  ordinalPosition: 105
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N047
+  ordinalPosition: 106
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N048
+  ordinalPosition: 107
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N049
+  ordinalPosition: 108
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_N050
+  ordinalPosition: 109
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_ROW.P_D001
+  ordinalPosition: 110
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D002
+  ordinalPosition: 111
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D003
+  ordinalPosition: 112
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D004
+  ordinalPosition: 113
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D005
+  ordinalPosition: 114
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D006
+  ordinalPosition: 115
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D007
+  ordinalPosition: 116
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D008
+  ordinalPosition: 117
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D009
+  ordinalPosition: 118
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D010
+  ordinalPosition: 119
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D011
+  ordinalPosition: 120
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D012
+  ordinalPosition: 121
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D013
+  ordinalPosition: 122
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D014
+  ordinalPosition: 123
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D015
+  ordinalPosition: 124
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D016
+  ordinalPosition: 125
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D017
+  ordinalPosition: 126
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D018
+  ordinalPosition: 127
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D019
+  ordinalPosition: 128
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D020
+  ordinalPosition: 129
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D021
+  ordinalPosition: 130
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D022
+  ordinalPosition: 131
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D023
+  ordinalPosition: 132
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D024
+  ordinalPosition: 133
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D025
+  ordinalPosition: 134
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D026
+  ordinalPosition: 135
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D027
+  ordinalPosition: 136
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D028
+  ordinalPosition: 137
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D029
+  ordinalPosition: 138
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D030
+  ordinalPosition: 139
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D031
+  ordinalPosition: 140
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D032
+  ordinalPosition: 141
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D033
+  ordinalPosition: 142
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D034
+  ordinalPosition: 143
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D035
+  ordinalPosition: 144
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D036
+  ordinalPosition: 145
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D037
+  ordinalPosition: 146
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D038
+  ordinalPosition: 147
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D039
+  ordinalPosition: 148
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D040
+  ordinalPosition: 149
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D041
+  ordinalPosition: 150
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D042
+  ordinalPosition: 151
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D043
+  ordinalPosition: 152
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D044
+  ordinalPosition: 153
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D045
+  ordinalPosition: 154
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D046
+  ordinalPosition: 155
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D047
+  ordinalPosition: 156
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D048
+  ordinalPosition: 157
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D049
+  ordinalPosition: 158
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_D050
+  ordinalPosition: 159
+  dataType: DATE
+  parameterMode: IN
+- name: CREATE_ROW.P_CLOB001
+  ordinalPosition: 160
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROW.P_SEARCH_CLOB
+  ordinalPosition: 161
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SECTION.P_WS_APP_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SECTION.P_WEBPAGE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SECTION.P_SECTION_TYPE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_DISPLAY_SEQUENCE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SECTION.P_TITLE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_CONTENT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_CONTENT_UPPER
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_NAV_START_WEBPAGE_ID
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SECTION.P_NAV_MAX_LEVEL
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SECTION.P_NAV_ORDER_BY
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_NAV_INCLUDE_LINK
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_DATA_GRID_ID
+  ordinalPosition: 13
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SECTION.P_REPORT_ID
+  ordinalPosition: 14
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SECTION.P_DATA_SECTION_STYLE
+  ordinalPosition: 15
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SECTION.P_MAX_ROW_COUNT
+  ordinalPosition: 16
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SECTION.P_SHOW_ADD_ROW
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_SHOW_EDIT_ROW
+  ordinalPosition: 18
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_SHOW_SEARCH
+  ordinalPosition: 19
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_CHART_TYPE
+  ordinalPosition: 20
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_CHART_3D
+  ordinalPosition: 21
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_CHART_LABEL
+  ordinalPosition: 22
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_LABEL_AXIS_TITLE
+  ordinalPosition: 23
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_CHART_VALUE
+  ordinalPosition: 24
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_VALUE_AXIS_TITLE
+  ordinalPosition: 25
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_CHART_AGGREGATE
+  ordinalPosition: 26
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SECTION.P_CHART_SORTING
+  ordinalPosition: 27
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TAG.P_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_TAG.P_WS_APP_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_TAG.P_DATA_GRID_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_TAG.P_ROW_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_TAG.P_WEBPAGE_ID
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_TAG.P_COMPONENT_LEVEL
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TAG.P_TAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT_ACL.P_WS_APP_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXPORT_ANNOTATIONS.P_WS_APP_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXPORT_ANNOTATIONS.P_COMPONENT_LEVEL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT_ANNOTATIONS.P_FORMAT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT_ROWS.P_WS_APP_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXPORT_ROWS.P_DATA_GRID_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXPORT_ROWS.P_FORMAT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT_SECTIONS.P_WS_APP_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXPORT_SECTIONS.P_WEBPAGE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXPORT_SECTIONS.P_FORMAT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_WS_COMPONENTS.P_WS_APP_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  package wwv_flow_ws_import_api authid current_user as procedure create_acl (
+    p_id in number default null,
+    p_ws_app_id in number default null,
+    p_username in varchar2 default null,
+    p_priv in varchar2 default null
+  );
+  procedure create_section (
+    p_id in number default null,
+    p_ws_app_id in number default null,
+    p_webpage_id in number default null,
+    p_section_type in varchar2 default null,
+    p_display_sequence in number default null,
+    p_title in varchar2 default null,
+    p_content in varchar2 default null,
+    p_content_upper in varchar2 default null,
+    p_nav_start_webpage_id in number default null,
+    p_nav_max_level in number default null,
+    p_nav_order_by in varchar2 default null,
+    p_nav_include_link in varchar2 default null,
+    p_data_grid_id in number default null,
+    p_report_id in number default null,
+    p_data_section_style in number default null,
+    p_max_row_count in number default null,
+    p_show_add_row in varchar2 default null,
+    p_show_edit_row in varchar2 default null,
+    p_show_search in varchar2 default null,
+    p_chart_type in varchar2 default null,
+    p_chart_3d in varchar2 default null,
+    p_chart_label in varchar2 default null,
+    p_label_axis_title in varchar2 default null,
+    p_chart_value in varchar2 default null,
+    p_value_axis_title in varchar2 default null,
+    p_chart_aggregate in varchar2 default null,
+    p_chart_sorting in varchar2 default null
+  );
+  procedure create_row (
+    p_id in number default null,
+    p_ws_app_id in number default null,
+    p_data_grid_id in number default null,
+    p_unique_value in varchar2 default null,
+    p_tags in varchar2 default null,
+    p_parent_row_id in number default null,
+    p_owner in varchar2 default null,
+    p_geocode in varchar2 default null,
+    p_load_order in number default null,
+    --p_change_count    in default number,
+    p_c001 in varchar2 default null,
+    p_c002 in varchar2 default null,
+    p_c003 in varchar2 default null,
+    p_c004 in varchar2 default null,
+    p_c005 in varchar2 default null,
+    p_c006 in varchar2 default null,
+    p_c007 in varchar2 default null,
+    p_c008 in varchar2 default null,
+    p_c009 in varchar2 default null,
+    p_c010 in varchar2 default null,
+    p_c011 in varchar2 default null,
+    p_c012 in varchar2 default null,
+    p_c013 in varchar2 default null,
+    p_c014 in varchar2 default null,
+    p_c015 in varchar2 default null,
+    p_c016 in varchar2 default null,
+    p_c017 in varchar2 default null,
+    p_c018 in varchar2 default null,
+    p_c019 in varchar2 default null,
+    p_c020 in varchar2 default null,
+    p_c021 in varchar2 default null,
+    p_c022 in varchar2 default null,
+    p_c023 in varchar2 default null,
+    p_c024 in varchar2 default null,
+    p_c025 in varchar2 default null,
+    p_c026 in varchar2 default null,
+    p_c027 in varchar2 default null,
+    p_c028 in varchar2 default null,
+    p_c029 in varchar2 default null,
+    p_c030 in varchar2 default null,
+    p_c031 in varchar2 default null,
+    p_c032 in varchar2 default null,
+    p_c033 in varchar2 default null,
+    p_c034 in varchar2 default null,
+    p_c035 in varchar2 default null,
+    p_c036 in varchar2 default null,
+    p_c037 in varchar2 default null,
+    p_c038 in varchar2 default null,
+    p_c039 in varchar2 default null,
+    p_c040 in varchar2 default null,
+    p_c041 in varchar2 default null,
+    p_c042 in varchar2 default null,
+    p_c043 in varchar2 default null,
+    p_c044 in varchar2 default null,
+    p_c045 in varchar2 default null,
+    p_c046 in varchar2 default null,
+    p_c047 in varchar2 default null,
+    p_c048 in varchar2 default null,
+    p_c049 in varchar2 default null,
+    p_c050 in varchar2 default null,
+    p_n001 in number default null,
+    p_n002 in number default null,
+    p_n003 in number default null,
+    p_n004 in number default null,
+    p_n005 in number default null,
+    p_n006 in number default null,
+    p_n007 in number default null,
+    p_n008 in number default null,
+    p_n009 in number default null,
+    p_n010 in number default null,
+    p_n011 in number default null,
+    p_n012 in number default null,
+    p_n013 in number default null,
+    p_n014 in number default null,
+    p_n015 in number default null,
+    p_n016 in number default null,
+    p_n017 in number default null,
+    p_n018 in number default null,
+    p_n019 in number default null,
+    p_n020 in number default null,
+    p_n021 in number default null,
+    p_n022 in number default null,
+    p_n023 in number default null,
+    p_n024 in number default null,
+    p_n025 in number default null,
+    p_n026 in number default null,
+    p_n027 in number default null,
+    p_n028 in number default null,
+    p_n029 in number default null,
+    p_n030 in number default null,
+    p_n031 in number default null,
+    p_n032 in number default null,
+    p_n033 in number default null,
+    p_n034 in number default null,
+    p_n035 in number default null,
+    p_n036 in number default null,
+    p_n037 in number default null,
+    p_n038 in number default null,
+    p_n039 in number default null,
+    p_n040 in number default null,
+    p_n041 in number default null,
+    p_n042 in number default null,
+    p_n043 in number default null,
+    p_n044 in number default null,
+    p_n045 in number default null,
+    p_n046 in number default null,
+    p_n047 in number default null,
+    p_n048 in number default null,
+    p_n049 in number default null,
+    p_n050 in number default null,
+    p_d001 in date default null,
+    p_d002 in date default null,
+    p_d003 in date default null,
+    p_d004 in date default null,
+    p_d005 in date default null,
+    p_d006 in date default null,
+    p_d007 in date default null,
+    p_d008 in date default null,
+    p_d009 in date default null,
+    p_d010 in date default null,
+    p_d011 in date default null,
+    p_d012 in date default null,
+    p_d013 in date default null,
+    p_d014 in date default null,
+    p_d015 in date default null,
+    p_d016 in date default null,
+    p_d017 in date default null,
+    p_d018 in date default null,
+    p_d019 in date default null,
+    p_d020 in date default null,
+    p_d021 in date default null,
+    p_d022 in date default null,
+    p_d023 in date default null,
+    p_d024 in date default null,
+    p_d025 in date default null,
+    p_d026 in date default null,
+    p_d027 in date default null,
+    p_d028 in date default null,
+    p_d029 in date default null,
+    p_d030 in date default null,
+    p_d031 in date default null,
+    p_d032 in date default null,
+    p_d033 in date default null,
+    p_d034 in date default null,
+    p_d035 in date default null,
+    p_d036 in date default null,
+    p_d037 in date default null,
+    p_d038 in date default null,
+    p_d039 in date default null,
+    p_d040 in date default null,
+    p_d041 in date default null,
+    p_d042 in date default null,
+    p_d043 in date default null,
+    p_d044 in date default null,
+    p_d045 in date default null,
+    p_d046 in date default null,
+    p_d047 in date default null,
+    p_d048 in date default null,
+    p_d049 in date default null,
+    p_d050 in date default null,
+    p_clob001 in varchar2 default null,
+    p_search_clob in varchar2 default null
+  );
+  procedure create_file (
+    p_id in number default null,
+    p_ws_app_id in number default null,
+    p_data_grid_id in number default null,
+    p_row_id in number default null,
+    p_webpage_id in number default null,
+    p_component_level in varchar2 default null,
+    p_name in varchar2 default null,
+    p_varchar2_table in sys.dbms_sql.varchar2_table,
+    p_content_last_update in date default null,
+    p_mime_type in varchar2 default null,
+    p_content_charset in varchar2 default null,
+    p_content_filename in varchar2 default null,
+    p_description in varchar2 default null,
+    p_image_attributes in varchar2 default null,
+    p_image_alias in varchar2 default null
+  );
+  procedure create_note (
+    p_id in number default null,
+    p_ws_app_id in number default null,
+    p_data_grid_id in number default null,
+    p_row_id in number default null,
+    p_webpage_id in number default null,
+    p_component_level in varchar2 default null,
+    p_content in varchar2 default null
+  );
+  procedure create_tag (
+    p_id in number default null,
+    p_ws_app_id in number default null,
+    p_data_grid_id in number default null,
+    p_row_id in number default null,
+    p_webpage_id in number default null,
+    p_component_level in varchar2 default null,
+    p_tag in varchar2 default null
+  );
+  procedure create_link (
+    p_id in number default null,
+    p_ws_app_id in number default null,
+    p_data_grid_id in number default null,
+    p_row_id in number default null,
+    p_webpage_id in number default null,
+    p_component_level in varchar2 default null,
+    p_tags in varchar2 default null,
+    p_show_on_homepage in varchar2 default null,
+    p_link_name in varchar2 default null,
+    p_url in varchar2 default null,
+    p_link_description in varchar2 default null,
+    p_display_sequence in number default null
+  );
+  procedure export_sections (
+    p_ws_app_id in number,
+    p_webpage_id in number,
+    p_format in varchar2 default null
+  );
+  procedure export_rows (
+    p_ws_app_id in number,
+    p_data_grid_id in number,
+    p_format in varchar2 default null
+  );
+  procedure export_annotations (
+    p_ws_app_id in number,
+    p_component_level in varchar2,
+    p_format in varchar2 default null
+  );
+  procedure export_acl (p_ws_app_id in number);
+  procedure remove_ws_components (p_ws_app_id in number);
+  procedure copy_data_grid (
+    p_ws_app_id in number,
+    p_old_data_grid_id in number,
+    p_new_data_grid_id in number
+  );
+  procedure copy_page_sections (
+    p_ws_app_id in number,
+    p_old_webpage_id in number,
+    p_new_webpage_id in number
+  );
+  end wwv_flow_ws_import_api;

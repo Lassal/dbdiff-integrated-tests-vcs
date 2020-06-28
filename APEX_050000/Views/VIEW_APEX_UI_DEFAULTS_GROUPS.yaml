@@ -1,0 +1,24 @@
+schema: APEX_050000
+name: APEX_UI_DEFAULTS_GROUPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.schema,
+    t.table_name,
+    g.group_name,
+    g.description,
+    g.display_sequence,
+    g.created_by,
+    g.created_on,
+    g.last_updated_by,
+    g.last_updated_on
+  from
+    wwv_flow_current_sgid,
+    wwv_flow_hnt_groups g,
+    wwv_flow_hnt_table_info t
+  where
+    t.schema = user
+    and g.table_id = t.table_id
+columns: []
+referencedTables: []

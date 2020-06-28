@@ -1,0 +1,40 @@
+schema: APEX_050000
+name: APEX_APPL_TEMPLATE_OPT_GROUPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.id as template_opt_group_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    o.theme_id as theme_number,
+    o.name as name,
+    o.display_name as display_name,
+    o.display_sequence as display_sequence,
+    o.template_types as template_types,
+    o.help_text as help_text,
+    o.null_text as null_text,
+    o.is_advanced as is_advanced,
+    nvl2(o.reference_id, 'Yes', 'No') as is_subscribed,
+    (
+      select
+        o2.flow_id || '. ' || o2.name
+      from
+        wwv_flow_template_options o2
+      where
+        o2.id = o.reference_id
+    ) as subscribed_from,
+    o.reference_id as subscribed_from_id,
+    o.created_by,
+    o.created_on,
+    o.last_updated_by,
+    o.last_updated_on
+  from
+    wwv_flow_authorized f,
+    wwv_flow_template_opt_groups o
+  where
+    o.flow_id = f.application_id
+columns: []
+referencedTables: []

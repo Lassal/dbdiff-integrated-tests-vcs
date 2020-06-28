@@ -1,0 +1,80 @@
+schema: APEX_050000
+name: APEX_APPLICATION_ITEMS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.id application_id,
+    f.name application_name,
+    --
+    i.name item_name,
+    i.scope scope,
+    --i.name_length
+    i.data_type data_type,
+    --i.is_persistent                  ,
+    i.protection_level session_state_protection,
+    (
+      select
+        case
+          when i.required_patch > 0 then patch_name
+          else '{Not ' || patch_name || '}'
+        end patch_name
+      from
+        wwv_flow_patches
+      where
+        id = abs(i.required_patch)
+    ) build_option,
+    i.last_updated_by,
+    i.last_updated_on,
+    i.item_comment component_comment,
+    i.id application_item_id,
+    --
+    i.name || ' dt=' || i.data_type || ' prot=' || i.protection_level || ' bo='(
+      select
+        patch_name
+      from
+        wwv_flow_patches
+      where
+        id = i.required_patch
+    ) component_signature
+  from
+    wwv_flow_items i,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.provisioning_company_id
+    )
+    and f.security_group_id = w.provisioning_company_id
+    and s.schema = f.owner
+    and s.security_group_id = w.provisioning_company_id
+    and f.id = i.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.build_status, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.provisioning_company_id != 0
+columns: []
+referencedTables: []

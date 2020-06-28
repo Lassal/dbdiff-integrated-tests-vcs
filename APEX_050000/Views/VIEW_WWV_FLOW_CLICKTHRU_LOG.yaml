@@ -1,0 +1,23 @@
+schema: APEX_050000
+name: WWV_FLOW_CLICKTHRU_LOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    clickdate,
+    category,
+    id,
+    flow_user,
+    ip
+  from
+    sys.dual bug19306482,
+    wwv_flow_clickthru_log_v
+  where
+    security_group_id = (
+      select
+        wwv_flow.get_sgid
+      from
+        sys.dual
+    )
+columns: []
+referencedTables: []

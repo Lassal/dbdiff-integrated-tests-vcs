@@ -1,0 +1,81 @@
+schema: APEX_050000
+name: APEX_TEAM_TODOS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.PROVISIONING_COMPANY_ID workspace_id,
+    w.short_name workspace_name,
+    --
+    t.ID todo_id,
+    t.FRIENDLY_ID todo_friendly_id,
+    t.ASSIGNED_TO assigned_to,
+    t.CONTRIBUTOR contributor,
+    t.TASK_NAME todo_name,
+    t.DESCRIPTION todo_description,
+    t.ESTIMATED_EFFORT_IN_HOURS estimated_effort_in_hours,
+    t.TASK_STATUS todo_status,
+    t.TASK_CATEGORY todo_category,
+    t.TASK_TAGS tags,
+    --
+    t.START_DATE start_date,
+    t.DATE_COMPLETED date_completed,
+    t.DUE_DATE due_date,
+    --
+    t.APPLICATION_ID apex_application_id,
+    t.PAGE_ID apex_application_page_id,
+    --t.WEBSHEET_ID,
+    t.REF_COMPONENT_TYPE,
+    --t.CUSTOMER_DETAILS,
+    t.PARENT_TASK_ID parent_todo_id,
+    --t.TASK_GROUP                todo_group,
+    --
+    t.RELEASE release,
+    t.EVENT_ID milestone_id,
+    t.FEATURE_ID feature_id,
+    t.PRODUCT_VERSION product_version,
+    --
+    t.CREATED_BY,
+    t.CREATED_ON,
+    t.UPDATED_BY,
+    t.UPDATED_ON
+  from
+    wwv_flow_current_sgid sgid,
+    WWV_FLOW_tasks t,
+    wwv_flow_companies w
+  where
+    t.security_group_id = w.PROVISIONING_COMPANY_ID
+    and w.PROVISIONING_COMPANY_ID in (
+      select
+        security_group_id
+      from
+        wwv_flow_company_schemas s,
+        (
+          select
+            (
+              select
+                sys_context('USERENV', 'CURRENT_USER')
+              from
+                sys.dual
+            ) cu
+          from
+            sys.dual
+        ) d
+      where
+        (
+          s.schema = cu
+          or (
+            select
+              wwv_flow_security.has_apex_administrator_role_yn(cu)
+            from
+              sys.dual
+          ) = 'Y'
+          or sgid.security_group_id = w.PROVISIONING_COMPANY_ID
+        )
+    )
+    and (
+      user in ('SYS', 'SYSTEM', 'APEX_050000')
+      or w.PROVISIONING_COMPANY_ID != 10
+    )
+columns: []
+referencedTables: []

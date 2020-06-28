@@ -1,0 +1,74 @@
+schema: APEX_050000
+name: WWV_FLOW_CUSTOMIZE
+routineType: PACKAGE
+returnParamater:
+  name: GET_LINK.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: ACCEPT.P_REQUEST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ACCEPT.P_FLOW
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ACCEPT.P_PAGE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ACCEPT.P_SESSION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ACCEPT.P_CHECK
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: ACCEPT.P_LANG
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LINK.P_TEXT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW.P_FLOW
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW.P_PAGE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW.P_SESSION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW.P_LANG
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package wwv_flow_customize as g_notification varchar2(32767): = null;
+  g_regions_counted boolean: = false;
+  g_region_count pls_integer: = 0;
+  function get_link (p_text in varchar2 default null) -- Returns a URL for the current page
+  return varchar2;
+  procedure show(
+    p_flow in varchar2 default null,
+    p_page in varchar2 default null,
+    p_session in varchar2 default null,
+    p_lang in varchar2 default 'en'
+  );
+  procedure accept(
+    p_request in varchar2 default null,
+    p_flow in varchar2 default null,
+    p_page in varchar2 default null,
+    p_session in varchar2 default null,
+    p_check in wwv_flow_global.vc_arr2 default wwv_flow.empty_vc_arr,
+    p_lang in varchar2 default 'en'
+  );
+  end wwv_flow_customize;

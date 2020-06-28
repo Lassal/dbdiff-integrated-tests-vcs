@@ -1,0 +1,109 @@
+schema: XDB
+name: DBMS_COLLECTIONS
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: CREATE_COLLECTION.P_URI_NAME
+  ordinalPosition: 1
+  dataType: NVARCHAR2
+  parameterMode: IN
+- name: CREATE_COLLECTION.P_CREATE_MODE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_COLLECTION.P_DESCRIPTOR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: CREATE_COLLECTION.P_CREATE_TIME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: DESCRIBE_COLLECTION.P_URI_NAME
+  ordinalPosition: 1
+  dataType: NVARCHAR2
+  parameterMode: INOUT
+- name: DESCRIBE_COLLECTION.P_DESCRIPTOR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: DROP_COLLECTION.P_URI_NAME
+  ordinalPosition: 1
+  dataType: NVARCHAR2
+  parameterMode: IN
+- name: GET_PARAMETERS.P_KEY
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: GET_PARAMETERS.P_VALUE
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: LIST_COLLECTIONS.P_START_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LIST_COLLECTIONS.P_RESULTS
+  ordinalPosition: 2
+  dataType: REF CURSOR
+  parameterMode: OUT
+routineDefinition: |-
+  package DBMS_COLLECTIONS authid current_user as --
+  -- Error messages which we can ignore
+  --
+  SQL_OBJECT_EXISTS constant number: = -955;
+  SQL_OBJECT_NOT_EXISTS constant number: = -942;
+  --
+  type VCTAB is table of varchar2(32767) index by binary_integer;
+  --
+  -- List collections by returning a cursor which delivers two
+  -- columns: the URI name and a JSON descriptor. The results
+  -- are returning in URI string order.
+  -- An optional argument can be used to specify a starting URI string
+  -- (possibly useful for paginated reading of large schemas).
+  --
+  procedure LIST_COLLECTIONS(
+    P_START_NAME in varchar2 default null,
+    P_RESULTS out SYS_REFCURSOR
+  );
+  --
+  -- Describe a single collection. The input collection name is
+  -- case-sensitive. If a match is found, the case-sensitive actual
+  -- URI name is returned along with the descriptor body.
+  --
+  procedure DESCRIBE_COLLECTION(
+    P_URI_NAME in out nvarchar2,
+    P_DESCRIPTOR out varchar2
+  );
+  --
+  -- Create a collection for a specified URI name, with a specified
+  -- descriptor. The URI name is case-sensitive.
+  -- Note that the descriptor stored in the table may differ from
+  -- from the input descriptor if values are defaulted during validation.
+  --
+  procedure CREATE_COLLECTION(
+    P_URI_NAME in nvarchar2,
+    P_CREATE_MODE in varchar2 default 'MAP',
+    P_DESCRIPTOR in out varchar2,
+    P_CREATE_TIME out varchar2
+  );
+  --
+  -- Drop a collection given the name. This forcibly drops the
+  -- the collection regardless of the drop policy, which must
+  -- be enforced by the calling code layer.
+  --
+  procedure DROP_COLLECTION(P_URI_NAME in nvarchar2);
+  --
+  -- Returns RDBMS parameters as name/value pairs.
+  -- Currently returns 3 values:
+  --       PKEY             P_VALUE
+  --   (1) "VARCHAR2_MAX"   4000 or 32767
+  --   (2) "RAW_MAX"        2000 or 32767
+  --   (3) "NVARCHAR2_MAX"  2000, 4000, 16383, or 32767
+  --
+  procedure GET_PARAMETERS (
+    P_KEY in out VCTAB,
+    P_VALUE in out VCTAB
+  );
+  --
+  end DBMS_COLLECTIONS;

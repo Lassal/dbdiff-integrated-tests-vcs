@@ -1,0 +1,166 @@
+schema: APEX_050000
+name: APEX_APPLICATION_TEMP_LIST
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    t.LIST_TEMPLATE_NAME template_name,
+    --
+    t.JAVASCRIPT_FILE_URLS javascript_file_urls,
+    t.JAVASCRIPT_CODE_ONLOAD javascript_code_onload,
+    t.CSS_FILE_URLS css_file_urls,
+    t.INLINE_CSS inline_css,
+    --
+    t.LIST_TEMPLATE_CURRENT,
+    t.LIST_TEMPLATE_NONCURRENT,
+    t.LIST_TEMPLATE_BEFORE_ROWS,
+    t.LIST_TEMPLATE_AFTER_ROWS,
+    t.BETWEEN_ITEMS,
+    t.BEFORE_SUB_LIST,
+    t.AFTER_SUB_LIST,
+    t.BETWEEN_SUB_LIST_ITEMS,
+    t.SUB_LIST_ITEM_CURRENT,
+    t.SUB_LIST_ITEM_NONCURRENT,
+    t.ITEM_TEMPLATE_CURR_W_CHILD,
+    t.ITEM_TEMPLATE_NONCURR_W_CHILD,
+    t.SUB_TEMPLATE_CURR_W_CHILD,
+    t.SUB_TEMPLATE_NONCURR_W_CHILD,
+    --
+    t.FIRST_LIST_TEMPLATE_NONCURRENT,
+    t.FIRST_LIST_TEMPLATE_CURRENT,
+    t.F_ITEM_TEMPLATE_CURR_W_CHILD,
+    t.FITEM_TEMPLATE_NONCURR_W_CHILD,
+    --
+    decode(t.REFERENCE_ID, null, 'No', 'Yes') is_subscribed,
+    (
+      select
+        flow_id || '. ' || name
+      from
+        WWV_FLOW_LIST_TEMPLATES
+      where
+        id = t.REFERENCE_ID
+    ) subscribed_from,
+    --
+    t.LAST_UPDATED_BY,
+    t.LAST_UPDATED_ON,
+    t.THEME_ID theme_number,
+    decode(
+      t.THEME_CLASS_ID,
+      '1',
+      'Vertical Unordered List with Bullets',
+      '2',
+      'Vertical Ordered List',
+      '3',
+      'Horizontal Links List',
+      '4',
+      'Horizontal Images with Label List',
+      '5',
+      'Vertical Images List',
+      '6',
+      'Button List',
+      '7',
+      'Tabbed Navigation List',
+      '9',
+      'Custom 1',
+      '10',
+      'Custom 2',
+      '11',
+      'Custom 3',
+      '12',
+      'Custom 4',
+      '13',
+      'Custom 5',
+      '14',
+      'Custom 6',
+      '15',
+      'Custom 7',
+      '16',
+      'Custom 8',
+      '17',
+      'Wizard Progress List',
+      '18',
+      'Vertical Unordered List without Bullets',
+      '19',
+      'Vertical Sidebar List',
+      '20',
+      'Pull Down Menu',
+      '21',
+      'Pull Down Menu with Image',
+      '22',
+      'Hierarchical Expanding',
+      '23',
+      'Hierarchical Expanded',
+      t.THEME_CLASS_ID
+    ) theme_class,
+    t.default_template_options default_template_options,
+    t.preset_template_options preset_template_options,
+    t.TRANSLATE_THIS_TEMPLATE,
+    t.LIST_TEMPLATE_COMMENT component_comment,
+    t.id list_template_id,
+    --
+    t.a01_label,
+    t.a02_label,
+    t.a03_label,
+    t.a04_label,
+    t.a05_label,
+    t.a06_label,
+    t.a07_label,
+    t.a08_label,
+    t.a09_label,
+    t.a10_label,
+    t.a11_label,
+    t.a12_label,
+    t.a13_label,
+    t.a14_label,
+    t.a15_label,
+    t.a16_label,
+    t.a17_label,
+    t.a18_label,
+    t.a19_label,
+    t.a20_label,
+    --
+    t.LIST_TEMPLATE_NAME || ' t=' || t.THEME_ID || ' c=' || t.THEME_CLASS_ID || ' 1=' || sys.dbms_lob.substr(t.LIST_TEMPLATE_CURRENT, 40, 1) || '.' || sys.dbms_lob.getlength(t.LIST_TEMPLATE_CURRENT) || ' 2=' || sys.dbms_lob.substr(t.LIST_TEMPLATE_NONCURRENT, 40, 1) || '.' || sys.dbms_lob.getlength(t.LIST_TEMPLATE_NONCURRENT) || ' 3=' || sys.dbms_lob.substr(t.SUB_LIST_ITEM_CURRENT, 40, 1) || '.' || sys.dbms_lob.getlength(t.SUB_LIST_ITEM_CURRENT) || ' 4=' || sys.dbms_lob.substr(t.SUB_LIST_ITEM_NONCURRENT, 40, 1) || '.' || sys.dbms_lob.getlength(t.SUB_LIST_ITEM_NONCURRENT) || ' 5=' || sys.dbms_lob.substr(t.ITEM_TEMPLATE_CURR_W_CHILD, 40, 1) || '.' || sys.dbms_lob.getlength(t.ITEM_TEMPLATE_CURR_W_CHILD) || ' 6=' || sys.dbms_lob.substr(t.ITEM_TEMPLATE_NONCURR_W_CHILD, 40, 1) || '.' || sys.dbms_lob.getlength(t.ITEM_TEMPLATE_NONCURR_W_CHILD) || ' 7=' || sys.dbms_lob.substr(t.SUB_TEMPLATE_CURR_W_CHILD, 40, 1) || '.' || sys.dbms_lob.getlength(t.SUB_TEMPLATE_CURR_W_CHILD) || ' 8=' || sys.dbms_lob.substr(t.SUB_TEMPLATE_NONCURR_W_CHILD, 40, 1) || '.' || sys.dbms_lob.getlength(t.SUB_TEMPLATE_NONCURR_W_CHILD) || ' t=' || t.TRANSLATE_THIS_TEMPLATE || ' r=' || decode(t.REFERENCE_ID, null, 'N', 'Y') || ' b=' || substr(t.LIST_TEMPLATE_BEFORE_ROWS, 1, 20) || length(t.LIST_TEMPLATE_BEFORE_ROWS) || ' a=' || substr(t.LIST_TEMPLATE_AFTER_ROWS, 1, 20) || length(t.LIST_TEMPLATE_AFTER_ROWS) || ' b=' || substr(t.BETWEEN_ITEMS, 1, 20) || length(t.BETWEEN_ITEMS) || ' b=' || substr(t.BEFORE_SUB_LIST, 1, 20) || length(t.BEFORE_SUB_LIST) || ' a=' || substr(t.AFTER_SUB_LIST, 1, 20) || length(t.AFTER_SUB_LIST) || ' b=' || substr(t.BETWEEN_SUB_LIST_ITEMS, 1, 20) || length(t.BETWEEN_SUB_LIST_ITEMS) component_signature
+  from
+    WWV_FLOW_LIST_TEMPLATES t,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.id = t.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

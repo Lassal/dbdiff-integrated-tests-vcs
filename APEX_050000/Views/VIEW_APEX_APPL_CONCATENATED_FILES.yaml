@@ -1,0 +1,38 @@
+schema: APEX_050000
+name: APEX_APPL_CONCATENATED_FILES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    cf.id as concatenated_file_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    cf.user_interface_id,
+    cf.page_id,
+    cf.combined_file_url,
+    cf.single_file_urls,
+    cf.required_patch as build_option_id,
+    (
+      select
+        case
+          when cf.required_patch > 0 then patch_name
+          else '{Not ' || patch_name || '}'
+        end
+      from
+        wwv_flow_patches
+      where
+        id = abs(cf.required_patch)
+    ) as build_option,
+    cf.created_by,
+    cf.created_on,
+    cf.last_updated_by,
+    cf.last_updated_on
+  from
+    wwv_flow_authorized f,
+    wwv_flow_combined_files cf
+  where
+    cf.flow_id = f.application_id
+columns: []
+referencedTables: []
