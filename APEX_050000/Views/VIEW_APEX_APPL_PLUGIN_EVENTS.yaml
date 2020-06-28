@@ -1,0 +1,28 @@
+schema: APEX_050000
+name: APEX_APPL_PLUGIN_EVENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    e.id as plugin_event_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    e.plugin_id,
+    p.name as plugin_name,
+    e.name,
+    e.display_name,
+    e.created_by,
+    e.created_on,
+    e.last_updated_by,
+    e.last_updated_on
+  from
+    wwv_flow_authorized_and_4411 f,
+    wwv_flow_plugins p,
+    wwv_flow_plugin_events e
+  where
+    p.flow_id = f.application_id
+    and e.plugin_id = p.id
+columns: []
+referencedTables: []

@@ -1,0 +1,89 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_TREES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    p.id page_id,
+    p.name page_name,
+    t.id region_id,
+    t.plug_name region_name,
+    --
+    case
+      when regexp_like(t.attribute_06, '^tree\d+$') then to_number(regexp_substr(t.attribute_06, '\d+'))
+      else t.id
+    end tree_id,
+    t.plug_source tree_query,
+    regexp_substr (
+      t.plug_source,
+      'from[:space:]*"?([^"[:space:]]+)',
+      1,
+      1,
+      'i',
+      1
+    ) tree_source,
+    t.attribute_01 tree_template,
+    t.attribute_02 tree_click_action,
+    cast(null as varchar2(10)) tree_start_value,
+    cast(null as varchar2(10)) tree_start_item,
+    t.attribute_03 tree_selected_node,
+    t.attribute_04 show_hints,
+    t.attribute_05 tree_hint_text,
+    cast(null as varchar2(10)) tree_has_focus,
+    cast(null as varchar2(10)) tree_button_option,
+    --
+    t.last_updated_by last_updated_by,
+    t.last_updated_on last_updated_on,
+    --
+    t.plug_comment component_comment,
+    --
+    p.name || ' t=' || sys.dbms_lob.substr(t.plug_source, 50) || sys.dbms_lob.getlength(t.plug_source) || ' template=' || t.attribute_01 || ' links=' || t.attribute_02 || ' sel=' || t.attribute_03 || ' hints=' || t.attribute_04 || ':' || t.attribute_05 component_signature
+  from
+    wwv_flow_page_plugs t,
+    wwv_flow_steps p,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.provisioning_company_id
+    )
+    and f.security_group_id = w.provisioning_company_id
+    and s.security_group_id = w.provisioning_company_id
+    and s.schema = f.owner
+    and f.security_group_id = p.security_group_id
+    and f.security_group_id = t.security_group_id
+    and f.id = p.flow_id
+    and f.id = t.flow_id
+    and p.id = t.page_id
+    and t.plug_source_type = 'NATIVE_JSTREE'
+    and (
+      d.sgid != 0
+      or nvl(f.build_status, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.provisioning_company_id != 0
+columns: []
+referencedTables: []

@@ -1,0 +1,55 @@
+schema: APEX_050000
+name: APEX_WS_DATA_GRID
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    a .id application_id,
+    a .name application_name,
+    dg.worksheet_id interactive_report_id,
+    dg.id data_grid_id,
+    dg.websheet_name data_grid_name,
+    dg.websheet_alias data_grid_alias,
+    --
+    dg.created_on,
+    dg.created_by,
+    dg.updated_on,
+    dg.updated_by
+  from
+    wwv_flow_ws_websheet_attr dg,
+    wwv_flow_ws_applications a,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.is_apex$_schema = 'Y'
+    and a .security_group_id = w.PROVISIONING_COMPANY_ID
+    and a .security_group_id = dg.security_group_id
+    and a .id = dg.ws_app_id
+    and dg.websheet_type = 'DATA'
+    and w.provisioning_company_id != 0
+columns: []
+referencedTables: []

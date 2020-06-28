@@ -1,0 +1,28 @@
+schema: APEX_050000
+name: WWV_FLOW_USER_MAIL_QUEUE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    id,
+    mail_to,
+    mail_from,
+    mail_replyto,
+    mail_subj,
+    mail_cc,
+    mail_bcc,
+    mail_body,
+    mail_body_html,
+    mail_send_count,
+    mail_send_error,
+    last_updated_by,
+    last_updated_on,
+    mail_message_created,
+    last_updated_by
+  from
+    wwv_flow_current_sgid sgid,
+    wwv_flow_mail_queue a
+  where
+    a .security_group_id = sgid.security_group_id
+columns: []
+referencedTables: []

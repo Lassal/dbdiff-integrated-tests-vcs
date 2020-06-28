@@ -1,0 +1,251 @@
+schema: APEX_050000
+name: WWV_FLOW_FILE_MGR
+routineType: PACKAGE
+returnParamater:
+  name: GET_FILE_ID.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: DOWNLOAD_FILE.P_FILE_CONTENT
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: DOWNLOAD_FILE.P_FILE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DOWNLOAD_FILE.P_MIME_TYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DOWNLOAD_FILE.P_FILE_CHARSET
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DOWNLOAD_FILE.P_LAST_UPDATED_ON
+  ordinalPosition: 5
+  dataType: DATE
+  parameterMode: IN
+- name: DOWNLOAD_FILE.P_ETAG
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DOWNLOAD_FILE.P_IS_ATTACHMENT
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DOWNLOAD_FILE.P_NEVER_EXPIRES
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GET_FILE(1).P_ID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FILE(1).P_MIME_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FILE(1).P_INLINE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FILE(2).P_FNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FILE(2).P_SECURITY_GROUP_ID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FILE(2).P_FLOW_ID
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FILE(2).P_INLINE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FILE(2).P_NEVER_EXPIRES
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GET_FILE(2).P_COMPATIBILITY_MODE
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GET_FILE(3).P_PLUGIN_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_FILE(3).P_SECURITY_GROUP_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_FILE(3).P_FILE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FILE(3).P_NEVER_EXPIRES
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GET_FILE(4).P_APPLICATION_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_FILE(4).P_THEME_NO
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_FILE(4).P_SECURITY_GROUP_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_FILE(4).P_FILE_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FILE(4).P_NEVER_EXPIRES
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GET_FILE(5).P_USER_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_FILE(5).P_CK
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FILE_ID.P_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_TEAM_FILE.P
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_TEAM_FILE.S
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_TEAM_FILE.F
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_TEAM_FILE.CK
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_WS_FILE.S
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_WS_FILE.F
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_WS_FILE.CK
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package wwv_flow_file_mgr as -- Copyright (c) Oracle Corporation 2000-2008. All Rights Reserved.
+  --
+  --    DESCRIPTION
+  --      File Upload/Download services
+  --
+  --    SECURITY
+  --
+  --    NOTES
+  --      Package Body should be wrapped
+  --
+  function get_file_id(p_name in varchar2) return number;
+  --==============================================================================
+  -- Procedure to download a file identified by it's id.
+  -- Note: the parameter p_mime_type will be ignored and is deprecated.
+  --==============================================================================
+  procedure get_file(
+    p_id in varchar2,
+    p_mime_type in varchar2 default null,
+    /* deprecated */
+    p_inline in varchar2 default 'NO'
+  );
+  --==============================================================================
+  -- Procedure to download a workspace or application file identified by its name.
+  --==============================================================================
+  procedure get_file(
+    p_fname in varchar2,
+    p_security_group_id in varchar2,
+    p_flow_id in varchar2 default null,
+    p_inline in varchar2 default 'YES',
+    p_never_expires in boolean default false,
+    p_compatibility_mode in boolean default true
+  );
+  --==============================================================================
+  -- Procedure to download a plugin file identified by its name.
+  -- If the file is a text file, all occurences of #PLUGIN_PREFIX# are replaced by
+  -- the URL to access a plugin file.
+  --==============================================================================
+  procedure get_file (
+    p_plugin_id in number,
+    p_security_group_id in number,
+    p_file_name in varchar2,
+    p_never_expires in boolean default false
+  );
+  --==============================================================================
+  -- Procedure to download a theme file identified by its name.
+  --==============================================================================
+  procedure get_file (
+    p_application_id in number,
+    p_theme_no in number,
+    p_security_group_id in number,
+    p_file_name in varchar2,
+    p_never_expires in boolean default false
+  );
+  --==============================================================================
+  -- Procedure to download a user profile image.
+  --==============================================================================
+  procedure get_file (
+    p_user_id in number,
+    p_ck in varchar2
+  );
+  procedure download_file (
+    p_file_content in blob,
+    p_file_name in varchar2,
+    p_mime_type in varchar2,
+    p_file_charset in varchar2,
+    p_last_updated_on in date,
+    p_etag in varchar2,
+    p_is_attachment in boolean default true,
+    p_never_expires in boolean default false
+  );
+  --==============================================================================
+  -- Procedure to download a Websheet file identified by its ID.
+  --==============================================================================
+  procedure get_ws_file (
+    s in number,
+    -- session ID
+    f in number,
+    -- file id
+    ck in varchar2
+  );
+  --==============================================================================
+  -- Procedure to download a Team Development file identified by its ID.
+  --==============================================================================
+  procedure get_team_file (
+    p in number,
+    -- page ID
+    s in number,
+    -- session ID
+    f in number,
+    -- file id
+    ck in varchar2
+  );
+  --==============================================================================
+  -- Deprecated! Procedure doesn't do anything anymore.
+  --==============================================================================
+  procedure process_download;
+  end wwv_flow_file_mgr;

@@ -1,0 +1,182 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_DA_ACTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    fa.workspace workspace,
+    fa.workspace_display_name workspace_display_name,
+    fa.application_id application_id,
+    fa.application_name application_name,
+    a .page_id page_id,
+    p.name page_name,
+    a .event_id dynamic_action_id,
+    e.name dynamic_action_name,
+    case
+      substr(a .action, 1, 7)
+      when 'NATIVE_' then (
+        select
+          display_name
+        from
+          wwv_flow_plugins
+        where
+          flow_id = 4411
+          and plugin_type = 'DYNAMIC ACTION'
+          and name = substr(a .action, 8)
+      )
+      when 'PLUGIN_' then (
+        select
+          display_name
+        from
+          wwv_flow_plugins
+        where
+          flow_id = a .flow_id
+          and plugin_type = 'DYNAMIC ACTION'
+          and name = substr(a .action, 8)
+      )
+      else a .action
+    end action_name,
+    a .action action_code,
+    a .action_sequence action_sequence,
+    decode(
+      a .event_result,
+      'TRUE',
+      'True',
+      'FALSE',
+      'False',
+      a .event_result
+    ) dynamic_action_event_result,
+    decode(
+      a .execute_on_page_init,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      a .execute_on_page_init
+    ) execute_on_page_init,
+    a .affected_elements affected_elements,
+    decode(
+      a .affected_elements_type,
+      'ITEM',
+      'Item',
+      'REGION',
+      'Region',
+      'COLUMN',
+      'Column',
+      'DOM_OBJECT',
+      'DOM Object',
+      'JQUERY_SELECTOR',
+      'jQuery Selector',
+      'JAVASCRIPT_EXPRESSION',
+      'JavaScript Expression',
+      'TRIGGERING_ELEMENT',
+      'Triggering Element',
+      'EVENT_SOURCE',
+      'Event Source',
+      a .affected_elements_type
+    ) affected_elements_type,
+    a .affected_elements_type affected_elements_type_code,
+    nvl(
+      (
+        select
+          plug_name
+        from
+          wwv_flow_page_plugs
+        where
+          id = a .affected_region_id
+      ),
+      a .affected_region_id
+    ) affected_region,
+    a .affected_region_id affected_region_id,
+    decode(
+      a .affected_button_id,
+      null,
+      null,
+      (
+        select
+          button_name
+        from
+          wwv_flow_step_buttons
+        where
+          id = a .affected_button_id
+        union
+        select
+          name
+        from
+          wwv_flow_step_items
+        where
+          id = a .affected_button_id
+      )
+    ) affected_button,
+    a .affected_button_id affected_button_id,
+    a .attribute_01 attribute_01,
+    a .attribute_02 attribute_02,
+    a .attribute_03 attribute_03,
+    a .attribute_04 attribute_04,
+    a .attribute_05 attribute_05,
+    a .attribute_06 attribute_06,
+    a .attribute_07 attribute_07,
+    a .attribute_08 attribute_08,
+    a .attribute_09 attribute_09,
+    a .attribute_10 attribute_10,
+    a .attribute_11 attribute_11,
+    a .attribute_12 attribute_12,
+    a .attribute_13 attribute_13,
+    a .attribute_14 attribute_14,
+    a .attribute_15 attribute_15,
+    case
+      when a .stop_execution_on_error = 'Y' then 'Yes'
+      else 'No'
+    end as stop_execution_on_error,
+    case
+      a .wait_for_result
+      when 'Y' then 'Yes'
+      when 'N' then 'No'
+    end wait_for_result,
+    a .last_updated_by last_updated_by,
+    a .last_updated_on last_updated_on,
+    a .da_action_comment component_comment,
+    a .id action_id,
+    --
+    'action=' || a .action || ',seq=' || lpad(a .action_sequence, 5, '00000') || ',er=' || a .event_result || ',eopi=' || a .execute_on_page_init || ',ae=' || substr(a .affected_elements, 1, 30) || ',aet=' || a .affected_elements_type || ',aer=' || nvl(
+      (
+        select
+          plug_name
+        from
+          wwv_flow_page_plugs
+        where
+          id = a .affected_region_id
+      ),
+      a .affected_region_id
+    ) || ',aeb=' || decode(
+      a .affected_button_id,
+      null,
+      null,
+      (
+        select
+          button_name
+        from
+          wwv_flow_step_buttons
+        where
+          id = a .affected_button_id
+        union
+        select
+          name
+        from
+          wwv_flow_step_items
+        where
+          id = a .affected_button_id
+      )
+    ) || ',seoe=' || a .stop_execution_on_error || ',wfr=' || a .wait_for_result component_signature
+  from
+    wwv_flow_page_da_actions a,
+    wwv_flow_page_da_events e,
+    wwv_flow_authorized fa,
+    wwv_flow_steps p
+  where
+    a .flow_id = fa.application_id
+    and e.id = a .event_id
+    and p.flow_id = a .flow_id
+    and p.id = a .page_id
+columns: []
+referencedTables: []

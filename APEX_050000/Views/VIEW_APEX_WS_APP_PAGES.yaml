@@ -1,0 +1,61 @@
+schema: APEX_050000
+name: APEX_WS_APP_PAGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    a .id application_id,
+    p.id page_id,
+    a .security_group_id workspace_id,
+    a .name application_name,
+    --
+    p.NAME page_name,
+    p.OWNER page_owner,
+    p.STATUS page_status,
+    p.DESCRIPTION page_description,
+    p.PARENT_PAGE_ID page_parent_id,
+    p.UPPER_NAME page_upper_name,
+    p.PAGE_NUMBER page_number,
+    p.PAGE_ALIAS page_alias,
+    --
+    p.created_on,
+    p.created_by,
+    p.updated_on,
+    p.updated_by
+  from
+    wwv_flow_ws_applications a,
+    WWV_FLOW_WS_WEBPAGES p,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.is_apex$_schema = 'Y'
+    and a .id = p.ws_app_id
+    and p.security_group_id = w.PROVISIONING_COMPANY_ID
+    and a .security_group_id = w.PROVISIONING_COMPANY_ID
+    and w.provisioning_company_id != 0
+columns: []
+referencedTables: []

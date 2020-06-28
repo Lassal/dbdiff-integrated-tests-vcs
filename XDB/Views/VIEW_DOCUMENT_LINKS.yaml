@@ -1,0 +1,54 @@
+schema: XDB
+name: DOCUMENT_LINKS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    dl.source_id,
+    dl.target_id,
+    dl.target_path,
+    decode(
+      bitand(sys_op_rawtonum(dl.flags), 1),
+      1,
+      'Weak',
+      decode(
+        bitand(sys_op_rawtonum(dl.flags), 2),
+        2,
+        'Symbolic',
+        'Hard'
+      )
+    ),
+    decode(
+      bitand(sys_op_rawtonum(dl.flags), 4),
+      4,
+      'XInclude',
+      'XLink'
+    ),
+    decode(
+      bitand(sys_op_rawtonum(dl.flags), 8),
+      8,
+      'Resource Metadata',
+      'Resource Content'
+    )
+  from
+    xdb.xdb$d_link dl,
+    xdb.xdb$resource r
+  where
+    dl.source_id = r.object_id
+    and sys_checkacl(
+      r.xmldata.acloid,
+      r.xmldata.ownerid,
+      xmltype(
+        '<privilege
+        xmlns="http://xmlns.oracle.com/xdb/acl.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.oracle.com/xdb/acl.xsd
+                            http://xmlns.oracle.com/xdb/acl.xsd
+                            DAV: http://xmlns.oracle.com/xdb/dav.xsd">
+        <read-properties/>
+        <read-contents/>
+   </privilege>'
+      )
+    ) = 1
+columns: []
+referencedTables: []

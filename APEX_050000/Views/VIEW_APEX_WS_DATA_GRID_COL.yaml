@@ -1,0 +1,187 @@
+schema: APEX_050000
+name: APEX_WS_DATA_GRID_COL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    a .id application_id,
+    a .name application_name,
+    ir.id interactive_report_id,
+    dg.id data_grid_id,
+    c .id column_id,
+    c .db_column_name column_alias,
+    c .display_order display_order,
+    (
+      select
+        name
+      from
+        wwv_flow_worksheet_col_groups
+      where
+        id = c .group_id
+    ) column_group,
+    c .group_id column_group_id,
+    c .report_label report_label,
+    c .column_label form_label,
+    c .column_link,
+    c .column_linktext,
+    c .column_link_attr,
+    c .column_link_checksum_type,
+    --
+    decode(
+      c .allow_sorting,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_sorting
+    ) allow_sorting,
+    decode(
+      c .allow_filtering,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_filtering
+    ) allow_filtering,
+    decode(
+      c .allow_highlighting,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_highlighting
+    ) allow_highlighting,
+    decode(
+      c .allow_ctrl_breaks,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_ctrl_breaks
+    ) allow_ctrl_breaks,
+    decode(
+      c .allow_aggregations,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_aggregations
+    ) allow_aggregations,
+    decode(
+      c .allow_computations,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_computations
+    ) allow_computations,
+    decode(
+      c .allow_charting,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_charting
+    ) allow_charting,
+    decode(
+      c .allow_group_by,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_group_by
+    ) allow_group_by,
+    decode(
+      c .allow_pivot,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_pivot
+    ) allow_pivot,
+    decode(
+      c .allow_hide,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      c .allow_hide
+    ) allow_hide,
+    --
+    c .column_type,
+    c .display_text_as,
+    c .heading_alignment,
+    c .column_alignment,
+    c .format_mask,
+    tz_dependent,
+    --
+    decode(
+      c .rpt_show_filter_lov,
+      'D',
+      'Default Based on Column Type',
+      'S',
+      'Use Defined List of Values to Filter Exact Match',
+      'C',
+      'Use Defined List of Values to Filter Word Contains',
+      '1',
+      'Use Named List of Values to Filter Exact Match',
+      '2',
+      'Use Named List of Values to Filter Word Contains',
+      'N',
+      'None',
+      c .rpt_show_filter_lov
+    ) filter_lov_source,
+    c .rpt_filter_date_ranges filter_date_ranges,
+    --
+    c .help_text,
+    --
+    c .column_expr,
+    c .column_comment component_comment,
+    --
+    c .created_on,
+    c .created_by,
+    c .updated_on,
+    c .updated_by
+  from
+    wwv_flow_worksheet_columns c,
+    wwv_flow_worksheets ir,
+    wwv_flow_ws_websheet_attr dg,
+    wwv_flow_ws_applications a,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.is_apex$_schema = 'Y'
+    and a .security_group_id = w.provisioning_company_id
+    and a .security_group_id = c .security_group_id
+    and a .security_group_id = dg.security_group_id
+    and a .id = dg.ws_app_id
+    and ir.id = dg.worksheet_id
+    and ir.id = c .worksheet_id
+    and dg.websheet_type = 'DATA'
+    and w.provisioning_company_id != 0
+columns: []
+referencedTables: []

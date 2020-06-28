@@ -1,0 +1,109 @@
+schema: APEX_050000
+name: APEX_APPL_USER_INTERFACES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ui.id as user_interface_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    ui.ui_type_id,
+    uit.name as ui_type_name,
+    ui.display_name,
+    ui.display_seq,
+    case
+      ui.use_auto_detect
+      when 'Y' then 'Yes'
+      else 'No'
+    end as use_auto_detect,
+    case
+      ui.is_default
+      when 'Y' then 'Yes'
+      else 'No'
+    end as is_default,
+    ui.theme_id as theme_number,
+    ui.home_url,
+    ui.login_url,
+    ui.global_page_id,
+    (
+      select
+        name
+      from
+        wwv_flow_lists
+      where
+        id = ui.navigation_list_id
+    ) as navigation_list,
+    ui.navigation_list_id,
+    ui.navigation_list_position,
+    (
+      select
+        list_template_name
+      from
+        wwv_flow_list_templates
+      where
+        id = ui.navigation_list_template_id
+    ) navigation_list_template,
+    ui.navigation_list_template_id,
+    ui.nav_list_template_options,
+    --
+    ui.nav_bar_type,
+    (
+      select
+        name
+      from
+        wwv_flow_lists
+      where
+        id = ui.nav_bar_list_id
+    ) as nav_bar_list,
+    ui.nav_bar_list_id,
+    (
+      select
+        list_template_name
+      from
+        wwv_flow_list_templates
+      where
+        id = ui.nav_bar_list_template_id
+    ) nav_bar_list_template,
+    ui.nav_bar_list_template_id,
+    ui.nav_bar_template_options,
+    --
+    ui.content_delivery_network,
+    ui.javascript_file_urls,
+    ui.css_file_urls,
+    case
+      ui.include_legacy_javascript
+      when 'Y' then 'Yes'
+      else 'No'
+    end as include_legacy_javascript,
+    case
+      ui.include_jquery_migrate
+      when 'Y' then 'Yes'
+      else 'No'
+    end as include_jquery_migrate,
+    ui.required_patch as build_option_id,
+    (
+      select
+        case
+          when ui.required_patch > 0 then patch_name
+          else '{Not ' || patch_name || '}'
+        end
+      from
+        wwv_flow_patches
+      where
+        id = abs(ui.required_patch)
+    ) as build_option,
+    ui.created_by,
+    ui.created_on,
+    ui.last_updated_by,
+    ui.last_updated_on
+  from
+    wwv_flow_authorized f,
+    wwv_flow_user_interfaces ui,
+    wwv_flow_ui_types uit
+  where
+    ui.flow_id = f.application_id
+    and uit.id = ui.ui_type_id
+columns: []
+referencedTables: []

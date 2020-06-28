@@ -1,0 +1,42 @@
+schema: APEX_050000
+name: APEX_APPL_THEME_DISPLAY_POINTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    d.id as theme_display_point_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    d.theme_id as theme_number,
+    d.name,
+    d.placeholder,
+    case
+      d.has_grid_support
+      when 'Y' then 'Yes'
+      else 'No'
+    end as has_grid_support,
+    d.max_fixed_grid_columns,
+    nvl2(d.reference_id, 'Yes', 'No') as is_subscribed,
+    (
+      select
+        d2.flow_id || '. ' || d2.name
+      from
+        wwv_flow_theme_display_points d2
+      where
+        d2.id = d.reference_id
+    ) as subscribed_from,
+    d.reference_id as subscribed_from_id,
+    d.component_comment,
+    d.created_by,
+    d.created_on,
+    d.last_updated_by,
+    d.last_updated_on
+  from
+    wwv_flow_authorized f,
+    WWV_FLOW_THEME_DISPLAY_POINTS d
+  where
+    d.flow_id = f.application_id
+columns: []
+referencedTables: []

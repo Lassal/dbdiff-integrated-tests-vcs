@@ -1,0 +1,21 @@
+schema: APEX_050000
+name: APEX_UI_DEFAULTS_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    schema,
+    table_name,
+    form_region_title,
+    report_region_title,
+    created_by,
+    created_on,
+    last_updated_by,
+    last_updated_on
+  from
+    wwv_flow_current_sgid,
+    wwv_flow_hnt_table_info
+  where
+    schema = user
+columns: []
+referencedTables: []

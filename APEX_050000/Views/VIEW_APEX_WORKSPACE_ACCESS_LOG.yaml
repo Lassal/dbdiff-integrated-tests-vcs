@@ -1,0 +1,80 @@
+schema: APEX_050000
+name: APEX_WORKSPACE_ACCESS_LOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    l.APPLICATION application_id,
+    f.name application_name,
+    upper(l.LOGIN_NAME) user_name,
+    l.AUTHENTICATION_METHOD authentication_method,
+    l.OWNER application_schema_owner,
+    l.ACCESS_DATE,
+    86400 * (sysdate - l.access_date) seconds_ago,
+    l.IP_ADDRESS,
+    --l.REMOTE_USER,
+    decode(
+      nvl(l.authentication_result, 0),
+      0,
+      'AUTH_SUCCESS',
+      1,
+      'AUTH_UNKNOWN_USER',
+      2,
+      'AUTH_ACCOUNT_LOCKED',
+      3,
+      'AUTH_ACCOUNT_EXPIRED',
+      4,
+      'AUTH_PASSWORD_INCORRECT',
+      5,
+      'AUTH_PASSWORD_FIRST_USE',
+      6,
+      'AUTH_ATTEMPTS_EXCEEDED',
+      7,
+      'AUTH_INTERNAL_ERROR',
+      authentication_result
+    ) authentication_result,
+    l.CUSTOM_STATUS_TEXT custom_status_text,
+    l.SECURITY_GROUP_ID workspace_id
+  from
+    WWV_FLOW_USER_ACCESS_LOG_V l,
+    wwv_flow_companies w,
+    wwv_flows f,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      l.security_group_id in (
+        select
+          security_group_id
+        from
+          wwv_flow_company_schemas
+        where
+          schema = cu
+      )
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = l.security_group_id
+    )
+    and --
+    l.security_group_id = w.PROVISIONING_COMPANY_ID
+    and l.application = f.id(+)
+    and l.ACCESS_DATE > sysdate - 14
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

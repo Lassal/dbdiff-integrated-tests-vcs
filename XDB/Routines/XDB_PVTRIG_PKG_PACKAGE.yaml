@@ -1,0 +1,99 @@
+schema: XDB
+name: XDB_PVTRIG_PKG
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: PVTRIG_DEL.RES
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PVTRIG_DEL.LINK
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PVTRIG_DEL.PATH
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PVTRIG_INS.RES
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PVTRIG_INS.LINK
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PVTRIG_INS.PATH
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PVTRIG_UPD.O_RES
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PVTRIG_UPD.N_RES
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PVTRIG_UPD.O_LINK
+  ordinalPosition: 3
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PVTRIG_UPD.N_LINK
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PVTRIG_UPD.O_PATH
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PVTRIG_UPD.N_PATH
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package XDB_PVTRIG_PKG authid current_user AS procedure pvtrig_ins(res sys.xmltype, link sys.xmltype, path varchar2) is language C name "INSERT_XDBPV" library xdb.PATH_VIEW_LIB with context parameters (
+    context,
+    res,
+    res INDICATOR,
+    link,
+    link INDICATOR,
+    path,
+    path INDICATOR,
+    path LENGTH
+  );
+  procedure pvtrig_del(res sys.xmltype, link sys.xmltype, path varchar2) is language C name "DELETE_XDBPV" library xdb.PATH_VIEW_LIB with context parameters (
+    context,
+    res,
+    res INDICATOR,
+    link,
+    link INDICATOR,
+    path,
+    path INDICATOR,
+    path LENGTH
+  );
+  procedure pvtrig_upd(
+    o_res sys.xmltype,
+    n_res sys.xmltype,
+    o_link sys.xmltype,
+    n_link sys.xmltype,
+    o_path varchar2,
+    n_path varchar2
+  ) is language C name "UPDATE_XDBPV" library xdb.PATH_VIEW_LIB with context parameters (
+    context,
+    o_res,
+    o_res INDICATOR,
+    n_res,
+    n_res INDICATOR,
+    o_link,
+    o_link INDICATOR,
+    n_link,
+    n_link INDICATOR,
+    o_path,
+    o_path INDICATOR,
+    o_path LENGTH,
+    n_path,
+    n_path INDICATOR,
+    n_path LENGTH
+  );
+  end XDB_PVTRIG_PKG;

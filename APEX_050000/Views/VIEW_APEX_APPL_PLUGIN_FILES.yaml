@@ -1,0 +1,30 @@
+schema: APEX_050000
+name: APEX_APPL_PLUGIN_FILES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .id as plugin_file_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    a .plugin_id,
+    p.name as plugin_name,
+    a .file_name,
+    a .mime_type,
+    a .file_charset,
+    a .file_content,
+    a .created_by,
+    a .created_on,
+    a .last_updated_by,
+    a .last_updated_on
+  from
+    wwv_flow_authorized_and_4411 f,
+    wwv_flow_plugins p,
+    wwv_flow_plugin_files a
+  where
+    p.flow_id = f.application_id
+    and a .plugin_id = p.id
+columns: []
+referencedTables: []

@@ -1,0 +1,50 @@
+name: DEPARTMENTS
+schema: HR
+columns:
+- name: DEPARTMENT_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: DEPARTMENT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  dataTypeLength: 30
+- name: LOCATION_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: MANAGER_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 6,0
+constraints:
+- !<unique-constraint>
+  name: DEPT_ID_PK
+  type: PRIMARY_KEY
+  columns:
+  - name: DEPARTMENT_ID
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: DEPT_MGR_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: MANAGER_ID
+    ordinalPosition: 1
+    referencedSchemaName: HR
+    referencedTableName: EMPLOYEES
+    referencedTableColumnName: EMPLOYEE_ID
+- !<check-constraint>
+  name: DEPT_NAME_NN
+  type: CHECK
+  checkClause: '"DEPARTMENT_NAME" IS NOT NULL'

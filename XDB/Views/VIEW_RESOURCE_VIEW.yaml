@@ -1,0 +1,15 @@
+schema: XDB
+name: RESOURCE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    value(p) res,
+    abspath(8888) any_path,
+    sys_nc_oid$ resid
+  from
+    xdb.xdb$resource p
+  where
+    under_path(value(p), '/', 8888) = 1
+columns: []
+referencedTables: []

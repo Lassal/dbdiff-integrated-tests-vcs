@@ -1,0 +1,147 @@
+schema: XDB
+name: XDB_PITRIG_PKG
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: PITRIG_DEL.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_DEL.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_DEL.DELOID
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: PITRIG_DEL.TBLOID
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: PITRIG_DELMETADATA.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_DELMETADATA.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_DELMETADATA.DELOID
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: PITRIG_DELMETADATA.TBLOID
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: PITRIG_DELMETADATA.RESID
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: IN
+- name: PITRIG_DELMETADATA.CUSER
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_DROP.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_DROP.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_DROPMETADATA.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_DROPMETADATA.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_TRUNCATE.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_TRUNCATE.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_UPD.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_UPD.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_UPD.DELOID
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: PITRIG_UPD.TBLOID
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: PITRIG_UPD.CUSER
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_UPDMETADATA.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_UPDMETADATA.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PITRIG_UPDMETADATA.DELOID
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: PITRIG_UPDMETADATA.TBLOID
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: PITRIG_UPDMETADATA.RESID
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: IN
+- name: PITRIG_UPDMETADATA.CUSER
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package XDB_PITRIG_PKG authid current_user AS procedure pitrig_del(
+    owner varchar2,
+    name varchar2,
+    deloid raw,
+    tbloid raw
+  );
+  procedure pitrig_upd(
+    owner varchar2,
+    name varchar2,
+    deloid raw,
+    tbloid raw,
+    cuser varchar2
+  );
+  procedure pitrig_drop(owner varchar2, name varchar2);
+  procedure pitrig_truncate(owner varchar2, name varchar2);
+  procedure pitrig_delmetadata(
+    owner varchar2,
+    name varchar2,
+    deloid raw,
+    tbloid raw,
+    resid raw,
+    cuser varchar2
+  );
+  procedure pitrig_updmetadata(
+    owner varchar2,
+    name varchar2,
+    deloid raw,
+    tbloid raw,
+    resid raw,
+    cuser varchar2
+  );
+  procedure pitrig_dropmetadata(owner varchar2, name varchar2);
+  end XDB_PITRIG_PKG;

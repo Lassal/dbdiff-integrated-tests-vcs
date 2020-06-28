@@ -1,0 +1,134 @@
+schema: APEX_050000
+name: APEX_APPLICATION_AUTH
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.id application_id,
+    f.name application_name,
+    --
+    case
+      when f.authentication_id = a .id then 'Y'
+      else 'N'
+    end is_current_authentication,
+    decode(a .reference_id, null, 'No', 'Yes') is_subscribed,
+    case
+      substr(a .scheme_type, 1, 7)
+      when 'NATIVE_' then (
+        select
+          display_name
+        from
+          wwv_flow_plugins
+        where
+          flow_id = 4411
+          and plugin_type = 'AUTHENTICATION TYPE'
+          and name = substr(a .scheme_type, 8)
+      )
+      when 'PLUGIN_' then (
+        select
+          display_name
+        from
+          wwv_flow_plugins
+        where
+          flow_id = a .flow_id
+          and plugin_type = 'AUTHENTICATION TYPE'
+          and name = substr(a .scheme_type, 8)
+      )
+      else a .scheme_type
+    end scheme_type,
+    a .scheme_type scheme_type_code,
+    a .name authentication_scheme_name,
+    --
+    a .invalid_session_type invalid_session_type,
+    a .invalid_session_url invalid_session_url,
+    --
+    a .plsql_code plsql_code,
+    a .verification_function verification_function,
+    a .pre_auth_process pre_authentication_process,
+    a .post_auth_process post_authentication_process,
+    --
+    a .cookie_name cookie_name,
+    a .cookie_path cookie_path,
+    a .cookie_domain cookie_domain,
+    decode(a .use_secure_cookie_yn, 'Y', 'Yes', 'N', 'No', 'No') cookie_secure,
+    --
+    a .logout_url logout_url,
+    --
+    a .attribute_01 attribute_01,
+    a .attribute_02 attribute_02,
+    a .attribute_03 attribute_03,
+    a .attribute_04 attribute_04,
+    a .attribute_05 attribute_05,
+    a .attribute_06 attribute_06,
+    a .attribute_07 attribute_07,
+    a .attribute_08 attribute_08,
+    a .attribute_09 attribute_09,
+    a .attribute_10 attribute_10,
+    a .attribute_11 attribute_11,
+    a .attribute_12 attribute_12,
+    a .attribute_13 attribute_13,
+    a .attribute_14 attribute_14,
+    a .attribute_15 attribute_15,
+    --
+    case
+      a .ras_mode
+      when 0 then 'Disabled'
+      when 1 then 'External Users'
+      when 2 then 'Internal Users'
+    end ras_mode,
+    a .ras_dynamic_roles ras_dynamic_roles,
+    a .ras_namespaces ras_namespaces,
+    --
+    a .help_text help_text,
+    a .comments comments,
+    --
+    a .id authentication_scheme_id,
+    a .reference_id referenced_schema_id,
+    --
+    a .last_updated_by last_updated_by,
+    a .last_updated_on last_updated_on,
+    a .created_by created_by,
+    a .created_on created_on,
+    --
+    a .name || ' ' || a .scheme_type || ' ' || decode(a .reference_id, null, 'No', 'Yes') || substr(a .invalid_session_type, 1, 20) || length(a .invalid_session_type) || '.' || substr(a .invalid_session_url, 1, 20) || length(a .invalid_session_url) || '.' || sys.dbms_lob.substr(a .pre_auth_process, 20, 1) || sys.dbms_lob.getlength(a .pre_auth_process) || '.' || sys.dbms_lob.substr(a .post_auth_process, 20, 1) || sys.dbms_lob.getlength(a .post_auth_process) || '.' || substr(a .cookie_name, 1, 20) || length(a .cookie_name) || '.' || substr(a .cookie_path, 1, 20) || length(a .cookie_path) || '.' || substr(a .cookie_domain, 1, 20) || length(a .cookie_domain) || '.' || substr(a .use_secure_cookie_yn, 1, 1) || length(a .use_secure_cookie_yn) || '.' || substr(a .attribute_01, 1, 20) || length(a .attribute_01) || '.' || substr(a .attribute_02, 1, 20) || length(a .attribute_02) || '.' || substr(a .attribute_03, 1, 20) || length(a .attribute_03) || '.' || substr(a .attribute_04, 1, 20) || length(a .attribute_04) || '.' || substr(a .attribute_05, 1, 20) || length(a .attribute_05) || '.' || substr(a .attribute_06, 1, 20) || length(a .attribute_06) || '.' || substr(a .attribute_07, 1, 20) || length(a .attribute_07) || '.' || substr(a .attribute_08, 1, 20) || length(a .attribute_08) || '.' || substr(a .attribute_09, 1, 20) || length(a .attribute_09) || '.' || substr(a .attribute_10, 1, 20) || length(a .attribute_10) || '.' || substr(a .attribute_11, 1, 20) || length(a .attribute_11) || '.' || substr(a .attribute_12, 1, 20) || length(a .attribute_12) || '.' || substr(a .attribute_13, 1, 20) || length(a .attribute_13) || '.' || substr(a .attribute_14, 1, 20) || length(a .attribute_14) || '.' || substr(a .attribute_15, 1, 20) || length(a .attribute_15) component_signature
+  from
+    wwv_flow_authentications a,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.provisioning_company_id
+    and s.security_group_id = w.provisioning_company_id
+    and s.schema = f.owner
+    and f.id = a .flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.build_status, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.provisioning_company_id != 0
+columns: []
+referencedTables: []

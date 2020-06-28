@@ -1,0 +1,188 @@
+schema: APEX_050000
+name: WWV_FLOW_DATA_UPLOAD
+routineType: PACKAGE
+returnParamater:
+  name: VALIDATE_PLSQL_EXPRESSIONS.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: CREATE_COLLECTIONS_FROM_DATA.P_FIRST_ROW_IS_COL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_COLLECTIONS_FROM_DATA.P_DATA_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_COLLECTIONS_FROM_DATA.P_FILE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_COLLECTIONS_FROM_DATA.P_USE_APP_DATE_FORMAT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_COLLECTIONS_FROM_DATA.P_SEPARATOR
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_COLLECTIONS_FROM_DATA.P_ENCLOSED_BY
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_COLLECTIONS_FROM_DATA.P_CURRENCY
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_COLLECTIONS_FROM_DATA.P_GROUP_SEPARATOR
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_COLLECTIONS_FROM_DATA.P_DECIMAL_CHAR
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_COLLECTIONS_FROM_DATA.P_CHARSET
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_VERIFY_COLLECTION.P_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: DISPLAY_TABLE_MAPPING.P_LOAD_TABLE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: DISPLAY_TABLE_MAPPING.P_FLOW_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: FIX_PRE42.P_FLOW_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_OWNER_NAME.P_OWNER_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_OWNER_NAME.P_FLOW_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_DATA.P_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_DATA.P_SESSION_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_DATA.P_INSERT_COUNT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: LOAD_DATA.P_UPDATE_COUNT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: LOAD_DATA.P_ERROR_COUNT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: LOAD_DATA.P_REVIEW_COUNT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: SAVE_COLUMN_MAPPING.P_CNAMES
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SAVE_COLUMN_MAPPING.P_DATA_FORMAT
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VALIDATE_PLSQL_EXPRESSIONS.P_EXPRESSION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_PLSQL_EXPRESSIONS.P_EXPRESSION_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package wwv_flow_data_upload as empty_vc_arr wwv_flow_global.vc_arr2;
+  --==============================================================================
+  -- While loading data, read line by line and column by column
+  -- and store the parsed data into temp collection
+  --==============================================================================
+  procedure create_collections_from_data (
+    p_first_row_is_col_name in varchar2 default 'N',
+    p_data_type in varchar2 default 'PASTE',
+    p_file_name in varchar2 default null,
+    p_use_app_date_format in varchar2 default 'N',
+    --
+    p_separator in varchar2 default chr(9),
+    p_enclosed_by in varchar2 default null,
+    --
+    p_currency in varchar2 default '$',
+    p_group_separator in varchar2 default '.',
+    p_decimal_char in varchar2 default ',',
+    p_charset in varchar2 default null
+  );
+  --==============================================================================
+  -- Read the table columns or data load column names LOV and render as select list
+  --==============================================================================
+  procedure display_table_mapping (
+    p_load_table_id in number,
+    p_flow_id in number
+  );
+  --==============================================================================
+  -- Save the User mapping of columns from spreasheet to table column names
+  --==============================================================================
+  procedure save_column_mapping (
+    p_cnames in wwv_flow_global.vc_arr2,
+    p_data_format in wwv_flow_global.vc_arr2 default empty_vc_arr
+  );
+  --==============================================================================
+  -- Load the data from the user spreadsheet or file into temp collection
+  --==============================================================================
+  procedure create_load_collection;
+  --==============================================================================
+  -- In order to do validation, check data to be updated/inserted/etc
+  -- Make Data manipulation like data lookup, data transformation, etc,
+  -- All those operations are done and stored into session collections
+  --==============================================================================
+  procedure create_verify_collection (p_id in number);
+  --==============================================================================
+  -- After data validation,
+  -- This procedure will load data into underlying table
+  --==============================================================================
+  procedure load_data (
+    p_id in number,
+    p_session_id in number,
+    p_insert_count out varchar2,
+    p_update_count out varchar2,
+    p_error_count out varchar2,
+    p_review_count out varchar2
+  );
+  --==============================================================================
+  -- Checks the owner name and if same as parsing schema
+  -- Returns the #OWNER#
+  -- otherwise return the schema name
+  --==============================================================================
+  function get_owner_name(
+    p_owner_name in varchar2,
+    p_flow_id in number
+  ) return varchar2;
+  --==============================================================================
+  -- Checks for a valid SQL statement
+  -- Returns the error text.
+  --==============================================================================
+  function validate_plsql_expressions (
+    p_expression in varchar2,
+    p_expression_type in varchar2
+  ) return varchar2;
+  procedure fix_pre42(p_flow_id in number);
+  end wwv_flow_data_upload;
