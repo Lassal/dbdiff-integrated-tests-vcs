@@ -1,0 +1,181 @@
+schema: XDB
+name: DBMS_XMLINDEX
+routineType: PACKAGE
+returnParamater:
+  name: GETPARAMETER.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: CREATEDATEINDEX.XML_INDEX_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEDATEINDEX.XML_INDEX_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEDATEINDEX.DATE_INDEX_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEDATEINDEX.XMLTYPENAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEDATEINDEX.DATE_INDEX_CLAUSE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEDATEINDEX.COLUMN_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATENUMBERINDEX.XML_INDEX_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATENUMBERINDEX.XML_INDEX_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATENUMBERINDEX.NUM_INDEX_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATENUMBERINDEX.NUM_INDEX_CLAUSE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATENUMBERINDEX.XMLTYPENAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATENUMBERINDEX.COLUMN_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROPPARAMETER.PARAMNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETPARAMETER.PARAMNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MODIFYPARAMETER.PARAMNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MODIFYPARAMETER.PARAMSTR
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: PROCESS_PENDING.XML_INDEX_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESS_PENDING.XML_INDEX_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESS_PENDING.PENDING_ROW_COUNT
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: PROCESS_PENDING.ERROR_ROW_COUNT
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: REGISTERPARAMETER.PARAMNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERPARAMETER.PARAMSTR
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: SYNCINDEX.XML_INDEX_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SYNCINDEX.XML_INDEX_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SYNCINDEX.PARTITION_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SYNCINDEX.REINDEX
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: "PACKAGE dbms_xmlindex AUTHID CURRENT_USER AS ----------------------------------------------------------------------------\n\
+  -- PROCEDURE - CreateNumberIndex\n--     Creates an index for number values in the\
+  \ XMLIndex. The index\n--     is created on the VALUE column of the XMLIndex path\
+  \ table on the\n--     expression TO_BINARY_DOUBLE(VALUE).\n-- PARAMETERS -\n--\
+  \  xml_index_schema\n--     Schema of the XMLIndex: default is current user schema\n\
+  --  xml_index_name\n--     Name of the XMLIndex\n--  num_index_name: default is\
+  \ system-generated\n--     Name of the number index to create\n--  num_index_clause\n\
+  --     Storage clause for the number index. This would simply be appended\n--  \
+  \   to the CREATE INDEX statement.\n--  xmltypename\n--     Xml type name corresponding\
+  \ to the number - one of the following:\n--     float\n--     double\n--     decimal\n\
+  --     integer\n--     nonPositiveInteger\n--     negativeInteger\n--     long\n\
+  --     int\n--     short\n--     byte\n--     nonNegativeInteger\n--     unsignedLong\n\
+  --     unsignedInt\n--     unsignedShort\n--     unsignedByte\n--     positiveInteger\n\
+  --  column_name\n--     Name of the path table column on which to create the number\
+  \ index.\n----------------------------------------------------------------------------\n\
+  PROCEDURE CreateNumberIndex(\n  xml_index_schema IN VARCHAR2: = USER,\n  xml_index_name\
+  \ IN VARCHAR2,\n  num_index_name IN VARCHAR2: = NULL,\n  num_index_clause IN VARCHAR2:\
+  \ = NULL,\n  xmltypename IN VARCHAR2: = NULL,\n  column_name IN VARCHAR2: = NULL\n\
+  );\nPRAGMA SUPPLEMENTAL_LOG_DATA(CreateNumberIndex, AUTO_WITH_COMMIT);\n----------------------------------------------------------------------------\n\
+  -- PROCEDURE - CreateDateIndex\n--     Creates an index for date values in the XMLIndex.\
+  \ The user specifies\n--     the XML type name (date, dateTime etc.) and the index\
+  \ is created\n--     on SYS_XMLCONV(VALUE) which would always return a TIMESTAMP\
+  \ datatype.\n-- PARAMETERS -\n--  xml_index_schema\n--     Schema of the XMLIndex:\
+  \ default is current user schema\n--  xml_index_name\n--     Name of the XMLIndex\n\
+  --  date_index_name: default is system generated\n--     Name of the date index\
+  \ to be created\n--  xmltypename\n--     XML type name - one of the following\n\
+  --         dateTime\n--         time\n--         date\n--         gDay\n--     \
+  \    gMonth\n--         gYear\n--         gYearMonth\n--         gMonthDay\n-- \
+  \ date_index_clause\n--     Storage clause for the date index. This would simply\
+  \ be appended\n--     to the CREATE INDEX statement.\n--  column_name\n--     Name\
+  \ of the path table column on which to create the date index.\n----------------------------------------------------------------------------\n\
+  PROCEDURE CreateDateIndex(\n  xml_index_schema IN VARCHAR2: = USER,\n  xml_index_name\
+  \ IN VARCHAR2,\n  date_index_name IN VARCHAR2: = NULL,\n  xmltypename IN VARCHAR2:\
+  \ = NULL,\n  date_index_clause IN VARCHAR2: = NULL,\n  column_name IN VARCHAR2:\
+  \ = NULL\n);\nPRAGMA SUPPLEMENTAL_LOG_DATA(CreateDateIndex, AUTO_WITH_COMMIT);\n\
+  ----------------------------------------------------------------------------\n--\
+  \    PROCEDURE SyncIndex(xml_index_schema IN VARCHAR2,\n--                     \
+  \   xml_index_name   IN VARCHAR2,\n--                        partition_name   IN\
+  \ VARCHAR2,\n--\t\t\t  reindex          IN BOOLEAN);\n--    This procedure synchronizes\
+  \ an asynchronously maintained xmlindex.\n--    It applies to the xmlindex changes\
+  \ that are logged in the pending\n--    table, and brings the path table up-to-date\
+  \ with the base xmltype\n--    column.\n--\n--    PARAMETERS\n--    (a) xml_index_schema\
+  \ - Name of the owner of the XMLIndex.\n--    (b) xml_index_name   - Name of the\
+  \ XMLIndex.\n--    (c) partition_name   - Optional name of the partition to be synced.\n\
+  --    (d) reindex          - If true drops and recreates secondary indexes\n--\t\
+  \t\t\ton path table. Default is false.\n----------------------------------------------------------------------------\n\
+  PROCEDURE SyncIndex(\n  xml_index_schema IN VARCHAR2 default USER,\n  xml_index_name\
+  \ IN VARCHAR2,\n  partition_name IN VARCHAR2 default NULL,\n  reindex IN BOOLEAN\
+  \ default FALSE\n);\nPRAGMA SUPPLEMENTAL_LOG_DATA(SyncIndex, AUTO_WITH_COMMIT);\n\
+  PROCEDURE registerparameter(\n  paramname IN VARCHAR2,\n  paramstr IN CLOB\n);\n\
+  PRAGMA SUPPLEMENTAL_LOG_DATA(registerparameter, UNSUPPORTED_WITH_COMMIT);\nPROCEDURE\
+  \ modifyparameter(\n  paramname IN VARCHAR2,\n  paramstr IN CLOB\n);\nPRAGMA SUPPLEMENTAL_LOG_DATA(modifyparameter,\
+  \ UNSUPPORTED_WITH_COMMIT);\nPROCEDURE dropparameter(paramname IN VARCHAR2);\nPRAGMA\
+  \ SUPPLEMENTAL_LOG_DATA(dropparameter, UNSUPPORTED_WITH_COMMIT);\nFUNCTION getparameter(paramname\
+  \ IN VARCHAR2) RETURN VARCHAR2;\n----------------------------------------------------------------------------\n\
+  --    PROCEDURE PROCESS_PENDING(xml_index_schema  IN  VARCHAR2,\n--            \
+  \                  xml_index_name    IN  VARCHAR2,\n--                         \
+  \     pending_row_count OUT BINARY_INTEGER,\n--                              error_row_count\
+  \   OUT BINARY_INTEGER);\n--    This procedure executes DMLs required to complete\
+  \ a NONBLOCKING\n--    alter index add_group/add_column operation.\n--\n--    PARAMETERS\n\
+  --    (a) xml_index_schema  - Name of the owner of the XMLIndex.\n--    (b) xml_index_name\
+  \    - Name of the XMLIndex.\n--    (c) pending_row_count - RETURNs number of rows\
+  \ that still have\n--                            to be processed/indexed.\n--  \
+  \  (d) error_row_count   - RETURNs number of rows for which indexing may\n--   \
+  \                         have failed because of an error\n----------------------------------------------------------------------------\n\
+  PROCEDURE process_pending(\n  xml_index_schema IN VARCHAR2,\n  xml_index_name IN\
+  \ VARCHAR2,\n  pending_row_count OUT BINARY_INTEGER,\n  error_row_count OUT BINARY_INTEGER\n\
+  );\nPRAGMA SUPPLEMENTAL_LOG_DATA(process_pending, AUTO_WITH_COMMIT);\nend dbms_xmlindex;"

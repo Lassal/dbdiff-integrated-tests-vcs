@@ -1,0 +1,91 @@
+schema: APEX_050000
+name: APEX_REST_RESOURCE_HANDLERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.provisioning_company_id workspace_id,
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    h.template_id template_id,
+    t.uri_template uri_template,
+    decode(
+      h.source_type,
+      'QUERY',
+      'Query',
+      'QUERY_1_ROW',
+      'Query One Row',
+      'FEED',
+      'Feed',
+      'PLSQL',
+      'PL/SQL',
+      'MEDIA',
+      'Media Resource'
+    ) source_type,
+    decode(
+      h.format,
+      'DEFAULT',
+      'Default',
+      'CSV'
+    ) format,
+    h.id handler_id,
+    h.method method,
+    h.mimes_allowed mimes_allowed,
+    h.items_per_page items_per_page,
+    decode(
+      h.require_https,
+      'YES',
+      'Yes',
+      'NO',
+      'No'
+    ) require_https,
+    h.source source,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_rt$parameters
+      where
+        handler_id = h.id
+        and security_group_id = h.security_group_id
+    ) parameters,
+    h.row_version_number row_version_number,
+    h.comments comments,
+    h.created_by,
+    h.created_on,
+    h.UPDATED_BY last_updated_by,
+    h.UPDATED_ON last_updated_on
+  from
+    wwv_flow_rt$handlers h,
+    wwv_flow_company_schemas s,
+    wwv_flow_companies w,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d,
+    wwv_flow_rt$templates t
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+    and h.security_group_id = w.provisioning_company_id
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and t.id = h.template_id
+columns: []
+referencedTables: []

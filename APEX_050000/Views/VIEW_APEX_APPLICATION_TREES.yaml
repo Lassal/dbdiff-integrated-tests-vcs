@@ -1,0 +1,84 @@
+schema: APEX_050000
+name: APEX_APPLICATION_TREES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    t.TREE_NAME tree_name,
+    t.TREE_TYPE tree_type,
+    t.TREE_QUERY tree_query,
+    t.FLOW_ITEM,
+    t.MAX_LEVELS maximum_levels,
+    t.UNEXPANDED_PARENT,
+    t.UNEXPANDED_PARENT_LAST,
+    t.EXPANDED_PARENT,
+    t.EXPANDED_PARENT_LAST,
+    t.LEAF_NODE,
+    t.LEAF_NODE_LAST,
+    t.DRILL_UP,
+    t.NAME_LINK_ANCHOR_TAG,
+    t.NAME_LINK_NOT_ANCHOR_TAG,
+    t.INDENT_VERTICAL_LINE,
+    t.INDENT_VERTICAL_LINE_LAST,
+    t.BEFORE_TREE,
+    t.AFTER_TREE,
+    t.LEVEL_1_TEMPLATE,
+    t.LEVEL_2_TEMPLATE,
+    t.LEVEL_3_TEMPLATE,
+    t.LEVEL_4_TEMPLATE,
+    t.LEVEL_5_TEMPLATE,
+    t.LEVEL_6_TEMPLATE,
+    t.LEVEL_7_TEMPLATE,
+    t.LEVEL_8_TEMPLATE,
+    --
+    t.LAST_UPDATED_BY last_updated_by,
+    t.LAST_UPDATED_ON last_updated_on,
+    --
+    t.TREE_COMMENT component_comment,
+    t.id application_tree_id,
+    --
+    t.TREE_NAME || ' t=' || t.TREE_TYPE || substr(t.TREE_QUERY, 1, 50) || length(t.tree_query) || ' i=' || t.FLOW_ITEM || ' l=' || t.MAX_LEVELS || '.' || length(t.UNEXPANDED_PARENT) || '.' || length(t.UNEXPANDED_PARENT_LAST) || '.' || length(t.EXPANDED_PARENT) || '.' || length(t.EXPANDED_PARENT_LAST) || '.' || length(t.LEAF_NODE) || '.' || length(t.LEAF_NODE_LAST) || '.' || length(t.DRILL_UP) || '.' || length(t.NAME_LINK_ANCHOR_TAG) || '.' || length(t.NAME_LINK_NOT_ANCHOR_TAG) || '.' || length(t.INDENT_VERTICAL_LINE) || '.' || length(t.INDENT_VERTICAL_LINE_LAST) || '.' || length(t.BEFORE_TREE) || '.' || length(t.AFTER_TREE) || '.' || length(t.LEVEL_1_TEMPLATE) || '.' || length(t.LEVEL_2_TEMPLATE) || '.' || length(t.LEVEL_3_TEMPLATE) || '.' || length(t.LEVEL_4_TEMPLATE) || '.' || length(t.LEVEL_5_TEMPLATE) || '.' || length(t.LEVEL_6_TEMPLATE) || '.' || length(t.LEVEL_7_TEMPLATE) || '.' || length(t.LEVEL_8_TEMPLATE) component_signature
+  from
+    wwv_flow_trees t,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.id = t.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

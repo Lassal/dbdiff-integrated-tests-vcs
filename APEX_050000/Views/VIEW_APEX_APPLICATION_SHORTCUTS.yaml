@@ -1,0 +1,105 @@
+schema: APEX_050000
+name: APEX_APPLICATION_SHORTCUTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    s.SHORTCUT_NAME shortcut_name,
+    --s.SHORTCUT_CONSIDERATION_SEQ     consideration_sequence,
+    s.SHORTCUT_TYPE shortcut_type,
+    nvl(
+      (
+        select
+          r
+        from
+          apex_standard_conditions
+        where
+          d = s.SHORTCUT_CONDITION_TYPE1
+      ),
+      s.SHORTCUT_CONDITION_TYPE1
+    ) condition_type,
+    s.shortcut_condition_type1 condition_type_code,
+    s.SHORTCUT_CONDITION1 condition_expression1,
+    --s.SHORTCUT_CONDITION_TYPE2       ,
+    s.SHORTCUT_CONDITION2 condition_expression2,
+    s.ERROR_TEXT error_text,
+    (
+      select
+        case
+          when s.build_option > 0 then PATCH_NAME
+          else '{Not ' || PATCH_NAME || '}'
+        end PATCH_NAME
+      from
+        wwv_flow_patches
+      where
+        id = abs(s.BUILD_OPTION)
+    ) build_option,
+    s.SHORTCUT shortcut,
+    --
+    decode(s.REFERENCE_ID, null, 'No', 'Yes') is_subscribed,
+    (
+      select
+        flow_id || '. ' || name n
+      from
+        wwv_flow_shortcuts
+      where
+        id = s.reference_id
+    ) subscribed_from,
+    --
+    s.LAST_UPDATED_BY last_updated_by,
+    s.LAST_UPDATED_ON last_updated_on,
+    s.COMMENTS component_comments,
+    s.id shortcut_id,
+    --
+    s.SHORTCUT_NAME || ' ' || s.SHORTCUT_TYPE || ' cond=' || s.SHORTCUT_CONDITION_TYPE1 || substr(s.SHORTCUT_CONDITION1, 1, 30) || length(s.shortcut_condition1) || '.' || substr(s.SHORTCUT_CONDITION2, 1, 30) || length(s.shortcut_condition2) || ' e=' || substr(s.ERROR_TEXT, 1, 30) || length(s.ERROR_TEXT) || ' bo='(
+      select
+        PATCH_NAME
+      from
+        wwv_flow_patches
+      where
+        id = abs(s.BUILD_OPTION)
+    ) || ' s=' || sys.dbms_lob.substr(s.SHORTCUT, 50, 1) || sys.dbms_lob.getlength(s.SHORTCUT) || ' r=' || decode(s.REFERENCE_ID, null, 'No', 'Yes') component_signature
+  from
+    wwv_flow_shortcuts s,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas ws,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      ws.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and ws.security_group_id = w.PROVISIONING_COMPANY_ID
+    and ws.schema = f.owner
+    and f.id = s.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

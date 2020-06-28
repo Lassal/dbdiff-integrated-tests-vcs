@@ -1,0 +1,457 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_PROC
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    p.flow_id application_id,
+    f.name application_name,
+    p.id page_id,
+    p.name page_name,
+    --
+    pr.process_name process_name,
+    pr.process_sequence execution_sequence,
+    --
+    decode(
+      pr.process_point,
+      'RETURN_VALUE',
+      'DISPLAY_VALUE',
+      'ON_NEW_INSTANCE',
+      'On New Instance After Authentication',
+      'BEFORE_HEADER',
+      'On Load - Before Header',
+      'AFTER_HEADER',
+      'On Load - After Header',
+      'BEFORE_BOX_BODY',
+      'On Load - Before Regions',
+      'AFTER_BOX_BODY',
+      'On Load - After Regions',
+      'BEFORE_FOOTER',
+      'On Load - Before Footer',
+      'AFTER_FOOTER',
+      'On Load - After Footer',
+      'ON_SUBMIT_BEFORE_COMPUTATION',
+      'On Submit - Before Computations and Validations ',
+      'AFTER_SUBMIT',
+      'On Submit - After Computations and Validations',
+      'ON_DEMAND',
+      'On Demand - Run this process when requested by AJAX',
+      'AFTER_ERROR_HEADER',
+      'On Error - After Header',
+      'BEFORE_ERROR_FOOTER',
+      'On Error - Before Footer',
+      pr.process_point
+    ) process_point,
+    case
+      pr.process_point
+      when 'ON_NEW_INSTANCE' then 'AFTER_AUTHENTICATION'
+      /*backwards compatibility*/
+      else pr.process_point
+    end process_point_code,
+    pr.region_id,
+    (
+      select
+        plug_name
+      from
+        wwv_flow_page_plugs
+      where
+        id = pr.region_id
+    ) region_name,
+    --
+    case
+      pr.process_type
+      when 'NATIVE_PLSQL' then 'PL/SQL anonymous block'
+      when 'NATIVE_CLOSE_WINDOW' then 'Close popup window'
+      when 'NATIVE_SESSION_STATE' then case
+        pr.attribute_01
+        when 'CLEAR_CACHE_FOR_FLOWS' then 'Clear Cache For Applications (removes all session state for listed applications)'
+        when 'CLEAR_CACHE_CURRENT_FLOW' then 'Clear Cache For Current Application (removes all session state for current application)'
+        when 'RESET_SESSION_STATE' then 'Clear Cache For Current Session (removes all state for current session)'
+        when 'CLEAR_CACHE_FOR_ITEMS' then 'Clear Cache for Items (ITEM,ITEM,ITEM)'
+        when 'CLEAR_CACHE_FOR_PAGES' then 'Clear Cache for all Items on Pages (PageID,PageID,PageID)'
+        when 'CLEAR_CACHE_CURRENT_PAGE' then 'Clear Cache for all Items on Pages (PageID,PageID,PageID)'
+        else pr.process_type || '-' || pr.attribute_01
+        /*fallback*/
+      end
+      when 'NATIVE_USER_PREFERENCES' then case
+        pr.attribute_01
+        when 'RESET_USER_PREFERENCES' then 'Reset Preferences (remove all preferences for current user)'
+        when 'SET_PREFERENCE_TO_ITEM_VALUE' then 'Set Preference to value of Item'
+        when 'SET_PREFERENCE_TO_ITEM_VALUE_IF_ITEM_NOT_NULL' then 'Set Preference to value of Item if item is not null (PreferenceName:ITEM)'
+        else pr.process_type || '-' || pr.attribute_01
+        /*fallback*/
+      end
+      when 'NATIVE_RESET_PAGINATION' then case
+        pr.attribute_01
+        when 'ALL_PAGES' then 'Reset Pagination For All Pages'
+        when 'PAGES' then 'Reset Pagination For Page(s) (PageID,PageID,PageID)'
+        when 'THIS_PAGE' then 'Reset Pagination'
+        else pr.process_type || '-' || pr.attribute_01
+        /*fallback*/
+      end
+      when 'NATIVE_TABFORM_ADD_ROWS' then 'Add rows to tabular form'
+      when 'NATIVE_TABFORM_UPDATE' then 'Multi Row Update'
+      when 'NATIVE_TABFORM_DELETE' then 'Multi Row Delete'
+      when 'NATIVE_FORM_FETCH' then 'Automated Row Fetch'
+      when 'NATIVE_FORM_PROCESS' then 'Automatic Row Processing (DML)'
+      when 'NATIVE_FORM_PAGINATION' then 'Get Next or Previous Primary Key Value'
+      when 'NATIVE_WEB_SERVICE' then 'Web Service'
+      when 'NATIVE_WEB_SERVICE_LEGACY' then 'Web Service'
+      else case
+        substr(pr.process_type, 1, 7)
+        when 'NATIVE_' then (
+          select
+            display_name
+          from
+            wwv_flow_plugins
+          where
+            flow_id = 4411
+            and plugin_type = 'PROCESS TYPE'
+            and name = substr(pr.process_type, 8)
+        )
+        when 'PLUGIN_' then (
+          select
+            display_name
+          from
+            wwv_flow_plugins
+          where
+            flow_id = p.flow_id
+            and plugin_type = 'PROCESS TYPE'
+            and name = substr(pr.process_type, 8)
+        )
+      end
+    end process_type,
+    case
+      pr.process_type
+      when 'NATIVE_PLSQL' then 'PLSQL'
+      when 'NATIVE_CLOSE_WINDOW' then 'CLOSE_WINDOW'
+      when 'NATIVE_SESSION_STATE' then case
+        pr.attribute_01
+        when 'CLEAR_CACHE_CURRENT_PAGE' then 'CLEAR_CACHE_FOR_PAGES'
+        else pr.attribute_01
+      end
+      when 'NATIVE_USER_PREFERENCES' then pr.attribute_01
+      when 'NATIVE_RESET_PAGINATION' then case
+        pr.attribute_01
+        when 'ALL_PAGES' then 'INITIALIZE_PAGINATION_FOR_ALL_PAGES'
+        when 'PAGES' then 'INITIALIZE_PAGE_PAGINATION'
+        when 'THIS_PAGE' then 'RESET_PAGINATION'
+        else pr.process_type || '-' || pr.attribute_01
+        /*fallback*/
+      end
+      when 'NATIVE_TABFORM_ADD_ROWS' then 'ADD_ROWS_TO_TABULAR_FORM'
+      when 'NATIVE_TABFORM_UPDATE' then 'MULTI_ROW_UPDATE'
+      when 'NATIVE_TABFORM_DELETE' then 'MULTI_ROW_DELETE'
+      when 'NATIVE_FORM_PROCESS_LEGACY' then 'DML_PROCESS_' || pr.attribute_01 || '_ROW'
+      when 'NATIVE_FORM_FETCH' then 'DML_FETCH_ROW'
+      when 'NATIVE_FORM_PROCESS' then 'DML_PROCESS_ROW'
+      when 'NATIVE_FORM_PAGINATION' then 'GET_NEXT_OR_PREV_PK'
+      when 'NATIVE_WEB_SERVICE' then 'WEB_SERVICE'
+      when 'NATIVE_WEB_SERVICE_LEGACY' then 'WEB_SERVICE'
+      else pr.process_type
+    end process_type_code,
+    pr.process_type process_type_plugin_name,
+    --pr.ITEM_NAME,
+    case
+      when pr.process_type in ('NATIVE_TABFORM_UPDATE', 'NATIVE_TABFORM_DELETE') then attribute_05
+      when pr.process_type in ('NATIVE_FORM_FETCH', 'NATIVE_FORM_PROCESS') then attribute_08
+      when pr.process_type = 'NATIVE_FORM_PROCESS_LEGACY' then attribute_06
+      when pr.process_type = 'NATIVE_FORM_PAGINATION' then attribute_14
+    end runtime_where_clause,
+    case
+      when pr.process_type = 'NATIVE_CLOSE_WINDOW' then to_clob('CLOSE_WINDOW')
+      when pr.process_type = 'NATIVE_SESSION_STATE'
+      and pr.attribute_01 = 'CLEAR_CACHE_FOR_FLOWS' then to_clob(pr.attribute_02)
+      when pr.process_type = 'NATIVE_SESSION_STATE'
+      and pr.attribute_01 in ('CLEAR_CACHE_CURRENT_FLOW', 'RESET_SESSION_STATE') then to_clob(pr.attribute_01)
+      when pr.process_type = 'NATIVE_SESSION_STATE'
+      and pr.attribute_01 = 'CLEAR_CACHE_FOR_ITEMS' then to_clob(pr.attribute_03)
+      when pr.process_type = 'NATIVE_SESSION_STATE'
+      and pr.attribute_01 = 'CLEAR_CACHE_FOR_PAGES' then to_clob(pr.attribute_04)
+      when pr.process_type = 'NATIVE_SESSION_STATE'
+      and pr.attribute_01 = 'CLEAR_CACHE_CURRENT_PAGE' then to_clob(pr.flow_step_id)
+      when pr.process_type = 'NATIVE_USER_PREFERENCES'
+      and pr.attribute_01 = 'RESET_USER_PREFERENCES' then to_clob(pr.attribute_01)
+      when pr.process_type = 'NATIVE_USER_PREFERENCES' then to_clob(pr.attribute_02 || ':' || pr.attribute_03)
+      when pr.process_type = 'NATIVE_RESET_PAGINATION'
+      and pr.attribute_01 = 'PAGES' then to_clob(pr.attribute_02)
+      when pr.process_type = 'NATIVE_RESET_PAGINATION'
+      and pr.attribute_01 = 'THIS_PAGE' then to_clob('reset_pagination')
+      when pr.process_type = 'NATIVE_TABFORM_ADD_ROWS' then to_clob(pr.attribute_01)
+      when pr.process_type like 'NATIVE_TABFORM%' then to_clob(
+        rtrim(
+          nvl(pr.attribute_01, '#OWNER#') || ':' || pr.attribute_02 || ':' || pr.attribute_03 || ':' || pr.attribute_04,
+          ':'
+        )
+      )
+      when pr.process_type = 'NATIVE_FORM_FETCH' then to_clob(
+        case
+          when pr.attribute_15 = 'D' then null
+          else 'F|'
+        end || rtrim(
+          nvl(pr.attribute_01, '#OWNER#') || ':' || pr.attribute_02 || ':' || pr.attribute_03 || ':' || pr.attribute_04 || ':' || pr.attribute_05 || ':' || pr.attribute_06 || ':' || pr.attribute_07,
+          ':'
+        )
+      )
+      when pr.process_type = 'NATIVE_FORM_PROCESS' then to_clob(
+        rtrim(
+          nvl(pr.attribute_01, '#OWNER#') || ':' || pr.attribute_02 || ':' || pr.attribute_03 || ':' || pr.attribute_04 || ':' || pr.attribute_05 || ':' || pr.attribute_06 || ':' || pr.attribute_07,
+          ':'
+        ) || '|' || replace(pr.attribute_11, ':', null)
+      )
+      when pr.process_type = 'NATIVE_FORM_PAGINATION' then to_clob(
+        nvl(pr.attribute_01, '#OWNER#') || ':' || pr.attribute_02 || ':' || pr.attribute_04 || ':' || pr.attribute_06 || ':' || pr.attribute_07 || ':' || pr.attribute_08 || ':' || pr.attribute_03 || ':' || pr.attribute_09 || ':' || pr.attribute_10 || ':' || pr.attribute_05 || ':' || pr.attribute_11 || ':' || pr.attribute_12 || ':' || pr.attribute_13 || ':' || replace(pr.attribute_14, ':', '<cbchoesc>')
+      )
+      when pr.process_type = 'NATIVE_WEB_SERVICE' then to_clob(
+        nvl(
+          (
+            select
+              ws_id || ':' || id
+            from
+              wwv_flow_ws_operations o
+            where
+              o.security_group_id = pr.security_group_id
+              and to_char(o.id) = pr.attribute_01
+          ),
+          pr.attribute_01
+        )
+      )
+      when pr.process_type = 'NATIVE_WEB_SERVICE_LEGACY' then to_clob(pr.attribute_01)
+      else pr.process_sql_clob
+    end process_source,
+    pr.attribute_01,
+    pr.attribute_02,
+    pr.attribute_03,
+    pr.attribute_04,
+    pr.attribute_05,
+    pr.attribute_06,
+    pr.attribute_07,
+    pr.attribute_08,
+    pr.attribute_09,
+    pr.attribute_10,
+    pr.attribute_11,
+    pr.attribute_12,
+    pr.attribute_13,
+    pr.attribute_14,
+    pr.attribute_15,
+    pr.process_error_message process_error_message,
+    pr.error_display_location error_display_location,
+    --
+    (
+      select
+        button_name
+      from
+        wwv_flow_step_buttons
+      where
+        id = pr.process_when_button_id
+      union
+      select
+        name
+      from
+        wwv_flow_step_items
+      where
+        id = pr.process_when_button_id
+    ) when_button_pressed,
+    pr.process_when_button_id when_button_pressed_id,
+    case
+      nvl(pr.only_for_changed_rows, 'Y')
+      when 'Y' then 'Yes'
+      when 'N' then 'No'
+    end only_for_changed_rows,
+    --
+    nvl(
+      (
+        select
+          r
+        from
+          apex_standard_conditions
+        where
+          d = pr.process_when_type
+      ),
+      pr.process_when_type
+    ) condition_type,
+    pr.process_when_type condition_type_code,
+    pr.process_when condition_expression1,
+    pr.process_when2 condition_expression2,
+    case
+      nvl(pr.exec_cond_for_each_row, 'N')
+      when 'Y' then 'Yes'
+      when 'N' then 'No'
+    end exec_cond_for_each_row,
+    --pr.PROCESS_WHEN_TYPE2,
+    --
+    decode(
+      pr.process_is_stateful_y_n,
+      'Y',
+      'Once Per Session or When Reset',
+      'N',
+      'Once Per Page Visit (default)',
+      pr.PROCESS_IS_STATEFUL_Y_N
+    ) run_process,
+    --
+    case
+      pr.process_type
+      when 'NATIVE_FORM_PROCESS' then attribute_09
+    end return_key_into_item_1,
+    case
+      pr.process_type
+      when 'NATIVE_FORM_PROCESS' then attribute_10
+    end return_key_into_item_2,
+    pr.process_success_message success_message,
+    --
+    (
+      select
+        case
+          when pr.required_patch > 0 then patch_name
+          else '{Not ' || patch_name || '}'
+        end patch_name
+      from
+        wwv_flow_patches
+      where
+        id = abs(pr.required_patch)
+    ) build_option,
+    --
+    decode(substr(pr.security_scheme, 1, 1), '!', 'Not ') || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(pr.security_scheme, '!')
+          and flow_id = f.id
+      ),
+      pr.security_scheme
+    ) authorization_scheme,
+    pr.security_scheme authorization_scheme_id,
+    --
+    pr.last_updated_by last_updated_by,
+    pr.last_updated_on last_updated_on,
+    pr.process_comment component_comment,
+    pr.id process_id,
+    --
+    lpad(pr.PROCESS_SEQUENCE, 5, '00000') || ',point=' || decode(
+      pr.PROCESS_POINT,
+      'RETURN_VALUE',
+      'DISPLAY_VALUE',
+      'ON_NEW_INSTANCE',
+      'On New Instance After Authentication',
+      'BEFORE_HEADER',
+      'On Load - Before Header',
+      'AFTER_HEADER',
+      'On Load - After Header',
+      'BEFORE_BOX_BODY',
+      'On Load - Before Regions',
+      'AFTER_BOX_BODY',
+      'On Load - After Regions',
+      'BEFORE_FOOTER',
+      'On Load - Before Footer',
+      'AFTER_FOOTER',
+      'On Load - After Footer',
+      'ON_SUBMIT_BEFORE_COMPUTATION',
+      'On Submit - Before Computations and Validations ',
+      'AFTER_SUBMIT',
+      'On Submit - After Computations and Validations',
+      'ON_DEMAND',
+      'On Demand - Run this process when requested by AJAX',
+      'AFTER_ERROR_HEADER',
+      'On Error - After Header',
+      'BEFORE_ERROR_FOOTER',
+      'On Error - Before Footer',
+      pr.PROCESS_POINT
+    ) || ',type=' || pr.PROCESS_TYPE || ',src=' || sys.dbms_lob.substr(pr.PROCESS_SQL_CLOB, 30, 1) || '.' || sys.dbms_lob.getlength(pr.PROCESS_SQL_CLOB)(
+      select
+        ',wbp=' || button_name n
+      from
+        wwv_flow_step_buttons
+      where
+        id = pr.PROCESS_WHEN_BUTTON_ID
+      union
+      select
+        ',wbp=' || name n
+      from
+        wwv_flow_step_items
+      where
+        id = pr.PROCESS_WHEN_BUTTON_ID
+    ) || decode(
+      pr.PROCESS_ERROR_MESSAGE,
+      null,
+      null,
+      ',errm=' || substr(pr.PROCESS_ERROR_MESSAGE, 1, 20) || length(pr.PROCESS_ERROR_MESSAGE)
+    ) || decode(
+      pr.PROCESS_SUCCESS_MESSAGE,
+      null,
+      null,
+      ',succm=' || substr(pr.PROCESS_SUCCESS_MESSAGE, 1, 20) || length(pr.PROCESS_SUCCESS_MESSAGE)
+    ) || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(pr.SECURITY_SCHEME, '!')
+          and flow_id = f.id
+      ),
+      'Not found'
+    ) || ',cond=' || pr.PROCESS_WHEN_TYPE || substr(pr.PROCESS_WHEN, 1, 20) || length(pr.PROCESS_WHEN) || '.' || substr(pr.PROCESS_WHEN2, 1, 20) || length(pr.PROCESS_WHEN2)(
+      select
+        PATCH_NAME
+      from
+        wwv_flow_patches
+      where
+        id = abs(pr.REQUIRED_PATCH)
+    ) || decode(
+      pr.PROCESS_IS_STATEFUL_Y_N,
+      'Y',
+      'Once Per Session or When Reset',
+      'N',
+      'Once Per Page Visit (default)',
+      pr.PROCESS_IS_STATEFUL_Y_N
+    ) || ',key=' || pr.RETURN_KEY_INTO_ITEM1 || pr.RETURN_KEY_INTO_ITEM1 component_signature
+  from
+    wwv_flow_step_processing pr,
+    wwv_flow_steps p,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.security_group_id = p.security_group_id
+    and f.security_group_id = pr.security_group_id
+    and f.id = p.flow_id
+    and f.id = pr.flow_id
+    and p.id = pr.flow_step_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

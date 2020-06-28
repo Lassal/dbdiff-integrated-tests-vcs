@@ -1,0 +1,64 @@
+name: SAMPLE_DATATYPES
+schema: APP_DATA
+columns:
+- name: FIELD01
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: FIELD02
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 5
+  nullable: true
+  dataTypeLength: 10,5
+- name: FIELD04
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  dataTypeLength: 20
+- name: FIELD05
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: FIELD06
+  ordinalPosition: 6
+  dataType: INTERVAL DAY(3) TO SECOND(4)
+  numericPrecision: 3
+  numericScale: 4
+  nullable: true
+  dataTypeLength: 3,4
+- name: FIELD07
+  ordinalPosition: 7
+  dataType: TIMESTAMP(9)
+  numericScale: 9
+  nullable: true
+  dataTypeLength:
+- name: FIELD08
+  ordinalPosition: 8
+  dataType: INTERVAL YEAR(1) TO MONTH
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 1,0
+- name: ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: SYS_C0016027
+  type: PRIMARY_KEY
+  columns:
+  - name: ID
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0016026
+  type: CHECK
+  checkClause: '"ID" IS NOT NULL'

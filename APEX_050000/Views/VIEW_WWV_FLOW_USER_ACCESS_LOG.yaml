@@ -1,0 +1,22 @@
+schema: APEX_050000
+name: WWV_FLOW_USER_ACCESS_LOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    login_name,
+    authentication_method,
+    application,
+    owner,
+    access_date,
+    ip_address,
+    remote_user,
+    authentication_result,
+    custom_status_text
+  from
+    wwv_flow_current_sgid sgid,
+    wwv_flow_user_access_log_v a
+  where
+    a .security_group_id = sgid.security_group_id
+columns: []
+referencedTables: []

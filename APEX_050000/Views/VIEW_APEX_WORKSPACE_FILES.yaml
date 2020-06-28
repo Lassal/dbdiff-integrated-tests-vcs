@@ -1,0 +1,88 @@
+schema: APEX_050000
+name: APEX_WORKSPACE_FILES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.PROVISIONING_COMPANY_ID workspace_id,
+    w.short_name workspace_name,
+    w.display_name workspace_display_name,
+    files.id file_id,
+    files.flow_id application_id,
+    f.name application_name,
+    nvl(files.title, files.filename) file_name,
+    files.mime_type mime_type,
+    files.doc_size file_size,
+    files.created_by created_by,
+    (
+      select
+        max(email_address)
+      from
+        wwv_flow_fnd_user
+      where
+        security_group_id = w.PROVISIONING_COMPANY_ID
+        and user_name = files.created_by
+    ) email,
+    files.created_on created_on,
+    decode(
+      files.file_type,
+      'FLOW_EXPORT',
+      'Application Export',
+      'IMAGE_EXPORT',
+      'Text Image Export',
+      'PAGE_EXPORT',
+      'Application Page Export',
+      'SCRIPT',
+      'SQL Script',
+      'THEME',
+      'User Interface Theme Export',
+      'XLIFF',
+      'XLIFF Application Translation Export',
+      files.file_type
+    ) file_type,
+    files.blob_content document,
+    files.session_id temp_file_session_id
+  from
+    WWV_FLOW_FILE_OBJECTS$ files,
+    wwv_flows f,
+    wwv_flow_company_schemas s,
+    wwv_flow_companies w,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and (
+      s.schema = f.owner
+      or f.owner is null
+    )
+    and to_char(deleted_as_of, 'MM.DD.YYYY') = '01.01.0001'
+    and nvl(files.file_type, 'x') not in ('CSS_FILE', 'STATIC_FILE', 'IMAGE_FILE')
+    and files.flow_id = f.id(+)
+    and files.security_group_id = w.PROVISIONING_COMPANY_ID
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+      or f.name is null
+    )
+columns: []
+referencedTables: []

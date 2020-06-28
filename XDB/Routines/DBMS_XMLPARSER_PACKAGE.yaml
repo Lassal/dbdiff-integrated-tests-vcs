@@ -1,0 +1,344 @@
+schema: XDB
+name: DBMS_XMLPARSER
+routineType: PACKAGE
+returnParamater:
+  name: PARSE(1).(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+parameters:
+- name: FREEPARSER.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETBASEDIR.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETDOCTYPE.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETDOCUMENT.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETERRORLOG.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETVALIDATIONMODE.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PARSE(1).URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PARSE(1).CSID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: PARSE(2).P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PARSE(2).URL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PARSE(2).CSID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: PARSEBUFFER.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PARSEBUFFER.DOC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PARSECLOB.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PARSECLOB.DOC
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: PARSEDTD.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PARSEDTD.URL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PARSEDTD.ROOT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PARSEDTD.CSID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: PARSEDTDBUFFER.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PARSEDTDBUFFER.DTD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PARSEDTDBUFFER.ROOT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PARSEDTDCLOB.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PARSEDTDCLOB.DTD
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: PARSEDTDCLOB.ROOT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RETAINCDATASECTION.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: RETAINCDATASECTION.FLAG
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETBASEDIR.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETBASEDIR.DIR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETDOCTYPE.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETDOCTYPE.DTD
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETERRORLOG.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETERRORLOG.FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETPRESERVEWHITESPACE.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETPRESERVEWHITESPACE.YES
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETVALIDATIONMODE.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETVALIDATIONMODE.YES
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SHOWWARNINGS.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SHOWWARNINGS.YES
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITEERRORS.P
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITEERRORS.ERR_NUM
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITEERRORS.ERR_MSG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package dbms_xmlparser AUTHID CURRENT_USER IS
+  /**
+
+   * Parser interface type
+
+   */
+  TYPE Parser IS RECORD (id dbms_xmldom.domtype);
+  /**
+
+   * Internal error
+
+   */
+  INTERNAL_ERR CONSTANT NUMBER: = -20000;
+  /**
+
+   * Other errors
+
+   */
+  PARSE_ERR CONSTANT NUMBER: = -20100;
+  FILE_ERR CONSTANT NUMBER: = -20101;
+  CONN_ERR CONSTANT NUMBER: = -20102;
+  NULL_ERR CONSTANT NUMBER: = -20103;
+  /**
+
+   * Return the release version of the Oracle XML Parser for PL/SQL
+
+   */
+  FUNCTION getReleaseVersion RETURN VARCHAR2;
+  /**
+
+   * Parses xml stored in the given url/file and returns the built DOM Document
+
+   */
+  FUNCTION parse(url VARCHAR2, csid IN NUMBER: = 0) RETURN dbms_xmldom.DOMDocument;
+  /**
+
+   * Returns a new parser instance
+
+   */
+  FUNCTION newParser RETURN Parser;
+  PROCEDURE freeParser(p Parser);
+  /**
+
+   * Parses xml stored in the given url/file
+
+   */
+  PROCEDURE parse(p Parser, url VARCHAR2, csid IN NUMBER: = 0);
+  /**
+
+   * Parses xml stored in the given buffer
+
+   */
+  PROCEDURE parseBuffer(p Parser, doc VARCHAR2);
+  /**
+
+   * Parses xml stored in the given clob
+
+   */
+  PROCEDURE parseClob(p Parser, doc CLOB);
+  /**
+
+   * Parses the given dtd
+
+   */
+  PROCEDURE parseDTD(
+    p Parser,
+    url VARCHAR2,
+    root VARCHAR2,
+    csid IN NUMBER: = 0
+  );
+  /**
+
+   * Parses the given dtd
+
+   */
+  PROCEDURE parseDTDBuffer(p Parser, dtd VARCHAR2, root VARCHAR2);
+  /**
+
+   * Parses the given dtd
+
+   */
+  PROCEDURE parseDTDClob(p Parser, dtd CLOB, root VARCHAR2);
+  /**
+
+   * Sets base directory used to resolve relative urls
+
+   */
+  PROCEDURE setBaseDir(p Parser, dir VARCHAR2);
+  /**
+
+   * Gets base directory used to resolve relative urls
+
+   */
+  FUNCTION getBaseDir(p Parser) return VARCHAR2;
+  /**
+
+   * Sets warnings TRUE - on, FALSE - off
+
+   */
+  PROCEDURE showWarnings(p Parser, yes BOOLEAN);
+  /**
+
+   * Sets errors to be sent to the specified file
+
+   */
+  PROCEDURE setErrorLog(p Parser, fileName VARCHAR2);
+  /**
+
+   * Gets the error log file, if any
+
+   */
+  FUNCTION getErrorLog(p Parser) RETURN VARCHAR2;
+  /**
+
+   * Sets whitespace preserving mode TRUE - on, FALSE - off
+
+   */
+  PROCEDURE setPreserveWhitespace(p Parser, yes BOOLEAN);
+  /**
+
+   * Sets validation mode TRUE - validating, FALSE - non validation
+
+   */
+  PROCEDURE setValidationMode(p Parser, yes BOOLEAN);
+  /**
+
+   * Gets validation mode
+
+   */
+  FUNCTION getValidationMode(p Parser) RETURN BOOLEAN;
+  /**
+
+   * Sets DTD for validation purposes - MUST be before an xml document is parsed
+
+   */
+  PROCEDURE setDoctype(p Parser, dtd dbms_xmldom.DOMDocumentType);
+  /**
+
+   * Gets DTD parsed - MUST be called only after a dtd is parsed
+
+   */
+  FUNCTION getDoctype(p Parser) RETURN dbms_xmldom.DOMDocumentType;
+  /**
+
+   * Gets DOM Document built by the parser - MUST be called only after a
+
+   * document is parsed
+
+   */
+  FUNCTION getDocument(p Parser) RETURN dbms_xmldom.DOMDocument;
+  /**
+
+   * Internal function: writes the errors to the errorlog file, if any
+
+   */
+  PROCEDURE writeErrors(p Parser, err_num NUMBER, err_msg VARCHAR2);
+  /**********************************************************/
+  /* retainCDATASection is a no-op procedure added strictly */
+  /* for compatibility with XDK. In violation to the W3C    */
+  /* spec, XDK allows a CDATA section to be parsed. If the  */
+  /* appl does not want this behavior then a value of FALSE */
+  /* passed to this procedure. Since XDB will never parse   */
+  /* CDATA sections, calling this procedure has no effect.  */
+  /**********************************************************/
+  PROCEDURE retainCDATASection (p Parser, flag boolean);
+  end dbms_xmlparser;

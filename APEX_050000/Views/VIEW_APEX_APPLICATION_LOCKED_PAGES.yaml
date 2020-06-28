@@ -1,0 +1,28 @@
+schema: APEX_050000
+name: APEX_APPLICATION_LOCKED_PAGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    l.id as lock_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    p.id as page_id,
+    p.name as page_name,
+    l.lock_comment,
+    l.locked_by,
+    l.locked_on
+  from
+    wwv_flow_authorized f,
+    wwv_flow_lock_page l,
+    wwv_flow_steps p
+  where
+    l.flow_id = f.application_id
+    and l.security_group_id = f.workspace_id
+    and p.id = l.object_id
+    and p.flow_id = l.flow_id
+    and p.security_group_id = l.security_group_id
+columns: []
+referencedTables: []

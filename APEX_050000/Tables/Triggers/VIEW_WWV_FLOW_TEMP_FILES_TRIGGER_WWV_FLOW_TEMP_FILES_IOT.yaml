@@ -1,0 +1,16 @@
+targetObjectSchema: APEX_050000
+targetObjectName: WWV_FLOW_TEMP_FILES
+targetObjectType: VIEW
+name: WWV_FLOW_TEMP_FILES_IOT
+eventTiming: INSTEAD OF
+event: DELETE
+eventActionBody: |-
+  begin
+  delete from
+    wwv_flow_file_objects$
+  where
+    id = :old.id
+    and security_group_id = wwv_flow_security.g_security_group_id
+    and session_id = wwv_flow.g_instance;
+  end wwv_flow_temp_files_iot;
+executionOrder: 1

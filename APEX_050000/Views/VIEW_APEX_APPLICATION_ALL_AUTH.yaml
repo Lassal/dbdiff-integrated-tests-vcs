@@ -1,0 +1,510 @@
+schema: APEX_050000
+name: APEX_APPLICATION_ALL_AUTH
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    null page_id,
+    'Application' component_type,
+    application_name component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATIONS
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    null page_id,
+    'Breadcrumb Entry' component_type,
+    ENTRY_LABEL component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_BC_ENTRIES
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    null page_id,
+    'Application Compuation' component_type,
+    COMPUTATION_ITEM component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_COMPUTATIONS
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    null page_id,
+    'List Entry' component_type,
+    ENTRY_TEXT component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_LIST_ENTRIES
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    null page_id,
+    'Navigation Bar' component_type,
+    ICON_SUBTEXT component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_NAV_BAR
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    page_id,
+    'Page' component_type,
+    page_name component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PAGES
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    page_id,
+    'Page Branch' component_type,
+    nvl(branch_name, substr(BRANCH_ACTION, 1, 30)) component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PAGE_BRANCHES
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    page_id,
+    'Page Button' component_type,
+    BUTTON_NAME component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PAGE_BUTTONS
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    page_id,
+    'Page Computation' component_type,
+    ITEM_NAME component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PAGE_COMP
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    page_id,
+    'Page Dynamic Action' component_type,
+    dynamic_action_name component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PAGE_DA
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    page_id,
+    'Page Chart Series' component_type,
+    region_name || '.' || series_name component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PAGE_FLASH5_S
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    page_id,
+    'Page Interactive Report Column' component_type,
+    region_name || '. ' || column_alias component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PAGE_IR_COL
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    page_id,
+    'Page Item' component_type,
+    item_name component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PAGE_ITEMS
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    page_id,
+    'Page Process' component_type,
+    process_name component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PAGE_PROC
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    page_id,
+    'Page Region' component_type,
+    region_name component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PAGE_REGIONS
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    page_id,
+    'Page Region Column' component_type,
+    region_name || '. ' || name component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PAGE_REG_COLS
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    page_id,
+    'Page Report Column' component_type,
+    region_name || '. ' || column_alias component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PAGE_RPT_COLS
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    page_id,
+    'Page Validation' component_type,
+    VALIDATION_NAME component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PAGE_VAL
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    null page_id,
+    'Parent Tab' component_type,
+    tab_name component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PARENT_TABS
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    null page_id,
+    'Application Process' component_type,
+    process_name component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_PROCESSES
+  where
+    authorization_scheme is not null
+  union all
+  select
+    workspace,
+    workspace_display_name,
+    application_id,
+    application_name,
+    null page_id,
+    'Tab' component_type,
+    tab_name component_name,
+    authorization_scheme,
+    decode(
+      replace(
+        translate(authorization_scheme, '1234567890!', '00000000000'),
+        '0',
+        null
+      ),
+      null,
+      'Invalid',
+      'Valid'
+    ) status
+  from
+    APEX_APPLICATION_TABS
+  where
+    authorization_scheme is not null
+columns: []
+referencedTables: []

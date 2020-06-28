@@ -1,0 +1,193 @@
+schema: APEX_050000
+name: WWV_FLOW_APPLICATION_INSTALL
+routineType: PACKAGE
+returnParamater:
+  name: GET_WORKSPACE_ID.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: GET_STATIC_PLUGIN_FILE_PREFIX.P_PLUGIN_TYPE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_STATIC_PLUGIN_FILE_PREFIX.P_PLUGIN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_STATIC_THEME_FILE_PREFIX.P_THEME_NUMBER
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: PUBLISH_APPLICATION.P_APPLICATION_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: PUBLISH_APPLICATION.P_LANGUAGE_CODE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISH_APPLICATION.P_NEW_TRANSLATED_APP_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET_APPLICATION_ALIAS.P_APPLICATION_ALIAS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_APPLICATION_ID.P_APPLICATION_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET_APPLICATION_NAME.P_APPLICATION_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_AUTO_INSTALL_SUP_OBJ.P_AUTO_INSTALL_SUP_OBJ
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_IMAGE_PREFIX.P_IMAGE_PREFIX
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_OFFSET.P_OFFSET
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET_PROXY.P_PROXY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_SCHEMA.P_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_STATIC_APP_FILE_PREFIX.P_FILE_PREFIX
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_STATIC_PLUGIN_FILE_PREFIX.P_PLUGIN_TYPE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_STATIC_PLUGIN_FILE_PREFIX.P_PLUGIN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_STATIC_PLUGIN_FILE_PREFIX.P_FILE_PREFIX
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_STATIC_THEME_FILE_PREFIX.P_THEME_NUMBER
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET_STATIC_THEME_FILE_PREFIX.P_FILE_PREFIX
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_WORKSPACE_ID.P_WORKSPACE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  package wwv_flow_application_install as --  Copyright (c) Oracle Corporation 2010. All Rights Reserved.
+  --
+  --    NAME
+  --      wwv_flow_application_install
+  --
+  --    DESCRIPTION
+  --      Methods used to control APEX application installation behavior.  If not set,
+  --      then an APEX application will install normally.  However, if these global are set,
+  --      then these will take precedence over those specified in the application export file
+  --
+  --
+  --
+  --
+  --
+  --
+  -- Workspace ID
+  --
+  procedure set_workspace_id(p_workspace_id in number);
+  function get_workspace_id return number;
+  --
+  -- Application ID
+  --
+  procedure set_application_id(p_application_id in number);
+  function get_application_id return number;
+  procedure generate_application_id;
+  --
+  -- Offset
+  --
+  procedure set_offset(p_offset in number);
+  procedure generate_offset;
+  function get_offset return number;
+  --
+  -- Schema
+  --
+  procedure set_schema(p_schema in varchar2);
+  function get_schema return varchar2;
+  --
+  -- Name
+  --
+  procedure set_application_name(p_application_name in varchar2);
+  function get_application_name return varchar2;
+  --
+  -- Alias
+  --
+  procedure set_application_alias(p_application_alias in varchar2);
+  function get_application_alias return varchar2;
+  --
+  -- Image Prefix
+  --
+  procedure set_image_prefix(p_image_prefix in varchar2);
+  function get_image_prefix return varchar2;
+  --
+  -- Proxy
+  --
+  procedure set_proxy(p_proxy in varchar2);
+  function get_proxy return varchar2;
+  --
+  -- Auto Install of Supporting Objects
+  --
+  procedure set_auto_install_sup_obj(p_auto_install_sup_obj in boolean);
+  function get_auto_install_sup_obj return boolean;
+  --
+  -- Static Application File Prefix
+  --
+  procedure set_static_app_file_prefix(p_file_prefix in varchar2);
+  function get_static_app_file_prefix return varchar2;
+  --
+  -- Static Theme File Prefix
+  --
+  procedure set_static_theme_file_prefix(
+    p_theme_number in number,
+    p_file_prefix in varchar2
+  );
+  function get_static_theme_file_prefix(p_theme_number in number) return varchar2;
+  --
+  -- Static Plugin File Prefix
+  --
+  procedure set_static_plugin_file_prefix(
+    p_plugin_type in varchar2,
+    p_plugin_name in varchar2,
+    p_file_prefix in varchar2
+  );
+  function get_static_plugin_file_prefix(
+    p_plugin_type in varchar2,
+    p_plugin_name in varchar2
+  ) return varchar2;
+  --
+  -- Publish Application
+  --
+  procedure publish_application(
+    p_application_id in number,
+    p_language_code in varchar2,
+    p_new_translated_app_id in number default null
+  );
+  --
+  -- Clear
+  --
+  procedure clear_all;
+  end wwv_flow_application_install;

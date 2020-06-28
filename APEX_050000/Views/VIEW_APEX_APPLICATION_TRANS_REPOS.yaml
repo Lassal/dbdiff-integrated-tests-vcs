@@ -1,0 +1,134 @@
+schema: APEX_050000
+name: APEX_APPLICATION_TRANS_REPOS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.security_group_id workspace_id,
+    f.id application_id,
+    f.name application_name,
+    t.translated_flow_id translated_application_id,
+    t.page_id application_page_id,
+    --
+    t.id id,
+    t.translate_from_id from_id,
+    t.translate_to_id to_id,
+    t.translate_from_text from_string,
+    t.translate_to_text to_string,
+    c .column_description attribute_description,
+    t.translate_to_lang_code language_code,
+    case
+      when c .template_translatable = 'N' then 'Y'
+      when c .template_translatable = 'Y'
+      and t.template_translatable = 'Y' then 'Y'
+      else 'N'
+    end translatable,
+    replace(
+      replace(
+        replace(
+          replace(
+            replace(
+              replace(
+                replace(
+                  replace(
+                    replace(
+                      replace(
+                        replace(
+                          decode(
+                            table_name,
+                            'WWV_FLOWS',
+                            'APEX_APPLICATIONS',
+                            replace(table_name, 'WWV_FLOW', 'APEX')
+                          ),
+                          '_PLUGS',
+                          '_REGIONS'
+                        ),
+                        '_WORKSHEET_',
+                        '_IR_'
+                      ),
+                      '_STEP',
+                      '_PAGE'
+                    ),
+                    'MENU_',
+                    'BREADCRUMB_'
+                  ),
+                  'DA_ACTIONS',
+                  'DYNAMIC_ACTIONS'
+                ),
+                'WORKSHEETS',
+                'INTERACTIVE_REPORTS'
+              ),
+              'ICON_BAR',
+              'NAVIGATION_BAR'
+            ),
+            'PLUG_TEMPLATES',
+            'REGION_TEMPLATES'
+          ),
+          '_CAL_',
+          '_CALENDAR_'
+        ),
+        '_TOPLEVEL_',
+        '_PARENT_'
+      ),
+      '_FIELD_',
+      '_LABEL_'
+    ) || '.' || column_name internal_attribute_name,
+    t.created_by created_by,
+    t.created_on created_on,
+    t.last_updated_by last_updated_by,
+    t.last_updated_on last_updated_on
+  from
+    wwv_flow_translatable_text$ t,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    wwv_flow_translatable_cols$ c,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and f.id = t.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    /* keep this not exists */
+    and not exists (
+      select
+        1
+      from
+        wwv_flow_language_map m
+      where
+        m.translation_flow_id = f.id
+        and m.security_group_id = f.security_group_id
+        and f.authentication_id <> trunc(f.authentication_id)
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+    and t.translate_from_flow_table = c .table_name
+    and t.translate_from_flow_column = c .column_name
+columns: []
+referencedTables: []

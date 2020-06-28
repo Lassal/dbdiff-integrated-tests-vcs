@@ -1,0 +1,133 @@
+name: EMPLOYEES
+schema: HR
+columns:
+- name: COMMISSION_PCT
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 2,2
+- name: DEPARTMENT_ID
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: EMAIL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 25
+  nullable: false
+  dataTypeLength: 25
+- name: EMPLOYEE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: FIRST_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  dataTypeLength: 20
+- name: HIRE_DATE
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: JOB_ID
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  dataTypeLength: 10
+- name: LAST_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 25
+  nullable: false
+  dataTypeLength: 25
+- name: MANAGER_ID
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 6,0
+- name: PHONE_NUMBER
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  dataTypeLength: 20
+- name: SALARY
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 8,2
+constraints:
+- !<unique-constraint>
+  name: EMP_EMP_ID_PK
+  type: PRIMARY_KEY
+  columns:
+  - name: EMPLOYEE_ID
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: EMP_DEPT_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: DEPARTMENT_ID
+    ordinalPosition: 1
+    referencedSchemaName: HR
+    referencedTableName: DEPARTMENTS
+    referencedTableColumnName: DEPARTMENT_ID
+- !<fk-constraint>
+  name: EMP_JOB_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: JOB_ID
+    ordinalPosition: 1
+    referencedSchemaName: HR
+    referencedTableName: JOBS
+    referencedTableColumnName: JOB_ID
+- !<fk-constraint>
+  name: EMP_MANAGER_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: MANAGER_ID
+    ordinalPosition: 1
+    referencedSchemaName: HR
+    referencedTableName: EMPLOYEES
+    referencedTableColumnName: EMPLOYEE_ID
+- !<unique-constraint>
+  name: EMP_EMAIL_UK
+  type: UNIQUE
+  columns:
+  - name: EMAIL
+    ordinalPosition: 1
+- !<check-constraint>
+  name: EMP_EMAIL_NN
+  type: CHECK
+  checkClause: '"EMAIL" IS NOT NULL'
+- !<check-constraint>
+  name: EMP_HIRE_DATE_NN
+  type: CHECK
+  checkClause: '"HIRE_DATE" IS NOT NULL'
+- !<check-constraint>
+  name: EMP_JOB_NN
+  type: CHECK
+  checkClause: '"JOB_ID" IS NOT NULL'
+- !<check-constraint>
+  name: EMP_LAST_NAME_NN
+  type: CHECK
+  checkClause: '"LAST_NAME" IS NOT NULL'
+- !<check-constraint>
+  name: EMP_SALARY_MIN
+  type: CHECK
+  checkClause: salary > 0

@@ -1,0 +1,69 @@
+schema: APEX_050000
+name: APEX_PKG_APP_INSTALL_LOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.app_id application_id,
+    t.app_name application_name,
+    t.app_type application_type,
+    t.app_description application_description,
+    f.security_group_id workspace_id,
+    --
+    f.app_version application_version,
+    f.build_version build_version,
+    f.installed_build_version installed_build_version,
+    f.log_seq log_sequence,
+    f.log_event log_event,
+    f.log_type log_type,
+    f.started start_time,
+    f.ended end_time,
+    f.err_msg error_message,
+    f.created_by created_by,
+    f.created_on created_on,
+    f.updated_by updated_by,
+    f.updated_on updated_on,
+    f.id install_log_id --
+  from
+    wwv_flow_pkg_applications t,
+    wwv_flow_pkg_app_install_log f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and f.app_id = t.app_id
+    and t.app_type = 'DB'
+    and f.app_type = 'DATABASE'
+    and --
+    (
+      d.sgid != 0
+      or nvl(t.APP_STATUS, 'x') not in ('COMING_SOON', 'HIDDEN')
+    )
+    and w.PROVISIONING_COMPANY_ID not in (0, 12)
+columns: []
+referencedTables: []

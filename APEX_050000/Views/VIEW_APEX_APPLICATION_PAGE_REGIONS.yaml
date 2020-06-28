@@ -1,0 +1,480 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_REGIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    p.flow_id application_id,
+    f.name application_name,
+    p.id page_id,
+    p.name page_name,
+    --
+    r.plug_name region_name,
+    r.parent_plug_id parent_region_id,
+    case
+      when r.parent_plug_id is not null then (
+        select
+          region_name
+        from
+          wwv_flow_page_plugs
+        where
+          id = r.parent_plug_id
+      )
+    end parent_region_name,
+    nvl(
+      decode(
+        nvl(r.PLUG_TEMPLATE, 0),
+        0,
+        'No Template',
+        (
+          select
+            PAGE_PLUG_TEMPLATE_NAME
+          from
+            wwv_flow_page_plug_templates
+          where
+            id = r.PLUG_TEMPLATE
+        )
+      ),
+      'No Template'
+    ) template,
+    r.PLUG_TEMPLATE template_id,
+    r.region_name static_id,
+    decode(nvl(r.rest_enabled, 'N'), 'Y', 'Yes', 'No') rest_enabled,
+    r.PLUG_DISPLAY_SEQUENCE display_sequence,
+    case
+      r.plug_new_grid
+      when 'Y' then 'Yes'
+      else 'No'
+    end new_grid,
+    case
+      r.plug_new_grid_row
+      when 'Y' then 'Yes'
+      else 'No'
+    end new_grid_row,
+    case
+      r.plug_new_grid_column
+      when 'Y' then 'Yes'
+      else 'No'
+    end new_grid_column,
+    r.PLUG_DISPLAY_COLUMN grid_column,
+    r.plug_grid_column_span grid_column_span,
+    r.plug_grid_column_css_classes grid_column_css_classes,
+    r.plug_column_width grid_column_attributes,
+    decode(
+      nvl(r.INCLUDE_IN_REG_DISP_SEL_YN, 'N'),
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      r.INCLUDE_IN_REG_DISP_SEL_YN
+    ) display_region_selector,
+    r.region_css_classes,
+    r.icon_css_classes,
+    r.region_sub_css_classes,
+    r.region_template_options region_template_options,
+    r.component_template_options component_template_options,
+    r.REGION_ATTRIBUTES_SUBSTITUTION REGION_ATTRIBUTES_SUBSTITUTION,
+    case
+      r.escape_on_http_output
+      when 'Y' then 'Yes'
+      when 'N' then 'No'
+      else r.escape_on_http_output
+    end escape_on_http_output,
+    r.PLUG_DISPLAY_COLUMN display_column,
+    /* for backward compatibility, replaced by grid_column */
+    decode(
+      r.PLUG_DISPLAY_POINT,
+      'AFTER_HEADER',
+      'After Header',
+      'BODY',
+      'Page Template Body',
+      'BODY_1',
+      'Page Template Body (1)',
+      'BODY_2',
+      'Page Template Body (2)',
+      'BODY_3',
+      'Page Template Body (3)',
+      'BEFORE_FOOTER',
+      'Before Footer',
+      'REGION_POSITION_01',
+      'Page Template Region Position 1',
+      'REGION_POSITION_02',
+      'Page Template Region Position 2',
+      'REGION_POSITION_03',
+      'Page Template Region Position 3',
+      'REGION_POSITION_04',
+      'Page Template Region Position 4',
+      'REGION_POSITION_05',
+      'Page Template Region Position 5',
+      'REGION_POSITION_06',
+      'Page Template Region Position 6',
+      'REGION_POSITION_07',
+      'Page Template Region Position 7',
+      'REGION_POSITION_08',
+      'Page Template Region Position 8',
+      r.PLUG_DISPLAY_POINT
+    ) display_position,
+    r.plug_display_point display_position_code,
+    case
+      plug_item_display_point
+      when 'ABOVE' then 'Above Content'
+      when 'BELOW' then 'Below Content'
+    end display_item_position,
+    r.plug_item_display_point display_item_position_code,
+    --
+    r.PLUG_SOURCE region_source,
+    (
+      select
+        name
+      from
+        wwv_flow_menu_templates
+      where
+        id = to_char(r.MENU_TEMPLATE_ID)
+        and flow_id = f.id
+    ) breadcrumb_template,
+    r.MENU_TEMPLATE_ID breadcrumb_template_id,
+    --
+    (
+      select
+        list_template_name
+      from
+        wwv_flow_list_templates
+      where
+        id = r.LIST_TEMPLATE_ID
+    ) list_template_override,
+    r.LIST_TEMPLATE_ID list_template_override_id,
+    --
+    case
+      r.plug_source_type
+      when 'NATIVE_PLSQL' then 'PL/SQL'
+      when 'NATIVE_SIMPLE_CHART' then 'HTML Chart'
+      when 'NATIVE_SVG_CHART' then 'SVG Chart'
+      when 'NATIVE_FLASH_CHART5' then 'Flash Chart'
+      when 'NATIVE_FLASH_MAP' then 'Map'
+      when 'NATIVE_SQL_REPORT' then 'Report'
+      when 'NATIVE_IR' then 'Interactive Report'
+      when 'NATIVE_STATIC' then 'HTML/Text' || case
+        when attribute_02 = 'TEXT' then ' (escape special characters)'
+      end || case
+        when attribute_01 = 'Y' then ' (with shortcuts)'
+      end
+      when 'NATIVE_FNC_REPORT' then 'Report'
+      when 'NATIVE_TREE' then 'Tree'
+      when 'NATIVE_TABFORM' then 'Tabular Form'
+      when 'NATIVE_URL' then 'URL'
+      when 'NATIVE_DISPLAY_SELECTOR' then 'Region Display Selector'
+      when 'NATIVE_CALENDAR' then 'Calendar'
+      when 'NATIVE_JSTREE' then 'JavaScript Tree'
+      when 'NATIVE_HELP_TEXT' then 'Help Text'
+      else case
+        when r.plug_source_type like 'NATIVE\_%' escape '\' then
+                  ( select display_name from wwv_flow_plugins where flow_id = 4411 and plugin_type = ' REGION TYPE ' and name = substr(r.plug_source_type, 8) )
+              when r.plug_source_type like ' PLUGIN \ _ % ' escape ' \ ' then
+                  ( select display_name from wwv_flow_plugins where flow_id = r.flow_id and plugin_type = ' REGION TYPE ' and name = substr(r.plug_source_type, 8) )
+            end
+        end                                source_type,
+      case -- compute mapping to pre 5.0 source type
+        when r.plug_source_type in (' NATIVE_HELP_TEXT ', ' NATIVE_URL ', ' NATIVE_TREE ', ' NATIVE_JSTREE ',
+                                    ' NATIVE_SVG_CHART ', ' NATIVE_FLASH_CHART5 ',
+                                    ' NATIVE_FLASH_MAP ', ' NATIVE_SIMPLE_CHART ')
+        then substr(r.plug_source_type, 8)
+        when r.plug_source_type = ' NATIVE_PLSQL '                            then ' PLSQL_PROCEDURE '
+        when r.plug_source_type = ' NATIVE_IR '                               then ' DYNAMIC_QUERY '
+        when r.plug_source_type = ' NATIVE_SQL_REPORT '                       then ' SQL_QUERY '
+        when r.plug_source_type = ' NATIVE_FNC_REPORT '                       then ' FUNCTION_RETURNING_SQL_QUERY '
+        when r.plug_source_type = ' NATIVE_TABFORM '                          then ' UPDATABLE_SQL_QUERY '
+        when r.plug_source_type = ' NATIVE_STATIC ' and r.attribute_02=' TEXT ' then ' STATIC_TEXT_ESCAPE_SC '
+        when r.plug_source_type = ' NATIVE_STATIC ' and r.attribute_01=' Y '    then ' STATIC_TEXT_WITH_SHORTCUTS '
+        when r.plug_source_type = ' NATIVE_STATIC '                           then ' STATIC_TEXT '
+        when r.plug_source_type = ' NATIVE_DISPLAY_SELECTOR '                 then ' REGION_DISPLAY_SELECTOR '
+        when r.plug_source_type = ' NATIVE_CALENDAR '                         then ' CALENDAR '
+        when r.plug_source_type = ' NATIVE_BREADCRUMB '                       then ' M '||trunc(r.menu_id)
+        when r.plug_source_type = ' NATIVE_LIST '                             then to_char(trunc(r.list_id))
+        else r.plug_source_type
+        end                                source_type_code,
+      r.plug_source_type                   source_type_plugin_name,
+      --
+      --
+      decode(substr(r.PLUG_REQUIRED_ROLE,1,1),' ! ',' Not ')||
+      nvl((select name
+       from   wwv_flow_security_schemes
+       where  to_char(id) = ltrim(r.PLUG_REQUIRED_ROLE,' ! ')
+       and    flow_id = f.id),
+       r.PLUG_REQUIRED_ROLE)               authorization_scheme,
+      r.PLUG_REQUIRED_ROLE                 authorization_scheme_id,
+      nvl((select r from apex_standard_conditions where d = r.PLUG_DISPLAY_CONDITION_TYPE),r.PLUG_DISPLAY_CONDITION_TYPE)
+                                           condition_type,
+      r.plug_display_condition_type        condition_type_code,
+      r.PLUG_DISPLAY_WHEN_CONDITION        condition_expression1,
+      r.PLUG_DISPLAY_WHEN_COND2            condition_expression2,
+      -- read only condition
+      coalesce (
+          ( select r
+              from apex_standard_conditions
+             where r.plug_read_only_when_type is not null
+               and d = r.plug_read_only_when_type
+          ),
+          r.plug_read_only_when_type )     read_only_condition_type,
+      r.plug_read_only_when_type           read_only_condition_type_code,
+      r.plug_read_only_when                read_only_condition_exp1,
+      r.plug_read_only_when2               read_only_condition_exp2,
+      --
+      r.PLUG_HEADER                        region_header_text,
+      r.PLUG_FOOTER                        region_footer_text,
+      (select row_template_name from wwv_flow_row_templates where id = r.PLUG_QUERY_ROW_TEMPLATE)
+                                           report_template,
+      r.PLUG_QUERY_ROW_TEMPLATE            report_template_id,
+      r.PLUG_QUERY_HEADINGS                report_column_headings,
+      r.PLUG_QUERY_HEADINGS_TYPE           headings_type,
+      r.PLUG_QUERY_NUM_ROWS                maximum_rows_to_query,
+      decode(r.PLUG_QUERY_NUM_ROWS_TYPE,
+         ' ROWS_X_TO_Y_OF_Z ',' Row Ranges X to Y of Z (no pagination) ',
+         ' ROWS_X_TO_Y ',' Row Ranges X to Y (no pagination) ',
+         ' SEARCH_ENGINE ',' Search Engine 1,
+        2,
+        3,
+        4 (
+          set
+            based pagination
+        ) ',
+         ' COMPUTED_BUT_NOT_DISPLAYED ',' Use Externally Created Pagination Buttons ',
+         ' ROW_RANGES ',' Row Ranges 1 -15 16 -30 (
+          with
+          set
+            pagination
+        ) ',
+         ' ROW_RANGES_IN_SELECT_LIST ',' Row Ranges 1 -15 16 -30 in
+        select
+          list (with pagination) ',
+         ' ROW_RANGES_WITH_LINKS ',' Row Ranges X to Y of Z (with pagination) ',
+         ' NEXT_PREVIOUS_LINKS ',' Row Ranges X to Y (
+            with next
+            and previous links
+          ) ',
+         r.PLUG_QUERY_NUM_ROWS_TYPE)       pagination_scheme,
+      decode(r.PAGINATION_DISPLAY_POSITION,
+        ' BOTTOM_LEFT ',' Bottom - Left ',
+        ' BOTTOM_RIGHT ',' Bottom - Right ',
+        ' TOP_LEFT ',' Top - Left ',
+        ' TOP_RIGHT ',' Top - Right ',
+        ' TOP_AND_BOTTOM_LEFT ',' Top
+          and Bottom - Left ',
+        ' TOP_AND_BOTTOM_RIGHT ',' Top
+          and Bottom - Right ',
+        r.PAGINATION_DISPLAY_POSITION)     pagination_display_position,
+      decode(r.ajax_enabled,' Y ',' Yes ',' N',' No ',r.ajax_enabled) ajax_enabled,
+      r.ajax_items_to_submit,
+      r.PLUG_QUERY_NUM_ROWS_ITEM           number_of_rows_item,
+      r.PLUG_QUERY_NO_DATA_FOUND           no_data_found_message,
+      r.PLUG_QUERY_MORE_DATA               more_data_found_message,
+      r.PLUG_QUERY_ROW_COUNT_MAX           maximum_row_count,
+      --r.PLUG_QUERY_FORMAT_OUT              query_format_out,
+      r.PLUG_QUERY_SHOW_NULLS_AS           report_null_values_as,
+      --r.PLUG_QUERY_COL_ALLIGNMENTS         ,
+      r.PLUG_QUERY_BREAK_COLS              breaks,
+      --r.PLUG_QUERY_SUM_COLS                ,
+      --r.PLUG_QUERY_NUMBER_FORMATS          ,
+      --r.PLUG_QUERY_TABLE_BORDER            ,
+      --r.PLUG_QUERY_HIT_HIGHLIGHTING        ,
+      r.PLUG_QUERY_ASC_IMAGE               ascending_image,
+      r.PLUG_QUERY_ASC_IMAGE_ATTR          ascending_image_attributes,
+      r.PLUG_QUERY_DESC_IMAGE              descending_image,
+      r.PLUG_QUERY_DESC_IMAGE_ATTR         descending_image_attributes,
+      r.PLUG_QUERY_EXP_FILENAME            filename,
+      r.PLUG_QUERY_EXP_SEPARATOR           separator,
+      r.PLUG_QUERY_EXP_ENCLOSED_BY         enclosed_by,
+      decode(r.PLUG_QUERY_STRIP_HTML,
+        ' Y ',' Yes ',
+        ' N',' No ',
+        r.PLUG_QUERY_STRIP_HTML)           strip_html,
+      r.PLUG_QUERY_OPTIONS                 report_column_source_type,
+      r.PLUG_QUERY_MAX_COLUMNS             max_dynamic_report_cols,
+      r.PLUG_COLUMN_WIDTH                  HTML_table_cell_attributes, /* for backward compatibility, replaced by grid_column_attributes */
+      decode(r.fixed_header,
+          ' NONE ',     ' None ',
+          ' PAGE ',     ' Page ',
+          ' REGION ',   ' Region ',
+          r.fixed_header) fixed_header,
+      r.fixed_header_max_height,
+      decode(r.PLUG_CUSTOMIZED,
+         null,' None ',
+         ' 2 ',' Customizable
+          and Not Shown By Default ',
+         ' 1 ',' Customizable
+          and Shown By Default ',
+         ' 0 ',' Not Customizable By
+      End Users ',
+         r.PLUG_CUSTOMIZED)                customization,
+      r.PLUG_CUSTOMIZED_NAME               customization_name,
+      --r.PLUG_OVERRIDE_REG_POS              ,
+      (select case when r.required_patch > 0 then PATCH_NAME else ' { Not '||PATCH_NAME||' } ' end PATCH_NAME
+       from wwv_flow_patches
+       where id=abs(r.REQUIRED_PATCH) )    build_option,
+      r.required_patch                     build_option_id,
+      --
+      --r.PLUG_URL_TEXT_BEGIN                ,
+      --r.PLUG_URL_TEXT_END                  ,
+      --
+      -- region caching
+      --
+      decode(r.PLUG_CACHING,
+          ' CACHE '   , ' Cached '            ,
+          ' USER '    , ' Cached by User '    ,
+          ' SESSION ' , ' Cached by Session ' ,
+          ' NOCACHE ' , ' Not Cached '        ,
+          r.plug_caching)                  region_caching,
+      --r.plug_caching_session_state         ,
+      r.plug_caching_max_age_in_sec        timeout_cache_after,
+      r.plug_cache_when                    cache_when,
+      r.plug_cache_expression1             cache_when_expression_1,
+      r.plug_cache_expression2             cache_when_expression_2,
+      r.plug_cache_depends_on_items        cache_depends_on_items,
+      --r.PLUG_IGNORE_PAGINATION             ,
+      --r.PLUG_CHART_FONT_SIZE               ,
+      --r.PLUG_CHART_MAX_ROWS                ,
+      --r.PLUG_CHART_NUM_MASK                ,
+      --r.PLUG_CHART_SCALE                   ,
+      --r.PLUG_CHART_AXIS                    ,
+      --r.PLUG_CHART_SHOW_SUMMARY            ,
+      r.REPORT_TOTAL_TEXT_FORMAT           sum_display_text,
+      r.BREAK_COLUMN_TEXT_FORMAT           break_display_text,
+      r.BREAK_BEFORE_ROW                   before_break_display_text,
+      r.BREAK_GENERIC_COLUMN               break_column_display_text,
+      r.BREAK_AFTER_ROW                    after_break_display_text,
+      decode(
+         r.BREAK_TYPE_FLAG,
+         ' REPEAT_HEADINGS_ON_BREAK_1 ',' Repeat Headings on Break ',
+         ' DEFAULT_BREAK_FORMATTING ',' Default Break Formatting ',
+         r.BREAK_TYPE_FLAG)                break_display_flag,
+      r.BREAK_REPEAT_HEADING_FORMAT        repeat_heading_break_format,
+      decode(r.CSV_OUTPUT,
+      ' Y ',' Yes ',' N',' No ',r.CSV_OUTPUT)     enable_csv_output,
+      r.CSV_OUTPUT_LINK_TEXT               csv_link_label,
+      r.PRINT_URL                          URL,
+      r.PRINT_URL_LABEL                    link_label,
+      decode(r.TRANSLATE_TITLE,
+      ' Y ',' Yes ',' N',' No ',' Yes ')            translate_region_title,
+      --
+      r.attribute_01,
+      r.attribute_02,
+      r.attribute_03,
+      r.attribute_04,
+      r.attribute_05,
+      r.attribute_06,
+      r.attribute_07,
+      r.attribute_08,
+      r.attribute_09,
+      r.attribute_10,
+      r.attribute_11,
+      r.attribute_12,
+      r.attribute_13,
+      r.attribute_14,
+      r.attribute_15,
+      r.attribute_16,
+      r.attribute_17,
+      r.attribute_18,
+      r.attribute_19,
+      r.attribute_20,
+      r.attribute_21,
+      r.attribute_22,
+      r.attribute_23,
+      r.attribute_24,
+      r.attribute_25,
+      --
+      r.LAST_UPDATED_BY                    last_updated_by,
+      r.LAST_UPDATED_ON                    last_updated_on,
+      r.PLUG_COMMENT                       component_comment,
+      r.id                                 region_id,
+      --
+      (select count(*) from wwv_flow_step_items where r.id = ITEM_PLUG_ID and r.flow_id = flow_id) items,
+      (select count(*) from wwv_flow_step_buttons where r.id = button_plug_id and r.flow_id = flow_id) buttons,
+       --
+       region_name||'.'||
+       lpad(r.plug_display_sequence,5,' 00000 ')
+       ||',
+      c = '||r.PLUG_DISPLAY_column
+       ||',
+      temp = '||nvl(decode(nvl(r.PLUG_TEMPLATE,0),0,' No Template ',(select PAGE_PLUG_TEMPLATE_NAME from wwv_flow_page_plug_templates where id = r.PLUG_TEMPLATE)),' No Template ')
+       ||',
+      pos = '||decode(r.PLUG_DISPLAY_POINT,
+         ' AFTER_HEADER ',       ' After Header ',
+         ' BODY ',               ' Page Template Body ',
+         ' BODY_1 ',             ' Page Template Body (1) ',
+         ' BODY_2 ',             ' Page Template Body (2) ',
+         ' BODY_3 ',             ' Page Template Body (3) ',
+         ' BEFORE_FOOTER ',      ' Before Footer ',
+         ' REGION_POSITION_01 ', ' Page Template Region Position 1 ',
+         ' REGION_POSITION_02 ', ' Page Template Region Position 2 ',
+         ' REGION_POSITION_03 ', ' Page Template Region Position 3 ',
+         ' REGION_POSITION_04 ', ' Page Template Region Position 4 ',
+         ' REGION_POSITION_05 ', ' Page Template Region Position 5 ',
+         ' REGION_POSITION_06 ', ' Page Template Region Position 6 ',
+         ' REGION_POSITION_07 ', ' Page Template Region Position 7 ',
+         ' REGION_POSITION_08 ', ' Page Template Region Position 8 ',
+         r.PLUG_DISPLAY_POINT)
+       ||',
+      type = '||r.plug_source_type
+       ||',
+      src = '||sys.dbms_lob.substr(r.PLUG_SOURCE,30,1)||'.'||sys.dbms_lob.getlength(r.PLUG_SOURCE)
+       ||(select ',
+      bo = '||PATCH_NAME b from wwv_flow_patches where id=abs(r.REQUIRED_PATCH))
+       ||nvl((select ',
+      auth = '||name n from wwv_flow_security_schemes where to_char(id) = ltrim(r.PLUG_REQUIRED_ROLE,' ! ') and flow_id = f.id),' Not found ')
+       ||decode(r.PAGINATION_DISPLAY_POSITION,
+        ' BOTTOM_LEFT ',' Bottom - L ',
+        ' BOTTOM_RIGHT ',' Bottom - R ',
+        ' TOP_LEFT ',' Top - L ',
+        ' TOP_RIGHT ',' Top - R ',
+        ' TOP_AND_BOTTOM_LEFT ',' Top + Bottom - L ',
+        ' TOP_AND_BOTTOM_RIGHT ',' Top + Bottom - R ',
+        r.PAGINATION_DISPLAY_POSITION)
+        ||r.PLUG_QUERY_NUM_ROWS_TYPE
+        ||r.PLUG_DISPLAY_CONDITION_TYPE
+        ||substr(r.PLUG_DISPLAY_WHEN_CONDITION,1,20)||'.'||length(r.PLUG_DISPLAY_WHEN_CONDITION)
+        ||substr(r.PLUG_DISPLAY_WHEN_COND2,1,20)||'.'||length(r.PLUG_DISPLAY_WHEN_COND2)
+        ||decode(
+         r.BREAK_TYPE_FLAG,
+         ' REPEAT_HEADINGS_ON_BREAK_1 ',' RepHead on Br ',
+         ' DEFAULT_BREAK_FORMATTING ',' DefBreakFor ',
+         r.BREAK_TYPE_FLAG)
+        ||decode(r.CSV_OUTPUT,' Y ',' Yes ',' N',' No ',r.CSV_OUTPUT)
+        ||(select ',
+      rtmp = '||row_template_name t from wwv_flow_row_templates where id = r.PLUG_QUERY_ROW_TEMPLATE)
+        ||decode(r.PLUG_QUERY_NUM_ROWS,null,null,' mr = '||r.PLUG_QUERY_NUM_ROWS)
+        ||r.BREAK_REPEAT_HEADING_FORMAT
+        ||r.CSV_OUTPUT_LINK_TEXT
+        ||substr(r.PRINT_URL,1,10)||length(r.PRINT_URL)
+        ||length(PRINT_URL_LABEL)
+        ||decode(r.TRANSLATE_TITLE,' Y ',' Yes ',' N',' No ',' Yes ')||
+        length(PLUG_HEADER)||length(PLUG_FOOTER)
+        ||r.PLUG_CUSTOMIZED
+        ||length(r.PLUG_COLUMN_WIDTH)
+        ||substr(r.region_name,1,15)
+        ||length(REGION_ATTRIBUTES_SUBSTITUTION)
+       component_signature,
+       list_id,
+       menu_id breadcrumb_id
+  from wwv_flow_page_plugs r,
+       wwv_flow_steps p,
+       wwv_flows f,
+       wwv_flow_companies w,
+       wwv_flow_company_schemas s,
+       (select nvl(v(' FLOW_SECURITY_GROUP_ID '),0) sgid,
+              (select sys_context(' USERENV ',' CURRENT_USER ') from sys.dual) cu
+          from sys.dual) d
+  where (s.schema  = cu
+         or (select wwv_flow_security.has_apex_administrator_role_yn(cu) from sys.dual)=' Y '
+         or d.sgid              = w.PROVISIONING_COMPANY_ID )
+        and f.security_group_id = w.PROVISIONING_COMPANY_ID
+        and s.security_group_id = w.PROVISIONING_COMPANY_ID
+        and s.schema = f.owner
+        and f.security_group_id = p.security_group_id
+        and f.id = p.flow_id
+        and f.id = r.flow_id
+        and p.id = r.page_id
+        and (d.sgid != 0 or nvl(f.BUILD_STATUS,' x ') != ' RUN_AND_HIDDEN ')
+        and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

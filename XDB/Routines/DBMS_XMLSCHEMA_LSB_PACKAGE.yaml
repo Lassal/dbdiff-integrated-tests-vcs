@@ -1,0 +1,446 @@
+schema: XDB
+name: DBMS_XMLSCHEMA_LSB
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: COMPILESCHEMA.SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPILESCHEMA.SCHEMAOID
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: COMPILESCHEMA.TABMD
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: COPYEVOLVE.SCHEMAURLS
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: COPYEVOLVE.NEWSCHEMAS
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: COPYEVOLVE.TRANSFORMS
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: COPYEVOLVE.PRESERVEOLDDOCS
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: COPYEVOLVE.MAPTABNAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COPYEVOLVE.GENERATETABLES
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: COPYEVOLVE.FORCE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: COPYEVOLVE.SCHEMAOWNERS
+  ordinalPosition: 8
+  dataType: VARRAY
+  parameterMode: IN
+- name: COPYEVOLVE.PARALLELDEGREE
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: COPYEVOLVE.OPTIONS
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: COPYEVOLVE.TABMD
+  ordinalPosition: 11
+  dataType: VARRAY
+  parameterMode: IN
+- name: COPYEVOLVE.RESMD
+  ordinalPosition: 12
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.SCHEMADOC
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.LOCAL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.GENTYPES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.GENBEAN
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.GENTABLES
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.FORCE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.OWNER
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.CSID
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.ENABLEHIERARCHY
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.OPTIONS
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.SCHEMAOID
+  ordinalPosition: 12
+  dataType: RAW
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.TABMD
+  ordinalPosition: 13
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERSCHEMA_BLOB.RESMD
+  ordinalPosition: 14
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERSCHEMA_CLOB.SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA_CLOB.SCHEMADOC
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: REGISTERSCHEMA_CLOB.LOCAL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_CLOB.GENTYPES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_CLOB.GENBEAN
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_CLOB.GENTABLES
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_CLOB.FORCE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_CLOB.OWNER
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA_CLOB.ENABLEHIERARCHY
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_CLOB.OPTIONS
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_CLOB.SCHEMAOID
+  ordinalPosition: 11
+  dataType: RAW
+  parameterMode: IN
+- name: REGISTERSCHEMA_CLOB.TABMD
+  ordinalPosition: 12
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERSCHEMA_CLOB.RESMD
+  ordinalPosition: 13
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.SCHEMADOC
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.LOCAL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.GENTYPES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.GENBEAN
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.GENTABLES
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.FORCE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.OWNER
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.ENABLEHIERARCHY
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.OPTIONS
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.SCHEMAOID
+  ordinalPosition: 11
+  dataType: RAW
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.ELNAME
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.ELNUM
+  ordinalPosition: 13
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.IMPORT_OPTIONS
+  ordinalPosition: 14
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.TABMD
+  ordinalPosition: 15
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERSCHEMA_OID.RESMD
+  ordinalPosition: 16
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERSCHEMA_STR.SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA_STR.SCHEMADOC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA_STR.LOCAL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_STR.GENTYPES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_STR.GENBEAN
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_STR.GENTABLES
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_STR.FORCE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_STR.OWNER
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA_STR.ENABLEHIERARCHY
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_STR.OPTIONS
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_STR.SCHEMAOID
+  ordinalPosition: 11
+  dataType: RAW
+  parameterMode: IN
+- name: REGISTERSCHEMA_STR.TABMD
+  ordinalPosition: 12
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERSCHEMA_STR.RESMD
+  ordinalPosition: 13
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERSCHEMA_XML.SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA_XML.SCHEMADOC
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: REGISTERSCHEMA_XML.LOCAL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_XML.GENTYPES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_XML.GENBEAN
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_XML.GENTABLES
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_XML.FORCE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_XML.OWNER
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA_XML.ENABLEHIERARCHY
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_XML.OPTIONS
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA_XML.SCHEMAOID
+  ordinalPosition: 11
+  dataType: RAW
+  parameterMode: IN
+- name: REGISTERSCHEMA_XML.TABMD
+  ordinalPosition: 12
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERSCHEMA_XML.RESMD
+  ordinalPosition: 13
+  dataType: VARRAY
+  parameterMode: IN
+routineDefinition: |-
+  package dbms_xmlschema_lsb authid current_user is procedure registerSchema_Str(
+    schemaurl IN varchar2,
+    schemadoc IN varchar2,
+    local IN number,
+    gentypes IN number,
+    genbean IN number,
+    gentables IN number,
+    force IN number,
+    owner IN varchar2,
+    enablehierarchy IN number,
+    options IN number,
+    schemaoid IN RAW,
+    tabmd IN xdb.DBMS_XMLSCHEMA_TABMDARR,
+    resmd IN xdb.DBMS_XMLSCHEMA_RESMDARR
+  );
+  pragma supplemental_log_data (registerSchema_Str, AUTO);
+  procedure registerSchema_Clob(
+    schemaurl IN varchar2,
+    schemadoc IN CLOB,
+    local IN number,
+    gentypes IN number,
+    genbean IN number,
+    gentables IN number,
+    force IN number,
+    owner IN varchar2,
+    enableHierarchy IN number,
+    options IN number,
+    schemaoid IN RAW,
+    tabmd IN xdb.DBMS_XMLSCHEMA_TABMDARR,
+    resmd IN xdb.DBMS_XMLSCHEMA_RESMDARR
+  );
+  procedure registerSchema_Blob(
+    schemaurl IN varchar2,
+    schemadoc IN BLOB,
+    local IN number,
+    gentypes IN number,
+    genbean IN number,
+    gentables IN number,
+    force IN number,
+    owner IN varchar2,
+    csid IN NUMBER,
+    enablehierarchy IN number,
+    options IN number,
+    schemaoid IN RAW,
+    tabmd IN xdb.DBMS_XMLSCHEMA_TABMDARR,
+    resmd IN xdb.DBMS_XMLSCHEMA_RESMDARR
+  );
+  pragma supplemental_log_data (registerSchema_Blob, AUTO);
+  procedure registerSchema_XML(
+    schemaurl IN varchar2,
+    schemadoc IN sys.xmltype,
+    local IN number,
+    gentypes IN number,
+    genbean IN number,
+    gentables IN number,
+    force IN number,
+    owner IN varchar2,
+    enablehierarchy IN number,
+    options IN number,
+    schemaoid IN RAW,
+    tabmd IN xdb.DBMS_XMLSCHEMA_TABMDARR,
+    resmd IN xdb.DBMS_XMLSCHEMA_RESMDARR
+  );
+  pragma supplemental_log_data (registerSchema_XML, AUTO);
+  procedure registerSchema_OID(
+    schemaurl IN varchar2,
+    schemadoc IN CLOB,
+    local IN number,
+    gentypes IN number,
+    genbean IN number,
+    gentables IN number,
+    force IN number,
+    owner IN varchar2,
+    enablehierarchy IN number,
+    options IN number,
+    schemaoid IN RAW,
+    elname IN varchar2,
+    elnum IN number,
+    import_options IN number,
+    tabmd IN xdb.DBMS_XMLSCHEMA_TABMDARR,
+    resmd IN xdb.DBMS_XMLSCHEMA_RESMDARR
+  );
+  pragma supplemental_log_data (registerSchema_OID, AUTO);
+  procedure CopyEvolve(
+    schemaurls IN XDB$STRING_LIST_T,
+    newSchemas IN XMLSequenceType,
+    transforms IN XMLSequenceType,
+    preserveolddocs IN NUMBER,
+    maptabname IN VARCHAR2,
+    generatetables IN NUMBER,
+    force IN NUMBER,
+    schemaowners IN XDB$STRING_LIST_T,
+    paralleldegree IN NUMBER,
+    options IN NUMBER,
+    tabmd IN xdb.DBMS_XMLSCHEMA_TABMDARR,
+    resmd IN xdb.DBMS_XMLSCHEMA_RESMDARR
+  );
+  pragma supplemental_log_data (CopyEvolve, AUTO);
+  procedure compileSchema(
+    schemaURL IN varchar2,
+    schemaoid IN RAW,
+    tabmd IN xdb.DBMS_XMLSCHEMA_TABMDARR
+  );
+  end dbms_xmlschema_lsb;

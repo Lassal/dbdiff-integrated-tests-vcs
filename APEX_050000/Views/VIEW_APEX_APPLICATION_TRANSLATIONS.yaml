@@ -1,0 +1,71 @@
+schema: APEX_050000
+name: APEX_APPLICATION_TRANSLATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    t.NAME translatable_message,
+    t.MESSAGE_LANGUAGE language_code,
+    --
+    t.MESSAGE_TEXT message_text,
+    t.is_js_message,
+    t.LAST_UPDATED_BY last_updated_by,
+    t.LAST_UPDATED_ON last_updated_on,
+    t.MESSAGE_COMMENT developer_comment,
+    t.id translation_entry_id,
+    t.name || ' l=' || t.message_language || ' m=' || substr(t.message_text, 1, 30) || length(t.message_text) as component_signature
+  from
+    WWV_FLOW_MESSAGES$ t,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and f.id = t.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    /* keep this not exists */
+    and not exists (
+      select
+        1
+      from
+        wwv_flow_language_map m
+      where
+        m.translation_flow_id = f.id
+        and m.security_group_id = f.security_group_id
+        and f.authentication_id <> trunc(f.authentication_id)
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

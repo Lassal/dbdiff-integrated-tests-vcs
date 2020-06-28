@@ -1,0 +1,25 @@
+schema: APEX_050000
+name: APEX_UI_DEFAULTS_LOV_DATA
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.schema,
+    t.table_name,
+    c .column_name,
+    l.lov_disp_sequence,
+    l.lov_disp_value,
+    l.lov_return_value,
+    l.last_updated_by,
+    l.last_updated_on
+  from
+    wwv_flow_current_sgid,
+    wwv_flow_hnt_lov_data l,
+    wwv_flow_hnt_column_info c,
+    wwv_flow_hnt_table_info t
+  where
+    t.schema = user
+    and l.column_id = c .column_id
+    and c .table_id = t.table_id
+columns: []
+referencedTables: []

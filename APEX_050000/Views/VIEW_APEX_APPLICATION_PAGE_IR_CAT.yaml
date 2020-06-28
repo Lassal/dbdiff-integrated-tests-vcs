@@ -1,0 +1,58 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_IR_CAT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.id application_id,
+    f.name application_name,
+    c .worksheet_id interactive_report_id,
+    c .id category_id,
+    c .name category_name,
+    c .application_user application_user,
+    c .base_cat_id parent_category_id,
+    c .display_sequence display_sequence
+  from
+    wwv_flow_worksheet_categories c,
+    wwv_flow_worksheets ws,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.security_group_id = c .security_group_id
+    and f.id = ws.flow_id
+    and ws.id = c .worksheet_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

@@ -1,0 +1,476 @@
+schema: XDB
+name: DBMS_XLSB
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: DELETERESOURCE.OID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DELETERESOURCE.FLAGS
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: DELNAMELOCKS.OID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DELNAMELOCKS.SEQ
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: DELNAMELOCKS.FLAGS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERTRESOURCE.OID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: INSERTRESOURCE.RES
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: INSERTRESOURCE.FLAGS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERTRESOURCE.CONTENT
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: IN
+- name: INSERTRESOURCENXOB.OID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: INSERTRESOURCENXOB.RES
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: INSERTRESOURCENXOB.FLAGS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERTRESOURCENXOB.CONTENT
+  ordinalPosition: 4
+  dataType: BLOB
+  parameterMode: IN
+- name: INSERTRESOURCENXOBCLOB.OID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: INSERTRESOURCENXOBCLOB.RES
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: INSERTRESOURCENXOBCLOB.FLAGS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERTRESOURCENXOBCLOB.CONTENT
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: IN
+- name: INSERTRESOURCEREF.OID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: INSERTRESOURCEREF.RES
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: INSERTRESOURCEREF.FLAGS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERTRESOURCEREF.CONTENT
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: INSERTTOHTABLE.CONTENT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: INSERTTOHTABLE.ACLOID
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: INSERTTOHTABLE.OWNER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSERTTOHTABLE.OWNER_FORMAT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERTTOHTABLE.OID
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: IN
+- name: INSERTTOHTABLE.FLAGS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERTTOHTABLE.SCHEMA
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERTTOUSERHTAB.CONTENT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: INSERTTOUSERHTAB.ACLOID
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: INSERTTOUSERHTAB.OWNER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSERTTOUSERHTAB.OWNER_FORMAT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERTTOUSERHTAB.OID
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: IN
+- name: INSERTTOUSERHTAB.FLAGS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERTTOUSERHTAB.SCHOID
+  ordinalPosition: 7
+  dataType: RAW
+  parameterMode: IN
+- name: INSERTTOUSERHTAB.SCHEMA
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSERTTOUSERHTAB.ELNUM
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: LINKRESOURCE.PARENT_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LINKRESOURCE.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LINKRESOURCE.CHILD_PATH
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LINKRESOURCE.OID
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: LINKRESOURCE.LINKSN
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: IN
+- name: LINKRESOURCE.ACLOID
+  ordinalPosition: 6
+  dataType: RAW
+  parameterMode: IN
+- name: LINKRESOURCE.OWNER
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LINKRESOURCE.OWNER_FORMAT
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: LINKRESOURCE.FLAGS
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: LINKRESOURCE.TYPES
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: SAVEACL.ACLOID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: SAVEACL.RESOID
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: SAVEACL.FLAGS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SAVEACL.SCHEMA
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SAVEACL.NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SAVEACL.OID
+  ordinalPosition: 6
+  dataType: RAW
+  parameterMode: IN
+- name: SETREFCOUNT.OID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: SETREFCOUNT.REFCOUNT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SETREFCOUNT.FLAGS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: TOUCHOID.OID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: TOUCHOID.OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TOUCHOID.OWNER_FORMAT
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: TOUCHOID.MOD_DATE
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: UNLINKRESOURCE.PARENT_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNLINKRESOURCE.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNLINKRESOURCE.OID
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: UNLINKRESOURCE.FLAGS
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATECONTENTXOB.CONTENT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: UPDATECONTENTXOB.PREF
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: UPDATECONTENTXOB.FLAGS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATECONTENTXOB.SCHEMA
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATELOCKS.OID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: UPDATELOCKS.LOCK_LIST
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: UPDATELOCKS.NEXT_SEQ
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATELOCKS.FLAGS
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATENAMELOCKS.OID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: UPDATENAMELOCKS.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATENAMELOCKS.TOKEN
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: UPDATENAMELOCKS.FLAGS
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATERESOURCE.RES
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: UPDATERESOURCE.FLAGS
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATERESOURCE.CONTENT
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: UPDATERESOURCE.PREF
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: UPDATERESOURCEREF.RES
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: UPDATERESOURCEREF.FLAGS
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATERESOURCEREF.CONTENT
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: UPDATERESOURCEREF.PREF
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: UPDATEROOTINFO.CONTENT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_xlsb AUTHID CURRENT_USER IS PROCEDURE InsertResourceNXob(
+    oid IN RAW,
+    res IN CLOB,
+    flags IN NUMBER,
+    content IN BLOB
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(InsertResourceNXob, AUTO);
+  PROCEDURE InsertResourceNXobClob(
+    oid IN RAW,
+    res IN CLOB,
+    flags IN NUMBER,
+    content IN CLOB
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(InsertResourceNXobClob, AUTO);
+  PROCEDURE InsertResource(
+    oid IN RAW,
+    res IN CLOB,
+    flags IN NUMBER,
+    content IN CLOB
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(InsertResource, AUTO);
+  PROCEDURE InsertResourceRef(
+    oid IN RAW,
+    res IN CLOB,
+    flags IN NUMBER,
+    content IN RAW
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(InsertResourceRef, AUTO);
+  PROCEDURE LinkResource(
+    parent_path IN VARCHAR2,
+    name IN VARCHAR2,
+    child_path IN VARCHAR2,
+    oid IN RAW,
+    linksn IN RAW,
+    acloid IN RAW,
+    owner IN VARCHAR2,
+    owner_format IN NUMBER,
+    flags IN NUMBER,
+    types IN NUMBER
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(LinkResource, AUTO);
+  PROCEDURE UnlinkResource(
+    parent_path IN VARCHAR2,
+    name IN VARCHAR2,
+    oid IN RAW,
+    flags IN NUMBER
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(UnlinkResource, AUTO);
+  PROCEDURE DeleteResource(oid IN RAW, flags IN NUMBER);
+  PRAGMA SUPPLEMENTAL_LOG_DATA(DeleteResource, AUTO);
+  PROCEDURE SetRefcount(oid IN RAW, refcount IN NUMBER, flags IN NUMBER);
+  PRAGMA SUPPLEMENTAL_LOG_DATA(SetRefcount, AUTO);
+  PROCEDURE TouchOid(
+    oid IN RAW,
+    owner IN VARCHAR2,
+    owner_format IN NUMBER,
+    mod_date IN RAW
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(TouchOid, AUTO);
+  PROCEDURE UpdateResource(
+    res IN CLOB,
+    flags IN NUMBER,
+    content IN CLOB,
+    pref IN RAW
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(UpdateResource, AUTO);
+  PROCEDURE UpdateResourceRef(
+    res IN CLOB,
+    flags IN NUMBER,
+    content IN RAW,
+    pref IN RAW
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(UpdateResourceRef, AUTO);
+  PROCEDURE UpdateContentXob(
+    content IN CLOB,
+    pref IN RAW,
+    flags IN NUMBER,
+    schema IN NUMBER
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(UpdateContentXob, AUTO);
+  PROCEDURE SaveAcl(
+    acloid IN RAW,
+    resoid IN RAW,
+    flags IN NUMBER,
+    schema IN VARCHAR2,
+    name IN VARCHAR2,
+    oid IN RAW
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(SaveAcl, AUTO);
+  PROCEDURE UpdateLocks(
+    oid IN RAW,
+    lock_list IN CLOB,
+    next_seq IN NUMBER,
+    flags IN NUMBER
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(UpdateLocks, AUTO);
+  PROCEDURE UpdateNameLocks(
+    oid IN RAW,
+    name IN VARCHAR2,
+    token IN RAW,
+    flags IN NUMBER
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(UpdateNameLocks, AUTO);
+  PROCEDURE DelNameLocks(oid IN RAW, seq IN NUMBER, flags IN NUMBER);
+  PRAGMA SUPPLEMENTAL_LOG_DATA(DelNameLocks, AUTO);
+  PROCEDURE InsertToHTable(
+    content IN CLOB,
+    acloid IN RAW,
+    owner IN VARCHAR2,
+    owner_format IN NUMBER,
+    oid IN RAW,
+    flags IN NUMBER,
+    schema IN NUMBER
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(InsertToHTable, AUTO);
+  PROCEDURE InsertToUserHTab(
+    content IN CLOB,
+    acloid IN RAW,
+    owner IN VARCHAR2,
+    owner_format IN NUMBER,
+    oid IN RAW,
+    flags IN NUMBER,
+    schoid IN RAW,
+    schema IN VARCHAR2,
+    elnum IN NUMBER
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(InsertToUserHTab, AUTO);
+  PROCEDURE UpdateRootInfo(content IN CLOB);
+  PRAGMA SUPPLEMENTAL_LOG_DATA(UpdateRootInfo, AUTO);
+  END dbms_xlsb;

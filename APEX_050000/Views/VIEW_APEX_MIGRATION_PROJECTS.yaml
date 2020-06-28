@@ -1,0 +1,74 @@
+schema: APEX_050000
+name: APEX_MIGRATION_PROJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .project_id project_id,
+    --
+    d.migration_name project_name,
+    --
+    d.description description,
+    --
+    a .dbpathname accdb_pathname,
+    --
+    a .jetversion jetversion,
+    --
+    d.migration_type migration_type,
+    --
+    a .accessversion accessversion,
+    --
+    d.created_by project_owner,
+    --
+    s.schema schema,
+    --
+    w.short_name workspace,
+    --
+    w.provisioning_company_id workspace_id,
+    --
+    d.last_updated_on last_modified_on,
+    --
+    d.last_updated_by last_modified_by --
+  from
+    wwv_mig_access a,
+    --
+    wwv_flow_company_schemas s,
+    --
+    wwv_mig_projects d,
+    --
+    wwv_flow_companies w,
+    --
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) g --
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or g.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+    and a .database_schema = s.schema
+    and a .project_id = d.id
+    and a .security_group_id = d.security_group_id
+    and w.provisioning_company_id = a .security_group_id
+    and w.provisioning_company_id = s.security_group_id
+  order by
+    w.PROVISIONING_COMPANY_ID,
+    a .project_id
+columns: []
+referencedTables: []

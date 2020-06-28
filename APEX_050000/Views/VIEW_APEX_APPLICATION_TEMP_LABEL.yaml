@@ -1,0 +1,115 @@
+schema: APEX_050000
+name: APEX_APPLICATION_TEMP_LABEL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    t.THEME_ID theme_number,
+    decode(
+      t.THEME_CLASS_ID,
+      '1',
+      'Optional Label with Help',
+      '2',
+      'Required Label with Help',
+      '3',
+      'Optional Label',
+      '4',
+      'Required Label',
+      '5',
+      'Custom 1',
+      '6',
+      'Custom 2',
+      '7',
+      'Custom 3',
+      '8',
+      'Custom 4',
+      '9',
+      'Custom 5',
+      '10',
+      'Custom 6',
+      '11',
+      'Custom 7',
+      '12',
+      'Custom 8',
+      '13',
+      'No Label',
+      t.THEME_CLASS_ID
+    ) theme_class,
+    t.default_template_options default_template_options,
+    t.preset_template_options preset_template_options,
+    --
+    t.TEMPLATE_NAME template_name,
+    t.TEMPLATE_BODY1 before_label,
+    t.TEMPLATE_BODY2 after_label,
+    --
+    t.BEFORE_ITEM before_item,
+    t.AFTER_ITEM after_item,
+    --
+    t.BEFORE_ELEMENT before_element,
+    t.AFTER_ELEMENT after_element,
+    t.HELP_LINK help_link,
+    t.ERROR_TEMPLATE error_template,
+    --
+    decode(t.REFERENCE_ID, null, 'No', 'Yes') is_subscribed,
+    (
+      select
+        flow_id || '. ' || name
+      from
+        WWV_FLOW_FIELD_TEMPLATES
+      where
+        id = t.REFERENCE_ID
+    ) subscribed_from,
+    --
+    t.ON_ERROR_BEFORE_LABEL,
+    t.ON_ERROR_AFTER_LABEL,
+    t.LAST_UPDATED_ON last_updated_on,
+    t.LAST_UPDATED_BY last_updated_by,
+    t.TRANSLATE_THIS_TEMPLATE,
+    t.TEMPLATE_COMMENT component_comment,
+    t.id label_template_id,
+    --
+    t.TEMPLATE_NAME || ' t=' || t.THEME_ID || ' c=' || t.THEME_CLASS_ID || ' 1=' || substr(t.TEMPLATE_BODY1, 1, 40) || length(t.TEMPLATE_BODY1) || ' 2=' || substr(t.TEMPLATE_BODY2, 1, 40) || length(t.TEMPLATE_BODY2) || ' r=' || decode(t.REFERENCE_ID, null, 'N', 'Y') || ' e=' || substr(t.ON_ERROR_BEFORE_LABEL, 1, 40) || length(t.ON_ERROR_BEFORE_LABEL) || ' e=' || substr(t.ON_ERROR_AFTER_LABEL, 1, 40) || length(t.ON_ERROR_AFTER_LABEL) || ' t=' || t.TRANSLATE_THIS_TEMPLATE component_signature
+  from
+    WWV_FLOW_FIELD_TEMPLATES t,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.id = t.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

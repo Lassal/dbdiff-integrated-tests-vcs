@@ -1,0 +1,77 @@
+schema: APEX_050000
+name: APEX_WS_APPLICATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    a .id application_id,
+    a .security_group_id workspace_id,
+    a .name application_name,
+    a .OWNER,
+    a .DESCRIPTION,
+    a .STATUS,
+    a .LOGIN_URL,
+    a .LOGOUT_URL,
+    a .HOME_PAGE_ID,
+    a .page_style,
+    a .custom_css,
+    a .show_reset_passwd_yn,
+    a .allow_sql_yn,
+    a .allow_public_access_yn,
+    a .login_page_message,
+    a .AUTH_ID,
+    a .ACL_TYPE,
+    a .DATE_FORMAT,
+    a .language,
+    a .territory,
+    a .LOGO_TYPE,
+    a .LOGO_TEXT,
+    a .LOGO_TEXT_ATTRIBUTES,
+    sys.dbms_lob.getlength(a .LOGO_IMAGE) logo_image_size,
+    a .LOGO_IMAGE_FILENAME,
+    a .LOGO_IMAGE_MIMETYPE,
+    a .LOGO_IMAGE_CHARSET,
+    a .LOGO_IMAGE_LAST_UPDATE,
+    a .LOGO_IMAGE_ATTRIBUTES,
+    a .LOGO_FILEPATH,
+    a .LOGO_FILEPATH_ATTRIBUTES,
+    a .email_from,
+    --
+    a .created_on,
+    a .created_by,
+    a .updated_on,
+    a .updated_by
+  from
+    wwv_flow_ws_applications a,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.is_apex$_schema = 'Y'
+    and a .security_group_id = w.PROVISIONING_COMPANY_ID
+    and w.provisioning_company_id != 0
+columns: []
+referencedTables: []

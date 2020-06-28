@@ -1,0 +1,226 @@
+schema: APEX_050000
+name: WWV_FLOW_CLOUD_ARCHIVE
+routineType: PACKAGE
+returnParamater:
+  name: CREATE_HEADER.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: ARCHIVE_APPLICATIONS.P_WORKSPACE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_APPLICATIONS.P_HEADER_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_APPLICATIONS.P_APPLICATION_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_APPLICATIONS.P_VERSION
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_APPLICATIONS.P_ARCHIVE_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ARCHIVE_APPLICATIONS.P_COMMENTS
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ARCHIVE_APPLICATIONS.P_RETENTIONS_IN_DAYS
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_FILE.P_WORKSPACE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_FILE.P_FILE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_FILE.P_HEADER_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_FILE.P_VERSION
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_FILE.P_ARCHIVE_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ARCHIVE_FILE.P_COMMENTS
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ARCHIVE_FILE.P_RETENTIONS_IN_DAYS
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_FILE.P_LOG
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ARCHIVE_FILES(1).P_HEADER_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_FILES(1).P_WORKSPACE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_FILES(2).P_WORKSPACE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_FILES(2).P_FILES
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: ARCHIVE_FILES(2).P_VERSION
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_FILES(2).P_ARCHIVE_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ARCHIVE_FILES(2).P_COMMENTS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ARCHIVE_FILES(2).P_RETENTIONS_IN_DAYS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_REST.P_HEADER_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_REST.P_WORKSPACE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_WORKSPACE.P_HEADER_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ARCHIVE_WORKSPACE.P_WORKSPACE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_HEADER.P_WORKSPACE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_HEADER.P_VERSION
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_HEADER.P_ARCHIVE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_HEADER.P_COMMENTS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_HEADER.P_RETENTIONS_IN_DAYS
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: INCREMENTAL_ARCHIVE.P_WORKSPACE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: INCREMENTAL_ARCHIVE.P_ARCHIVE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INCREMENTAL_ARCHIVE.P_COMMENTS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INCREMENTAL_ARCHIVE.P_EXPORT_FULL_WKSP
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INCREMENTAL_ARCHIVE.P_RETENTIONS_IN_DAYS
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: PURGE_VERSIONS.P_MAX_VERSIONS_TO_RETAIN
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: PURGE_VERSIONS.P_LOG
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: |-
+  package wwv_flow_cloud_archive authid current_user as g_max_versions number;
+  function create_header(
+    p_workspace_id in number,
+    p_version in number default null,
+    p_archive_name in varchar2 default null,
+    p_comments in varchar2 default null,
+    p_retentions_in_days in number default 7
+  ) return number;
+  procedure archive_applications(
+    p_workspace_id in number,
+    p_header_id in number default null,
+    p_application_id in number default null,
+    p_version in number default null,
+    p_archive_name in varchar2 default null,
+    p_comments in varchar2 default null,
+    p_retentions_in_days in number default 7
+  );
+  procedure incremental_archive(
+    p_workspace_id in number,
+    p_archive_name in varchar2 default null,
+    p_comments in varchar2 default null,
+    p_export_full_wksp in varchar2 default 'N',
+    p_retentions_in_days in number default 7
+  );
+  procedure archive_workspace(
+    p_header_id in number,
+    p_workspace_id in number
+  );
+  procedure archive_files(
+    p_header_id in number,
+    p_workspace_id in number
+  );
+  procedure archive_rest(
+    p_header_id in number,
+    p_workspace_id in number
+  );
+  function archive_file(
+    p_workspace_id in number,
+    p_file_id in number,
+    p_header_id in number default null,
+    p_version in number default null,
+    p_archive_name in varchar2 default null,
+    p_comments in varchar2 default null,
+    p_retentions_in_days in number default 7,
+    p_log in boolean default true
+  ) return number;
+  procedure archive_files(
+    p_workspace_id in number,
+    p_files in wwv_flow_global.vc_arr2,
+    p_version in number default null,
+    p_archive_name in varchar2 default null,
+    p_comments in varchar2 default null,
+    p_retentions_in_days in number default 7
+  );
+  procedure purge_archives;
+  procedure purge_versions(
+    p_max_versions_to_retain in number,
+    p_log in boolean default true
+  );
+  end wwv_flow_cloud_archive;

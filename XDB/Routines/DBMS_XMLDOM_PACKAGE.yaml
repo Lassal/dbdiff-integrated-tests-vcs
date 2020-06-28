@@ -1,0 +1,2281 @@
+schema: XDB
+name: DBMS_XMLDOM
+routineType: PACKAGE
+returnParamater:
+  name: XMLD_USEBINSTREAM.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: ADOPTNODE.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ADOPTNODE.ADOPTEDNODE
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: APPENDCHILD.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: APPENDCHILD.NEWCHILD
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: APPENDDATA.CD
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: APPENDDATA.ARG
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BINARYINPUTSTREAMAVAILABLE.HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: CHARACTERINPUTSTREAMAVAILABLE.HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: CLONENODE.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: CLONENODE.DEEP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CLOSEBINARYINPUTSTREAM.HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: CLOSEBINARYOUTPUTSTREAM.HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: CLOSECHARACTERINPUTSTREAM.HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: CLOSECHARACTEROUTPUTSTREAM.HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: CREATEATTRIBUTE(1).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: CREATEATTRIBUTE(1).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEATTRIBUTE(2).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: CREATEATTRIBUTE(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEATTRIBUTE(2).NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATECDATASECTION.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: CREATECDATASECTION.DATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATECOMMENT.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: CREATECOMMENT.DATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEDOCUMENT.NAMESPACEURI
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEDOCUMENT.QUALIFIEDNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEDOCUMENT.DOCTYPE
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: CREATEDOCUMENTFRAGMENT.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: CREATEELEMENT(1).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: CREATEELEMENT(1).TAGNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEELEMENT(2).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: CREATEELEMENT(2).TAGNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEELEMENT(2).NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEENTITYREFERENCE.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: CREATEENTITYREFERENCE.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEPROCESSINGINSTRUCTION.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: CREATEPROCESSINGINSTRUCTION.TARGET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEPROCESSINGINSTRUCTION.DATA
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATETEXTNODE.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: CREATETEXTNODE.DATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEXMLBINARYINPUTSTREAM.N
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: CREATEXMLBINARYOUTPUTSTREAM.N
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: CREATEXMLCHARACTERINPUTSTREAM.N
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: CREATEXMLCHARACTEROUTPUTSTREAM.N
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DELETEDATA.CD
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: DELETEDATA.OFFSET
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DELETEDATA.CNT
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: FINDENTITY.DT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: FINDENTITY.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FINDENTITY.PAR
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: FINDNOTATION.DT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: FINDNOTATION.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FLUSHBINARYOUTPUTSTREAM.HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: FLUSHCHARACTEROUTPUTSTREAM.HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: FREEDOCFRAG.DF
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: FREEDOCTYPE.DT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: FREEDOCUMENT.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: FREEELEMENT.ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: FREENODE.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: FREENODELIST.NL
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETATTRIBUTE(1).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETATTRIBUTE(1).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETATTRIBUTE(2).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETATTRIBUTE(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETATTRIBUTE(2).NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETATTRIBUTENODE(1).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETATTRIBUTENODE(1).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETATTRIBUTENODE(2).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETATTRIBUTENODE(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETATTRIBUTENODE(2).NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETATTRIBUTES.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETCHARSET.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETCHILDNODES.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETCHILDRENBYTAGNAME(1).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETCHILDRENBYTAGNAME(1).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETCHILDRENBYTAGNAME(2).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETCHILDRENBYTAGNAME(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETCHILDRENBYTAGNAME(2).NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETDATA(1).CD
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETDATA(2).PI
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETDOCTYPE.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETDOCUMENTELEMENT.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETELEMENTSBYTAGNAME(1).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETELEMENTSBYTAGNAME(1).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETELEMENTSBYTAGNAME(2).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETELEMENTSBYTAGNAME(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETELEMENTSBYTAGNAME(2).NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETELEMENTSBYTAGNAME(3).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETELEMENTSBYTAGNAME(3).TAGNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETENTITIES.DT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETEXPANDEDNAME(1).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETEXPANDEDNAME(1).DATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETEXPANDEDNAME(2).A
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETEXPANDEDNAME(3).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETFIRSTCHILD.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETIMPLEMENTATION.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETLASTCHILD.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETLENGTH(1).NL
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETLENGTH(2).NNM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETLENGTH(3).CD
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETLOCALNAME(1).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETLOCALNAME(1).DATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETLOCALNAME(2).A
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETLOCALNAME(3).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNAME(1).A
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNAME(2).DT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNAMEDITEM(1).NNM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNAMEDITEM(1).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNAMEDITEM(2).NNM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNAMEDITEM(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNAMEDITEM(2).NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNAMESPACE(1).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNAMESPACE(1).DATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: GETNAMESPACE(2).A
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNAMESPACE(3).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNEXTSIBLING.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNODEFROMFRAGMENT.FRAGMENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: GETNODENAME.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNODETYPE.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNODEVALUE.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNODEVALUEASBINARYSTREAM(1).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNODEVALUEASBINARYSTREAM(2).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNODEVALUEASBINARYSTREAM(2).PUSHVALUE
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: GETNODEVALUEASCHARACTERSTREAM(1).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNODEVALUEASCHARACTERSTREAM(2).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNODEVALUEASCHARACTERSTREAM(2).PUSHVALUE
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: GETNOTATIONNAME.ENT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETNOTATIONS.DT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETOWNERDOCUMENT.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETOWNERELEMENT.A
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETPARENTNODE.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETPREFIX.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETPREVIOUSSIBLING.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETPUBLICID(1).DT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETPUBLICID(2).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETPUBLICID(3).ENT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETQUALIFIEDNAME(1).A
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETQUALIFIEDNAME(2).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETSCHEMANODE.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETSPECIFIED.A
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETSTANDALONE.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETSYSTEMID(1).DT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETSYSTEMID(2).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETSYSTEMID(3).ENT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETTAGNAME.ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETTARGET.PI
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETVALUE.A
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETVERSION.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETXMLTYPE.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: HASATTRIBUTE(1).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: HASATTRIBUTE(1).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HASATTRIBUTE(2).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: HASATTRIBUTE(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HASATTRIBUTE(2).NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HASATTRIBUTES.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: HASCHILDNODES.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: HASFEATURE.DI
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: HASFEATURE.FEATURE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HASFEATURE.VERSION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORTNODE.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: IMPORTNODE.IMPORTEDNODE
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: IMPORTNODE.DEEP
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: INSERTBEFORE.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: INSERTBEFORE.NEWCHILD
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: INSERTBEFORE.REFCHILD
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: INSERTDATA.CD
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: INSERTDATA.OFFSET
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: INSERTDATA.ARG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISNULL(1).DI
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(10).CDS
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(11).DT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(12).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(13).ENT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(14).EREF
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(15).PI
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(16).DF
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(17).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(2).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(3).NL
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(4).NNM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(5).CD
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(6).A
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(7).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(8).T
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ISNULL(9).COM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ITEM(1).NL
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ITEM(1).IDX
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ITEM(2).NNM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ITEM(2).IDX
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAKEATTR.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKECDATASECTION.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKECHARACTERDATA.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKECOMMENT.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKEDOCUMENT.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKEDOCUMENTFRAGMENT.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKEDOCUMENTTYPE.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKEELEMENT.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKEENTITY.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKEENTITYREFERENCE.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENODE(1).CD
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENODE(10).EREF
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENODE(11).PI
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENODE(12).DF
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENODE(13).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENODE(2).A
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENODE(3).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENODE(4).T
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENODE(5).COM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENODE(6).CDS
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENODE(7).DT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENODE(8).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENODE(9).ENT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKENOTATION.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKEPROCESSINGINSTRUCTION.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAKETEXT.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: NEWDOMDOCUMENT(2).XMLDOC
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: NEWDOMDOCUMENT(3).CL
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: NORMALIZE.ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: READBINARYINPUTSTREAM(1).HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: READBINARYINPUTSTREAM(1).NUMBYTES
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: READBINARYINPUTSTREAM(2).HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: READBINARYINPUTSTREAM(2).BYTES
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: READBINARYINPUTSTREAM(2).NUMBYTES
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: INOUT
+- name: READBINARYINPUTSTREAM(3).HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: READBINARYINPUTSTREAM(3).BYTES
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: READBINARYINPUTSTREAM(3).OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: READBINARYINPUTSTREAM(3).NUMBYTES
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: INOUT
+- name: READBYTESFROMBIS1.HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: READBYTESFROMBIS1.BYTES
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: READCHARACTERINPUTSTREAM(1).HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: READCHARACTERINPUTSTREAM(1).NUMCHARS
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: READCHARACTERINPUTSTREAM(1).LINEFEED
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: READCHARACTERINPUTSTREAM(2).HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: READCHARACTERINPUTSTREAM(2).CHARS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: READCHARACTERINPUTSTREAM(2).NUMCHARS
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: INOUT
+- name: READCHARACTERINPUTSTREAM(2).LINEFEED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: READCHARACTERINPUTSTREAM(3).HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: READCHARACTERINPUTSTREAM(3).CHARS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: READCHARACTERINPUTSTREAM(3).OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: READCHARACTERINPUTSTREAM(3).NUMCHARS
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: INOUT
+- name: READCHARACTERINPUTSTREAM(3).LINEFEED
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REMOVEATTRIBUTE(1).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REMOVEATTRIBUTE(1).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVEATTRIBUTE(2).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REMOVEATTRIBUTE(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVEATTRIBUTE(2).NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVEATTRIBUTENODE.ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REMOVEATTRIBUTENODE.OLDATTR
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REMOVECHILD.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REMOVECHILD.OLDCHILD
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REMOVENAMEDITEM(1).NNM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REMOVENAMEDITEM(1).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVENAMEDITEM(2).NNM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REMOVENAMEDITEM(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVENAMEDITEM(2).NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REPLACECHILD.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REPLACECHILD.NEWCHILD
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REPLACECHILD.OLDCHILD
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REPLACEDATA.CD
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REPLACEDATA.OFFSET
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REPLACEDATA.CNT
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REPLACEDATA.ARG
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESOLVENAMESPACEPREFIX(1).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: RESOLVENAMESPACEPREFIX(1).PREFIX
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESOLVENAMESPACEPREFIX(1).DATA
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: RESOLVENAMESPACEPREFIX(2).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: RESOLVENAMESPACEPREFIX(2).PREFIX
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETATTRIBUTE(1).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETATTRIBUTE(1).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETATTRIBUTE(1).NEWVALUE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETATTRIBUTE(2).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETATTRIBUTE(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETATTRIBUTE(2).NEWVALUE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETATTRIBUTE(2).NS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETATTRIBUTENODE(1).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETATTRIBUTENODE(1).NEWATTR
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETATTRIBUTENODE(2).ELEM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETATTRIBUTENODE(2).NEWATTR
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETATTRIBUTENODE(2).NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETCHARSET.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETCHARSET.CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETDATA(1).CD
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETDATA(1).DATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETDATA(2).PI
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETDATA(2).DATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETDOCTYPE.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETDOCTYPE.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETDOCTYPE.SYSID
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETDOCTYPE.PUBID
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETNAMEDITEM(1).NNM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETNAMEDITEM(1).ARG
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETNAMEDITEM(2).NNM
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETNAMEDITEM(2).ARG
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETNAMEDITEM(2).NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETNODEVALUE.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETNODEVALUE.NODEVALUE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETNODEVALUEASBINARYSTREAM(1).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETNODEVALUEASBINARYSTREAM(1).NODEVALUE
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: SETNODEVALUEASBINARYSTREAM(2).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETNODEVALUEASCHARACTERSTREAM(1).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETNODEVALUEASCHARACTERSTREAM(1).NODEVALUE
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: SETNODEVALUEASCHARACTERSTREAM(2).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETNODEVALUEASDEFERREDBFILE.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETNODEVALUEASDEFERREDBFILE.VALUE
+  ordinalPosition: 2
+  dataType: BFILE
+  parameterMode: IN
+- name: SETNODEVALUEASDEFERREDBLOB.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETNODEVALUEASDEFERREDBLOB.VALUE
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: SETNODEVALUEASDEFERREDCLOB.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETNODEVALUEASDEFERREDCLOB.VALUE
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: SETPREFIX.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETPREFIX.PREFIX
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSTANDALONE.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETSTANDALONE.NEWVALUE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETVALUE.A
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETVALUE.NEWVALUE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETVERSION.DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SETVERSION.VERSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SPLITTEXT.T
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SPLITTEXT.OFFSET
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: STREAMISNULL.HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: SUBSTRINGDATA.CD
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SUBSTRINGDATA.OFFSET
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SUBSTRINGDATA.CNT
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: USEBINARYSTREAM.N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITEBINARYOUTPUTSTREAM(1).HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: WRITEBINARYOUTPUTSTREAM(1).BYTES
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: WRITEBINARYOUTPUTSTREAM(1).NUMBYTES
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: WRITEBINARYOUTPUTSTREAM(2).HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: WRITEBINARYOUTPUTSTREAM(2).BYTES
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: WRITEBINARYOUTPUTSTREAM(2).NUMBYTES
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: INOUT
+- name: WRITEBINARYOUTPUTSTREAM(3).HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: WRITEBINARYOUTPUTSTREAM(3).BYTES
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: WRITEBINARYOUTPUTSTREAM(3).OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: WRITEBINARYOUTPUTSTREAM(3).NUMBYTES
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: INOUT
+- name: WRITECHARACTEROUTPUTSTREAM(1).HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: WRITECHARACTEROUTPUTSTREAM(1).CHARS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITECHARACTEROUTPUTSTREAM(1).NUMCHARS
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: WRITECHARACTEROUTPUTSTREAM(1).LINEFEED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITECHARACTEROUTPUTSTREAM(2).HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: WRITECHARACTEROUTPUTSTREAM(2).CHARS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITECHARACTEROUTPUTSTREAM(2).NUMCHARS
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: INOUT
+- name: WRITECHARACTEROUTPUTSTREAM(2).LINEFEED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITECHARACTEROUTPUTSTREAM(3).HANDLE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: WRITECHARACTEROUTPUTSTREAM(3).CHARS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITECHARACTEROUTPUTSTREAM(3).OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: WRITECHARACTEROUTPUTSTREAM(3).NUMCHARS
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: INOUT
+- name: WRITECHARACTEROUTPUTSTREAM(3).LINEFEED
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITEEXTERNALDTDTOBUFFER(1).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITEEXTERNALDTDTOBUFFER(1).BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITEEXTERNALDTDTOBUFFER(2).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITEEXTERNALDTDTOBUFFER(2).BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITEEXTERNALDTDTOBUFFER(2).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITEEXTERNALDTDTOCLOB(1).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITEEXTERNALDTDTOCLOB(1).CL
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: WRITEEXTERNALDTDTOCLOB(2).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITEEXTERNALDTDTOCLOB(2).CL
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: WRITEEXTERNALDTDTOCLOB(2).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITEEXTERNALDTDTOFILE(1).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITEEXTERNALDTDTOFILE(1).FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITEEXTERNALDTDTOFILE(2).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITEEXTERNALDTDTOFILE(2).FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITEEXTERNALDTDTOFILE(2).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOBUFFER(1).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOBUFFER(1).BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITETOBUFFER(10).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOBUFFER(10).BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITETOBUFFER(10).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOBUFFER(10).PFLAG
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOBUFFER(10).INDENT
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOBUFFER(2).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOBUFFER(2).BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITETOBUFFER(2).PFLAG
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOBUFFER(2).INDENT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOBUFFER(3).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOBUFFER(3).BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITETOBUFFER(3).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOBUFFER(4).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOBUFFER(4).BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITETOBUFFER(4).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOBUFFER(4).PFLAG
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOBUFFER(4).INDENT
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOBUFFER(5).DF
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOBUFFER(5).BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITETOBUFFER(6).DF
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOBUFFER(6).BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITETOBUFFER(6).PFLAG
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOBUFFER(6).INDENT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOBUFFER(7).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOBUFFER(7).BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITETOBUFFER(8).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOBUFFER(8).BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITETOBUFFER(8).PFLAG
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOBUFFER(8).INDENT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOBUFFER(9).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOBUFFER(9).BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WRITETOBUFFER(9).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOCLOB(1).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOCLOB(1).CL
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: WRITETOCLOB(2).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOCLOB(2).CL
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: WRITETOCLOB(2).PFLAG
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOCLOB(2).INDENT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOCLOB(3).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOCLOB(3).CL
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: WRITETOCLOB(3).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOCLOB(4).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOCLOB(4).CL
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: WRITETOCLOB(4).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOCLOB(4).PFLAG
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOCLOB(4).INDENT
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOCLOB(5).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOCLOB(5).CL
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: WRITETOCLOB(6).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOCLOB(6).CL
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: WRITETOCLOB(6).PFLAG
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOCLOB(6).INDENT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOCLOB(7).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOCLOB(7).CL
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: WRITETOCLOB(7).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOCLOB(8).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOCLOB(8).CL
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: WRITETOCLOB(8).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOCLOB(8).PFLAG
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOCLOB(8).INDENT
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOFILE(1).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOFILE(1).FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOFILE(2).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOFILE(2).FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOFILE(2).PFLAG
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOFILE(2).INDENT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOFILE(3).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOFILE(3).FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOFILE(3).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOFILE(4).N
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOFILE(4).FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOFILE(4).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOFILE(4).PFLAG
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOFILE(4).INDENT
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOFILE(5).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOFILE(5).FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOFILE(6).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOFILE(6).FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOFILE(6).PFLAG
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOFILE(6).INDENT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOFILE(7).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOFILE(7).FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOFILE(7).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOFILE(8).DOC
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: WRITETOFILE(8).FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOFILE(8).CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOFILE(8).PFLAG
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITETOFILE(8).INDENT
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: XMLD_USEBINSTREAM.N
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+routineDefinition: "PACKAGE dbms_xmldom AUTHID CURRENT_USER IS ----------------------------------------------------------------------\n\
+  -- DOM API\n----------------------------------------------------------------------\n\
+  ----------------------------------------------------------------------\n-- Constants\
+  \ and Type Declarations\n----------------------------------------------------------------------\n\
+  --\n-- DOM Node types (as returned by getNodeType)\n--\nELEMENT_NODE CONSTANT PLS_INTEGER:\
+  \ = 1;\nATTRIBUTE_NODE CONSTANT PLS_INTEGER: = 2;\nTEXT_NODE CONSTANT PLS_INTEGER:\
+  \ = 3;\nCDATA_SECTION_NODE CONSTANT PLS_INTEGER: = 4;\nENTITY_REFERENCE_NODE CONSTANT\
+  \ PLS_INTEGER: = 5;\nENTITY_NODE CONSTANT PLS_INTEGER: = 6;\nPROCESSING_INSTRUCTION_NODE\
+  \ CONSTANT PLS_INTEGER: = 7;\nCOMMENT_NODE CONSTANT PLS_INTEGER: = 8;\nDOCUMENT_NODE\
+  \ CONSTANT PLS_INTEGER: = 9;\nDOCUMENT_TYPE_NODE CONSTANT PLS_INTEGER: = 10;\nDOCUMENT_FRAGMENT_NODE\
+  \ CONSTANT PLS_INTEGER: = 11;\nNOTATION_NODE CONSTANT PLS_INTEGER: = 12;\n--\n--\
+  \ DOMException types\n--\nINDEX_SIZE_ERR\nEXCEPTION;\nDOMSTRING_SIZE_ERR\nEXCEPTION;\n\
+  HIERARCHY_REQUEST_ERR\nEXCEPTION;\nWRONG_DOCUMENT_ERR\nEXCEPTION;\nINVALID_CHARACTER_ERR\n\
+  EXCEPTION;\nNO_DATA_ALLOWED_ERR\nEXCEPTION;\nNO_MODIFICATION_ALLOWED_ERR\nEXCEPTION;\n\
+  NOT_FOUND_ERR\nEXCEPTION;\nNOT_SUPPORTED_ERR\nEXCEPTION;\nINUSE_ATTRIBUTE_ERR\n\
+  EXCEPTION;\nINVALID_STATE_ERR\nEXCEPTION;\nSYNTAX_ERR\nEXCEPTION;\nINVALID_MODIFICATION_ERR\n\
+  EXCEPTION;\nNAMESPACE_ERR\nEXCEPTION;\nINVALID_ACCESS_ERR\nEXCEPTION;\n--\n  --\
+  \ DOM interface types\n  --\n  SUBTYPE domtype IS RAW(13);\nTYPE DOMNode IS RECORD\
+  \ (id RAW(13));\nTYPE DOMNamedNodeMap IS RECORD (id RAW(13));\nTYPE DOMNodeList\
+  \ IS RECORD (id RAW(13));\nTYPE DOMAttr IS RECORD (id RAW(13));\nTYPE DOMCDataSection\
+  \ IS RECORD (id RAW(13));\nTYPE DOMCharacterData IS RECORD (id RAW(13));\nTYPE DOMComment\
+  \ IS RECORD (id RAW(13));\nTYPE DOMDocumentFragment IS RECORD (id RAW(13));\nTYPE\
+  \ DOMElement IS RECORD (id RAW(13));\nTYPE DOMEntity IS RECORD (id RAW(13));\nTYPE\
+  \ DOMEntityReference IS RECORD (id RAW(13));\nTYPE DOMNotation IS RECORD (id RAW(13));\n\
+  TYPE DOMProcessingInstruction IS RECORD (id RAW(13));\nTYPE DOMText IS RECORD (id\
+  \ RAW(13));\nTYPE DOMImplementation IS RECORD (id RAW(13));\nTYPE DOMDocumentType\
+  \ IS RECORD (id RAW(13));\nTYPE DOMDocument IS RECORD (id RAW(13));\nTYPE DOMStreamHandle\
+  \ IS RECORD (id RAW(12));\n  /*\n  \n  SUBTYPE DOMNode IS domtype;\n  \n  SUBTYPE\
+  \ DOMNamedNodeMap IS domtype;\n  \n  SUBTYPE DOMNodeList IS domtype;\n  \n  SUBTYPE\
+  \ DOMAttr IS domtype;\n  \n  SUBTYPE DOMCDataSection IS domtype;\n  \n  SUBTYPE\
+  \ DOMCharacterData IS domtype;\n  \n  SUBTYPE DOMComment IS domtype;\n  \n  SUBTYPE\
+  \ DOMDocumentFragment IS domtype;\n  \n  SUBTYPE DOMElement IS domtype;\n  \n  SUBTYPE\
+  \ DOMEntity IS domtype;\n  \n  SUBTYPE DOMEntityReference IS domtype;\n  \n  SUBTYPE\
+  \ DOMNotation IS domtype;\n  \n  SUBTYPE DOMProcessingInstruction IS domtype;\n\
+  \  \n  SUBTYPE DOMText IS domtype;\n  \n  SUBTYPE DOMImplementation IS domtype;\n\
+  \  \n  SUBTYPE DOMDocumentType IS domtype;\n  \n  SUBTYPE DOMDocument IS domtype;\n\
+  \  \n  */\n  -----------------------------------------------------------------------------\n\
+  \  -- Public Interface\n  ----------------------------------------------------------------------------\n\
+  \  ---------------------------------------------------------------------------\n\
+  \  -- Interface DOMImplementation:\n  --\n  --    hasFeature\n  --    createDocument\n\
+  \  --\n  --    implementation_isNull (Extension)\n  --\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM DOMImplementation interface methods\n  \n   * These methods\
+  \ implement the DOM DOMImplementation interface as specified in:\n  \n   * http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-102161490\n\
+  \  \n   */\n  FUNCTION hasFeature(\n    di DOMImplementation,\n    feature IN VARCHAR2,\n\
+  \    version IN VARCHAR2\n  ) RETURN BOOLEAN;\nFUNCTION createDocument(\n    namespaceURI\
+  \ IN VARCHAR2,\n    qualifiedName IN VARCHAR2,\n    doctype IN DOMType: = NULL\n\
+  \  ) RETURN DOMDocument;\n  /**\n  \n   * DOM Node XDK interface methods\n  \n \
+  \  */\n  -- Check validity of object\n  FUNCTION isNull(di DOMImplementation) RETURN\
+  \ BOOLEAN;\n---------------------------------------------------------------------------\n\
+  \  -- DOM Node interface:\n  --\n  --    getNodeName\n  --    getNodeValue\n  --\
+  \    setNodeValue\n  --    getNodeType\n  --    getParentNode\n  --    getChildNodes\n\
+  \  --    getFirstChild\n  --    getLastChild\n  --    getPreviousSibling\n  -- \
+  \   getNextSibling\n  --    getAttributes\n  --    getOwnerDocument\n  --    getPrefix\n\
+  \  --    setPrefix\n  --    insertBefore\n  --    replaceChild\n  --    removeChild\n\
+  \  --    appendChild\n  --    hasChildNodes\n  --    cloneNode\n  --    node_isNull\
+  \ (Extension)\n  --    writeToFile (Extension)\n  --    node_writeToBuffer (Extension)\n\
+  \  --    node_writeToClob (Extension)\n  --    getNodeFromFragment (Extension)\n\
+  \  --    writeToFile (given charset, Extension)\n  --    writeToBuffer (given charset,\
+  \ Extension)\n  --    writeToClob (given charset, Extension)\n  --    makeAttr (Extension)\n\
+  \  --    makeCDataSection (Extension)\n  --    makeCharacterData (Extension)\n \
+  \ --    makeComment (Extension)\n  --    makeDocumentFragment (Extension)\n  --\
+  \    makeDocumentType (Extension)\n  --    makeElement (Extension)\n  --    makeEntity\
+  \ (Extension)\n  --    makeEntityReference (Extension)\n  --    makeNotation (Extension)\n\
+  \  --    makeProcessingInstruction (Extension)\n  --    makeText (Extension)\n \
+  \ --    makeDocument (Extension)\n  --    getSchemaNode (Extension)\n  --    freeNode\
+  \ (Extension)\n  --    numChildNodes (available for C wrapper)\n  --    getQualifiedName\
+  \ (available for C wrapper)\n  --    getNodeNameSpace (available for C wrapper)\n\
+  \  --    getNodePrefix (available for C wrapper)\n  --    getNodeLocal (available\
+  \ for C wrapper)\n  ---------------------------------------------------------------------------\n\
+  \  --\n  /**\n  \n   * DOM Node interface methods\n  \n   * These methods implement\
+  \ the DOM Node interface as specified in:\n  \n   * http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-1950641247\n\
+  \  \n   */\n  FUNCTION getNodeName(n DOMNode) RETURN VARCHAR2;\nFUNCTION getNodeValue(n\
+  \ domnode) RETURN VARCHAR2;\nPROCEDURE setNodeValue(n DOMNode, nodeValue IN VARCHAR2);\n\
+  FUNCTION getNodeType(n DOMNode) RETURN pls_INTEGER;\nFUNCTION getParentNode(n DOMNode)\
+  \ RETURN DOMNode;\n-- FUNCTION domnode_getChildNodes (n IN domnode) RETURN DOMNodeList;\n\
+  \  FUNCTION getChildNodes(n DOMNode) RETURN DOMNodeList;\nFUNCTION getFirstChild(n\
+  \ DOMNode) RETURN DOMNode;\nFUNCTION getLastChild(n DOMNode) RETURN DOMNode;\nFUNCTION\
+  \ getPreviousSibling(n DOMNode) RETURN DOMNode;\nFUNCTION getNextSibling(n DOMNode)\
+  \ RETURN DOMNode;\nFUNCTION getAttributes(n DOMNode) RETURN DOMNamedNodeMap;\nFUNCTION\
+  \ getOwnerDocument(n DOMNode) RETURN DOMDocument;\nFUNCTION getPrefix(n domnode)\
+  \ RETURN VARCHAR2;\nFUNCTION getNodeFromFragment (fragment IN sys.xmltype) return\
+  \ DOMNode;\nPROCEDURE setPrefix(n DOMNode, prefix IN VARCHAR2);\nFUNCTION insertBefore(\n\
+  \    n DOMNode,\n    newChild IN DOMNode,\n    refChild IN DOMNode\n  ) RETURN DOMNode;\n\
+  FUNCTION replaceChild(\n    n DOMNode,\n    newChild IN DOMNode,\n    oldChild IN\
+  \ DOMNode\n  ) RETURN DOMNode;\nFUNCTION removeChild(n DOMNode, oldChild IN DOMNode)\
+  \ RETURN DOMNode;\nFUNCTION appendChild(n DOMNode, newChild IN DOMNode) RETURN DOMNode;\n\
+  FUNCTION hasChildNodes(n DOMNode) RETURN BOOLEAN;\nFUNCTION hasAttributes(n DOMNode)\
+  \ RETURN BOOLEAN;\nFUNCTION cloneNode(n DOMNode, deep boolean) RETURN DOMNode;\n\
+  \  /**\n  \n   * DOM Node XDK interface methods\n  \n   */\n  -- Check validity\
+  \ of object\n  FUNCTION isNull(n DOMNode) RETURN BOOLEAN;\n-- Write DOMNode object\
+  \ using the database character set\n  PROCEDURE writeToFile(n DOMNode, fileName\
+  \ VARCHAR2);\nPROCEDURE writeToBuffer(n DOMNode, buffer IN OUT VARCHAR2);\nPROCEDURE\
+  \ writeToClob(n DOMNode, cl IN OUT CLOB);\n-- Write DOMNode object using database\
+  \ character set and Print Options\n  PROCEDURE writeToFile(\n    n DOMNode,\n  \
+  \  fileName VARCHAR2,\n    pflag IN NUMBER,\n    indent IN NUMBER\n  );\nPROCEDURE\
+  \ writeToBuffer(\n    n DOMNode,\n    buffer IN OUT VARCHAR2,\n    pflag IN NUMBER,\n\
+  \    indent IN NUMBER\n  );\nPROCEDURE writeToClob(\n    n DOMNode,\n    cl IN OUT\
+  \ CLOB,\n    pflag IN NUMBER,\n    indent IN NUMBER\n  );\n-- Write DOMNode object\
+  \ using the specified character set\n  PROCEDURE writeToFile(n DOMNode, fileName\
+  \ VARCHAR2, charset VARCHAR2);\nPROCEDURE writeToBuffer(\n    n DOMNode,\n    buffer\
+  \ IN OUT VARCHAR2,\n    charset VARCHAR2\n  );\nPROCEDURE writeToClob(n DOMNode,\
+  \ cl IN OUT CLOB, charset VARCHAR2);\n-- Write DOMNode object using the specified\
+  \ character set and print options\n  PROCEDURE writeToFile(\n    n DOMNode,\n  \
+  \  fileName VARCHAR2,\n    charset VARCHAR2,\n    pflag IN NUMBER,\n    indent IN\
+  \ NUMBER\n  );\nPROCEDURE writeToBuffer(\n    n DOMNode,\n    buffer IN OUT VARCHAR2,\n\
+  \    charset VARCHAR2,\n    pflag IN NUMBER,\n    indent IN NUMBER\n  );\nPROCEDURE\
+  \ writeToClob(\n    n DOMNode,\n    cl IN OUT CLOB,\n    charset VARCHAR2,\n   \
+  \ pflag IN NUMBER,\n    indent IN NUMBER\n  );\n-- Cast DOMNode objects\n  FUNCTION\
+  \ makeAttr(n DOMNode) RETURN DOMAttr;\nFUNCTION makeCDataSection(n DOMNode) RETURN\
+  \ DOMCDataSection;\nFUNCTION makeCharacterData(n DOMNode) RETURN DOMCharacterData;\n\
+  FUNCTION makeComment(n DOMNode) RETURN DOMComment;\nFUNCTION makeDocumentFragment(n\
+  \ DOMNode) RETURN DOMDocumentFragment;\nFUNCTION makeDocumentType(n DOMNode) RETURN\
+  \ DOMDocumentType;\nFUNCTION makeElement(n DOMNode) RETURN DOMElement;\nFUNCTION\
+  \ makeEntity(n DOMNode) RETURN DOMEntity;\nFUNCTION makeEntityReference(n DOMNode)\
+  \ RETURN DOMEntityReference;\nFUNCTION makeNotation(n DOMNode) RETURN DOMNotation;\n\
+  FUNCTION makeProcessingInstruction(n DOMNode) RETURN DOMProcessingInstruction;\n\
+  FUNCTION makeText(n DOMNode) RETURN DOMText;\nFUNCTION makeDocument(n DOMNode) RETURN\
+  \ DOMDocument;\nFUNCTION getSchemaNode(n DOMnode) RETURN DOMnode;\nPROCEDURE getNamespace(n\
+  \ DOMnode, data IN OUT VARCHAR2);\nPROCEDURE getLocalName(n DOMnode, data OUT VARCHAR2);\n\
+  PROCEDURE getExpandedName(n DOMnode, data OUT VARCHAR2);\nPROCEDURE freeNode(n DOMnode);\n\
+  -------------------------------------------------------------------------------\n\
+  \  -- The following functions and procedures are added to support the 4 Streaming\n\
+  \  -- models defined for Large Node access\n  -------------------------------------------------------------------------------\n\
+  \  -- Get-Pull methods\n  -------------------------------------------------------------------------------\n\
+  \  FUNCTION getNodeValueAsBinaryStream (n in domnode) return sys.utl_BinaryInputStream;\n\
+  FUNCTION getNodeValueAsCharacterStream (n in domnode) return sys.utl_CharacterInputStream;\n\
+  ----------------------------------------------------------------------------\n \
+  \ -- Get-Push methods\n  ----------------------------------------------------------------------------\n\
+  \  PROCEDURE getNodeValueAsBinaryStream (\n    n in domnode,\n    pushValue in out\
+  \ sys.utl_BinaryOutputStream\n  );\nPROCEDURE getNodeValueAsCharacterStream (\n\
+  \    n in domnode,\n    pushValue in out sys.utl_CharacterOutputStream\n  );\n----------------------------------------------------------------------------\n\
+  \  -- Set-Pull methods\n  ----------------------------------------------------------------------------\n\
+  \  PROCEDURE setNodeValueAsBinaryStream (\n    n in domnode,\n    nodeValue in out\
+  \ sys.utl_BinaryInputStream\n  );\nPROCEDURE setNodeValueAsCharacterStream (\n \
+  \   n in domnode,\n    nodeValue in out sys.utl_CharacterInputStream\n  );\n----------------------------------------------------------------------------\n\
+  \  -- \"Deferred\" Set-Pull\n  ----------------------------------------------------------------------------\n\
+  \  PROCEDURE setNodeValueAsDeferredBfile (\n    n in domnode,\n    value in bfile\n\
+  \  );\nPROCEDURE setNodeValueAsDeferredBlob (\n    n in domnode,\n    value in blob\n\
+  \  );\nPROCEDURE setNodeValueAsDeferredClob (\n    n in domnode,\n    value in clob\n\
+  \  );\n----------------------------------------------------------------------------\n\
+  \  -- Set-Push methods\n  ----------------------------------------------------------------------------\n\
+  \  FUNCTION setNodeValueAsBinaryStream (n in domnode) return sys.utl_BinaryOutputStream;\n\
+  FUNCTION setNodeValueAsCharacterStream (n in domnode) return sys.utl_CharacterOutputStream;\n\
+  ----------------------------------------------------------------------------\n \
+  \ -- Determining if use of Binary Stream is valid\n  ----------------------------------------------------------------------------\n\
+  \  FUNCTION useBinaryStream (n in domnode) return boolean;\nFUNCTION xmld_useBinStream\
+  \ (n in raw) return boolean;\n----------------------------------------------------------------------------\n\
+  \  -- XMLBinaryInputStream methods\n  ----------------------------------------------------------------------------\n\
+  \  FUNCTION createXMLBinaryInputStream (n in raw) return raw;\nFUNCTION BinaryInputStreamAvailable\
+  \ (handle in raw) return integer;\nPROCEDURE readBytesFromBIS1 (\n    handle in\
+  \ RAW,\n    bytes in out raw --                                offset in pls_integer,\n\
+  \    --                                numBytes in pls_integer\n  );\nFUNCTION readBinaryInputStream\
+  \ (\n    handle in raw,\n    numBytes in integer\n  ) return raw;\nPROCEDURE readBinaryInputStream\
+  \ (\n    handle in raw,\n    bytes in out nocopy raw,\n    numBytes in out integer\n\
+  \  );\nPROCEDURE readBinaryInputStream (\n    handle in raw,\n    bytes in out nocopy\
+  \ raw,\n    offset in integer,\n    numBytes in out integer\n  );\nPROCEDURE closeBinaryInputStream\
+  \ (handle in raw);\n----------------------------------------------------------------------------\n\
+  \  -- XMLBinaryOutputStream methods\n  ----------------------------------------------------------------------------\n\
+  \  FUNCTION createXMLBinaryOutputStream (n in raw) return raw;\nFUNCTION writeBinaryOutputStream\
+  \ (\n    handle in raw,\n    bytes in out nocopy raw,\n    numBytes in integer\n\
+  \  ) return integer;\nPROCEDURE writeBinaryOutputStream (\n    handle in raw,\n\
+  \    bytes in out nocopy raw,\n    numBytes in out integer\n  );\nPROCEDURE writeBinaryOutputStream\
+  \ (\n    handle in raw,\n    bytes in out nocopy raw,\n    offset in integer,\n\
+  \    numBytes in out integer\n  );\nPROCEDURE flushBinaryOutputStream (handle in\
+  \ raw);\nPROCEDURE closeBinaryOutputStream (handle in raw);\n----------------------------------------------------------------------------\n\
+  \  -- XMLCharacterInputStream methods\n  ----------------------------------------------------------------------------\n\
+  \  FUNCTION createXMLCharacterInputStream (n in raw) return raw;\nFUNCTION CharacterInputStreamAvailable\
+  \ (handle in raw) return integer;\nFUNCTION readCharacterInputStream (\n    handle\
+  \ in raw,\n    numChars in integer,\n    lineFeed in boolean\n  ) return varchar2;\n\
+  PROCEDURE readCharacterInputStream (\n    handle in raw,\n    chars in out nocopy\
+  \ varchar2,\n    numChars in out integer,\n    lineFeed in boolean\n  );\nPROCEDURE\
+  \ readCharacterInputStream (\n    handle in raw,\n    chars in out nocopy varchar2,\n\
+  \    offset in integer,\n    numChars in out integer,\n    lineFeed in boolean\n\
+  \  );\nPROCEDURE closeCharacterInputStream (handle in raw);\n----------------------------------------------------------------------------\n\
+  \  -- XMLCharacterOutputStream methods\n  ----------------------------------------------------------------------------\n\
+  \  FUNCTION createXMLCharacterOutputStream (n in raw) return raw;\nFUNCTION writeCharacterOutputStream\
+  \ (\n    handle in raw,\n    chars in out nocopy varchar2,\n    numChars in integer,\n\
+  \    lineFeed in boolean\n  ) return integer;\nPROCEDURE writeCharacterOutputStream\
+  \ (\n    handle in raw,\n    chars in out nocopy varchar2,\n    numChars in out\
+  \ integer,\n    lineFeed in boolean\n  );\nPROCEDURE writeCharacterOutputStream\
+  \ (\n    handle in raw,\n    chars in out nocopy varchar2,\n    offset in integer,\n\
+  \    numChars in out integer,\n    lineFeed in boolean\n  );\nPROCEDURE flushCharacterOutputStream\
+  \ (handle in raw);\nPROCEDURE closeCharacterOutputStream (handle in raw);\n----------------------------------------------------------------------------\n\
+  \  -- isNull methods\n  ----------------------------------------------------------------------------\n\
+  \  FUNCTION StreamIsNull(handle raw) RETURN BOOLEAN;\n---------------------------------------------------------------------------\n\
+  \  -- DOM NodeList interface:\n  --\n  --    nodelist_item\n  --    nodelist_getLength\n\
+  \  --    nodelist_isNull (Extension)\n  --   freeNodeList (Extension)\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM NodeList interface methods\n  \n   * These methods implement\
+  \ the DOM NodeList interface as specified in:\n  \n   * http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-536297177\n\
+  \  \n  */\n  -- item:\n  --\n  -- Get the indexth item in the collection.  If index\
+  \ is greater than or\n  -- equal to the number of nodes in the list, this returns\
+  \ null.\n  --\n  -- PARAMETERS\n  --      nl       - input DOM node list\n  -- \
+  \     idx      - index into the list\n  -- RETURN\n  --      indexed child node\n\
+  \  -- EXCEPTIONS\n  --   <exception name> - <description>\n  -- NOTES\n  --\n  --\n\
+  \  -- FUNCTION domnodel_item (nl IN DOMNodeList,\n  --                         idx\
+  \ IN PLS_INTEGER) RETURN DOMNode;\n  FUNCTION item(nl DOMNodeList, idx IN PLS_INTEGER)\
+  \ RETURN DOMNode;\nFUNCTION getLength(nl DOMNodeList) RETURN pls_INTEGER;\n  /**\n\
+  \  \n   * DOM Node XDK interface methods\n  \n   */\n  -- Check validity of object\n\
+  \  FUNCTION isNull(nl DOMNodeList) RETURN BOOLEAN;\nPROCEDURE freeNodeList(nl DOMNodeList);\n\
+  ---------------------------------------------------------------------------\n  --\
+  \ DOM NamedNodeMap interface:\n  --\n  --    getNamedItem\n  --    setNamedItem\n\
+  \  --    removeNamedItem\n  --    namednodemap_item\n  --    namednodemap_getLength\n\
+  \  --    namednodemap_isNull (Extension)\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM Node interface methods\n  \n   * These methods implement the\
+  \ DOM Node interface as specified in:\n  \n   * http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-1950641247\n\
+  \  \n   */\n  FUNCTION getNamedItem(nnm DOMNamedNodeMap, name IN VARCHAR2) RETURN\
+  \ DOMNode;\nFUNCTION getNamedItem(\n    nnm DOMNamedNodeMap,\n    name IN VARCHAR2,\n\
+  \    ns IN VARCHAR2\n  ) RETURN DOMNode;\nFUNCTION setNamedItem(nnm DOMNamedNodeMap,\
+  \ arg IN DOMNode) RETURN DOMNode;\nFUNCTION setNamedItem(\n    nnm DOMNamedNodeMap,\n\
+  \    arg IN DOMNode,\n    ns IN VARCHAR2\n  ) RETURN DOMNode;\nFUNCTION removeNamedItem(nnm\
+  \ DOMNamedNodeMap, name IN VARCHAR2) RETURN DOMNode;\nFUNCTION removeNamedItem(\n\
+  \    nnm DOMNamedNodeMap,\n    name IN VARCHAR2,\n    ns IN VARCHAR2\n  ) RETURN\
+  \ DOMNode;\nFUNCTION item(nnm DOMNamedNodeMap, idx IN pls_integer) RETURN domNode;\n\
+  FUNCTION getLength(nnm DOMNamedNodeMap) RETURN pls_integer;\n  /**\n  \n   * DOM\
+  \ Node XDK interface methods\n  \n   */\n  -- Check validity of object\n  FUNCTION\
+  \ isNull(nnm DOMNamedNodeMap) RETURN BOOLEAN;\n---------------------------------------------------------------------------\n\
+  \  -- DOM Character Data interface:\n  --\n  --    cdata_getData\n  --    cdata_setData\n\
+  \  --    cdata_getLength\n  --    substringData\n  --    appendData\n  --    insertData\n\
+  \  --    deleteData\n  --    replaceData\n  --\n  --    cdata_isNull (extension)\n\
+  \  --    cdata_makeNode (extension)\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM CharacterData interface methods\n  \n   * These methods implement\
+  \ the DOM CharacterData interface as specified in:\n  \n   * http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-FF21A306\n\
+  \  \n   */\n  -- getData:\n  --\n  -- Get data for character node\n  --\n  -- PARAMETERS\n\
+  \  --      cd       - input DOM Character node\n  -- RETURN\n  --      data for\
+  \ character node\n  -- EXCEPTIONS\n  --   <exception name> - <description>\n  --\
+  \ NOTES\n  --      Returns data for character node, or NULL if node isn't\n  --\
+  \      character-type.\n  --\n  -- PROCEDURE domcdata_getCharData (cd IN DOMNode,\
+  \ data OUT VARCHAR2);\n  FUNCTION getData(cd domcharacterdata) return VARCHAR2;\n\
+  PROCEDURE setData(cd DOMCharacterData, data IN VARCHAR2);\nFUNCTION getLength(cd\
+  \ DOMCharacterData) RETURN pls_integer;\nFUNCTION substringData(\n    cd DOMCharacterData,\n\
+  \    offset IN PLS_INTEGER,\n    cnt IN PLS_integer\n  ) RETURN VARCHAR2;\nPROCEDURE\
+  \ appendData(cd DOMCharacterData, arg IN VARCHAR2);\nPROCEDURE insertData(\n   \
+  \ cd DOMCharacterData,\n    offset IN PLS_INTEGER,\n    arg IN VARCHAR2\n  );\n\
+  PROCEDURE deleteData(\n    cd DOMCharacterData,\n    offset IN PLS_INTEGER,\n  \
+  \  cnt IN PLS_INTEGER\n  );\nPROCEDURE replaceData(\n    cd DOMCharacterData,\n\
+  \    offset IN PLS_INTEGER,\n    cnt IN PLS_INTEGER,\n    arg IN VARCHAR2\n  );\n\
+  \  /**\n  \n   * DOM Node XDK interface methods\n  \n   */\n  -- Check validity\
+  \ of object\n  FUNCTION isNull(cd DOMCharacterData) RETURN BOOLEAN;\n-- Cast\n \
+  \ FUNCTION makeNode(cd DOMCharacterData) RETURN DOMNode;\n---------------------------------------------------------------------------\n\
+  \  -- DOM Attribute interface:\n  --\n  --    getName\n  --    getOwnerElement\n\
+  \  --    getSpecified\n  --    getValue\n  --    setValue\n  --\n  --    attr_isNull\
+  \ (Extension)\n  --    attr_makeNode (Extension)\n  --    attr_getQualifiedName\
+  \ (Extension)\n  --    attr_getNamespace (Extension)\n  --    attr_getLocalName\
+  \ (Extension)\n  --    attr_getExpandedName (Extension)\n  --\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM interface methods\n  \n   * These methods implement the DOM\
+  \ Node interface as specified in:\n  \n   * http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-1950641247\n\
+  \  \n   */\n  FUNCTION getName(a DOMAttr) return varchar2;\nFUNCTION getOwnerElement(a\
+  \ DOMAttr) RETURN DOMElement;\nFUNCTION getSpecified(a DOMAttr) RETURN BOOLEAN;\n\
+  FUNCTION getValue (a IN DOMAttr) return varchar2;\nPROCEDURE setValue(a DOMAttr,\
+  \ newvalue IN VARCHAR2);\n  /**\n  \n   * DOM XDK interface methods\n  \n   */\n\
+  \  -- Check validity of object\n  FUNCTION isNull(a DOMAttr) RETURN BOOLEAN;\n--\
+  \ Cast\n  FUNCTION makeNode(a DOMAttr) RETURN DOMNode;\nFUNCTION getQualifiedName(a\
+  \ DOMAttr) return varchar2;\nFUNCTION getNamespace(a DOMAttr) return varchar2;\n\
+  FUNCTION getLocalName(a DOMAttr) return varchar2;\nFUNCTION getExpandedName(a DOMAttr)\
+  \ return varchar2;\n---------------------------------------------------------------------------\n\
+  \  -- DOM Element interface:\n  --\n  --    getTagName\n  --    getAttribute\n \
+  \ --    hasAttribute\n  --    setAttribute\n  --    removeAttribute\n  --    getAttributeNode\n\
+  \  --    setAttributeNode\n  --    removeAttributeNode\n  --    element_getElementsByTagName\n\
+  \  --\n  --    element_isNull (Extension)\n  --    element_makeNode (Extension)\n\
+  \  --    normalize (extension)\n  --    element_getQualifiedName (extension)\n \
+  \ --    element_getNamespace (extension)\n  --    element_getLocalName (extension)\n\
+  \  --    element_getExpandedName (extension)\n  --    getChildrenByTagName (extension)\n\
+  \  --    getChildrenByTagName (extension)\n  --    resolveNamespacePrefix (extension)\n\
+  \  --    freeElement (extension)\n  --\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM Element interface methods\n  \n   * These methods implement\
+  \ the DOM Element interface as specified in:\n  \n   * http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-745549614\n\
+  \  \n   */\n  FUNCTION getTagName(elem DOMElement) return varchar2;\nFUNCTION getAttribute(elem\
+  \ DOMElement, name IN VARCHAR2) return varchar2;\nFUNCTION getAttribute(\n    elem\
+  \ DOMElement,\n    name IN VARCHAR2,\n    ns IN VARCHAR2\n  ) return varchar2;\n\
+  FUNCTION hasAttribute(elem DOMElement, name IN VARCHAR2) return BOOLEAN;\nFUNCTION\
+  \ hasAttribute(\n    elem DOMElement,\n    name IN VARCHAR2,\n    ns IN VARCHAR2\n\
+  \  ) return BOOLEAN;\nPROCEDURE setAttribute(\n    elem DOMElement,\n    name IN\
+  \ VARCHAR2,\n    newvalue IN VARCHAR2\n  );\nPROCEDURE setAttribute(\n    elem DOMElement,\n\
+  \    name IN VARCHAR2,\n    newvalue IN VARCHAR2,\n    ns IN VARCHAR2\n  );\nPROCEDURE\
+  \ removeAttribute(elem DOMElement, name IN VARCHAR2);\nPROCEDURE removeAttribute(\n\
+  \    elem DOMElement,\n    name IN VARCHAR2,\n    ns IN VARCHAR2\n  );\nFUNCTION\
+  \ getAttributeNode(elem DOMElement, name IN VARCHAR2) RETURN DOMAttr;\nFUNCTION\
+  \ getAttributeNode(\n    elem DOMElement,\n    name IN VARCHAR2,\n    ns IN VARCHAR2\n\
+  \  ) RETURN DOMAttr;\nFUNCTION setAttributeNode(elem DOMElement, newAttr IN DOMAttr)\
+  \ RETURN DOMAttr;\nFUNCTION setAttributeNode(\n    elem DOMElement,\n    newAttr\
+  \ IN DOMAttr,\n    ns IN VARCHAR2\n  ) RETURN DOMAttr;\nFUNCTION removeAttributeNode(elem\
+  \ DOMElement, oldAttr IN DOMAttr) RETURN DOMAttr;\nFUNCTION getElementsByTagName(elem\
+  \ DOMElement, name IN VARCHAR2) RETURN DOMNodeList;\nPROCEDURE freeElement(elem\
+  \ DOMElement);\n  /**\n  \n   * DOM XDK interface methods\n  \n   */\n  -- Check\
+  \ validity of object\n  FUNCTION isNull(elem DOMElement) RETURN BOOLEAN;\n-- Cast\n\
+  \  FUNCTION makeNode(elem DOMElement) RETURN domnode;\nPROCEDURE normalize(elem\
+  \ DOMElement);\nFUNCTION getQualifiedName(elem DOMElement) return varchar2;\nFUNCTION\
+  \ getNamespace(elem DOMElement) return varchar2;\nFUNCTION getLocalName(elem DOMElement)\
+  \ return varchar2;\nFUNCTION getExpandedName(elem DOMElement) return varchar2;\n\
+  FUNCTION getChildrenByTagName(elem DOMElement, name varchar2) return DOMNodeList;\n\
+  FUNCTION getChildrenByTagName(elem DOMElement, name varchar2, ns varchar2) return\
+  \ DOMNodeList;\nFUNCTION getElementsByTagName(\n    elem DOMElement,\n    name IN\
+  \ VARCHAR2,\n    ns varchar2\n  ) RETURN DOMNodeList;\nPROCEDURE resolveNamespacePrefix(\n\
+  \    elem DOMElement,\n    prefix varchar2,\n    data OUT VARCHAR2\n  );\nFUNCTION\
+  \ resolveNamespacePrefix(elem DOMElement, prefix varchar2) return VARCHAR2;\n---------------------------------------------------------------------------\n\
+  \  -- Interface DOMText:\n  --\n  --    splitText\n  --\n  --    text_isNull (extension)\n\
+  \  --    text_makeNode (extension)\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM Text interface methods\n  \n   * These methods implement the\
+  \ DOM Text interface as specified in:\n  \n   * http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-1312295772\n\
+  \  \n  */\n  FUNCTION splitText(t DOMText, offset IN PLS_INTEGER) RETURN DOMText;\n\
+  \  /**\n  \n   * DOM XDK interface methods\n  \n   */\n  -- Check validity of object\n\
+  \  FUNCTION isNull(t DOMText) RETURN BOOLEAN;\n-- Cast\n  FUNCTION makeNode(t DOMText)\
+  \ RETURN DOMNode;\n---------------------------------------------------------------------------\n\
+  \  -- Interface DOMComment\n  --\n  --    comment_isNull (extension)\n  --    makeNode\
+  \ (extension)\n  --\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM XDK interface methods\n  \n   */\n  -- Check validity of object\n\
+  \  FUNCTION isNull(com DOMComment) RETURN BOOLEAN;\n-- Cast\n  FUNCTION makeNode(com\
+  \ DOMComment) RETURN DOMNode;\n---------------------------------------------------------------------------\n\
+  \  -- Interface DOMCDATASection\n  --\n  --    cdatasection_isNull (extension)\n\
+  \  --    makeNode (extension)\n  --\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM XDK interface methods\n  \n   */\n  -- Check validity of object\n\
+  \  FUNCTION isNull(cds DOMCDATASection) RETURN BOOLEAN;\n-- Cast\n  FUNCTION makeNode(cds\
+  \ DOMCDATASection) RETURN DOMNode;\n---------------------------------------------------------------------------\n\
+  \  -- Interface Document Type:\n  --\n  --    getName\n  --    getEntities\n  --\
+  \    getNotations\n  --    getpublicid (dom 2)\n  --    getsystemid (dom 2)\n  --\n\
+  \  --    doctype_isNull (extension)\n  --    makeNode (extension)\n  --    findEntity\
+  \ (extension)\n  --    findNotation (extension)\n  --\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM DocumentType interface methods\n  \n   * These methods implement\
+  \ the DOM DocumentType interface as specified in:\n  \n   * http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-412266927\n\
+  \  \n   */\n  FUNCTION getName(dt DOMDocumentType) return varchar2;\nFUNCTION getEntities(dt\
+  \ DOMDocumentType) RETURN DOMNamedNodeMap;\nFUNCTION getNotations(dt DOMDocumentType)\
+  \ RETURN DOMNamedNodeMap;\n-- DOM 2\n  FUNCTION getPublicId(dt DOMDocumentType)\
+  \ return varchar2;\nFUNCTION getSystemId(dt DOMDocumentType) return varchar2;\n\
+  \  /**\n  \n   * DOM XDK interface methods\n  \n   */\n  -- Check validity of object\n\
+  \  FUNCTION isNull(dt DOMDocumentType) RETURN BOOLEAN;\n-- Cast\n  FUNCTION makeNode(dt\
+  \ DOMDocumentType) RETURN DOMNode;\n-- Other\n  FUNCTION findEntity(dt DOMDocumentType,\
+  \ name varchar2, par boolean) return DOMEntity;\nFUNCTION findNotation(dt DOMDocumentType,\
+  \ name varchar2) return DOMNotation;\n---------------------------------------------------------------------------\n\
+  \  -- Interface DOMNotation\n  --\n  --    getPublicId\n  --    getSystemId\n  --\n\
+  \  --    notation_isNull (extension)\n  --    makeNode (extension)\n  --\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM Notation interface methods\n  \n   * These methods implement\
+  \ the DOM Notation interface as specified in:\n  \n   * http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-5431D1B9\n\
+  \  \n   */\n  FUNCTION getPublicId(n DOMNotation) return varchar2;\nFUNCTION getSystemId(n\
+  \ DOMNotation) return varchar2;\n  /**\n  \n   * DOM XDK interface methods\n  \n\
+  \   */\n  -- Check validity of object\n  FUNCTION isNull(n DOMNotation) RETURN BOOLEAN;\n\
+  -- Cast\n  FUNCTION makeNode(n DOMNotation) RETURN DOMNode;\n---------------------------------------------------------------------------\n\
+  \  -- Interface DOMEntity:\n  --\n  --    getPublicID\n  --    getSystemID\n  --\
+  \    getNotationName\n  --\n  --    entity_isNull (extension)\n  --    makeNode\
+  \ (extension)\n  --\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM Entity interface methods\n  \n   * These methods implement\
+  \ the DOM Entity interface as specified in:\n  \n   * http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-527DCFF2\n\
+  \  \n   */\n  FUNCTION getPublicId(ent DOMEntity) return varchar2;\nFUNCTION getSystemId(ent\
+  \ DOMEntity) return varchar2;\nFUNCTION getNotationName(ent DOMEntity) return varchar2;\n\
+  \  /**\n  \n   * DOM XDK interface methods\n  \n   */\n  -- Check validity of object\n\
+  \  FUNCTION isNull(ent DOMEntity) RETURN BOOLEAN;\n-- Cast\n  FUNCTION makeNode(ent\
+  \ DOMEntity) RETURN DOMNode;\n---------------------------------------------------------------------------\n\
+  \  -- Interface DOMEntityReference\n  --\n  --    entityref_isNull (extension)\n\
+  \  --    makeNode (extension)\n  --\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM XDK interface methods\n  \n   */\n  -- Check validity of object\n\
+  \  FUNCTION isNull(eref DOMEntityReference) RETURN BOOLEAN;\n-- Cast\n  FUNCTION\
+  \ makeNode(eref DOMEntityReference) RETURN DOMNode;\n---------------------------------------------------------------------------\n\
+  \  -- Interface Processing Instruction:\n  --\n  --    pi_getData\n  --    getTarget\n\
+  \  --    pi_setData\n  --\n  --    pi_isNull (extension)\n  --    pi_makeNode (extension)\n\
+  \  --\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM ProcessingInstruction interface methods\n  \n   * These methods\
+  \ implement the DOM ProcessingInstruction interface as\n  \n   * specified in:\n\
+  \  \n   * http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-1004215813\n\
+  \  \n   */\n  FUNCTION getData(pi DOMProcessingInstruction) return varchar2;\nFUNCTION\
+  \ getTarget(pi DOMProcessingInstruction) return varchar2;\nPROCEDURE setData(pi\
+  \ DOMProcessingInstruction, data IN VARCHAR2);\n  /**\n  \n   * DOM XDK interface\
+  \ methods\n  \n   */\n  -- Check validity of object\n  FUNCTION isNull(pi DOMProcessingInstruction)\
+  \ RETURN BOOLEAN;\n-- Cast\n  FUNCTION makeNode(pi DOMProcessingInstruction) RETURN\
+  \ DOMNode;\n---------------------------------------------------------------------------\n\
+  \  -- Interface DocumentFragment:\n  --\n  --    docfrag_isNull (extension)\n  --\
+  \    makeNode (extension)\n  --\n  ----------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM XDK interface methods\n  \n   */\n  -- Check validity of object\n\
+  \  FUNCTION isNull(df DOMDocumentFragment) RETURN BOOLEAN;\n-- Cast\n  FUNCTION\
+  \ makeNode(df DOMDocumentFragment) RETURN DOMNode;\nPROCEDURE writeToBuffer(df DOMDocumentFragment,\
+  \ buffer IN OUT VARCHAR2);\nPROCEDURE writeToBuffer(\n    df DOMDocumentFragment,\n\
+  \    buffer IN OUT VARCHAR2,\n    pflag IN NUMBER,\n    indent IN NUMBER\n  );\n\
+  ---------------------------------------------------------------------------\n  --\
+  \ Interface DOMDocument:\n  --\n  --    getDoctype\n  --    setDoctype\n  --   \
+  \ getImplementation\n  --    getDocumentElement\n  --    createElement\n  --   \
+  \ createDocumentFragment\n  --    createComment\n  --    createTextNode\n  --  \
+  \  createCDATASection\n  --    createProcessingInstruction\n  --    createAttribute\n\
+  \  --    createEntityReference\n  --    document_getElementsByTagName\n  --    importNode\n\
+  \  --    adoptNode\n  --\n  --    document_isNull (extension)\n  --    document_makeNode\
+  \ (extension)\n  --    newDOMDocument (extension)\n  --    getVersion (extension)\n\
+  \  --    setVersion (extension)\n  --    getCharset (extension)\n  --    setCharset\
+  \ (extension)\n  --    getStandalone (extension)\n  --    setStandalone (extension)\n\
+  \  --    writeToFile (extension)\n  --    document_writeToBuffer (extension)\n \
+  \ --    document_writeToClob (extension)\n  --    writeToFile (extension)\n  --\
+  \    writeToBuffer (extension)\n  --    writeToClob (extension)\n  --    writeExternalDTDToFile\
+  \ (extension)\n  --    writeExternalDTDToBuffer (extension)\n  --    writeExternalDTDToClob\
+  \ (extension)\n  --    writeExternalDTDToFile (extension)\n  --    writeExternalDTDToBuffer\
+  \ (extension)\n  --    writeExternalDTDToClob (extension)\n  --    freeDocument\
+  \ (extension)\n  --\n  ---------------------------------------------------------------------------\n\
+  \  /**\n  \n   * DOM Document interface methods\n  \n   * These methods implement\
+  \ the DOM Document interface as specified in:\n  \n   * http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#i-Document\n\
+  \  \n   */\n  FUNCTION getDoctype(doc DOMDocument) RETURN DOMDocumentType;\nPROCEDURE\
+  \ setDoctype(\n    doc DOMDocument,\n    name VARCHAR2,\n    sysid VARCHAR2,\n \
+  \   pubid VARCHAR2\n  );\nFUNCTION getImplementation(doc DOMDocument) RETURN DOMImplementation;\n\
+  FUNCTION getDocumentElement(doc DOMDocument) RETURN DOMElement;\nFUNCTION createElement(doc\
+  \ DOMDocument, tagName IN VARCHAR2) RETURN DOMElement;\nFUNCTION createElement(\n\
+  \    doc DOMDocument,\n    tagName IN VARCHAR2,\n    ns IN VARCHAR2\n  ) RETURN\
+  \ DOMElement;\nFUNCTION createDocumentFragment(doc DOMDocument) RETURN DOMDocumentFragment;\n\
+  FUNCTION createTextNode(doc DOMDocument, data IN VARCHAR2) RETURN DOMText;\nFUNCTION\
+  \ createComment(doc DOMDocument, data IN VARCHAR2) RETURN DOMComment;\nFUNCTION\
+  \ createCDATASection(doc DOMDocument, data IN VARCHAR2) RETURN DOMCDATASection;\n\
+  FUNCTION createProcessingInstruction(\n    doc DOMDocument,\n    target IN VARCHAR2,\n\
+  \    data IN VARCHAR2\n  ) RETURN DOMProcessingInstruction;\nFUNCTION createAttribute(doc\
+  \ DOMDocument, name IN VARCHAR2) RETURN DOMAttr;\nFUNCTION createAttribute(\n  \
+  \  doc DOMDocument,\n    name IN VARCHAR2,\n    ns IN VARCHAR2\n  ) RETURN DOMAttr;\n\
+  FUNCTION createEntityReference(doc DOMDocument, name IN VARCHAR2) RETURN DOMEntityReference;\n\
+  FUNCTION getElementsByTagName(doc DOMDocument, tagname IN VARCHAR2) RETURN DOMNodeList;\n\
+  -------------------------getDocElementsByTagName--------------------------\n  --\
+  \ Get element by tag name\n  --\n  -- PARAMETERS\n  --      doc          - input\
+  \ DOM Document\n  --      tagname      - tagname of new element.\n  -- RETURN\n\
+  \  --      Elements list.\n  -- EXCEPTIONS\n  --   <exception name> - <description>\n\
+  \  -- NOTES\n  --\n  --\n  -- FUNCTION domdoc_getElementsByTagName(doc IN DOMDocument,\n\
+  \  --                                      tagname IN VARCHAR2)\n  --          \
+  \                            RETURN DOMNodeList;\n  /**\n  \n   * DOM XDK interface\
+  \ methods\n  \n   */\n  -- Check validity of object\n  FUNCTION isNull(doc DOMDocument)\
+  \ RETURN BOOLEAN;\n-- Cast\n  FUNCTION makeNode(doc DOMDocument) RETURN DOMNode;\n\
+  -- New document\n  FUNCTION newDOMDocument RETURN domdocument;\nFUNCTION newDOMDocument(xmldoc\
+  \ IN sys.xmltype) RETURN DOMDocument;\n----------------------------------create----------------------------------\n\
+  \  -- Create domdocument given xmltype\n  --\n  -- PARAMETERS\n  --      xmldoc\
+  \       - input xmltype\n  -- RETURN\n  --      DOM Document\n  -- EXCEPTIONS\n\
+  \  --   <exception name> - <description>\n  -- NOTES\n  --\n  --\n  -- FUNCTION\
+  \ domdoc_create(xmldoc IN sys.xmltype) RETURN DOMDocument;\n  FUNCTION newDOMDocument(cl\
+  \ IN clob) RETURN domdocument;\nFUNCTION getxmltype(doc in DOMDocument) RETURN sys.xmltype;\n\
+  FUNCTION getVersion(doc DOMDocument) return varchar2;\nPROCEDURE setVersion(doc\
+  \ DOMDocument, version VARCHAR2);\nFUNCTION getCharset(doc DOMDocument) return varchar2;\n\
+  PROCEDURE setCharset(doc DOMDocument, charset VARCHAR2);\nFUNCTION getStandalone(doc\
+  \ DOMDocument) return varchar2;\nPROCEDURE setStandalone(doc DOMDocument, newvalue\
+  \ VARCHAR2);\nPROCEDURE writeToFile(doc DOMDocument, fileName VARCHAR2);\nPROCEDURE\
+  \ writeToBuffer(doc DOMDocument, buffer IN OUT VARCHAR2);\nPROCEDURE writeToClob(doc\
+  \ DOMDocument, cl IN OUT CLOB);\nPROCEDURE writeToFile(\n    doc DOMDocument,\n\
+  \    fileName VARCHAR2,\n    pflag IN NUMBER,\n    indent IN NUMBER\n  );\nPROCEDURE\
+  \ writeToBuffer(\n    doc DOMDocument,\n    buffer IN OUT VARCHAR2,\n    pflag IN\
+  \ NUMBER,\n    indent IN NUMBER\n  );\nPROCEDURE writeToClob(\n    doc DOMDocument,\n\
+  \    cl IN OUT CLOB,\n    pflag IN NUMBER,\n    indent IN NUMBER\n  );\nPROCEDURE\
+  \ writeToFile(\n    doc DOMDocument,\n    fileName VARCHAR2,\n    charset VARCHAR2\n\
+  \  );\nPROCEDURE writeToBuffer(\n    doc DOMDocument,\n    buffer IN OUT VARCHAR2,\n\
+  \    charset VARCHAR2\n  );\nPROCEDURE writeToClob(\n    doc DOMDocument,\n    cl\
+  \ IN OUT CLOB,\n    charset VARCHAR2\n  );\nPROCEDURE writeToFile(\n    doc DOMDocument,\n\
+  \    fileName VARCHAR2,\n    charset VARCHAR2,\n    pflag IN NUMBER,\n    indent\
+  \ IN NUMBER\n  );\nPROCEDURE writeToBuffer(\n    doc DOMDocument,\n    buffer IN\
+  \ OUT VARCHAR2,\n    charset VARCHAR2,\n    pflag IN NUMBER,\n    indent IN NUMBER\n\
+  \  );\nPROCEDURE writeToClob(\n    doc DOMDocument,\n    cl IN OUT CLOB,\n    charset\
+  \ VARCHAR2,\n    pflag IN NUMBER,\n    indent IN NUMBER\n  );\nPROCEDURE writeExternalDTDToFile(doc\
+  \ DOMDocument, fileName varchar2);\nPROCEDURE writeExternalDTDToBuffer(doc DOMDocument,\
+  \ buffer in out varchar2);\nPROCEDURE writeExternalDTDToClob(doc DOMDocument, cl\
+  \ in out clob);\nPROCEDURE writeExternalDTDToFile(\n    doc DOMDocument,\n    fileName\
+  \ varchar2,\n    charset varchar2\n  );\nPROCEDURE writeExternalDTDToBuffer(\n \
+  \   doc DOMDocument,\n    buffer in out varchar2,\n    charset varchar2\n  );\n\
+  PROCEDURE writeExternalDTDToClob(\n    doc DOMDocument,\n    cl in out clob,\n \
+  \   charset varchar2\n  );\nPROCEDURE freeDocument(doc IN DOMDocument);\nPROCEDURE\
+  \ freeDocFrag(df IN DOMDocumentFragment);\nPROCEDURE freeDocType(dt IN DOMDocumentType);\n\
+  -- PROCEDURE domdoc_remove(doc IN domdocument);\n  FUNCTION importnode(\n    doc\
+  \ DOMDocument,\n    importednode domnode,\n    deep boolean\n  ) RETURN DOMNode;\n\
+  FUNCTION adoptnode(doc DOMDocument, adoptednode domnode) RETURN DOMNode;\nend dbms_xmldom;"
