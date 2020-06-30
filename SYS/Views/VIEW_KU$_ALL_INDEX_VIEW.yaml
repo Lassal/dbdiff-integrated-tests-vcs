@@ -1,0 +1,280 @@
+schema: SYS
+name: KU$_ALL_INDEX_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '5',
+    i.obj#,
+    value(o),
+    cast(
+      multiset(
+        select
+          *
+        from
+          ku$_index_col_view ic
+        where
+          ic.obj_num = i.obj#
+        order by
+          ic.pos_num
+      ) as ku$_index_col_list_t
+    ),
+    ts.name,
+    ts.blocksize,
+    (
+      select
+        value(s)
+      from
+        ku$_storage_view s
+      where
+        i.file# = s.file_num
+        and i.block# = s.block_num
+        and i.ts# = s.ts_num
+    ),
+    (
+      select
+        value(s)
+      from
+        ku$_deferred_stg_view s
+      where
+        s.obj_num = i.obj#
+    ),
+    i.dataobj#,
+    i.bo#,
+    (
+      select
+        value(so)
+      from
+        ku$_schemaobj_view so
+      where
+        so.obj_num = i.bo#
+    ),
+    (
+      select
+        value(ao)
+      from
+        ku$_schemaobj_view ao
+      where
+        ao.obj_num = dbms_metadata_util.get_anc(i.bo#, 0)
+    ),
+    i.indmethod#,
+    (
+      select
+        o2.name
+      from
+        obj$ o2
+      where
+        i.indmethod# = o2.obj#
+    ),
+    (
+      select
+        u2.name
+      from
+        user $ u2
+      where
+        u2.user# = (
+          select
+            o3.owner#
+          from
+            obj$ o3
+          where
+            i.indmethod# = o3.obj#
+        )
+    ),
+    -- include domain index info if type# = 9 (cooperative index method)
+    decode(
+      i.type#,
+      9,
+      cast(
+        multiset(
+          select
+            *
+          from
+            ku$_domidx_2ndtab_view so
+          where
+            so.obj_num = i.obj#
+        ) as ku$_domidx_2ndtab_list_t
+      ),
+      null
+    ),
+    decode(
+      i.type#,
+      9,
+      (
+        select
+          value(pl)
+        from
+          ku$_domidx_plsql_view pl
+        where
+          pl.obj_num = i.obj#
+      ),
+      null
+    ),
+    -- include bitmap join index info if this is a bji
+    decode(
+      bitand(i.property, 1024),
+      1024,
+      cast(
+        multiset(
+          select
+            *
+          from
+            ku$_jijoin_table_view j
+          where
+            j.obj_num = i.obj#
+        ) as ku$_jijoin_table_list_t
+      ),
+      null
+    ),
+    decode(
+      bitand(i.property, 1024),
+      1024,
+      cast(
+        multiset(
+          select
+            *
+          from
+            ku$_jijoin_view j
+          where
+            j.obj_num = i.obj#
+        ) as ku$_jijoin_list_t
+      ),
+      null
+    ),
+    i.cols,
+    i.pctfree$,
+    i.initrans,
+    i.maxtrans,
+    i.pctthres$,
+    i.type#,
+    i.flags,
+    i.property,
+    i.blevel,
+    i.leafcnt,
+    i.distkey,
+    i.lblkkey,
+    i.dblkkey,
+    i.clufac,
+    to_char(i.analyzetime, 'YYYY/MM/DD HH24:MI:SS'),
+    i.samplesize,
+    i.rowcnt,
+    i.intcols,
+    i.degree,
+    i.instances,
+    i.trunccnt,
+    i.spare1,
+    i.spare2,
+    (
+      select
+        value(po)
+      from
+        ku$_ind_partobj_view po
+      where
+        i.obj# = po.obj_num
+    ),
+    i.spare3,
+    replace(i.spare4, chr(0)),
+    i.spare5,
+    to_char(i.spare6, 'YYYY/MM/DD HH24:MI:SS'),
+    nvl(
+      (
+        select
+          1
+        from
+          cdef$ c
+        where
+          c .enabled = i.obj#
+          and c .type# = 2
+          and (
+            select
+              1
+            from
+              tab$ t
+            where
+              t.obj# = c .obj#
+              and bitand(t.property, 4096) = 4096
+          ) = 1
+      ),
+      0
+    ),
+    -- and index is used for reference partitioning if it is used
+    --  for a primary or unique key constraint and 0x400 is set in
+    --  defer (ref par parent).
+    nvl(
+      (
+        select
+          1
+        from
+          dual
+        where
+          (
+            exists (
+              select
+                1
+              from
+                cdef$ c
+              where
+                c .enabled = i.obj#
+                and c .type# in(2, 3)
+                and (bitand(c .defer, 1024) != 0)
+            )
+          )
+      ),
+      0
+    ),
+    nvl(
+      (
+        select
+          ic.oid_or_setid
+        from
+          ku$_index_col_view ic
+        where
+          i.type# = 1
+          and i.intcols = 1
+          and ic.obj_num = i.obj#
+      ),
+      0
+    ),
+    nvl(
+      (
+        select
+          bitand(t.property, 4294967295)
+        from
+          tab$ t
+        where
+          t.obj# = i.bo#
+      ),
+      0
+    ),
+    nvl(
+      (
+        select
+          trunc(t.property / power(2, 32))
+        from
+          tab$ t
+        where
+          t.obj# = i.bo#
+      ),
+      0
+    )
+  from
+    ku$_schemaobj_view o,
+    ind$ i,
+    ts$ ts
+  where
+    o.obj_num = i.obj#
+    AND i.ts# = ts.ts#
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

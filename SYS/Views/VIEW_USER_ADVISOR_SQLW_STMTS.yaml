@@ -1,0 +1,52 @@
+schema: SYS
+name: USER_ADVISOR_SQLW_STMTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    b.workload_id as workload_id,
+    c .name as workload_name,
+    b.sql_id as sql_id,
+    b.hash_value as hash_value,
+    b.username as username,
+    substrb(
+      b.module,
+      1,(
+        select
+          ksumodlen
+        from
+          x$modact_length
+      )
+    ) as module,
+    substrb(
+      b.action,
+      1,(
+        select
+          ksuactlen
+        from
+          x$modact_length
+      )
+    ) as action,
+    b.cpu_time as cpu_time,
+    b.buffer_gets as buffer_gets,
+    b.disk_reads as disk_reads,
+    b.elapsed_time as elapsed_time,
+    b.rows_processed as rows_processed,
+    b.executions as executions,
+    b.optimizer_cost as optimizer_cost,
+    b.last_execution_date as last_execution_date,
+    b.priority as priority,
+    b.command_type as command_type,
+    b.stat_period as stat_period,
+    b.sql_text as sql_text,
+    b.valid as valid
+  from
+    wri$_adv_sqlw_stmts b,
+    wri$_adv_tasks c
+  where
+    c .id = b.workload_id
+    and c .owner# = userenv('SCHEMAID')
+    and bitand(c .property, 2) = 0
+    and c .advisor_id = 6
+columns: []
+referencedTables: []

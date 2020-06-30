@@ -1,0 +1,24 @@
+schema: SYS
+name: DBA_SR_PARTN_OPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u1.name owner,
+    o1.name table_name,
+    sts.partition_op,
+    sts.partition_name,
+    sts.outside_table_schema_name outside_table_schema,
+    sts.outside_table_name outside_table_name
+  from
+    (
+      sys.syncref$_objects s1
+      inner join sys.obj$ o1 on o1.obj# = s1.obj#
+      and o1.type# = s1.object_type_flag
+      and o1.type# = 2
+      and current_group_flag = 1
+      inner join sys.user$ u1 on o1.owner# = u1.user#
+    )
+    inner join sys.syncref$_partn_ops sts on o1.obj# = sts.table_obj#
+columns: []
+referencedTables: []

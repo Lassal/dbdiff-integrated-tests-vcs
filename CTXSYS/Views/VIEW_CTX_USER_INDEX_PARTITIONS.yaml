@@ -1,0 +1,33 @@
+schema: CTXSYS
+name: CTX_USER_INDEX_PARTITIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ixp_id,
+    idx_name ixp_index_name,
+    ixp_name ixp_index_partition_name,
+    u2.name ixp_table_owner,
+    o1.name ixp_table_name,
+    o2.subname ixp_table_partition_name,
+    ixp_docid_count ixp_docid_count,
+    ixp_status ixp_status,
+    ixp_sync_type ixp_sync_type,
+    ixp_sync_memory ixp_sync_memory,
+    ixp_sync_para_degree ixp_sync_para_degree,
+    ixp_sync_interval ixp_sync_interval,
+    ixp_sync_jobname ixp_sync_jobname
+  from
+    dr$index_partition,
+    dr$index,
+    sys.user$ u2,
+    sys.obj$ o1,
+    sys.obj$ o2
+  where
+    idx_owner# = userenv('SCHEMAID')
+    and idx_table_owner# = u2.user#
+    and ixp_table_partition# = o2.obj#
+    and idx_table# = o1.obj#
+    and ixp_idx_id = idx_id
+columns: []
+referencedTables: []

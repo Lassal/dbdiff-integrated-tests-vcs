@@ -1,0 +1,42 @@
+schema: XDBEXT
+name: XDB_ASYNCHRONOUS_EVENTS
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: DEQUEUE_EVENT.CONTEXT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DEQUEUE_EVENT.REGINFO
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: DEQUEUE_EVENT.DESCR
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: DEQUEUE_EVENT.PAYLOAD
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: DEQUEUE_EVENT.PAYLOADL
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: ENQUEUE_EVENT.PAYLOAD
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  package XDB_ASYNCHRONOUS_EVENTS as procedure ENQUEUE_EVENT(payload xmltype);
+  procedure DEQUEUE_EVENT(
+    context raw,
+    reginfo sys.aq$_reg_info,
+    descr sys.aq$_descriptor,
+    payload raw,
+    payloadl number
+  );
+  REPOSITORY_EVENTS_QUEUE constant VARCHAR2(128): = 'XDBEXT.REPOSITORY_EVENTS_QUEUE';
+  REPOSITORY_EVENTS_TABLE constant VARCHAR2(128): = 'XDBEXT.REPOSITORY_EVENTS_TABLE';
+  EVENT_HANDLER constant VARCHAR2(128): = 'plsql://XDBEXT.XDB_ASYNCHRONOUS_EVENTS.DEQUEUE_EVENT';
+  end;

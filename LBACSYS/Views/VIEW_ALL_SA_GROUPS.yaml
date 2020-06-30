@@ -1,0 +1,43 @@
+schema: LBACSYS
+name: ALL_SA_GROUPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    p.pol_name as policy_name,
+    g.group# AS group_num,
+    g.code AS short_name,
+    g.name AS long_name,
+    g.parent# AS parent_num,
+    pg.code AS parent_name
+  FROM
+    LBACSYS.sa$pol p,
+    LBACSYS.ols$groups g,
+    LBACSYS.ols$groups pg
+  WHERE
+    p.pol# = g.pol#
+    AND g.pol# = pg.pol# (+)
+    AND g.parent# = pg.group#(+)
+    and (
+      p.pol# in (
+        select
+          pol#
+        from
+          LBACSYS.sa$admin
+        where
+          usr_name = user
+      )
+      OR (g.pol#, g.group#) in (
+        select
+          pol#,
+          group #
+        from
+          LBACSYS.ols$user_groups
+        where
+          usr_name = sa_session.sa_user_name(
+            lbac_cache.policy_name(pol#)
+          )
+      )
+    )
+columns: []
+referencedTables: []

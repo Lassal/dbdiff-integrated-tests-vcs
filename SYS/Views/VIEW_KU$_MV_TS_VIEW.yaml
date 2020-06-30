@@ -1,0 +1,25 @@
+schema: SYS
+name: KU$_MV_TS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.owner_num,
+    t.obj_num,
+    t.ts_name
+  from
+    sys.ku$_tts_mv_view t
+  where
+    (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (t.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

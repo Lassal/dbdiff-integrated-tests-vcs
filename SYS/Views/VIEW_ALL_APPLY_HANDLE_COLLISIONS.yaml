@@ -1,0 +1,23 @@
+schema: SYS
+name: ALL_APPLY_HANDLE_COLLISIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    hc. "APPLY_NAME",
+    hc. "OBJECT_OWNER",
+    hc. "OBJECT_NAME",
+    hc. "SOURCE_OBJECT_OWNER",
+    hc. "SOURCE_OBJECT_NAME",
+    hc. "ENABLED",
+    hc. "SET_BY"
+  from
+    DBA_APPLY_HANDLE_COLLISIONS hc,
+    ALL_APPLY a,
+    all_tables t
+  where
+    hc.apply_name = a .apply_name
+    and hc.object_owner = t.owner
+    and hc.object_name = t.table_name
+columns: []
+referencedTables: []

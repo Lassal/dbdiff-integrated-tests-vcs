@@ -1,0 +1,19 @@
+schema: MDSYS
+name: ALL_SDO_CACHED_MAPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    SDO_OWNER OWNER,
+    NAME,
+    DESCRIPTION,
+    tiles_table,
+    is_online,
+    is_internal,
+    DEFINITION,
+    base_map,
+    map_adapter
+  FROM
+    mdsys.SDO_CACHED_MAPS_TABLE
+columns: []
+referencedTables: []

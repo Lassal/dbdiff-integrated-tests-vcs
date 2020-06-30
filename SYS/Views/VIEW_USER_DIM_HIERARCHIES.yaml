@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_DIM_HIERARCHIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    h.hiername
+  from
+    sys.hier$ h,
+    sys.obj$ o,
+    sys.user$ u
+  where
+    h.dimobj# = o.obj#
+    and o.owner# = u.user#
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

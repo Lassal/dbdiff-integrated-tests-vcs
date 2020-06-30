@@ -1,0 +1,46 @@
+schema: XDBPM
+name: MISSING_TYPE_HIERARCHY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    level TYPE_LEVEL,
+    ata.TYPE_NAME,
+    ata.OWNER,
+    ATTR_NAME,
+    ATTR_TYPE_NAME,
+    ATTR_TYPE_OWNER
+  from
+    XDBPM.XDBPM_ALL_TYPES at,
+    XDBPM.XDBPM_ALL_TYPE_ATTRS ata
+  where
+    at .TYPE_NAME = ata.TYPE_NAME
+    and INHERITED = 'NO'
+    and at .OWNER = ata.OWNER
+    and not exists (
+      select
+        1
+      from
+        TYPE_SUMMARY ts
+      where
+        nvl(ts.OWNER, 'SYS') = nvl(ata.ATTR_TYPE_OWNER, 'SYS')
+        and ts.TYPE_NAME = ata.ATTR_TYPE_NAME
+    )
+    and not exists (
+      select
+        syn.SYNONYM_NAME,
+        syn.OWNER
+      from
+        ALL_SYNONYMS syn,
+        XDBPM.XDBPM_ALL_TYPES at
+      where
+        syn.TABLE_NAME = at .TYPE_NAME
+        and syn.TABLE_OWNER = at .OWNER
+        and syn.SYNONYM_NAME = ata.ATTR_TYPE_NAME
+        and syn.OWNER = ata.ATTR_TYPE_OWNER
+    )
+  connect by
+    SUPERTYPE_NAME = prior at .TYPE_NAME
+    and SUPERTYPE_OWNER = prior at .OWNER
+columns: []
+referencedTables: []

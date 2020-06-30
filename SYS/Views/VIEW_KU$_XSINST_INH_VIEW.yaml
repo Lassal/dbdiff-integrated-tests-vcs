@@ -1,0 +1,30 @@
+schema: SYS
+name: KU$_XSINST_INH_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    i.xdsid#,
+    i.order#,
+    i.parent_schema,
+    i.parent_object,
+    i.when,
+    (
+      cast(
+        multiset(
+          select
+            value(a)
+          from
+            ku$_xsinst_inhkey_view a
+          where
+            a .xdsid = i.xdsid#
+            and a .order_num = i.order#
+        ) as ku$_xsinstinhkey_list_t
+      )
+    )
+  from
+    xs$instset_inh i
+columns: []
+referencedTables: []

@@ -1,0 +1,96 @@
+name: REVISED_TYPES
+schema: XDBPM
+columns:
+- name: ATTRIBUTES
+  ordinalPosition: 5
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: FINAL
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  dataTypeLength: 3
+- name: INCOMPLETE
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  dataTypeLength: 3
+- name: INSTANTIABLE
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  dataTypeLength: 3
+- name: LOCAL_ATTRIBUTES
+  ordinalPosition: 13
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: LOCAL_METHODS
+  ordinalPosition: 14
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: METHODS
+  ordinalPosition: 6
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  dataTypeLength: 30
+- name: PREDEFINED
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  dataTypeLength: 3
+- name: SUPERTYPE_NAME
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  dataTypeLength: 30
+- name: SUPERTYPE_OWNER
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  dataTypeLength: 30
+- name: TYPECODE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  dataTypeLength: 30
+- name: TYPEID
+  ordinalPosition: 15
+  dataType: RAW
+  nullable: true
+  dataTypeLength:
+- name: TYPE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  dataTypeLength: 30
+- name: TYPE_OID
+  ordinalPosition: 3
+  dataType: RAW
+  nullable: true
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: SYS_C0010267
+  type: PRIMARY_KEY
+  columns:
+  - name: OWNER
+    ordinalPosition: 1
+  - name: TYPE_NAME
+    ordinalPosition: 2

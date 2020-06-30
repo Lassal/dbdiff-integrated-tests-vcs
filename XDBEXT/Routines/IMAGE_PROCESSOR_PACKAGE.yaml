@@ -1,0 +1,34 @@
+schema: XDBEXT
+name: IMAGE_PROCESSOR
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: DELETEIMAGEMETADATA.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HANDLE_EVENT.P_PAYLOAD
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: INSERTIMAGEMETADATA.P_TARGET_RESOURCE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEIMAGEMETADATA.P_TARGET_RESOURCE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEIMAGEMETADATA.P_METADATA_TARGET
+  ordinalPosition: 2
+  dataType: REF
+  parameterMode: IN
+routineDefinition: |-
+  package IMAGE_PROCESSOR as procedure HANDLE_EVENT(P_PAYLOAD XMLType);
+  procedure insertImageMetadata(P_TARGET_RESOURCE VARCHAR2);
+  procedure updateImageMetadata(
+    P_TARGET_RESOURCE VARCHAR2,
+    P_METADATA_TARGET REF XMLType
+  );
+  procedure deleteImageMetadata(P_RESOURCE_PATH VARCHAR2);
+  end;

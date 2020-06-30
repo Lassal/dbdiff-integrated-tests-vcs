@@ -1,0 +1,91 @@
+schema: SYS
+name: ALL_METHOD_RESULTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    m.name,
+    m.method#,
+    decode(
+      bitand(r.properties, 32768),
+      32768,
+      'REF',
+      decode(bitand(r.properties, 16384), 16384, 'POINTER')
+    ),
+    decode(bitand(rt.properties, 64), 64, null, ru.name),
+    decode(
+      rt.typecode,
+      9,
+      decode(r.charsetform, 2, 'NVARCHAR2', ro.name),
+      96,
+      decode(r.charsetform, 2, 'NCHAR', ro.name),
+      112,
+      decode(r.charsetform, 2, 'NCLOB', ro.name),
+      ro.name
+    ),
+    decode(
+      r.charsetform,
+      1,
+      'CHAR_CS',
+      2,
+      'NCHAR_CS',
+      3,
+      NLS_CHARSET_NAME(r.charsetid),
+      4,
+      'ARG:' || r.charsetid
+    )
+  from
+    sys.user$ u,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.method$ m,
+    sys.result$ r,
+    sys. "_CURRENT_EDITION_OBJ" ro,
+    sys.user$ ru,
+    sys.type$ rt
+  where
+    o.owner# = u.user#
+    and o.type# <> 10 -- must not be invalid
+    and o.oid$ = m.toid
+    and o.subname IS NULL -- get the latest version only
+    and m.toid = r.toid
+    and m.version# = r.version#
+    and m.method# = r.method#
+    and r.result_toid = ro.oid$
+    and ro.owner# = ru.user#
+    and r.result_toid = rt.toid
+    and r.result_version# = rt.version#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -184
+            /* EXECUTE ANY TYPE */,
+            -181
+            /* CREATE ANY TYPE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

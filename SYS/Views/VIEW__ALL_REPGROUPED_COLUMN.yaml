@@ -1,0 +1,53 @@
+schema: SYS
+name: _ALL_REPGROUPED_COLUMN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    gc.sname,
+    gc.oname,
+    gc.group_name,
+    gc.column_name,
+    gc.pos
+  from
+    all_tab_columns tc,
+    system.repcat$_grouped_column gc
+  where
+    gc.sname = tc.owner
+    and gc.oname = tc.table_name
+    and (
+      gc.column_name = tc.column_name
+      OR (
+        gc.column_name = 'SYS_NC_OID$'
+        AND -- sOID column
+        exists (
+          select
+            1
+          from
+            system.repcat$_repcolumn rc
+          where
+            rc.sname = gc.sname
+            and rc.oname = gc.oname
+            and rc.cname = 'SYS_NC_OID$'
+            and utl_raw.bit_and(
+              utl_raw.substr(rc.property, 1, 1),
+              '10'
+            ) = '10'
+        )
+      )
+    )
+  union
+  select
+    gc.sname,
+    gc.oname,
+    gc.group_name,
+    gc.column_name,
+    gc.pos
+  from
+    "_ALL_REPL_NESTED_TABLE_NAMES" nt,
+    system.repcat$_grouped_column gc
+  where
+    gc.sname = nt.owner
+    and gc.oname = nt.table_name
+columns: []
+referencedTables: []

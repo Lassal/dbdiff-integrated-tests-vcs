@@ -1,0 +1,18 @@
+schema: SYS
+name: ALL_REPKEY_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.sname,
+    r.oname,
+    r.col
+  from
+    sys.dba_repkey_columns r,
+    all_repobject ro
+  where
+    r.sname = ro.sname
+    and r.oname = ro.oname
+    and ro.type IN ('TABLE', 'SNAPSHOT')
+columns: []
+referencedTables: []

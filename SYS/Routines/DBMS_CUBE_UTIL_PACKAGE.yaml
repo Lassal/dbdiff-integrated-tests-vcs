@@ -1,0 +1,147 @@
+schema: SYS
+name: DBMS_CUBE_UTIL
+routineType: PACKAGE
+returnParamater:
+  name: GET_EXT_METADATA.(--return--)
+  ordinalPosition: 0
+  dataType: TABLE
+  parameterMode: OUT
+parameters:
+- name: CREATE_RPT_FILTER(1).P_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RPT_FILTER(1).P_DIMENSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RPT_FILTER(1).P_RFNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RPT_FILTER(1).P_MEMBER_LIST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RPT_FILTER(2).P_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RPT_FILTER(2).P_DIMENSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RPT_FILTER(2).P_RFNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RPT_FILTER(2).P_MEMBER_LIST
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: IN
+- name: DROP_BRANCH.P_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_BRANCH.P_DIMENSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_RPT_FILTER.P_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_RPT_FILTER.P_DIMENSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_RPT_FILTER.P_RFNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DEFAULT_MEASURE.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DEFAULT_MEASURE.CUBE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DIMENSION_SPECIAL_MEMBER.QUALIFIEDHIERARCHY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DIMENSION_SPECIAL_MEMBER.SPECIALMEMBERTYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_EXT_METADATA.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_EXT_METADATA.DIMENSION_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_cube_util AUTHID CURRENT_USER AS ---------------------
+  --  OVERVIEW
+  --
+  --  This package is the interface to cube utility functions
+  --
+  ---------------------
+  --  Visibility
+  --   All users
+  --
+  ---------------------
+  --  CONSTANTS
+  ---------------------
+  --  EXCEPTIONS
+  ---------------------
+  --  PROCEDURES
+  -- Create a report filter
+  PROCEDURE create_rpt_filter(
+    p_owner IN VARCHAR2,
+    p_dimension IN VARCHAR2,
+    p_rfname IN VARCHAR2,
+    p_member_list IN VARCHAR2
+  );
+  PROCEDURE create_rpt_filter(
+    p_owner IN VARCHAR2,
+    p_dimension IN VARCHAR2,
+    p_rfname IN VARCHAR2,
+    p_member_list IN CLOB
+  );
+  -- Drop a report filter
+  PROCEDURE drop_rpt_filter(
+    p_owner IN VARCHAR2,
+    p_dimension IN VARCHAR2,
+    p_rfname IN VARCHAR2
+  );
+  -- Drop a branch
+  PROCEDURE drop_branch(
+    p_owner IN VARCHAR2,
+    p_dimension IN VARCHAR2
+  );
+  -- Get HIERARCHY ALL or DEFAULT member for a cube dimension hierarchy
+  -- Valid specialMemberTypes:
+  -- HIERARCHY_ALL, DEFAULT_FIRST, DEFAULT_LAST or DEFAULT
+  -- DEFAULT and DEFAULT_LAST are the same.
+  -- When a hierarchy name is not specified the dimension is treated
+  -- as a LIST dimension for the purpose of getting a DEFAULT member.
+  FUNCTION get_dimension_special_member (
+    qualifiedHierarchy IN VARCHAR2,
+    -- "OWNER"."DIMENSION"[."HIERARCHY"]
+    specialMemberType IN VARCHAR2 DEFAULT 'DEFAULT'
+  ) RETURN VARCHAR2;
+  -- return extended metadata
+  FUNCTION get_ext_metadata(
+    owner IN VARCHAR2 DEFAULT NULL,
+    dimension_name IN VARCHAR2 DEFAULT NULL
+  ) return sys.dbms_cube_util_ext_md_t pipelined;
+  -- return default measure
+  FUNCTION get_default_measure(
+    owner IN VARCHAR2 DEFAULT NULL,
+    cube_name IN VARCHAR2 DEFAULT NULL
+  ) return sys.dbms_cube_util_dflt_msr_t pipelined;
+  END dbms_cube_UTIL;

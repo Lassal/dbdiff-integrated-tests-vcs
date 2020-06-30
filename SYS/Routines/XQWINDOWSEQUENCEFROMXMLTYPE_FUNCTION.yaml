@@ -1,0 +1,72 @@
+schema: SYS
+name: XQWINDOWSEQUENCEFROMXMLTYPE
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARRAY
+  parameterMode: OUT
+parameters:
+- name: DOC
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: FLAG
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: STARTEXPR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENDEXPR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CURITEM
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PREVITEM
+  ordinalPosition: 6
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: NEXTITEM
+  ordinalPosition: 7
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: POSITION
+  ordinalPosition: 8
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: ECURITEM
+  ordinalPosition: 9
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EPREVITEM
+  ordinalPosition: 10
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: ENEXTITEM
+  ordinalPosition: 11
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EPOSITION
+  ordinalPosition: 12
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  function XQWindowSequenceFromXMLType(
+    doc in sys.XMLType,
+    flag in number,
+    startexpr in varchar2,
+    endexpr in varchar2,
+    curItem in sys.XMLType,
+    prevItem in sys.XMLType,
+    nextItem in sys.XMLType,
+    position in sys.XMLType,
+    ecurItem in sys.XMLType,
+    eprevItem in sys.XMLType,
+    enextItem in sys.XMLType,
+    eposition in sys.XMLType
+  ) return sys.XMLSequenceType authid current_user pipelined using XQWindowSeq_Imp_t;

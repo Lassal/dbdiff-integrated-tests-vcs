@@ -1,0 +1,18 @@
+schema: ORDDATA
+name: ORDDCM_DOCUMENTS
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  SELECT
+    docs.DOC_ID,
+    docs.DOC_NAME,
+    doc_types.DOC_TYPE,
+    docs.CREATE_DATE,
+    docs.ORACLE_INSTALL INSTALLED_BY_ORACLE
+  FROM
+    ORDDATA.ORDDCM_DOCS_tmp docs,
+    ORDDATA.ORDDCM_DOC_TYPES doc_types
+  WHERE
+    docs.DOC_TYPE_ID = doc_types.DOC_TYPE_ID WITH READ ONLY
+columns: []
+referencedTables: []

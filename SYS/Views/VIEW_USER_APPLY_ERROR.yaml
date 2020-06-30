@@ -1,0 +1,34 @@
+schema: SYS
+name: USER_APPLY_ERROR
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    p.apply_name,
+    e.queue_name,
+    e.queue_owner,
+    e.local_transaction_id,
+    e.source_database,
+    e.source_transaction_id,
+    e.source_commit_scn,
+    e.message_number,
+    e.error_number,
+    e.error_message,
+    e.recipient_id,
+    e.recipient_name,
+    e.message_count,
+    e.error_creation_time,
+    e.source_commit_position,
+    e.error_type,
+    e.source_root_name,
+    e.error_position
+  from
+    DBA_APPLY_ERROR e,
+    sys.streams$_apply_process p,
+    sys.user$ u
+  where
+    e.apply_name = p.apply_name
+    and p.apply_userid = u.user#
+    and u.name = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

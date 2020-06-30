@@ -1,0 +1,41 @@
+schema: SYS
+name: USER_TYPE_METHODS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    m.name,
+    m.method#,
+    decode(
+      bitand(m.properties, 512),
+      512,
+      'MAP',
+      decode(
+        bitand(m.properties, 2048),
+        2048,
+        'ORDER',
+        'PUBLIC'
+      )
+    ),
+    m.parameters#,
+    m.results,
+    decode(bitand(m.properties, 8), 8, 'NO', 'YES'),
+    decode(bitand(m.properties, 65536), 65536, 'NO', 'YES'),
+    decode(
+      bitand(m.properties, 131072),
+      131072,
+      'YES',
+      'NO'
+    ),
+    decode(bitand(nvl(m.xflags, 0), 1), 1, 'YES', 'NO')
+  from
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.method$ m
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.type# <> 10 -- must not be invalid
+    and o.oid$ = m.toid
+    and o.subname IS NULL -- get the latest version only
+columns: []
+referencedTables: []

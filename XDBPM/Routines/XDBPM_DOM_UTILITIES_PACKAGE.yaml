@@ -1,0 +1,59 @@
+schema: XDBPM
+name: XDBPM_DOM_UTILITIES
+routineType: PACKAGE
+returnParamater:
+  name: VARCHAR_TO_RAW.(--return--)
+  ordinalPosition: 0
+  dataType: RAW
+  parameterMode: OUT
+parameters:
+- name: BOOLEAN_TO_RAW.INPUT
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BOOLEAN_TO_VARCHAR.INPUT
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GETBOOLEANVALUE.PARENT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETBOOLEANVALUE.CHILD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETTEXTNODEVALUE.PARENT
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GETTEXTNODEVALUE.CHILD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RAW_TO_BOOLEAN.INPUT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: RAW_TO_VARCHAR.INPUT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: VARCHAR_TO_BOOLEAN.INPUT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VARCHAR_TO_RAW.INPUT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_DOM_UTILITIES authid CURRENT_USER as function boolean_to_varchar(input boolean) return varchar2 deterministic;
+  function raw_to_varchar(input raw) return varchar2 deterministic;
+  function varchar_to_boolean(input varchar2) return boolean deterministic;
+  function raw_to_boolean(input raw) return boolean deterministic;
+  function boolean_to_raw(input boolean) return raw deterministic;
+  function varchar_to_raw(input varchar2) return raw deterministic;
+  function getTextNodeValue(parent DBMS_XMLDOM.DOMELEMENT, child varchar2) return varchar2 deterministic;
+  function getBooleanValue(parent DBMS_XMLDOM.DOMELEMENT, child varchar2) return raw deterministic;
+  end;

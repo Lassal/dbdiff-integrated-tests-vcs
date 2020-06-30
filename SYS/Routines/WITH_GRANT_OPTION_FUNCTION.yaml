@@ -1,0 +1,14 @@
+schema: SYS
+name: WITH_GRANT_OPTION
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  function with_grant_option return boolean is
+  begin
+    return dbms_standard.with_grant_option;
+  end;

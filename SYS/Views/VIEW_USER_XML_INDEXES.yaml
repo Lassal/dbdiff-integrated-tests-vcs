@@ -1,0 +1,78 @@
+schema: SYS
+name: USER_XML_INDEXES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    oi.name INDEX_NAME,
+    bu.name TABLE_OWNER,
+    bo.name TABLE_NAME,
+    case
+      when bitand(p.flags, 536870912) = 536870912 then 'REPOSITORY'
+      when bitand(p.flags, 4096) = 4096 then 'BINARY'
+      when bitand(p.flags, 8192) = 8192 then 'CLOB in OR'
+      when bitand(p.flags, 16384) = 16384 then 'CLOB'
+      else 'OR'
+    end TYPE,
+    case
+      when bitand(p.flags, 268435456) != 268435456 then 'STRUCTURED'
+      when bitand(p.flags, 268435456) = 268435456
+      and exists (
+        select
+          xt.idxobj#
+        from
+          xdb.xdb$xtab xt
+        where
+          xt.idxobj# = p.idxobj#
+      ) then 'STRUCTURED and UNSTRUCTURED'
+      else 'UNSTRUCTURED'
+    end INDEX_TYPE,
+    case
+      when bitand(p.flags, 268435456) != 268435456 then ''
+      else ot.name
+    end PATH_TABLE_NAME,
+    p.parameters PARAMETERS,
+    case
+      when bitand(p.flags, 65011712) = 6291456 then 'ON-COMMIT'
+      when bitand(p.flags, 65011712) = 10485760 then 'MANUAL'
+      when bitand(p.flags, 65011712) = 18874368 then 'EVERY'
+      else 'ALWAYS'
+    end ASYNC,
+    case
+      when bitand(p.flags, 2097152) = 2097152 then 'TRUE'
+      else 'FALSE'
+    end STALE,
+    case
+      when bitand(p.flags, 2097152) = 2097152 then (
+        select
+          op.name
+        from
+          sys.obj$ op
+        where
+          op.obj# = p.pendtabobj#
+      )
+      else ''
+    end PEND_TABLE_NAME,
+    case
+      when bitand(p.flags, 32) = 32 then 'INCLUDE'
+      when bitand(p.flags, 128) = 128 then 'EXCLUDE'
+      else 'FULLY IX'
+    end EX_or_INCLUDE
+  from
+    xdb.xdb$dxptab p,
+    sys.obj$ ot,
+    sys.obj$ oi,
+    sys.user$ u,
+    sys.user$ bu,
+    sys.obj$ bo,
+    sys.ind$ i
+  where
+    oi.owner# = u.user#
+    and oi.obj# = p.idxobj#
+    and p.pathtabobj# = ot.obj#
+    and i.obj# = oi.obj#
+    and i.bo# = bo.obj#
+    and bo.owner# = bu.user#
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

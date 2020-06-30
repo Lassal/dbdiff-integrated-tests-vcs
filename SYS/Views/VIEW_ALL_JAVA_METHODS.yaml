@@ -1,0 +1,178 @@
+schema: SYS
+name: ALL_JAVA_METHODS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ no_cartesian(m) no_cartesian(m) ordered use_nl(o m) */
+    u.name,
+    m.kln,
+    m.mix,
+    m.mnm,
+    decode(
+      BITAND(m.mac, 7),
+      1,
+      'PUBLIC',
+      2,
+      'PRIVATE',
+      4,
+      'PROTECTED',
+      NULL
+    ),
+    decode(
+      BITAND(m.mac, 8),
+      8,
+      'YES',
+      0,
+      'NO'
+    ),
+    decode(
+      BITAND(m.mac, 16),
+      16,
+      'YES',
+      0,
+      'NO'
+    ),
+    decode(
+      BITAND(m.mac, 32),
+      32,
+      'YES',
+      0,
+      'NO'
+    ),
+    decode(
+      BITAND(m.mac, 128),
+      128,
+      'YES',
+      0,
+      'NO'
+    ),
+    decode(
+      BITAND(m.mac, 256),
+      256,
+      'YES',
+      0,
+      'NO'
+    ),
+    decode(
+      BITAND(m.mac, 1024),
+      1024,
+      'YES',
+      0,
+      'NO'
+    ),
+    decode(
+      BITAND(m.mac, 2048),
+      2048,
+      'YES',
+      0,
+      'NO'
+    ),
+    decode(
+      BITAND(m.mac, 4096),
+      4096,
+      'YES',
+      0,
+      'NO'
+    ),
+    m.agc,
+    m.exc,
+    m.rad,
+    decode(
+      m.rbt,
+      10,
+      'int',
+      11,
+      'long',
+      6,
+      'float',
+      7,
+      'double',
+      4,
+      'boolean',
+      8,
+      'byte',
+      5,
+      'char',
+      9,
+      'short',
+      2,
+      'class',
+      12,
+      'void',
+      NULL
+    ),
+    m.rln,
+    nvl(
+      (
+        select
+          'YES'
+        from
+          sys.java$mc$ j
+        where
+          j.method# = m.mmt
+          and j.obj# = m.obn
+          and rownum = 1
+      ),
+      'NO'
+    )
+  from
+    sys.x$joxmmd m,
+    user $ u
+  where
+    m.own = u.user#
+    and m.mix != -1
+    and (
+      m.own in (
+        userenv('SCHEMAID'),
+        1
+        /* PUBLIC */
+      )
+      or (
+        (
+          (
+            m.obn in (
+              select
+                obj#
+              from
+                sys.objauth$
+              where
+                grantee# in (
+                  select
+                    kzsrorol
+                  from
+                    x$kzsro
+                )
+                and privilege# = 12
+                /* EXECUTE */
+            )
+          )
+          or exists (
+            select
+              null
+            from
+              sys.sysauth$
+            where
+              grantee# in (
+                select
+                  kzsrorol
+                from
+                  x$kzsro
+              )
+              and (
+                (
+                  /* procedure */
+                  (
+                    privilege# = -144
+                    /* EXECUTE ANY PROCEDURE */
+                    or privilege# = -141
+                    /* CREATE ANY PROCEDURE */
+                  )
+                )
+              )
+          )
+        )
+      )
+    )
+columns: []
+referencedTables: []

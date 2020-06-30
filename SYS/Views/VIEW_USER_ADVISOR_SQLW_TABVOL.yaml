@@ -1,0 +1,28 @@
+schema: SYS
+name: USER_ADVISOR_SQLW_TABVOL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    b.workload_id as workload_id,
+    c .name as workload_name,
+    b.owner_name as table_owner,
+    b.table_name as table_name,
+    b.upd_freq as update_freq,
+    b.ins_freq as insert_freq,
+    b.del_freq as delete_freq,
+    b.dir_freq as direct_load_freq,
+    b.upd_rows as updated_rows,
+    b.ins_rows as inserted_rows,
+    b.del_rows as deleted_rows,
+    b.dir_rows as direct_load_rows
+  from
+    wri$_adv_sqlw_tabvol b,
+    wri$_adv_tasks c
+  where
+    c .id = b.workload_id
+    and c .owner# = userenv('SCHEMAID')
+    and bitand(c .property, 2) = 0
+    and c .advisor_id = 6
+columns: []
+referencedTables: []

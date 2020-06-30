@@ -1,0 +1,68 @@
+schema: SYS
+name: ALL_XDS_ACL_REFRESH
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s.schema_name,
+    s.table_name,
+    s.acl_mview_name,
+    s.refresh_mode,
+    s.refresh_ability,
+    s.acl_status,
+    s.user_supplied_mv,
+    s.start_date,
+    s.repeat_interval,
+    s.refresh_count,
+    s.comments
+  from
+    dba_xds_acl_refresh s,
+    sys.obj$ o,
+    sys.user$ u
+  where
+    o.owner# = u.user#
+    and s.table_name = o.name
+    and u.name = s.schema_name
+    and o.type# = 2
+    /* table */
+    and (
+      u.user# in (userenv('SCHEMAID'), 1)
+      or o.obj# in (
+        select
+          obj#
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

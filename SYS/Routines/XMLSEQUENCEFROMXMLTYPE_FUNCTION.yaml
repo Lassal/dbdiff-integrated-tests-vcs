@@ -1,0 +1,15 @@
+schema: SYS
+name: XMLSEQUENCEFROMXMLTYPE
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARRAY
+  parameterMode: OUT
+parameters:
+- name: DOC
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: function XMLSequenceFromXMLType(doc in sys.XMLType) return sys.XMLSequenceType
+  authid current_user deterministic pipelined using XMLSeq_Imp_t;

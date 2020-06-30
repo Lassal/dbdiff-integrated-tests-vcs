@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_OPERATORS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    c .name,
+    b.name,
+    a .numbind
+  from
+    sys.operator$ a,
+    sys.obj$ b,
+    sys.user$ c
+  where
+    a .obj# = b.obj#
+    and b.owner# = c .user#
+    and b.owner# = userenv ('SCHEMAID')
+columns: []
+referencedTables: []

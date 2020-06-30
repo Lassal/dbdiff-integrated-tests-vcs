@@ -1,0 +1,16 @@
+schema: SYS
+name: ALL_SCHEDULER_GLOBAL_ATTRIBUTE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    a .value
+  FROM
+    sys.obj$ o,
+    sys.scheduler$_global_attribute a
+  WHERE
+    o.obj# = a .obj#
+    AND BITAND(a .flags, 1) != 1
+columns: []
+referencedTables: []

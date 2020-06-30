@@ -1,0 +1,22 @@
+schema: SYS
+name: DBA_AUTO_SEGADV_CTL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    stats.auto_taskid,
+    stats.tablespace_name,
+    stats.segment_owner,
+    stats.segment_name,
+    stats.segment_type,
+    stats.partition_name,
+    stats.status,
+    stats.reason,
+    stats.reason_value,
+    stats.creation_time,
+    stats.proc_taskid,
+    stats.end_time
+  from
+    wri$_segadv_objlist stats
+columns: []
+referencedTables: []

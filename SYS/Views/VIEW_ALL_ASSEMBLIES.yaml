@@ -1,0 +1,72 @@
+schema: SYS
+name: ALL_ASSEMBLIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    a .filespec,
+    decode(
+      a .security_level,
+      0,
+      'SAFE',
+      1,
+      'EXTERNAL_1',
+      2,
+      'EXTERNAL_2',
+      3,
+      'EXTERNAL_3',
+      4,
+      'UNSAFE'
+    ),
+    a .identity,
+    decode(o.status, 0, 'N/A', 1, 'VALID', 'INVALID')
+  from
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.assembly$ a,
+    sys.user$ u
+  where
+    o.owner# = u.user#
+    and o.obj# = a .obj#
+    and (
+      o.owner# in (
+        userenv('SCHEMAID'),
+        1
+        /* PUBLIC */
+      )
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or (
+        exists (
+          select
+            NULL
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -282
+              /* CREATE ANY ASSEMBLY */,
+              -283
+              /* ALTER ANY ASSEMBLY */,
+              -284
+              /* DROP ANY ASSEMBLY */,
+              -285
+              /* EXECUTE ANY ASSEMBLY */
+            )
+        )
+      )
+    )
+columns: []
+referencedTables: []

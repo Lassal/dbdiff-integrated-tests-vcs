@@ -1,0 +1,39 @@
+schema: SYS
+name: USER_JAVA_POLICY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    djp.kind,
+    djp.grantee,
+    djp.type_schema,
+    djp.type_name,
+    djp.name,
+    djp.action,
+    djp.enabled,
+    djp.seq
+  from
+    dba_java_policy djp,
+    sys.user$ u
+  where
+    u.name = djp.grantee
+    and (
+      (
+        u.user# in (
+          select
+            distinct privilege#
+          from
+            SYS.SYSAUTH$
+          where
+            privilege# > 0
+          start with
+            grantee# = userenv('SCHEMAID')
+          connect by
+            PRIOR privilege# = grantee#
+        )
+      )
+      or u.name = 'PUBLIC'
+      or u.user# = userenv('SCHEMAID')
+    )
+columns: []
+referencedTables: []

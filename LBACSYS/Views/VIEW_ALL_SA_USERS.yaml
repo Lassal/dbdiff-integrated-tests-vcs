@@ -1,0 +1,34 @@
+schema: LBACSYS
+name: ALL_SA_USERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    user_name,
+    u.policy_name,
+    user_privileges,
+    'MAX READ LABEL=''' || LABEL1 || ''',MAX WRITE LABEL=''' || LABEL2 || ''',MIN WRITE LABEL=''' || LABEL3 || ''',DEFAULT READ LABEL=''' || LABEL4 || ''',DEFAULT WRITE LABEL=''' || LABEL5 || ''',DEFAULT ROW LABEL=''' || LABEL6 || '''' AS user_labels,
+    LABEL1 AS MAX_READ_LABEL,
+    LABEL2 AS MAX_WRITE_LABEL,
+    LABEL3 AS MIN_WRITE_LABEL,
+    LABEL4 AS DEFAULT_READ_LABEL,
+    LABEL5 AS DEFAULT_WRITE_LABEL,
+    LABEL6 AS DEFAULT_ROW_LABEL
+  FROM
+    LBACSYS.sa$pol p,
+    LBACSYS.dba_ols_users u
+  WHERE
+    p.pol_name = u.policy_name
+    AND (
+      p.pol# in (
+        select
+          pol#
+        from
+          LBACSYS.sa$admin
+        where
+          usr_name = user
+      )
+      or u.user_name = sa_session.sa_user_name(lbac_cache.policy_name(p.pol#))
+    )
+columns: []
+referencedTables: []

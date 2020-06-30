@@ -1,0 +1,31 @@
+schema: SYS
+name: USER_TYPE_VERSIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    t.version#,
+    decode(
+      t.typecode,
+      108,
+      'OBJECT',
+      122,
+      'COLLECTION',
+      o.name
+    ),
+    decode(o.status, 0, 'N/A', 1, 'VALID', 'INVALID'),
+    s.line,
+    s.source,
+    t.hashcode
+  from
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.source$ s,
+    sys.type$ t
+  where
+    o.obj# = s.obj#
+    and o.oid$ = t.tvoid
+    and o.type# = 13
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

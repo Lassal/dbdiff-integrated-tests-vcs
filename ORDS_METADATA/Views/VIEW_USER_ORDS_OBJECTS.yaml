@@ -1,0 +1,86 @@
+schema: ORDS_METADATA
+name: USER_ORDS_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    COALESCE(ORDSOBJS.ID, NULL) ID,
+    COALESCE(ORDSSCHMID.schema_id, ORDSOBJS.SCHEMA_ID, NULL) SCHEMA_ID,
+    REALOBJS.PARSING_SCHEMA PARSING_SCHEMA,
+    REALOBJS.PARSING_OBJECT PARSING_OBJECT,
+    COALESCE(ORDSOBJS.OBJECT_ALIAS, REALOBJS.OBJECT_ALIAS) OBJECT_ALIAS,
+    COALESCE(ORDSOBJS.TYPE, REALOBJS.TYPE) TYPE,
+    COALESCE(ORDSOBJS.STATUS, REALOBJS.STATUS) STATUS,
+    COALESCE(ORDSOBJS.AUTO_REST_AUTH, REALOBJS.AUTO_REST_AUTH) AUTO_REST_AUTH,
+    COALESCE(ORDSOBJS.OPS_ALLOWED, REALOBJS.OPS_ALLOWED) OPS_ALLOWED,
+    COALESCE(ORDSOBJS.TYPE_PATH, REALOBJS.TYPE_PATH) TYPE_PATH
+  FROM
+    (
+      SELECT
+        sys_context('USERENV', 'CURRENT_USER') PARSING_SCHEMA,
+        TV. *,
+        'DISABLED' STATUS,
+        'ENABLED' AUTO_REST_AUTH,
+        NULL OPS_ALLOWED,
+        'ENABLED' TYPE_PATH
+      FROM
+        (
+          SELECT
+            TABLE_NAME PARSING_OBJECT,
+            LOWER(TABLE_NAME) OBJECT_ALIAS,
+            'TABLE' TYPE
+          FROM
+            SYS.USER_TABLES
+          WHERE
+            TEMPORARY = 'N'
+            AND SECONDARY = 'N'
+          UNION
+          SELECT
+            VIEW_NAME PARSING_OBJECT,
+            LOWER(VIEW_NAME) OBJECT_ALIAS,
+            'VIEW' TYPE
+          FROM
+            SYS.USER_VIEWS
+        ) TV
+    ) REALOBJS
+    LEFT OUTER JOIN (
+      SELECT
+        ords_objects.ID AS ID,
+        ords_schemas.id AS SCHEMA_ID,
+        ords_schemas.parsing_schema,
+        ords_objects.PARSING_OBJECT,
+        ords_objects.OBJECT_ALIAS,
+        ords_objects.TYPE,
+        ords_objects.STATUS,
+        ords_objects.AUTO_REST_AUTH,
+        ords_objects.OPS_ALLOWED,
+        ords_objects.TYPE_PATH
+      FROM
+        ords_objects,
+        ords_schemas
+      WHERE
+        ords_schemas.id = ords_objects.SCHEMA_ID
+        AND ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+    ) ORDSOBJS ON REALOBJS.PARSING_SCHEMA = ORDSOBJS.parsing_schema
+    AND REALOBJS.PARSING_OBJECT = ORDSOBJS.PARSING_OBJECT,
+    (
+      SELECT
+        s. *
+      FROM
+        (
+          SELECT
+            NULL schema_id
+          FROM
+            dual
+        ) n
+        LEFT OUTER JOIN (
+          SELECT
+            ords_schemas.id schema_id
+          FROM
+            ords_schemas
+          WHERE
+            ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+        ) s ON n.schema_id = s.schema_id
+    ) ORDSSCHMID
+columns: []
+referencedTables: []

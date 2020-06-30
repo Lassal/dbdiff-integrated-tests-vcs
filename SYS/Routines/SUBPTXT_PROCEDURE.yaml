@@ -1,0 +1,31 @@
+schema: SYS
+name: SUBPTXT
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: USR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TXT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: INOUT
+routineDefinition: |-
+  procedure subptxt(
+    name varchar2,
+    subname varchar2,
+    usr varchar2,
+    txt in out varchar2
+  ) is
+  begin
+    subptxt2(name, subname, usr, null, null, txt);
+  end;

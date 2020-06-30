@@ -1,0 +1,67 @@
+schema: SYS
+name: USER_METADATA_PROPERTIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    mp.owning_object_id OWNING_OBJECT_ID,
+    decode(
+      mp.owning_type,
+      '1',
+      'CUBE',
+      '2',
+      'MEASURE',
+      '3',
+      'MODEL',
+      '4',
+      'ASSIGNMENT',
+      '6',
+      'CALCULATION MEMBER',
+      '8',
+      'BUILD PROCESS',
+      '10',
+      'MEASURE FOLDER',
+      '11',
+      'DIMENSION',
+      '12',
+      'DIMENSION LEVEL',
+      '13',
+      'HIERARCHY',
+      '14',
+      'HIERARCHY LEVEL',
+      '15',
+      'ATTRIBUTE',
+      '16',
+      'DIMENSIONALITY',
+      '17',
+      'ATTRIBUTE MAP',
+      '18',
+      'HIER LEVEL MAP',
+      '19',
+      'SOLVED LEVEL HIER MAP',
+      '20',
+      'SOLVED VALUE HIER MAP',
+      '21',
+      'MEMBER LIST MAP',
+      '22',
+      'CUBE MAP',
+      '23',
+      'CUBE DIMENSIONALITY MAP',
+      '24',
+      'MEASURE MAP',
+      '34',
+      'METADATA PROPERTY'
+    ) OWNING_TYPE,
+    mp.property_id PROPERTY_ID,
+    mp.property_key PROPERTY_KEY,
+    mp.property_value PROPERTY_VALUE,
+    mp.property_order PROPERTY_ORDER
+  FROM
+    obj$ o,
+    olap_metadata_properties$ mp
+  WHERE
+    o.obj# = mp.top_obj# -- joined via the top level object id
+    AND o.owner# = USERENV('SCHEMAID')
+    AND mp.owning_type2 IS NULL
+columns: []
+referencedTables: []

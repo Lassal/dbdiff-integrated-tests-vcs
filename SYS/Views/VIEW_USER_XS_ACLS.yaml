@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_XS_ACLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    name,
+    security_class,
+    security_class_owner,
+    parent_acl,
+    parent_acl_owner,
+    inheritance_type,
+    description
+  from
+    sys.dba_xs_acls
+  where
+    owner = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

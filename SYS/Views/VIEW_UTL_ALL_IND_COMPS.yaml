@@ -1,0 +1,162 @@
+schema: SYS
+name: UTL_ALL_IND_COMPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "CTYPE",
+    "INDEX_NAME",
+    "COMPONENT_NAME",
+    "TABLE_ID",
+    "TAB_OWNER_ID",
+    "IDX_ID",
+    "IND_OWNER_ID",
+    "IND_OWNER_NAME",
+    "COMP_ID",
+    "TCOMP_ID",
+    "CCOMP_ID",
+    "TCCOMP_ID",
+    "STATUS",
+    "LOCALITY",
+    "DEGREE",
+    "ROWCNT",
+    "JOIN_INDEX"
+  FROM
+    "_utl$_gnp_ind"
+  WHERE
+    (
+      tab_owner_id = userenv('SCHEMAID')
+      OR ind_owner_id = userenv('SCHEMAID')
+      OR EXISTS (
+        SELECT
+          NULL
+        FROM
+          sys.v$enabledprivs
+        WHERE
+          priv_number in (
+            -72
+            /* ALTER ANY INDEX */,
+            -42
+            /* ALTER ANY TABLE */
+          )
+      )
+    )
+  UNION ALL
+  SELECT
+    "CTYPE",
+    "INDEX_NAME",
+    "COMPONENT_NAME",
+    "TABLE_ID",
+    "TAB_OWNER_ID",
+    "IDX_ID",
+    "IND_OWNER_ID",
+    "IND_OWNER_NAME",
+    "COMP_ID",
+    "TCOMP_ID",
+    "CCOMP_ID",
+    "TCCOMP_ID",
+    "STATUS",
+    "LOCALITY",
+    "DEGREE",
+    "ROWCNT",
+    "JOIN_INDEX"
+  FROM
+    "_utl$_gp_ind_parts"
+  WHERE
+    (
+      tab_owner_id = userenv('SCHEMAID')
+      OR ind_owner_id = userenv('SCHEMAID')
+      OR EXISTS (
+        SELECT
+          NULL
+        FROM
+          sys.v$enabledprivs
+        WHERE
+          priv_number in (
+            -72
+            /* ALTER ANY INDEX */,
+            -42
+            /* ALTER ANY TABLE */
+          )
+      )
+    )
+  UNION ALL
+  SELECT
+    "CTYPE",
+    "INDEX_NAME",
+    "COMPONENT_NAME",
+    "TABLE_ID",
+    "TAB_OWNER_ID",
+    "IDX_ID",
+    "IND_OWNER_ID",
+    "IND_OWNER_NAME",
+    "COMP_ID",
+    "TCOMP_ID",
+    "CCOMP_ID",
+    "TCCOMP_ID",
+    "STATUS",
+    "LOCALITY",
+    "DEGREE",
+    "ROWCNT",
+    "JOIN_INDEX"
+  FROM
+    "_utl$_lnc_ind_parts"
+  WHERE
+    (
+      tab_owner_id = userenv('SCHEMAID')
+      OR ind_owner_id = userenv('SCHEMAID')
+      OR EXISTS (
+        SELECT
+          NULL
+        FROM
+          sys.v$enabledprivs
+        WHERE
+          priv_number in (
+            -72
+            /* ALTER ANY INDEX */,
+            -42
+            /* ALTER ANY TABLE */
+          )
+      )
+    )
+  UNION ALL
+  SELECT
+    "CTYPE",
+    "INDEX_NAME",
+    "COMPONENT_NAME",
+    "TABLE_ID",
+    "TAB_OWNER_ID",
+    "IDX_ID",
+    "IND_OWNER_ID",
+    "IND_OWNER_NAME",
+    "COMP_ID",
+    "TCOMP_ID",
+    "CCOMP_ID",
+    "TCCOMP_ID",
+    "STATUS",
+    "LOCALITY",
+    "DEGREE",
+    "ROWCNT",
+    "JOIN_INDEX"
+  FROM
+    "_utl$_lc_ind_subs"
+  WHERE
+    (
+      tab_owner_id = userenv('SCHEMAID')
+      OR ind_owner_id = userenv('SCHEMAID')
+      OR EXISTS (
+        SELECT
+          NULL
+        FROM
+          sys.v$enabledprivs
+        WHERE
+          priv_number in (
+            -72
+            /* ALTER ANY INDEX */,
+            -42
+            /* ALTER ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

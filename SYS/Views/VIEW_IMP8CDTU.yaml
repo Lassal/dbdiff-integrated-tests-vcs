@@ -1,0 +1,14 @@
+schema: SYS
+name: IMP8CDTU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OWNERID",
+    "BAD"
+  FROM
+    sys.imp8cdt
+  WHERE
+    ownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

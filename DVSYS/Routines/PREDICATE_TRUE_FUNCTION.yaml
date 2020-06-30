@@ -1,0 +1,25 @@
+schema: DVSYS
+name: PREDICATE_TRUE
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: P_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: P_OBJECT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION predicate_true(
+    p_owner IN VARCHAR2,
+    p_object_name IN VARCHAR2
+  ) RETURN VARCHAR2 IS
+  BEGIN
+    return '0=0';
+  END;

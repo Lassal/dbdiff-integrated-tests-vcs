@@ -1,0 +1,43 @@
+schema: SYS
+name: KU$_JAVA_RESOURCE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    o.obj_num,
+    value(o),
+    nvl(
+      (
+        select
+          j.longdbcs
+        from
+          sys.javasnm$ j
+        where
+          j.short = o.name
+      ),
+      o.name
+    ),
+    sys.dbms_metadata.get_java_metadata (
+      o.name,
+      o.owner_name,
+      o.type_num
+    )
+  from
+    sys.ku$_schemaobj_view o
+  where
+    o.type_num = 30
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

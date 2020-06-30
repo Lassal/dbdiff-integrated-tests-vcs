@@ -1,0 +1,148 @@
+schema: XFILES
+name: XFILES_UTILITIES
+routineType: PACKAGE
+returnParamater:
+  name: TRANSFORMRESOURCE(2).(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: DISABLERSSFEED.P_FOLDER_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLERSSFEED.P_FOLDER_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLERSSFEED.P_ITEMS_CHANGED_IN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATEPREVIEW.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATEPREVIEW.P_LINES
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GENERATEPREVIEW.P_LINE_SIZE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: RENDERASHTML.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENDERASTEXT.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENDERASXHTML.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMCONTENT(1).P_CONTENT_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMCONTENT(1).P_XSL_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMCONTENT(2).P_CONTENT_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMCONTENT(2).P_XSL_DOCUMENT
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMDOCUMENT(1).P_XML_DOCUMENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMDOCUMENT(1).P_XSL_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMDOCUMENT(2).P_XML_DOCUMENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMDOCUMENT(2).P_XSL_DOCUMENT
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMDOCUMENTTOHTML(1).P_XML_DOCUMENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMDOCUMENTTOHTML(1).P_XSL_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMDOCUMENTTOHTML(2).P_XML_DOCUMENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMDOCUMENTTOHTML(2).P_XSL_DOCUMENT
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMRESOURCE(1).P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMRESOURCE(1).P_XSL_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMRESOURCE(1).P_TIMEZONE_OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: TRANSFORMRESOURCE(2).P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMRESOURCE(2).P_XSL_DOCUMENT
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMRESOURCE(2).P_TIMEZONE_OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  package XFILES_UTILITIES authid CURRENT_USER as function renderAsHTML(P_RESOURCE_PATH VARCHAR2) return CLOB;
+  function renderAsText(P_RESOURCE_PATH VARCHAR2) return CLOB;
+  function renderAsXHTML(P_RESOURCE_PATH VARCHAR2) return XMLType;
+  function generatePreview(
+    P_RESOURCE_PATH VARCHAR2,
+    P_LINES NUMBER DEFAULT 10,
+    P_LINE_SIZE NUMBER DEFAULT 132
+  ) return XMLType;
+  function transformResource(
+    P_RESOURCE_PATH VARCHAR2,
+    P_XSL_PATH VARCHAR2,
+    P_TIMEZONE_OFFSET NUMBER
+  ) return XMLType;
+  function transformResource(
+    P_RESOURCE_PATH VARCHAR2,
+    P_XSL_DOCUMENT XMLType,
+    P_TIMEZONE_OFFSET NUMBER
+  ) return XMLType;
+  function transformContent(P_CONTENT_PATH VARCHAR2, P_XSL_PATH VARCHAR2) return XMLType;
+  function transformContent(P_CONTENT_PATH VARCHAR2, P_XSL_DOCUMENT XMLTYPE) return XMLType;
+  function transformDocument(P_XML_DOCUMENT XMLTYPE, P_XSL_PATH VARCHAR2) return XMLType;
+  function transformDocument(P_XML_DOCUMENT XMLTYPE, P_XSL_DOCUMENT XMLTYPE) return XMLType;
+  function transformDocumentToHTML(P_XML_DOCUMENT XMLType, P_XSL_PATH VARCHAR2) return XMLType;
+  function transformDocumentToHTML(P_XML_DOCUMENT XMLType, P_XSL_DOCUMENT XMLType) return XMLType;
+  procedure enableRSSFeed(
+    P_FOLDER_PATH VARCHAR2,
+    P_ITEMS_CHANGED_IN VARCHAR2
+  );
+  procedure disableRSSFeed(P_FOLDER_PATH VARCHAR2);
+  end;

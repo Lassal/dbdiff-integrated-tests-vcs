@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_CLUSTERING_JOINS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    j.TABLE_NAME,
+    j.TAB1_OWNER,
+    j.TAB1_NAME,
+    j.TAB1_COLUMN,
+    j.TAB2_OWNER,
+    j.TAB2_NAME,
+    j.TAB2_COLUMN
+  from
+    DBA_CLUSTERING_JOINS j
+  WHERE
+    j.OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

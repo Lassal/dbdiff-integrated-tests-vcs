@@ -1,0 +1,51 @@
+schema: SYS
+name: ALL_REFRESH_CHILDREN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "OWNER",
+    "NAME",
+    "TYPE",
+    "ROWNER",
+    "RNAME",
+    "REFGROUP",
+    "IMPLICIT_DESTROY",
+    "PUSH_DEFERRED_RPC",
+    "REFRESH_AFTER_ERRORS",
+    "ROLLBACK_SEG",
+    "JOB",
+    "NEXT_DATE",
+    "INTERVAL",
+    "BROKEN",
+    "PURGE_OPTION",
+    "PARALLELISM",
+    "HEAP_SIZE"
+  from
+    dba_refresh_children
+  where
+    (
+      rowner = (
+        select
+          name
+        from
+          sys.user$
+        where
+          user # = userenv('SCHEMAID')
+      )
+    )
+    or userenv('SCHEMAID') = 0
+    or exists (
+      select
+        kzsrorol
+      from
+        x$kzsro x,
+        sys.system_privilege_map m,
+        sys.sysauth$ s
+      where
+        x.kzsrorol = s.grantee#
+        and s.privilege# = m.privilege
+        and m.name = 'ALTER ANY MATERIALIZED VIEW'
+    )
+columns: []
+referencedTables: []

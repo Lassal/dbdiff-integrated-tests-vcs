@@ -1,0 +1,30 @@
+schema: SYS
+name: USER_REPGROUP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.sname,
+    r.master,
+    r.status,
+    r.schema_comment,
+    r.sname,
+    r.fname,
+    r.rpc_processing_disabled,
+    r.gowner
+  from
+    repcat_repcat r,
+    user_users u
+  where
+    (r.sname = u.username)
+    or r.gowner in (
+      select
+        name
+      from
+        user $
+      where
+        user # = userenv('SCHEMAID')
+        and type # = 1
+    )
+columns: []
+referencedTables: []

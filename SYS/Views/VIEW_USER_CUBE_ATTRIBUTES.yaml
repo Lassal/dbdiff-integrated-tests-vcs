@@ -1,0 +1,128 @@
+schema: SYS
+name: USER_CUBE_ATTRIBUTES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name DIMENSION_NAME,
+    a .attribute_name ATTRIBUTE_NAME,
+    a .attribute_id ATTRIBUTE_ID,
+    tdo .name TARGET_DIMENSION_NAME,
+    (
+      CASE
+        a .attribute_role_mask
+        WHEN 1 THEN 'SHORT_DESCRIPTION'
+        WHEN 2 THEN 'LONG_DESCRIPTION'
+        WHEN 3 THEN 'DESCRIPTION'
+        WHEN 4 THEN 'TIME_SPAN'
+        WHEN 8 THEN 'END_DATE'
+        WHEN 16 THEN 'START_DATE'
+        ELSE null
+      END
+    ) ATTRIBUTE_ROLE,
+    d.description_value DESCRIPTION,
+    i.option_value ATTRIBUTE_GROUP_NAME,
+    DECODE(
+      a .type#,
+      1,
+      decode(a .charsetform, 2, 'NVARCHAR2', 'VARCHAR2'),
+      2,
+      decode(
+        a .scale,
+        null,
+        decode(a .precision#, null, 'NUMBER', 'FLOAT'),
+        'NUMBER'
+      ),
+      8,
+      'LONG',
+      9,
+      decode(a .charsetform, 2, 'NCHAR VARYING', 'VARCHAR'),
+      12,
+      'DATE',
+      23,
+      'RAW',
+      24,
+      'LONG RAW',
+      69,
+      'ROWID',
+      96,
+      decode(a .charsetform, 2, 'NCHAR', 'CHAR'),
+      100,
+      'BINARY_FLOAT',
+      101,
+      'BINARY_DOUBLE',
+      105,
+      'MLSLABEL',
+      106,
+      'MLSLABEL',
+      112,
+      decode(a .charsetform, 2, 'NCLOB', 'CLOB'),
+      113,
+      'BLOB',
+      114,
+      'BFILE',
+      115,
+      'CFILE',
+      178,
+      'TIME(' || a .scale || ')',
+      179,
+      'TIME(' || a .scale || ')' || ' WITH TIME ZONE',
+      180,
+      'TIMESTAMP(' || a .scale || ')',
+      181,
+      'TIMESTAMP(' || a .scale || ')' || ' WITH TIME ZONE',
+      231,
+      'TIMESTAMP(' || a .scale || ')' || ' WITH LOCAL TIME ZONE',
+      182,
+      'INTERVAL YEAR(' || a .precision# || ') TO MONTH',
+      183,
+      'INTERVAL DAY(' || a .precision# || ') TO SECOND(' || a .scale || ')',
+      208,
+      'UROWID',
+      'UNDEFINED'
+    ) DATA_TYPE,
+    a .length DATA_LENGTH,
+    a .precision# DATA_PRECISION,
+    a .scale DATA_SCALE,
+    DECODE(i2.option_num_value, 1, 'YES', NULL, 'NO') CREATE_INDEX,
+    DECODE(i3.option_num_value, 1, 'YES', NULL, 'NO') IS_MULTI_LINGUAL
+  FROM
+    olap_attributes$ a,
+    obj$ o,
+    obj$ tdo,
+    (
+      select
+        d. *
+      from
+        olap_descriptions$ d,
+        nls_session_parameters n
+      where
+        n.parameter = 'NLS_LANGUAGE'
+        and d.description_type = 'Description'
+        and d.owning_object_type = 15 --ATTRIBUTE
+        and (
+          d.language = n.value
+          or d.language like n.value || '\_%' escape '\')) d,
+    olap_syntax$ s,
+    olap_impl_options$ i,  -- For ATTRIBUTE_GROUP_NAME
+    olap_impl_options$ i2, -- For CREATE_INDEX
+    olap_impl_options$ i3  -- For IS_MULTI_LINGUAL
+  WHERE
+    o.obj#=a.dim_obj#
+    AND o.owner#=USERENV(' SCHEMAID ')
+    AND a.target_dim#=tdo.obj#(+)
+    AND a.attribute_id=s.owner_id(+)
+    AND s.owner_type(+) = 15 --ATTRIBUTE
+    AND s.ref_role(+) = 2 --ATTRIBUTE_ROLE
+    AND a.attribute_id = d.owning_object_id(+)
+    AND a.attribute_id = i.owning_objectid(+)
+    AND i.object_type(+) = 15  --ATTRIBUTE
+    AND i.option_type(+) = 35  --ATTRIBUTE_GROUP_NAME
+    AND a.attribute_id = i2.owning_objectid(+)
+    AND i2.object_type(+) = 15 --ATTRIBUTE
+    AND i2.option_type(+) = 3  --CREATE_INDEX
+    AND a.attribute_id = i3.owning_objectid(+)
+    AND i3.object_type(+) = 15 --ATTRIBUTE
+    AND i3.option_type(+) = 2  --IS_MULTI_LINGUAL
+columns: []
+referencedTables: []

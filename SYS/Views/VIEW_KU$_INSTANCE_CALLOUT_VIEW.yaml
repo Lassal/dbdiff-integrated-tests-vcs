@@ -1,0 +1,48 @@
+schema: SYS
+name: KU$_INSTANCE_CALLOUT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    null,
+    d.obj#,
+    value(o),
+    p.package,
+    p.schema,
+    p.level#,
+    p.class,
+    pr.prepost,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  FROM
+    sys.ku$_schemaobj_view o,
+    sys.exppkgact$ p,
+    sys.expdepact$ d,
+    ku$_prepost_view pr
+  WHERE
+    d.obj# = o.obj_num
+    AND d.package = p.package
+    and d.schema = p.schema
+    and p.class = 7
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+  ORDER by
+    p.level#
+columns: []
+referencedTables: []

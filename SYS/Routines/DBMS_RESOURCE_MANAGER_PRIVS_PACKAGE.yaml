@@ -1,0 +1,99 @@
+schema: SYS
+name: DBMS_RESOURCE_MANAGER_PRIVS
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: GRANT_SWITCH_CONSUMER_GROUP.GRANTEE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANT_SWITCH_CONSUMER_GROUP.CONSUMER_GROUP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANT_SWITCH_CONSUMER_GROUP.GRANT_OPTION
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GRANT_SYSTEM_PRIVILEGE.GRANTEE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANT_SYSTEM_PRIVILEGE.PRIVILEGE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANT_SYSTEM_PRIVILEGE.ADMIN_OPTION
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REVOKE_SWITCH_CONSUMER_GROUP.REVOKEE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKE_SWITCH_CONSUMER_GROUP.CONSUMER_GROUP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKE_SYSTEM_PRIVILEGE.REVOKEE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKE_SYSTEM_PRIVILEGE.PRIVILEGE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_resource_manager_privs AUTHID CURRENT_USER AS --
+  -- grant a system privilege to a user/role.
+  --
+  -- Input arguments:
+  --   grantee        - name of the user or role to whom privilege is to be
+  --                    granted
+  --   privilege_name - name of the privilege to be granted.
+  --   admin_option   - TRUE if the grant is with admin_option, FALSE otherwise
+  --
+  PROCEDURE grant_system_privilege(
+    grantee_name IN VARCHAR2,
+    privilege_name IN VARCHAR2 DEFAULT 'ADMINISTER_RESOURCE_MANAGER',
+    admin_option IN BOOLEAN
+  );
+  --
+  -- revoke a system privilege from a user/role
+  --
+  -- Input arguments:
+  --   revokee_name - name of the user or role from whom privilege is to be
+  --                  revoked
+  --
+  PROCEDURE revoke_system_privilege(
+    revokee_name IN VARCHAR2,
+    privilege_name in VARCHAR2 DEFAULT 'ADMINISTER_RESOURCE_MANAGER'
+  );
+  --
+  -- allow the specified user/role to switch to the given consumer group
+  --
+  -- Input arguments:
+  --   grantee_name   - name of user/role to which to grant access
+  --   consumer_group - name of consumer_group
+  --   grant_option   - TRUE if grantee should be allowed to grant access,
+  --                    FALSE otherwise.
+  --
+  PROCEDURE grant_switch_consumer_group(
+    grantee_name IN VARCHAR2,
+    consumer_group IN VARCHAR2,
+    grant_option IN BOOLEAN
+  );
+  --
+  -- disallow the specified user/role from switching to the given
+  -- consumer group, and from granting access to the group to other
+  -- users/roles.
+  --
+  -- Input arguments:
+  --   revokee_name      - name of user/role from which to revoke access
+  --   consumer_group    - name of consumer group
+  --
+  PROCEDURE revoke_switch_consumer_group(
+    revokee_name IN VARCHAR2,
+    consumer_group IN VARCHAR2
+  );
+  END dbms_resource_manager_privs;

@@ -1,0 +1,33 @@
+schema: OLAPSYS
+name: ALL$OLAP2_AW_DIM_HIER_LVL_ORD
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    AW.AWOWNER as AW_OWNER,
+    AW.AWNAME as AW_NAME,
+    AW.AWOBJECT as AW_DIMENSION_NAME,
+    AW.COL1 as AW_HIERARCHY_NAME,
+    AW.COL2 as IS_DEFAULT_HIER,
+    AW.COL3 as AW_LEVEL_NAME,
+    AW.COL5 as POSITION
+  FROM
+    TABLE(
+      CAST (
+        OLAP_TABLE(
+          'SYS.AWMD duration query',
+          'olapsys.ALL_OLAP2_AW_METADATA_T',
+          'ACTIVE_CATALOG ''ALL_DIM_HIER_LVL_ORD'' ''ALL''',
+          'MEASURE AWOWNER FROM SYS.AWMD!DHLO_OWNER
+                          MEASURE AWNAME FROM SYS.AWMD!DHLO_AWNAME
+                          MEASURE AWOBJECT FROM SYS.AWMD!DHLO_DIMENSION_NAME
+                          MEASURE COL1 FROM SYS.AWMD!DHLO_HIERARCHY_NAME
+                          MEASURE COL2 FROM SYS.AWMD!DHLO_IS_DFLT_HIER
+                          MEASURE COL3 FROM SYS.AWMD!DHLO_LEVEL_NAME
+                          MEASURE COL5 FROM SYS.AWMD!DHLO_HIER_LVL_POS
+                          DIMENSION AWMDKEY FROM SYS.AWMD!AWMDKEY_DHLO'
+        ) AS olapsys.ALL_OLAP2_AW_METADATA_T
+      )
+    ) AW
+columns: []
+referencedTables: []

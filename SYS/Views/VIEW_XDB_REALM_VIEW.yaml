@@ -1,0 +1,15 @@
+schema: SYS
+name: XDB_REALM_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "NAME",
+    "VALUE$",
+    "COMMENT$"
+  from
+    sys.props$
+  where
+    name = 'HTTP_REALM'
+columns: []
+referencedTables: []

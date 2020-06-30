@@ -1,0 +1,142 @@
+schema: SYS
+name: DBMS_PREDICTIVE_ANALYTICS
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: EXPLAIN.DATA_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN.EXPLAIN_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN.RESULT_TABLE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN.DATA_SCHEMA_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREDICT.ACCURACY
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: OUT
+- name: PREDICT.DATA_TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREDICT.CASE_ID_COLUMN_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREDICT.TARGET_COLUMN_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREDICT.RESULT_TABLE_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREDICT.DATA_SCHEMA_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROFILE.DATA_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROFILE.TARGET_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROFILE.RESULT_TABLE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROFILE.DATA_SCHEMA_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_predictive_analytics AUTHID CURRENT_USER AS --
+  -- PUBLIC PROCEDURES AND FUNCTIONS
+  --
+  -- Procedure: PREDICT
+  -- The purpose of this procedure is to produce predictions for unknown
+  -- targets. The input data table should contain records where the target
+  -- value is known (not null). The known cases will be used to train and test
+  -- a model. Any cases where the target is unknown, i.e. where the target
+  -- value is null, will not be considered during model training. Once a
+  -- mining model is built internally, it will be used to score all the
+  -- records from the input data (both known and unknown), and a table will be
+  -- persisted containing the results. In the case of binary classification,
+  -- an ROC analysis of the results will be performed, and the predictions
+  -- will be adjusted to support the optimal probability threshold resulting
+  -- in the highest True Positive Rate (TPR) versus False Positive Rate (FPR).
+  PROCEDURE predict(
+    accuracy OUT NUMBER,
+    data_table_name IN VARCHAR2,
+    case_id_column_name IN VARCHAR2,
+    target_column_name IN VARCHAR2,
+    result_table_name IN VARCHAR2,
+    data_schema_name IN VARCHAR2 DEFAULT NULL
+  );
+  -- Procedure: EXPLAIN
+  -- This procedure is used for identifying attributes that are important/
+  -- useful for explaining the variation on an attribute of interest (e.g. a
+  -- measure of an OLAP fact table). Only known cases (i.e. cases where the
+  -- value of the explain column is not null) will be taken into consideration
+  -- when assessing the importance of the input attributes upon the dependent
+  -- attribute. The resulting table will contain one row for each of the input
+  -- attributes.
+  PROCEDURE explain(
+    data_table_name IN VARCHAR2,
+    explain_column_name IN VARCHAR2,
+    result_table_name IN VARCHAR2,
+    data_schema_name IN VARCHAR2 DEFAULT NULL
+  );
+  -- Procedure: SEGMENT
+  -- This procedure is used to segment similar records together. It uses
+  -- segmentation analysis to identify groups embedded in the data, where a
+  -- group is a collection of data objects that are similar to one another. The
+  -- SEGMENT task can be applied to a wide range of business problems such as:
+  -- customer segmentation, gene and protein analysis, product grouping,
+  -- finding numerical taxonomies, and text mining.
+  --  PROCEDURE segment(
+  --                  data_table_name            IN VARCHAR2,
+  --                  case_id_column_name        IN VARCHAR2,
+  --                  segment_result_table_name  IN VARCHAR2,
+  --                  details_result_table_name  IN VARCHAR2,
+  --                  number_of_segments         IN NUMBER DEFAULT 10,
+  --                  max_descriptive_attributes IN NUMBER DEFAULT 5,
+  --                  data_schema_name           IN VARCHAR2 DEFAULT NULL);
+  -- Procedure: DETECT
+  -- This procedure is used to find anomalies or atypical records within sets of
+  -- data. It can be described as an indicator of strange behavior Identifying
+  -- such anomalies or outliers can be useful in problems such as fraud
+  -- detection (insurance, tax, credit card, etc.) and computer network
+  -- intrusion detection. Anomaly detection estimates whether a data point is
+  -- typical for a given distribution or not. An atypical data point can be
+  -- either an outlier or an instance of a previously unseen class.
+  --  PROCEDURE detect(
+  --                  data_table_name            IN VARCHAR2,
+  --                  case_id_column_name        IN VARCHAR2,
+  --                  result_table_name          IN VARCHAR2,
+  --                  detect_column_name         IN VARCHAR2 DEFAULT NULL,
+  --                  detection_rate             IN NUMBER DEFAULT 0.01,
+  --                  max_descriptive_attributes IN NUMBER DEFAULT 5,
+  --                  data_schema_name           IN VARCHAR2 DEFAULT NULL);
+  -- Procedure: PROFILE
+  -- This procedure is used to segment data based on some target attribute and
+  -- value. It will create profiles or rules for records where the specific
+  -- attribute and value exist, in some sense it can be seen directed or
+  -- supervised segmentation.
+  PROCEDURE profile(
+    data_table_name IN VARCHAR2,
+    target_column_name IN VARCHAR2,
+    result_table_name IN VARCHAR2,
+    data_schema_name IN VARCHAR2 DEFAULT NULL
+  );
+  END dbms_predictive_analytics;

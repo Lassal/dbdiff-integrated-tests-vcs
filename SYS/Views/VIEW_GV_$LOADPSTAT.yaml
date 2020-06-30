@@ -1,0 +1,16 @@
+schema: SYS
+name: GV_$LOADPSTAT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "INST_ID",
+    "OWNER",
+    "TABNAME",
+    "PARTNAME",
+    "LOADED",
+    "CON_ID"
+  from
+    gv$loadpstat
+columns: []
+referencedTables: []

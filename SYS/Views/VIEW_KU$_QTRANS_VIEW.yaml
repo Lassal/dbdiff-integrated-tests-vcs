@@ -1,0 +1,38 @@
+schema: SYS
+name: KU$_QTRANS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    t.transformation_id,
+    u.name,
+    t.name,
+    (
+      select
+        value (f)
+      from
+        ku$_schemaobj_view f
+      where
+        f.oid = t.from_toid
+    ),
+    (
+      select
+        value (o)
+      from
+        ku$_schemaobj_view o
+      where
+        o.oid = t.to_toid
+    ),
+    at .attribute_number,
+    TO_CLOB(replace(at .sql_expression, '''', ''''''))
+  from
+    sys.user$ u,
+    transformations$ t,
+    attribute_transformations$ at
+  where
+    u.name = t.owner
+    and t.transformation_id = at .transformation_id
+columns: []
+referencedTables: []

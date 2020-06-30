@@ -1,0 +1,15 @@
+schema: SYS
+name: ALL_CAPTURE_PREPARED_DATABASE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "TIMESTAMP",
+    "SUPPLEMENTAL_LOG_DATA_PK",
+    "SUPPLEMENTAL_LOG_DATA_UI",
+    "SUPPLEMENTAL_LOG_DATA_FK",
+    "SUPPLEMENTAL_LOG_DATA_ALL"
+  from
+    DBA_CAPTURE_PREPARED_DATABASE
+columns: []
+referencedTables: []

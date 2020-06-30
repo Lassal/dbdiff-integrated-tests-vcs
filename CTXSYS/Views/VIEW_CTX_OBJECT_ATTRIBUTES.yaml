@@ -1,0 +1,39 @@
+schema: CTXSYS
+name: CTX_OBJECT_ATTRIBUTES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    cla_name oat_class,
+    obj_name oat_object,
+    oat_name oat_attribute,
+    oat_desc oat_description,
+    oat_required oat_required,
+    oat_static oat_static,
+    decode(
+      oat_datatype,
+      'S',
+      'STRING',
+      'I',
+      'INTEGER',
+      'B',
+      'BOOLEAN',
+      'P',
+      'PROCEDURE'
+    ) oat_datatype,
+    oat_default oat_default,
+    oat_val_min oat_min,
+    decode(oat_datatype, 'S', null, oat_val_max) oat_max,
+    decode(oat_datatype, 'S', oat_val_max, null) oat_max_length
+  from
+    dr$class,
+    dr$object,
+    dr$object_attribute
+  where
+    cla_id = obj_cla_id
+    and obj_cla_id = oat_cla_id
+    and obj_id = oat_obj_id
+    and oat_system = 'N'
+    and cla_system = 'N'
+columns: []
+referencedTables: []

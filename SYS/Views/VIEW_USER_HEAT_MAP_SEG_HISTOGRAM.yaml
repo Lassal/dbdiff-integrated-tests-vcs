@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_HEAT_MAP_SEG_HISTOGRAM
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    o.subname,
+    s.track_time,
+    s.segment_write,
+    s.full_scan,
+    s.lookup_scan
+  from
+    obj$ o,
+    sys. "_SYS_HEAT_MAP_SEG_HISTOGRAM" s
+  where
+    o.owner# = userenv('SCHEMAID')
+    and s.obj# = o.obj#
+  order by
+    o.obj#
+columns: []
+referencedTables: []

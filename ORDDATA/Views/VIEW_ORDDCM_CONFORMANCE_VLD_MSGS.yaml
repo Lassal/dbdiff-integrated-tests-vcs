@@ -1,0 +1,17 @@
+schema: ORDDATA
+name: ORDDCM_CONFORMANCE_VLD_MSGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    SOP_INSTANCE_UID,
+    RULE_NAME,
+    MESSAGE,
+    MSG_TYPE,
+    MSG_TIME
+  FROM
+    ORDDATA.ORDDCM_CT_VLD_MSG
+  WHERE
+    USER_NAME = USER
+columns: []
+referencedTables: []

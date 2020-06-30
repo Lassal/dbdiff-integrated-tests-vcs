@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_COMPARISON_ROW_DIF
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    comparison_name,
+    scan_id,
+    local_rowid,
+    remote_rowid,
+    index_value,
+    status,
+    last_update_time
+  FROM
+    dba_comparison_row_dif
+  WHERE
+    owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

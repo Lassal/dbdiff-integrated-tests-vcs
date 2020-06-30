@@ -1,0 +1,14 @@
+schema: SYS
+name: USER_JAVA_COMPILER_OPTIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.property,
+    dbms_java.decode_native_compiler_option(o.property, o.value)
+  from
+    sys.java$compiler$options o
+  where
+    o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

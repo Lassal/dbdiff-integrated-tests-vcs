@@ -1,0 +1,17 @@
+schema: SYS
+name: USER_XML_OUT_OF_LINE_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    SCHEMA_URL,
+    --schema URL
+    SCHEMA_OWNER,
+    --schema owner
+    TABLE_NAME --out of line table name
+  from
+    DBA_XML_OUT_OF_LINE_TABLES
+  where
+    TABLE_OWNER = USER
+columns: []
+referencedTables: []

@@ -1,0 +1,173 @@
+schema: SYS
+name: ALL_MEASURE_FOLDER_CONTENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name OWNER,
+    o.name MEASURE_FOLDER_NAME,
+    cu.name CUBE_OWNER,
+    co.name CUBE_NAME,
+    m.measure_name MEASURE_NAME,
+    mf.order_num ORDER_NUM
+  FROM
+    olap_meas_folder_contents$ mf,
+    obj$ o,
+    user $ u,
+    olap_measures$ m,
+    obj$ co,
+    user $ cu,
+    (
+      SELECT
+        obj#,
+        MIN(have_dim_access) have_all_dim_access
+      FROM
+        (
+          SELECT
+            c .obj# obj#,
+            (
+              CASE
+                WHEN (
+                  do .owner# in (userenv('SCHEMAID'), 1) -- public objects
+                  or do .obj# in (
+                    select
+                      obj# -- directly granted privileges
+                    from
+                      sys.objauth$
+                    where
+                      grantee# in (
+                        select
+                          kzsrorol
+                        from
+                          x$kzsro
+                      )
+                  )
+                  or -- user has system privileges
+                  (
+                    exists (
+                      select
+                        null
+                      from
+                        v$enabledprivs
+                      where
+                        priv_number in (
+                          -302,
+                          -- ALTER ANY PRIMARY DIMENSION
+                          -304,
+                          -- DELETE ANY PRIMARY DIMENSION
+                          -305,
+                          -- DROP ANY PRIMARY DIMENSION
+                          -306,
+                          -- INSERT ANY PRIMARY DIMENSION
+                          -307
+                        ) -- SELECT ANY PRIMARY DIMENSION
+                    )
+                  )
+                ) THEN 1
+                ELSE 0
+              END
+            ) have_dim_access
+          FROM
+            olap_cubes$ c,
+            dependency$ d,
+            obj$ do
+          WHERE
+            do .obj# = d.p_obj#
+            AND do .type# = 92 -- CUBE DIMENSION
+            AND c .obj# = d.d_obj#
+        )
+      GROUP BY
+        obj#
+    ) da
+  WHERE
+    mf.measure_folder_obj# = o.obj#
+    AND o.owner# = u.user#
+    AND mf.object_type = 2 -- MEASURE
+    AND mf.object_id = m.measure_id
+    AND m.cube_obj# = co.obj#
+    AND co.owner# = cu.user#
+    AND (
+      o.owner# in (userenv('SCHEMAID'), 1) -- folder is ownwd by user or public object
+      or -- user has access to measure folder
+      (
+        o.obj# in (
+          select
+            obj# -- directly granted privileges
+          from
+            sys.objauth$
+          where
+            grantee# in (
+              select
+                kzsrorol
+              from
+                x$kzsro
+            )
+        )
+      )
+      or -- user has system privileges
+      (
+        exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -316,
+              -- DELETE ANY MEASURE FOLDER
+              -317,
+              -- DROP ANY MEASURE FOLDER
+              -318,
+              -- INSERT ANY MEASURE FOLDER
+              -393,
+              -- SELECT ANY MEASURE FOLDER
+              -394
+            ) -- ALTER ANY MEASURE FOLDER
+        )
+      )
+    )
+    AND (
+      co.owner# in (userenv('SCHEMAID'), 1) -- cube is owned by user or public object
+      or -- user has access to cube
+      (
+        co.obj# in (
+          select
+            obj# -- directly granted privileges
+          from
+            sys.objauth$
+          where
+            grantee# in (
+              select
+                kzsrorol
+              from
+                x$kzsro
+            )
+        )
+      )
+      or -- user has system privileges
+      (
+        exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -309,
+              -- ALTER ANY CUBE
+              -311,
+              -- DROP ANY CUBE
+              -312,
+              -- SELECT ANY CUBE
+              -313
+            ) -- UPDATE ANY CUBE
+        )
+      )
+    )
+    AND co.obj# = da.obj#(+)
+    AND (
+      da.have_all_dim_access = 1
+      or da.have_all_dim_access is NULL
+    )
+columns: []
+referencedTables: []

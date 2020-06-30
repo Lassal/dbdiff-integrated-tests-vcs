@@ -1,0 +1,13 @@
+schema: SYS
+name: USER_DBFS_HS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    storeName
+  FROM
+    DBA_DBFS_HS
+  WHERE
+    storeOwner = sys_context('USERENV', 'SESSION_USER')
+columns: []
+referencedTables: []

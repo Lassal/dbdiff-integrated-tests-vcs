@@ -1,0 +1,34 @@
+schema: SYS
+name: ODCICOLINFODUMP
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: CI
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE ODCIColInfoDump(ci ODCIColInfo) IS col NUMBER;
+  BEGIN
+    if ci is null then dbms_output.put_line('ODCIColInfo is null');
+  return;
+  end if;
+  dbms_output.put_line('ODCIColInfo');
+  dbms_output.put_line('Table owner : ' || ci.TableSchema);
+  dbms_output.put_line('Table name : ' || ci.TableName);
+  if (ci.TablePartition is not null) then dbms_output.put_line('Table partition name : ' || ci.TablePartition);
+  end if;
+  dbms_output.put_line('Column name: ' || ci.ColName);
+  dbms_output.put_line('Column type :' || ci.ColTypeName);
+  dbms_output.put_line('Column type schema:' || ci.ColTypeSchema);
+  if (ci.ColInfoFlags != 0) then ODCIColInfoFlagsDump(ci.ColInfoFlags);
+  end if;
+  if (ci.OrderByPosition > 0) then dbms_output.put_line(
+    'Indexed column position in order by: ' || ci.OrderByPosition
+  );
+  end if;
+  if (ci.TablePartitionTotal > 1) then dbms_output.put_line(
+    ' Total number of table partitions : ' || ci.TablePartitionTotal
+  );
+  end if;
+  END;

@@ -1,0 +1,25 @@
+schema: SYS
+name: USER_RULES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    /*+ all_rows */
+    o.name,
+    r.condition,
+    bu.name,
+    bo.name,
+    r.r_action,
+    r.r_comment
+  FROM
+    rule$ r,
+    obj$ o,
+    obj$ bo,
+    user $ bu
+  WHERE
+    r.obj# = o.obj#
+    and o.owner# = USERENV('SCHEMAID')
+    and r.ectx# = bo.obj#(+)
+    and bo.owner# = bu.user#(+)
+columns: []
+referencedTables: []

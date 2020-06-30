@@ -1,0 +1,73 @@
+schema: SYS
+name: KU$_METHOD_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    m.toid,
+    m.version#,
+    m.method#,
+    m.name,
+    m.properties,
+    m.parameters#,
+    m.results,
+    m.xflags,
+    m.spare1,
+    m.spare2,
+    m.spare3,
+    m.externVarName,
+    cast(
+      multiset(
+        select
+          *
+        from
+          ku$_argument_view a
+        where
+          m.name = a .procedure_val
+          and a .obj_num = o.obj#
+      ) as ku$_argument_list_t
+    ),
+    (
+      select
+        value(pi)
+      from
+        ku$_procinfo_view pi
+      where
+        pi.obj_num = o.obj#
+        and pi.procedure_num = m.method#
+    ),
+    (
+      select
+        value(pj)
+      from
+        ku$_procjava_view pj
+      where
+        pj.obj_num = o.obj#
+        and pj.procedure_num = m.method#
+    ),
+    (
+      select
+        value(pq)
+      from
+        ku$_procplsql_view pq
+      where
+        pq.obj_num = o.obj#
+        and pq.procedure_num = m.method#
+    ),
+    (
+      select
+        value(pc)
+      from
+        ku$_procc_view pc
+      where
+        pc.obj_num = o.obj#
+        and pc.procedure_num = m.method#
+    ),
+    o.obj#
+  from
+    sys.obj$ o,
+    sys.method$ m
+  where
+    m.toid = o.oid$
+columns: []
+referencedTables: []

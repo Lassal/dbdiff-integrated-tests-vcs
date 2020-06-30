@@ -1,0 +1,52 @@
+schema: SYS
+name: USER_PART_KEY_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    'TABLE',
+    decode(bitand(c .property, 1), 1, a .name, c .name),
+    pc.pos#
+  from
+    partcol$ pc,
+    obj$ o,
+    col$ c,
+    attrcol$ a
+  where
+    pc.obj# = o.obj#
+    and pc.obj# = c .obj#
+    and c .intcol# = pc.intcol#
+    and o.owner# = userenv('SCHEMAID')
+    and o.subname IS NULL
+    and o.namespace = 1
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+    and c .obj# = a .obj#(+)
+    and c .intcol# = a .intcol#(+)
+  union
+  select
+    io.name,
+    'INDEX',
+    decode(bitand(c .property, 1), 1, a .name, c .name),
+    pc.pos#
+  from
+    partcol$ pc,
+    obj$ io,
+    col$ c,
+    ind$ i,
+    attrcol$ a
+  where
+    pc.obj# = i.obj#
+    and i.obj# = io.obj#
+    and i.bo# = c .obj#
+    and c .intcol# = pc.intcol#
+    and io.owner# = userenv('SCHEMAID')
+    and io.namespace = 4
+    and io.remoteowner IS NULL
+    and io.linkname IS NULL
+    and io.subname IS NULL
+    and c .obj# = a .obj#(+)
+    and c .intcol# = a .intcol#(+)
+columns: []
+referencedTables: []

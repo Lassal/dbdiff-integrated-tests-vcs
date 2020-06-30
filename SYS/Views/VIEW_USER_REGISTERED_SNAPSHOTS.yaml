@@ -1,0 +1,28 @@
+schema: SYS
+name: USER_REGISTERED_SNAPSHOTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "OWNER",
+    "NAME",
+    "SNAPSHOT_SITE",
+    "CAN_USE_LOG",
+    "UPDATABLE",
+    "REFRESH_METHOD",
+    "SNAPSHOT_ID",
+    "VERSION",
+    "QUERY_TXT"
+  from
+    dba_registered_snapshots s
+  where
+    exists (
+      select
+        snapshot_id
+      from
+        user_snapshot_logs u
+      where
+        s.snapshot_id = u.snapshot_id
+    )
+columns: []
+referencedTables: []

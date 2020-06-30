@@ -1,0 +1,37 @@
+schema: SYS
+name: KU$_DOMIDX_OBJNUM_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    i.obj#,
+    NULL,
+    NULL,
+    NULL,
+    -- property bits not needed
+    NULL,
+    -- ts# not needed
+    value(o),
+    value(bo)
+  from
+    ku$_schemaobj_view o,
+    ku$_schemaobj_view bo,
+    sys.ind$ i
+  where
+    o.obj_num = i.obj#
+    and bo.obj_num = i.bo#
+    and i.type# = 9
+    /* domain index */
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

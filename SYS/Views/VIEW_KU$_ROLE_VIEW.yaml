@@ -1,0 +1,130 @@
+schema: SYS
+name: KU$_ROLE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    u.user#,
+    u.name,
+    u.type#,
+    u.password,
+    to_char(u.ctime, 'YYYY/MM/DD HH24:MI:SS'),
+    to_char(u.ptime, 'YYYY/MM/DD HH24:MI:SS'),
+    to_char(u.exptime, 'YYYY/MM/DD HH24:MI:SS'),
+    to_char(u.ltime, 'YYYY/MM/DD HH24:MI:SS'),
+    u.resource$,
+    replace(u.audit$, chr(0), '-'),
+    u.defrole,
+    u.defgrp#,
+    u.defgrp_seq#,
+    u.astatus,
+    u.lcount,
+    u.ext_username,
+    u.spare1,
+    u.spare2,
+    u.spare3,
+    u.spare4,
+    u.spare5,
+    to_char(u.spare6, 'YYYY/MM/DD HH24:MI:SS'),
+    (
+      select
+        r.schema
+      from
+        sys.approle$ r
+      where
+        r.role# = u.user#
+    ),
+    (
+      select
+        r.package
+      from
+        sys.approle$ r
+      where
+        r.role# = u.user#
+    )
+  from
+    sys.user$ u
+  where
+    u.type# = 0
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'EXP_FULL_DATABASE'
+      )
+    )
+  UNION
+  select
+    '1',
+    '1',
+    u.user#,
+    u.name,
+    u.type#,
+    NULL,
+    to_char(u.ctime, 'YYYY/MM/DD HH24:MI:SS'),
+    to_char(u.ptime, 'YYYY/MM/DD HH24:MI:SS'),
+    to_char(u.exptime, 'YYYY/MM/DD HH24:MI:SS'),
+    to_char(u.ltime, 'YYYY/MM/DD HH24:MI:SS'),
+    u.resource$,
+    replace(u.audit$, chr(0), '-'),
+    u.defrole,
+    u.defgrp#,
+    u.defgrp_seq#,
+    u.astatus,
+    u.lcount,
+    u.ext_username,
+    u.spare1,
+    u.spare2,
+    u.spare3,
+    NULL,
+    u.spare5,
+    to_char(u.spare6, 'YYYY/MM/DD HH24:MI:SS'),
+    (
+      select
+        r.schema
+      from
+        sys.approle$ r
+      where
+        r.role# = u.user#
+    ),
+    (
+      select
+        r.package
+      from
+        sys.approle$ r
+      where
+        r.role# = u.user#
+    )
+  from
+    sys.user$ u
+  where
+    u.type# = 0
+    AND (SYS_CONTEXT('USERENV', 'CURRENT_USERID') != 0)
+    AND NOT (
+      EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'EXP_FULL_DATABASE'
+      )
+    )
+    AND (
+      EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

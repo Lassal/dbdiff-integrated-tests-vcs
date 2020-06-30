@@ -1,0 +1,829 @@
+schema: SYS
+name: DBMS_UTILITY
+routineType: PACKAGE
+returnParamater:
+  name: WAIT_ON_PENDING_DML.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: ACTIVE_INSTANCES.INSTANCE_TABLE
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: ACTIVE_INSTANCES.INSTANCE_COUNT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: ANALYZE_DATABASE.METHOD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZE_DATABASE.ESTIMATE_ROWS
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ANALYZE_DATABASE.ESTIMATE_PERCENT
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ANALYZE_DATABASE.METHOD_OPT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZE_PART_OBJECT.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZE_PART_OBJECT.OBJECT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZE_PART_OBJECT.OBJECT_TYPE
+  ordinalPosition: 3
+  dataType: CHAR
+  parameterMode: IN
+- name: ANALYZE_PART_OBJECT.COMMAND_TYPE
+  ordinalPosition: 4
+  dataType: CHAR
+  parameterMode: IN
+- name: ANALYZE_PART_OBJECT.COMMAND_OPT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZE_PART_OBJECT.SAMPLE_CLAUSE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZE_SCHEMA.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZE_SCHEMA.METHOD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZE_SCHEMA.ESTIMATE_ROWS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ANALYZE_SCHEMA.ESTIMATE_PERCENT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: ANALYZE_SCHEMA.METHOD_OPT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CANONICALIZE.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CANONICALIZE.CANON_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: CANONICALIZE.CANON_LEN
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: COMMA_TO_TABLE(1).LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMMA_TO_TABLE(1).TABLEN
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: COMMA_TO_TABLE(1).TAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: COMMA_TO_TABLE(2).LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMMA_TO_TABLE(2).TABLEN
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: COMMA_TO_TABLE(2).TAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: COMPILE_SCHEMA.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPILE_SCHEMA.COMPILE_ALL
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: COMPILE_SCHEMA.REUSE_SETTINGS
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CREATE_ALTER_TYPE_ERROR_TABLE.SCHEMA_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ALTER_TYPE_ERROR_TABLE.TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DATA_BLOCK_ADDRESS_BLOCK.DBA
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: DATA_BLOCK_ADDRESS_FILE.DBA
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: DB_VERSION.VERSION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: DB_VERSION.COMPATIBILITY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: EXEC_DDL_STATEMENT.PARSE_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPAND_SQL_TEXT.INPUT_SQL_TEXT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: EXPAND_SQL_TEXT.OUTPUT_SQL_TEXT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: OUT
+- name: GET_DEPENDENCY.TYPE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DEPENDENCY.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DEPENDENCY.NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_HASH_VALUE.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_HASH_VALUE.BASE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_HASH_VALUE.HASH_SIZE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PARAMETER_VALUE.PARNAM
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_PARAMETER_VALUE.INTVAL
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: GET_PARAMETER_VALUE.STRVAL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: GET_PARAMETER_VALUE.LISTNO
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_SQL_HASH.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_SQL_HASH.HASH
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: OUT
+- name: GET_SQL_HASH.PRE10IHASH
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GET_TZ_TRANSITIONS.REGIONID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_TZ_TRANSITIONS.TRANSITIONS
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: OUT
+- name: INVALIDATE.P_OBJECT_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: INVALIDATE.P_PLSQL_OBJECT_SETTINGS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INVALIDATE.P_OPTION_FLAGS
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: IS_BIT_SET.R
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: IS_BIT_SET.N
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: MAKE_DATA_BLOCK_ADDRESS.FILE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: MAKE_DATA_BLOCK_ADDRESS.BLOCK
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: NAME_RESOLVE.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: NAME_RESOLVE.CONTEXT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: NAME_RESOLVE.SCHEMA
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: NAME_RESOLVE.PART1
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: NAME_RESOLVE.PART2
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: NAME_RESOLVE.DBLINK
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: NAME_RESOLVE.PART1_TYPE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: OUT
+- name: NAME_RESOLVE.OBJECT_NUMBER
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: OUT
+- name: NAME_TOKENIZE.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: NAME_TOKENIZE.A
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: NAME_TOKENIZE.B
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: NAME_TOKENIZE.C
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: NAME_TOKENIZE.DBLINK
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: NAME_TOKENIZE.NEXTPOS
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: SQLID_TO_SQLHASH.SQL_ID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TABLE_TO_COMMA(1).TAB
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: TABLE_TO_COMMA(1).TABLEN
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: TABLE_TO_COMMA(1).LIST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: TABLE_TO_COMMA(2).TAB
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: TABLE_TO_COMMA(2).TABLEN
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: TABLE_TO_COMMA(2).LIST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: VALIDATE(1).OBJECT_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE(2).OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE(2).OBJNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE(2).NAMESPACE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE(2).EDITION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WAIT_ON_PENDING_DML.TABLES
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WAIT_ON_PENDING_DML.TIMEOUT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: WAIT_ON_PENDING_DML.SCN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: INOUT
+routineDefinition: "package dbms_utility is $if utl_ident.is_oracle_server <> TRUE\n\
+  and utl_ident.is_timesten <> TRUE $then $error 'dbms_utility is not supported in\
+  \ this environment' $end $end ------------\n--  OVERVIEW\n--\n--  This package provides\
+  \ various utility routines.\n----------------------------\n--  PL/SQL TABLES\n--\n\
+  type uncl_array IS table of VARCHAR2(227) index by BINARY_INTEGER;\n-- dbms_id\n\
+  --  Lists of \"USER\".\"NAME\".\"COLUMN\"@LINK should be stored here\ntype name_array\
+  \ IS table of dbms_id index by BINARY_INTEGER;\n--  Lists of NAME should be stored\
+  \ here\ntype lname_array IS table of VARCHAR2(4000) index by BINARY_INTEGER;\n--\
+  \  Lists of Long NAME should be stored here, it includes fully\n--  qualified attribute\
+  \ names.\ntype maxname_array IS table of VARCHAR2(32767) index by BINARY_INTEGER;\n\
+  --  Lists of large VARCHAR2s should be stored here\ntype dblink_array IS table of\
+  \ VARCHAR2(128) index by BINARY_INTEGER;\n--  Lists of database links should be\
+  \ stored here\nTYPE index_table_type IS TABLE OF BINARY_INTEGER INDEX BY BINARY_INTEGER;\n\
+  --  order in which objects should be generated is returned here\nTYPE number_array\
+  \ IS TABLE OF NUMBER INDEX BY BINARY_INTEGER;\n--  order in which objects should\
+  \ be generated is returned here for users.\nTYPE instance_record IS RECORD (\n \
+  \ inst_number NUMBER,\n  inst_name VARCHAR2(60)\n);\nTYPE instance_table IS TABLE\
+  \ OF instance_record INDEX BY BINARY_INTEGER;\n-- list of active instance number\
+  \ and instance name\n-- the starting index of instance_table is 1\n-- instance_table\
+  \ is dense\n$if utl_ident.is_oracle_server $then TYPE anydata_array IS TABLE OF\
+  \ AnyData INDEX BY BINARY_INTEGER;\n-- array of anydata\n$else\n/* AnyData type\
+  \ is not supported */\n$end SUBTYPE maxraw IS RAW(32767);\n----------------------------\n\
+  --  PROCEDURES AND FUNCTIONS\n--\n--\nprocedure compile_schema(\n  schema varchar2,\n\
+  \  compile_all boolean default TRUE,\n  reuse_settings boolean default FALSE\n);\n\
+  --  Compile all procedures, functions, packages and triggers in the specified\n\
+  --  schema.  After calling this procedure you should select from view\n--  ALL_OBJECTS\
+  \ for items with status of 'INVALID' to see if all objects\n--  were successfully\
+  \ compiled.  You may use the command \"SHOW ERRORS\n--  <type> <schema>.<name>\"\
+  \ to see the errors assocated with 'INVALID'\n--  objects.\n--  Input arguments:\n\
+  --    schema\n--      Name of the schema.\n--    compile_all\n--      This is a\
+  \ boolean flag that indicates whether we should compile all\n--      schema objects\
+  \ or not, regardless of whether the object is currently\n--      flagged as valid\
+  \ or not. The default is to support the previous\n--      compile_schema() behaviour\
+  \ and compile ALL objects.\n--    reuse_settings\n--      This is a boolean flag\
+  \ that indicates whether the session settings in\n--      the objects should be\
+  \ reused, or whether the current session settings\n--      should be picked up instead.\n\
+  --  Exceptions:\n--    ORA-20000: Insufficient privileges for some object in this\
+  \ schema.\n--    ORA-20001: Cannot recompile SYS objects.\n/*\n\n    * NAME:\n\n\
+  \    *   validate\n\n    *\n\n    * PARAMETERS:\n\n    *   object_id  (IN) - ID\
+  \ number of object to be validated. This is\n\n    *                     the same\
+  \ as the value of the OBJECT_ID column\n\n    *                     from ALL_OBJECTS.\n\
+  \n    *\n\n    * DESCRIPTION:\n\n    *   This procedure validates a database object\
+  \ if it is in status\n\n    *   4, 5, or 6 using the same mechanism that is used\
+  \ for automatic\n\n    *   re-validation.\n\n    *\n\n    * EXCEPTIONS:\n\n    *\
+  \   None. No errors are raised if the object doesn't exist or is\n\n    *   already\
+  \ valid or is an object that cannot be validated.\n\n    */\nprocedure validate(object_id\
+  \ number);\n/*\n\n    * NAME:\n\n    *   validate\n\n    *\n\n    * PARAMETERS:\n\
+  \n    *   owner     (IN) - name of the user who owns the object. Same as\n\n   \
+  \ *                    the OWNER field in ALL_OBJECTS\n\n    *   objname   (IN)\
+  \ - name of the object to be validated. Same as the\n\n    *                   \
+  \ OBJECT_NAME field in ALL_OBJECTS\n\n    *   namespace (IN) - namespace of the\
+  \ object. Same as the namespace\n\n    *                    field in obj$\n\n  \
+  \  *   edition   (IN) - Edition that object resides in. Same as edition_name\n\n\
+  \    *                    field in ALL_OBJECTS.\n\n    *\n\n    * DESCRIPTION:\n\
+  \n    *   This procedure validates a database object using the same\n\n    *   mechanism\
+  \ that is used for automatic re-validation.\n\n    *\n\n    * EXCEPTIONS:\n\n  \
+  \  *   None. No errors are raised if the object doesn't exist or is\n\n    *   already\
+  \ valid or is an object that cannot be validated.\n\n    */\nprocedure validate(\n\
+  \  owner varchar2,\n  objname varchar2,\n  namespace number,\n  edition varchar2:\
+  \ = $if utl_ident.is_oracle_server $then sys_context('USERENV', 'CURRENT_EDITION_NAME')\n\
+  );\n$elsif utl_ident.is_timesten $then -- no edition support for TimesTen, default\
+  \ it to null\nnull\n);\n$end inv_not_exist_or_no_priv\nexception;\npragma exception_init(inv_not_exist_or_no_priv,\
+  \ -24237);\ninv_malformed_settings\nexception;\npragma exception_init(inv_malformed_settings,\
+  \ -24238);\ninv_restricted_object\nexception;\npragma exception_init(inv_restricted_object,\
+  \ -24239);\n  /*\n  \n     * Option flags supported by invalidate.\n  \n     * \
+  \  inv_error_on_restrictions - The invalidate routine imposes various\n  \n    \
+  \ *   restrictions on the objects that can be invalidated. For example,\n  \n  \
+  \   *   the object specified by p_object_id cannot be a table. By default,\n  \n\
+  \     *   invalidate quietly returns on these conditions (and does not raise\n \
+  \ \n     *   an exception). If the caller sets this flag, the exception\n  \n  \
+  \   *   inv_restricted_object is raised.\n  \n     */\n  inv_error_on_restrictions\
+  \ constant pls_integer: = 1;\n  /*\n  \n      * NAME:\n  \n      *   invalidate\n\
+  \  \n      *\n  \n      * PARAMETERS:\n  \n      *   p_object_id (IN)\n  \n    \
+  \  *     ID number of object to be invalidated. This is the same as the\n  \n  \
+  \    *     value of the OBJECT_ID column from ALL_OBJECTS.\n  \n      *\n  \n  \
+  \    *     If the object_id argument is null or invalid then the exception\n  \n\
+  \      *     inv_not_exist_or_no_priv is raised.\n  \n      *\n  \n      *     The\
+  \ caller of this procedure must have create privileges on the\n  \n      *     object\
+  \ being invalidated else inv_not_exist_or_no_priv exception\n  \n      *     is\
+  \ raised.\n  \n      *\n  \n      *   p_plsql_object_settings (IN)\n  \n      *\
+  \     This optional parameter is ignored if the object specified by\n  \n      *\
+  \     p_object_id is not a PL/SQL object.\n  \n      *\n  \n      *     If no value\
+  \ is specified for this parameter then the PL/SQL\n  \n      *     compiler settings\
+  \ are left unchanged, that is, equivalent to\n  \n      *     REUSE SETTINGS.\n\
+  \  \n      *\n  \n      *     If a value is provided, it must specify the values\
+  \ of the PL/SQL\n  \n      *     compiler settings separated by one or more spaces.\
+  \ Each setting\n  \n      *     can be specified only once else inv_malformed_settings\
+  \ exception\n  \n      *     will be raised. The setting values are changed only\
+  \ for the object\n  \n      *     specified by p_object_id and do not affect dependent\
+  \ objects that\n  \n      *     may be invalidated.\n  \n      *\n  \n      *  \
+  \   The setting names and values are case insensitive.\n  \n      *\n  \n      *\
+  \     If a setting is omitted and REUSE SETTINGS is specified, then if a\n  \n \
+  \     *     value was specified for the compiler setting in an earlier\n  \n   \
+  \   *     compilation of this library unit, Oracle Database uses that earlier\n\
+  \  \n      *     value. If a setting is omitted and REUSE SETTINGS was not specified\n\
+  \  \n      *     then the database will obtain the value for that setting from the\n\
+  \  \n      *     session environment.\n  \n      *\n  \n      *     Note that an\
+  \ empty, non-null, string can be passed in.  This will\n  \n      *     cause all\
+  \ compiler settings to be read from the session environment.\n  \n      *\n  \n\
+  \      *   p_option_flags (IN)\n  \n      *     Option flags supported (see note\
+  \ above). This parameter is optional\n  \n      *     and defaults to zero (no flags).\n\
+  \  \n      *\n  \n      * DESCRIPTION:\n  \n      *   This procedure invalidates\
+  \ a database object and (optionally) modifies\n  \n      *   its PL/SQL compiler\
+  \ parameter settings. It also invalidates any\n  \n      *   objects that (directly\
+  \ or indirectly) depend on the object being\n  \n      *   invalidated.\n  \n  \
+  \    *\n  \n      *   The object type (object_type column from ALL_OBJECTS) of the\
+  \ object\n  \n      *   specified by p_object_id must be a PROCEDURE, FUNCTION,\
+  \ PACKAGE,\n  \n      *   PACKAGE BODY, TRIGGER, TYPE, TYPE BODY, LIBRARY, VIEW,\
+  \ OPERATOR,\n  \n      *   SYNONYM, or JAVA CLASS. If the object is not one of these\
+  \ types\n  \n      *   and the flag inv_error_on_restrictions is specified in p_option_flags\n\
+  \  \n      *   then the exception inv_restricted_object is raised, else no action\n\
+  \  \n      *   is taken.\n  \n      *\n  \n      *   If the object specified by\
+  \ p_object_id is the package specification\n  \n      *   of STANDARD, DBMS_STANDARD,\
+  \ or specification or body of DBMS_UTILITY\n  \n      *   and the flag inv_error_on_restrictions\
+  \ is specified in p_option_flags\n  \n      *   then the exception inv_restricted_object\
+  \ is raised, else no action\n  \n      *   is taken.\n  \n      *\n  \n      * \
+  \  If the object specified by p_object_id is an object type specification\n  \n\
+  \      *   and the type is a system generated type, an earlier type version or\n\
+  \  \n      *   there exist tables which depend on the type and the flag\n  \n  \
+  \    *   inv_error_on_restrictions is specified in p_option_flags then the\n  \n\
+  \      *   exception inv_restricted_object is raised, else no action is taken.\n\
+  \  \n      *\n  \n      * EXAMPLES:\n  \n      *\n  \n      *   dbms_utility.invalidate(1232,\n\
+  \  \n      *                           'PLSQL_OPTIMIZE_LEVEL = 2 REUSE SETTINGS');\n\
+  \  \n      *\n  \n      *   Assume that the object_id 1232 refers to the procedure\
+  \ remove_emp\n  \n      *   in the hr schema. Then the above call will mark the\
+  \ remove_emp\n  \n      *   procedure invalid and change it's  PLSQL_OPTIMIZE_LEVEL\
+  \ compiler\n  \n      *   setting to 2. The values of other compiler settings will\
+  \ remain\n  \n      *   unchanged since REUSE SETTINGS is specified.\n  \n     \
+  \ *\n  \n      *   Objects that depend on hr.remove_emp will also get marked invalid.\n\
+  \  \n      *   Their compiler parameters will not be changed.\n  \n      *\n  \n\
+  \      *   dbms_utility.invalidate(40775,\n  \n      *                         \
+  \  'plsql_code_type = native');\n  \n      *\n  \n      *   Assume that the object_id\
+  \ 40775 refers to the type body\n  \n      *   leaf_category_typ in the oe schema.\
+  \ Then the above call will mark\n  \n      *   the type body invalid and change\
+  \ it's  PLSQL_CODE_TYPE compiler\n  \n      *   setting to NATIVE. The values of\
+  \ other compiler settings will be\n  \n      *   picked up from the current session\
+  \ environment since REUSE SETTINGS\n  \n      *   has not been specified.\n  \n\
+  \      *\n  \n      *   Since no objects can depend on bodies, there are no cascaded\n\
+  \  \n      *   invalidations.\n  \n      *\n  \n      *   dbms_utility.invalidate(40796);\n\
+  \  \n      *\n  \n      *   Assume that the object_id 40796 refers to the view oc_orders\
+  \ in\n  \n      *   the oe schema. Then the above call will mark the oc_orders view\n\
+  \  \n      *   invalid.\n  \n      *\n  \n      *   Objects that depend on oe.oc_orders\
+  \ will also get marked invalid.\n  \n      *\n  \n      * EXCEPTIONS:\n  \n    \
+  \  *   This procedure can raise various exceptions. See detailed description\n \
+  \ \n      *   above.\n  \n      */\n  procedure invalidate(\n    p_object_id number,\n\
+  \    p_plsql_object_settings varchar2 default NULL,\n    p_option_flags pls_integer\
+  \ default 0\n  );\n$if utl_ident.is_oracle_server $then procedure analyze_schema(\n\
+  \    schema varchar2,\n    method varchar2,\n    estimate_rows number default null,\n\
+  \    estimate_percent number default null,\n    method_opt varchar2 default null\n\
+  \  );\n$else\n  /* analyze_schema is not supported */\n  $end --  Analyze all the\
+  \ tables, clusters and indexes in a schema.\n  --  Input arguments:\n  --    schema\n\
+  \  --      Name of the schema.\n  --    method, estimate_rows, estimate_percent,\
+  \ method_opt\n  --      See the descriptions above in sql_ddl.analyze.object.\n\
+  \  --  Exceptions:\n  --    ORA-20000: Insufficient privileges for some object in\
+  \ this schema.\n  $if utl_ident.is_oracle_server $then procedure analyze_database(\n\
+  \    method varchar2,\n    estimate_rows number default null,\n    estimate_percent\
+  \ number default null,\n    method_opt varchar2 default null\n  );\n$else\n  /*\
+  \ analyze_database is not supported */\n  $end --  Analyze all the tables, clusters\
+  \ and indexes in a database.\n  --  Input arguments:\n  --    method, estimate_rows,\
+  \ estimate_percent, method_opt\n  --      See the descriptions above in sql_ddl.analyze.object.\n\
+  \  --  Exceptions:\n  --    ORA-20000: Insufficient privileges for some object in\
+  \ this database.\n  function format_error_stack return varchar2;\npragma interface\
+  \ (C, format_error_stack);\n-- 1 (see psdicd.c)\n  --  Format the current error\
+  \ stack.  This can be used in exception\n  --    handlers to look at the full error\
+  \ stack.\n  --  Output arguments:\n  --    format_error_stack\n  --      Returns\
+  \ the error stack.  May be up to 2000 bytes.\n  function format_call_stack return\
+  \ varchar2;\npragma restrict_references(format_call_stack, WNDS);\npragma interface\
+  \ (C, format_call_stack);\n-- 2 (see psdicd.c)\n  --  Format the current call stack.\
+  \  This can be used an any stored\n  --    procedure or trigger to access the call\
+  \ stack.  This can be\n  --    useful for debugging.\n  --  Output arguments:\n\
+  \  --    format_call_stack\n  --      Returns the call stack.  May be up to 2000\
+  \ bytes.\n  $if utl_ident.is_oracle_server $then function is_cluster_database return\
+  \ boolean;\n$else\n  /* is_cluster_database is not supported */\n  $end --  Find\
+  \ out if this database is running in cluster database mode.\n  --  Output arguments:\n\
+  \  --    is_cluster_database\n  --      TRUE if this instance was started in cluster\
+  \ database mode,\n  --      FALSE otherwise.\n  function get_time return number;\n\
+  --  Find out the current elapsed time in 100th's of a second.\n  --  Output:\n \
+  \ --      The returned elapsed time is the number of 100th's\n  --      of a second\
+  \ from some arbitrary epoch.\n  --  Related Function(s): \"get_cpu_time\" [See below].\n\
+  \  $if utl_ident.is_oracle_server $then function get_parameter_value(\n    parnam\
+  \ in varchar2,\n    intval in out binary_integer,\n    strval in out varchar2,\n\
+  \    listno in binary_integer default 1\n  ) return binary_integer;\n$else\n  /*\
+  \ get_parameter_value is not supported */\n  $end --  Gets value of specified init.ora\
+  \ parameter.\n  --  Input arguments:\n  --    parnam\n  --      Parameter name\n\
+  \  --    listno\n  --      List item number. If we are retrieving the parameter\
+  \ values for\n  --      a parameter that can be specified multiple times to accumulate\n\
+  \  --      values (Eg rollback_segments) then this can be used to get each\n  --\
+  \      individual parameter. Eg, if we have the following :\n  --\n  --        \
+  \  rollback_segments = rbs1\n  --          rollback_segments = rbs2\n  --\n  --\
+  \      then use a value of 1 to get \"rbs1\" and a value of 2 to get \"rbs2\".\n\
+  \  --\n  --  Output arguments:\n  --    intval\n  --      Value of an integer parameter\
+  \ or value length of a string parameter\n  --    strval\n  --      Value of a string\
+  \ parameter\n  --  Returns:\n  --    partyp\n  --      Parameter type\n  --    \
+  \    0 if parameter is an integer/boolean parameter\n  --        1 if parameter\
+  \ is a  string/file parameter\n  --  Notes\n  --    1. Certain parameters can store\
+  \ values much larger than can be\n  --       returned by this function. When this\
+  \ function is requested to\n  --       retrieve the setting for such parameters\
+  \ and \"unsupported parameter\"\n  --       exception will be raised. The \"shared_pool_size\"\
+  \ parameter is one\n  --       such parameter.\n  -- Example usage:\n  -- DECLARE\n\
+  \  --   parnam VARCHAR2(256);\n  --   intval BINARY_INTEGER;\n  --   strval VARCHAR2(256);\n\
+  \  --   partyp BINARY_INTEGER;\n  -- BEGIN\n  --   partyp := dbms_utility.get_parameter_value('max_dump_file_size',\n\
+  \  --                                               intval, strval);\n  --   dbms_output.put('parameter\
+  \ value is: ');\n  --   IF partyp = 1 THEN\n  --     dbms_output.put_line(strval);\n\
+  \  --   ELSE\n  --     dbms_output.put_line(intval);\n  --   END IF;\n  --   IF\
+  \ partyp = 1 THEN\n  --     dbms_output.put('parameter value length is: ');\n  --\
+  \     dbms_output.put_line(intval);\n  --   END IF;\n  --   dbms_output.put('parameter\
+  \ type is: ');\n  --   IF partyp = 1 THEN\n  --     dbms_output.put_line('string');\n\
+  \  --   ELSE\n  --     dbms_output.put_line('integer');\n  --   END IF;\n  -- END;\n\
+  \  procedure name_resolve(\n    name in varchar2,\n    context in number,\n    schema\
+  \ out varchar2,\n    part1 out varchar2,\n    part2 out varchar2,\n    dblink out\
+  \ varchar2,\n    part1_type out number,\n    object_number out number\n  );\n--\
+  \  Resolve the given name.  Do synonym translation if necessary.  Do\n  --    authorization\
+  \ checking.\n  --  Input arguments:\n  --    name\n  --      The name of the object.\
+  \  This can be of the form [[a.]b.]c[@d]\n  --      where a,b,c are SQL identifier\
+  \ and d is a dblink.  No syntax\n  --      checking is performed on the dblink.\
+  \  If a dblink is specified,\n  --      of the name resolves to something with a\
+  \ dblink, then object\n  --      is not resolved, but the schema, part1, part2 and\
+  \ dblink out\n  --      arguments are filled in.  a,b and c may be delimted identifiers,\n\
+  \  --      and may contain NLS characters (single and multi-byte).\n  --    context\n\
+  \  --      Must be an integer between 0 and 9.\n  --      0 -- table or view, error\
+  \ if extra name parts present\n  --      1 -- pl/sql (for 2 part names)\n  --  \
+  \    2 -- sequence, or table/view with extra trailing name parts allowed\n  -- \
+  \     3 -- trigger\n  --      4 -- Java Source\n  --      5 -- Java resource\n \
+  \ --      6 -- Java class\n  --      7 -- type\n  --      8 -- Java shared data\n\
+  \  --      9 -- index\n  --  Output arguments:\n  --    schema\n  --      The schema\
+  \ of the object.  If no schema is specified in 'name'\n  --      then the schema\
+  \ is determined by resolving the name.\n  --    part1\n  --      The first part\
+  \ of the name.  The type of this name is specified\n  --      part1_type (synonym,\
+  \ procedure or package).\n  --    part2\n  --      If this is non-null, then this\
+  \ is a procedure name within the\n  --      package indicated by part1.\n  --  \
+  \  dblink\n  --      If this is non-null then a database link was either specified\n\
+  \  --      as part of 'name' or 'name' was a synonym which resolved to\n  --   \
+  \   something with a database link.  In this later case, part1_type\n  --      will\
+  \ indicate a synonym.\n  --    part1_type\n  --      The type of part1 is\n  --\
+  \        5 - synonym\n  --        7 - procedure (top level)\n  --        8 - function\
+  \ (top level)\n  --        9 - package\n  --      If a synonym, it means that 'name'\
+  \ is a synonym that translats\n  --      to something with a database link.  In\
+  \ this case, if further\n  --      name translation is desired, then you must call\
+  \ the\n  --      dbms_utility.name_resolve procedure on this remote node.\n  --\
+  \    object_number\n  --      If non-null then 'name' was successfully resolved\
+  \ and this is the\n  --      object number which it resolved to.\n  --  Exceptions:\n\
+  \  --    All errors are handled by raising exceptions.  A wide variety of\n  --\
+  \    exceptions are possible, based on the various syntax error that\n  --    are\
+  \ possible when specifying object names.\n  procedure name_tokenize(\n    name in\
+  \ varchar2,\n    a out varchar2,\n    b out varchar2,\n    c out varchar2,\n   \
+  \ dblink out varchar2,\n    nextpos out binary_integer\n  );\n--  Call the parser\
+  \ to parse the given name as \"a [. b [. c ]][@ dblink ]\".\n  --  Strip doublequotes,\
+  \ or convert to uppercase if there are no quotes.\n  --    Ignore comments of all\
+  \ sorts.  Do no semantic analysis.  Leave any\n  --      missing values as null.\n\
+  \  --  For each of a,b,c,dblink, tell where the following token starts\n  --   \
+  \ in anext,bnext,cnext,dnext respectively.\n  PROCEDURE comma_to_table(\n    list\
+  \ IN VARCHAR2,\n    tablen OUT BINARY_INTEGER,\n    tab OUT uncl_array\n  );\n--\
+  \  Convert a comma-separated list of names into a PL/SQL table of names\n  --  This\
+  \ uses name_tokenize to figure out what are names and what are commas\n  --  See\
+  \ name_tokenize for the expected syntax of the names.\n  PROCEDURE comma_to_table(\n\
+  \    list IN VARCHAR2,\n    tablen OUT BINARY_INTEGER,\n    tab OUT lname_array\n\
+  \  );\n--  Convert a comma-separated list of names into a PL/SQL table of names\n\
+  \  --  This is an overloaded version for supporting fully-qualified attribute\n\
+  \  --  names of the form \"a [. b ]*\".\n  PROCEDURE table_to_comma(\n    tab IN\
+  \ uncl_array,\n    tablen OUT BINARY_INTEGER,\n    list OUT VARCHAR2\n  );\n-- \
+  \ Convert a PL/SQL table of names into a comma-separated list of names\n  PROCEDURE\
+  \ table_to_comma(\n    tab IN lname_array,\n    tablen OUT BINARY_INTEGER,\n   \
+  \ list OUT VARCHAR2\n  );\n--  Convert a PL/SQL table of names into a comma-separated\
+  \ list of names\n  --  This is an overloaded version for supporting fully-qualified\
+  \ attribute\n  --  names.\n  $if utl_ident.is_oracle_server $then FUNCTION port_string\
+  \ RETURN VARCHAR2;\nPRAGMA RESTRICT_REFERENCES(port_string, WNDS, RNDS, WNPS, RNPS);\n\
+  $else\n  /* port_string is not supported */\n  $end --  Return a string that uniquely\
+  \ identifies the port (operating system)\n  --  and the two task protocol version\
+  \ of Oracle.  EG \"VAX/VMX-7.1.0.0\"\n  --  \"SVR4-be-8.1.0\" (SVR4-b(ig)e(ndian)-8.1.0)\n\
+  \  --  maximum length is port specific.\n  PROCEDURE db_version(\n    version OUT\
+  \ VARCHAR2,\n    compatibility OUT VARCHAR2\n  );\n-- Return version information\
+  \ for the database:\n  -- version -> A string which represents the internal software\
+  \ version\n  --            of the database (e.g., 7.1.0.0.0). The length of this\
+  \ string\n  --            is variable and is determined by the database version.\n\
+  \  -- compatibility -> The compatibility setting of the database determined by\n\
+  \  --                  the \"compatible\" init.ora parameter. If the parameter\n\
+  \  --                  is not specified in the init.ora file, NULL is returned.\n\
+  \  $if utl_ident.is_oracle_server $then function make_data_block_address(file number,\
+  \ block number) return number;\nPRAGMA RESTRICT_REFERENCES(make_data_block_address,\
+  \ WNDS, RNDS, WNPS, RNPS);\n$else\n  /* make_data_block_address is not supported\
+  \ */\n  $end --  Creates a data block address given a file# and a block#.  A data\
+  \ block\n  --  address is the internal structure used to identify a block in the\n\
+  \  --  database.  This is function useful when accessing certain fixed tables\n\
+  \  --  that contain data block addresses.\n  --  Input arguments:\n  --    file\
+  \  - the file that contains the block\n  --    block - the offset of the block within\
+  \ the file in terms of block\n  --            increments\n  --  Output arguments:\n\
+  \  --    dba   - the data block address\n  $if utl_ident.is_oracle_server $then\
+  \ function data_block_address_file(dba number) return number;\nPRAGMA RESTRICT_REFERENCES(data_block_address_file,\
+  \ WNDS, RNDS, WNPS, RNPS);\n$else\n  /* data_block_address_file is not supported\
+  \ */\n  $end --  Get the file number part of a data block address\n  --  Input arguments:\n\
+  \  --    dba   - a data block address\n  --  Output Arguments:\n  --    file  -\
+  \ the file that contains the block\n  $if utl_ident.is_oracle_server $then function\
+  \ data_block_address_block(dba number) return number;\nPRAGMA RESTRICT_REFERENCES(data_block_address_block,\
+  \ WNDS, RNDS, WNPS, RNPS);\n$else\n  /* data_block_address_block is not supported\
+  \ */\n  $end --  Get the block number part of a data block address\n  --  Input\
+  \ arguments:\n  --    dba   - a data block address\n  --  Output Arguments:\n  --\
+  \    block  - the block offset of the block\n  function get_hash_value(name varchar2,\
+  \ base number, hash_size number) return number;\nPRAGMA RESTRICT_REFERENCES(get_hash_value,\
+  \ WNDS, RNDS, WNPS, RNPS);\n--  Compute a hash value for the given string\n  --\
+  \  Input arguments:\n  --    name  - The string to be hashed.\n  --    base  - A\
+  \ base value for the returned hash value to start at.\n  --    hash_size -  The\
+  \ desired size of the hash table.\n  --  Returns:\n  --    A hash value based on\
+  \ the input string.\n  --    For example, to get a hash value on a string where\
+  \ the hash value\n  --    should be between 1000 and 3047, use 1000 as the base\
+  \ value and\n  --    2048 as the hash_size value.  Using a power of 2 for the hash_size\n\
+  \  --    parameter works best.\n  --  Exceptions:\n  --    ORA-29261 will be raised\
+  \ if hash_size is 0 or if hash_size or\n  --    base are null\n  function get_sql_hash(\n\
+  \    name IN varchar2,\n    hash OUT raw,\n    pre10ihash OUT number\n  ) return\
+  \ number;\nPRAGMA RESTRICT_REFERENCES(get_sql_hash, WNDS, RNDS, WNPS, RNPS);\n--\
+  \  Compute a hash value for the given string using md5 algo\n  --  Input arguments:\n\
+  \  --    name  - The string to be hashed.\n  --    hash  - An optional field to\
+  \ store all 16 bytes of returned\n  --            hash value.\n  --    pre10ihash\
+  \ - An optional field to store the pre 10i database\n  --                 version\
+  \ hash value.\n  --  Returns:\n  --    A hash value (last 4 bytes)  based on the\
+  \ input string.\n  --    The md5 hash algorithm computes a 16 byte hash value, but\n\
+  \  --    we only return the last 4 bytes so that we can return an\n  --    actual\
+  \ number.  One could use an optional RAW parameter to\n  --    get all 16 bytes\
+  \ and to store the pre 10i hash value of 4\n  --    4 bytes in the pre10ihash optional\
+  \ parameter.\n  $if utl_ident.is_oracle_server $then function sqlid_to_sqlhash(sql_id\
+  \ varchar2) return number;\nPRAGMA RESTRICT_REFERENCES(sqlid_to_sqlhash, WNDS, RNDS,\
+  \ WNPS, RNPS);\n$else\n  /* sqlid_to_sqlhash is not supported */\n  $end --  This\
+  \ routine will convert a sql_id into a hash value\n  --  Input arguments:\n  --\
+  \    sql_id - SQL ID of a sql statement.  Must be VARCHAR2(13).\n  --  Returns:\n\
+  \  --    A hash value converted from the sql_id.\n  $if utl_ident.is_oracle_server\
+  \ $then procedure analyze_part_object (\n    schema in varchar2 default null,\n\
+  \    object_name in varchar2 default null,\n    object_type in char default 'T',\n\
+  \    command_type in char default 'E',\n    command_opt in varchar2 default null,\n\
+  \    sample_clause in varchar2 default 'sample 5 percent'\n  );\n$else\n  /* analyze_part_object\
+  \ is not supported */\n  $end --  Equivalent to SQL \"ANALYZE TABLE|INDEX [<schema>.]<object_name>\n\
+  \  --    PARTITION <pname> [<command_type>] [<command_opt>] [<sample_clause>]\n\
+  \  --  for each partition of the object, run in parallel using job queues.\n  --\
+  \  The package will submit a job for each partition\n  --  It is the users responsibilty\
+  \ to control the number of concurrent\n  --  jobs by setting the INIT parameter\
+  \ JOB_QUEUE_PROCESSES correctly\n  --  There is minimal error checking for correct\
+  \ syntax.  Any error will be\n  --  reported in SNP trace files.\n  --  Input arguments:\n\
+  \  --  schema\n  --    schema of the object_name\n  --  object_name\n  --    name\
+  \ of object to be analyzed, must be partitioned\n  --  object_type\n  --    type\
+  \ of object, must be T(able) or I(ndex)\n  --  command_type\n  --    must be one\
+  \ of the following\n  --      - C(omput statistics)\n  --      - E(stimate statistics)\n\
+  \  --      - D(elete statistics)\n  --      - V(alidate structure)\n  --  command_opt\n\
+  \  --    Other options for the command type.\n  --    For C, E it can be FOR table,\
+  \ FOR all LOCAL indexes, FOR all columns or\n  --    combination of some of the\
+  \ 'for' options of analyze statistics (table)\n  --    For V, it can be 'CASCADE'\
+  \ when object_type is T\n  --  sample_clause\n  --    Specifies the sample clause\
+  \ to use when command_type is 'E'\n  $if utl_ident.is_oracle_server $then procedure\
+  \ exec_ddl_statement(parse_string in varchar2);\n-- Will execute the DDL statement\
+  \ in parse_string\n  --  parse_string\n  --    DDL statement to be executed\n  $else\n\
+  \  /* exec_ddl_statement is not supported */\n  $end $if utl_ident.is_oracle_server\
+  \ $then function current_instance return number;\n$else\n  /* current_instance is\
+  \ not supported */\n  $end -- Return the current connected instance number\n  --\
+  \ Return NULL when connected instance is down\n  $if utl_ident.is_oracle_server\
+  \ $then procedure active_instances(\n    instance_table OUT instance_table,\n  \
+  \  instance_count OUT number\n  );\n$else\n  /* active_instances is not supported\
+  \ */\n  $end -- instance_table contains a list of the active instance numbers and\
+  \ names\n  -- When no instance is up ( or non-OPS setting), the list is empty\n\
+  \  -- instance_count is  the number of active instances, 0 under non-ops setting\n\
+  \  procedure get_dependency (\n    type IN VARCHAR2,\n    schema IN VARCHAR2,\n\
+  \    name IN VARCHAR2\n  );\n-- This procedure will show all the dependencies on\
+  \ the object passed in.\n  -- The inputs are\n  --   type: The type of the object,\
+  \ for example if the object is a table\n  --         give the type as 'TABLE'.\n\
+  \  --   schema: The schema name of the object.\n  --   name: The name of the object.\n\
+  \  $if utl_ident.is_oracle_server $then procedure create_alter_type_error_table\
+  \ (\n    schema_name IN VARCHAR2,\n    table_name IN VARCHAR2\n  );\n$else\n  /*\
+  \ create_alter_type_error_table is not supported */\n  $end -- This procedure will\
+  \ create an error table to be used in the EXCEPTION\n  -- clause of ALTER TYPE statement.\
+  \ An error will be returned if the table\n  -- already exists.\n  -- The inputs\
+  \ are:\n  --   schema: The schema name\n  --   table: The name of the table to be\
+  \ created.\n  procedure canonicalize(\n    name IN VARCHAR2,\n    canon_name OUT\
+  \ VARCHAR2,\n    canon_len IN BINARY_INTEGER\n  );\n-- canonicalize the given string\n\
+  \  -- if name is NULL, canon_name becomes NULL\n  -- if name is not a dotted name,\n\
+  \  --    if name begins and ends with a double quote, remove both\n  --    otherwise,\
+  \ convert to upper case with NLS_UPPER\n  --    Note that this case does not include\
+  \ a name with special\n  --    characters, e.g., space, but is not doubly quoted.\n\
+  \  -- if name is a dotted name, e.g., a.\"b\".c,\n  --    for each component in\
+  \ the dotted name,\n  --      if the component begins and ends with a double quote,\n\
+  \  --        no transformation will be done in this component\n  --      else\n\
+  \  --        this component will be capitalized with NLS_UPPER and\n  --       \
+  \ a begin and end double quotes will be applied to the\n  --        capitalized\
+  \ form of this component.\n  --    each canonicalized component will be concatenated\
+  \ together in\n  --    the input position, separated by \".\".\n  -- return the\
+  \ first canon_len bytes in canon_name\n  --\n  -- Any other character after a[.b]*\
+  \ will be ignored.\n  --\n  -- NOTES:\n  --   1. It does not handle cases like 'A\
+  \ B';\n  --   2. It handles a single reserved/key word, e.g., 'table';\n  --   3.\
+  \ It strips off white spaces for a single identifier, e.g., ' table '\n  --    \
+  \  becomes TABLE.\n  --\n  -- Examples:\n  --   a becomes A\n  --   \"a\" becomes\
+  \ a\n  --   \"a\".b becomes \"a\".\"B\"\n  --   \"a\".b,c.f becomes \"a\".\"B\"\
+  , \",c.f\" is ignored.\n  --\n  FUNCTION is_bit_set(\n    r IN RAW,\n    n IN NUMBER\n\
+  \  ) RETURN NUMBER;\nPRAGMA RESTRICT_REFERENCES(is_bit_set, RNPS, WNPS, RNDS, WNDS);\n\
+  --  Return 1 if bit n in raw r is set.  Bits are numbered high to low\n  --  with\
+  \ the lowest bit being bit number 1.  This is a utility to assist\n  --  the view\
+  \ DBA_PENDING_TRANSACTION.\n  $if utl_ident.is_oracle_server $then procedure get_tz_transitions(regionid\
+  \ number, transitions OUT maxraw);\n$else\n  /* get_tz_transitions is not supported\
+  \ */\n  $end --  Get timezeone transitions from the timezone.dat file\n  --  Input\
+  \ arguments:\n  --    regionid\n  --      Number corresponding to the region\n \
+  \ --  Output arguments:\n  --    transitions\n  --      The raw bytes from the timezone.dat\
+  \ file\n  --\n  -- The following two functions provide the pre-825066-fix behavior\
+  \ of\n  -- SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA') and\n  -- SYS_CONTEXT('USERENV',\
+  \ 'CURRENT_USER')\n  --                  These functions are temporarily provided\
+  \ for\n  -- *** Warning ***: backward compatibility and will be removed in\n  --\
+  \                  near future.\n  --\n  $if utl_ident.is_oracle_server $then function\
+  \ old_current_schema return varchar2;\n$else\n  /* old_current_schema is not supported\
+  \ */\n  $end $if utl_ident.is_oracle_server $then function old_current_user return\
+  \ varchar2;\n$else\n  /* old_current_user is not supported */\n  $end function get_endianness\
+  \ return number;\npragma interface (C, get_endianness);\n-- 3 (see psdicd.c)\n \
+  \ function format_error_backtrace return varchar2;\npragma interface (C, format_error_backtrace);\n\
+  -- 4 (see psdicd.c)\n  --  Format the backtrace from the point of the current error\n\
+  \  --  to the exception handler where the error has been caught.\n  --  NULL string\
+  \ is returned if no error is currently being\n  --  handled.\n  function get_cpu_time\
+  \ return number;\n--  Find out the current CPU time in 100th's of a second.\n  --\n\
+  \  --  Output:\n  --    The returned CPU time is the number of 100th's\n  --   \
+  \ of a second from some arbitrary epoch.\n  --\n  --  Related Function(s):\n  --\
+  \    \"get_time\" [See above].\n  --\n  --  Usage Example:\n  --     ..\n  --  \
+  \   start_cpu_time NUMBER;\n  --     end_cpu_time   NUMBER;\n  --     ..\n  -- \
+  \  BEGIN\n  --\n  --     start_cpu_time := dbms_utility.GET_CPU_TIME;\n  --\n  --\
+  \     ... -- some work that needs to be timed\n  --\n  --     end_cpu_time := dbms_utility.GET_CPU_TIME;\n\
+  \  --\n  --     dbms_output.put_line('CPU Time (in seconds)= '\n  --           \
+  \               || ((end_cpu_time - start_cpu_time)/100));\n  --\n  $if utl_ident.is_oracle_server\
+  \ $then function wait_on_pending_dml(\n    tables in varchar2,\n    timeout in binary_integer,\n\
+  \    scn in out number\n  ) return boolean;\n$else\n  /* wait_on_pending_dml is\
+  \ not supported */\n  $end --\n  -- Waits until all transactions (other than the\
+  \ caller's own) that have\n  -- locks on the listed tables and began prior to the\
+  \ specified SCN\n  -- have either committed or been rolled back.\n  --\n  -- Input\
+  \ arguments:\n  --   tables: a comma separated list of one or more table names.\
+  \  The\n  --     list must be valid to comma_to_table(), and each item valid\n \
+  \ --     to name_resolve().  Neither column specifiers nor dblink\n  --     specifiers\
+  \ are allowed in the names, and each name must\n  --     resolve to an existing\
+  \ table in the local database.\n  --\n  --   timeout: max number of seconds to wait,\
+  \ total across all tables/txns.\n  --     A null or negative value will cause a\
+  \ very long wait.\n  --\n  -- In/Out arguments:\n  --   scn: The SCN prior to which\
+  \ transactions must have begun to be\n  --     considered relevant to this request.\
+  \  If the value is null or\n  --     not recognized as a meaningful scn on input,\
+  \ the most current\n  --     SCN across all instances will be used and will be set\
+  \ into\n  --     the passed argument as an output.  If a meaningful value is\n \
+  \ --     passed in, its value will be preserved in the output.\n  --\n  -- Output:\
+  \ TRUE if all relevant transactions have committed or been\n  --     rolled back.\
+  \  FALSE if the timeout occurred prior to all relevant\n  --     transactions committing\
+  \ or being rolled back.\n  $if utl_ident.is_oracle_server $then\n  /*-----------------------------------------------------------------------------\n\
+  \  \n    Procedure: expand_sql_text\n  \n  \n  \n      Recursively replaces any\
+  \ view references in the input SQL query with the\n  \n      corresponding view\
+  \ subquery.\n  \n  \n  \n    Parameters:\n  \n  \n  \n      input_sql_text     \
+  \ -    Input sql query text\n  \n      output_sql_text     -    View expanded query\
+  \ text\n  \n  \n  \n    Exceptions:\n  \n     -  ORA-24256 will be raised if the\
+  \ current user does not have SELECT\n  \n        privileges on all the views and\
+  \ tables recursively referenced in the\n  \n        input sql text. It will also\
+  \ be raised if the user does not have\n  \n        EXECUTE privileges on all functions\
+  \ and types referenced from within\n  \n        views that are expanded as well\
+  \ as any other reason a valid query could\n  \n        not be expanded. The ORA-24256's\
+  \ error message text contains information\n  \n        regarding the particular\
+  \ restriction that wasn't satisfied.\n  \n     -  ORA-24251 will be raised if the\
+  \ input_sql text is not a select statement.\n  \n     -  ORA-00900 will be raised\
+  \ if the input is not valid.\n  \n     -  ORA-29477 will be raised if the input\
+  \ lob size exceeds the maximum size\n  \n        of 4GB -1.\n  \n  \n  \n    Notes:\n\
+  \  \n      The expanded and merged SQL statement text is copied to output_sql_text\
+  \ on\n  \n      successful completion. The resulting query text only\n  \n  \n \
+  \ \n      contains references to underlying tables and is semantically equivalent\n\
+  \  \n      with some caveats:\n  \n      -  If there are invoker rights functions\
+  \ called from any of the views then\n  \n         they may get called as a different\
+  \ user in the resulting query text if\n  \n         the view owner is different\
+  \ from the user who will eventually compile/run\n  \n         the expanded sql text.\n\
+  \  \n      -  If there are VPD policies on any of the views that produce different\n\
+  \  \n         expansions depending on who the user is.\n  \n      -  Also if there\
+  \ are references to remote objects then it may not work.\n  \n  \n  \n    */\n \
+  \ procedure expand_sql_text(\n    input_sql_text in clob,\n    output_sql_text out\
+  \ nocopy clob\n  );\n$else\n  /* expand_sql_text is not supported */\n  $end\nend;"

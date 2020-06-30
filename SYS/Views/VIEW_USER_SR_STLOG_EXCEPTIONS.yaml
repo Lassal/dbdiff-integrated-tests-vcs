@@ -1,0 +1,17 @@
+schema: SYS
+name: USER_SR_STLOG_EXCEPTIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    TABLE_NAME,
+    STAGING_LOG_NAME,
+    BAD_ROWID,
+    ERROR_NUMBER,
+    ERROR_MESSAGE
+  from
+    DBA_SR_STLOG_EXCEPTIONS
+  where
+    owner = SYS_CONTEXT ('USERENV', 'SESSION_USER')
+columns: []
+referencedTables: []

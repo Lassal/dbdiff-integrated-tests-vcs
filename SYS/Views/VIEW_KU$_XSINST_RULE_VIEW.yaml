@@ -1,0 +1,31 @@
+schema: SYS
+name: KU$_XSINST_RULE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    i.xdsid#,
+    i.order#,
+    REPLACE(i.rule, '''', ''''''),
+    i.static,
+    i.flags,
+    i.description,
+    (
+      cast(
+        multiset(
+          select
+            value(a)
+          from
+            ku$_xsinst_acl_view a
+          where
+            a .xdsid = i.xdsid#
+            and a .order_num = i.order#
+        ) as ku$_xsinstacl_list_t
+      )
+    )
+  from
+    xs$instset_rule i
+columns: []
+referencedTables: []

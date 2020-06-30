@@ -1,0 +1,62 @@
+schema: SYS
+name: ALL_OPANCILLARY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    distinct u.name,
+    o.name,
+    a .bind#,
+    u1.name,
+    o1.name,
+    a1.primbind#
+  from
+    sys.user$ u,
+    sys.obj$ o,
+    sys.opancillary$ a,
+    sys.user$ u1,
+    sys.obj$ o1,
+    sys.opancillary$ a1
+  where
+    a .obj# = o.obj#
+    and o.owner# = u.user#
+    AND a1.primop# = o1.obj#
+    and o1.owner# = u1.user#
+    and a .obj# = a1.obj#
+    and (
+      o.owner# = userenv ('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -200
+            /* CREATE OPERATOR */,
+            -201
+            /* CREATE ANY OPERATOR */,
+            -202
+            /* ALTER ANY OPERATOR */,
+            -203
+            /* DROP ANY OPERATOR */,
+            -204
+            /* EXECUTE OPERATOR */
+          )
+      )
+    )
+columns: []
+referencedTables: []

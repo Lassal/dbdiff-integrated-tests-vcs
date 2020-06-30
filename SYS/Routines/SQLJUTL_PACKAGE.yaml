@@ -1,0 +1,103 @@
+schema: SYS
+name: SQLJUTL
+routineType: PACKAGE
+returnParamater:
+  name: URI2VCHAR.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: BOOL2INT.B
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CHAR2IDS.CH
+  ordinalPosition: 1
+  dataType: CHAR
+  parameterMode: IN
+- name: CHAR2IYM.CH
+  ordinalPosition: 1
+  dataType: CHAR
+  parameterMode: IN
+- name: GET_TYPECODE.TID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: GET_TYPECODE.CODE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GET_TYPECODE.CLASS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_TYPECODE.TYP
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+- name: HAS_DEFAULT.L_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HAS_DEFAULT.PROC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HAS_DEFAULT.SEQ
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: HAS_DEFAULT.OVR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HAS_DEFAULT.PKG_NM
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IDS2CHAR.IV
+  ordinalPosition: 1
+  dataType: INTERVAL DAY TO SECOND
+  numericPrecision: 9
+  numericScale: 9
+  parameterMode: IN
+- name: INT2BOOL.I
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: IYM2CHAR.IV
+  ordinalPosition: 1
+  dataType: INTERVAL YEAR TO MONTH
+  numericPrecision: 9
+  parameterMode: IN
+- name: URI2VCHAR.URI
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  package sqljutl as -- The following is required at translate-time for SQLJ
+  function has_default(
+    l_owner varchar2,
+    proc varchar2,
+    seq number,
+    ovr varchar2 DEFAULT NULL,
+    pkg_nm varchar2 DEFAULT NULL
+  ) return number;
+  -- The following is required at translate-time for JPublisher
+  procedure get_typecode(
+    tid raw,
+    code OUT number,
+    class OUT varchar2,
+    typ OUT number
+  );
+  -- The following might be used at runtime for converting
+  -- between SQL and PL/SQL types
+  function bool2int(b boolean) return integer;
+  function int2bool(i integer) return boolean;
+  function ids2char(iv DSINTERVAL_UNCONSTRAINED) return CHAR;
+  function char2ids(ch CHAR) return DSINTERVAL_UNCONSTRAINED;
+  function iym2char(iv YMINTERVAL_UNCONSTRAINED) return CHAR;
+  function char2iym(ch CHAR) return YMINTERVAL_UNCONSTRAINED;
+  function uri2vchar(uri SYS.URITYPE) return VARCHAR2;
+  end sqljutl;

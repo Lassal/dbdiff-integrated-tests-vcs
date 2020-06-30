@@ -1,0 +1,16 @@
+schema: SYS
+name: SM_$VERSION
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '7.3.2.0.0' version_text,
+    120594432 version_number,
+    created
+  from
+    sys.dba_objects
+  where
+    owner = 'SYS'
+    and object_name = 'SM_$VERSION'
+columns: []
+referencedTables: []

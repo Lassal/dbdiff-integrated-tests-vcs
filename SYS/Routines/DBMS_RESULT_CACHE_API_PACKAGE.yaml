@@ -1,0 +1,180 @@
+schema: SYS
+name: DBMS_RESULT_CACHE_API
+routineType: PACKAGE
+returnParamater:
+  name: SETC.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: GET.KEY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET.VALUE
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: OUT
+- name: GET.ISPUBLIC
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET.NOCREATE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET.NOFETCH
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETC.KEY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETC.VALUE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETC.ISPUBLIC
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETC.NOCREATE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETC.NOFETCH
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET.VALUE
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: SET.DISCARD
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SETC.VALUE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETC.DISCARD
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE DBMS_RESULT_CACHE_API as
+  /**
+
+     * NAME:
+
+     *   Get
+
+     * DESCRIPTION:
+
+     *   Finds a given object in the cache or (optionally) creates one if one
+
+     *   is not found.
+
+     * PARAMETERS
+
+     *   name      - the key of the value to fetch
+
+     *   value     - the value (or object) corresponding to the key
+
+     *   isPublic  - 1(TRUE)          => result is public available all schemas
+
+     *               0(FALSE) DEFAULT => result is private to creator's schema
+
+     *   noCreate  - 1(TRUE)          => does not create a new object
+
+     *               0(FALSE) DEFAULT => creates a new object when one isn't found
+
+     *   noFetch   - 1(TRUE)          => does not return the value
+
+     *               0(FALSE) DEFAULT => returns the value
+
+     * RETURNS:
+
+     *    0 => Failed to find/create.
+
+     *    1 => Found the requested object.
+
+     *    2 => Created an (empty) new object with the given key.
+
+     * EXCEPTIONS:
+
+     *   None.
+
+     * NOTES:
+
+     *   None.
+
+     */
+  FUNCTION Get(
+    key IN VARCHAR2,
+    value OUT NOCOPY RAW,
+    isPublic IN NUMBER DEFAULT 0,
+    noCreate IN NUMBER DEFAULT 0,
+    noFetch IN NUMBER DEFAULT 0
+  ) RETURN NUMBER;
+  pragma interface(C, Get);
+  FUNCTION GetC(
+    key IN VARCHAR2,
+    value OUT NOCOPY VARCHAR2,
+    isPublic IN NUMBER DEFAULT 0,
+    noCreate IN NUMBER DEFAULT 0,
+    noFetch IN NUMBER DEFAULT 0
+  ) RETURN NUMBER;
+  pragma interface(C, GetC);
+  /**
+
+     * NAME:
+
+     *   Set
+
+     * DESCRIPTION:
+
+     *   Stores the value with the key specified with the last
+
+     *   call to Find (which had created an empty new object).
+
+     * PARAMETERS
+
+     *   value   - the value (or object) to be stored
+
+     *   discard - 1(TRUE)          => invalidates the key/value
+
+     *             0(FALSE) DEFAULT => publishes the key/value
+
+     * RETURNS:
+
+     *   0      => Result was NOT published.
+
+     *   Others => Result was published.
+
+     * EXCEPTIONS:
+
+     *   None.
+
+     * NOTES:
+
+     *   None.
+
+     */
+  FUNCTION
+  Set(
+      value IN RAW,
+      discard IN NUMBER DEFAULT 0
+    ) RETURN NUMBER;
+  pragma interface(
+      C,
+      Set
+    );
+  FUNCTION SetC(
+      value IN VARCHAR2,
+      discard IN NUMBER DEFAULT 0
+    ) RETURN NUMBER;
+  pragma interface(C, SetC);
+  END DBMS_RESULT_CACHE_API;

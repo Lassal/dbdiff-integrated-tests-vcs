@@ -1,0 +1,52 @@
+schema: SYS
+name: ODCITABFUNCINFODUMP
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: TI
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE ODCITabFuncInfoDump(ti IN ODCITabFuncInfo) IS prec PLS_INTEGER;
+  scale PLS_INTEGER;
+  len PLS_INTEGER;
+  csid PLS_INTEGER;
+  csfrm PLS_INTEGER;
+  cnt PLS_INTEGER;
+  tc PLS_INTEGER;
+  schema_name VARCHAR2(30);
+  type_name VARCHAR2(30);
+  version VARCHAR2(30);
+  BEGIN
+    dbms_output.put_line('Dump of ODCITabFuncInfo (ti)');
+  IF (ti IS NULL) THEN dbms_output.put_line('ti IS NULL');
+    ELSE IF (ti.Attrs IS NULL) THEN dbms_output.put_line('ti.Attrs IS NULL');
+    ELSE dbms_output.put('ti.Attrs = { ');
+  FOR i IN 1 ..ti.Attrs.count
+  LOOP
+    IF (i > 1) THEN dbms_output.put(' , ');
+  END IF;
+  dbms_output.put(ti.Attrs(i));
+  END
+  LOOP;
+  dbms_output.put_line(' } ');
+  END IF;
+  IF (ti.RetType IS NULL) THEN dbms_output.put_line('ti.RetType IS NULL');
+  ELSE tc: = ti.RetType.GetInfo(
+    prec,
+    scale,
+    len,
+    csid,
+    csfrm,
+    schema_name,
+    type_name,
+    version,
+    cnt
+  );
+  dbms_output.put_line(
+    'ti.RetType = ' || schema_name || '.' || type_name
+  );
+  END IF;
+  END IF;
+  END;

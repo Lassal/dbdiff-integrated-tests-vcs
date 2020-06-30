@@ -1,0 +1,37 @@
+schema: SYS
+name: USER_OUTLINES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ol_name,
+    category,
+    decode(bitand(flags, 1), 0, 'UNUSED', 1, 'USED'),
+    timestamp,
+    version,
+    sql_text,
+    signature,
+    decode(
+      bitand(flags, 2),
+      0,
+      'COMPATIBLE',
+      2,
+      'INCOMPATIBLE'
+    ),
+    decode(bitand(flags, 4), 0, 'ENABLED', 4, 'DISABLED'),
+    decode(bitand(flags, 8), 0, 'NORMAL', 8, 'LOCAL'),
+    decode(
+      bitand(flags, 16),
+      0,
+      'NOT-MIGRATED',
+      16,
+      'MIGRATED'
+    )
+  from
+    outln.ol$,
+    sys.user$ u
+  where
+    creator = u.name
+    and u.user# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

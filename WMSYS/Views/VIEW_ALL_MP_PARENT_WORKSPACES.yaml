@@ -1,0 +1,24 @@
+schema: WMSYS
+name: ALL_MP_PARENT_WORKSPACES
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    mp.workspace mp_leaf_workspace,
+    mp.parent_workspace,
+    mp.creator,
+    mp.createtime,
+    decode(mp.isRefreshed, 0, 'NO', 'YES') ISREFRESHED,
+    decode(
+      mp.parent_flag,
+      'DP',
+      'DEFAULT_PARENT',
+      'ADDITIONAL_PARENT'
+    ) PARENT_FLAG
+  from
+    wmsys.wm$mp_parent_workspaces_table mp,
+    wmsys.all_workspaces aw
+  where
+    mp.workspace = aw.workspace WITH READ ONLY
+columns: []
+referencedTables: []

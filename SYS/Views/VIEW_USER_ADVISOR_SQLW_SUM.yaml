@@ -1,0 +1,30 @@
+schema: SYS
+name: USER_ADVISOR_SQLW_SUM
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    b.id as workload_id,
+    b.name as workload_name,
+    b.description as description,
+    b.ctime as create_date,
+    b.mtime as modify_date,
+    a .num_select as num_select_stmt,
+    a .num_update as num_update_stmt,
+    a .num_delete as num_delete_stmt,
+    a .num_insert as num_insert_stmt,
+    a .num_merge as num_merge_stmt,
+    b.source as source,
+    b.how_created as how_created,
+    a .data_source as data_source,
+    decode(bitand(b.property, 1), 1, 'TRUE', 'FALSE') as read_only
+  from
+    wri$_adv_sqlw_sum a,
+    wri$_adv_tasks b
+  where
+    b.owner# = userenv('SCHEMAID')
+    and a .workload_id = b.id
+    and bitand(b.property, 2) = 0
+    and b.advisor_id = 6
+columns: []
+referencedTables: []

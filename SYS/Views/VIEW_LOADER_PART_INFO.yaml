@@ -1,0 +1,71 @@
+schema: SYS
+name: LOADER_PART_INFO
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.subname as pname,
+    o.name as tname,
+    u.name as owner,
+    tp.obj# as objectno,
+    tp.bo# as baseobjectno,
+    tp.ts# as tablespaceno,
+    po.parttype as parttype,
+    row_number() over (
+      partition by tp.bo#
+      order by
+        tp.part#
+    ) as partpos,
+    decode(bitand(t.property, 131072), 131072, 'T', 'F') as qtable
+  from
+    sys.obj$ o,
+    sys.tabpart$ tp,
+    sys.partobj$ po,
+    user $ u,
+    tab$ t
+  where
+    o.obj# = tp.obj#
+    and po.obj# = tp.bo#
+    and o.owner# = u.user#
+    and t.obj# = tp.bo#
+    and (
+      o.owner# = userenv('schemaid')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK   ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

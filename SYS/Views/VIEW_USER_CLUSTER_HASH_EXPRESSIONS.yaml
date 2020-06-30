@@ -1,0 +1,20 @@
+schema: SYS
+name: USER_CLUSTER_HASH_EXPRESSIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    us.name,
+    o.name,
+    c .condition
+  from
+    sys.cdef$ c,
+    sys.user$ us,
+    sys.obj$ o
+  where
+    c .type# = 8
+    and c .obj# = o.obj#
+    and us.user# = o.owner#
+    and us.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

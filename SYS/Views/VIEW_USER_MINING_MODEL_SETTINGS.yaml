@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_MINING_MODEL_SETTINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    s.name,
+    s.value,
+    decode(bitand(s.properties, 1), 1, 'INPUT', 'DEFAULT')
+  from
+    sys.modelset$ s,
+    sys.obj$ o
+  where
+    s.mod# = o.obj#
+    and o.owner# = userenv('SCHEMAID')
+    and bitand(s.properties, 2) != 2
+columns: []
+referencedTables: []

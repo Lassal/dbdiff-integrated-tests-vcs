@@ -1,0 +1,124 @@
+schema: SYS
+name: KU$_XSACL_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    xa.acl#,
+    (
+      select
+        o.name
+      from
+        xs$obj o
+      where
+        o.id = xa.acl#
+    ),
+    (
+      select
+        o.owner
+      from
+        xs$obj o
+      where
+        o.id = xa.acl#
+    ),
+    xa.sc#,
+    (
+      select
+        o.name
+      from
+        xs$obj o
+      where
+        o.id = xa.sc#
+    ),
+    (
+      select
+        o.owner
+      from
+        xs$obj o
+      where
+        o.id = xa.sc#
+    ),
+    xa.parent_acl#,
+    (
+      select
+        o.name
+      from
+        xs$obj o
+      where
+        o.id = xa.parent_acl#
+    ),
+    (
+      select
+        o.owner
+      from
+        xs$obj o
+      where
+        o.id = xa.parent_acl#
+    ),
+    xa.acl_flag,
+    xa.ctime,
+    xa.mtime,
+    xa.description,
+    (
+      select
+        value(xo)
+      from
+        ku$_xsobj_view xo
+      where
+        xo.id = xa.acl#
+    ),
+    (
+      select
+        value(sc)
+      from
+        ku$_xssclass_view sc
+      where
+        sc.scid = xa.sc#
+    ),
+    (
+      cast(
+        multiset(
+          select
+            *
+          from
+            ku$_xsace_view a
+          where
+            a .aclid = xa.acl#
+        ) as ku$_xsace_list_t
+      )
+    ),
+    (
+      cast(
+        multiset(
+          select
+            *
+          from
+            ku$_xsaclparam_view a
+          where
+            a .aclid = xa.acl#
+        ) as ku$_xsaclparam_list_t
+      )
+    )
+  from
+    xs$acl xa,
+    xs$obj xobj
+  where
+    xobj.type = 3
+    AND xobj.id = xa.acl#
+    AND bitand(xobj.flags, 1) = 0
+    /* not Oracle supplied */
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USER') IN (xobj.owner, 'SYS')
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

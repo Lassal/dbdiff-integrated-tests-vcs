@@ -1,0 +1,44 @@
+schema: SYS
+name: KU$_EXP_XMLSCHEMA_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    u.user#,
+    u.name,
+    x.schema_url,
+    x.schema_id,
+    (
+      case
+        when x.local = 'YES' then 1
+        else 0
+      end + case
+        when x.binary = 'YES' then 2
+        else 0
+      end
+    ),
+    xlvl.lvl,
+    null,
+    null
+  from
+    sys.user$ u,
+    sys.dba_xml_schemas x,
+    sys.dba_xmlschema_level_view xlvl
+  where
+    x.owner = u.name
+    and xlvl.schema_oid = x.schema_id
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (u.user#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

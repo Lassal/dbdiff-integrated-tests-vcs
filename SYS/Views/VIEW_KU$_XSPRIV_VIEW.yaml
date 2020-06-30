@@ -1,0 +1,46 @@
+schema: SYS
+name: KU$_XSPRIV_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    p.priv#,
+    p.sc#,
+    p.ctime,
+    p.mtime,
+    p.description,
+    (
+      select
+        name
+      from
+        xs$obj o
+      where
+        o.id = p.priv#
+    ),
+    (
+      select
+        owner
+      from
+        xs$obj o
+      where
+        o.id = p.priv#
+    ),
+    (
+      cast(
+        multiset(
+          select
+            *
+          from
+            ku$_xsaggpriv_view ap
+          where
+            ap.scid = p.sc#
+            and ap.aggr_privid = p.priv#
+        ) as ku$_xsaggpriv_list_t
+      )
+    )
+  from
+    xs$priv p
+columns: []
+referencedTables: []

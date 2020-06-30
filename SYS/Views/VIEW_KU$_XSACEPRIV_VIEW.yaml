@@ -1,0 +1,23 @@
+schema: SYS
+name: KU$_XSACEPRIV_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    ap.acl#,
+    ap.ace_order#,
+    ap.priv#,
+    (
+      select
+        value(o)
+      from
+        ku$_xsobj_view o
+      where
+        ap.priv# = o.id
+    )
+  from
+    xs$ace_priv ap
+columns: []
+referencedTables: []

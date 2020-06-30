@@ -1,0 +1,30 @@
+schema: SYS
+name: EXU8DIM
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.owner#,
+    u.name,
+    o.name,
+    dm.dimtext
+  FROM
+    sys.obj$ o,
+    sys.user$ u,
+    sys.dim$ dm
+  WHERE
+    u.user# = o.owner#
+    AND dm.obj# = o.obj#
+    AND (
+      userenv('SCHEMAID') IN (0, o.owner#)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

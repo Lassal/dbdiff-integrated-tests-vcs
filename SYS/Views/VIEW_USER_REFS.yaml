@@ -1,0 +1,38 @@
+schema: SYS
+name: USER_REFS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    distinct o.name,
+    decode(bitand(c .property, 1), 1, ac.name, c .name),
+    decode(bitand(rc.reftyp, 2), 2, 'YES', 'NO'),
+    decode(bitand(rc.reftyp, 1), 1, 'YES', 'NO'),
+    su.name,
+    so.name,
+    case
+      when bitand(reftyp, 4) = 4 then 'USER-DEFINED'
+      when bitand(reftyp, 8) = 8 then 'SYSTEM GENERATED AND USER-DEFINED'
+      else 'SYSTEM GENERATED'
+    end
+  from
+    sys.obj$ o,
+    sys.col$ c,
+    sys.refcon$ rc,
+    sys.obj$ so,
+    sys.user$ su,
+    sys.attrcol$ ac
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.obj# = c .obj#
+    and c .obj# = rc.obj#
+    and c .col# = rc.col#
+    and c .intcol# = rc.intcol#
+    and rc.stabid = so.oid$(+)
+    and so.owner# = su.user#(+)
+    and c .obj# = ac.obj#(+)
+    and c .intcol# = ac.intcol#(+)
+    and bitand(c .property, 32768) != 32768
+    /* not unused column */
+columns: []
+referencedTables: []

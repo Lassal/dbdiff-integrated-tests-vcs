@@ -1,0 +1,586 @@
+schema: SYS
+name: UTL_SMTP
+routineType: PACKAGE
+returnParamater:
+  name: VRFY.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+parameters:
+- name: AUTH(1).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: AUTH(1).USERNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AUTH(1).PASSWORD
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AUTH(1).SCHEMES
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AUTH(2).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: AUTH(2).USERNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AUTH(2).PASSWORD
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AUTH(2).SCHEMES
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLOSE_CONNECTION.C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: CLOSE_DATA(1).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: CLOSE_DATA(2).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: COMMAND(1).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: COMMAND(1).CMD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMMAND(1).ARG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMMAND(2).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: COMMAND(2).CMD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMMAND(2).ARG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMMAND_REPLIES.C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: COMMAND_REPLIES.CMD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMMAND_REPLIES.ARG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DATA(1).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: DATA(1).BODY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DATA(2).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: DATA(2).BODY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EHLO(1).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: EHLO(1).DOMAIN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EHLO(2).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: EHLO(2).DOMAIN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HELO(1).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: HELO(1).DOMAIN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HELO(2).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: HELO(2).DOMAIN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HELP.C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: HELP.COMMAND
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAIL(1).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: MAIL(1).SENDER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAIL(1).PARAMETERS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAIL(2).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: MAIL(2).SENDER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAIL(2).PARAMETERS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: NOOP(1).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: NOOP(2).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: OPEN_CONNECTION(1).HOST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPEN_CONNECTION(1).PORT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: OPEN_CONNECTION(1).C
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: OPEN_CONNECTION(1).TX_TIMEOUT
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: OPEN_CONNECTION(1).WALLET_PATH
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPEN_CONNECTION(1).WALLET_PASSWORD
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPEN_CONNECTION(1).SECURE_CONNECTION_BEFORE_SMTP
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: OPEN_CONNECTION(2).HOST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPEN_CONNECTION(2).PORT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: OPEN_CONNECTION(2).TX_TIMEOUT
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: OPEN_CONNECTION(2).WALLET_PATH
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPEN_CONNECTION(2).WALLET_PASSWORD
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPEN_CONNECTION(2).SECURE_CONNECTION_BEFORE_SMTP
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: OPEN_DATA(1).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: OPEN_DATA(2).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: QUIT(1).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: QUIT(2).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: RCPT(1).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: RCPT(1).RECIPIENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RCPT(1).PARAMETERS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RCPT(2).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: RCPT(2).RECIPIENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RCPT(2).PARAMETERS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RSET(1).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: RSET(2).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: STARTTLS(1).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: STARTTLS(2).C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: VRFY.C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: VRFY.RECIPIENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITE_DATA.C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: WRITE_DATA.DATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITE_RAW_DATA.C
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: WRITE_RAW_DATA.DATA
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+routineDefinition: "PACKAGE utl_smtp AUTHID CURRENT_USER AS\n/*******************************************************************\n\
+  \n  * OVERVIEW\n\n  *\n\n  * This package provides SMTP client-side access functionality\
+  \ in PL/SQL.\n\n  * With this package, a PL/SQL program can send electronic mails\
+  \ via SMTP.\n\n  * This package does not allow the PL/SQL program to receive e-mails\
+  \ via\n\n  * SMTP.  The user of this package should be familiar with the SMTP protocol\n\
+  \n  * as defined in RFC 821 and RFC 1869.\n\n  *\n\n  * This package is meant to\
+  \ provide an API to SMTP protocol directly.  Users\n\n  * may find it useful to\
+  \ define additional helper routines to encapsulate\n\n  * the interaction with a\
+  \ SMTP server.\n\n  *\n\n  * USES\n\n  *\n\n  * A SMTP connection is initiated by\
+  \ a call to open_connection, which\n\n  * returns a SMTP connection.  After a connection\
+  \ is established, the\n\n  * following calls are required to send a mail:\n\n  *\n\
+  \n  *   helo()       - identify the domain of the sender\n\n  *   mail()       -\
+  \ start a mail, specify the sender\n\n  *   rcpt()       - specify the recipient\n\
+  \n  *   open_data()  - start the mail body\n\n  *   write_data() - write the mail\
+  \ body (multiple calls allowed)\n\n  *   close_data() - close the mail body and\
+  \ send the mail\n\n  *\n\n  * The SMTP connection is closed by calling quit().\n\
+  \n  *\n\n  * A note on API style and raising PL/SQL exception:\n\n  *\n\n  * Most\
+  \ of the API has a function form and a procedure form.  The function\n\n  * form\
+  \ returns the reply message after the command is sent, in the form\n\n  * of \"\
+  XXX <an optional reply message>\", where XXX is the reply code.\n\n  * The procedure\
+  \ form of the same API calls the function form of the API,\n\n  * checks the reply\
+  \ code and raises transient_error or permanent_error\n\n  * exception if the reply\
+  \ code is in 400 or 500 range.  The function form\n\n  * of the API does not raise\
+  \ either of the 2 exceptions.\n\n  *\n\n  * All API may raise invalid_operation\
+  \ exception if it is called in either\n\n  * of the situations:\n\n  *\n\n  *  \
+  \ 1. calling API other than write_data(), write_raw_data() or close_data()\n\n \
+  \ *      after open_data(0 is called, or\n\n  *   2. calling write_data(), write_raw_data()\
+  \ or close_data() without\n\n  *      first calling open_data()\n\n  *\n\n  * EXAMPLES\n\
+  \n  *   Retrieve the home page from http://www.acme.com/\n\n  *\n\n  *   DECLARE\n\
+  \n  *     c utl_smtp.connection;\n\n  *\n\n  *     PROCEDURE send_header(name IN\
+  \ VARCHAR2, header IN VARCHAR2) AS\n\n  *     BEGIN\n\n  *       utl_smtp.write_data(c,\
+  \ name || ': ' || header || utl_tcp.CRLF);\n\n  *     END;\n\n  *\n\n  *   BEGIN\n\
+  \n  *     c := utl_smtp.open_connection('smtp-server.acme.com');\n\n  *     utl_smtp.helo(c,\
+  \ 'foo.com');\n\n  *     utl_smtp.mail(c, 'sender@foo.com');\n\n  *     utl_smtp.rcpt(c,\
+  \ 'recipient@foo.com');\n\n  *     utl_smtp.open_data(c);\n\n  *     send_header('From',\
+  \    '\"Sender\" <sender@foo.com>');\n\n  *     send_header('To',      '\"Recipient\"\
+  \ <recipient@foo.com>');\n\n  *     send_header('Subject', 'Hello');\n\n  *    \
+  \ utl_smtp.write_data(c, utl_tcp.CRLF || 'Hello, world!');\n\n  *     utl_smtp.close_data(c);\n\
+  \n  *     utl_smtp.quit(c);\n\n  *   EXCEPTION\n\n  *     WHEN utl_smtp.transient_error\
+  \ OR utl_smtp.permanent_error THEN\n\n  *       BEGIN\n\n  *         utl_smtp.quit(c);\n\
+  \n  *       EXCEPTION\n\n  *         WHEN utl_smtp.transient_error OR utl_smtp.permanent_error\
+  \ THEN\n\n  *           NULL; -- When the SMTP server is down or unavailable, we\
+  \ don't\n\n  *                 -- have a connection to the server. The quit call\
+  \ will\n\n  *                 -- raise an exception that we can ignore.\n\n  * \
+  \      END;\n\n  *       raise_application_error(-20000,\n\n  *         'Failed\
+  \ to send mail due to the following error: ' || sqlerrm);\n\n  *   END;\n\n  */\n\
+  /*\n\n   * SMTP connection type\n\n   */\nTYPE connection IS RECORD (\n  host VARCHAR2(255),\n\
+  \  -- Host name of SMTP server\n  port PLS_INTEGER,\n  -- Port number of SMTP server\n\
+  \  tx_timeout PLS_INTEGER,\n  -- Transfer time-out (in seconds)\n  private_tcp_con\
+  \ utl_tcp.connection,\n  -- For internal use only\n  private_state PLS_INTEGER --\
+  \ For internal use only\n);\n/*\n\n   * SMTP reply structure\n\n   */\nTYPE reply\
+  \ IS RECORD (\n  code PLS_INTEGER,\n  -- 3-digit reply code\n  text VARCHAR2(508)\
+  \ -- reply text\n);\n-- multiple reply lines\nTYPE replies IS TABLE OF reply INDEX\
+  \ BY BINARY_INTEGER;\n/*\n\n   * Exceptions\n\n   */\ninvalid_operation\nEXCEPTION;\n\
+  -- Operation is invalid\n  transient_error\nEXCEPTION;\n-- Transient server error\
+  \ in 400 range\n  permanent_error\nEXCEPTION;\n-- Permanent server error in 500\
+  \ range\n  unsupported_scheme\nEXCEPTION;\n-- Unsupported authentication scheme\n\
+  \  no_supported_scheme\nEXCEPTION;\n-- No supported authentication scheme\n  invalid_operation_errcode\
+  \ CONSTANT PLS_INTEGER: = -29277;\ntransient_error_errcode CONSTANT PLS_INTEGER:\
+  \ = -29278;\npermanent_error_errcode CONSTANT PLS_INTEGER: = -29279;\nunsupported_scheme_errcode\
+  \ CONSTANT PLS_INTEGER: = -24249;\nno_supported_scheme_errcode CONSTANT PLS_INTEGER:\
+  \ = -24250;\nPRAGMA EXCEPTION_INIT(invalid_operation, -29277);\nPRAGMA EXCEPTION_INIT(transient_error,\
+  \ -29278);\nPRAGMA EXCEPTION_INIT(permanent_error, -29279);\nPRAGMA EXCEPTION_INIT(unsupported_scheme,\
+  \ -24249);\nPRAGMA EXCEPTION_INIT(no_supported_scheme, -24250);\n  /*\n  \n    \
+  \ * SMTP authentication schemes for use with the AUTH API.\n  \n     *\n  \n   \
+  \  * UTL_SMTP may support additional authentication schemes in the future and\n\
+  \  \n     * these strings will change accordingly.\n  \n     */\n  /* The list of\
+  \ all authentication schemes that UTL_SMTP supports, in the\n  \n     * order of\
+  \ their relative security strength. This list contains some\n  \n     * schemes\
+  \ in which cleartext passwords are sent over SMTP. They should be\n  \n     * used\
+  \ only in SMTP connections that are secured by Secure Scoket Layer /\n  \n     *\
+  \ Transport Layer Security (SSL/TLS).\n  \n     */\n  ALL_SCHEMES CONSTANT VARCHAR2(80):\
+  \ = 'CRAM-MD5 PLAIN LOGIN';\n  /* The list of authentication schemes that UTL_SMTP\
+  \ supports and in which\n  \n     * no cleartext passwords are sent over SMTP. They\
+  \ may be used in SMTP\n  \n     * connections that are not secured by SSL/TLS. Note\
+  \ that these schemes\n  \n     * may still be weak when used in an insecure SMTP\
+  \ connection.\n  \n     */\n  NON_CLEARTEXT_PASSWORD_SCHEMES CONSTANT VARCHAR2(80):\
+  \ = 'CRAM-MD5';\n  /**\n  \n     * Opens a SMTP connection to a SMTP server.  When\
+  \ connection is made\n  \n     * succesfully, the SMTP host name and port number\
+  \ will be stored in\n  \n     * the connection.\n  \n     *\n  \n     * Communication\
+  \ with the SMTP server may be secured using Secure Socket\n  \n     * Layer / Transport\
+  \ Layer Security (SSL/TLS). To start SSL/TLS in the\n  \n     * connection, the\
+  \ user must specify an Oracle wallet when opening the\n  \n     * connection. The\
+  \ wallet must contain the trusted certificate of the\n  \n     * certificate authority\
+  \ who signs the remote server's certificate for\n  \n     * UTL_SMTP to validate\
+  \ the remote server's certificate.\n  \n     *\n  \n     * There are two ways SSL/TLS\
+  \ may be started in SMTP. In the first way,\n  \n     * SSL/TLS is started before\
+  \ any SMTP communication. To connect to a SMTP\n  \n     * server port configured\
+  \ this way (port 465 by convention), set\n  \n     * secure_connection_before_smtp\
+  \ to TRUE.\n  \n     *\n  \n     * In the second way, initial SMTP handshake is\
+  \ done in an insecure\n  \n     * connection and SSL/TLS is started by the STARTTLS\
+  \ command. To connect to\n  \n     * a SMTP server port configured this way (port\
+  \ 25 or 587 by convention),\n  \n     * set secure_connection_before_smtp to FALSE\
+  \ and call the STARTTLS\n  \n     * function/procedure. See STARTTLS for details.\n\
+  \  \n     *\n  \n     * UTL_SMTP supports client authentication over SSL/TLS using\
+  \ the client\n  \n     * certificate in the wallet. The client certificate will\
+  \ be sent to the\n  \n     * remote server if it is present in the wallet and if\
+  \ the caller has the\n  \n     * \"use-client-certificates\" ACL privilege on the\
+  \ wallet.\n  \n     *\n  \n     * For more information on Oracle wallets, see Oracle\
+  \ Wallet Manager\n  \n     * documentation.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   host   SMTP host name to connect to\n  \n     *   port   port number\
+  \ of the SMTP server to connect to\n  \n     *   c      SMTP connection (OUT)\n\
+  \  \n     *   tx_timeout  a time in seconds this package should wait before\n  \n\
+  \     *          giving up in a read or write operation in this\n  \n     *    \
+  \      connection. In read operations, this package will give\n  \n     *      \
+  \    up if no data is available for reading immediately.\n  \n     *          In\
+  \ write operations, this package will give if the\n  \n     *          output buffer\
+  \ is full and no data be sent in the\n  \n     *          network without being\
+  \ blocked.  0 indicates not to wait\n  \n     *          at all.  NULL indicates\
+  \ to wait forever.\n  \n     *   wallet_path  the directory path that contains the\
+  \ Oracle wallet for\n  \n     *          SSL/TLS. The format is \"file:<directory-path>\"\
+  .\n  \n     *   wallet_password  the password to open the wallet. When the wallet\
+  \ is\n  \n     *          auto-login enabled, the password may be set to NULL.\n\
+  \  \n     *   secure_connection_before_smtp  if TRUE, secure the connection with\n\
+  \  \n     *          SSL/TLS before SMTP communication, else not.\n  \n     * RETURN\n\
+  \  \n     *   SMTP connection when connection is established, or\n  \n     *   the\
+  \ SMTP reply (welcome) message\n  \n     * EXCEPTIONS\n  \n     *   transient_error\
+  \   - transient server error\n  \n     *   permanent_error   - permanent server\
+  \ error\n  \n     *   invalid_operation - invalid operation\n  \n     * NOTES\n\
+  \  \n     *   Time-out on write operations is not supported in the current release\n\
+  \  \n     * of this package.\n  \n     */\n  FUNCTION open_connection(\n    host\
+  \ IN VARCHAR2,\n    port IN PLS_INTEGER DEFAULT 25,\n    c OUT connection,\n   \
+  \ tx_timeout IN PLS_INTEGER DEFAULT NULL,\n    wallet_path IN VARCHAR2 DEFAULT NULL,\n\
+  \    wallet_password IN VARCHAR2 DEFAULT NULL,\n    secure_connection_before_smtp\
+  \ IN BOOLEAN DEFAULT FALSE\n  ) RETURN reply;\nFUNCTION open_connection(\n    host\
+  \ IN VARCHAR2,\n    port IN PLS_INTEGER DEFAULT 25,\n    tx_timeout IN PLS_INTEGER\
+  \ DEFAULT NULL,\n    wallet_path IN VARCHAR2 DEFAULT NULL,\n    wallet_password\
+  \ IN VARCHAR2 DEFAULT NULL,\n    secure_connection_before_smtp IN BOOLEAN DEFAULT\
+  \ FALSE\n  ) RETURN connection;\n  /**\n  \n     * Sends a generic SMTP command\
+  \ and retrieves a single reply line.  If\n  \n     * multiple reply lines are returned\
+  \ from the SMTP server, the last reply\n  \n     * line is returned.\n  \n     *\n\
+  \  \n     * PARAMETERS\n  \n     *   c     SMTP connection\n  \n     *   cmd   SMTP\
+  \ command\n  \n     *   arg   optional argument to the SMTP command\n  \n     *\
+  \ RETURN\n  \n     *   the SMTP reply\n  \n     * EXCEPTIONS\n  \n     *   transient_error\
+  \   - transient server error\n  \n     *   permanent_error   - permanent server\
+  \ error\n  \n     *   invalid_operation - invalid operation\n  \n     */\n  FUNCTION\
+  \ command(\n    c IN OUT NOCOPY connection,\n    cmd IN VARCHAR2,\n    arg IN VARCHAR2\
+  \ DEFAULT NULL\n  ) RETURN reply;\nPROCEDURE command(\n    c IN OUT NOCOPY connection,\n\
+  \    cmd IN VARCHAR2,\n    arg IN VARCHAR2 DEFAULT NULL\n  );\n  /**\n  \n     *\
+  \ Sends a generic SMTP command and retrieves multiple reply lines.\n  \n     *\n\
+  \  \n     * PARAMETERS\n  \n     *   c     SMTP connection\n  \n     *   cmd   SMTP\
+  \ command\n  \n     *   arg   optional argument to the SMTP command\n  \n     *\
+  \ RETURN\n  \n     *   the SMTP reply\n  \n     * EXCEPTIONS\n  \n     *   invalid_operation\
+  \ - invalid operation\n  \n     */\n  FUNCTION command_replies(\n    c IN OUT NOCOPY\
+  \ connection,\n    cmd IN VARCHAR2,\n    arg IN VARCHAR2 DEFAULT NULL\n  ) RETURN\
+  \ replies;\n  /**\n  \n     * Sends HELO command.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   c        SMTP connection\n  \n     *   domain   domain of the sender\n\
+  \  \n     * RETURN\n  \n     *   the SMTP reply\n  \n     * EXCEPTIONS\n  \n   \
+  \  *   transient_error   - transient server error\n  \n     *   permanent_error\
+  \   - permanent server error\n  \n     *   invalid_operation - invalid operation\n\
+  \  \n     */\n  FUNCTION helo(\n    c IN OUT NOCOPY connection,\n    domain IN VARCHAR2\n\
+  \  ) RETURN reply;\nPROCEDURE helo(\n    c IN OUT NOCOPY connection,\n    domain\
+  \ IN VARCHAR2\n  );\n  /**\n  \n     * Sends EHLO command.\n  \n     *\n  \n   \
+  \  * PARAMETERS\n  \n     *   c        SMTP connection\n  \n     *   domain   domain\
+  \ of the sender\n  \n     * RETURN\n  \n     *   the SMTP reply\n  \n     * EXCEPTIONS\n\
+  \  \n     *   transient_error   - transient server error\n  \n     *   permanent_error\
+  \   - permanent server error\n  \n     *   invalid_operation - invalid operation\n\
+  \  \n     */\n  FUNCTION ehlo(\n    c IN OUT NOCOPY connection,\n    domain IN VARCHAR2\n\
+  \  ) RETURN replies;\nPROCEDURE ehlo(\n    c IN OUT NOCOPY connection,\n    domain\
+  \ IN VARCHAR2\n  );\n  /**\n  \n     * Sends STARTTLS command to secure the SMTP\
+  \ connection using SSL/TLS.\n  \n     * SSL/TLS requires an Oracle wallet which\
+  \ should be specified when the\n  \n     * connection was opened by the open_connection\
+  \ function.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   c        SMTP connection\n\
+  \  \n     * RETURN\n  \n     *   the SMTP reply\n  \n     * EXCEPTIONS\n  \n   \
+  \  *   transient_error   - transient server error\n  \n     *   permanent_error\
+  \   - permanent server error\n  \n     *   invalid_operation - invalid operation\n\
+  \  \n     */\n  FUNCTION starttls(c IN OUT NOCOPY connection) RETURN reply;\nPROCEDURE\
+  \ starttls(c IN OUT NOCOPY connection);\n  /**\n  \n     * Sends AUTH command to\
+  \ authenticate to the SMTP server. The UTL_SMTP\n  \n     * package will go through\
+  \ the user's choices of authentication schemes,\n  \n     * skip any that is not\
+  \ supported by the SMTP server and use the first one\n  \n     * supported. To determine\
+  \ the schemes the SMTP server supports from its\n  \n     * EHLO reply, the user\
+  \ must call the EHLO function/procedure first.\n  \n     * Otherwise, UTL_SMTP will\
+  \ use the first scheme in the list.\n  \n     *\n  \n     * PARAMETERS\n  \n   \
+  \  *   c           SMTP connection\n  \n     *   username    the username\n  \n\
+  \     *   password    the password\n  \n     *   schemes     the list of space-separated\
+  \ authentication schemes to use\n  \n     *               in the preferred order.\
+  \ See the ALL_SCHEMES and\n  \n     *               NON_CLEARTEXT_PASSWORD_SCHEMES\
+  \ constants for suggestions.\n  \n     * RETURN\n  \n     *   the SMTP reply\n \
+  \ \n     * EXCEPTIONS\n  \n     *   transient_error   - transient server error\n\
+  \  \n     *   permanent_error   - permanent server error\n  \n     *   invalid_operation\
+  \ - invalid operation\n  \n     *   bad_argument      - no supported authentication\
+  \ scheme found\n  \n     * NOTES\n  \n     *   Currently only PLAIN, LOGIN and CRAM-MD5\
+  \ authentication schemes are\n  \n     * supported by UTL_SMTP.\n  \n     *   Since\
+  \ the SMTP server may change the authentication schemes it supports\n  \n     *\
+  \ after the SMTP connection is secured by SSL/TLS after the STARTTLS command\n \
+  \ \n     * (for example, adding PLAIN and LOGIN), the caller should call the EHLO\n\
+  \  \n     * function/procedure again for UTL_SMTP to update the list after the\n\
+  \  \n     * STARTTLS function/procedure is called.\n  \n     */\n  FUNCTION auth(\n\
+  \    c IN OUT NOCOPY connection,\n    username IN VARCHAR2,\n    password IN VARCHAR2,\n\
+  \    schemes IN VARCHAR2 DEFAULT NON_CLEARTEXT_PASSWORD_SCHEMES\n  ) RETURN reply;\n\
+  PROCEDURE auth(\n    c IN OUT NOCOPY connection,\n    username IN VARCHAR2,\n  \
+  \  password IN VARCHAR2,\n    schemes IN VARCHAR2 DEFAULT NON_CLEARTEXT_PASSWORD_SCHEMES\n\
+  \  );\n  /**\n  \n     * Sends MAIL command.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   c           SMTP connection\n  \n     *   sender      the sender\n\
+  \  \n     *   parameters  the optional parameters to MAIL command\n  \n     * RETURN\n\
+  \  \n     *   the SMTP reply\n  \n     * EXCEPTIONS\n  \n     *   transient_error\
+  \   - transient server error\n  \n     *   permanent_error   - permanent server\
+  \ error\n  \n     *   invalid_operation - invalid operation\n  \n     */\n  FUNCTION\
+  \ mail(\n    c IN OUT NOCOPY connection,\n    sender IN VARCHAR2,\n    parameters\
+  \ IN VARCHAR2 DEFAULT NULL\n  ) RETURN reply;\nPROCEDURE mail(\n    c IN OUT NOCOPY\
+  \ connection,\n    sender IN VARCHAR2,\n    parameters IN VARCHAR2 DEFAULT NULL\n\
+  \  );\n  /**\n  \n     * Sends RCPT command.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   c           SMTP connection\n  \n     *   recipient   the recipient\n\
+  \  \n     *   parameters  the optional parameters to RCPT command\n  \n     * RETURN\n\
+  \  \n     *   the SMTP reply\n  \n     * EXCEPTIONS\n  \n     *   transient_error\
+  \   - transient server error\n  \n     *   permanent_error   - permanent server\
+  \ error\n  \n     *   invalid_operation - invalid operation\n  \n     */\n  FUNCTION\
+  \ rcpt(\n    c IN OUT NOCOPY connection,\n    recipient IN VARCHAR2,\n    parameters\
+  \ IN VARCHAR2 DEFAULT NULL\n  ) RETURN reply;\nPROCEDURE rcpt(\n    c IN OUT NOCOPY\
+  \ connection,\n    recipient IN VARCHAR2,\n    parameters IN VARCHAR2 DEFAULT NULL\n\
+  \  );\n  /**\n  \n     * Sends DATA command.  The data will be closed by the sequence\n\
+  \  \n     * <CR><LF>.<CR><LF>\n  \n     *\n  \n     * PARAMETERS\n  \n     *   c\
+  \     SMTP connection\n  \n     *   body  the data body\n  \n     * RETURN\n  \n\
+  \     *   the SMTP reply after the sequence <CR><LF>.<CR><LF> is sent\n  \n    \
+  \ * EXCEPTIONS\n  \n     *   transient_error   - transient server error\n  \n  \
+  \   *   permanent_error   - permanent server error\n  \n     *   invalid_operation\
+  \ - invalid operation\n  \n     */\n  FUNCTION data(\n    c IN OUT NOCOPY connection,\n\
+  \    body IN VARCHAR2 CHARACTER\n    SET\n      ANY_CS\n  ) RETURN reply;\nPROCEDURE\
+  \ data(\n    c IN OUT NOCOPY connection,\n    body IN VARCHAR2 CHARACTER\n    SET\n\
+  \      ANY_CS\n  );\n  /**\n  \n     * Sends DATA command.  This call opens the\
+  \ data session that the\n  \n     * caller make subsequent write_data() calls to\
+  \ write large piece of\n  \n     * data, following by close_data() to close the\
+  \ data session.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   c   SMTP connection\n\
+  \  \n     * RETURN\n  \n     *   the SMTP reply\n  \n     * EXCEPTIONS\n  \n   \
+  \  *   transient_error   - transient server error\n  \n     *   permanent_error\
+  \   - permanent server error\n  \n     *   invalid_operation - invalid operation\n\
+  \  \n     */\n  FUNCTION open_data(c IN OUT NOCOPY connection) RETURN reply;\nPROCEDURE\
+  \ open_data(c IN OUT NOCOPY connection);\n  /**\n  \n     * Sends data.  This call\
+  \ must be preceeded by the call open_data().\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   c      SMTP connection\n  \n     *   data   the data body\n  \n  \
+  \   * RETURN\n  \n     *   None\n  \n     * EXCEPTIONS\n  \n     *   invalid_operation\
+  \ - invalid operation\n  \n     */\n  PROCEDURE write_data(\n    c IN OUT NOCOPY\
+  \ connection,\n    data IN VARCHAR2 CHARACTER\n    SET\n      ANY_CS\n  );\nPROCEDURE\
+  \ write_raw_data(\n    c IN OUT NOCOPY connection,\n    data IN RAW\n  );\n  /**\n\
+  \  \n     * Sends DATA command.  This call opens the data session that the\n  \n\
+  \     * caller make subsequent write_data() calls to write large piece of\n  \n\
+  \     * data, following by close_data() to close the data session.\n  \n     *\n\
+  \  \n     * PARAMETERS\n  \n     *   c   SMTP connection\n  \n     * RETURN\n  \n\
+  \     *   the SMTP reply\n  \n     * EXCEPTIONS\n  \n     *   transient_error  \
+  \ - transient server error\n  \n     *   permanent_error   - permanent server error\n\
+  \  \n     *   invalid_operation - invalid operation\n  \n     */\n  FUNCTION close_data(c\
+  \ IN OUT NOCOPY connection) RETURN reply;\nPROCEDURE close_data(c IN OUT NOCOPY\
+  \ connection);\n  /**\n  \n     * Sends RSET command.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   c   SMTP connection\n  \n     * RETURN\n  \n     *   the SMTP reply\n\
+  \  \n     * EXCEPTIONS\n  \n     *   transient_error   - transient server error\n\
+  \  \n     *   permanent_error   - permanent server error\n  \n     *   invalid_operation\
+  \ - invalid operation\n  \n     */\n  FUNCTION rset(c IN OUT NOCOPY connection)\
+  \ RETURN reply;\nPROCEDURE rset(c IN OUT NOCOPY connection);\n  /**\n  \n     *\
+  \ Sends VRFY command.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   c       \
+  \    SMTP connection\n  \n     *   recipient   the reccipient to verify\n  \n  \
+  \   * RETURN\n  \n     *   the SMTP reply\n  \n     * EXCEPTIONS\n  \n     *   invalid_operation\
+  \ - invalid operation\n  \n     */\n  FUNCTION vrfy(\n    c IN OUT NOCOPY connection,\n\
+  \    recipient IN VARCHAR2\n  ) RETURN reply;\n  /**\n  \n     * Sends HELP command.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   c         SMTP connection\n  \n\
+  \     *   command   the command to get help message\n  \n     * RETURN\n  \n   \
+  \  *   the SMTP reply\n  \n     * EXCEPTIONS\n  \n     *   invalid_operation - invalid\
+  \ operation\n  \n     */\n  FUNCTION help(\n    c IN OUT NOCOPY connection,\n  \
+  \  command IN VARCHAR2 DEFAULT NULL\n  ) RETURN replies;\n  /**\n  \n     * Sends\
+  \ NOOP command.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   c   SMTP connection\n\
+  \  \n     * RETURN\n  \n     *   the SMTP reply\n  \n     * EXCEPTIONS\n  \n   \
+  \  *   transient_error   - transient server error\n  \n     *   permanent_error\
+  \   - permanent server error\n  \n     *   invalid_operation - invalid operation\n\
+  \  \n     */\n  FUNCTION noop(c IN OUT NOCOPY connection) RETURN reply;\nPROCEDURE\
+  \ noop(c IN OUT NOCOPY connection);\n  /**\n  \n     * Sends QUIT command and closes\
+  \ the SMTP connection.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   c   SMTP\
+  \ connection\n  \n     * RETURN\n  \n     *   the SMTP reply\n  \n     * EXCEPTIONS\n\
+  \  \n     *   transient_error   - transient server error\n  \n     *   permanent_error\
+  \   - permanent server error\n  \n     *   invalid_operation - invalid operation\n\
+  \  \n     */\n  FUNCTION quit(c IN OUT NOCOPY connection) RETURN reply;\nPROCEDURE\
+  \ quit(c IN OUT NOCOPY connection);\n  /**\n  \n     * Closes the SMTP connection.\
+  \ It will cause the current SMTP operation to\n  \n     * be aborted. Use this procedure\
+  \ only to abort an email in the middle of\n  \n     * the data session. To end the\
+  \ SMTP connection properly, use the quit() API\n  \n     * instead.\n  \n     *\n\
+  \  \n     * PARAMETERS\n  \n     *   c   SMTP connection\n  \n     * RETURN\n  \n\
+  \     *   None\n  \n     * EXCEPTIONS\n  \n     *   None\n  \n     */\n  PROCEDURE\
+  \ close_connection(c IN OUT NOCOPY connection);\nEND;"

@@ -1,0 +1,75 @@
+schema: SYS
+name: DBMS_FREQUENT_ITEMSET
+routineType: PACKAGE
+returnParamater:
+  name: FI_TRANSACTIONAL.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: FI_HORIZONTAL.TRANX_CURSOR
+  ordinalPosition: 1
+  dataType: REF CURSOR
+  parameterMode: IN
+- name: FI_HORIZONTAL.SUPPORT_THRESHOLD
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: FI_HORIZONTAL.ITEMSET_LENGTH_MIN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: FI_HORIZONTAL.ITEMSET_LENGTH_MAX
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: FI_HORIZONTAL.INCLUDING_ITEMS
+  ordinalPosition: 5
+  dataType: REF CURSOR
+  parameterMode: IN
+- name: FI_HORIZONTAL.EXCLUDING_ITEMS
+  ordinalPosition: 6
+  dataType: REF CURSOR
+  parameterMode: IN
+- name: FI_TRANSACTIONAL.TRANX_CURSOR
+  ordinalPosition: 1
+  dataType: REF CURSOR
+  parameterMode: IN
+- name: FI_TRANSACTIONAL.SUPPORT_THRESHOLD
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: FI_TRANSACTIONAL.ITEMSET_LENGTH_MIN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: FI_TRANSACTIONAL.ITEMSET_LENGTH_MAX
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: FI_TRANSACTIONAL.INCLUDING_ITEMS
+  ordinalPosition: 5
+  dataType: REF CURSOR
+  parameterMode: IN
+- name: FI_TRANSACTIONAL.EXCLUDING_ITEMS
+  ordinalPosition: 6
+  dataType: REF CURSOR
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_frequent_itemset AUTHID CURRENT_USER AS FUNCTION fi_transactional(
+    tranx_cursor IN SYS_REFCURSOR,
+    support_threshold IN NUMBER,
+    itemset_length_min IN NUMBER,
+    itemset_length_max IN NUMBER,
+    including_items IN SYS_REFCURSOR DEFAULT NULL,
+    excluding_items IN SYS_REFCURSOR DEFAULT NULL
+  ) RETURN SYS.AnyDataSet pipelined parallel_enable using ora_fi_Imp_t;
+  FUNCTION fi_horizontal(
+    tranx_cursor IN SYS_REFCURSOR,
+    support_threshold IN NUMBER,
+    itemset_length_min IN NUMBER,
+    itemset_length_max IN NUMBER,
+    including_items IN SYS_REFCURSOR DEFAULT NULL,
+    excluding_items IN SYS_REFCURSOR DEFAULT NULL
+  ) RETURN SYS.AnyDataSet pipelined parallel_enable using ora_fi_Imp_t;
+  END;

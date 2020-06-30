@@ -1,0 +1,98 @@
+name: DR$OBJECT_ATTRIBUTE
+schema: CTXSYS
+columns:
+- name: OAT_ATT_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: OAT_CLA_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: OAT_DATATYPE
+  ordinalPosition: 10
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: OAT_DEFAULT
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 500
+  nullable: true
+  dataTypeLength: 500
+- name: OAT_DESC
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  dataTypeLength: 80
+- name: OAT_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: OAT_LOV
+  ordinalPosition: 14
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: OAT_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  dataTypeLength: 30
+- name: OAT_OBJ_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: OAT_REQUIRED
+  ordinalPosition: 7
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: OAT_STATIC
+  ordinalPosition: 9
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: OAT_SYSTEM
+  ordinalPosition: 8
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: OAT_VAL_MAX
+  ordinalPosition: 13
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: OAT_VAL_MIN
+  ordinalPosition: 12
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: DRC$OAT_KEY
+  type: PRIMARY_KEY
+  columns:
+  - name: OAT_ID
+    ordinalPosition: 1
+- !<unique-constraint>
+  name: DRC$OAT_NAME
+  type: UNIQUE
+  columns:
+  - name: OAT_CLA_ID
+    ordinalPosition: 1
+  - name: OAT_NAME
+    ordinalPosition: 3
+  - name: OAT_OBJ_ID
+    ordinalPosition: 2

@@ -1,0 +1,21 @@
+schema: MDSYS
+name: SDO_PROJECTIONS_OLD_FORMAT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  (
+    SELECT
+      DISTINCT OP.COORD_OP_NAME "NAME"
+    FROM
+      MDSYS.SDO_COORD_REF_SYS CRS,
+      MDSYS.SDO_COORD_OPS OP
+    WHERE
+      CRS.PROJECTION_CONV_ID = OP.COORD_OP_ID
+    UNION
+    SELECT
+      NAME
+    FROM
+      MDSYS.SDO_PROJECTIONS_OLD_SNAPSHOT
+  )
+columns: []
+referencedTables: []

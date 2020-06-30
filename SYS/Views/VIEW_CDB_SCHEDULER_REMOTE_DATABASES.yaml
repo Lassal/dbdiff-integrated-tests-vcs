@@ -1,0 +1,14 @@
+schema: SYS
+name: CDB_SCHEDULER_REMOTE_DATABASES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "DATABASE_NAME",
+    "REGISTERED_AS",
+    "DATABASE_LINK",
+    "CON_ID"
+  FROM
+    CONTAINERS("SYS"."DBA_SCHEDULER_REMOTE_DATABASES")
+columns: []
+referencedTables: []

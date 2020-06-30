@@ -1,0 +1,243 @@
+name: SDO_COORD_OPS
+schema: MDSYS
+columns:
+- name: COORD_OP_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: COORD_OP_METHOD_ID
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: COORD_OP_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  dataTypeLength: 80
+- name: COORD_OP_TYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 24
+  nullable: true
+  dataTypeLength: 24
+- name: COORD_OP_VARIANT
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 5,0
+- name: COORD_TFM_VERSION
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 24
+  nullable: true
+  dataTypeLength: 24
+- name: DATA_SOURCE
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  dataTypeLength: 40
+- name: INFORMATION_SOURCE
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 254
+  nullable: true
+  dataTypeLength: 254
+- name: IS_IMPLEMENTED_FORWARD
+  ordinalPosition: 17
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 1,0
+- name: IS_IMPLEMENTED_REVERSE
+  ordinalPosition: 18
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 1,0
+- name: IS_LEGACY
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: false
+  dataTypeLength: 5
+- name: LEGACY_CODE
+  ordinalPosition: 15
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: REVERSE_OP
+  ordinalPosition: 16
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 1,0
+- name: SHOW_OPERATION
+  ordinalPosition: 13
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: SOURCE_SRID
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: TARGET_SRID
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: UOM_ID_SOURCE_OFFSETS
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: UOM_ID_TARGET_OFFSETS
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+constraints:
+- !<unique-constraint>
+  name: COORD_OP_PRIM
+  type: PRIMARY_KEY
+  columns:
+  - name: COORD_OP_ID
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: COORD_OPERATION_FOREIGN_LEGACY
+  type: FOREIGN_KEY
+  columns:
+  - name: LEGACY_CODE
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_COORD_OPS
+    referencedTableColumnName: COORD_OP_ID
+- !<fk-constraint>
+  name: COORD_OPERATION_FOREIGN_METHOD
+  type: FOREIGN_KEY
+  columns:
+  - name: COORD_OP_METHOD_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_COORD_OP_METHODS
+    referencedTableColumnName: COORD_OP_METHOD_ID
+- !<fk-constraint>
+  name: COORD_OPERATION_FOREIGN_SOURCE
+  type: FOREIGN_KEY
+  columns:
+  - name: SOURCE_SRID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_COORD_REF_SYS
+    referencedTableColumnName: SRID
+- !<fk-constraint>
+  name: COORD_OPERATION_FOREIGN_TARGET
+  type: FOREIGN_KEY
+  columns:
+  - name: TARGET_SRID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_COORD_REF_SYS
+    referencedTableColumnName: SRID
+- !<unique-constraint>
+  name: COORD_OP_NAME_UNIQUE
+  type: UNIQUE
+  columns:
+  - name: COORD_OP_NAME
+    ordinalPosition: 1
+- !<check-constraint>
+  name: COORD_OP_ID_MUST_BE_POS
+  type: CHECK
+  checkClause: COORD_OP_ID > 10
+- !<check-constraint>
+  name: COORD_OP_NAME_NO_LEGACY_NAME
+  type: CHECK
+  checkClause: |-
+    COORD_OP_NAME NOT IN (
+      'Geographic (Lat/Long)',
+      'Universal Transverse Mercator',
+      'State Plane Coordinates',
+      'Albers Conical Equal Area',
+      'Lambert Conformal Conic',
+      'Mercator',
+      'Polar Stereographic',
+      'Polyconic',
+      'Equidistant Conic',
+      'Transverse Mercator',
+      'Stereographic',
+      'Lambert Azimuthal Equal Area',
+      'Azimuthal Equidistant',
+      'Gnomonic',
+      'Orthographic',
+      'General Vertical Near-Side Perspective',
+      'Sinusoidal',
+      'Equirectangular',
+      'Miller Cylindrical',
+      'Van der Grinten',
+      'Hotine Oblique Mercator',
+      'Robinson',
+      'Space Oblique Mercator',
+      'Alaska Conformal',
+      'Interrupted Goode Homolosine',
+      'Mollweide',
+      'Interrupted Mollweide',
+      'Hammer',
+      'Wagner IV',
+      'Wagner VII',
+      'Oblated Equal Area',
+      'Non-earth',
+      'Transverse Mercator Danish System 45 Bornholm',
+      'Transverse Mercator Danish System 34 Jylland-Fyn',
+      'Transverse Mercator Sjaelland',
+      'Transverse Mercator Finnish KKJ',
+      'Eckert IV',
+      'Eckert VI',
+      'Gall',
+      'Lambert Conformal Conic (Belgium 1972)',
+      'New Zealand Map Grid',
+      'Cylindrical Equal Area',
+      'Swiss Oblique Mercator',
+      'Bonne',
+      'Cassini'
+    )
+- !<check-constraint>
+  name: COORD_OP_VARIANT_MUST_BE_POS
+  type: CHECK
+  checkClause: COORD_OP_VARIANT > 0
+- !<check-constraint>
+  name: SYS_C005817
+  type: CHECK
+  checkClause: '"COORD_OP_ID" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005818
+  type: CHECK
+  checkClause: '"SHOW_OPERATION" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005819
+  type: CHECK
+  checkClause: '"IS_LEGACY" IS NOT NULL'

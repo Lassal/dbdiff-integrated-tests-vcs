@@ -1,0 +1,57 @@
+schema: SYS
+name: ALL_STREAMS_MESSAGE_CONSUMERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    c."STREAMS_NAME",
+    c."QUEUE_NAME",
+    c."QUEUE_OWNER",
+    c."RULE_SET_NAME",
+    c."RULE_SET_OWNER",
+    c."NEGATIVE_RULE_SET_NAME",
+    c."NEGATIVE_RULE_SET_OWNER",
+    c."NOTIFICATION_TYPE",
+    c."NOTIFICATION_ACTION",
+    c."NOTIFICATION_CONTEXT"
+  from
+    dba_streams_message_consumers c,
+    all_queues q
+  where
+    c .queue_name = q.name
+    and c .queue_owner = q.owner
+    and (
+      (
+        c .rule_set_owner is null
+        and c .rule_set_name is null
+      )
+      or (
+        (c .rule_set_owner, c .rule_set_name) in (
+          select
+            r.rule_set_owner,
+            r.rule_set_name
+          from
+            all_rule_sets r
+        )
+      )
+    )
+    and (
+      (
+        c .negative_rule_set_owner is null
+        and c .negative_rule_set_name is null
+      )
+      or (
+        (
+          c .negative_rule_set_owner,
+          c .negative_rule_set_name
+        ) in (
+          select
+            r.rule_set_owner,
+            r.rule_set_name
+          from
+            all_rule_sets r
+        )
+      )
+    )
+columns: []
+referencedTables: []

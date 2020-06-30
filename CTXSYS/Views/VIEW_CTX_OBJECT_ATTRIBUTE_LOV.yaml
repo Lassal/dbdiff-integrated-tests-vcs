@@ -1,0 +1,27 @@
+schema: CTXSYS
+name: CTX_OBJECT_ATTRIBUTE_LOV
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    cla_name oal_class,
+    obj_name oal_object,
+    oat_name oal_attribute,
+    oal_label oal_label,
+    oal_value oal_value,
+    oal_desc oal_description
+  from
+    dr$class,
+    dr$object,
+    dr$object_attribute,
+    dr$object_attribute_lov
+  where
+    cla_id = obj_cla_id
+    and obj_cla_id = oat_cla_id
+    and obj_id = oat_obj_id
+    and oat_id = oal_oat_id
+    and obj_system = 'N'
+    and oat_system = 'N'
+    and cla_system = 'N'
+columns: []
+referencedTables: []

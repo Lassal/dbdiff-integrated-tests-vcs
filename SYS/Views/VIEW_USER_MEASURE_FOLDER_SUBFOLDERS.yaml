@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_MEASURE_FOLDER_SUBFOLDERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name MEASURE_FOLDER_NAME,
+    uchild.name MEASURE_SUBFOLDER_OWNER,
+    ochild.name MEASURE_SUBFOLDER_NAME
+  FROM
+    olap_meas_folder_contents$ mfc,
+    obj$ o,
+    obj$ ochild,
+    user $ uchild
+  WHERE
+    mfc.MEASURE_FOLDER_OBJ# = o.obj# -- PARENT
+    AND ochild.owner# = uchild.user# -- SUBFOLDER_OWNER
+    AND o.owner# = USERENV('SCHEMAID')
+    AND mfc.object_type = 10 --MEASURE_FOLDER
+    AND ochild.obj# = mfc.OBJECT_ID --CHILD
+columns: []
+referencedTables: []

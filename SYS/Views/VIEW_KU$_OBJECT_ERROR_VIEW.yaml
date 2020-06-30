@@ -1,0 +1,29 @@
+schema: SYS
+name: KU$_OBJECT_ERROR_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name,
+    o.name,
+    e.error#
+  FROM
+    sys.error$ e,
+    sys.obj$ o,
+    sys.user$ u
+  WHERE
+    o.owner# = u.user#
+    and e.obj# = o.obj#
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

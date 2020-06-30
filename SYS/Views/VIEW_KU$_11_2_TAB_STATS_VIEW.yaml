@@ -1,0 +1,81 @@
+schema: SYS
+name: KU$_11_2_TAB_STATS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '2',
+    '1',
+    o.obj#,
+    -- if this is a nested table, get parent table, otherwise get table.
+    decode(
+      bitand(t.property, 8192),
+      8192,
+      (
+        select
+          value(oo)
+        from
+          ku$_schemaobj_view oo
+        where
+          oo.obj_num = dbms_metadata_util.get_anc(o.obj#)
+      ),
+      (
+        select
+          value(sov)
+        from
+          ku$_schemaobj_view sov
+        where
+          sov.obj_num = o.obj#
+      )
+    ),
+    decode(bitand(t.property, 8192), 8192, o.name, null),
+    cast(
+      multiset(
+        select
+          value(tcv)
+        from
+          sys.ku$_tab_col_view tcv
+        where
+          tcv.obj_num = o.obj#
+      ) as ku$_tab_col_list_t
+    ),
+    value(tosv),
+    cast(
+      multiset(
+        select
+          value(psv)
+        from
+          sys.ku$_ptab_stats_view psv
+        where
+          psv.bobj_num = o.obj#
+      ) as ku$_ptab_stats_list_t
+    )
+  from
+    sys.obj$ o,
+    sys.tab$ t,
+    ku$_tab_only_stats_view tosv
+  where
+    tosv.obj_num = o.obj#
+    and o.obj# = t.obj#
+    and o.type# = 2
+    and -- Bug 8794227: Get the table stats info when stats deleted
+    -- but locked based on trigflag value.
+    BITAND(t.property, 512) = 0
+    AND -- NOT AN IOT MAPPING TABLE
+    (
+      BITAND(t.flags, 16) != 0
+      or BITAND(t.trigflag, 67108864) != 0
+    )
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,844 @@
+schema: CTXSYS
+name: CTX_QUERY
+routineType: PACKAGE
+returnParamater:
+  name: FCONTAINS.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: BROWSE_WORDS(1).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BROWSE_WORDS(1).SEED
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BROWSE_WORDS(1).RESTAB
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BROWSE_WORDS(1).BROWSE_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: BROWSE_WORDS(1).NUMWORDS
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: BROWSE_WORDS(1).DIRECTION
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BROWSE_WORDS(1).PART_NAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BROWSE_WORDS(1).TOKEN_TYPE
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: BROWSE_WORDS(2).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BROWSE_WORDS(2).SEED
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BROWSE_WORDS(2).RESARR
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: BROWSE_WORDS(2).NUMWORDS
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: BROWSE_WORDS(2).DIRECTION
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BROWSE_WORDS(2).PART_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BROWSE_WORDS(2).TOKEN_TYPE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: CHK_XPATH.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHK_XPATH.TEXT_QUERY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHK_XPATH.PART_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COUNT_HITS.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COUNT_HITS.TEXT_QUERY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COUNT_HITS.EXACT
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: COUNT_HITS.PART_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COUNT_HITS_CLOB_QUERY.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COUNT_HITS_CLOB_QUERY.TEXT_QUERY
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: COUNT_HITS_CLOB_QUERY.EXACT
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: COUNT_HITS_CLOB_QUERY.PART_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN.TEXT_QUERY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN.EXPLAIN_TABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN.SHARELEVEL
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXPLAIN.EXPLAIN_ID
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN.PART_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_CLOB_QUERY.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_CLOB_QUERY.TEXT_QUERY
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: EXPLAIN_CLOB_QUERY.EXPLAIN_TABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_CLOB_QUERY.SHARELEVEL
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXPLAIN_CLOB_QUERY.EXPLAIN_ID
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_CLOB_QUERY.PART_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FCONTAINS.TEXT_VALUE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FCONTAINS.TEXT_QUERY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FCONTAINS.POLICY_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HFEEDBACK.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HFEEDBACK.TEXT_QUERY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HFEEDBACK.FEEDBACK_TABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HFEEDBACK.SHARELEVEL
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: HFEEDBACK.FEEDBACK_ID
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HFEEDBACK.PART_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HFEEDBACK_CLOB_QUERY.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HFEEDBACK_CLOB_QUERY.TEXT_QUERY
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: HFEEDBACK_CLOB_QUERY.FEEDBACK_TABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HFEEDBACK_CLOB_QUERY.SHARELEVEL
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: HFEEDBACK_CLOB_QUERY.FEEDBACK_ID
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HFEEDBACK_CLOB_QUERY.PART_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_SQE.QUERY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESULT_SET.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESULT_SET.QUERY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESULT_SET.RESULT_SET_DESCRIPTOR
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: RESULT_SET.RESULT_SET
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: RESULT_SET.PART_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESULT_SET_CLOB_QUERY.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESULT_SET_CLOB_QUERY.QUERY
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: RESULT_SET_CLOB_QUERY.RESULT_SET_DESCRIPTOR
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: RESULT_SET_CLOB_QUERY.RESULT_SET
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: RESULT_SET_CLOB_QUERY.PART_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: STORE_SQE.QUERY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: STORE_SQE.TEXT_QUERY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: STORE_SQE.DURATION
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: STORE_SQE_CLOB_QUERY.QUERY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: STORE_SQE_CLOB_QUERY.TEXT_QUERY
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: STORE_SQE_CLOB_QUERY.DURATION
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  package ctx_query authid current_user as -- PREFERENCES FOR QUERY PROCESSING (INTERNAL USE ONLY)
+  preference number not null: = 0;
+  always_batch constant number: = 1;
+  order_by constant number: = 2;
+  postfilter_batch constant number: = 4;
+  sav_incmplt_prg_hitcnt constant number: = 32;
+  -- FLAG for disable transactional query
+  disable_transactional_query boolean: = FALSE;
+  -- PUBLIC DATA STRUCTURES
+  type BROWSE_REC is record (
+    word VARCHAR2(256) NULL,
+    doc_count NUMBER(38, 0) NULL
+  );
+  type BROWSE_TAB is table of BROWSE_REC index by binary_integer;
+  -- PUBLIC CONSTANTS
+  BROWSE_BEFORE constant varchar2(10): = 'BEFORE';
+  BROWSE_AROUND constant varchar2(10): = 'AROUND';
+  BROWSE_AFTER constant varchar2(10): = 'AFTER';
+  -- PUBLIC VARIABLES
+  result_set_document clob: = NULL;
+  gen_rs_only_on_last_seq integer default 0;
+  gen_rs_only_if_last_seq integer default 0;
+  /*------------------------------- count_hits ----------------------------*/
+  /*
+
+    NAME
+
+      count_hits - get quick count of text results
+
+
+
+    DESCRIPTION
+
+      count text hits
+
+
+
+    ARGUMENTS
+
+      index_name  (IN) index name being queried
+
+      text_query  (IN) text query string
+
+      exact       (IN) exact count or upper bound
+
+      part_name   (IN) index partition name
+
+
+
+    NOTES
+
+      none
+
+
+
+    RETURNS
+
+      number of hits
+
+  */
+  FUNCTION count_hits (
+    index_name in varchar2,
+    text_query in varchar2,
+    exact in boolean default TRUE,
+    part_name in varchar2 default NULL
+  ) return number;
+  FUNCTION count_hits_clob_query (
+    index_name in varchar2,
+    text_query in clob,
+    exact in boolean default TRUE,
+    part_name in varchar2 default NULL
+  ) return number;
+  /*------------------------------- chk_xpath ----------------------------*/
+  /*
+
+    NAME
+
+      chk_xpath - check  xpath expression
+
+
+
+    DESCRIPTION
+
+      takes an xpath expression and return an expression context can
+
+      process.
+
+
+
+    ARGUMENTS
+
+      index_name  (IN) index name being queried
+
+      text_query  (IN) xpath expression
+
+      part_name   (IN) index partition name
+
+
+
+    NOTES
+
+      none
+
+
+
+    RETURNS
+
+      number of hits
+
+  */
+  FUNCTION chk_xpath (
+    index_name in varchar2,
+    text_query in varchar2,
+    part_name in varchar2 default NULL
+  ) return varchar2;
+  /*------------------------------- fcontains ----------------------------*/
+  /*
+
+    NAME
+
+      fcontains - functional contains
+
+
+
+    DESCRIPTION
+
+
+
+    ARGUMENTS
+
+      text_value    (IN) text to search
+
+      text_query    (IN) text query
+
+      policy_name   (IN) policy name
+
+
+
+    NOTES
+
+      none
+
+
+
+    RETURNS
+
+      score
+
+  */
+  FUNCTION fcontains (
+    text_value in varchar2,
+    text_query in varchar2,
+    policy_name in varchar2
+  ) return number;
+  /*---------------------- chk_txnqry_disbl_switch --------------------------*/
+  /*
+
+    NAME
+
+      chk_txnqry_disbl_switch
+
+
+
+    DESCRIPTION
+
+
+
+    ARGUMENTS
+
+
+
+    NOTES
+
+      none
+
+
+
+    RETURNS
+
+      0 or 1
+
+  */
+  FUNCTION chk_txnqry_disbl_switch return number;
+  /*------------------------------- store_sqe ----------------------------*/
+  /*
+
+    NAME
+
+      store_sqe
+
+
+
+    DESCRIPTION
+
+      Create a stored query
+
+
+
+    ARGUMENTS
+
+      query_name  (IN) name of a stored query
+
+      text_query  (IN) text query string
+
+      duration    (IN) session or persistent duration
+
+    NOTES
+
+    EXCEPTIONS
+
+      ORA-20000 - application error ( with an textile error stack)
+
+    RETURNS
+
+      none
+
+  */
+  DURATION_PERSISTENT constant number: = 0;
+  DURATION_SESSION constant number: = 1;
+  PROCEDURE store_sqe(
+    query_name in varchar2,
+    text_query in varchar2,
+    duration in number default DURATION_PERSISTENT
+  );
+  PROCEDURE store_sqe_clob_query(
+    query_name in varchar2,
+    text_query in clob,
+    duration in number default DURATION_PERSISTENT
+  );
+  /* In-Memory Session Duration SQE */
+  TYPE sess_sqe_t is table of varchar2(32000) index by varchar2(64);
+  sess_sqe sess_sqe_t;
+  /*------------------------------- remove_sqe ----------------------------*/
+  /*
+
+    NAME
+
+      remove_sqe
+
+
+
+    DESCRIPTION
+
+      Delete a stored query
+
+
+
+    ARGUMENTS
+
+      query_name   (IN) name of a stored query
+
+
+
+    NOTES
+
+
+
+    EXCEPTIONS
+
+      ORA-20000 - application error ( with an textile error stack)
+
+
+
+    RETURNS
+
+      none
+
+  */
+  PROCEDURE remove_sqe(query_name in varchar2);
+  /*------------------------------ explain ----------------------------------*/
+  /*
+
+    NAME
+
+      explain
+
+
+
+    DESCRIPTION
+
+      Evaluate the query specified in 'text_query' parameter and return
+
+      the Query Execution Plan in the feedback table.  Do NOT execute the
+
+      query.
+
+
+
+    ARGUMENTS
+
+      index_name    (IN) index name being queried
+
+      text_query     (IN) ConText query string
+
+      explain_table (IN) the result table to receive the feedback result
+
+      sharelevel     (IN) feedback table share options:
+
+                          0 = single-use, 1 = multiple-use.
+
+      explain_id    (IN) ID to identify results returned
+
+      part_name     (IN) index partition name
+
+    NOTES
+
+      none
+
+    EXCEPTIONS
+
+      ORA-20000 - application error (with a textile error stack)
+
+    RETURNS
+
+      none
+
+  */
+  PROCEDURE explain(
+    index_name in varchar2,
+    text_query in varchar2,
+    explain_table in varchar2,
+    sharelevel in number default 0,
+    explain_id in varchar2 default NULL,
+    part_name in varchar2 default NULL
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(explain, AUTO);
+  PROCEDURE explain_clob_query(
+    index_name in varchar2,
+    text_query in clob,
+    explain_table in varchar2,
+    sharelevel in number default 0,
+    explain_id in varchar2 default NULL,
+    part_name in varchar2 default NULL
+  );
+  /*------------------------------ hfeedback ----------------------------------*/
+  /*
+
+    NAME
+
+      hfeedback
+
+
+
+    DESCRIPTION
+
+      Evaluate the query specified in 'text_query' parameter and return
+
+      the Hierarchical Query Feedback in the feedback table.  Do NOT execute the
+
+      query.
+
+
+
+    ARGUMENTS
+
+      index_name     (IN) index name being queried
+
+      text_query     (IN) ConText query string
+
+      feedback_table (IN) the result table to receive the feedback result
+
+      sharelevel     (IN) feedback table share options:
+
+                          0 = single-use, 1 = multiple-use.
+
+      feedback_id    (IN) ID to identify results returned
+
+      part_name      (IN) index partition name
+
+    NOTES
+
+      none
+
+    EXCEPTIONS
+
+      ORA-20000 - application error (with a textile error stack)
+
+    RETURNS
+
+      none
+
+  */
+  PROCEDURE hfeedback(
+    index_name in varchar2,
+    text_query in varchar2,
+    feedback_table in varchar2,
+    sharelevel in number default 0,
+    feedback_id in varchar2 default NULL,
+    part_name in varchar2 default NULL
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(hfeedback, AUTO);
+  PROCEDURE hfeedback_clob_query(
+    index_name in varchar2,
+    text_query in clob,
+    feedback_table in varchar2,
+    sharelevel in number default 0,
+    feedback_id in varchar2 default NULL,
+    part_name in varchar2 default NULL
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(hfeedback_clob_query, AUTO);
+  /*------------------------------ browse_words ------------------------------*/
+  /*
+
+    NAME
+
+      browse_words
+
+
+
+    DESCRIPTION
+
+
+
+    ARGUMENTS
+
+      index_name     (IN) index name being queried
+
+      seed           (IN) seed word
+
+      restab         (IN) the result table
+
+      browse_id      (IN) ID to identify results returned
+
+      numwords       (IN) length of the produced list
+
+      direction      (IN) direction of the browse
+
+      part_name      (IN) index partition name
+
+      token_type     (IN) token type
+
+
+
+    NOTES
+
+
+
+    EXCEPTIONS
+
+
+
+    RETURNS
+
+  */
+  PROCEDURE browse_words(
+    index_name in varchar2,
+    seed in varchar2,
+    restab in varchar2,
+    browse_id in number default 0,
+    numwords in number default 10,
+    direction in varchar2 default BROWSE_AROUND,
+    part_name in varchar2 default NULL,
+    token_type in number default 0
+  );
+  /*------------------------------ browse_words ------------------------------*/
+  /*
+
+    NAME
+
+      browse_words
+
+
+
+    DESCRIPTION
+
+
+
+    ARGUMENTS
+
+      index_name     (IN) index name being queried
+
+      seed           (IN) seed word
+
+      resarr         (IN OUT) PL/SQL array
+
+      numwords       (IN) length of the produced list
+
+      direction      (IN) direction of the browse
+
+      part_name      (IN) index partition name
+
+      token_type     (IN) token type
+
+    NOTES
+
+
+
+    EXCEPTIONS
+
+
+
+    RETURNS
+
+  */
+  PROCEDURE browse_words(
+    index_name in varchar2,
+    seed in varchar2,
+    resarr in out NOCOPY BROWSE_TAB,
+    numwords in number default 10,
+    direction in varchar2 default BROWSE_AROUND,
+    part_name in varchar2 default NULL,
+    token_type in number default 0
+  );
+  /*------------------------------ result_set ---------------------------------*/
+  /*
+
+    NAME
+
+      result_set
+
+
+
+    DESCRIPTION
+
+
+
+    ARGUMENTS
+
+      index_name     (IN) index name being queried
+
+      query          (IN) text query
+
+      result_set_descriptor (IN) result set descriptor
+
+      result_set     (IN OUT) result set
+
+      part_name      (IN) index partition name
+
+    NOTES
+
+
+
+    EXCEPTIONS
+
+
+
+    RETURNS
+
+  */
+  PROCEDURE result_set(
+    index_name in varchar2,
+    query in varchar2,
+    result_set_descriptor in clob,
+    result_set in out nocopy clob,
+    part_name in varchar2 default NULL
+  );
+  PROCEDURE result_set_clob_query(
+    index_name in varchar2,
+    query in clob,
+    result_set_descriptor in clob,
+    result_set in out nocopy clob,
+    part_name in varchar2 default NULL
+  );
+  end ctx_query;

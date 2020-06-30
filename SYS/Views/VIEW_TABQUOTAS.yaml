@@ -1,0 +1,42 @@
+schema: SYS
+name: TABQUOTAS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.name,
+    so.type,
+    t.obj#,
+    decode(
+      bitand(ts.flags, 3),
+      1,
+      to_number(NULL),
+      s.extsize * ts.blocksize
+    ),
+    s.maxexts,
+    decode(
+      bitand(ts.flags, 3),
+      1,
+      to_number(NULL),
+      s.extpct
+    ),
+    so.pctfree$,
+    decode(
+      bitand(ts.flags, 32),
+      32,
+      to_number(NULL),
+      so.pctused$
+    )
+  from
+    sys.ts$ ts,
+    sys.seg$ s,
+    sys.obj$ t,
+    syssegobj so
+  where
+    t.owner# = userenv('SCHEMAID')
+    and t.obj# = so.obj#
+    and so.file# = s.file#
+    and so.block# = s.block#
+    and s.ts# = ts.ts#
+columns: []
+referencedTables: []

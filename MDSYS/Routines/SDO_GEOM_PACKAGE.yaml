@@ -1,0 +1,5326 @@
+schema: MDSYS
+name: SDO_GEOM
+routineType: PACKAGE
+returnParamater:
+  name: WITHIN_DISTANCE(2).(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: CHECK_BOUNDS.TABLENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECK_BOUNDS.GID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CHECK_BOUNDS.ESEQ
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: CHECK_BOUNDS.SEQ
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: CHECK_BOUNDS.COORDWIDTH
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CHECK_BOUNDS.DIM1LB
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: CHECK_BOUNDS.DIM1UB
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: CHECK_BOUNDS.DIM2LB
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: CHECK_BOUNDS.DIM2UB
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_DIM_ARRAY.GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_DIM_ARRAY.TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_ORDS.TABLENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_ORDS.GID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_ORDS.ESEQ
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: GET_ORDS.SEQ
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: GET_ORDS.COLUMNINDEX
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: GET_ORDS.XRTN
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GET_ORDS.YRTN
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: OUT
+- name: G3D_PARAMETERS.SRID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: G3D_PARAMETERS.SM_MJR_AXIS
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: G3D_PARAMETERS.INV_FLTN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: G3D_PARAMETERS.G3D_GEOG_CRS_UOM_FACTOR
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+- name: INIT_ELEMENT.LAYER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INIT_ELEMENT.GID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(1).LAYER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INTERACT(1).GID1
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(1).GID2
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(2).LAYER1
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INTERACT(2).GID1
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(2).LAYER2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INTERACT(2).GID2
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).LAYER1
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INTERACT(3).GID1
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).X_TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).Y_TOLERANCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V000
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V001
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V002
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V003
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V004
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V005
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V006
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V007
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V008
+  ordinalPosition: 13
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V009
+  ordinalPosition: 14
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V010
+  ordinalPosition: 15
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V011
+  ordinalPosition: 16
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V012
+  ordinalPosition: 17
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V013
+  ordinalPosition: 18
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V014
+  ordinalPosition: 19
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V015
+  ordinalPosition: 20
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V016
+  ordinalPosition: 21
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V017
+  ordinalPosition: 22
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V018
+  ordinalPosition: 23
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V019
+  ordinalPosition: 24
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V020
+  ordinalPosition: 25
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V021
+  ordinalPosition: 26
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V022
+  ordinalPosition: 27
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V023
+  ordinalPosition: 28
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V024
+  ordinalPosition: 29
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V025
+  ordinalPosition: 30
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V026
+  ordinalPosition: 31
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V027
+  ordinalPosition: 32
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V028
+  ordinalPosition: 33
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V029
+  ordinalPosition: 34
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V030
+  ordinalPosition: 35
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V031
+  ordinalPosition: 36
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V032
+  ordinalPosition: 37
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V033
+  ordinalPosition: 38
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V034
+  ordinalPosition: 39
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V035
+  ordinalPosition: 40
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V036
+  ordinalPosition: 41
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V037
+  ordinalPosition: 42
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V038
+  ordinalPosition: 43
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V039
+  ordinalPosition: 44
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V040
+  ordinalPosition: 45
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V041
+  ordinalPosition: 46
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V042
+  ordinalPosition: 47
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V043
+  ordinalPosition: 48
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V044
+  ordinalPosition: 49
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V045
+  ordinalPosition: 50
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V046
+  ordinalPosition: 51
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V047
+  ordinalPosition: 52
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V048
+  ordinalPosition: 53
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V049
+  ordinalPosition: 54
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V050
+  ordinalPosition: 55
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V051
+  ordinalPosition: 56
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V052
+  ordinalPosition: 57
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V053
+  ordinalPosition: 58
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V054
+  ordinalPosition: 59
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V055
+  ordinalPosition: 60
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V056
+  ordinalPosition: 61
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V057
+  ordinalPosition: 62
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V058
+  ordinalPosition: 63
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V059
+  ordinalPosition: 64
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V060
+  ordinalPosition: 65
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V061
+  ordinalPosition: 66
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V062
+  ordinalPosition: 67
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V063
+  ordinalPosition: 68
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V064
+  ordinalPosition: 69
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V065
+  ordinalPosition: 70
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V066
+  ordinalPosition: 71
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V067
+  ordinalPosition: 72
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V068
+  ordinalPosition: 73
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V069
+  ordinalPosition: 74
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V070
+  ordinalPosition: 75
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V071
+  ordinalPosition: 76
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V072
+  ordinalPosition: 77
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V073
+  ordinalPosition: 78
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V074
+  ordinalPosition: 79
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V075
+  ordinalPosition: 80
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V076
+  ordinalPosition: 81
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V077
+  ordinalPosition: 82
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V078
+  ordinalPosition: 83
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V079
+  ordinalPosition: 84
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V080
+  ordinalPosition: 85
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V081
+  ordinalPosition: 86
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V082
+  ordinalPosition: 87
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V083
+  ordinalPosition: 88
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V084
+  ordinalPosition: 89
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V085
+  ordinalPosition: 90
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V086
+  ordinalPosition: 91
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V087
+  ordinalPosition: 92
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V088
+  ordinalPosition: 93
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V089
+  ordinalPosition: 94
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V090
+  ordinalPosition: 95
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V091
+  ordinalPosition: 96
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V092
+  ordinalPosition: 97
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V093
+  ordinalPosition: 98
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V094
+  ordinalPosition: 99
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V095
+  ordinalPosition: 100
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V096
+  ordinalPosition: 101
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V097
+  ordinalPosition: 102
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V098
+  ordinalPosition: 103
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V099
+  ordinalPosition: 104
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V100
+  ordinalPosition: 105
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V101
+  ordinalPosition: 106
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V102
+  ordinalPosition: 107
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V103
+  ordinalPosition: 108
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V104
+  ordinalPosition: 109
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V105
+  ordinalPosition: 110
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V106
+  ordinalPosition: 111
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V107
+  ordinalPosition: 112
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V108
+  ordinalPosition: 113
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V109
+  ordinalPosition: 114
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V110
+  ordinalPosition: 115
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V111
+  ordinalPosition: 116
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V112
+  ordinalPosition: 117
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V113
+  ordinalPosition: 118
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V114
+  ordinalPosition: 119
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V115
+  ordinalPosition: 120
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V116
+  ordinalPosition: 121
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V117
+  ordinalPosition: 122
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V118
+  ordinalPosition: 123
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V119
+  ordinalPosition: 124
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V120
+  ordinalPosition: 125
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V121
+  ordinalPosition: 126
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V122
+  ordinalPosition: 127
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V123
+  ordinalPosition: 128
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V124
+  ordinalPosition: 129
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V125
+  ordinalPosition: 130
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V126
+  ordinalPosition: 131
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V127
+  ordinalPosition: 132
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V128
+  ordinalPosition: 133
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V129
+  ordinalPosition: 134
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V130
+  ordinalPosition: 135
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V131
+  ordinalPosition: 136
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V132
+  ordinalPosition: 137
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V133
+  ordinalPosition: 138
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V134
+  ordinalPosition: 139
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V135
+  ordinalPosition: 140
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V136
+  ordinalPosition: 141
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V137
+  ordinalPosition: 142
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V138
+  ordinalPosition: 143
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V139
+  ordinalPosition: 144
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V140
+  ordinalPosition: 145
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V141
+  ordinalPosition: 146
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V142
+  ordinalPosition: 147
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V143
+  ordinalPosition: 148
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V144
+  ordinalPosition: 149
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V145
+  ordinalPosition: 150
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V146
+  ordinalPosition: 151
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V147
+  ordinalPosition: 152
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V148
+  ordinalPosition: 153
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V149
+  ordinalPosition: 154
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V150
+  ordinalPosition: 155
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V151
+  ordinalPosition: 156
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V152
+  ordinalPosition: 157
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V153
+  ordinalPosition: 158
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V154
+  ordinalPosition: 159
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V155
+  ordinalPosition: 160
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V156
+  ordinalPosition: 161
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V157
+  ordinalPosition: 162
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V158
+  ordinalPosition: 163
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V159
+  ordinalPosition: 164
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V160
+  ordinalPosition: 165
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V161
+  ordinalPosition: 166
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V162
+  ordinalPosition: 167
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V163
+  ordinalPosition: 168
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V164
+  ordinalPosition: 169
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V165
+  ordinalPosition: 170
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V166
+  ordinalPosition: 171
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V167
+  ordinalPosition: 172
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V168
+  ordinalPosition: 173
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V169
+  ordinalPosition: 174
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V170
+  ordinalPosition: 175
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V171
+  ordinalPosition: 176
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V172
+  ordinalPosition: 177
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V173
+  ordinalPosition: 178
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V174
+  ordinalPosition: 179
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V175
+  ordinalPosition: 180
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V176
+  ordinalPosition: 181
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V177
+  ordinalPosition: 182
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V178
+  ordinalPosition: 183
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V179
+  ordinalPosition: 184
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V180
+  ordinalPosition: 185
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V181
+  ordinalPosition: 186
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V182
+  ordinalPosition: 187
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V183
+  ordinalPosition: 188
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V184
+  ordinalPosition: 189
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V185
+  ordinalPosition: 190
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V186
+  ordinalPosition: 191
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V187
+  ordinalPosition: 192
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V188
+  ordinalPosition: 193
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V189
+  ordinalPosition: 194
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V190
+  ordinalPosition: 195
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V191
+  ordinalPosition: 196
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V192
+  ordinalPosition: 197
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V193
+  ordinalPosition: 198
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V194
+  ordinalPosition: 199
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V195
+  ordinalPosition: 200
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V196
+  ordinalPosition: 201
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V197
+  ordinalPosition: 202
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V198
+  ordinalPosition: 203
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V199
+  ordinalPosition: 204
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V200
+  ordinalPosition: 205
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V201
+  ordinalPosition: 206
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V202
+  ordinalPosition: 207
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V203
+  ordinalPosition: 208
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V204
+  ordinalPosition: 209
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V205
+  ordinalPosition: 210
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V206
+  ordinalPosition: 211
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V207
+  ordinalPosition: 212
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V208
+  ordinalPosition: 213
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V209
+  ordinalPosition: 214
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V210
+  ordinalPosition: 215
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V211
+  ordinalPosition: 216
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V212
+  ordinalPosition: 217
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V213
+  ordinalPosition: 218
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V214
+  ordinalPosition: 219
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V215
+  ordinalPosition: 220
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V216
+  ordinalPosition: 221
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V217
+  ordinalPosition: 222
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V218
+  ordinalPosition: 223
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V219
+  ordinalPosition: 224
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V220
+  ordinalPosition: 225
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V221
+  ordinalPosition: 226
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V222
+  ordinalPosition: 227
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V223
+  ordinalPosition: 228
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V224
+  ordinalPosition: 229
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V225
+  ordinalPosition: 230
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V226
+  ordinalPosition: 231
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V227
+  ordinalPosition: 232
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V228
+  ordinalPosition: 233
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V229
+  ordinalPosition: 234
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V230
+  ordinalPosition: 235
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V231
+  ordinalPosition: 236
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V232
+  ordinalPosition: 237
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V233
+  ordinalPosition: 238
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V234
+  ordinalPosition: 239
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V235
+  ordinalPosition: 240
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V236
+  ordinalPosition: 241
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V237
+  ordinalPosition: 242
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V238
+  ordinalPosition: 243
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V239
+  ordinalPosition: 244
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V240
+  ordinalPosition: 245
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V241
+  ordinalPosition: 246
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V242
+  ordinalPosition: 247
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V243
+  ordinalPosition: 248
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V244
+  ordinalPosition: 249
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V245
+  ordinalPosition: 250
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V246
+  ordinalPosition: 251
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V247
+  ordinalPosition: 252
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V248
+  ordinalPosition: 253
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERACT(3).V249
+  ordinalPosition: 254
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(1).LAYER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RELATE(1).GID1
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(1).MASK
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RELATE(1).GID2
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(2).LAYER1
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RELATE(2).GID1
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(2).MASK
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RELATE(2).LAYER2
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RELATE(2).GID2
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(3).LAYER1
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RELATE(3).GID1
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(3).NORD1
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(3).MASK
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RELATE(3).LAYER2
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RELATE(3).GID2
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(3).NORD2
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(3).TOLERANCE1
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(3).TOLERANCE2
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).LAYER1
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RELATE(4).GID1
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).MASK
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RELATE(4).X_TOLERANCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).Y_TOLERANCE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V000
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V001
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V002
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V003
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V004
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V005
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V006
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V007
+  ordinalPosition: 13
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V008
+  ordinalPosition: 14
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V009
+  ordinalPosition: 15
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V010
+  ordinalPosition: 16
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V011
+  ordinalPosition: 17
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V012
+  ordinalPosition: 18
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V013
+  ordinalPosition: 19
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V014
+  ordinalPosition: 20
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V015
+  ordinalPosition: 21
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V016
+  ordinalPosition: 22
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V017
+  ordinalPosition: 23
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V018
+  ordinalPosition: 24
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V019
+  ordinalPosition: 25
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V020
+  ordinalPosition: 26
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V021
+  ordinalPosition: 27
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V022
+  ordinalPosition: 28
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V023
+  ordinalPosition: 29
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V024
+  ordinalPosition: 30
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V025
+  ordinalPosition: 31
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V026
+  ordinalPosition: 32
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V027
+  ordinalPosition: 33
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V028
+  ordinalPosition: 34
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V029
+  ordinalPosition: 35
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V030
+  ordinalPosition: 36
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V031
+  ordinalPosition: 37
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V032
+  ordinalPosition: 38
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V033
+  ordinalPosition: 39
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V034
+  ordinalPosition: 40
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V035
+  ordinalPosition: 41
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V036
+  ordinalPosition: 42
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V037
+  ordinalPosition: 43
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V038
+  ordinalPosition: 44
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V039
+  ordinalPosition: 45
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V040
+  ordinalPosition: 46
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V041
+  ordinalPosition: 47
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V042
+  ordinalPosition: 48
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V043
+  ordinalPosition: 49
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V044
+  ordinalPosition: 50
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V045
+  ordinalPosition: 51
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V046
+  ordinalPosition: 52
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V047
+  ordinalPosition: 53
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V048
+  ordinalPosition: 54
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V049
+  ordinalPosition: 55
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V050
+  ordinalPosition: 56
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V051
+  ordinalPosition: 57
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V052
+  ordinalPosition: 58
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V053
+  ordinalPosition: 59
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V054
+  ordinalPosition: 60
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V055
+  ordinalPosition: 61
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V056
+  ordinalPosition: 62
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V057
+  ordinalPosition: 63
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V058
+  ordinalPosition: 64
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V059
+  ordinalPosition: 65
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V060
+  ordinalPosition: 66
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V061
+  ordinalPosition: 67
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V062
+  ordinalPosition: 68
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V063
+  ordinalPosition: 69
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V064
+  ordinalPosition: 70
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V065
+  ordinalPosition: 71
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V066
+  ordinalPosition: 72
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V067
+  ordinalPosition: 73
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V068
+  ordinalPosition: 74
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V069
+  ordinalPosition: 75
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V070
+  ordinalPosition: 76
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V071
+  ordinalPosition: 77
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V072
+  ordinalPosition: 78
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V073
+  ordinalPosition: 79
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V074
+  ordinalPosition: 80
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V075
+  ordinalPosition: 81
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V076
+  ordinalPosition: 82
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V077
+  ordinalPosition: 83
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V078
+  ordinalPosition: 84
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V079
+  ordinalPosition: 85
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V080
+  ordinalPosition: 86
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V081
+  ordinalPosition: 87
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V082
+  ordinalPosition: 88
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V083
+  ordinalPosition: 89
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V084
+  ordinalPosition: 90
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V085
+  ordinalPosition: 91
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V086
+  ordinalPosition: 92
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V087
+  ordinalPosition: 93
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V088
+  ordinalPosition: 94
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V089
+  ordinalPosition: 95
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V090
+  ordinalPosition: 96
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V091
+  ordinalPosition: 97
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V092
+  ordinalPosition: 98
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V093
+  ordinalPosition: 99
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V094
+  ordinalPosition: 100
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V095
+  ordinalPosition: 101
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V096
+  ordinalPosition: 102
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V097
+  ordinalPosition: 103
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V098
+  ordinalPosition: 104
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V099
+  ordinalPosition: 105
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V100
+  ordinalPosition: 106
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V101
+  ordinalPosition: 107
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V102
+  ordinalPosition: 108
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V103
+  ordinalPosition: 109
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V104
+  ordinalPosition: 110
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V105
+  ordinalPosition: 111
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V106
+  ordinalPosition: 112
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V107
+  ordinalPosition: 113
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V108
+  ordinalPosition: 114
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V109
+  ordinalPosition: 115
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V110
+  ordinalPosition: 116
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V111
+  ordinalPosition: 117
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V112
+  ordinalPosition: 118
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V113
+  ordinalPosition: 119
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V114
+  ordinalPosition: 120
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V115
+  ordinalPosition: 121
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V116
+  ordinalPosition: 122
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V117
+  ordinalPosition: 123
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V118
+  ordinalPosition: 124
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V119
+  ordinalPosition: 125
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V120
+  ordinalPosition: 126
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V121
+  ordinalPosition: 127
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V122
+  ordinalPosition: 128
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V123
+  ordinalPosition: 129
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V124
+  ordinalPosition: 130
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V125
+  ordinalPosition: 131
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V126
+  ordinalPosition: 132
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V127
+  ordinalPosition: 133
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V128
+  ordinalPosition: 134
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V129
+  ordinalPosition: 135
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V130
+  ordinalPosition: 136
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V131
+  ordinalPosition: 137
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V132
+  ordinalPosition: 138
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V133
+  ordinalPosition: 139
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V134
+  ordinalPosition: 140
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V135
+  ordinalPosition: 141
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V136
+  ordinalPosition: 142
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V137
+  ordinalPosition: 143
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V138
+  ordinalPosition: 144
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V139
+  ordinalPosition: 145
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V140
+  ordinalPosition: 146
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V141
+  ordinalPosition: 147
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V142
+  ordinalPosition: 148
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V143
+  ordinalPosition: 149
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V144
+  ordinalPosition: 150
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V145
+  ordinalPosition: 151
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V146
+  ordinalPosition: 152
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V147
+  ordinalPosition: 153
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V148
+  ordinalPosition: 154
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V149
+  ordinalPosition: 155
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V150
+  ordinalPosition: 156
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V151
+  ordinalPosition: 157
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V152
+  ordinalPosition: 158
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V153
+  ordinalPosition: 159
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V154
+  ordinalPosition: 160
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V155
+  ordinalPosition: 161
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V156
+  ordinalPosition: 162
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V157
+  ordinalPosition: 163
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V158
+  ordinalPosition: 164
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V159
+  ordinalPosition: 165
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V160
+  ordinalPosition: 166
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V161
+  ordinalPosition: 167
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V162
+  ordinalPosition: 168
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V163
+  ordinalPosition: 169
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V164
+  ordinalPosition: 170
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V165
+  ordinalPosition: 171
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V166
+  ordinalPosition: 172
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V167
+  ordinalPosition: 173
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V168
+  ordinalPosition: 174
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V169
+  ordinalPosition: 175
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V170
+  ordinalPosition: 176
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V171
+  ordinalPosition: 177
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V172
+  ordinalPosition: 178
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V173
+  ordinalPosition: 179
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V174
+  ordinalPosition: 180
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V175
+  ordinalPosition: 181
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V176
+  ordinalPosition: 182
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V177
+  ordinalPosition: 183
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V178
+  ordinalPosition: 184
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V179
+  ordinalPosition: 185
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V180
+  ordinalPosition: 186
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V181
+  ordinalPosition: 187
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V182
+  ordinalPosition: 188
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V183
+  ordinalPosition: 189
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V184
+  ordinalPosition: 190
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V185
+  ordinalPosition: 191
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V186
+  ordinalPosition: 192
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V187
+  ordinalPosition: 193
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V188
+  ordinalPosition: 194
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V189
+  ordinalPosition: 195
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V190
+  ordinalPosition: 196
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V191
+  ordinalPosition: 197
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V192
+  ordinalPosition: 198
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V193
+  ordinalPosition: 199
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V194
+  ordinalPosition: 200
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V195
+  ordinalPosition: 201
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V196
+  ordinalPosition: 202
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V197
+  ordinalPosition: 203
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V198
+  ordinalPosition: 204
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V199
+  ordinalPosition: 205
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V200
+  ordinalPosition: 206
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V201
+  ordinalPosition: 207
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V202
+  ordinalPosition: 208
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V203
+  ordinalPosition: 209
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V204
+  ordinalPosition: 210
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V205
+  ordinalPosition: 211
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V206
+  ordinalPosition: 212
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V207
+  ordinalPosition: 213
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V208
+  ordinalPosition: 214
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V209
+  ordinalPosition: 215
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V210
+  ordinalPosition: 216
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V211
+  ordinalPosition: 217
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V212
+  ordinalPosition: 218
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V213
+  ordinalPosition: 219
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V214
+  ordinalPosition: 220
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V215
+  ordinalPosition: 221
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V216
+  ordinalPosition: 222
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V217
+  ordinalPosition: 223
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V218
+  ordinalPosition: 224
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V219
+  ordinalPosition: 225
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V220
+  ordinalPosition: 226
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V221
+  ordinalPosition: 227
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V222
+  ordinalPosition: 228
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V223
+  ordinalPosition: 229
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V224
+  ordinalPosition: 230
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V225
+  ordinalPosition: 231
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V226
+  ordinalPosition: 232
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V227
+  ordinalPosition: 233
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V228
+  ordinalPosition: 234
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V229
+  ordinalPosition: 235
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V230
+  ordinalPosition: 236
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V231
+  ordinalPosition: 237
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V232
+  ordinalPosition: 238
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V233
+  ordinalPosition: 239
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V234
+  ordinalPosition: 240
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V235
+  ordinalPosition: 241
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V236
+  ordinalPosition: 242
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V237
+  ordinalPosition: 243
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V238
+  ordinalPosition: 244
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V239
+  ordinalPosition: 245
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V240
+  ordinalPosition: 246
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V241
+  ordinalPosition: 247
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V242
+  ordinalPosition: 248
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V243
+  ordinalPosition: 249
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V244
+  ordinalPosition: 250
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V245
+  ordinalPosition: 251
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V246
+  ordinalPosition: 252
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V247
+  ordinalPosition: 253
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V248
+  ordinalPosition: 254
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(4).V249
+  ordinalPosition: 255
+  dataType: NUMBER
+  parameterMode: IN
+- name: RELATE(5).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: RELATE(5).DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: RELATE(5).MASK
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RELATE(5).GEOM2
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: IN
+- name: RELATE(5).DIM2
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: RELATE(6).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: RELATE(6).MASK
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RELATE(6).GEOM2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: RELATE(6).TOL
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_ALPHA_SHAPE.GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_ALPHA_SHAPE.TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_ALPHA_SHAPE.RADIUS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_ALPHA_SHAPE.FLAG
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SDO_ARC_DENSIFY(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_ARC_DENSIFY(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_ARC_DENSIFY(1).PARAMS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_ARC_DENSIFY(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_ARC_DENSIFY(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_ARC_DENSIFY(2).PARAMS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_AREA(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_AREA(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_AREA(1).UNIT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_AREA(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_AREA(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_AREA(2).UNIT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_BUFFER(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_BUFFER(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_BUFFER(1).DIST
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_BUFFER(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_BUFFER(2).DIST
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_BUFFER(2).TOL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_BUFFER(3).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_BUFFER(3).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_BUFFER(3).DIST
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_BUFFER(3).PARAMS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_BUFFER(4).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_BUFFER(4).DIST
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_BUFFER(4).TOL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_BUFFER(4).PARAMS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_CENTROID(1).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_CENTROID(1).DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_CENTROID(2).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_CENTROID(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_CLOSEST_POINTS.GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_CLOSEST_POINTS.GEOM2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_CLOSEST_POINTS.TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_CLOSEST_POINTS.UNIT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_CLOSEST_POINTS.DIST
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: OUT
+- name: SDO_CLOSEST_POINTS.GEOMA
+  ordinalPosition: 6
+  dataType: OBJECT
+  parameterMode: OUT
+- name: SDO_CLOSEST_POINTS.GEOMB
+  ordinalPosition: 7
+  dataType: OBJECT
+  parameterMode: OUT
+- name: SDO_CONCAVEHULL(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_CONCAVEHULL(1).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_CONCAVEHULL(1).RADIUS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: SDO_CONCAVEHULL(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_CONCAVEHULL(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_CONCAVEHULL_BOUNDARY.GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_CONCAVEHULL_BOUNDARY.TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_CONCAVEHULL_BOUNDARY.LENGTH
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_CONVEXHULL(1).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_CONVEXHULL(1).DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_CONVEXHULL(2).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_CONVEXHULL(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_DIAMETER(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_DIAMETER(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_DIAMETER(1).UNIT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_DIAMETER(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_DIAMETER(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_DIAMETER(2).UNIT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_DIAMETER_LINE(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_DIAMETER_LINE(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_DIAMETER_LINE(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_DIAMETER_LINE(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_DIFFERENCE(1).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_DIFFERENCE(1).DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_DIFFERENCE(1).GEOM2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_DIFFERENCE(1).DIM2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_DIFFERENCE(2).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_DIFFERENCE(2).GEOM2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_DIFFERENCE(2).TOL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_DISTANCE(1).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_DISTANCE(1).DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_DISTANCE(1).GEOM2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_DISTANCE(1).DIM2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_DISTANCE(1).UNIT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_DISTANCE(2).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_DISTANCE(2).GEOM2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_DISTANCE(2).TOL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_DISTANCE(2).UNIT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_G3DCONV(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_G3DCONV(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_G3DCONV(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_INSERT_LOG_FILTER.IND_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_INSERT_LOG_FILTER.IND_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_INSERT_LOG_FILTER.INDPART_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_INSERT_LOG_FILTER.MIN_X
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_INSERT_LOG_FILTER.MAX_X
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_INSERT_LOG_FILTER.MIN_Y
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_INSERT_LOG_FILTER.MAX_Y
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_INSERT_LOG_FILTER.MIN_Z
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_INSERT_LOG_FILTER.MAX_Z
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_INTERSECTION(1).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_INTERSECTION(1).DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_INTERSECTION(1).GEOM2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_INTERSECTION(1).DIM2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_INTERSECTION(2).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_INTERSECTION(2).GEOM2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_INTERSECTION(2).TOL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_IS_NURBSCURVE.GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_LENGTH(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_LENGTH(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_LENGTH(1).UNIT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_LENGTH(1).COUNT_SHARED_EDGES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_LENGTH(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_LENGTH(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_LENGTH(2).UNIT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_LENGTH(2).COUNT_SHARED_EDGES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_MAXDISTANCE(1).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MAXDISTANCE(1).DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_MAXDISTANCE(1).GEOM2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MAXDISTANCE(1).DIM2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_MAXDISTANCE(1).UNIT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_MAXDISTANCE(2).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MAXDISTANCE(2).GEOM2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MAXDISTANCE(2).TOL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_MAXDISTANCE(2).UNIT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_MAXDISTANCE_LINE(1).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MAXDISTANCE_LINE(1).DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_MAXDISTANCE_LINE(1).GEOM2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MAXDISTANCE_LINE(1).DIM2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_MAXDISTANCE_LINE(2).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MAXDISTANCE_LINE(2).GEOM2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MAXDISTANCE_LINE(2).TOL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_MAX_MBR_ORDINATE(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MAX_MBR_ORDINATE(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_MAX_MBR_ORDINATE(1).ORDINATE_POS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_MAX_MBR_ORDINATE(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MAX_MBR_ORDINATE(2).ORDINATE_POS
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_MBC(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MBC(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_MBC(1).ARC_TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_MBC(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MBC(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_MBC(2).ARC_TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_MBC_CENTER(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MBC_CENTER(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_MBC_CENTER(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MBC_CENTER(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_MBC_RADIUS(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MBC_RADIUS(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_MBC_RADIUS(1).UNIT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_MBC_RADIUS(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MBC_RADIUS(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_MBC_RADIUS(2).UNIT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_MBR(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MBR(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_MBR(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MIN_MBR_ORDINATE(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MIN_MBR_ORDINATE(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_MIN_MBR_ORDINATE(1).ORDINATE_POS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_MIN_MBR_ORDINATE(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_MIN_MBR_ORDINATE(2).ORDINATE_POS
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_POINTONSURFACE(1).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_POINTONSURFACE(1).DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_POINTONSURFACE(2).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_POINTONSURFACE(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_POLY_DIFFERENCE.GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_POLY_DIFFERENCE.DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_POLY_DIFFERENCE.GEOM2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_POLY_DIFFERENCE.DIM2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_POLY_INTERSECTION.GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_POLY_INTERSECTION.DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_POLY_INTERSECTION.GEOM2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_POLY_INTERSECTION.DIM2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_POLY_UNION.GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_POLY_UNION.DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_POLY_UNION.GEOM2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_POLY_UNION.DIM2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_POLY_XOR.GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_POLY_XOR.DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_POLY_XOR.GEOM2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_POLY_XOR.DIM2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_SELF_UNION(1).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_SELF_UNION(1).DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_SELF_UNION(2).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_SELF_UNION(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_TRIANGULATE.GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_TRIANGULATE.TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_UNION(1).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_UNION(1).DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_UNION(1).GEOM2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_UNION(1).DIM2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_UNION(2).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_UNION(2).GEOM2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_UNION(2).TOL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_VOLUME.GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_VOLUME.TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_VOLUME.UNIT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_WIDTH(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_WIDTH(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_WIDTH(1).UNIT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_WIDTH(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_WIDTH(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_WIDTH(2).UNIT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SDO_WIDTH_LINE(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_WIDTH_LINE(1).DIM
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_WIDTH_LINE(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_WIDTH_LINE(2).TOL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SDO_XOR(1).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_XOR(1).DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_XOR(1).GEOM2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_XOR(1).DIM2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: SDO_XOR(2).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_XOR(2).GEOM2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: SDO_XOR(2).TOL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY(1).LAYER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY(1).GID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY(2).THEGEOMETRY
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY(2).THEDIMINFO
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY(3).THEGEOMETRY
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY(3).TOLERANCE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_CONTEXT(1).THEGEOMETRY
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_CONTEXT(1).THEDIMINFO
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_CONTEXT(1).CONDITIONAL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_CONTEXT(1).FLAG10G
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_CONTEXT(2).THEGEOMETRY
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_CONTEXT(2).TOLERANCE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_CONTEXT(2).CONDITIONAL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_CONTEXT(2).FLAG10G
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_SRID(1).THEGEOMETRY
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_SRID(1).TOLERANCE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_SRID(1).CONDITIONAL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_SRID(1).FLAG10G
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_SRID(1).EXPECTED_SRID
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_SRID(2).THEGEOMETRY
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_SRID(2).THEDIMINFO
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_SRID(2).CONDITIONAL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_SRID(2).FLAG10G
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_GEOMETRY_WITH_SRID(2).EXPECTED_SRID
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_LAYER(1).LAYER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_LAYER(1).RESULT_TABLE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_LAYER(2).GEOM_TABLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_LAYER(2).GEOM_COLUMN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_LAYER(2).PKEY_COLUMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_LAYER(2).RESULT_TABLE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_LAYER(2).COMMIT_INTERVAL
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_LAYER_WITH_CONTEXT.GEOM_TABLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_LAYER_WITH_CONTEXT.GEOM_COLUMN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_LAYER_WITH_CONTEXT.RESULT_TABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_LAYER_WITH_CONTEXT.COMMIT_INTERVAL
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_LAYER_WITH_CONTEXT.CONDITIONAL
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_LAYER_WITH_CONTEXT.FLAG10G
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_LAYER_WITH_CONTEXT.GEOM_SCHEMA
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALLAYER_WITH_CONTEXT_LRS.GEOM_TABLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALLAYER_WITH_CONTEXT_LRS.GEOM_COLUMN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALLAYER_WITH_CONTEXT_LRS.PKEY_ROWID_COLUMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALLAYER_WITH_CONTEXT_LRS.RESULT_TABLE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALLAYER_WITH_CONTEXT_LRS.COMMIT_INTERVAL
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: WITHIN_DISTANCE(1).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: WITHIN_DISTANCE(1).DIM1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: WITHIN_DISTANCE(1).DIST
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: WITHIN_DISTANCE(1).GEOM2
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: IN
+- name: WITHIN_DISTANCE(1).DIM2
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: WITHIN_DISTANCE(1).UNITS
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WITHIN_DISTANCE(2).GEOM1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: WITHIN_DISTANCE(2).DIST
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: WITHIN_DISTANCE(2).GEOM2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: WITHIN_DISTANCE(2).TOL
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: WITHIN_DISTANCE(2).UNITS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package SDO_GEOM authid current_user as ------------------------------------------------------------------------------
+  -- PART I. Functions and procedures for non-object model                    --
+  ------------------------------------------------------------------------------
+  /*
+
+  -- Package constants which represent geometry element types for calling
+
+  -- the init_element() function.
+
+  */
+  POINT_TYPE CONSTANT INTEGER: = MDSYS.MD2.POINT_TYPE;
+  LINESTRING_TYPE CONSTANT INTEGER: = MDSYS.MD2.LINESTRING_TYPE;
+  POLYGON_TYPE CONSTANT INTEGER: = MDSYS.MD2.POLYGON_TYPE;
+  /*
+
+  -- Storage type
+
+  -- SDO_NORMALIZED_STORAGE indicates pre-8.1.3 schema
+
+  -- SDO_OBJECT_STORAGE indicates 8.1.3 schema
+
+  */
+  SDO_NORMALIZED_STORAGE CONSTANT INTEGER: = 805;
+  SDO_OBJECT_STORAGE CONSTANT INTEGER: = 813;
+  /*
+
+  -- This pacakge constant represents the maximum number of ordinate values
+
+  -- in the parameter lists for add_nodes() and interact().
+
+  */
+  MAX_ORD_PARAMS CONSTANT INTEGER: = 250;
+  --
+  --  NAME:
+  --     init_element - INITialize an ELEMENT of a geometric object
+  --  DESCRIPTION:
+  --     This function generates a unique sequence number for each element of a
+  --     geometric object.  The user must ensure that each GID is unique in a
+  --     data set layer.
+  --  ARGUMENTS:
+  --     layer  - SDO geometry table name (LAYER_sdogeom) input argument
+  --     gid    - Geometry IDentifier input argument
+  --  RETURNS:
+  --     a unique sequence number for each element of a geometric object
+  function init_element (layer IN VARCHAR2, gid IN NUMBER) return INTEGER;
+  --
+  --  NAME:
+  --     add_nodes - ADD the NODES of the element components of geometric objects
+  --                 to the SDO geometry table
+  --  DESCRIPTION:
+  --     This procedure adds vertex coordinates representing the linestring
+  --     segments of the element components of geometric objects to the geometry
+  --     table.  A unique sequence number is generated for each row of linestring
+  --     segments represented by the vertex coordinates in the parameter list.
+  --     Iterative calls to this function with the same GID and ESEQ are used to
+  --     add linestring segments represented by the vertex coordinates to an
+  --     element of a geometric object.
+  --  ARGUMENTS:
+  --     layer  - geometry table name (LAYER_sdogeom) input argument
+  --     gid    - Geometry IDentifier input argument
+  --     eseq   - Element SEQuence number input argument
+  --     etype  - Element TYPE input argument (see types defined above)
+  --     ordn   - ORDinate Nth input argument (up to 250 per call, 2 required)
+  /*
+
+  procedure add_nodes (layer  IN VARCHAR2, gid IN NUMBER, eseq IN INTEGER,
+
+                       etype  IN INTEGER, ord1 IN NUMBER, ord2 IN  NUMBER,
+
+                       ord3   IN NUMBER:=NULL, ord4   IN NUMBER:=NULL,
+
+                       ord5   IN NUMBER:=NULL, ord6   IN NUMBER:=NULL,
+
+                       ord7   IN NUMBER:=NULL, ord8   IN NUMBER:=NULL,
+
+                       ord9   IN NUMBER:=NULL, ord10  IN NUMBER:=NULL,
+
+                       ord11  IN NUMBER:=NULL, ord12  IN NUMBER:=NULL,
+
+                       ord13  IN NUMBER:=NULL, ord14  IN NUMBER:=NULL,
+
+                       ord15  IN NUMBER:=NULL, ord16  IN NUMBER:=NULL,
+
+                       ord17  IN NUMBER:=NULL, ord18  IN NUMBER:=NULL,
+
+                       ord19  IN NUMBER:=NULL, ord20  IN NUMBER:=NULL,
+
+                       ord21  IN NUMBER:=NULL, ord22  IN NUMBER:=NULL,
+
+                       ord23  IN NUMBER:=NULL, ord24  IN NUMBER:=NULL,
+
+                       ord25  IN NUMBER:=NULL, ord26  IN NUMBER:=NULL,
+
+                       ord27  IN NUMBER:=NULL, ord28  IN NUMBER:=NULL,
+
+                       ord29  IN NUMBER:=NULL, ord30  IN NUMBER:=NULL,
+
+                       ord31  IN NUMBER:=NULL, ord32  IN NUMBER:=NULL,
+
+                       ord33  IN NUMBER:=NULL, ord34  IN NUMBER:=NULL,
+
+                       ord35  IN NUMBER:=NULL, ord36  IN NUMBER:=NULL,
+
+                       ord37  IN NUMBER:=NULL, ord38  IN NUMBER:=NULL,
+
+                       ord39  IN NUMBER:=NULL, ord40  IN NUMBER:=NULL,
+
+                       ord41  IN NUMBER:=NULL, ord42  IN NUMBER:=NULL,
+
+                       ord43  IN NUMBER:=NULL, ord44  IN NUMBER:=NULL,
+
+                       ord45  IN NUMBER:=NULL, ord46  IN NUMBER:=NULL,
+
+                       ord47  IN NUMBER:=NULL, ord48  IN NUMBER:=NULL,
+
+                       ord49  IN NUMBER:=NULL, ord50  IN NUMBER:=NULL,
+
+                       ord51  IN NUMBER:=NULL, ord52  IN NUMBER:=NULL,
+
+                       ord53  IN NUMBER:=NULL, ord54  IN NUMBER:=NULL,
+
+                       ord55  IN NUMBER:=NULL, ord56  IN NUMBER:=NULL,
+
+                       ord57  IN NUMBER:=NULL, ord58  IN NUMBER:=NULL,
+
+                       ord59  IN NUMBER:=NULL, ord60  IN NUMBER:=NULL,
+
+                       ord61  IN NUMBER:=NULL, ord62  IN NUMBER:=NULL,
+
+                       ord63  IN NUMBER:=NULL, ord64  IN NUMBER:=NULL,
+
+                       ord65  IN NUMBER:=NULL, ord66  IN NUMBER:=NULL,
+
+                       ord67  IN NUMBER:=NULL, ord68  IN NUMBER:=NULL,
+
+                       ord69  IN NUMBER:=NULL, ord70  IN NUMBER:=NULL,
+
+                       ord71  IN NUMBER:=NULL, ord72  IN NUMBER:=NULL,
+
+                       ord73  IN NUMBER:=NULL, ord74  IN NUMBER:=NULL,
+
+                       ord75  IN NUMBER:=NULL, ord76  IN NUMBER:=NULL,
+
+                       ord77  IN NUMBER:=NULL, ord78  IN NUMBER:=NULL,
+
+                       ord79  IN NUMBER:=NULL, ord80  IN NUMBER:=NULL,
+
+                       ord81  IN NUMBER:=NULL, ord82  IN NUMBER:=NULL,
+
+                       ord83  IN NUMBER:=NULL, ord84  IN NUMBER:=NULL,
+
+                       ord85  IN NUMBER:=NULL, ord86  IN NUMBER:=NULL,
+
+                       ord87  IN NUMBER:=NULL, ord88  IN NUMBER:=NULL,
+
+                       ord89  IN NUMBER:=NULL, ord90  IN NUMBER:=NULL,
+
+                       ord91  IN NUMBER:=NULL, ord92  IN NUMBER:=NULL,
+
+                       ord93  IN NUMBER:=NULL, ord94  IN NUMBER:=NULL,
+
+                       ord95  IN NUMBER:=NULL, ord96  IN NUMBER:=NULL,
+
+                       ord97  IN NUMBER:=NULL, ord98  IN NUMBER:=NULL,
+
+                       ord99  IN NUMBER:=NULL, ord100 IN NUMBER:=NULL,
+
+                       ord101 IN NUMBER:=NULL, ord102 IN NUMBER:=NULL,
+
+                       ord103 IN NUMBER:=NULL, ord104 IN NUMBER:=NULL,
+
+                       ord105 IN NUMBER:=NULL, ord106 IN NUMBER:=NULL,
+
+                       ord107 IN NUMBER:=NULL, ord108 IN NUMBER:=NULL,
+
+                       ord109 IN NUMBER:=NULL, ord110 IN NUMBER:=NULL,
+
+                       ord111 IN NUMBER:=NULL, ord112 IN NUMBER:=NULL,
+
+                       ord113 IN NUMBER:=NULL, ord114 IN NUMBER:=NULL,
+
+                       ord115 IN NUMBER:=NULL, ord116 IN NUMBER:=NULL,
+
+                       ord117 IN NUMBER:=NULL, ord118 IN NUMBER:=NULL,
+
+                       ord119 IN NUMBER:=NULL, ord120 IN NUMBER:=NULL,
+
+                       ord121 IN NUMBER:=NULL, ord122 IN NUMBER:=NULL,
+
+                       ord123 IN NUMBER:=NULL, ord124 IN NUMBER:=NULL,
+
+                       ord125 IN NUMBER:=NULL, ord126 IN NUMBER:=NULL,
+
+                       ord127 IN NUMBER:=NULL, ord128 IN NUMBER:=NULL,
+
+                       ord129 IN NUMBER:=NULL, ord130 IN NUMBER:=NULL,
+
+                       ord131 IN NUMBER:=NULL, ord132 IN NUMBER:=NULL,
+
+                       ord133 IN NUMBER:=NULL, ord134 IN NUMBER:=NULL,
+
+                       ord135 IN NUMBER:=NULL, ord136 IN NUMBER:=NULL,
+
+                       ord137 IN NUMBER:=NULL, ord138 IN NUMBER:=NULL,
+
+                       ord139 IN NUMBER:=NULL, ord140 IN NUMBER:=NULL,
+
+                       ord141 IN NUMBER:=NULL, ord142 IN NUMBER:=NULL,
+
+                       ord143 IN NUMBER:=NULL, ord144 IN NUMBER:=NULL,
+
+                       ord145 IN NUMBER:=NULL, ord146 IN NUMBER:=NULL,
+
+                       ord147 IN NUMBER:=NULL, ord148 IN NUMBER:=NULL,
+
+                       ord149 IN NUMBER:=NULL, ord150 IN NUMBER:=NULL,
+
+                       ord151 IN NUMBER:=NULL, ord152 IN NUMBER:=NULL,
+
+                       ord153 IN NUMBER:=NULL, ord154 IN NUMBER:=NULL,
+
+                       ord155 IN NUMBER:=NULL, ord156 IN NUMBER:=NULL,
+
+                       ord157 IN NUMBER:=NULL, ord158 IN NUMBER:=NULL,
+
+                       ord159 IN NUMBER:=NULL, ord160 IN NUMBER:=NULL,
+
+                       ord161 IN NUMBER:=NULL, ord162 IN NUMBER:=NULL,
+
+                       ord163 IN NUMBER:=NULL, ord164 IN NUMBER:=NULL,
+
+                       ord165 IN NUMBER:=NULL, ord166 IN NUMBER:=NULL,
+
+                       ord167 IN NUMBER:=NULL, ord168 IN NUMBER:=NULL,
+
+                       ord169 IN NUMBER:=NULL, ord170 IN NUMBER:=NULL,
+
+                       ord171 IN NUMBER:=NULL, ord172 IN NUMBER:=NULL,
+
+                       ord173 IN NUMBER:=NULL, ord174 IN NUMBER:=NULL,
+
+                       ord175 IN NUMBER:=NULL, ord176 IN NUMBER:=NULL,
+
+                       ord177 IN NUMBER:=NULL, ord178 IN NUMBER:=NULL,
+
+                       ord179 IN NUMBER:=NULL, ord180 IN NUMBER:=NULL,
+
+                       ord181 IN NUMBER:=NULL, ord182 IN NUMBER:=NULL,
+
+                       ord183 IN NUMBER:=NULL, ord184 IN NUMBER:=NULL,
+
+                       ord185 IN NUMBER:=NULL, ord186 IN NUMBER:=NULL,
+
+                       ord187 IN NUMBER:=NULL, ord188 IN NUMBER:=NULL,
+
+                       ord189 IN NUMBER:=NULL, ord190 IN NUMBER:=NULL,
+
+                       ord191 IN NUMBER:=NULL, ord192 IN NUMBER:=NULL,
+
+                       ord193 IN NUMBER:=NULL, ord194 IN NUMBER:=NULL,
+
+                       ord195 IN NUMBER:=NULL, ord196 IN NUMBER:=NULL,
+
+                       ord197 IN NUMBER:=NULL, ord198 IN NUMBER:=NULL,
+
+                       ord199 IN NUMBER:=NULL, ord200 IN NUMBER:=NULL,
+
+                       ord201 IN NUMBER:=NULL, ord202 IN NUMBER:=NULL,
+
+                       ord203 IN NUMBER:=NULL, ord204 IN NUMBER:=NULL,
+
+                       ord205 IN NUMBER:=NULL, ord206 IN NUMBER:=NULL,
+
+                       ord207 IN NUMBER:=NULL, ord208 IN NUMBER:=NULL,
+
+                       ord209 IN NUMBER:=NULL, ord210 IN NUMBER:=NULL,
+
+                       ord211 IN NUMBER:=NULL, ord212 IN NUMBER:=NULL,
+
+                       ord213 IN NUMBER:=NULL, ord214 IN NUMBER:=NULL,
+
+                       ord215 IN NUMBER:=NULL, ord216 IN NUMBER:=NULL,
+
+                       ord217 IN NUMBER:=NULL, ord218 IN NUMBER:=NULL,
+
+                       ord219 IN NUMBER:=NULL, ord220 IN NUMBER:=NULL,
+
+                       ord221 IN NUMBER:=NULL, ord222 IN NUMBER:=NULL,
+
+                       ord223 IN NUMBER:=NULL, ord224 IN NUMBER:=NULL,
+
+                       ord225 IN NUMBER:=NULL, ord226 IN NUMBER:=NULL,
+
+                       ord227 IN NUMBER:=NULL, ord228 IN NUMBER:=NULL,
+
+                       ord229 IN NUMBER:=NULL, ord230 IN NUMBER:=NULL,
+
+                       ord231 IN NUMBER:=NULL, ord232 IN NUMBER:=NULL,
+
+                       ord233 IN NUMBER:=NULL, ord234 IN NUMBER:=NULL,
+
+                       ord235 IN NUMBER:=NULL, ord236 IN NUMBER:=NULL,
+
+                       ord237 IN NUMBER:=NULL, ord238 IN NUMBER:=NULL,
+
+                       ord239 IN NUMBER:=NULL, ord240 IN NUMBER:=NULL,
+
+                       ord241 IN NUMBER:=NULL, ord242 IN NUMBER:=NULL,
+
+                       ord243 IN NUMBER:=NULL, ord244 IN NUMBER:=NULL,
+
+                       ord245 IN NUMBER:=NULL, ord246 IN NUMBER:=NULL,
+
+                       ord247 IN NUMBER:=NULL, ord248 IN NUMBER:=NULL,
+
+                       ord249 IN NUMBER:=NULL, ord250 IN NUMBER:=NULL);
+
+
+
+  */
+  --
+  --  NAME:
+  --     validate_geometry - VALIDATE a GEOMETRY in SDO geometry table
+  --     validate_layer    - VALIDATE all geometries in the specified LAYER
+  --  DESCRIPTION:
+  --     validate_geometry function examines the properties of elements of a
+  --     geometry. Coordinates must be within the bounds designated in the
+  --     SDODIM table. Point elements must have exactly one (only one)
+  --     coordinate per row. Linestring elements must have at least two
+  --     coordinates (representing one segment). Polygon elements must have
+  --     at least four coordinates (representing three segments). The very
+  --     first coordinate must be repeated as the last coordinate to close
+  --     the polygon. The first coordinate of a continuation row for both
+  --     linestring and polygon elements must be equal to the last coordinate
+  --     of the previous row.
+  --
+  --     Now we support NURB elements or parametric curves too. A number of
+  --     validation rules are required for validating NURB elements.
+  --
+  --
+  --
+  --  ARGUMENTS:
+  --     layer         - geometry table name (LAYER_sdogeom) input argument
+  --     gid           - Geometry IDentifier input argument
+  --     result_table  - the result table where validation result is stored
+  --
+  --  RETURNS:
+  --     'TRUE' if the geometry is valid. Otherwise it returns Oracle
+  --     standard error code for known error or 'FALSE' for unknown error.
+  --     validate_layer procedure populates the given result_table with
+  --     validation results
+  --
+  function validate_geometry(layer IN VARCHAR2, gid IN NUMBER) return VARCHAR2;
+  -- pragma restrict_references(validate_geometry, WNDS, WNPS, RNPS );
+  procedure validate_layer(layer IN VARCHAR2, result_table IN VARCHAR2);
+  function check_bounds(
+    TableName IN VARCHAR2,
+    gid IN NUMBER,
+    Eseq IN INTEGER,
+    Seq IN INTEGER,
+    CoordWidth IN NUMBER,
+    Dim1LB IN NUMBER,
+    Dim1UB IN NUMBER,
+    Dim2LB IN NUMBER,
+    Dim2UB IN NUMBER
+  ) return INTEGER;
+  -- pragma restrict_references(check_bounds, WNDS, WNPS, RNPS);
+  procedure get_ords(
+    TableName IN VARCHAR2,
+    gid IN NUMBER,
+    Eseq IN INTEGER,
+    Seq IN INTEGER,
+    ColumnIndex IN INTEGER,
+    XRtn OUT NUMBER,
+    YRtn OUT NUMBER
+  );
+  pragma restrict_references(get_ords, WNDS, WNPS, RNPS);
+  --
+  --  NAME:
+  --     interact - do two geometric objects INTERACT with each other?
+  --  DESCRIPTION:
+  --     This function determines whether or not two geometric objects in either
+  --     the same or different SDO geometry tables (LAYER_sdogeom) interact with
+  --     each other.
+  --  ARGUMENTS:
+  --     layer       - geometry table name (LAYER_sdogeom) input argument
+  --     gid         - Geometry IDentifier input argument
+  --     x_tolerance - allowed variance of ordinate values within dimension1
+  --     y_tolerance - allowed variance of ordinate values within dimension 2
+  --     vNNN        - list of up to 250 input values describing the elements
+  --                   of a geometric object with the following structure:
+  --                   etype, # of ordinate values, list of ordinate values.
+  --                   For example the following list could be used to describe
+  --                   a four point polygon with with a triangular hole :
+  --                   SDO_GEOM.POLYGON_TYPE, 10, ord1, ord2, ord3, ord4, ord5,
+  --                   ord6, ord7, ord8, ord9, ord10,
+  --                   SDO_GEOM.POLYGON_TYPE, 8, ord1, ord2, ord3, ord4, ord5,
+  --                   ord6, ord7, ord8
+  --                   The following example could be used to describe a two
+  --                   element (single segment) linestring:
+  --                   SDO_GEOM.LINESTRING_TYPE, 4, ord1, ord2, ord3, ord4,
+  --                   SDO_GEOM.LINESTRING_TYPE, 4, ord1, ord2, ord3, ord4
+  --  RETURNS:
+  --     'TRUE' or 'FALSE'
+  function interact (
+    layer IN VARCHAR2,
+    gid1 IN NUMBER,
+    gid2 IN NUMBER
+  ) return VARCHAR2;
+  -- pragma restrict_references(interact, WNDS, WNPS, RNPS);
+  function interact (
+    layer1 IN VARCHAR2,
+    gid1 IN NUMBER,
+    layer2 IN VARCHAR2,
+    gid2 IN NUMBER
+  ) return VARCHAR2;
+  -- pragma restrict_references(interact, WNDS, WNPS, RNPS);
+  function interact(
+    layer1 IN VARCHAR2,
+    gid1 IN NUMBER,
+    x_tolerance IN NUMBER,
+    y_tolerance IN NUMBER,
+    v000 IN NUMBER: = NULL,
+    v001 IN NUMBER: = NULL,
+    v002 IN NUMBER: = NULL,
+    v003 IN NUMBER: = NULL,
+    v004 IN NUMBER: = NULL,
+    v005 IN NUMBER: = NULL,
+    v006 IN NUMBER: = NULL,
+    v007 IN NUMBER: = NULL,
+    v008 IN NUMBER: = NULL,
+    v009 IN NUMBER: = NULL,
+    v010 IN NUMBER: = NULL,
+    v011 IN NUMBER: = NULL,
+    v012 IN NUMBER: = NULL,
+    v013 IN NUMBER: = NULL,
+    v014 IN NUMBER: = NULL,
+    v015 IN NUMBER: = NULL,
+    v016 IN NUMBER: = NULL,
+    v017 IN NUMBER: = NULL,
+    v018 IN NUMBER: = NULL,
+    v019 IN NUMBER: = NULL,
+    v020 IN NUMBER: = NULL,
+    v021 IN NUMBER: = NULL,
+    v022 IN NUMBER: = NULL,
+    v023 IN NUMBER: = NULL,
+    v024 IN NUMBER: = NULL,
+    v025 IN NUMBER: = NULL,
+    v026 IN NUMBER: = NULL,
+    v027 IN NUMBER: = NULL,
+    v028 IN NUMBER: = NULL,
+    v029 IN NUMBER: = NULL,
+    v030 IN NUMBER: = NULL,
+    v031 IN NUMBER: = NULL,
+    v032 IN NUMBER: = NULL,
+    v033 IN NUMBER: = NULL,
+    v034 IN NUMBER: = NULL,
+    v035 IN NUMBER: = NULL,
+    v036 IN NUMBER: = NULL,
+    v037 IN NUMBER: = NULL,
+    v038 IN NUMBER: = NULL,
+    v039 IN NUMBER: = NULL,
+    v040 IN NUMBER: = NULL,
+    v041 IN NUMBER: = NULL,
+    v042 IN NUMBER: = NULL,
+    v043 IN NUMBER: = NULL,
+    v044 IN NUMBER: = NULL,
+    v045 IN NUMBER: = NULL,
+    v046 IN NUMBER: = NULL,
+    v047 IN NUMBER: = NULL,
+    v048 IN NUMBER: = NULL,
+    v049 IN NUMBER: = NULL,
+    v050 IN NUMBER: = NULL,
+    v051 IN NUMBER: = NULL,
+    v052 IN NUMBER: = NULL,
+    v053 IN NUMBER: = NULL,
+    v054 IN NUMBER: = NULL,
+    v055 IN NUMBER: = NULL,
+    v056 IN NUMBER: = NULL,
+    v057 IN NUMBER: = NULL,
+    v058 IN NUMBER: = NULL,
+    v059 IN NUMBER: = NULL,
+    v060 IN NUMBER: = NULL,
+    v061 IN NUMBER: = NULL,
+    v062 IN NUMBER: = NULL,
+    v063 IN NUMBER: = NULL,
+    v064 IN NUMBER: = NULL,
+    v065 IN NUMBER: = NULL,
+    v066 IN NUMBER: = NULL,
+    v067 IN NUMBER: = NULL,
+    v068 IN NUMBER: = NULL,
+    v069 IN NUMBER: = NULL,
+    v070 IN NUMBER: = NULL,
+    v071 IN NUMBER: = NULL,
+    v072 IN NUMBER: = NULL,
+    v073 IN NUMBER: = NULL,
+    v074 IN NUMBER: = NULL,
+    v075 IN NUMBER: = NULL,
+    v076 IN NUMBER: = NULL,
+    v077 IN NUMBER: = NULL,
+    v078 IN NUMBER: = NULL,
+    v079 IN NUMBER: = NULL,
+    v080 IN NUMBER: = NULL,
+    v081 IN NUMBER: = NULL,
+    v082 IN NUMBER: = NULL,
+    v083 IN NUMBER: = NULL,
+    v084 IN NUMBER: = NULL,
+    v085 IN NUMBER: = NULL,
+    v086 IN NUMBER: = NULL,
+    v087 IN NUMBER: = NULL,
+    v088 IN NUMBER: = NULL,
+    v089 IN NUMBER: = NULL,
+    v090 IN NUMBER: = NULL,
+    v091 IN NUMBER: = NULL,
+    v092 IN NUMBER: = NULL,
+    v093 IN NUMBER: = NULL,
+    v094 IN NUMBER: = NULL,
+    v095 IN NUMBER: = NULL,
+    v096 IN NUMBER: = NULL,
+    v097 IN NUMBER: = NULL,
+    v098 IN NUMBER: = NULL,
+    v099 IN NUMBER: = NULL,
+    v100 IN NUMBER: = NULL,
+    v101 IN NUMBER: = NULL,
+    v102 IN NUMBER: = NULL,
+    v103 IN NUMBER: = NULL,
+    v104 IN NUMBER: = NULL,
+    v105 IN NUMBER: = NULL,
+    v106 IN NUMBER: = NULL,
+    v107 IN NUMBER: = NULL,
+    v108 IN NUMBER: = NULL,
+    v109 IN NUMBER: = NULL,
+    v110 IN NUMBER: = NULL,
+    v111 IN NUMBER: = NULL,
+    v112 IN NUMBER: = NULL,
+    v113 IN NUMBER: = NULL,
+    v114 IN NUMBER: = NULL,
+    v115 IN NUMBER: = NULL,
+    v116 IN NUMBER: = NULL,
+    v117 IN NUMBER: = NULL,
+    v118 IN NUMBER: = NULL,
+    v119 IN NUMBER: = NULL,
+    v120 IN NUMBER: = NULL,
+    v121 IN NUMBER: = NULL,
+    v122 IN NUMBER: = NULL,
+    v123 IN NUMBER: = NULL,
+    v124 IN NUMBER: = NULL,
+    v125 IN NUMBER: = NULL,
+    v126 IN NUMBER: = NULL,
+    v127 IN NUMBER: = NULL,
+    v128 IN NUMBER: = NULL,
+    v129 IN NUMBER: = NULL,
+    v130 IN NUMBER: = NULL,
+    v131 IN NUMBER: = NULL,
+    v132 IN NUMBER: = NULL,
+    v133 IN NUMBER: = NULL,
+    v134 IN NUMBER: = NULL,
+    v135 IN NUMBER: = NULL,
+    v136 IN NUMBER: = NULL,
+    v137 IN NUMBER: = NULL,
+    v138 IN NUMBER: = NULL,
+    v139 IN NUMBER: = NULL,
+    v140 IN NUMBER: = NULL,
+    v141 IN NUMBER: = NULL,
+    v142 IN NUMBER: = NULL,
+    v143 IN NUMBER: = NULL,
+    v144 IN NUMBER: = NULL,
+    v145 IN NUMBER: = NULL,
+    v146 IN NUMBER: = NULL,
+    v147 IN NUMBER: = NULL,
+    v148 IN NUMBER: = NULL,
+    v149 IN NUMBER: = NULL,
+    v150 IN NUMBER: = NULL,
+    v151 IN NUMBER: = NULL,
+    v152 IN NUMBER: = NULL,
+    v153 IN NUMBER: = NULL,
+    v154 IN NUMBER: = NULL,
+    v155 IN NUMBER: = NULL,
+    v156 IN NUMBER: = NULL,
+    v157 IN NUMBER: = NULL,
+    v158 IN NUMBER: = NULL,
+    v159 IN NUMBER: = NULL,
+    v160 IN NUMBER: = NULL,
+    v161 IN NUMBER: = NULL,
+    v162 IN NUMBER: = NULL,
+    v163 IN NUMBER: = NULL,
+    v164 IN NUMBER: = NULL,
+    v165 IN NUMBER: = NULL,
+    v166 IN NUMBER: = NULL,
+    v167 IN NUMBER: = NULL,
+    v168 IN NUMBER: = NULL,
+    v169 IN NUMBER: = NULL,
+    v170 IN NUMBER: = NULL,
+    v171 IN NUMBER: = NULL,
+    v172 IN NUMBER: = NULL,
+    v173 IN NUMBER: = NULL,
+    v174 IN NUMBER: = NULL,
+    v175 IN NUMBER: = NULL,
+    v176 IN NUMBER: = NULL,
+    v177 IN NUMBER: = NULL,
+    v178 IN NUMBER: = NULL,
+    v179 IN NUMBER: = NULL,
+    v180 IN NUMBER: = NULL,
+    v181 IN NUMBER: = NULL,
+    v182 IN NUMBER: = NULL,
+    v183 IN NUMBER: = NULL,
+    v184 IN NUMBER: = NULL,
+    v185 IN NUMBER: = NULL,
+    v186 IN NUMBER: = NULL,
+    v187 IN NUMBER: = NULL,
+    v188 IN NUMBER: = NULL,
+    v189 IN NUMBER: = NULL,
+    v190 IN NUMBER: = NULL,
+    v191 IN NUMBER: = NULL,
+    v192 IN NUMBER: = NULL,
+    v193 IN NUMBER: = NULL,
+    v194 IN NUMBER: = NULL,
+    v195 IN NUMBER: = NULL,
+    v196 IN NUMBER: = NULL,
+    v197 IN NUMBER: = NULL,
+    v198 IN NUMBER: = NULL,
+    v199 IN NUMBER: = NULL,
+    v200 IN NUMBER: = NULL,
+    v201 IN NUMBER: = NULL,
+    v202 IN NUMBER: = NULL,
+    v203 IN NUMBER: = NULL,
+    v204 IN NUMBER: = NULL,
+    v205 IN NUMBER: = NULL,
+    v206 IN NUMBER: = NULL,
+    v207 IN NUMBER: = NULL,
+    v208 IN NUMBER: = NULL,
+    v209 IN NUMBER: = NULL,
+    v210 IN NUMBER: = NULL,
+    v211 IN NUMBER: = NULL,
+    v212 IN NUMBER: = NULL,
+    v213 IN NUMBER: = NULL,
+    v214 IN NUMBER: = NULL,
+    v215 IN NUMBER: = NULL,
+    v216 IN NUMBER: = NULL,
+    v217 IN NUMBER: = NULL,
+    v218 IN NUMBER: = NULL,
+    v219 IN NUMBER: = NULL,
+    v220 IN NUMBER: = NULL,
+    v221 IN NUMBER: = NULL,
+    v222 IN NUMBER: = NULL,
+    v223 IN NUMBER: = NULL,
+    v224 IN NUMBER: = NULL,
+    v225 IN NUMBER: = NULL,
+    v226 IN NUMBER: = NULL,
+    v227 IN NUMBER: = NULL,
+    v228 IN NUMBER: = NULL,
+    v229 IN NUMBER: = NULL,
+    v230 IN NUMBER: = NULL,
+    v231 IN NUMBER: = NULL,
+    v232 IN NUMBER: = NULL,
+    v233 IN NUMBER: = NULL,
+    v234 IN NUMBER: = NULL,
+    v235 IN NUMBER: = NULL,
+    v236 IN NUMBER: = NULL,
+    v237 IN NUMBER: = NULL,
+    v238 IN NUMBER: = NULL,
+    v239 IN NUMBER: = NULL,
+    v240 IN NUMBER: = NULL,
+    v241 IN NUMBER: = NULL,
+    v242 IN NUMBER: = NULL,
+    v243 IN NUMBER: = NULL,
+    v244 IN NUMBER: = NULL,
+    v245 IN NUMBER: = NULL,
+    v246 IN NUMBER: = NULL,
+    v247 IN NUMBER: = NULL,
+    v248 IN NUMBER: = NULL,
+    v249 IN NUMBER: = NULL
+  ) return VARCHAR2;
+  -- pragma restrict_references(interact, WNDS, WNPS, RNPS);
+  --
+  -- NAME:
+  --      relate - determine the relationship between to geometries
+  -- DESCRIPTION
+  --      Relate operates on two geometries and, based on the mask,
+  --      can determine their relationship.  There are three interfaces to relate.
+  --      The first operates geometries in a single SDO layer.  The second
+  --      operates on two geometries in two different layers and the third
+  --      on its first geometry in an SDO layer and the second geometry described
+  --      in its arguement list.
+  --
+  -- ARGUMENTS
+  --      LAYER   - geometry table name (LAYER_sdogeom) input argument
+  --      GID     - Geometry IDentifier input argument
+  --      MASK    - relationship mask
+  --              any combionation of
+  --              DISJOINT
+  --              TOUCH
+  --              EQUAL
+  --              INSIDE
+  --              CONTAINS
+  --              COVEREDBY
+  --              COVERS
+  --              OVERLAPBDYDISJOINT
+  --              OVERLAPBDYINTERSECT
+  --              OR DETERMINE
+  --              OR ANYINTERACT
+  --     x_tolerance - allowed variance of ordinate values within dimension1
+  --     y_tolerance - allowed variance of ordinate values within dimension 2
+  --     vNNN        - list of up to 250 input values describing the elements
+  --                   of a geometric object with the following structure:
+  --                   etype, # of ordinate values, list of ordinate values.
+  --                   For example the following list could be used to describe
+  --                   a four point polygon with with a triangular hole :
+  --                   SDO_GEOM.POLYGON_TYPE, 10, ord1, ord2, ord3, ord4, ord5,
+  --                   ord6, ord7, ord8, ord9, ord10,
+  --                   SDO_GEOM.POLYGON_TYPE, 8, ord1, ord2, ord3, ord4, ord5,
+  --                   ord6, ord7, ord8
+  --                   The following example could be used to describe a two
+  --                   element (single segment) linestring:
+  --                   SDO_GEOM.LINESTRING_TYPE, 4, ord1, ord2, ord3, ord4,
+  --                   SDO_GEOM.LINESTRING_TYPE, 4, ord1, ord2, ord3, ord4
+  --
+  -- RETURNS
+  --      If any combination of the following mask options is specified as the
+  --      mask argument, relate returns the relation if it matches passes mask
+  --      otherwise FALSE.
+  --
+  --      DISJOINT
+  --      TOUCH
+  --      EQUAL
+  --      INSIDE
+  --      CONTAINS
+  --      COVEREDBY
+  --      COVERS
+  --      OVERLAPBDYDISJOINT
+  --      OVERLAPBDYINTERSECT
+  --
+  --      RELATE will return one of the above relations if the following mask is
+  --      specified:
+  --
+  --      DETERMINE
+  --
+  --      RELATE will return TRUE or FALSE for if the following mask is specified :
+  --
+  --      ANYINTERACT
+  --
+  function relate (
+    layer IN VARCHAR2,
+    gid1 IN NUMBER,
+    mask IN VARCHAR2,
+    gid2 IN NUMBER
+  ) return VARCHAR2;
+  -- pragma restrict_references(relate, WNDS, WNPS, RNPS);
+  function relate (
+    layer1 IN VARCHAR2,
+    gid1 IN NUMBER,
+    mask IN VARCHAR2,
+    layer2 IN VARCHAR2,
+    gid2 IN NUMBER
+  ) return VARCHAR2;
+  -- pragma restrict_references(relate, WNDS, WNPS, RNPS);
+  function relate (
+    layer1 IN VARCHAR2,
+    gid1 IN NUMBER,
+    nord1 IN NUMBER,
+    mask IN VARCHAR2,
+    layer2 IN VARCHAR2,
+    gid2 IN NUMBER,
+    nord2 IN NUMBER,
+    tolerance1 IN NUMBER,
+    tolerance2 IN NUMBER
+  ) return VARCHAR2;
+  -- pragma restrict_references(relate, WNDS, WNPS, RNPS);
+  function relate (
+    layer1 IN VARCHAR2,
+    gid1 IN NUMBER,
+    mask IN VARCHAR2,
+    x_tolerance IN NUMBER,
+    y_tolerance IN NUMBER,
+    v000 IN NUMBER: = NULL,
+    v001 IN NUMBER: = NULL,
+    v002 IN NUMBER: = NULL,
+    v003 IN NUMBER: = NULL,
+    v004 IN NUMBER: = NULL,
+    v005 IN NUMBER: = NULL,
+    v006 IN NUMBER: = NULL,
+    v007 IN NUMBER: = NULL,
+    v008 IN NUMBER: = NULL,
+    v009 IN NUMBER: = NULL,
+    v010 IN NUMBER: = NULL,
+    v011 IN NUMBER: = NULL,
+    v012 IN NUMBER: = NULL,
+    v013 IN NUMBER: = NULL,
+    v014 IN NUMBER: = NULL,
+    v015 IN NUMBER: = NULL,
+    v016 IN NUMBER: = NULL,
+    v017 IN NUMBER: = NULL,
+    v018 IN NUMBER: = NULL,
+    v019 IN NUMBER: = NULL,
+    v020 IN NUMBER: = NULL,
+    v021 IN NUMBER: = NULL,
+    v022 IN NUMBER: = NULL,
+    v023 IN NUMBER: = NULL,
+    v024 IN NUMBER: = NULL,
+    v025 IN NUMBER: = NULL,
+    v026 IN NUMBER: = NULL,
+    v027 IN NUMBER: = NULL,
+    v028 IN NUMBER: = NULL,
+    v029 IN NUMBER: = NULL,
+    v030 IN NUMBER: = NULL,
+    v031 IN NUMBER: = NULL,
+    v032 IN NUMBER: = NULL,
+    v033 IN NUMBER: = NULL,
+    v034 IN NUMBER: = NULL,
+    v035 IN NUMBER: = NULL,
+    v036 IN NUMBER: = NULL,
+    v037 IN NUMBER: = NULL,
+    v038 IN NUMBER: = NULL,
+    v039 IN NUMBER: = NULL,
+    v040 IN NUMBER: = NULL,
+    v041 IN NUMBER: = NULL,
+    v042 IN NUMBER: = NULL,
+    v043 IN NUMBER: = NULL,
+    v044 IN NUMBER: = NULL,
+    v045 IN NUMBER: = NULL,
+    v046 IN NUMBER: = NULL,
+    v047 IN NUMBER: = NULL,
+    v048 IN NUMBER: = NULL,
+    v049 IN NUMBER: = NULL,
+    v050 IN NUMBER: = NULL,
+    v051 IN NUMBER: = NULL,
+    v052 IN NUMBER: = NULL,
+    v053 IN NUMBER: = NULL,
+    v054 IN NUMBER: = NULL,
+    v055 IN NUMBER: = NULL,
+    v056 IN NUMBER: = NULL,
+    v057 IN NUMBER: = NULL,
+    v058 IN NUMBER: = NULL,
+    v059 IN NUMBER: = NULL,
+    v060 IN NUMBER: = NULL,
+    v061 IN NUMBER: = NULL,
+    v062 IN NUMBER: = NULL,
+    v063 IN NUMBER: = NULL,
+    v064 IN NUMBER: = NULL,
+    v065 IN NUMBER: = NULL,
+    v066 IN NUMBER: = NULL,
+    v067 IN NUMBER: = NULL,
+    v068 IN NUMBER: = NULL,
+    v069 IN NUMBER: = NULL,
+    v070 IN NUMBER: = NULL,
+    v071 IN NUMBER: = NULL,
+    v072 IN NUMBER: = NULL,
+    v073 IN NUMBER: = NULL,
+    v074 IN NUMBER: = NULL,
+    v075 IN NUMBER: = NULL,
+    v076 IN NUMBER: = NULL,
+    v077 IN NUMBER: = NULL,
+    v078 IN NUMBER: = NULL,
+    v079 IN NUMBER: = NULL,
+    v080 IN NUMBER: = NULL,
+    v081 IN NUMBER: = NULL,
+    v082 IN NUMBER: = NULL,
+    v083 IN NUMBER: = NULL,
+    v084 IN NUMBER: = NULL,
+    v085 IN NUMBER: = NULL,
+    v086 IN NUMBER: = NULL,
+    v087 IN NUMBER: = NULL,
+    v088 IN NUMBER: = NULL,
+    v089 IN NUMBER: = NULL,
+    v090 IN NUMBER: = NULL,
+    v091 IN NUMBER: = NULL,
+    v092 IN NUMBER: = NULL,
+    v093 IN NUMBER: = NULL,
+    v094 IN NUMBER: = NULL,
+    v095 IN NUMBER: = NULL,
+    v096 IN NUMBER: = NULL,
+    v097 IN NUMBER: = NULL,
+    v098 IN NUMBER: = NULL,
+    v099 IN NUMBER: = NULL,
+    v100 IN NUMBER: = NULL,
+    v101 IN NUMBER: = NULL,
+    v102 IN NUMBER: = NULL,
+    v103 IN NUMBER: = NULL,
+    v104 IN NUMBER: = NULL,
+    v105 IN NUMBER: = NULL,
+    v106 IN NUMBER: = NULL,
+    v107 IN NUMBER: = NULL,
+    v108 IN NUMBER: = NULL,
+    v109 IN NUMBER: = NULL,
+    v110 IN NUMBER: = NULL,
+    v111 IN NUMBER: = NULL,
+    v112 IN NUMBER: = NULL,
+    v113 IN NUMBER: = NULL,
+    v114 IN NUMBER: = NULL,
+    v115 IN NUMBER: = NULL,
+    v116 IN NUMBER: = NULL,
+    v117 IN NUMBER: = NULL,
+    v118 IN NUMBER: = NULL,
+    v119 IN NUMBER: = NULL,
+    v120 IN NUMBER: = NULL,
+    v121 IN NUMBER: = NULL,
+    v122 IN NUMBER: = NULL,
+    v123 IN NUMBER: = NULL,
+    v124 IN NUMBER: = NULL,
+    v125 IN NUMBER: = NULL,
+    v126 IN NUMBER: = NULL,
+    v127 IN NUMBER: = NULL,
+    v128 IN NUMBER: = NULL,
+    v129 IN NUMBER: = NULL,
+    v130 IN NUMBER: = NULL,
+    v131 IN NUMBER: = NULL,
+    v132 IN NUMBER: = NULL,
+    v133 IN NUMBER: = NULL,
+    v134 IN NUMBER: = NULL,
+    v135 IN NUMBER: = NULL,
+    v136 IN NUMBER: = NULL,
+    v137 IN NUMBER: = NULL,
+    v138 IN NUMBER: = NULL,
+    v139 IN NUMBER: = NULL,
+    v140 IN NUMBER: = NULL,
+    v141 IN NUMBER: = NULL,
+    v142 IN NUMBER: = NULL,
+    v143 IN NUMBER: = NULL,
+    v144 IN NUMBER: = NULL,
+    v145 IN NUMBER: = NULL,
+    v146 IN NUMBER: = NULL,
+    v147 IN NUMBER: = NULL,
+    v148 IN NUMBER: = NULL,
+    v149 IN NUMBER: = NULL,
+    v150 IN NUMBER: = NULL,
+    v151 IN NUMBER: = NULL,
+    v152 IN NUMBER: = NULL,
+    v153 IN NUMBER: = NULL,
+    v154 IN NUMBER: = NULL,
+    v155 IN NUMBER: = NULL,
+    v156 IN NUMBER: = NULL,
+    v157 IN NUMBER: = NULL,
+    v158 IN NUMBER: = NULL,
+    v159 IN NUMBER: = NULL,
+    v160 IN NUMBER: = NULL,
+    v161 IN NUMBER: = NULL,
+    v162 IN NUMBER: = NULL,
+    v163 IN NUMBER: = NULL,
+    v164 IN NUMBER: = NULL,
+    v165 IN NUMBER: = NULL,
+    v166 IN NUMBER: = NULL,
+    v167 IN NUMBER: = NULL,
+    v168 IN NUMBER: = NULL,
+    v169 IN NUMBER: = NULL,
+    v170 IN NUMBER: = NULL,
+    v171 IN NUMBER: = NULL,
+    v172 IN NUMBER: = NULL,
+    v173 IN NUMBER: = NULL,
+    v174 IN NUMBER: = NULL,
+    v175 IN NUMBER: = NULL,
+    v176 IN NUMBER: = NULL,
+    v177 IN NUMBER: = NULL,
+    v178 IN NUMBER: = NULL,
+    v179 IN NUMBER: = NULL,
+    v180 IN NUMBER: = NULL,
+    v181 IN NUMBER: = NULL,
+    v182 IN NUMBER: = NULL,
+    v183 IN NUMBER: = NULL,
+    v184 IN NUMBER: = NULL,
+    v185 IN NUMBER: = NULL,
+    v186 IN NUMBER: = NULL,
+    v187 IN NUMBER: = NULL,
+    v188 IN NUMBER: = NULL,
+    v189 IN NUMBER: = NULL,
+    v190 IN NUMBER: = NULL,
+    v191 IN NUMBER: = NULL,
+    v192 IN NUMBER: = NULL,
+    v193 IN NUMBER: = NULL,
+    v194 IN NUMBER: = NULL,
+    v195 IN NUMBER: = NULL,
+    v196 IN NUMBER: = NULL,
+    v197 IN NUMBER: = NULL,
+    v198 IN NUMBER: = NULL,
+    v199 IN NUMBER: = NULL,
+    v200 IN NUMBER: = NULL,
+    v201 IN NUMBER: = NULL,
+    v202 IN NUMBER: = NULL,
+    v203 IN NUMBER: = NULL,
+    v204 IN NUMBER: = NULL,
+    v205 IN NUMBER: = NULL,
+    v206 IN NUMBER: = NULL,
+    v207 IN NUMBER: = NULL,
+    v208 IN NUMBER: = NULL,
+    v209 IN NUMBER: = NULL,
+    v210 IN NUMBER: = NULL,
+    v211 IN NUMBER: = NULL,
+    v212 IN NUMBER: = NULL,
+    v213 IN NUMBER: = NULL,
+    v214 IN NUMBER: = NULL,
+    v215 IN NUMBER: = NULL,
+    v216 IN NUMBER: = NULL,
+    v217 IN NUMBER: = NULL,
+    v218 IN NUMBER: = NULL,
+    v219 IN NUMBER: = NULL,
+    v220 IN NUMBER: = NULL,
+    v221 IN NUMBER: = NULL,
+    v222 IN NUMBER: = NULL,
+    v223 IN NUMBER: = NULL,
+    v224 IN NUMBER: = NULL,
+    v225 IN NUMBER: = NULL,
+    v226 IN NUMBER: = NULL,
+    v227 IN NUMBER: = NULL,
+    v228 IN NUMBER: = NULL,
+    v229 IN NUMBER: = NULL,
+    v230 IN NUMBER: = NULL,
+    v231 IN NUMBER: = NULL,
+    v232 IN NUMBER: = NULL,
+    v233 IN NUMBER: = NULL,
+    v234 IN NUMBER: = NULL,
+    v235 IN NUMBER: = NULL,
+    v236 IN NUMBER: = NULL,
+    v237 IN NUMBER: = NULL,
+    v238 IN NUMBER: = NULL,
+    v239 IN NUMBER: = NULL,
+    v240 IN NUMBER: = NULL,
+    v241 IN NUMBER: = NULL,
+    v242 IN NUMBER: = NULL,
+    v243 IN NUMBER: = NULL,
+    v244 IN NUMBER: = NULL,
+    v245 IN NUMBER: = NULL,
+    v246 IN NUMBER: = NULL,
+    v247 IN NUMBER: = NULL,
+    v248 IN NUMBER: = NULL,
+    v249 IN NUMBER: = NULL
+  ) return VARCHAR2;
+  -- pragma restrict_references(relate, WNDS, WNPS, RNPS);
+  ------------------------------------------------------------------------------
+  -- PART II. Functions and procedures for object model                       --
+  ------------------------------------------------------------------------------
+  --
+  -- NAME:
+  --      relate - object relate function
+  -- DESCRIPTION
+  --      This function operates on two geometries and, based on the mask,
+  --      can determine their relationship.
+  --
+  -- ARGUMENTS
+  --      geom1     - the first geometry object.
+  --      dim1      - the dimensional information array corresponding to the
+  --                  first geometry object, usually selected from
+  --                  SDO_GEOM_METADATA table.
+  --      mask      - relationship mask, any combionation of:
+  --                  DISJOINT, TOUCH, EQUAL, INSIDE, CONTAINS, COVEREDBY,
+  --                  COVERS, OVERLAPBDYDISJOINT, OVERLAPBDYINTERSECT,
+  --                  OR DETERMINE, OR ANYINTERACT
+  --      geom2     - the second geometry object.
+  --      dim2      - the dimensional information array corresponding to the
+  --                  second geometry object, usually selected from
+  --                  SDO_GEOM_METADATA table.
+  --      tol       - tolerance value.
+  --
+  -- RETURNS
+  --      If any combination of the following mask options is specified as the
+  --      mask argument, relate returns the relation if it matches passes mask
+  --      otherwise 'FALSE':
+  --      DISJOINT, TOUCH, EQUAL, INSIDE, CONTAINS, COVEREDBY, COVERS,
+  --      OVERLAPBDYDISJOINT, OVERLAPBDYINTERSECT.
+  --
+  --      Relate will return one of the above relations if the following mask is
+  --      specified: 'DETERMINE'.
+  --
+  --      Relate will return 'TRUE' or 'FALSE' for if the following mask is
+  --      specified: 'ANYINTERACT'.
+  --
+  function relate(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    dim1 IN MDSYS.SDO_DIM_ARRAY,
+    mask IN VARCHAR2,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    dim2 IN MDSYS.SDO_DIM_ARRAY
+  ) return VARCHAR2 PARALLEL_ENABLE;
+  -- pragma restrict_references(relate, WNDS, WNPS, RNPS);
+  function relate(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    mask IN VARCHAR2,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    tol IN NUMBER
+  ) return VARCHAR2 PARALLEL_ENABLE;
+  -- pragma restrict_references(relate, WNDS, WNPS, RNPS);
+  --
+  -- NAME:
+  --      within_distance - object within distance function
+  -- DESCRIPTION
+  --      This function operates on two geometries and determines if they
+  --      are within the distance of <dist>.
+  --
+  -- ARGUMENTS
+  --      geom1     - the first geometry object.
+  --      dim1      - the dimensional information array corresponding to the
+  --                  first geometry object, usually selected from
+  --                  SDO_GEOM_METADATA table.
+  --      dist      - Euclidean distance value.
+  --      geom2     - the second geometry object.
+  --      dim2      - the dimensional information array corresponding to the
+  --                  second geometry object, usually selected from
+  --                  SDO_GEOM_METADATA table.
+  --      tol       - tolerance value.
+  --
+  -- RETURNS
+  --      'TRUE' if the two geometries are within distance of <dist> from
+  --      each other, or 'FALSE' otherwise.
+  --
+  function within_distance(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    dim1 IN MDSYS.SDO_DIM_ARRAY,
+    dist IN NUMBER,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    dim2 IN MDSYS.SDO_DIM_ARRAY,
+    units IN VARCHAR2: = NULL
+  ) return VARCHAR2 PARALLEL_ENABLE;
+  -- pragma restrict_references(within_distance, WNDS, WNPS, RNPS);
+  function within_distance(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    dist IN NUMBER,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    tol IN NUMBER,
+    units IN VARCHAR2: = NULL
+  ) return VARCHAR2 PARALLEL_ENABLE;
+  -- pragma restrict_references(within_distance, WNDS, WNPS, RNPS);
+  --
+  -- NAME:
+  --      sdo_buffer -- buffer generation
+  -- DESCRIPTION
+  --      This function generates a buffer polygon for the input geometry
+  --      object with buffer distance <dist>.
+  --
+  -- ARGUMENTS
+  --      geom      - the input geometry object.
+  --      dim       - the dimensional information array corresponding to the
+  --                  input geometry object, usually selected from
+  --                  SDO_GEOM_METADATA table.
+  --      dist      - Euclidean distance value.
+  --      params    - Unit of the above dist; arc_tolerance for geodetic buffering
+  --      tol       - tolerance value.
+  --
+  -- RETURNS
+  --      This function returns a geometry object representing the buffer
+  --      polygon.
+  --
+  function sdo_buffer(
+    geom IN MDSYS.SDO_GEOMETRY,
+    dim IN MDSYS.SDO_DIM_ARRAY,
+    dist IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_buffer, WNDS, WNPS, TRUST);
+  function sdo_buffer(
+    geom IN MDSYS.SDO_GEOMETRY,
+    dist IN NUMBER,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_buffer, WNDS, WNPS, TRUST);
+  function sdo_buffer(
+    geom IN MDSYS.SDO_GEOMETRY,
+    dim IN MDSYS.SDO_DIM_ARRAY,
+    dist IN NUMBER,
+    params IN VARCHAR2
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_buffer, WNDS, WNPS, TRUST);
+  function sdo_buffer(
+    geom IN MDSYS.SDO_GEOMETRY,
+    dist IN NUMBER,
+    tol IN NUMBER,
+    params IN VARCHAR2
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_buffer, WNDS, WNPS, TRUST);
+  -- Geometry operations
+  --
+  -- NAME:
+  --      sdo_union        -- union ('OR' operation) of two geometry objects.
+  --      sdo_difference   -- difference ('MINUS' operation) of two geometry
+  --                          objects.
+  --      sdo_xor          -- symetric difference('XOR' operation) of two
+  --                          geometry objects.
+  --      sdo_intersection -- intersection ('AND' operation) of two geometry
+  --                          objects.
+  --
+  -- DESCRIPTION
+  --      These four functions perform topological operations on two geometry
+  --      objects.
+  --
+  -- ARGUMENTS
+  --      geom1     - the first geometry object.
+  --      dim1      - the dimensional information array corresponding to the
+  --                  first geometry object, usually selected from
+  --                  SDO_GEOM_METADATA table.
+  --      geom2     - the second geometry object.
+  --      dim2      - the dimensional information array corresponding to the
+  --                  second geometry object, usually selected from
+  --                  SDO_GEOM_METADATA table.
+  --      tol       - tolerance value.
+  --
+  -- RETURNS
+  --      A geometry object representing the result of this geometry operation.
+  --
+  function sdo_union(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    dim1 IN MDSYS.SDO_DIM_ARRAY,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    dim2 IN MDSYS.SDO_DIM_ARRAY
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_union, WNDS, WNPS, RNPS);
+  function sdo_self_union(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    dim1 IN MDSYS.SDO_DIM_ARRAY
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  function sdo_difference(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    dim1 IN MDSYS.SDO_DIM_ARRAY,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    dim2 IN MDSYS.SDO_DIM_ARRAY
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_difference, WNDS, WNPS, RNPS);
+  function sdo_xor(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    dim1 IN MDSYS.SDO_DIM_ARRAY,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    dim2 IN MDSYS.SDO_DIM_ARRAY
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_xor, WNDS, WNPS, RNPS);
+  function sdo_intersection(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    dim1 IN MDSYS.SDO_DIM_ARRAY,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    dim2 IN MDSYS.SDO_DIM_ARRAY
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_intersection, WNDS, WNPS, RNPS);
+  function sdo_union(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_union, WNDS, WNPS, RNPS);
+  function sdo_self_union(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  function sdo_difference(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_difference, WNDS, WNPS, RNPS);
+  function sdo_xor(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_xor, WNDS, WNPS, RNPS);
+  function sdo_intersection(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_intersection, WNDS, WNPS, RNPS);
+  -- Deprecated polygon operation interfaces
+  --
+  -- NAME:
+  --      sdo_poly_union        -- union ('OR' operation) of two polygons
+  --      sdo_poly_difference   -- difference ('MINUS' operation) of two polygons
+  --      sdo_poly_xor          -- symetric difference('XOR' operation) of two
+  --                               polygons
+  --      sdo_poly_intersection -- intersection ('AND' operation) of two polygons
+  --
+  -- DESCRIPTION
+  --      These four functions are deprecated starting from version 8.1.6.
+  --      Please use geometry operations sdo_union, sdo_difference,
+  --      sdo_xor, and sdo_intersection instead of the above polygon specific
+  --      functions.
+  --
+  function sdo_poly_union(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    dim1 IN MDSYS.SDO_DIM_ARRAY,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    dim2 IN MDSYS.SDO_DIM_ARRAY
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_poly_union, WNDS, WNPS, RNPS);
+  function sdo_poly_difference(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    dim1 IN MDSYS.SDO_DIM_ARRAY,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    dim2 IN MDSYS.SDO_DIM_ARRAY
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_poly_difference, WNDS, WNPS, RNPS);
+  function sdo_poly_xor(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    dim1 IN MDSYS.SDO_DIM_ARRAY,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    dim2 IN MDSYS.SDO_DIM_ARRAY
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_poly_xor, WNDS, WNPS, RNPS);
+  function sdo_poly_intersection(
+    geom1 IN MDSYS.SDO_GEOMETRY,
+    dim1 IN MDSYS.SDO_DIM_ARRAY,
+    geom2 IN MDSYS.SDO_GEOMETRY,
+    dim2 IN MDSYS.SDO_DIM_ARRAY
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_poly_intersection, WNDS, WNPS, RNPS);
+  --
+  -- NAME:
+  --      sdo_length -- compute length for one-dimensional geometry
+  --                    (linestring), or perimeter for two-dimensional
+  --                    geometry (polygon)
+  -- DESCRIPTION
+  --      If the input polygon contains one or more holes, this function
+  --      calculates perimeters for the exterior boundary and all the holes,
+  --      and then returns the sum of all the perimeters.
+  --
+  -- ARGUMENTS
+  --      geom      - the input geometry object.
+  --      dim       - the dimensional information array corresponding to the
+  --                  input geometry object, usually selected from
+  --                  SDO_GEOM_METADATA table.
+  --      tol       - tolerance value.
+  --      unit      - the unit used in the result, if needed
+  --      count_shared_edges - Default 1(counting shared edges once) or
+  --                                   2(counting shared edges twice)
+  --
+  -- RETURNS
+  --      This function returns length or perimeter of a geometry object.
+  --
+  function sdo_length(
+    geom IN MDSYS.SDO_GEOMETRY,
+    dim IN MDSYS.SDO_DIM_ARRAY,
+    unit IN VARCHAR2 DEFAULT NULL,
+    count_shared_edges IN NUMBER DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_length, WNDS, WNPS, RNPS);
+  function sdo_length(
+    geom IN MDSYS.SDO_GEOMETRY,
+    tol IN NUMBER,
+    unit IN VARCHAR2 DEFAULT NULL,
+    count_shared_edges IN NUMBER DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_length, WNDS, WNPS, RNPS);
+  --
+  -- NAME:
+  --      sdo_area -- compute area for two-dimensional geometry (polygon)
+  -- DESCRIPTION
+  --      This function returns correct area for polygon-with-holes.
+  --
+  -- ARGUMENTS
+  --      geom      - the input geometry object.
+  --      dim       - the dimensional information array corresponding to the
+  --                  input geometry object, usually selected from
+  --                  SDO_GEOM_METADATA table.
+  --      tol       - tolerance value.
+  --      unit      - the unit used in the result, if needed
+  --
+  -- RETURNS
+  --      This function returns area of a geometry object.
+  function sdo_area(
+    geom IN MDSYS.SDO_GEOMETRY,
+    dim IN MDSYS.SDO_DIM_ARRAY,
+    unit IN VARCHAR2 DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_area, WNDS, WNPS, RNPS);
+  function sdo_area(
+    geom IN MDSYS.SDO_GEOMETRY,
+    tol IN NUMBER,
+    unit IN VARCHAR2 DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_area, WNDS, WNPS, RNPS);
+  function sdo_volume(
+    geom IN MDSYS.SDO_GEOMETRY,
+    tol IN NUMBER,
+    unit IN VARCHAR2 DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- NAME:
+  --         sdo_distance
+  --
+  -- DESCRIPTION
+  --         Compute the distance between two geometries
+  --
+  -- ARGUMENTS
+  --        geom1    - the first geometry object
+  --        dim1     - the dimensional information array corresponding to the
+  --                   first geometry object, usually selected from
+  --                   SDO_GEOM_METADATA table.
+  --        geom2    - the second geometry object.
+  --        dim2     - the dimensional information array corresponding to the
+  --                   second geometry object, usually selected from
+  --                   SDO_GEOM_METADATA table.
+  --        tol      - tolerance value.
+  --        unit     - the unit for the returned distance
+  --
+  -- RETURNS
+  --        the minimum distance between the two given geometries.
+  --
+  function sdo_distance(
+    geom1 IN mdsys.sdo_geometry,
+    dim1 IN mdsys.sdo_dim_array,
+    geom2 IN mdsys.sdo_geometry,
+    dim2 IN mdsys.sdo_dim_array,
+    unit IN varchar2 DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  --pragma restrict_references(sdo_distance, WNDS, WNPS, RNPS);
+  function sdo_distance(
+    geom1 IN mdsys.sdo_geometry,
+    geom2 IN mdsys.sdo_geometry,
+    tol IN NUMBER,
+    unit IN varchar2 DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  --pragma restrict_references(sdo_distance, WNDS, WNPS, RNPS);
+  --
+  -- NAME:
+  --        sdo_maxdistance_line
+  --
+  -- DESCRIPTION
+  --        Compute the the line that has the maximum distance between the
+  --        two given geometries.
+  --
+  -- ARGUMENTS
+  --        geom1    - the first geometry object
+  --        dim1     - the dimensional information array corresponding to the
+  --                   first geometry object, usually selected from
+  --                   SDO_GEOM_METADATA table.
+  --        geom2    - the second geometry object.
+  --        dim2     - the dimensional information array corresponding to the
+  --                   second geometry object, usually selected from
+  --                   SDO_GEOM_METADATA table.
+  --        tol      - tolerance value.
+  --
+  -- RETURNS
+  --        the line that has the maximum distance between the two given
+  --        geometries.
+  --
+  function sdo_maxdistance_line(
+    geom1 IN mdsys.sdo_geometry,
+    dim1 IN mdsys.sdo_dim_array,
+    geom2 IN mdsys.sdo_geometry,
+    dim2 IN mdsys.sdo_dim_array
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  function sdo_maxdistance_line(
+    geom1 IN mdsys.sdo_geometry,
+    geom2 IN mdsys.sdo_geometry,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- NAME:
+  --        sdo_maxdistance
+  --
+  -- DESCRIPTION
+  --        Compute the maximal distance between two geometries
+  --
+  -- ARGUMENTS
+  --        geom1    - the first geometry object
+  --        dim1     - the dimensional information array corresponding to the
+  --                   first geometry object, usually selected from
+  --                   SDO_GEOM_METADATA table.
+  --        geom2    - the second geometry object.
+  --        dim2     - the dimensional information array corresponding to the
+  --                   second geometry object, usually selected from
+  --                   SDO_GEOM_METADATA table.
+  --        tol      - tolerance value.
+  --        unit     - the unit for the returned distance
+  --
+  -- RETURNS
+  --        the maximal distance between the two given geometries.
+  --
+  function sdo_maxdistance(
+    geom1 IN mdsys.sdo_geometry,
+    dim1 IN mdsys.sdo_dim_array,
+    geom2 IN mdsys.sdo_geometry,
+    dim2 IN mdsys.sdo_dim_array,
+    unit IN varchar2 DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  function sdo_maxdistance(
+    geom1 IN mdsys.sdo_geometry,
+    geom2 IN mdsys.sdo_geometry,
+    tol IN NUMBER,
+    unit IN varchar2 DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- NAME:
+  --        sdo_diameter_line
+  --
+  -- DESCRIPTION
+  --        Compute the line that has the diameter of geometry
+  --
+  -- ARGUMENTS
+  --        geom     - the geometry object
+  --        dim      - the dimensional information array
+  --        tol      - tolerance value.
+  --
+  -- RETURNS
+  --        the line that has the diameter of geometry
+  --
+  function sdo_diameter_line(
+    geom IN mdsys.sdo_geometry,
+    dim IN mdsys.sdo_dim_array
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  function sdo_diameter_line(
+    geom IN mdsys.sdo_geometry,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- NAME:
+  --        sdo_diameter
+  --
+  -- DESCRIPTION
+  --        Compute the diameter of geometry
+  --
+  -- ARGUMENTS
+  --        geom     - the geometry object
+  --        dim      - the dimensional information array
+  --        tol      - tolerance value.
+  --        unit     - the unit for the returned distance
+  --
+  -- RETURNS
+  --        the diameter of geometry
+  --
+  function sdo_diameter(
+    geom IN mdsys.sdo_geometry,
+    dim IN mdsys.sdo_dim_array,
+    unit IN varchar2 DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  function sdo_diameter(
+    geom IN mdsys.sdo_geometry,
+    tol IN NUMBER,
+    unit IN varchar2 DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- NAME:
+  --        sdo_width_line
+  --
+  -- DESCRIPTION
+  --        Compute the line that has the width of geometry
+  --
+  -- ARGUMENTS
+  --        geom     - the geometry object
+  --        dim      - the dimensional information array
+  --        tol      - tolerance value.
+  --
+  -- RETURNS
+  --        the line that has the width of geometry
+  --
+  function sdo_width_line(
+    geom IN mdsys.sdo_geometry,
+    dim IN mdsys.sdo_dim_array
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  function sdo_width_line(
+    geom IN mdsys.sdo_geometry,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- NAME:
+  --        sdo_width
+  --
+  -- DESCRIPTION
+  --        Compute the width of geometry
+  --
+  -- ARGUMENTS
+  --        geom     - the geometry object
+  --        dim      - the dimensional information array
+  --        tol      - tolerance value.
+  --        unit     - the unit for the returned distance
+  --
+  -- RETURNS
+  --        the width of geometry
+  --
+  function sdo_width(
+    geom IN mdsys.sdo_geometry,
+    dim IN mdsys.sdo_dim_array,
+    unit IN varchar2 DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  function sdo_width(
+    geom IN mdsys.sdo_geometry,
+    tol IN NUMBER,
+    unit IN varchar2 DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- NAME:
+  --         sdo_mbc
+  --
+  -- DESCRIPTION
+  --         Compute the minimum bounding circle of geometry
+  --
+  -- ARGUMENTS
+  --        geom     - the geometry object
+  --        dim      - the dimensional information array
+  --        tol      - tolerance value
+  --        arc_tolerance  - mainly used for densify geodetic arc
+  --
+  -- RETURNS
+  --        the minimum bounding circle of geometry
+  --
+  function sdo_mbc(
+    geom IN mdsys.sdo_geometry,
+    dim IN mdsys.sdo_dim_array,
+    arc_tolerance IN NUMBER DEFAULT NULL
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  function sdo_mbc(
+    geom IN mdsys.sdo_geometry,
+    tol IN NUMBER,
+    arc_tolerance IN NUMBER DEFAULT NULL
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- NAME:
+  --         sdo_mbc_center
+  --
+  -- DESCRIPTION
+  --         Compute the center of the minimum bounding circle of geometry
+  --
+  -- ARGUMENTS
+  --        geom     - the geometry object
+  --        dim      - the dimensional information array
+  --        tol      - tolerance value
+  --
+  -- RETURNS
+  --        the center of the minimum bounding circle of geometry
+  --
+  function sdo_mbc_center(
+    geom IN mdsys.sdo_geometry,
+    dim IN mdsys.sdo_dim_array
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  function sdo_mbc_center(
+    geom IN mdsys.sdo_geometry,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- NAME:
+  --         sdo_mbc_radius
+  --
+  -- DESCRIPTION
+  --         Compute the radius of the minimum bounding circle of geometry
+  --
+  -- ARGUMENTS
+  --        geom     - the geometry object
+  --        dim      - the dimensional information array
+  --        tol      - tolerance value
+  --        unit     - the unit for the returned distance
+  --
+  -- RETURNS
+  --        the radius of the minimum bounding circle of geometry
+  --
+  function sdo_mbc_radius(
+    geom IN mdsys.sdo_geometry,
+    dim IN mdsys.sdo_dim_array,
+    unit IN varchar2 DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  function sdo_mbc_radius(
+    geom IN mdsys.sdo_geometry,
+    tol IN NUMBER,
+    unit IN varchar2 DEFAULT NULL
+  ) return NUMBER DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- NAME:
+  --
+  --      sdo_closest_points
+  -- DESCRIPTION
+  --      computes the minimum inter-geometry distance and the
+  --      coordinates of closest point pair
+  --
+  -- ARGUMENTS
+  --        geom1 - the first geometry
+  --        geom2 - the second geometry
+  --        tolerance - tolerance which is a number
+  --        unit  - depends on the coordinate system
+  -- RETURNS
+  --       -9999 - if any portion of either geometry has arc(s);
+  --       dist  - the distance - otherwise
+  --       geoma - the coordinates of first point of closest approach as a geometry object
+  --       geomb - the coordinates of second point of closest approach as a geometry object
+  --
+  -- Note that: dim1 and dim2 - dimensions of geom1 and geom2 respectively are computed internally.
+  procedure sdo_closest_points(
+    geom1 IN mdsys.sdo_geometry,
+    geom2 IN mdsys.sdo_geometry,
+    tolerance IN NUMBER,
+    unit IN VARCHAR2,
+    dist OUT NUMBER,
+    geoma OUT mdsys.sdo_geometry,
+    geomb OUT mdsys.sdo_geometry
+  );
+  --pragma restrict_references(sdo_closest_points, WNDS, WNPS, RNPS);
+  --
+  -- NAME:
+  --
+  --      sdo_convexhull
+  -- DESCRIPTION
+  --      calculates the convex hull of the given geometry.
+  --
+  --      If the geometry is of point type, or has less than three
+  --      points in total this function will return null.
+  --
+  -- ARGUMENTS
+  --        geom1    - the geometry object
+  --        dim1     - the dimensional information array corresponding to the
+  --                   geometry object, usually selected from
+  --                   SDO_GEOM_METADATA table.
+  --        tol      - tolerance value.
+  -- RETURNS
+  --      A geometry object representing the result of polygon operation.
+  --
+  function sdo_convexhull(
+    geom1 IN mdsys.sdo_geometry,
+    dim1 IN mdsys.sdo_dim_array
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_convexhull, WNDS, WNPS, RNPS);
+  function sdo_convexhull(
+    geom1 IN mdsys.sdo_geometry,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_convexhull, WNDS, WNPS, RNPS);
+  function sdo_triangulate(
+    geom IN mdsys.sdo_geometry,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_triangulate, WNDS, WNPS, RNPS);
+  -- computes the concavehull of the geometry, assuming
+  -- that points are likely on the boundary,
+  -- length: to stop, when the longest edge in the concave hull
+  -- is shorter than it.
+  function sdo_concavehull_boundary(
+    geom IN mdsys.sdo_geometry,
+    tol IN NUMBER,
+    length IN NUMBER DEFAULT NULL
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_concavehull_boundary, WNDS, WNPS, RNPS);
+  -- computes the concavehull of the geometry, assuming
+  -- that points are not only on the boundary, but also inside.
+  -- radius: output, the radius of stopping circle
+  function sdo_concavehull(
+    geom IN mdsys.sdo_geometry,
+    tol IN NUMBER,
+    radius OUT NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_concavehull, WNDS, WNPS, RNPS);
+  -- computes the concavehull of the geometry, assuming
+  -- that points are not only on the boundary, but also inside
+  function sdo_concavehull(
+    geom IN mdsys.sdo_geometry,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_concavehull, WNDS, WNPS, RNPS);
+  -- computes the alpha shape of the geometry
+  -- radius: alpha value = 1/radius
+  -- flag: 0 -> include points and edges,
+  --       1 -> doesn't include points and edges
+  function sdo_alpha_shape(
+    geom IN mdsys.sdo_geometry,
+    tol IN NUMBER,
+    radius IN NUMBER DEFAULT NULL,
+    flag IN BINARY_INTEGER DEFAULT 0
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- NAME:
+  --
+  --      sdo_centroid
+  -- DESCRIPTION
+  --      calculates the centroid of the given geometry.
+  --
+  --      The geometry must be of Polygon type; otherwise
+  --      this function will return null (even for
+  --      multi-polygon).
+  --
+  -- ARGUMENTS
+  --        geom1    - the polygon-typed geometry object
+  --        dim1     - the dimensional information array corresponding to the
+  --                   geometry object, usually selected from
+  --                   USER_SDO_GEOM_METADATA table.
+  --        tol      - tolerance value.
+  -- RETURNS
+  --      A point geometry object representing the centroid.
+  --
+  function sdo_centroid(
+    geom1 IN mdsys.sdo_geometry,
+    dim1 IN mdsys.sdo_dim_array
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- pragma restrict_references(sdo_centroid, WNDS, WNPS, RNPS);
+  function sdo_centroid(
+    geom1 IN mdsys.sdo_geometry,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --pragma restrict_references(sdo_centroid, WNDS, WNPS, RNPS);
+  --
+  -- NAME:
+  --
+  -- SDO_MBR
+  -- DESCRIPTION
+  -- Returns the MBR of the geometry object. The result will be
+  -- of type x003 with (1003,3,3) element. That is a rectangle
+  -- object in 2 dimensions.
+  --
+  function sdo_mbr(
+    geom IN mdsys.sdo_geometry,
+    dim IN mdsys.sdo_dim_array
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --pragma restrict_references(sdo_mbr, WNDS, WNPS, RNPS);
+  function sdo_mbr(geom IN mdsys.sdo_geometry) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --pragma restrict_references(sdo_mbr, WNDS, WNPS, RNPS);
+  function sdo_g3dconv(
+    geom IN mdsys.sdo_geometry,
+    dim IN mdsys.sdo_dim_array
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --pragma restrict_references(sdo_g3dconv, WNDS, WNPS, RNPS);
+  function sdo_g3dconv(geom IN mdsys.sdo_geometry) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --pragma restrict_references(sdo_g3dconv, WNDS, WNPS, RNPS);
+  function sdo_max_mbr_ordinate(
+    geom IN mdsys.sdo_geometry,
+    dim IN mdsys.sdo_dim_array,
+    ordinate_pos IN NUMBER
+  ) return NUMBER PARALLEL_ENABLE;
+  pragma restrict_references(sdo_max_mbr_ordinate, WNDS, WNPS, RNPS);
+  function sdo_max_mbr_ordinate(
+    geom IN mdsys.sdo_geometry,
+    ordinate_pos IN NUMBER
+  ) return NUMBER PARALLEL_ENABLE;
+  pragma restrict_references(sdo_max_mbr_ordinate, WNDS, WNPS, RNPS);
+  function sdo_min_mbr_ordinate(
+    geom IN mdsys.sdo_geometry,
+    dim IN mdsys.sdo_dim_array,
+    ordinate_pos IN NUMBER
+  ) return NUMBER PARALLEL_ENABLE;
+  pragma restrict_references(sdo_min_mbr_ordinate, WNDS, WNPS, RNPS);
+  function sdo_min_mbr_ordinate(
+    geom IN mdsys.sdo_geometry,
+    ordinate_pos IN NUMBER
+  ) return NUMBER PARALLEL_ENABLE;
+  pragma restrict_references(sdo_min_mbr_ordinate, WNDS, WNPS, RNPS);
+  --
+  -- NAME:
+  --
+  --      sdo_pointonsurface
+  -- DESCRIPTION
+  --      Returns a point that is guaranteed to be on the surface of
+  --      the given geometry (polygon type).
+  --
+  --      Currently supports only geometries of Polygon type.
+  --
+  -- ARGUMENTS
+  --        geom1    - the polygon geometry object
+  --        dim1     - the dimensional information array corresponding to the
+  --                   geometry object, usually selected from
+  --                   USER_SDO_GEOM_METADATA table.
+  --        tol      - tolerance value.
+  -- RETURNS
+  --      A point geometry object representing the point
+  --
+  function sdo_pointonsurface(
+    geom1 IN mdsys.sdo_geometry,
+    dim1 IN mdsys.sdo_dim_array
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_pointonsurface, WNDS, WNPS, RNPS);
+  function sdo_pointonsurface(
+    geom1 IN mdsys.sdo_geometry,
+    tol IN NUMBER
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_pointonsurface, WNDS, WNPS, RNPS);
+  --
+  -- NAME:
+  --      validate_geometry - validate a geometry object
+  --      validate_layer    - validate all geometry objects in a column
+  -- DESCRIPTION
+  --      Validate geometry based on OGIS rules. Only check known SDO
+  --      data types. Elements of unknown type are considered valid.
+  --
+  --      If a geometry contains multiple polygon rings, validate_geometry
+  --      andvalidate_layer only check each ring against itself. No ring-ring
+  --      relationship is examined at this time.
+  --
+  -- ARGUMENTS
+  --      theGeometry     - the geometry object to be validated
+  --      theDimInfo      - the dimension information corresponding to this
+  --                        geometry object, usually selected from
+  --                        SDO_GEOM_METADATA table.
+  --      tolerance       - tolerance value.
+  --      geom_table      - geometry object table name
+  --      geom_column     - geometry object column name
+  --      pkey_column     - primary key column name
+  --      result_table    - result table name
+  --
+  -- RETURNS
+  --      'TRUE' if theGeometry is valid. Otherwise it returns Oracle
+  --      standard error code for known error or 'FALSE' for unknown error.
+  --      validate_layer procedure populates the given result_table with
+  --      validation results.
+  --
+  function validate_geometry(
+    theGeometry IN MDSYS.SDO_GEOMETRY,
+    theDimInfo IN MDSYS.SDO_DIM_ARRAY
+  ) return VARCHAR2 DETERMINISTIC PARALLEL_ENABLE;
+  --pragma restrict_references(validate_geometry, WNDS, WNPS, RNPS);
+  function validate_geometry(
+    theGeometry IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER
+  ) return VARCHAR2 DETERMINISTIC PARALLEL_ENABLE;
+  --pragma restrict_references(validate_geometry, WNDS, WNPS, RNPS);
+  function validate_geometry_with_srid(
+    theGeometry IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER,
+    conditional IN VARCHAR2: = 'TRUE',
+    flag10g IN VARCHAR2: = 'FALSE',
+    expected_srid IN NUMBER: = -1
+  ) return VARCHAR2 DETERMINISTIC PARALLEL_ENABLE;
+  --pragma restrict_references(validate_geometry_with_srid, WNDS, WNPS, RNPS);
+  function validate_geometry_with_srid(
+    theGeometry IN MDSYS.SDO_GEOMETRY,
+    theDimInfo IN MDSYS.SDO_DIM_ARRAY,
+    conditional IN VARCHAR2: = 'TRUE',
+    flag10g IN VARCHAR2: = 'FALSE',
+    expected_srid IN NUMBER: = -1
+  ) return VARCHAR2 DETERMINISTIC PARALLEL_ENABLE;
+  --pragma restrict_references(validate_geometry_with_srid, WNDS, WNPS, RNPS);
+  function validate_geometry_with_context(
+    theGeometry IN MDSYS.SDO_GEOMETRY,
+    theDimInfo IN MDSYS.SDO_DIM_ARRAY,
+    conditional IN VARCHAR2: = 'TRUE',
+    flag10g IN VARCHAR2: = 'FALSE'
+  ) return VARCHAR2 DETERMINISTIC PARALLEL_ENABLE;
+  --pragma restrict_references(validate_geometry_with_context, WNDS, WNPS, RNPS);
+  function validate_geometry_with_context(
+    theGeometry IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER,
+    conditional IN VARCHAR2: = 'TRUE',
+    flag10g IN VARCHAR2: = 'FALSE'
+  ) return VARCHAR2 PARALLEL_ENABLE;
+  --pragma restrict_references(validate_geometry_with_context, WNDS, WNPS, RNPS);
+  procedure validate_layer(
+    geom_table IN VARCHAR2,
+    geom_column IN VARCHAR2,
+    pkey_column IN VARCHAR2,
+    result_table IN VARCHAR2,
+    commit_interval IN NUMBER: = -1
+  );
+  procedure validate_layer_with_context(
+    geom_table IN VARCHAR2,
+    geom_column IN VARCHAR2,
+    result_table IN VARCHAR2,
+    commit_interval IN NUMBER: = -1,
+    conditional IN VARCHAR2: = 'TRUE',
+    flag10g IN VARCHAR2: = 'FALSE',
+    geom_schema IN VARCHAR2 DEFAULT NULL
+  ) PARALLEL_ENABLE;
+  procedure vallayer_with_context_lrs(
+    geom_table IN VARCHAR2,
+    geom_column IN VARCHAR2,
+    pkey_rowid_column IN VARCHAR2,
+    result_table IN VARCHAR2,
+    commit_interval IN NUMBER: = -1
+  );
+  --
+  -- NAME:
+  --
+  --      sdo_arc_densify
+  -- DESCRIPTION
+  --      If the geometry contains arcs, this function will densify/segment
+  --      all acrs in the geometry.
+  --
+  -- ARGUMENTS
+  --        geom    - the geometry object
+  --        dim     - the dimensional information array corresponding to the
+  --                   geometry object, usually selected from
+  --                   SDO_GEOM_METADATA table.
+  --        tol      - tolerance value.
+  -- RETURNS
+  --      A geometry object representing the result of polygon operation.
+  --
+  function sdo_arc_densify(
+    geom IN mdsys.sdo_geometry,
+    dim IN mdsys.sdo_dim_array,
+    params IN VARCHAR2
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_arc_densify, WNDS, WNPS, RNPS);
+  function sdo_arc_densify(
+    geom IN mdsys.sdo_geometry,
+    tol IN NUMBER,
+    params IN VARCHAR2
+  ) return MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_arc_densify, WNDS, WNPS, RNPS);
+  function get_dim_array(geom IN MDSYS.SDO_GEOMETRY, tol IN NUMBER) return MDSYS.SDO_DIM_ARRAY DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(get_dim_array, WNDS, WNPS, RNPS);
+  --
+  -- NAME:
+  --
+  --      sdo_is_nurbscurve
+  -- DESCRIPTION
+  --      This function detects if the geometry contains NURBS curves.
+  --      Used to return unsupported operation error for functions
+  --      which cannot operate on NURBS curves.
+  --
+  -- ARGUMENTS
+  --      geom    - the geometry object
+  -- RETURNS
+  --      TRUE if NURBS curve is present in the geometry, FALSE otherwise.
+  --
+  function sdo_is_nurbscurve(geom IN MDSYS.SDO_GEOMETRY) return VARCHAR2 DETERMINISTIC PARALLEL_ENABLE;
+  pragma restrict_references(sdo_is_nurbscurve, WNDS, WNPS, RNPS);
+  FUNCTION sdo_insert_log_filter(
+    ind_schema IN VARCHAR2,
+    ind_name IN VARCHAR2,
+    indpart_name IN VARCHAR2,
+    min_x IN NUMBER,
+    max_x IN NUMBER,
+    min_y IN NUMBER,
+    max_y IN NUMBER,
+    min_z IN NUMBER,
+    max_z IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  PROCEDURE g3d_parameters(
+    srid IN NUMBER,
+    sm_mjr_axis OUT NUMBER,
+    inv_fltn OUT NUMBER,
+    g3d_geog_crs_uom_factor OUT NUMBER
+  );
+  end SDO_GEOM;

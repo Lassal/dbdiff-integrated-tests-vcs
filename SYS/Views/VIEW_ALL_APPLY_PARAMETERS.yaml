@@ -1,0 +1,17 @@
+schema: SYS
+name: ALL_APPLY_PARAMETERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    pa.apply_name,
+    pa.parameter,
+    pa.value,
+    pa.set_by_user
+  from
+    dba_apply_parameters pa,
+    all_apply aa
+  where
+    pa.apply_name = aa.apply_name
+columns: []
+referencedTables: []

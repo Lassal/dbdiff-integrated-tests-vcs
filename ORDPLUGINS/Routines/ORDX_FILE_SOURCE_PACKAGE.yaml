@@ -1,0 +1,321 @@
+schema: ORDPLUGINS
+name: ORDX_FILE_SOURCE
+routineType: PACKAGE
+returnParamater:
+  name: TRIM.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: OUT
+parameters:
+- name: CLOSE.OBJ
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: CLOSE.CTX
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: EXPORT.OBJ
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: EXPORT.CTX
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: EXPORT.SLOB
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: EXPORT.LOC
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT.NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETCONTENTLENGTH.OBJ
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GETCONTENTLENGTH.CTX
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: GETSOURCEADDRESS.OBJ
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GETSOURCEADDRESS.CTX
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: GETSOURCEADDRESS.USERDATA
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT(1).OBJ
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: IMPORT(1).CTX
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: IMPORT(1).MIMETYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: IMPORT(1).FORMAT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: IMPORT(2).OBJ
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: IMPORT(2).CTX
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: IMPORT(2).DLOB
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: IMPORT(2).MIMETYPE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: IMPORT(2).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: IMPORTFROM(1).OBJ
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: IMPORTFROM(1).CTX
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: IMPORTFROM(1).MIMETYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: IMPORTFROM(1).FORMAT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: IMPORTFROM(1).LOC
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORTFROM(1).NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORTFROM(2).OBJ
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: IMPORTFROM(2).CTX
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: IMPORTFROM(2).DLOB
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: IMPORTFROM(2).MIMETYPE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: IMPORTFROM(2).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: IMPORTFROM(2).LOC
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORTFROM(2).NAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPEN.OBJ
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: OPEN.USERARG
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: OPEN.CTX
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: PROCESSCOMMAND.OBJ
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: PROCESSCOMMAND.CTX
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: PROCESSCOMMAND.CMD
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOMMAND.ARGLIST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOMMAND.RESULT
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: OUT
+- name: READ.OBJ
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: READ.CTX
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: READ.STARTPOS
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: READ.NUMBYTES
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: INOUT
+- name: READ.BUFFER
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: OUT
+- name: TRIM.OBJ
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: TRIM.CTX
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: TRIM.NEWLEN
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: WRITE.OBJ
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: WRITE.CTX
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: INOUT
+- name: WRITE.STARTPOS
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: WRITE.NUMBYTES
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: INOUT
+- name: WRITE.BUFFER
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE ORDX_FILE_SOURCE authid current_user AS -- functions/procedures
+  FUNCTION processCommand(
+    obj IN OUT NOCOPY ORDSYS.ORDSource,
+    ctx IN OUT RAW,
+    cmd IN VARCHAR2,
+    arglist IN VARCHAR2,
+    result OUT RAW
+  ) RETURN RAW;
+  PROCEDURE import(
+    obj IN OUT NOCOPY ORDSYS.ORDSource,
+    ctx IN OUT RAW,
+    mimetype OUT VARCHAR2,
+    format OUT VARCHAR2
+  );
+  PROCEDURE import(
+    obj IN OUT NOCOPY ORDSYS.ORDSource,
+    ctx IN OUT RAW,
+    dlob IN OUT NOCOPY BLOB,
+    mimetype OUT VARCHAR2,
+    format OUT VARCHAR2
+  );
+  PROCEDURE importFrom(
+    obj IN OUT NOCOPY ORDSYS.ORDSource,
+    ctx IN OUT RAW,
+    mimetype OUT VARCHAR2,
+    format OUT VARCHAR2,
+    loc IN VARCHAR2,
+    name IN VARCHAR2
+  );
+  PROCEDURE importFrom(
+    obj IN OUT NOCOPY ORDSYS.ORDSource,
+    ctx IN OUT RAW,
+    dlob IN OUT NOCOPY BLOB,
+    mimetype OUT VARCHAR2,
+    format OUT VARCHAR2,
+    loc IN VARCHAR2,
+    name IN VARCHAR2
+  );
+  PROCEDURE export(
+    obj IN OUT NOCOPY ORDSYS.ORDSource,
+    ctx IN OUT RAW,
+    slob IN OUT NOCOPY BLOB,
+    loc IN VARCHAR2,
+    name IN VARCHAR2
+  );
+  FUNCTION getContentLength(
+    obj IN ORDSYS.ORDSource,
+    ctx IN OUT RAW
+  ) RETURN INTEGER;
+  PRAGMA RESTRICT_REFERENCES(getContentLength, WNDS, WNPS, RNDS, RNPS);
+  FUNCTION getSourceAddress(
+    obj IN ORDSYS.ORDSource,
+    ctx IN OUT RAW,
+    userData IN VARCHAR2
+  ) RETURN VARCHAR2;
+  PRAGMA RESTRICT_REFERENCES(getSourceAddress, WNDS, WNPS, RNDS, RNPS);
+  FUNCTION open(
+    obj IN OUT NOCOPY ORDSYS.ORDSource,
+    userArg IN RAW,
+    ctx OUT RAW
+  ) RETURN INTEGER;
+  FUNCTION close(
+    obj IN OUT NOCOPY ORDSYS.ORDSource,
+    ctx IN OUT RAW
+  ) RETURN INTEGER;
+  FUNCTION trim(
+    obj IN OUT NOCOPY ORDSYS.ORDSource,
+    ctx IN OUT RAW,
+    newlen IN INTEGER
+  ) RETURN INTEGER;
+  PROCEDURE read(
+    obj IN OUT NOCOPY ORDSYS.ORDSource,
+    ctx IN OUT RAW,
+    startPos IN INTEGER,
+    numBytes IN OUT INTEGER,
+    buffer OUT RAW
+  );
+  PROCEDURE write(
+    obj IN OUT NOCOPY ORDSYS.ORDSource,
+    ctx IN OUT RAW,
+    startPos IN INTEGER,
+    numBytes IN OUT INTEGER,
+    buffer IN RAW
+  );
+  END ORDX_FILE_SOURCE;

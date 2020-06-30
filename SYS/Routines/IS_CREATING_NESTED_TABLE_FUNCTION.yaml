@@ -1,0 +1,14 @@
+schema: SYS
+name: IS_CREATING_NESTED_TABLE
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  function is_creating_nested_table return boolean is
+  begin
+    return dbms_standard.is_creating_nested_table;
+  end;

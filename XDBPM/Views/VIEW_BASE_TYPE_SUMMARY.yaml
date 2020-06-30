@@ -1,0 +1,40 @@
+schema: XDBPM
+name: BASE_TYPE_SUMMARY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ata.TYPE_NAME,
+    ata.OWNER,
+    ata.ATTR_NAME,
+    ata.ATTR_TYPE_NAME,
+    ata.ATTR_TYPE_OWNER,
+    case
+      when ts.OWNER = 'XDB'
+      and (
+        ts.TYPE_NAME = 'XDB$RAW_LIST_T'
+        or ts.TYPE_NAME = 'XDB$ENUM_T'
+      ) then ts.COLUMN_COUNT
+      else case
+        when exists (
+          select
+            1
+          from
+            XDBPM.XDBPM_ALL_TYPES at
+          where
+            at .TYPE_NAME = ts.TYPE_NAME
+            and at .OWNER = ts.OWNER
+            and at .FINAL = 'YES'
+            and at .TYPECODE = 'OBJECT'
+        ) then ts.COLUMN_COUNT + 2
+        else ts.COLUMN_COUNT
+      end
+    end COLUMN_COUNT
+  from
+    XDBPM.XDBPM_ALL_TYPE_ATTRS ata,
+    TYPE_SUMMARY ts
+  where
+    ata.ATTR_TYPE_NAME = ts.TYPE_NAME
+    and nvl(ata.ATTR_TYPE_OWNER, 'SYS') = nvl(ts.OWNER, 'SYS')
+columns: []
+referencedTables: []

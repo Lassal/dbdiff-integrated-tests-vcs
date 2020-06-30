@@ -1,0 +1,33 @@
+schema: SYS
+name: USER_SCHEDULER_CHAIN_RULES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    co.name,
+    ru.name,
+    ro.name,
+    dbms_scheduler.get_chain_rule_condition(r.r_action, r.condition),
+    dbms_scheduler.get_chain_rule_action(r.r_action),
+    r.r_comment
+  FROM
+    rule_map$ rm,
+    obj$ rso,
+    user $ rsu,
+    obj$ ro,
+    user $ ru,
+    rule$ r,
+    obj$ co,
+    sys.scheduler$_chain c
+  WHERE
+    c .obj# = co.obj#
+    AND co.owner# = USERENV('SCHEMAID')
+    AND c .rule_set_owner = rsu.name(+)
+    AND rsu.user# = rso.owner#
+    AND c .rule_set = rso.name
+    AND rso.obj# = rm.rs_obj#(+)
+    AND rm.r_obj# = r.obj#(+)
+    AND rm.r_obj# = ro.obj#(+)
+    AND ro.owner# = ru.user#
+columns: []
+referencedTables: []

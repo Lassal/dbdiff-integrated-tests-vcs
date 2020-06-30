@@ -1,0 +1,556 @@
+schema: SYS
+name: DBMS_SQL_TRANSLATOR
+routineType: PACKAGE
+returnParamater:
+  name: SQL_ID.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: CREATE_PROFILE.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PROFILE.EDITIONABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DEREGISTER_ERROR_TRANSLATION.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEREGISTER_ERROR_TRANSLATION.ERROR_CODE
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DEREGISTER_SQL_TRANSLATION.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEREGISTER_SQL_TRANSLATION.SQL_TEXT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: DROP_PROFILE.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_ERROR_TRANSLATION.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_ERROR_TRANSLATION.ERROR_CODE
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENABLE_ERROR_TRANSLATION.ENABLE
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ENABLE_SQL_TRANSLATION.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_SQL_TRANSLATION.SQL_TEXT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: ENABLE_SQL_TRANSLATION.ENABLE
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EXPORT_PROFILE.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT_PROFILE.CONTENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: OUT
+- name: IMPORT_PROFILE.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_PROFILE.CONTENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: REGISTER_ERROR_TRANSLATION.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_ERROR_TRANSLATION.ERROR_CODE
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_ERROR_TRANSLATION.TRANSLATED_CODE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_ERROR_TRANSLATION.TRANSLATED_SQLSTATE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_ERROR_TRANSLATION.ENABLE
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTER_SQL_TRANSLATION.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_SQL_TRANSLATION.SQL_TEXT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: REGISTER_SQL_TRANSLATION.TRANSLATED_TEXT
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: REGISTER_SQL_TRANSLATION.ENABLE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_ATTRIBUTE.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_ATTRIBUTE.ATTRIBUTE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_ATTRIBUTE.ATTRIBUTE_VALUE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_ERROR_TRANSLATION_COMMENT.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_ERROR_TRANSLATION_COMMENT.ERROR_CODE
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_ERROR_TRANSLATION_COMMENT.COMMENT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_SQL_TRANSLATION_COMMENT.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_SQL_TRANSLATION_COMMENT.SQL_TEXT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: SET_SQL_TRANSLATION_COMMENT.COMMENT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_SQL_TRANSLATION_MODULE.PROFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_SQL_TRANSLATION_MODULE.SQL_TEXT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: SET_SQL_TRANSLATION_MODULE.MODULE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_SQL_TRANSLATION_MODULE.ACTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SQL_HASH.SQL_TEXT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: SQL_ID.SQL_TEXT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: TRANSLATE_ERROR.ERROR_CODE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: TRANSLATE_ERROR.TRANSLATED_CODE
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: TRANSLATE_ERROR.TRANSLATED_SQLSTATE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: TRANSLATE_SQL.SQL_TEXT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: TRANSLATE_SQL.TRANSLATED_TEXT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: OUT
+routineDefinition: "package dbms_sql_translator authid current_user as\n/*\n\n   \
+  \ Package: DBMS_SQL_TRANSLATOR\n\n\n\n    DBMS_SQL_TRANSLATOR is the PL/SQL package\
+  \ for creating, configuring and\n\n    using SQL translation profiles.\n\n\n\n \
+  \   Notes:\n\n\n\n    DBMSL_SQL_TRANSLATOR is a invoker-rights package. The subprograms\
+  \ in\n\n    DBMS_SQL_TRANSLATOR that modify a profile carry DDL transaction semantics\n\
+  \n    and when invoked will commit any open transaction in the session.\n\n   */\n\
+  /*----------------------------------------------------------------------\n\n   \
+  \ Constant: ATTR_TRANSLATOR\n\n\n\n    The name of the SQL translation profile attribute\
+  \ that specifies the\n\n    translator package. The translator package must be a\
+  \ PL/SQL package with\n\n    the following two procedures that translate SQL statements\
+  \ and errors. The\n\n    names of the parameters of the translate procedures are\
+  \ significant.\n\n\n\n    | PROCEDURE translate_sql(sql_text        IN  CLOB,\n\n\
+  \    |                         translated_text OUT CLOB);\n\n    |\n\n    | PROCEDURE\
+  \ translate_error(error_code          IN  BINARY_INTEGER,\n\n    |             \
+  \              translated_code     OUT BINARY_INTEGER,\n\n    |                \
+  \           translated_sqlstate OUT VARCHAR2);\n\n    |\n\n    | Parameters:\n\n\
+  \    |   sql_text            - SQL statement to be translated\n\n    |   translated_text\
+  \     - translated SQL statement\n\n    |\n\n    |   error_code          - Oracle\
+  \ error code\n\n    |   translated_code     - translated error code\n\n    |   translated_sqlstate\
+  \ - translated SQLSTATE\n\n\n\n    When translating a SQL statement or error, the\
+  \ translator package procedure\n\n    will be invoked with the same current user\
+  \ and current schema as those in\n\n    which the SQL statement is being parsed.\
+  \ The owner of the translator\n\n    package must be granted the *TRANSLATE SQL*\
+  \ user privilege on the current\n\n    user. And the current user must be granted\
+  \ the *EXECUTE* privilege on the\n\n    translator package also.\n\n\n\n    When\
+  \ NULL is returned in translated_text, translated_code or\n\n    translated_sqlstate,\
+  \ it assumes that no translation is required and the\n\n    original SQL statement,\
+  \ error code or SQLSTATE is used instead.\n\n\n\n    The name of the translator\
+  \ package follows the naming rules for database\n\n    packages of the form [schema.]package_name.\
+  \ When the schema and package\n\n    names are used, they are uppercased by default\
+  \ unless surrounded by\n\n    double quotes. For example, when setting a translator\
+  \ package,\n\n    translator => 'dbms_tsql_translator' is the same as translator\
+  \ =>\n\n    'Dbms_Tsql_Translator' and translator => 'DBMS_TSQL_TRANSLATOR', but\
+  \ not\n\n    the same as translator => '\"dbms_tsql_translator\"'. If the schema\
+  \ name\n\n    is omitted, the profile owner will be assumed.\n\n\n\n    The translator\
+  \ attribute is not set by default.\n\n\n\n    ----------------------------------------------------------------------\n\
+  \n    Constant: ATTR_FOREIGN_SQL_SYNTAX\n\n\n\n    The name of the SQL translation\
+  \ profile attribute that indicates if the\n\n    profile is for translation of foreign\
+  \ SQL syntax. If it is not, only SQL\n\n    statements marked in Oracle-native syntax\
+  \ will be translated by the\n\n    profile.\n\n\n\n    Foreign SQL syntax is true\
+  \ by default.\n\n\n\n    ----------------------------------------------------------------------\n\
+  \n    Constant: ATTR_TRANSLATE_NEW_SQL\n\n\n\n    The name of the SQL translation\
+  \ profile attribute that controls if the\n\n    profile should translate new SQL\
+  \ statements and errors. If so, the\n\n    translator package, if registered, will\
+  \ translate a new SQL statement or\n\n    error not already translated in custom\
+  \ translations, and also register\n\n    the new translation as custom translation.\
+  \ If not, any new SQL statement\n\n    or error encountered will result in a translation\
+  \ error.\n\n\n\n    Translate new SQL statements and errors is true by default.\n\
+  \n\n\n    ----------------------------------------------------------------------\n\
+  \n    Constant: ATTR_RAISE_TRANSLATION_ERROR\n\n\n\n    The name of the SQL translation\
+  \ profile attribute that controls if the\n\n    profile should raise translation\
+  \ error if a SQL statement or error fails\n\n    to be translated. If not, the profile\
+  \ will attempt to execute or return\n\n    the original SQL statement or error.\n\
+  \n\n\n    Raise translation error is false by default.\n\n\n\n    ----------------------------------------------------------------------\n\
+  \n    Constant: ATTR_LOG_TRANSLATION_ERROR\n\n\n\n    The name of the SQL translation\
+  \ profile attribute that controls if the\n\n    profile should log translation error\
+  \ in the database alert log.\n\n\n\n    Log translation error is false by default.\n\
+  \n\n\n    ----------------------------------------------------------------------\n\
+  \n    Constant: ATTR_TRACE_TRANSLATION\n\n\n\n    The name of the SQL translation\
+  \ profile attribute that controls tracing.\n\n    If trace translation is true in\
+  \ a SQL translation profile, any SQL\n\n    statement or error translated by the\
+  \ profile in a database session and\n\n    its translation will be written to the\
+  \ database session's trace file.\n\n\n\n    Trace translation is false by default.\n\
+  \n\n\n    ----------------------------------------------------------------------\n\
+  \n    Constant: ATTR_EDITIONABLE\n\n\n\n    The name of the SQL translation profile\
+  \ attribute that specifies whether\n\n    the SQL translation profile becomes an\
+  \ editioned or noneditioned object if\n\n    editioning is later enabled for the\
+  \ schema object type SQL translation\n\n    profile in the owner's schema.\n\n\n\
+  \n    Editionable is true by default.\n\n  */\nATTR_TRANSLATOR constant varchar2(30):\
+  \ = 'TRANSLATOR';\nATTR_FOREIGN_SQL_SYNTAX constant varchar2(30): = 'FOREIGN_SQL_SYNTAX';\n\
+  ATTR_TRANSLATE_NEW_SQL constant varchar2(30): = 'TRANSLATE_NEW_SQL';\nATTR_RAISE_TRANSLATION_ERROR\
+  \ constant varchar2(30): = 'RAISE_TRANSLATION_ERROR';\nATTR_LOG_TRANSLATION_ERROR\
+  \ constant varchar2(30): = 'LOG_TRANSLATION_ERROR';\nATTR_TRACE_TRANSLATION constant\
+  \ varchar2(30): = 'TRACE_TRANSLATION';\nATTR_EDITIONABLE constant varchar2(30):\
+  \ = 'EDITIONABLE';\n/*----------------------------------------------------------------------\n\
+  \n    Constant: ATTR_VALUE_TRUE\n\n\n\n    The value to set a SQL translation profile\
+  \ attribute to true.\n\n\n\n    --------------------------\n\n    Constant: ATTR_VALUE_FALSE\n\
+  \n\n\n    The value to set a SQL translation profile attribute to false.\n\n\n\n\
+  \  */\nATTR_VALUE_TRUE constant varchar2(30): = 'TRUE';\nATTR_VALUE_FALSE constant\
+  \ varchar2(30): = 'FALSE';\n/*----------------------------------------------------------------------\n\
+  \n    Exception: bad_argument\n\n\n\n      A bad argument was passed to the PL/SQL\
+  \ API.\n\n\n\n    ---------------------------------\n\n    Exception: insufficient_privilege\n\
+  \n\n\n      The user has insufficient privilege for the operation.\n\n\n\n    ---------------------------------\n\
+  \n    Exception: no_such_user\n\n\n\n      The profile owner does not exist.\n\n\
+  \n\n    ---------------------------------\n\n    Exception: no_such_profile\n\n\n\
+  \n      The profile does not exist.\n\n\n\n    ---------------------------------\n\
+  \n    Exception: profile_exists\n\n\n\n      The profile exists already.\n\n\n\n\
+  \    ---------------------------------\n\n    Exception: no_translation_found\n\n\
+  \n\n      No translation of the SQL statement or error code was found.\n\n  */\n\
+  bad_argument\nexception;\ninsufficient_privilege\nexception;\nno_such_user\nexception;\n\
+  no_such_profile\nexception;\nprofile_exists\nexception;\nno_translation_found\n\
+  exception;\npragma exception_init(bad_argument, -29261);\npragma exception_init(insufficient_privilege,\
+  \ -1031);\npragma exception_init(no_such_user, -1435);\npragma exception_init(no_such_profile,\
+  \ -24252);\npragma exception_init(profile_exists, -955);\npragma exception_init(no_translation_found,\
+  \ -24253);\n  /*----------------------------------------------------------------------\n\
+  \  \n      Procedure: create_profile\n  \n  \n  \n        Creates a SQL translation\
+  \ profile.\n  \n  \n  \n      Parameters:\n  \n        profile_name    - profile\
+  \ name\n  \n        editionable     - is the profile editionable?\n  \n  \n  \n\
+  \      Exceptions:\n  \n      - <bad_argument>\n  \n      - <insufficient_privilege>\n\
+  \  \n      - <no_such_user>\n  \n      - <profile_exists>\n  \n  \n  \n      Notes:\n\
+  \  \n      - A SQL translation profile is a database schema object that resides\
+  \ in\n  \n        SQL translation profile namespace. Its name follows the naming\
+  \ rules for\n  \n        database objects of the form [schema.]name. When the schema\
+  \ and profile\n  \n        names are used in the DBMS_SQL_TRANSLATOR package, they\
+  \ are uppercased\n  \n        unless surrounded by double quotes. For example, the\
+  \ translation profile\n  \n        profile_name => 'tsql_application' is the same\
+  \ as profile_name =>\n  \n        'Tsql_Application' and profile_name => 'TSQL_APPLICATION',\
+  \ but not the\n  \n        same as profile_name => '\"tsql_application\"'.\n  \n\
+  \  \n  \n      - SQL translation profile is an editionable object type.\n  \n  \n\
+  \  \n      - A SQL translation profile cannot be created as a common object in a\n\
+  \  \n        consolidated database.\n  \n  \n  \n      - To destroy a SQL translation\
+  \ profile, use <drop_profile>.\n  \n  \n  \n      Examples:\n  \n      | begin\n\
+  \  \n      |   dbms_sql_translator.create_profile(profile_name => 'tsql_application');\n\
+  \  \n      | end;\n  \n    */\n  procedure create_profile(\n    profile_name in\
+  \ varchar2,\n    editionable in boolean default true\n  );\nPRAGMA SUPPLEMENTAL_LOG_DATA(create_profile,\
+  \ AUTO_WITH_COMMIT);\n  /*----------------------------------------------------------------------\n\
+  \  \n      Procedure: register_sql_translation\n  \n  \n  \n        Registers a\
+  \ custom translation of a SQL statement in a SQL translation\n  \n        profile.\n\
+  \  \n  \n  \n      Parameters:\n  \n        profile_name    - profile name\n  \n\
+  \        sql_text        - SQL statement\n  \n        translated_text - translated\
+  \ SQL statement\n  \n        enable          - enable or disable the translation\n\
+  \  \n  \n  \n      Exceptions:\n  \n      - <bad_argument>\n  \n      - <insufficient_privilege>\n\
+  \  \n      - <no_such_user>\n  \n      - <no_such_profile>\n  \n  \n  \n      Notes:\n\
+  \  \n      - When the Oracle database translates a statement using a translation\n\
+  \  \n        profile, it attempts to look up the registered custom translation first\n\
+  \  \n        and only if no match is found will it invoke the translator package.\n\
+  \  \n  \n  \n      - When a translation is registered in a profile, it may be disabled.\n\
+  \  \n        Disabled translations will not be looked up during translation until\n\
+  \  \n        they are enabled.\n  \n  \n  \n      - When translated_text is NULL,\
+  \ it means no translation is required and the\n  \n        original statement is\
+  \ used instead.\n  \n  \n  \n      - The old translation of the SQL statement, if\
+  \ present, will be replaced\n  \n        with the new translation.\n  \n  \n  \n\
+  \      - SQL statements will be canonicalized before being registered or\n  \n \
+  \       translated.\n  \n  \n  \n      - To deregister a translation, use <deregister_sql_translation>.\n\
+  \  \n  \n  \n      Examples:\n  \n      | begin\n  \n      |   dbms_sql_translator.register_sql_translation(\n\
+  \  \n      |       profile_name    => 'tsql_application',\n  \n      |       sql_text\
+  \        => 'select top 5 * from emp',\n  \n      |       translated_text => 'select\
+  \ * from emp where rownum <= 5');\n  \n      | end;\n  \n    */\n  procedure register_sql_translation(\n\
+  \    profile_name in varchar2,\n    sql_text in clob,\n    translated_text in clob\
+  \ default null,\n    enable in boolean default true\n  );\nPRAGMA SUPPLEMENTAL_LOG_DATA(register_sql_translation,\
+  \ AUTO_WITH_COMMIT);\n  /*----------------------------------------------------------------------\n\
+  \  \n      Procedure: enable_sql_translation\n  \n  \n  \n        Enables or disables\
+  \ a custom translation of a SQL statement in a SQL\n  \n        translation profile.\n\
+  \  \n  \n  \n      Parameters:\n  \n        profile_name    - profile name\n  \n\
+  \        sql_text        - SQL statement\n  \n        enable          - enable or\
+  \ disable the translation\n  \n  \n  \n      Exceptions:\n  \n      - <bad_argument>\n\
+  \  \n      - <insufficient_privilege>\n  \n      - <no_such_user>\n  \n      - <no_such_profile>\n\
+  \  \n  \n  \n      Examples:\n  \n      | begin\n  \n      |   dbms_sql_translator.enable_sql_translation(\n\
+  \  \n      |       profile_name => 'tsql_application',\n  \n      |       sql_text\
+  \     => 'select top 5 * from emp'\n  \n      |       enable       => true);\n \
+  \ \n      | end;\n  \n    */\n  procedure enable_sql_translation(\n    profile_name\
+  \ in varchar2,\n    sql_text in clob,\n    enable in boolean default true\n  );\n\
+  PRAGMA SUPPLEMENTAL_LOG_DATA(enable_sql_translation, AUTO_WITH_COMMIT);\n  /*----------------------------------------------------------------------\n\
+  \  \n      Procedure: deregister_sql_translation\n  \n  \n  \n        Deregisters\
+  \ the custom translation of a SQL statement in a SQL\n  \n        translation profile.\n\
+  \  \n  \n  \n      Parameters:\n  \n        profile_name    - profile name\n  \n\
+  \        sql_text        - SQL statement\n  \n  \n  \n      Exceptions:\n  \n  \
+  \    - <bad_argument>\n  \n      - <insufficient_privilege>\n  \n      - <no_such_user>\n\
+  \  \n      - <no_such_profile>\n  \n  \n  \n      Examples:\n  \n      | begin\n\
+  \  \n      |   dbms_sql_translator.deregister_sql_translation(\n  \n      |    \
+  \   profile_name => 'tsql_application',\n  \n      |       sql_text     => 'select\
+  \ top 5 * from emp');\n  \n      | end;\n  \n    */\n  procedure deregister_sql_translation(\n\
+  \    profile_name in varchar2,\n    sql_text in clob\n  );\nPRAGMA SUPPLEMENTAL_LOG_DATA(deregister_sql_translation,\
+  \ AUTO_WITH_COMMIT);\n  /*----------------------------------------------------------------------\n\
+  \  \n      Procedure: register_error_translation\n  \n  \n  \n        Registers\
+  \ a custom translation of an Oracle error code and SQLSTATE in a\n  \n        SQL\
+  \ translation profile.\n  \n  \n  \n      Parameters:\n  \n        profile_name\
+  \        - profile name\n  \n        error_code          - Oracle error code\n \
+  \ \n        translated_code     - translated error code\n  \n        translated_sqlstate\
+  \ - translated SQLSTATE\n  \n        enable              - enable or disable the\
+  \ translation\n  \n  \n  \n      Exceptions:\n  \n      - <bad_argument>\n  \n \
+  \     - <insufficient_privilege>\n  \n      - <no_such_user>\n  \n      - <no_such_profile>\n\
+  \  \n  \n  \n      Notes:\n  \n      - When the Oracle database translates an Oracle\
+  \ error code using a\n  \n        translation profile, it attempts to look up the\
+  \ registered custom\n  \n        translation first and only if no match is found\
+  \ will it invoke the\n  \n        translator package.\n  \n  \n  \n      - When\
+  \ a translation is registered in a profile, it may be disabled.\n  \n        Disabled\
+  \ translations will not be looked up during translation until\n  \n        they\
+  \ are enabled.\n  \n  \n  \n      - The old translation of the error code and SQLSTATE,\
+  \ if present, will be\n  \n        replaced with the new translation.\n  \n  \n\
+  \  \n      - To deregister a translation, use <deregister_error_translation>.\n\
+  \  \n  \n  \n      Examples:\n  \n      | begin\n  \n      |   dbms_sql_translator.register_error_translation(\n\
+  \  \n      |       profile_name    => 'tsql_application',\n  \n      |       error_code\
+  \      => 1,\n  \n      |       translated_code => 2601);\n  \n      | end;\n  \n\
+  \    */\n  procedure register_error_translation(\n    profile_name in varchar2,\n\
+  \    error_code in pls_integer,\n    translated_code in pls_integer default null,\n\
+  \    translated_sqlstate in varchar2 default null,\n    enable in boolean default\
+  \ true\n  );\nPRAGMA SUPPLEMENTAL_LOG_DATA(register_error_translation, AUTO_WITH_COMMIT);\n\
+  \  /*----------------------------------------------------------------------\n  \n\
+  \      Procedure: enable_error_translation\n  \n  \n  \n        Enables or disables\
+  \ a custom translation of an Oracle error code in a SQL\n  \n        translation\
+  \ profile.\n  \n  \n  \n      Parameters:\n  \n        profile_name    - profile\
+  \ name\n  \n        error_code      - Oracle error code\n  \n        enable    \
+  \      - enable or disable the translation\n  \n  \n  \n      Exceptions:\n  \n\
+  \      - <bad_argument>\n  \n      - <insufficient_privilege>\n  \n      - <no_such_user>\n\
+  \  \n      - <no_such_profile>\n  \n  \n  \n      Examples:\n  \n      | begin\n\
+  \  \n      |   dbms_sql_translator.enable_error_translation(\n  \n      |      \
+  \ profile_name => 'tsql_application',\n  \n      |       error_code   => 1,\n  \n\
+  \      |       enable       => true);\n  \n      | end;\n  \n    */\n  procedure\
+  \ enable_error_translation(\n    profile_name in varchar2,\n    error_code in pls_integer,\n\
+  \    enable in boolean default true\n  );\nPRAGMA SUPPLEMENTAL_LOG_DATA(enable_error_translation,\
+  \ AUTO_WITH_COMMIT);\n  /*----------------------------------------------------------------------\n\
+  \  \n      Procedure: deregister_error_translation\n  \n  \n  \n        Deregisters\
+  \ the custom translation of an Oracle error code and SQLSTATE\n  \n        in a\
+  \ SQL translation profile.\n  \n  \n  \n      Parameters:\n  \n        profile_name\
+  \    - profile name\n  \n        error_code      - Oracle error code\n  \n  \n \
+  \ \n      Exceptions:\n  \n      - <bad_argument>\n  \n      - <insufficient_privilege>\n\
+  \  \n      - <no_such_user>\n  \n      - <no_such_profile>\n  \n  \n  \n      Examples:\n\
+  \  \n      | begin\n  \n      |   dbms_sql_translator.deregister_error_translation(\n\
+  \  \n      |       profile_name => 'tsql_application',\n  \n      |       error_code\
+  \   => 1);\n  \n      | end;\n  \n    */\n  procedure deregister_error_translation(\n\
+  \    profile_name in varchar2,\n    error_code in pls_integer\n  );\nPRAGMA SUPPLEMENTAL_LOG_DATA(deregister_error_translation,\
+  \ AUTO_WITH_COMMIT);\n  /*----------------------------------------------------------------------\n\
+  \  \n      Procedure: set_attribute\n  \n  \n  \n        Sets an attribute of a\
+  \ SQL translation profile.\n  \n  \n  \n      Parameters:\n  \n        profile_name\
+  \    - profile name\n  \n        attribute_name  - attribute name\n  \n        attribute_value\
+  \ - attribute value\n  \n  \n  \n      Exceptions:\n  \n      - <bad_argument>\n\
+  \  \n      - <insufficient_privilege>\n  \n      - <no_such_user>\n  \n      - <no_such_profile>\n\
+  \  \n  \n  \n      See also:\n  \n        <Constants>\n  \n    */\n  procedure set_attribute(\n\
+  \    profile_name in varchar2,\n    attribute_name in varchar2,\n    attribute_value\
+  \ in varchar2\n  );\nPRAGMA SUPPLEMENTAL_LOG_DATA(set_attribute, AUTO_WITH_COMMIT);\n\
+  \  /*----------------------------------------------------------------------\n  \n\
+  \      Procedure: export_profile\n  \n  \n  \n        Exports the content of a SQL\
+  \ translation profile.\n  \n  \n  \n      Parameters:\n  \n        profile_name\
+  \    - profile name\n  \n        content         - content of the profile\n  \n\
+  \  \n  \n      Exceptions:\n  \n      - <bad_argument>\n  \n      - <insufficient_privilege>\n\
+  \  \n      - <no_such_user>\n  \n      - <no_such_profile>\n  \n  \n  \n      Notes:\n\
+  \  \n      - The content of the SQL translation profile will be exported in XML\
+  \ format\n  \n        as follows. Note that the profile name will not be exported.\n\
+  \  \n  \n  \n        | <SQLTranslationProfile Translator=\"translator package name\"\
+  \n  \n        |                        ForeignSQLSyntax=\"TRUE|FALSE\"\n  \n   \
+  \     |                        TranslateNewSQL=\"TRUE|FALSE\"\n  \n        |   \
+  \                     RaiseTranslationError=\"TRUE|FALSE\"\n  \n        |      \
+  \                  LogTranslationError=\"TRUE|FALSE\"\n  \n        |           \
+  \             TraceTranslation=\"TRUE|FALSE\"\n  \n        |                   \
+  \     Editionable=\"TRUE|FALSE\">\n  \n        |   <SQLTranslations>\n  \n     \
+  \   |     <SQLTranslation Enabled=\"TRUE|FALSE\">\n  \n        |       <SQLText>original\
+  \ SQL text</SQLText>\n  \n        |       <TranslatedText>translated SQL text</TranslatedText>\n\
+  \  \n        |     </SQLTranslation>\n  \n        |     ...\n  \n        |   </SQLTranslations>\n\
+  \  \n        |   <ErrorTranslations>\n  \n        |     <ErrorTranslation Enabled=\"\
+  TRUE|FALSE\">\n  \n        |       <ErrorCode>Oracle error code</ErrorCode>\n  \n\
+  \        |       <TranslatedCode>translated error code</TranslatedCode>\n  \n  \
+  \      |       <TranslatedSQLSTATE>translated SQLSTATE</TranslatedSQLSTATE>\n  \n\
+  \        |     </ErrorTranslation>\n  \n        |     ...\n  \n        |   </ErrorTranslations>\n\
+  \  \n        | </SQLTranslationProfile>\n  \n  \n  \n      - To import the content\
+  \ to a SQL translation profile, use <import_profile>.\n  \n  \n  \n      Examples:\n\
+  \  \n      | declare\n  \n      |   content CLOB;\n  \n      | begin\n  \n     \
+  \ |   dbms_sql_translator.export_profile(\n  \n      |       profile_name => 'tsql_application',\n\
+  \  \n      |       content      => content);\n  \n      | end;\n  \n    */\n  procedure\
+  \ export_profile(\n    profile_name in varchar2,\n    content out nocopy clob\n\
+  \  );\n  /*----------------------------------------------------------------------\n\
+  \  \n      Procedure: import_profile\n  \n  \n  \n        Imports the content of\
+  \ a SQL translation profile.\n  \n  \n  \n      Parameters:\n  \n        profile_name\
+  \    - profile name\n  \n        content         - content of the profile\n  \n\
+  \  \n  \n      Exceptions:\n  \n      - <bad_argument>\n  \n      - <insufficient_privilege>\n\
+  \  \n      - <no_such_user>\n  \n  \n  \n      Notes:\n  \n      - The content of\
+  \ the SQL translation profile should be in XML format as\n  \n        used by <export_profile>.\
+  \ All elements and attributes are optional.\n  \n  \n  \n      - If the profile\
+  \ does not exist, it will be created. If it exists, the\n  \n        content will\
+  \ override any existing attribute, translator package,\n  \n        SQL or error\
+  \ translation registration.\n  \n  \n  \n      - To export the content to a SQL\
+  \ translation profile, use <export_profile>.\n  \n  \n  \n      Examples:\n  \n\
+  \      | declare\n  \n      |   content CLOB;\n  \n      | begin\n  \n      |  \
+  \ dbms_sql_translator.import_profile(\n  \n      |       profile_name => 'tsql_application',\n\
+  \  \n      |       content      => content);\n  \n      | end;\n  \n    */\n  procedure\
+  \ import_profile(\n    profile_name in varchar2,\n    content in clob\n  );\n  /*----------------------------------------------------------------------\n\
+  \  \n      Procedure: drop_profile\n  \n  \n  \n        Drops a SQL translation\
+  \ profile and its contents.\n  \n  \n  \n      Parameters:\n  \n        profile_name\
+  \    - profile name\n  \n  \n  \n      Exceptions:\n  \n      - <bad_argument>\n\
+  \  \n      - <insufficient_privilege>\n  \n      - <no_such_user>\n  \n      - <no_such_profile>\n\
+  \  \n  \n  \n      Examples:\n  \n      | begin\n  \n      |   dbms_sql_translator.drop_profile(profile_name\
+  \ => 'tsql_application');\n  \n      | end;\n  \n    */\n  procedure drop_profile(profile_name\
+  \ in varchar2);\nPRAGMA SUPPLEMENTAL_LOG_DATA(drop_profile, AUTO_WITH_COMMIT);\n\
+  \  /*----------------------------------------------------------------------\n  \n\
+  \      Procedure: translate_sql\n  \n  \n  \n        Translates a SQL statement\
+  \ using the session's SQL translation profile.\n  \n  \n  \n      Parameters:\n\
+  \  \n        sql_text        - SQL statement\n  \n        translated_text - translated\
+  \ SQL statement\n  \n  \n  \n      Exceptions:\n  \n      - <bad_argument>\n  \n\
+  \      - <insufficient_privilege>\n  \n      - <no_such_user>\n  \n      - <no_such_profile>\n\
+  \  \n      - <no_translation_found>\n  \n  \n  \n      Examples:\n  \n      | declare\n\
+  \  \n      |   translated_text CLOB;\n  \n      | begin\n  \n      |   dbms_sql_translator.translate_sql(\n\
+  \  \n      |       sql_text        => 'select top 5 * from emp',\n  \n      |  \
+  \     translated_text => translated_text);\n  \n      | end;\n  \n    */\n  procedure\
+  \ translate_sql(\n    sql_text in clob,\n    translated_text out nocopy clob\n \
+  \ );\n  /*----------------------------------------------------------------------\n\
+  \  \n      Procedure: translate_error\n  \n  \n  \n        Translates an Oracle\
+  \ error code and an ANSI SQLSTATE using the session's\n  \n        SQL translation\
+  \ profile.\n  \n  \n  \n      Parameters:\n  \n        error_code          - Oracle\
+  \ error code\n  \n        translated_code     - translated error code\n  \n    \
+  \    translated_sqlstate - translated SQLSTATE\n  \n  \n  \n      Exceptions:\n\
+  \  \n      - <bad_argument>\n  \n      - <insufficient_privilege>\n  \n      - <no_such_user>\n\
+  \  \n      - <no_such_profile>\n  \n      - <no_translation_found>\n  \n  \n  \n\
+  \      Examples:\n  \n      | declare\n  \n      |   translated_code     BINARY_INTEGER;\n\
+  \  \n      |   translated_sqlstate VARCHAR2(5);\n  \n      | begin\n  \n      |\
+  \   dbms_sql_translator.translate_error(\n  \n      |       error_code         \
+  \ => 1,\n  \n      |       translated_code     => translated_code,\n  \n      |\
+  \       translated_sqlstate => translated_sqlstate);\n  \n      | end;\n  \n   \
+  \ */\n  procedure translate_error(\n    error_code in pls_integer,\n    translated_code\
+  \ out pls_integer,\n    translated_sqlstate out nocopy varchar2\n  );\n  /*----------------------------------------------------------------------\n\
+  \  \n      Procedure: sql_id\n  \n  \n  \n        Computes the SQL identifier of\
+  \ a SQL statement in the session's SQL\n  \n        translation profile.\n  \n \
+  \ \n  \n      Parameters:\n  \n        sql_text        - SQL statement\n  \n  \n\
+  \  \n      Returns:\n  \n        The SQL ID of the SQL statement in the session's\
+  \ SQL translation profile.\n  \n  \n  \n      Exceptions:\n  \n      - <bad_argument>\n\
+  \  \n  \n  \n      Examples:\n  \n      | declare\n  \n      |   sqltext clob;\n\
+  \  \n      |   sqlid   varchar2(13);\n  \n      | begin\n  \n      |   sqltext :=\
+  \ 'select top 1 * from emp';\n  \n      |   sqlid   := dbms_sql_translator.sql_id(sqltext);\n\
+  \  \n      | end;\n  \n    */\n  function sql_id(sql_text in clob) return varchar2\
+  \ deterministic;\n  /*----------------------------------------------------------------------\n\
+  \  \n      Procedure: sql_hash\n  \n  \n  \n        Computes the hash value of a\
+  \ SQL statement in the session's SQL\n  \n        translation profile. It may be\
+  \ used to speed up the lookup of a SQL\n  \n        translation in SQL translation\
+  \ views.\n  \n  \n  \n      Parameters:\n  \n        sql_text        - SQL statement\n\
+  \  \n  \n  \n      Returns:\n  \n        The hash value of the SQL statement in\
+  \ the session's SQL translation\n  \n        profile.\n  \n  \n  \n      Exceptions:\n\
+  \  \n      - <bad_argument>\n  \n  \n  \n      Examples:\n  \n      | declare\n\
+  \  \n      |   sqltext clob;\n  \n      |   txltext clob;\n  \n      |   sqlhash\
+  \ number;\n  \n      | begin\n  \n      |   sqltext := 'select top 1 * from emp';\n\
+  \  \n      |   sqlhash := dbms_sql_translator.sql_hash(sqltext);\n  \n      |\n\
+  \  \n      |   select translated_text into txltext\n  \n      |     from user_sql_translations\n\
+  \  \n      |    where sql_hash = sqlhash and\n  \n      |          dbms_lob.compare(sql_text,\
+  \ sqltext) = 0;\n  \n      | end;\n  \n    */\n  function sql_hash(sql_text in clob)\
+  \ return number deterministic;\n  /*----------------------------------------------------------------------\n\
+  \  \n      Procedure: set_sql_translation_module\n  \n  \n  \n        Sets the module\
+  \ and action on a custom translation of a SQL statement in\n  \n        a SQL translation\
+  \ profile.\n  \n  \n  \n      Parameters:\n  \n        profile_name - profile name\n\
+  \  \n        sql_text     - SQL statement\n  \n        module       - module\n \
+  \ \n        action       - action\n  \n  \n  \n      Exceptions:\n  \n      - <bad_argument>\n\
+  \  \n      - <insufficient_privilege>\n  \n      - <no_such_user>\n  \n      - <no_such_profile>\n\
+  \  \n  \n  \n      Examples:\n  \n      | begin\n  \n      |   dbms_sql_translator.set_sql_translation_module(\n\
+  \  \n      |       profile_name => 'tsql_application',\n  \n      |       sql_text\
+  \     => 'select top 5 * from emp',\n  \n      |       module       => 'employee\
+  \ report',\n  \n      |       action       => 'top 5 employees query');\n  \n  \
+  \    | end;\n  \n    */\n  procedure set_sql_translation_module(\n    profile_name\
+  \ in varchar2,\n    sql_text in clob,\n    module in varchar2,\n    action in varchar2\n\
+  \  );\nPRAGMA SUPPLEMENTAL_LOG_DATA(set_sql_translation_module, AUTO_WITH_COMMIT);\n\
+  \  /*----------------------------------------------------------------------\n  \n\
+  \      Procedure: set_sql_translation_comment\n  \n  \n  \n        Sets the comment\
+  \ on a custom translation of a SQL statement in a SQL\n  \n        translation profile.\n\
+  \  \n  \n  \n      Parameters:\n  \n        profile_name - profile name\n  \n  \
+  \      sql_text     - SQL statement\n  \n        comment      - comment\n  \n  \n\
+  \  \n      Exceptions:\n  \n      - <bad_argument>\n  \n      - <insufficient_privilege>\n\
+  \  \n      - <no_such_user>\n  \n      - <no_such_profile>\n  \n  \n  \n      Examples:\n\
+  \  \n      | begin\n  \n      |   dbms_sql_translator.set_sql_translation_comment(\n\
+  \  \n      |       profile_name => 'tsql_application',\n  \n      |       sql_text\
+  \     => 'select top 5 * from emp',\n  \n      |       comment      => 'the translation\
+  \ has been reviewed');\n  \n      | end;\n  \n    */\n  procedure set_sql_translation_comment(\n\
+  \    profile_name in varchar2,\n    sql_text in clob,\n    comment in varchar2\n\
+  \  );\nPRAGMA SUPPLEMENTAL_LOG_DATA(set_sql_translation_comment, AUTO_WITH_COMMIT);\n\
+  \  /*----------------------------------------------------------------------\n  \n\
+  \      Procedure: set_error_translation_comment\n  \n  \n  \n        Sets the comment\
+  \ on a custom translation of an Oracle error code in a SQL\n  \n        translation\
+  \ profile.\n  \n  \n  \n      Parameters:\n  \n        profile_name - profile name\n\
+  \  \n        error_code   - Oracle error code\n  \n        comment      - comment\n\
+  \  \n  \n  \n      Exceptions:\n  \n      - <bad_argument>\n  \n      - <insufficient_privilege>\n\
+  \  \n      - <no_such_user>\n  \n      - <no_such_profile>\n  \n  \n  \n      Examples:\n\
+  \  \n      | begin\n  \n      |   dbms_sql_translator.set_error_translation_comment(\n\
+  \  \n      |       profile_name => 'tsql_application',\n  \n      |       error_code\
+  \   => 1,\n  \n      |       comment      => 'the translation has been reviewed');\n\
+  \  \n      | end;\n  \n    */\n  procedure set_error_translation_comment(\n    profile_name\
+  \ in varchar2,\n    error_code in pls_integer,\n    comment in varchar2\n  );\n\
+  PRAGMA SUPPLEMENTAL_LOG_DATA(set_error_translation_comment, AUTO_WITH_COMMIT);\n\
+  end;"

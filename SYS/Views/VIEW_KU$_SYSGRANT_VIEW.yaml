@@ -1,0 +1,36 @@
+schema: SYS
+name: KU$_SYSGRANT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    p.privilege,
+    u.name,
+    p.name,
+    g.sequence#,
+    NVL(g.option$, 0)
+  from
+    sys.sysauth$ g,
+    sys.user$ u,
+    sys.system_privilege_map p
+  where
+    g.grantee# = u.user#
+    and g.privilege# = p.privilege
+    and bitand(p.property, 1) != 1
+    /* Don't show non-SQL sys. grants */
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (g.grantee#, 0)
+      OR g.grantee# = 1
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

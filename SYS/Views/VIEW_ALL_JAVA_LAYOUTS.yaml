@@ -1,0 +1,80 @@
+schema: SYS
+name: ALL_JAVA_LAYOUTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ no_cartesian(m) ordered use_nl(o m) */
+    u.name,
+    nvl(j.longdbcs, o.name),
+    m.lic,
+    m.lnc,
+    m.lfc,
+    m.lsf,
+    m.lmc,
+    m.lsm,
+    m.jnc
+  from
+    sys.javasnm$ j,
+    sys.obj$ o,
+    sys.x$joxmob m,
+    sys.user$ u
+  where
+    o.obj# = m.obn
+    and o.type# = 29
+    and o.owner# = u.user#
+    and j.short(+) = o.name
+    and (
+      o.owner# in (
+        userenv('SCHEMAID'),
+        1
+        /* PUBLIC */
+      )
+      or (
+        (
+          (
+            o.obj# in (
+              select
+                obj#
+              from
+                sys.objauth$
+              where
+                grantee# in (
+                  select
+                    kzsrorol
+                  from
+                    x$kzsro
+                )
+                and privilege# = 12
+                /* EXECUTE */
+            )
+          )
+          or exists (
+            select
+              null
+            from
+              sys.sysauth$
+            where
+              grantee# in (
+                select
+                  kzsrorol
+                from
+                  x$kzsro
+              )
+              and (
+                (
+                  /* procedure */
+                  (
+                    privilege# = -144
+                    /* EXECUTE ANY PROCEDURE */
+                    or privilege# = -141
+                    /* CREATE ANY PROCEDURE */
+                  )
+                )
+              )
+          )
+        )
+      )
+    )
+columns: []
+referencedTables: []

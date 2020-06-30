@@ -1,0 +1,92 @@
+schema: SYS
+name: ALL_SQLSET_STATEMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    f.name as sqlset_name,
+    f.owner as sqlset_owner,
+    s.sqlset_id,
+    s.con_dbid,
+    s.sql_id,
+    s.force_matching_signature,
+    t.sql_text,
+    p.parsing_schema_name,
+    p.plan_hash_value,
+    p.bind_data,
+    p.binds_captured,
+    substrb(
+      s.module,
+      1,
+      (
+        select
+          ksumodlen
+        from
+          x$modact_length
+      )
+    ) module,
+    substrb(
+      s.action,
+      1,
+      (
+        select
+          ksuactlen
+        from
+          x$modact_length
+      )
+    ) action,
+    c .elapsed_time,
+    c .cpu_time,
+    c .buffer_gets,
+    c .disk_reads,
+    c .direct_writes,
+    c .rows_processed,
+    c .fetches,
+    c .executions,
+    c .end_of_fetch_count,
+    c .optimizer_cost,
+    p.optimizer_env,
+    m.priority,
+    s.command_type,
+    c .first_load_time,
+    c .stat_period,
+    c .active_stat_period,
+    m.other,
+    p.plan_timestamp,
+    s.id as sql_seq
+  from
+    WRI$_SQLSET_DEFINITIONS f,
+    WRI$_SQLSET_STATEMENTS s,
+    WRI$_SQLSET_MASK m,
+    WRH$_SQLTEXT t,
+    WRI$_SQLSET_PLANS p,
+    WRI$_SQLSET_STATISTICS c
+  where
+    s.id = p.stmt_id
+    AND s.con_dbid = p.con_dbid
+    AND p.stmt_id = c .stmt_id
+    AND p.plan_hash_value = c .plan_hash_value
+    AND p.con_dbid = c .con_dbid
+    AND p.stmt_id = m.stmt_id
+    AND p.plan_hash_value = m.plan_hash_value
+    AND p.con_dbid = m.con_dbid
+    AND s.sql_id = t.sql_id
+    AND s.con_dbid = t.con_dbid
+    AND t.dbid = f.con_dbid
+    AND f.id = s.sqlset_id
+    AND (
+      owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+      OR EXISTS (
+        select
+          1
+        from
+          V$ENABLEDPRIVS
+        where
+          priv_number in (
+            -273
+            /*ADMINISTER ANY SQL TUNING SET*/
+          )
+      )
+    )
+columns: []
+referencedTables: []

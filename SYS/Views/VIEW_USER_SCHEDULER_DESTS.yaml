@@ -1,0 +1,25 @@
+schema: SYS
+name: USER_SCHEDULER_DESTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    decode(
+      bitand(d.flags, 2 + 4),
+      2,
+      'EXTERNAL',
+      4,
+      'DATABASE'
+    ),
+    decode(bitand(d.flags, 1), 1, 'TRUE', 'FALSE'),
+    d.comments
+  FROM
+    scheduler$_destinations d,
+    obj$ o
+  WHERE
+    o.owner# = userenv('SCHEMAID')
+    AND o.obj# = d.obj#
+    and bitand(d.flags, 8) = 0
+columns: []
+referencedTables: []

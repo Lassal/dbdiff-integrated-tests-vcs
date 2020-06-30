@@ -1,0 +1,14 @@
+schema: DVF
+name: F$DATABASE_IP
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  FUNCTION "F$DATABASE_IP" RETURN VARCHAR2 AS
+  BEGIN
+    RETURN DVSYS.get_factor(p_factor = > 'Database_IP');
+  END;

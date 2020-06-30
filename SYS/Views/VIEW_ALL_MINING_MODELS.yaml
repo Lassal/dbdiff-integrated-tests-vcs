@@ -1,0 +1,107 @@
+schema: SYS
+name: ALL_MINING_MODELS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    cast(
+      decode(
+        func,
+        /* Mining Function */
+        1,
+        'CLASSIFICATION',
+        2,
+        'REGRESSION',
+        3,
+        'CLUSTERING',
+        4,
+        'FEATURE_EXTRACTION',
+        5,
+        'ASSOCIATION_RULES',
+        6,
+        'ATTRIBUTE_IMPORTANCE',
+        'UNDEFINED'
+      ) as varchar2(30)
+    ),
+    cast(
+      decode(
+        alg,
+        /* Mining Algorithm */
+        1,
+        'NAIVE_BAYES',
+        2,
+        'ADAPTIVE_BAYES_NETWORK',
+        3,
+        'DECISION_TREE',
+        4,
+        'SUPPORT_VECTOR_MACHINES',
+        5,
+        'KMEANS',
+        6,
+        'O_CLUSTER',
+        7,
+        'NONNEGATIVE_MATRIX_FACTOR',
+        8,
+        'GENERALIZED_LINEAR_MODEL',
+        9,
+        'APRIORI_ASSOCIATION_RULES',
+        10,
+        'MINIMUM_DESCRIPTION_LENGTH',
+        11,
+        'SINGULAR_VALUE_DECOMP',
+        12,
+        'EXPECTATION_MAXIMIZATION',
+        'UNDEFINED'
+      ) as varchar2(30)
+    ),
+    o.ctime,
+    bdur,
+    msize,
+    c .comment$
+  from
+    sys.model$ m,
+    sys.obj$ o,
+    sys.user$ u,
+    sys.com$ c
+  where
+    o.obj# = m.obj#
+    and o.obj# = c .obj#(+)
+    and o.type# = 82
+    and o.owner# = u.user#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          oa.grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -292
+            /* DROP ANY MINING MODEL */,
+            -293
+            /* SELECT ANY MINING MODEL */,
+            -294
+            /* ALTER ANY MINING MODEL */
+          )
+      )
+    )
+columns: []
+referencedTables: []

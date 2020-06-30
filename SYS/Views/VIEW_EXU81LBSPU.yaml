@@ -1,0 +1,37 @@
+schema: SYS
+name: EXU81LBSPU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    /*+ NO_INDEX(xx1.o i_obj2) +*/
+    "POBJID",
+    "TOBJID",
+    "OWNERID",
+    "CNAME",
+    "LOBSPNAME",
+    "TSNAME",
+    "SGFLAGS",
+    "TSNO",
+    "FILENO",
+    "BLOCKNO",
+    "DOBJID",
+    "INAME",
+    "ISGFLAG",
+    "ITSNAME",
+    "ITSNO",
+    "IFILE",
+    "IBLOCK",
+    "IDOBJID",
+    "IINITRANS",
+    "IMAXTRANS",
+    "COLTYPE",
+    "COLTYPFLG",
+    "BLOCKSIZE",
+    "FLAGS"
+  FROM
+    sys.exu81lbsp
+  WHERE
+    ownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,37 @@
+schema: SYS
+name: USER_HOST_ACES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    host,
+    lower_port,
+    upper_port,
+    privilege,
+    decode(status, 0, 'DENIED', 1, 'GRANTED', null)
+  from
+    (
+      select
+        h.host,
+        h.lower_port,
+        h.upper_port,
+        xo.name privilege,
+        sys_check_privilege(sys_xsid_to_raw(xo.id), h.acl#, null) status
+      from
+        sys.nacl$_host h,
+        dba_xs_objects xo
+      where
+        xo.owner = 'SYS'
+        and xo.name in (
+          'RESOLVE',
+          'CONNECT',
+          'HTTP',
+          'HTTP_PROXY',
+          'SMTP'
+        )
+        and xo.type = 'PRIVILEGE'
+    )
+  where
+    status in (0, 1)
+columns: []
+referencedTables: []

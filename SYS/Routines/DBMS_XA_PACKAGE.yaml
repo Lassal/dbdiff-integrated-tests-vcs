@@ -1,0 +1,168 @@
+schema: SYS
+name: DBMS_XA
+routineType: PACKAGE
+returnParamater:
+  name: XA_START.(--return--)
+  ordinalPosition: 0
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+parameters:
+- name: XA_COMMIT.XID
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: XA_COMMIT.ONEPHASE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: XA_END.XID
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: XA_END.FLAG
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: XA_FORGET.XID
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: XA_PREPARE.XID
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: XA_ROLLBACK.XID
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: XA_SETTIMEOUT.SECONDS
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: XA_START.XID
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: XA_START.FLAG
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_xa AUTHID CURRENT_USER as
+  /*
+
+  ********************************************************************************
+
+  *   The following defines the XA APIs (see X/Open CAE Standard) in PL/SQL      *
+
+  ********************************************************************************
+
+  */
+  FUNCTION XA_START(xid IN DBMS_XA_XID, flag IN PLS_INTEGER) RETURN PLS_INTEGER;
+  FUNCTION XA_END(xid IN DBMS_XA_XID, flag IN PLS_INTEGER) RETURN PLS_INTEGER;
+  FUNCTION XA_PREPARE(xid IN DBMS_XA_XID) RETURN PLS_INTEGER;
+  FUNCTION XA_COMMIT(xid IN DBMS_XA_XID, onePhase IN BOOLEAN) RETURN PLS_INTEGER;
+  FUNCTION XA_ROLLBACK(xid IN DBMS_XA_XID) RETURN PLS_INTEGER;
+  FUNCTION XA_FORGET(xid IN DBMS_XA_XID) RETURN PLS_INTEGER;
+  FUNCTION XA_RECOVER RETURN DBMS_XA_XID_ARRAY;
+  FUNCTION XA_SETTIMEOUT(seconds IN PLS_INTEGER) RETURN PLS_INTEGER;
+  FUNCTION XA_GETLASTOER RETURN PLS_INTEGER;
+  /*
+
+  ********************************************************************************
+
+  *   The following procedure is used for recovery sync in RAC                   *
+
+  ********************************************************************************
+
+  */
+  PROCEDURE dist_txn_sync;
+  /*
+
+  ********************************************************************************
+
+  *   The following constants are defined for use in the flag field for          *
+
+  *   XA_START() and XA_END() functions:                                         *
+
+  ********************************************************************************
+
+  */
+  /* use TMNOFLAGS to indicate no flag value is selected */
+  TMNOFLAGS CONSTANT PLS_INTEGER: = 00000000;
+  /* dissociate caller from transaction branch */
+  TMSUCCESS CONSTANT PLS_INTEGER: = utl_raw.cast_to_binary_integer('04000000');
+  /* caller is joining existing transaction branch */
+  TMJOIN CONSTANT PLS_INTEGER: = utl_raw.cast_to_binary_integer('00200000');
+  /* caller is suspending, not ending, association */
+  TMSUSPEND CONSTANT PLS_INTEGER: = utl_raw.cast_to_binary_integer('02000000');
+  /* caller is resuming association with suspended transaction branch */
+  TMRESUME CONSTANT PLS_INTEGER: = utl_raw.cast_to_binary_integer('08000000');
+  /*
+
+  ********************************************************************************
+
+  *   The following constants are defined for possible return value of           *
+
+  *   DBMS_XA functions:                                                         *
+
+  ********************************************************************************
+
+  */
+  /* The inclusive lower bound of the rollback codes */
+  XA_RBBASE CONSTANT PLS_INTEGER: = 100;
+  /* The rollback was caused by an unspecified reason */
+  XA_RBROLLBACK CONSTANT PLS_INTEGER: = XA_RBBASE;
+  /* The rollback was caused by a communication failure */
+  XA_RBCOMMFAIL CONSTANT PLS_INTEGER: = XA_RBBASE + 1;
+  /* A deadlock was detected*/
+  XA_RBDEADLOCK CONSTANT PLS_INTEGER: = XA_RBBASE + 2;
+  /* A condition that violates the integrity of the resources was detected */
+  XA_RBINTEGRITY CONSTANT PLS_INTEGER: = XA_RBBASE + 3;
+  /* The resource manager rolled back the transaction for a reason not on
+
+     this list */
+  XA_RBOTHER CONSTANT PLS_INTEGER: = XA_RBBASE + 4;
+  /* A protocol error occurred in the resource manager */
+  XA_RBPROTO CONSTANT PLS_INTEGER: = XA_RBBASE + 5;
+  /* A transaction branch took long */
+  XA_RBTIMEOUT CONSTANT PLS_INTEGER: = XA_RBBASE + 6;
+  /* May retry the transaction branch */
+  XA_RBTRANSIENT CONSTANT PLS_INTEGER: = XA_RBBASE + 7;
+  /* The inclusive upper bound of the rollback codes */
+  XA_RBEND CONSTANT PLS_INTEGER: = XA_RBTRANSIENT;
+  /* resumption must occur where suspension occurred */
+  XA_NOMIGRATE CONSTANT PLS_INTEGER: = 9;
+  /* the transaction branch may have been heuristically completed */
+  XA_HEURHAZ CONSTANT PLS_INTEGER: = 8;
+  /* the transaction branch has been heuristically committed */
+  XA_HEURCOM CONSTANT PLS_INTEGER: = 7;
+  /* the transaction branch has been heuristically rolled back */
+  XA_HEURRB CONSTANT PLS_INTEGER: = 6;
+  /* some of the transaction branches has been heuristically committed,
+
+     others have been rolled back */
+  XA_HEURMIX CONSTANT PLS_INTEGER: = 5;
+  /* routine returned with no effect and may be re-issued */
+  XA_RETRY CONSTANT PLS_INTEGER: = 4;
+  /* the transaction was read-only and has been committed */
+  XA_RDONLY CONSTANT PLS_INTEGER: = 3;
+  /* normal execution */
+  XA_OK CONSTANT PLS_INTEGER: = 0;
+  /* asynchronous operation already outstanding */
+  XAER_ASYNC CONSTANT PLS_INTEGER: = -2;
+  /* a resource manager error occurred in the transaction branch */
+  XAER_RMERR CONSTANT PLS_INTEGER: = -3;
+  /* the XID is not valid */
+  XAER_NOTA CONSTANT PLS_INTEGER: = -4;
+  /* invalid arguments were given */
+  XAER_INVAL CONSTANT PLS_INTEGER: = -5;
+  /* routine invoked in an improper context */
+  XAER_PROTO CONSTANT PLS_INTEGER: = -6;
+  /* resource manager unavailable */
+  XAER_RMFAIL CONSTANT PLS_INTEGER: = -7;
+  /* the XID already exists */
+  XAER_DUPID CONSTANT PLS_INTEGER: = -8;
+  /* resource manager doing work outside global transaction*/
+  XAER_OUTSIDE CONSTANT PLS_INTEGER: = -9;
+  END dbms_xa;

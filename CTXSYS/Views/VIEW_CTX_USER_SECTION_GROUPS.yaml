@@ -1,0 +1,20 @@
+schema: CTXSYS
+name: CTX_USER_SECTION_GROUPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    sgp_name,
+    obj_name sgp_type
+  from
+    dr$section_group,
+    dr$object,
+    dr$class
+  where
+    sgp_obj_id = obj_id
+    and obj_system = 'N'
+    and obj_cla_id = cla_id
+    and cla_name = 'SECTION_GROUP'
+    and sgp_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

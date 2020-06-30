@@ -1,0 +1,29 @@
+schema: OLAPSYS
+name: ALL$OLAP2_AW_CUBE_AGG_MEAS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    AW.AWOWNER as AW_OWNER,
+    AW.AWNAME as AW_NAME,
+    AW.AWOBJECT as AW_CUBE_NAME,
+    AW.COL1 as AW_AGGSPEC_NAME,
+    AW.COL2 as AW_MEASURE_NAME
+  FROM
+    TABLE(
+      CAST (
+        OLAP_TABLE(
+          'SYS.AWMD duration query',
+          'olapsys.ALL_OLAP2_AW_METADATA_T',
+          'ACTIVE_CATALOG ''ALL_CUBE_AGGSPECS_MEASURES'' ''ALL''',
+          'MEASURE AWOWNER FROM SYS.AWMD!OWNER
+                          MEASURE AWNAME FROM SYS.AWMD!AWNAME
+                          MEASURE AWOBJECT FROM SYS.AWMD!CUBE_NAME
+                          MEASURE COL1 FROM SYS.AWMD!AGGSPEC_NAME
+                          MEASURE COL2 FROM SYS.AWMD!MEASURE_NAME
+                          DIMENSION AWMDKEY FROM SYS.AWMD!AWMDKEY'
+        ) AS olapsys.ALL_OLAP2_AW_METADATA_T
+      )
+    ) AW
+columns: []
+referencedTables: []

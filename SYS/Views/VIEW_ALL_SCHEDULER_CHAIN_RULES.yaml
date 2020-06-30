@@ -1,0 +1,69 @@
+schema: SYS
+name: ALL_SCHEDULER_CHAIN_RULES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    cu.name,
+    co.name,
+    ru.name,
+    ro.name,
+    dbms_scheduler.get_chain_rule_condition(r.r_action, r.condition),
+    dbms_scheduler.get_chain_rule_action(r.r_action),
+    r.r_comment
+  FROM
+    rule_map$ rm,
+    obj$ rso,
+    user $ rsu,
+    obj$ ro,
+    user $ ru,
+    rule$ r,
+    obj$ co,
+    user $ cu,
+    sys.scheduler$_chain c
+  WHERE
+    c .obj# = co.obj#
+    AND co.owner# = cu.user#
+    AND c .rule_set_owner = rsu.name(+)
+    AND rsu.user# = rso.owner#
+    AND c .rule_set = rso.name
+    AND rso.obj# = rm.rs_obj#(+)
+    AND rm.r_obj# = r.obj#(+)
+    AND rm.r_obj# = ro.obj#(+)
+    AND ro.owner# = ru.user#
+    AND (
+      co.owner# = userenv('SCHEMAID')
+      or co.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      (
+        exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -265
+              /* CREATE ANY JOB */,
+              -266
+              /* EXECUTE ANY PROGRAM */
+            )
+        )
+        and co.owner# != 0
+      )
+    )
+columns: []
+referencedTables: []

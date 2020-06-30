@@ -1,0 +1,20 @@
+schema: SYS
+name: _ALL_REPCOLUMN_GROUP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ ALL_ROWS */
+    distinct cg.sname,
+    cg.oname,
+    cg.group_name,
+    cg.group_comment
+  from
+    all_repcolumn_group cg,
+    "_ALL_REPGROUPED_COLUMN" rcgcol
+  where
+    cg.group_name = rcgcol.group_name
+    and cg.sname = rcgcol.sname
+    and cg.oname = rcgcol.oname
+columns: []
+referencedTables: []

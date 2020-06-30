@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_AQ_AGENT_PRIVS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.agent_name,
+    decode(bitand(u.protocol, 1), 0, 'NO  ', 1, 'YES ') http_enabled,
+    decode(bitand(u.protocol, 2), 0, 'NO  ', 2, 'YES ') smtp_enabled
+  FROM
+    SYSTEM.AQ$_Internet_Agent_Privs t,
+    SYSTEM.AQ$_Internet_Agents u,
+    sys.user$ usr
+  where
+    u.agent_name = t.agent_name
+    and usr.user# = USERENV('SCHEMAID')
+    and usr.name = t.db_username
+columns: []
+referencedTables: []

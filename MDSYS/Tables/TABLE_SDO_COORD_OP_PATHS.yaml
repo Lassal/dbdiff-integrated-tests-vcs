@@ -1,0 +1,69 @@
+name: SDO_COORD_OP_PATHS
+schema: MDSYS
+columns:
+- name: CONCAT_OPERATION_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: OP_PATH_STEP
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 5,0
+- name: SINGLE_OPERATION_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: SINGLE_OP_SOURCE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: SINGLE_OP_TARGET_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+constraints:
+- !<fk-constraint>
+  name: COORD_OP_PATH_FOREIGN_SOURCE
+  type: FOREIGN_KEY
+  columns:
+  - name: SINGLE_OP_SOURCE_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_COORD_REF_SYS
+    referencedTableColumnName: SRID
+- !<fk-constraint>
+  name: COORD_OP_PATH_FOREIGN_TARGET
+  type: FOREIGN_KEY
+  columns:
+  - name: SINGLE_OP_TARGET_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_COORD_REF_SYS
+    referencedTableColumnName: SRID
+- !<check-constraint>
+  name: CONCAT_OP_ID_MUST_BE_POS
+  type: CHECK
+  checkClause: CONCAT_OPERATION_ID > 10
+- !<check-constraint>
+  name: OP_PATH_STEP_MUST_BE_POS
+  type: CHECK
+  checkClause: OP_PATH_STEP > 0
+- !<check-constraint>
+  name: SYS_C005829
+  type: CHECK
+  checkClause: '"CONCAT_OPERATION_ID" IS NOT NULL'

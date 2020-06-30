@@ -1,0 +1,82 @@
+schema: SYS
+name: KU$_CONSTRAINT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '2',
+    c .con#,
+    u.name,
+    c .name,
+    cd.defer,
+    cd.type#,
+    cd.obj#,
+    (
+      select
+        value(sov)
+      from
+        ku$_schemaobj_view sov
+      where
+        sov.obj_num = cd.obj#
+    ),
+    (
+      select
+        value(col)
+      from
+        ku$_simple_col_view col,
+        sys.ccol$ cc
+      where
+        col.obj_num = cd.obj#
+        and cc.obj# = cd.obj#
+        and cc.con# = c .con#
+        and cc.intcol# = col.intcol_num
+        and cd.type# in (7, 11)
+        /* not null constr*/
+        and bitand(col.property, 1 + 32) = 0
+    ),
+    /* not adt attr and hidden col */
+    (
+      select
+        value(con)
+      from
+        ku$_constraint0_view con
+      where
+        con.con_num = c .con#
+    ),
+    (
+      select
+        value(con)
+      from
+        ku$_constraint1_view con
+      where
+        con.con_num = c .con#
+    )
+  from
+    obj$ o,
+    con$ c,
+    cdef$ cd,
+    user $ u
+  where
+    cd.obj# = o.obj#
+    and c .con# = cd.con#
+    and u.user# = c .owner#
+    and cd.type# in (1, 2, 3, 7, 11, 12, 14, 15, 16, 17) -- table check (1), primary key (2),
+    -- unique key (3),
+    -- not null (7),
+    -- ref/udt col with not-null (11),
+    -- supplemental log groups (12),
+    -- supplemental log data (14,15,16,17)
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (u.user#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,14 @@
+schema: SYS
+name: DATABASE_NAME
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  function database_name return varchar2 is
+  begin
+    return dbms_standard.database_name;
+  end;

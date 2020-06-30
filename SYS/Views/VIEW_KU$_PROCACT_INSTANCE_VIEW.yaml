@@ -1,0 +1,104 @@
+schema: SYS
+name: KU$_PROCACT_INSTANCE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    d.obj#,
+    value(o),
+    value(o),
+    p.level#,
+    p.package,
+    p.schema,
+    p.class,
+    pr.prepost,
+    case
+      when p.class = 3 then sys.dbms_metadata.get_action_instance (
+        p.package,
+        p.schema,
+        'INSTANCE_INFO_EXP',
+        o.name,
+        o.owner_name,
+        0,
+        0,
+        pr.prepost,
+        (
+          select
+            1
+          from
+            dual
+          where
+            (
+              SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+              OR EXISTS (
+                SELECT
+                  *
+                FROM
+                  sys.session_roles
+                WHERE
+                  role = 'SELECT_CATALOG_ROLE'
+              )
+            )
+        )
+      )
+      when p.class = 4 then sys.dbms_metadata.get_action_instance (
+        p.package,
+        p.schema,
+        'INSTANCE_EXTENDED_INFO_EXP',
+        o.name,
+        o.owner_name,
+        o.namespace,
+        o.type_num,
+        pr.prepost,
+        (
+          select
+            1
+          from
+            dual
+          where
+            (
+              SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+              OR EXISTS (
+                SELECT
+                  *
+                FROM
+                  sys.session_roles
+                WHERE
+                  role = 'SELECT_CATALOG_ROLE'
+              )
+            )
+        )
+      )
+      else null
+    end
+  FROM
+    sys.ku$_schemaobj_view o,
+    sys.exppkgact$ p,
+    sys.expdepact$ d,
+    ku$_prepost_view pr
+  WHERE
+    d.obj# = o.obj_num
+    AND d.package = p.package
+    and d.schema = p.schema
+    and (
+      (p.class = 3)
+      OR (p.class = 4)
+    )
+    and p.package != 'DBMS_RULE_EXP_RULES'
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+  ORDER by
+    p.level#
+columns: []
+referencedTables: []

@@ -1,0 +1,19 @@
+schema: SYS
+name: ALL_STREAMS_TRANSFORM_FUNCTION
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    tf. "RULE_OWNER",
+    tf. "RULE_NAME",
+    tf. "VALUE_TYPE",
+    tf. "TRANSFORM_FUNCTION_NAME",
+    tf. "CUSTOM_TYPE"
+  from
+    DBA_STREAMS_TRANSFORM_FUNCTION tf,
+    ALL_RULES r
+  where
+    tf.rule_owner = r.rule_owner
+    and tf.rule_name = r.rule_name
+columns: []
+referencedTables: []

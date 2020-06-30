@@ -1,0 +1,24 @@
+schema: SYS
+name: KU$_XSINST_ACL_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    i.xdsid#,
+    i.order#,
+    i.acl#,
+    i.acl_order#,
+    (
+      select
+        value(xo)
+      from
+        ku$_xsobj_view xo
+      where
+        i.acl# = xo.id
+    )
+  from
+    xs$instset_acl i
+columns: []
+referencedTables: []

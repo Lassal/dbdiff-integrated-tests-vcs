@@ -1,0 +1,161 @@
+schema: SYS
+name: DBMS_XMLSTORE
+routineType: PACKAGE
+returnParamater:
+  name: UPDATEXML(3).(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: CLEARKEYCOLUMNLIST.CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLEARUPDATECOLUMNLIST.CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLOSECONTEXT.CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: DELETEXML(1).CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: DELETEXML(1).XDOC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETEXML(2).CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: DELETEXML(2).XDOC
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: DELETEXML(3).CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: DELETEXML(3).XDOC
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: INSERTXML(1).CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERTXML(1).XDOC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSERTXML(2).CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERTXML(2).XDOC
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: INSERTXML(3).CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERTXML(3).XDOC
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: NEWCONTEXT.TARGETTABLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETKEYCOLUMN.CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SETKEYCOLUMN.COLNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETPRESERVEWHITESPACE.CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SETPRESERVEWHITESPACE.FLAG
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETROWTAG.CTX
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SETROWTAG.ROWTAGNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETUPDATECOLUMN.CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SETUPDATECOLUMN.COLNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEXML(1).CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATEXML(1).XDOC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEXML(2).CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATEXML(2).XDOC
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: UPDATEXML(3).CTXHDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATEXML(3).XDOC
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_xmlstore AUTHID CURRENT_USER AS -- context handle
+  SUBTYPE ctxHandle IS NUMBER;
+  SUBTYPE ctxType IS NUMBER;
+  SUBTYPE conversionType IS NUMBER;
+  -------------------- constructor/destructor functions ---------------------
+  FUNCTION newContext(targetTable IN VARCHAR2) RETURN ctxHandle;
+  PROCEDURE closeContext(ctxHdl IN ctxHandle);
+  -- set the row tag name
+  PROCEDURE setRowTag(ctx IN ctxHandle, rowTagName IN varchar2);
+  -- set the columns to update. Relevant for insert and update routines..
+  PROCEDURE setUpdateColumn(ctxHdl IN ctxType, colName IN VARCHAR2);
+  PROCEDURE clearUpdateColumnList(ctxHdl IN ctxType);
+  -- set the key column name to be used for updates and deletes.
+  PROCEDURE setKeyColumn(ctxHdl IN ctxType, colName IN VARCHAR2);
+  PROCEDURE clearKeyColumnList(ctxHdl IN ctxType);
+  -- set preserve whitespace
+  PROCEDURE setPreserveWhitespace(ctxHdl IN ctxType, flag IN BOOLEAN);
+  ------------------- save ----------------------------------------------------
+  -- insertXML
+  FUNCTION insertXML(ctxHdl IN ctxType, xDoc IN VARCHAR2) RETURN NUMBER;
+  FUNCTION insertXML(ctxHdl IN ctxType, xDoc IN CLOB) RETURN NUMBER;
+  FUNCTION insertXML(ctxHdl IN ctxType, xDoc IN XMLTYPE) RETURN NUMBER;
+  -- updateXML
+  FUNCTION updateXML(ctxHdl IN ctxType, xDoc IN VARCHAR2) RETURN NUMBER;
+  FUNCTION updateXML(ctxHdl IN ctxType, xDoc IN CLOB) RETURN NUMBER;
+  FUNCTION updateXML(ctxHdl IN ctxType, xDoc IN XMLTYPE) RETURN NUMBER;
+  -- deleteXML
+  FUNCTION deleteXML(ctxHdl IN ctxType, xDoc IN VARCHAR2) RETURN NUMBER;
+  FUNCTION deleteXML(ctxHdl IN ctxType, xDoc IN CLOB) RETURN NUMBER;
+  FUNCTION deleteXML(ctxHdl IN ctxType, xDoc IN XMLTYPE) RETURN NUMBER;
+  END dbms_xmlstore;

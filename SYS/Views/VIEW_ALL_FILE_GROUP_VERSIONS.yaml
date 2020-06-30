@@ -1,0 +1,18 @@
+schema: SYS
+name: ALL_FILE_GROUP_VERSIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    v.file_group_owner,
+    v.file_group_name,
+    v.version_name,
+    v.version_id,
+    v.creator,
+    v.created,
+    v.comments,
+    v.default_directory
+  from
+    "_ALL_FILE_GROUP_VERSIONS" v
+columns: []
+referencedTables: []

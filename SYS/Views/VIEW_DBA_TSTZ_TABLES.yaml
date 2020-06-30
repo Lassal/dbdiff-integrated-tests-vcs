@@ -1,0 +1,26 @@
+schema: SYS
+name: DBA_TSTZ_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    distinct owner,
+    table_name,
+    decode(
+      bitand(t.property, 137438953472),
+      137438953472,
+      'YES',
+      'NO'
+    )
+  from
+    dba_tstz_tab_cols dttc,
+    sys.obj$ o,
+    sys.user$ u,
+    sys.tab$ t
+  where
+    dttc.table_name = o.name
+    and dttc.owner = u.name
+    and o.owner# = u.user#
+    and o.obj# = t.obj#
+columns: []
+referencedTables: []

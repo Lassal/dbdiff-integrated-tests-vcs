@@ -1,0 +1,41 @@
+schema: SYS
+name: USER_EDITIONED_TYPES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    decode(
+      type #,
+      4,
+      'VIEW',
+      5,
+      'SYNONYM',
+      7,
+      'PROCEDURE',
+      8,
+      'FUNCTION',
+      9,
+      'PACKAGE',
+      11,
+      'PACKAGE BODY',
+      12,
+      'TRIGGER',
+      13,
+      'TYPE',
+      14,
+      'TYPE BODY',
+      22,
+      'LIBRARY',
+      87,
+      'ASSEMBLY',
+      114,
+      'SQL TRANSLATION PROFILE',
+      'UNDEFINED'
+    )
+  from
+    sys.user_editioning$
+  where
+    user # = userenv('SCHEMAID')
+    and type # != 10
+columns: []
+referencedTables: []

@@ -1,0 +1,157 @@
+schema: SYS
+name: ALL_SCHEDULER_RUNNING_CHAINS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    ju.name,
+    jo.name,
+    jo.subname,
+    cu.name,
+    co.name,
+    cv.var_name,
+    DECODE(
+      BITAND(jss.flags, 2),
+      2,
+      DECODE(
+        jss.status,
+        'K',
+        'PAUSED',
+        'F',
+        'PAUSED',
+        'R',
+        'RUNNING',
+        'C',
+        'SCHEDULED',
+        'E',
+        'RETRY SCHEDULED',
+        'T',
+        'STALLED',
+        'P',
+        'PAUSED',
+        'NOT_STARTED'
+      ),
+      DECODE(
+        jss.status,
+        'K',
+        'STOPPED',
+        'R',
+        'RUNNING',
+        'C',
+        'SCHEDULED',
+        'E',
+        'RETRY SCHEDULED',
+        'T',
+        'STALLED',
+        'P',
+        'PAUSED',
+        'F',
+        DECODE(jss.error_code, 0, 'SUCCEEDED', 'FAILED'),
+        'NOT_STARTED'
+      )
+    ),
+    jss.error_code,
+    DECODE(jss.status, 'F', 'TRUE', 'K', 'TRUE', 'FALSE'),
+    jss.start_date,
+    jss.end_date,
+    (
+      CASE
+        WHEN jss.end_date > jss.start_date THEN jss.end_date - jss.start_date
+        ELSE NULL
+      END
+    ),
+    DECODE(
+      BITAND(jss.flags, 1),
+      0,
+      'FALSE',
+      1,
+      'TRUE',
+      DECODE(BITAND(cv.flags, 1), 0, 'FALSE', 1, 'TRUE')
+    ),
+    DECODE(
+      BITAND(jss.flags, 2),
+      0,
+      'FALSE',
+      2,
+      'TRUE',
+      DECODE(BITAND(cv.flags, 2), 0, 'FALSE', 2, 'TRUE')
+    ),
+    DECODE(
+      BITAND(jss.flags, 512),
+      0,
+      'FALSE',
+      512,
+      'TRUE',
+      DECODE(BITAND(cv.flags, 512), 0, 'FALSE', 512, 'TRUE')
+    ),
+    DECODE(
+      BITAND(jss.flags, 64),
+      0,
+      'FALSE',
+      64,
+      'TRUE',
+      DECODE(BITAND(cv.flags, 64), 0, 'FALSE', 64, 'TRUE')
+    ),
+    DECODE(
+      BITAND(jss.flags, 128),
+      0,
+      'FALSE',
+      128,
+      'TRUE',
+      DECODE(BITAND(cv.flags, 128), 0, 'FALSE', 128, 'TRUE')
+    ),
+    jso.subname,
+    jss.job_step_log_id
+  FROM
+    sys.scheduler$_job j
+    JOIN obj$ jo ON (j.obj# = jo.obj#)
+    JOIN user $ ju ON (
+      jo.owner# = ju.user#
+      AND (
+        jo.owner# = userenv('SCHEMAID')
+        or jo.obj# in (
+          select
+            oa.obj#
+          from
+            sys.objauth$ oa
+          where
+            grantee# in (
+              select
+                kzsrorol
+              from
+                x$kzsro
+            )
+        )
+        or
+        /* user has system privileges */
+        (
+          exists (
+            select
+              null
+            from
+              v$enabledprivs
+            where
+              priv_number in (
+                -265
+                /* CREATE ANY JOB */
+              )
+          )
+          and jo.owner# != 0
+        )
+      )
+    )
+    JOIN obj$ co ON (co.obj# = j.program_oid)
+    JOIN user $ cu ON (co.owner# = cu.user#)
+    JOIN scheduler$_step cv ON (cv.oid = j.program_oid)
+    LEFT OUTER JOIN scheduler$_step_state jss ON (
+      jss.job_oid = j.obj#
+      AND jss.step_name = cv.var_name
+    )
+    LEFT OUTER JOIN obj$ jso ON (jss.job_step_oid = jso.obj#)
+  WHERE
+    (
+      BITAND(j.job_status, 2 + 256) != 0
+      OR jo.subname IS NOT NULL
+    )
+columns: []
+referencedTables: []

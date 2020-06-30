@@ -1,0 +1,13 @@
+schema: CTXSYS
+name: CTX_USER_THESAURI
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ths_name
+  from
+    dr$ths
+  where
+    ths_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

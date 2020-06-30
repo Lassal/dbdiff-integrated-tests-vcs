@@ -1,0 +1,58 @@
+schema: SYS
+name: ALL_INDEXTYPE_OPERATORS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    u1.name,
+    op.name,
+    i.bind#
+  from
+    sys.user$ u,
+    sys.indop$ i,
+    sys.obj$ o,
+    sys.obj$ op,
+    sys.user$ u1
+  where
+    i.obj# = o.obj#
+    and i.oper# = op.obj#
+    and u.user# = o.owner#
+    and bitand(i.property, 4) != 4
+    and u1.user# = op.owner#
+    and (
+      o.owner# = userenv ('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -205
+            /* CREATE INDEXTYPE */,
+            -206
+            /* CREATE ANY INDEXTYPE */,
+            -207
+            /* ALTER ANY INDEXTYPE */,
+            -208
+            /* DROP ANY INDEXTYPE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

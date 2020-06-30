@@ -1,0 +1,31 @@
+schema: SYS
+name: OWA_IMAGE
+routineType: PACKAGE
+returnParamater:
+  name: GET_Y.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: OUT
+parameters:
+- name: GET_X.P
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: GET_Y.P
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+routineDefinition: |-
+  package OWA_IMAGE is
+  /* The Web Agent can only pass PL/SQL tables of characters, */
+  /* but technically, this should be integers.                */
+  /* PL/SQL will take care of the casting of values.          */
+  type point is table of varchar2(32767) index by binary_integer;
+  NULL_POINT point;
+  function get_x(p in point) return integer;
+  function get_y(p in point) return integer;
+  PRAGMA RESTRICT_REFERENCES(get_x, WNDS, WNPS, RNDS, RNPS);
+  PRAGMA RESTRICT_REFERENCES(get_y, WNDS, WNPS, RNDS, RNPS);
+  PRAGMA RESTRICT_REFERENCES(owa_image, WNDS, RNDS, RNPS);
+  end;

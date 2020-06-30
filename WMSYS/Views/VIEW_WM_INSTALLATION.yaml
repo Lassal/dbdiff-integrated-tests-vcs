@@ -1,0 +1,39 @@
+schema: WMSYS
+name: WM_INSTALLATION
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    name,
+    value
+  from
+    wmsys.wm$env_vars
+  where
+    hidden = 0
+  union
+  select
+    name,
+    value
+  from
+    wmsys.wm$sysparam_all_values sv
+  where
+    isdefault = 'YES'
+    and hidden = 0
+    and not exists (
+      select
+        1
+      from
+        wmsys.wm$env_vars ev
+      where
+        ev.name = sv.name
+    )
+  union
+  select
+    'OWM_VERSION',
+    version
+  from
+    dba_registry
+  where
+    comp_id = 'OWM' WITH READ ONLY
+columns: []
+referencedTables: []

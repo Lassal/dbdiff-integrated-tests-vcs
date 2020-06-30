@@ -1,0 +1,26 @@
+schema: MDSYS
+name: OGC_POLYGONFROMWKB
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: OBJECT
+  parameterMode: OUT
+parameters:
+- name: WKB
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: SRID
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_PolygonFromWKB(
+    wkb IN BLOB,
+    srid IN INTEGER DEFAULT NULL
+  ) RETURN ST_POLYGON IS
+  BEGIN
+    RETURN TREAT(ST_GEOMETRY.FROM_WKB(wkb, srid) AS ST_POLYGON);
+  END OGC_PolygonFromWKB;

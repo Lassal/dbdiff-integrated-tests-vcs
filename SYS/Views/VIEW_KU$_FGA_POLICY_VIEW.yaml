@@ -1,0 +1,54 @@
+schema: SYS
+name: KU$_FGA_POLICY_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    '1',
+    '2',
+    f.obj#,
+    f.pname,
+    TO_CLOB(replace ((f.ptxt), '''', '''''')),
+    f.pfschma,
+    f.ppname,
+    f.pfname,
+    cast(
+      multiset(
+        select
+          c .name
+        from
+          sys.col$ c,
+          sys.fgacol$ fc
+        where
+          fc.obj# = f.obj#
+          and fc.pname = f.pname
+          and fc.obj# = c .obj#
+          and fc.intcol# = c .intcol#
+      ) as ku$_fga_rel_col_list_t
+    ),
+    f.enable_flag,
+    BITAND(NVL(f.stmt_type, 1), 15),
+    BITAND(NVL(f.stmt_type, 0), 64),
+    BITAND(NVL(f.stmt_type, 1), 128),
+    value(sov),
+    u.name
+  FROM
+    sys.ku$_schemaobj_view sov,
+    sys.fga$ f,
+    sys.user$ u
+  WHERE
+    f.obj# = sov.obj_num
+    AND u.user# = f.powner#
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

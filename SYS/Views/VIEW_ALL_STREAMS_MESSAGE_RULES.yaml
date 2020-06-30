@@ -1,0 +1,25 @@
+schema: SYS
+name: ALL_STREAMS_MESSAGE_RULES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    mr. "STREAMS_NAME",
+    mr. "STREAMS_TYPE",
+    mr. "MESSAGE_TYPE_NAME",
+    mr. "MESSAGE_TYPE_OWNER",
+    mr. "MESSAGE_RULE_VARIABLE",
+    mr. "RULE_NAME",
+    mr. "RULE_OWNER",
+    mr. "RULE_CONDITION"
+  from
+    dba_streams_message_rules mr,
+    "_ALL_STREAMS_PROCESSES" p,
+    all_rules ar
+  where
+    mr.rule_owner = ar.rule_owner
+    and mr.rule_name = ar.rule_name
+    and mr.streams_name = p.streams_name
+    and mr.streams_type = p.streams_type
+columns: []
+referencedTables: []

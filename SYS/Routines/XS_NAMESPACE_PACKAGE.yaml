@@ -1,0 +1,169 @@
+schema: SYS
+name: XS_NAMESPACE
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: ADD_ATTRIBUTES(1).TEMPLATE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_ATTRIBUTES(1).ATTRIBUTE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_ATTRIBUTES(1).DEFAULT_VALUE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_ATTRIBUTES(1).ATTRIBUTE_EVENTS
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADD_ATTRIBUTES(2).TEMPLATE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_ATTRIBUTES(2).ATTR_LIST
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CREATE_TEMPLATE.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TEMPLATE.ATTR_LIST
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CREATE_TEMPLATE.SCHEMA
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TEMPLATE.PACKAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TEMPLATE.FUNCTION
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TEMPLATE.ACL
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TEMPLATE.DESCRIPTION
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_TEMPLATE.TEMPLATE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_TEMPLATE.DELETE_OPTION
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REMOVE_ATTRIBUTES(1).TEMPLATE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_ATTRIBUTES(2).TEMPLATE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_ATTRIBUTES(2).ATTRIBUTE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_ATTRIBUTES(3).TEMPLATE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_ATTRIBUTES(3).ATTR_LIST
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SET_DESCRIPTION.TEMPLATE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_DESCRIPTION.DESCRIPTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_HANDLER.TEMPLATE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_HANDLER.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_HANDLER.PACKAGE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_HANDLER.FUNCTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE XS_NAMESPACE AUTHID CURRENT_USER AS -- Attribute event
+  NO_EVENT CONSTANT PLS_INTEGER: = 0;
+  FIRSTREAD_EVENT CONSTANT PLS_INTEGER: = 1;
+  UPDATE_EVENT CONSTANT PLS_INTEGER: = 2;
+  FIRSTREAD_PLUS_UPDATE_EVENT CONSTANT PLS_INTEGER: = 3;
+  -- Enable log based replication for this package
+  PRAGMA SUPPLEMENTAL_LOG_DATA(default, AUTO);
+  -- Document creation API. Only name is mandatory input.
+  PROCEDURE CREATE_TEMPLATE (
+    name IN VARCHAR2,
+    attr_list IN XS$NS_ATTRIBUTE_LIST: = NULL,
+    schema IN VARCHAR2: = NULL,
+    package IN VARCHAR2: = NULL,
+    function IN VARCHAR2: = NULL,
+    acl IN VARCHAR2: = 'SYS.NS_UNRESTRICTED_ACL',
+    description IN VARCHAR2: = NULL
+  );
+  -- Set handler for attribute events
+  PROCEDURE SET_HANDLER (
+    template IN VARCHAR2,
+    schema IN VARCHAR2,
+    package IN VARCHAR2,
+    function IN VARCHAR2
+  );
+  -- Add a attribute to the namespace template
+  PROCEDURE ADD_ATTRIBUTES (
+    template IN VARCHAR2,
+    attribute IN VARCHAR2,
+    default_value IN VARCHAR2: = NULL,
+    attribute_events IN PLS_INTEGER: = XS_NAMESPACE.NO_EVENT
+  );
+  -- Add a list of attributes to the namespace template
+  PROCEDURE ADD_ATTRIBUTES (
+    template IN VARCHAR2,
+    attr_list IN XS$NS_ATTRIBUTE_LIST
+  );
+  -- Remove all attributes to the namespace template
+  PROCEDURE REMOVE_ATTRIBUTES (template IN VARCHAR2);
+  -- Remove a single attribute from the namespace template
+  PROCEDURE REMOVE_ATTRIBUTES (
+    template IN VARCHAR2,
+    attribute IN VARCHAR2
+  );
+  -- Remove a list of attribute from the namespace template
+  PROCEDURE REMOVE_ATTRIBUTES (
+    template IN VARCHAR2,
+    attr_list IN XS$LIST
+  );
+  -- Set description
+  PROCEDURE SET_DESCRIPTION (
+    template IN VARCHAR2,
+    description IN VARCHAR2
+  );
+  -- Delete the namespace template
+  PROCEDURE DELETE_TEMPLATE (
+    template IN VARCHAR2,
+    delete_option IN PLS_INTEGER: = XS_ADMIN_UTIL.DEFAULT_OPTION
+  );
+  END XS_NAMESPACE;

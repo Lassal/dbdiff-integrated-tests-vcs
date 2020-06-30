@@ -1,0 +1,49 @@
+schema: SYS
+name: EXU10IND_BASE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    iobjid,
+    idobjid,
+    iname,
+    iowner,
+    iownerid,
+    ispace,
+    itsno,
+    ifileno,
+    iblockno,
+    btname,
+    btobjid,
+    btowner,
+    btownerid,
+    btproperty,
+    btclusterflag,
+    property,
+    cluster $,
+    pctfree $,
+    initrans,
+    maxtrans,
+    blevel,
+    bitmap,
+    deflog,
+    tsdeflog,
+    degree,
+    instances,
+    type,
+    rowcnt,
+    leafcnt,
+    distkey,
+    lblkkey,
+    dblkkey,
+    clufac,
+    preccnt,
+    iflags,
+    sysgenconst
+  FROM
+    sys.exu11ind_base e$
+  WHERE
+    BITAND(e$.property, 8208) != 8208
+    /* skip Fn Ind on MV */
+columns: []
+referencedTables: []

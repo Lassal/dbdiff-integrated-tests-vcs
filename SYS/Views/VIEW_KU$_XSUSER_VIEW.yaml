@@ -1,0 +1,34 @@
+schema: SYS
+name: KU$_XSUSER_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    o.name,
+    o.ws,
+    o.owner,
+    o.tenant,
+    o.id,
+    o.type,
+    o.status,
+    (
+      select
+        value(p)
+      from
+        ku$_xsprin_view p
+      where
+        p.prin_id = o.id
+    )
+  from
+    xs$obj o,
+    xs$prin p
+  where
+    o.id = p.prin#
+    and bitand(o.flags, 1) = 0
+    /* not Oracle supplied */
+    and o.type = 1
+    and p.type = 0
+columns: []
+referencedTables: []

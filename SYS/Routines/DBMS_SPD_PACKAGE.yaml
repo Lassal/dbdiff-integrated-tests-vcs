@@ -1,0 +1,306 @@
+schema: SYS
+name: DBMS_SPD
+routineType: PACKAGE
+returnParamater:
+  name: UNPACK_STGTAB_DIRECTIVE.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: ALTER_SQL_PLAN_DIRECTIVE.DIRECTIVE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ALTER_SQL_PLAN_DIRECTIVE.ATTRIBUTE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_SQL_PLAN_DIRECTIVE.ATTRIBUTE_VALUE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_STGTAB_DIRECTIVE.TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_STGTAB_DIRECTIVE.TABLE_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_STGTAB_DIRECTIVE.TABLESPACE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_SQL_PLAN_DIRECTIVE.DIRECTIVE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PREFS.PNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PACK_STGTAB_DIRECTIVE.TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PACK_STGTAB_DIRECTIVE.TABLE_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PACK_STGTAB_DIRECTIVE.DIRECTIVE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: PACK_STGTAB_DIRECTIVE.OBJ_LIST
+  ordinalPosition: 4
+  dataType: TABLE
+  parameterMode: IN
+- name: SET_PREFS.PNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_PREFS.PVALUE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFER_SPD_FOR_DP.OBJLIST_TABF
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFER_SPD_FOR_DP.DBLINKF
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFER_SPD_FOR_DP.OPERATION
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: UNPACK_STGTAB_DIRECTIVE.TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNPACK_STGTAB_DIRECTIVE.TABLE_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNPACK_STGTAB_DIRECTIVE.DIRECTIVE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: UNPACK_STGTAB_DIRECTIVE.OBJ_LIST
+  ordinalPosition: 4
+  dataType: TABLE
+  parameterMode: IN
+routineDefinition: "package dbms_spd authid current_user is ---------------------------------------------------------------------------\n\
+  ---------------------------------------------------------------------------\n/*\n\
+  \n    Package: DBMS_SPD\n\n\n\n    This package provides subprograms for managing\
+  \ Sql Plan\n\n    Directives(SPD). SPD are objects generated automatically by Oracle\n\
+  \n    server. For example, if server detects that the single table cardinality\n\
+  \n    estimated by optimizer is off from the actual number of rows returned\n\n\
+  \    when accessing the table, it will automatically create a directive to\n\n \
+  \   do dynamic sampling for the table. When any Sql statement referencing\n\n  \
+  \  the table is compiled, optimizer will perform dynamic sampling for the\n\n  \
+  \  table to get more accurate estimate.\n\n\n\n    Notes:\n\n\n\n    DBMSL_SPD is\
+  \ a invoker-rights package. The invoker requires ADMINISTER\n\n    SQL MANAGEMENT\
+  \ OBJECT privilege for executing most of the subprograms of\n\n    this package.\
+  \ Also the subprograms commit the current transaction (if any),\n\n    perform the\
+  \ operation and commit it again.\n\n\n\n    DBA view dba_sql_plan_directives shows\
+  \ all the directives created in\n\n    the system and the view dba_sql_plan_dir_objects\
+  \ displays the objects that\n\n    are included in the directives.\n\n\n\n  */\n\
+  ---------------------------------------------------------------------------\n---------------------------------------------------------------------------\n\
+  ---------------------------------------------------------------------------\n--\
+  \                           TYPES AND CONSTANTS\n---------------------------------------------------------------------------\n\
+  -- Default value for SPD_RETENTION_WEEKS\nSPD_RETENTION_WEEKS_DEFAULT CONSTANT varchar2(4):\
+  \ = '53';\n-- Objects in the directive\ntype ObjectElem is record (\n  owner dbms_quoted_id,\n\
+  \  -- owner of the object\n  object_name dbms_quoted_id,\n  -- name of the object\n\
+  \  object_type varchar2(6) -- 'TABLE'\n);\ntype ObjectTab is table of ObjectElem;\n\
+  ---------------------------------------------------------------------------\n--\
+  \                           EXCEPTIONS\n---------------------------------------------------------------------------\n\
+  /*\n\n     Exception: insufficient_privilege\n\n\n\n      The user does not have\
+  \ proper privilege to perform the operation\n\n  */\ninsufficient_privilege\nexception;\n\
+  pragma exception_init(insufficient_privilege, -38171);\n  /*\n  \n      Exception:\
+  \ object_does_not_exist\n  \n  \n  \n        The specified object does not exist.\n\
+  \  \n    */\n  object_does_not_exist\nexception;\npragma exception_init(object_does_not_exist,\
+  \ -13158);\n  /*\n  \n      Exception: invalid_input\n  \n  \n  \n        The input\
+  \ value is not valid\n  \n    */\n  invalid_input\nexception;\npragma exception_init(invalid_input,\
+  \ -28104);\n  /*\n  \n      Exception: invalid_schema\n  \n  \n  \n        The input\
+  \ schema does not exist\n  \n    */\n  invalid_schema\nexception;\npragma exception_init(invalid_schema,\
+  \ -44001);\n  /*\n  \n      Exception: table_already_exists\n  \n  \n  \n      \
+  \  The specified table already exists.\n  \n    */\n  table_already_exists\nexception;\n\
+  pragma exception_init(table_already_exists, -13159);\n  /*\n  \n      Exception:\
+  \ tablespace_missing\n  \n  \n  \n        The specified tablespace does not exist.\n\
+  \  \n    */\n  tablespace_missing\nexception;\npragma exception_init(tablespace_missing,\
+  \ -29304);\n  /*\n  \n      Exception: invalid_stgtab\n  \n  \n  \n        The specified\
+  \ staging table is invalid or does not exist\n  \n    */\n  invalid_stgtab\nexception;\n\
+  pragma exception_init(invalid_stgtab, -19374);\n---------------------------------------------------------------------------\n\
+  \  --                           SUBPROGRAMS\n  ---------------------------------------------------------------------------\n\
+  \  /*\n  \n      Procedure: alter_sql_plan_directive\n  \n  \n  \n        This procedure\
+  \ can be used to change different attributes of a\n  \n        SQL Plan Directive.\n\
+  \  \n  \n  \n      Parameters:\n  \n        directive_id     - SQL Plan Directive\
+  \ id\n  \n        attribute_name   - One of the attribute names as below\n  \n \
+  \       attribute_value  - Values of the above attributes as below\n  \n  \n  \n\
+  \      The following attribute(s) are supported.\n  \n  \n  \n  \n  \n      | Attribute_name\
+  \ : Attribute_value : Description\n  \n  \n  \n      | ENABLED        : YES    \
+  \         : Directive is enabled and may\n  \n      |                          \
+  \          be used.\n  \n      |                  NO              : Directive is\
+  \ not enabled and will\n  \n      |                                    not be used.\n\
+  \  \n      |\n  \n      | AUTO_DROP      : YES             : Directive will be dropped\n\
+  \  \n      |                                    automatically if not\n  \n     \
+  \ |                                    used for SPD_RETENTION_WEEKS.\n  \n     \
+  \ |                                    This is the default behavior.\n  \n     \
+  \ |                  NO              : Directive will not be dropped\n  \n     \
+  \ |                                    automatically.\n  \n  \n  \n      Exceptions:\n\
+  \  \n        - <insufficient_privilege>\n  \n        - <object_does_not_exist>\n\
+  \  \n        - <invalid_input>\n  \n  \n  \n      Notes:\n  \n        \"Administer\
+  \ SQL Management Object\" privilege is required to execute\n  \n        this procedure.\n\
+  \  \n  \n  \n      Examples:\n  \n      | begin\n  \n      |   dbms_spd.alter_sql_plan_directive(12345,\
+  \ 'STATE', 'PERMANENT');\n  \n      | end;\n  \n  \n  \n      Returns:\n  \n   \
+  \     Nothing.\n  \n    */\n  procedure alter_sql_plan_directive(\n    directive_id\
+  \ number,\n    attribute_name varchar2,\n    attribute_value varchar2\n  );\n  /*\n\
+  \  \n      Procedure: drop_sql_plan_directive\n  \n  \n  \n        This procedure\
+  \ can be used to drop a SQL Plan Directive.\n  \n  \n  \n      Parameters:\n  \n\
+  \        directive_id     - SQL Plan Directive id\n  \n  \n  \n      Exceptions:\n\
+  \  \n        - <insufficient_privilege>\n  \n        - <object_does_not_exist>\n\
+  \  \n        - <invalid_input>\n  \n  \n  \n      Notes:\n  \n        \"Administer\
+  \ SQL Management Object\" privilege is required to execute\n  \n        this procedure.\n\
+  \  \n  \n  \n        If null is passed for directive_id, it will drop all directives\
+  \ not\n  \n        used for last SPD_RETENTION_WEEKS. The directives with AUTO_DROP\
+  \ set to\n  \n        NO will not be dropped.\n  \n  \n  \n      Examples:\n  \n\
+  \      | begin\n  \n      |   dbms_spd.drop_sql_plan_directive(12345);\n  \n   \
+  \   | end;\n  \n  \n  \n      Returns:\n  \n        Nothing.\n  \n    */\n  procedure\
+  \ drop_sql_plan_directive(directive_id number);\n  /*\n  \n      Procedure: flush_sql_plan_directive\n\
+  \  \n  \n  \n        This procedure allows manually flushing the Sql Plan directives\
+  \ that\n  \n        are automatically recorded in SGA memory while executing sql\n\
+  \  \n        statements. The information recorded in SGA are periodically flushed\n\
+  \  \n        by oracle background processes. This procedure just provides a way\
+  \ to\n  \n        flush the information manually.\n  \n  \n  \n      Parameters:\n\
+  \  \n  \n  \n      Exceptions:\n  \n        - <insufficient_privilege>\n  \n  \n\
+  \  \n      Notes:\n  \n        \"Administer SQL Management Object\" privilege is\
+  \ required to execute\n  \n        this procedure.\n  \n  \n  \n      Examples:\n\
+  \  \n      | begin\n  \n      |   dbms_spd.flush_sql_plan_directive;\n  \n     \
+  \ | end;\n  \n  \n  \n      Returns:\n  \n        Nothing.\n  \n    */\n  procedure\
+  \ flush_sql_plan_directive;\n  /*\n  \n      Procedure: create_stgtab_directive\n\
+  \  \n  \n  \n        This procedure creates a staging table to pack (export) Sql\
+  \ Plan\n  \n        directives into it.\n  \n  \n  \n      Parameters:\n  \n   \
+  \     table_name       - Name of staging table.\n  \n        table_owner      -\
+  \ Name of schema owner of staging table.\n  \n                           Default\
+  \ is current schema.\n  \n        tablespace_name  - Name of tablespace.\n  \n \
+  \                          Default NULL means create staging table in the\n  \n\
+  \                           default tablespace.\n  \n      Exceptions:\n  \n   \
+  \     - <insufficient_privilege>\n  \n        - <invalid_input>\n  \n        - <invalid_schema>\n\
+  \  \n        - <table_already_exists>\n  \n        - <tablespace_missing>\n  \n\
+  \  \n  \n      Notes:\n  \n        \"Administer SQL Management Object\" privilege\
+  \ is required to execute\n  \n        this procedure.\n  \n  \n  \n      Examples:\n\
+  \  \n      | begin\n  \n      |   dbms_spd.create_stgtab_directive('mydirtab');\n\
+  \  \n      | end;\n  \n  \n  \n      Returns:\n  \n        Nothing\n  \n    */\n\
+  \  procedure create_stgtab_directive(\n    table_name in varchar2,\n    table_owner\
+  \ in varchar2: = user,\n    tablespace_name in varchar2: = null\n  );\n  /*\n  \n\
+  \      Procedure: pack_stgtab_directive\n  \n  \n  \n        This procedure packs\
+  \ (exports) SQL Plan Directives into a staging\n  \n        table.\n  \n  \n  \n\
+  \      Parameters:\n  \n        table_name       - Name of staging table.\n  \n\
+  \        table_owner      - Name of schema owner of staging table.\n  \n       \
+  \                    Default is current schema.\n  \n        directive_id     -\
+  \ SQL Plan Directive id\n  \n                           Default NULL means all directives\
+  \ in the system.\n  \n        obj_list         - This argument can be used to filter\
+  \ the\n  \n                           directives to be packed based on the objects\
+  \ used in\n  \n                           directives. if obj_list is not null, a\
+  \ directive is\n  \n                           packed only if all the objects in\
+  \ the directive\n  \n                           exists in obj_list.\n  \n  \n  \n\
+  \      Exceptions:\n  \n        - <insufficient_privilege>\n  \n        - <object_does_not_exist>\n\
+  \  \n        - <invalid_input>\n  \n        - <invalid_schema>\n  \n        - <invalid_stgtab>\n\
+  \  \n  \n  \n      Notes:\n  \n        \"Administer SQL Management Object\" privilege\
+  \ is required to execute\n  \n        this procedure.\n  \n  \n  \n      Examples:\n\
+  \  \n      | -- Pack all directives in the system\n  \n      | select dbms_spd.pack_stgtab_directive('mydirtab')\
+  \ from dual;\n  \n      |\n  \n      | set serveroutput on;\n  \n      | -- Pack\
+  \ directives relevant to objects in SH schema\n  \n      | declare\n  \n      |\
+  \   my_list  dbms_spd.objecttab := dbms_spd.ObjectTab();\n  \n      |   dir_cnt\
+  \  number;\n  \n      | begin\n  \n      |   my_list.extend(1);\n  \n      |   my_list(1).owner\
+  \ := 'SH';           -- schema name\n  \n      |   my_list(1).object_name := null;\
+  \     -- all tables in SH\n  \n      |   my_list(1).object_type := 'TABLE';  --\
+  \ type of object\n  \n      |\n  \n      |   dir_cnt :=\n  \n      |     dbms_spd.pack_stgtab_directive('mydirtab',\
+  \ obj_list => my_list);\n  \n      |   dbms_output.put_line('dir_cnt = ' || dir_cnt);\n\
+  \  \n      | end;\n  \n      |\n  \n      | -- Pack directives relevant to tables\
+  \ SALES and CUSTOMERS in SH schema\n  \n      | declare\n  \n      |   my_list \
+  \ dbms_spd.objecttab := dbms_spd.ObjectTab();\n  \n      |   dir_cnt  number;\n\
+  \  \n      | begin\n  \n      |   my_list.extend(2);\n  \n      |\n  \n      | \
+  \  -- SALES table\n  \n      |   my_list(1).owner := 'SH';\n  \n      |   my_list(1).object_name\
+  \ := 'SALES';\n  \n      |   my_list(1).object_type := 'TABLE';\n  \n      |\n \
+  \ \n      |   -- CUSTOMERS table\n  \n      |   my_list(2).owner := 'SH';\n  \n\
+  \      |   my_list(2).object_name := 'CUSTOMERS';\n  \n      |   my_list(2).object_type\
+  \ := 'TABLE';\n  \n      |\n  \n      |   dir_cnt :=\n  \n      |     dbms_spd.pack_stgtab_directive('mydirtab',\
+  \ obj_list => my_list);\n  \n      |   dbms_output.put_line('dir_cnt = ' || dir_cnt);\n\
+  \  \n      | end;\n  \n      |\n  \n  \n  \n      Returns:\n  \n        Number of\
+  \ Sql Plan Directives packed.\n  \n    */\n  function pack_stgtab_directive(\n \
+  \   table_name in varchar2,\n    table_owner in varchar2: = user,\n    directive_id\
+  \ in number: = null,\n    obj_list in ObjectTab: = null\n  ) return number;\n  /*\n\
+  \  \n      Procedure: unpack_stgtab_directive\n  \n  \n  \n        This procedure\
+  \ unpacks (imports) SQL Plan Directives from a staging\n  \n        table.\n  \n\
+  \  \n  \n      Parameters:\n  \n        table_name       - Name of staging table.\n\
+  \  \n        table_owner      - Name of schema owner of staging table.\n  \n   \
+  \                        Default is current schema.\n  \n        directive_id  \
+  \   - SQL Plan Directive id\n  \n                           Default NULL means all\
+  \ directives in the staging\n  \n                           table.\n  \n       \
+  \ obj_list         - This argument can be used to filter the\n  \n             \
+  \              directives to be unpacked based on the objects used in\n  \n    \
+  \                       directives. if obj_list is not null, a directive is\n  \n\
+  \                           unpacked only if all the objects in the directive\n\
+  \  \n                           exists in obj_list.\n  \n  \n  \n      Exceptions:\n\
+  \  \n        - <insufficient_privilege>\n  \n        - <object_does_not_exist>\n\
+  \  \n        - <invalid_input>\n  \n        - <invalid_schema>\n  \n        - <invalid_stgtab>\n\
+  \  \n  \n  \n      Notes:\n  \n        \"Administer SQL Management Object\" privilege\
+  \ is required to execute\n  \n        this procedure.\n  \n  \n  \n      Examples:\n\
+  \  \n      | -- Unack all directives in the staging table\n  \n      | select dbms_spd.unpack_stgtab_directive('mydirtab')\
+  \ from dual;\n  \n      |\n  \n      | set serveroutput on;\n  \n      | -- Unpack\
+  \ directives relevant to objects in SH schema\n  \n      | declare\n  \n      |\
+  \   my_list  dbms_spd.objecttab := dbms_spd.ObjectTab();\n  \n      |   dir_cnt\
+  \  number;\n  \n      | begin\n  \n      |   my_list.extend(1);\n  \n      |   my_list(1).owner\
+  \ := 'SH';           -- schema name\n  \n      |   my_list(1).object_name := null;\
+  \     -- all tables in SH\n  \n      |   my_list(1).object_type := 'TABLE';  --\
+  \ type of object\n  \n      |\n  \n      |   dir_cnt :=\n  \n      |     dbms_spd.unpack_stgtab_directive('mydirtab',\
+  \ obj_list => my_list);\n  \n      |   dbms_output.put_line('dir_cnt = ' || dir_cnt);\n\
+  \  \n      | end;\n  \n      |\n  \n      | -- Unpack directives relevant to tables\
+  \ SALES and CUSTOMERS in SH schema\n  \n      | declare\n  \n      |   my_list \
+  \ dbms_spd.objecttab := dbms_spd.ObjectTab();\n  \n      |   dir_cnt  number;\n\
+  \  \n      | begin\n  \n      |   my_list.extend(2);\n  \n      |\n  \n      | \
+  \  -- SALES table\n  \n      |   my_list(1).owner := 'SH';\n  \n      |   my_list(1).object_name\
+  \ := 'SALES';\n  \n      |   my_list(1).object_type := 'TABLE';\n  \n      |\n \
+  \ \n      |   -- CUSTOMERS table\n  \n      |   my_list(2).owner := 'SH';\n  \n\
+  \      |   my_list(2).object_name := 'CUSTOMERS';\n  \n      |   my_list(2).object_type\
+  \ := 'TABLE';\n  \n      |\n  \n      |   dir_cnt :=\n  \n      |     dbms_spd.unpack_stgtab_directive('mydirtab',\
+  \ obj_list => my_list);\n  \n      |   dbms_output.put_line('dir_cnt = ' || dir_cnt);\n\
+  \  \n      | end;\n  \n      |\n  \n  \n  \n      Returns:\n  \n        Number of\
+  \ Sql Plan Directives unpacked.\n  \n    */\n  function unpack_stgtab_directive(\n\
+  \    table_name in varchar2,\n    table_owner in varchar2: = user,\n    directive_id\
+  \ in number: = null,\n    obj_list in ObjectTab: = null\n  ) return number;\n  /*\n\
+  \  \n      Procedure: set_prefs\n  \n  \n  \n        This procedures allows setting\
+  \ different preferences for Sql\n  \n        Plan Directives.\n  \n  \n  \n    \
+  \  Parameters:\n  \n  \n  \n        pname          - preference name\n  \n     \
+  \   pvalue         - preference value\n  \n  \n  \n      Exceptions:\n  \n     \
+  \   - <insufficient_privilege>\n  \n        - <invalid_input>\n  \n  \n  \n    \
+  \  Notes:\n  \n        \"Administer SQL Management Object\" privilege is required\
+  \ to execute\n  \n        this procedure.\n  \n  \n  \n        The procedure supports\
+  \ the following preference.\n  \n  \n  \n          SPD_RETENTION_WEEKS - Sql Plan\
+  \ Directives are purged if not used for\n  \n            more than the value set\
+  \ for this preference. Default is 53\n  \n            (SPD_RETENTION_WEEKS_DEFAULT)\
+  \ weeks, which means a directive is\n  \n            purged if it has been left\
+  \ unused for little over a year. It can be\n  \n            set to any value greater\
+  \ than or  equal to 0. Also value null can be\n  \n            passed to set the\
+  \ preference to default.\n  \n  \n  \n      Examples:\n  \n      | begin\n  \n \
+  \     |   dbms_spd.set_prefs('SPD_RETENTION_WEEKS', '4');\n  \n      | end;\n  \n\
+  \  \n  \n      Returns:\n  \n        Nothing.\n  \n    */\n  procedure set_prefs(\n\
+  \    pname in varchar2,\n    pvalue in varchar2\n  );\n  /*\n  \n      Function:\
+  \ get_prefs\n  \n  \n  \n        This function gets the values for preferences for\
+  \ Sql Plan\n  \n        Directives.\n  \n  \n  \n      Parameters:\n  \n  \n  \n\
+  \        pname          - preference name\n  \n  \n  \n      Exceptions:\n  \n \
+  \       - <insufficient_privilege>\n  \n        - <invalid_input>\n  \n  \n  \n\
+  \      Notes:\n  \n        \"Administer SQL Management Object\" privilege is required\
+  \ to execute\n  \n        this function.\n  \n  \n  \n        The function supports\
+  \ the following preference.\n  \n  \n  \n          SPD_RETENTION_WEEKS - Sql Plan\
+  \ Directives are purged if not used for\n  \n            more than the value set\
+  \ for this preference.\n  \n  \n  \n      Examples:\n  \n      |\n  \n      |  select\
+  \ dbms_spd.get_prefs('SPD_RETENTION_WEEKS') from dual;\n  \n      |\n  \n  \n  \n\
+  \      Returns:\n  \n        Preference value\n  \n    */\n  function get_prefs(pname\
+  \ in varchar2) return varchar2;\n------------------- FOR INTERNAL USE OF DATAPUMP\
+  \ ONLY --------------------\n  procedure transfer_spd_for_dp(\n    objlist_tabf\
+  \ varchar2,\n    dblinkf varchar2,\n    operation number\n  );\n-------------------\
+  \ FOR INTERNAL USE OF DATAPUMP ONLY --------------------\nend dbms_spd;"

@@ -1,0 +1,53 @@
+schema: SYS
+name: USER_ADVISOR_PARAMETERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .task_id as task_id,
+    b.name as task_name,
+    a .name as parameter_name,
+    a .value as parameter_value,
+    decode(
+      a .datatype,
+      1,
+      'NUMBER',
+      2,
+      'STRING',
+      3,
+      'STRINGLIST',
+      4,
+      'TABLE',
+      5,
+      'TABLELIST',
+      'UNKNOWN'
+    ) as parameter_type,
+    decode(bitand(a .flags, 2), 0, 'Y', 'N') as is_default,
+    decode(bitand(a .flags, 4), 0, 'N', 'Y') as is_output,
+    decode(bitand(a .flags, 8), 0, 'N', 'Y') as is_modifiable_anytime,
+    dbms_advisor.format_message(a .description) as description,
+    d.exec_type execution_type
+  from
+    wri$_adv_parameters a,
+    wri$_adv_tasks b,
+    wri$_adv_def_parameters d
+  where
+    a .task_id = b.id
+    and a .name = d.name
+    and b.owner# = userenv('SCHEMAID')
+    and (
+      b.advisor_id = d.advisor_id
+      or d.advisor_id = 0
+    )
+    and bitand(b.property, 4) = 4
+    /* task property */
+    and bitand(a .flags, 1) = 0
+    /* invisible parameter */
+    and (
+      bitand(b.property, 32) = 32
+      or
+      /* system task only parameter */
+      bitand(d.flags, 16) = 0
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,48 @@
+schema: SYS
+name: USER_ILMRESULTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    a .execution_id,
+    a .jobname,
+    DECODE(
+      a .job_status,
+      1,
+      'JOB CREATED',
+      2,
+      'COMPLETED SUCCESSFULLY',
+      3,
+      'FAILED',
+      4,
+      'STOPPED',
+      5,
+      'JOB CREATION FAILED',
+      6,
+      'JOB SCHEDULED',
+      7,
+      'JOB DISABLED',
+      8,
+      'JOB RUNNING',
+      10,
+      'DEPENDANT OBJECTS BEING REBUILT',
+      11,
+      'FAILED TO REBUILD DEPENDANT OBJECTS',
+      12,
+      'CREATING JOB',
+      13,
+      'JOB TO BE CREATED',
+      'NOT KNOWN'
+    ),
+    a .start_time,
+    a .completion_time,
+    a .comments,
+    a .statistics
+  FROM
+    sys.ilm_results$ a,
+    sys.ilm_execution$ b
+  WHERE
+    a .execution_id = b.execution_id
+    AND b.owner = userenv('SCHEMAID')
+columns: []
+referencedTables: []

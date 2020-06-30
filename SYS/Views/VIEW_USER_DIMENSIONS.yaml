@@ -1,0 +1,29 @@
+schema: SYS
+name: USER_DIMENSIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    decode(o.status, 5, 'Y', 'N'),
+    decode(
+      o.status,
+      1,
+      'VALID',
+      5,
+      'NEEDS_COMPILE',
+      'ERROR'
+    ),
+    1
+    /* Metadata revision number */
+  from
+    sys.dim$ d,
+    sys.obj$ o,
+    sys.user$ u
+  where
+    o.owner# = u.user#
+    and o.obj# = d.obj#
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

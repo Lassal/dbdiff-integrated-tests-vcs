@@ -1,0 +1,18 @@
+schema: MDSYS
+name: OGC_EXTERIORRING
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: OBJECT
+  parameterMode: OUT
+parameters:
+- name: P
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_ExteriorRing(p ST_Polygon) RETURN ST_LineString IS
+  BEGIN
+    RETURN p.ST_ExteriorRing();
+  END OGC_ExteriorRing;

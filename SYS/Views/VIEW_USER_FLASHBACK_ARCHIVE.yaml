@@ -1,0 +1,43 @@
+schema: SYS
+name: USER_FLASHBACK_ARCHIVE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    unique f.OWNERNAME,
+    f.FANAME,
+    f.FA#,
+    f.RETENTION,
+    case
+      when f.CREATESCN < f.PURGESCN then NULL
+      else scn_to_timestamp(f.CREATESCN)
+    end,
+    scn_to_timestamp(f.PURGESCN),
+    decode(bitand(f.flags, 1), 1, 'DEFAULT', NULL)
+  from
+    SYS_FBA_FA f,
+    SYS_FBA_USERS fp,
+    USER $ u
+  where
+    /* user has flashback archive object privilege */
+    (
+      f.FA# = fp.FA#
+      and fp.user# = u.USER#
+    )
+    and
+    /* show only this user's objects */
+    (
+      (u.user# = userenv('SCHEMAID'))
+      or
+      /* user has system privileges - show all users */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number = -350
+      )
+    )
+columns: []
+referencedTables: []

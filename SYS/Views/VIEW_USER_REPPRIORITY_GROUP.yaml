@@ -1,0 +1,35 @@
+schema: SYS
+name: USER_REPPRIORITY_GROUP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.priority_group,
+    decode(
+      r.data_type_id,
+      1,
+      'NUMBER',
+      2,
+      'VARCHAR2',
+      3,
+      'DATE',
+      4,
+      'CHAR',
+      5,
+      'RAW',
+      6,
+      'NVARCHAR2',
+      7,
+      'NCHAR',
+      'UNDEFINED'
+    ),
+    r.fixed_data_length,
+    r.priority_comment
+  from
+    system.repcat$_priority_group r,
+    sys.user$ u
+  where
+    r.sname = u.name
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

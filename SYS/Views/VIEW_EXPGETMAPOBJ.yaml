@@ -1,0 +1,26 @@
+schema: SYS
+name: EXPGETMAPOBJ
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    t.pctfree$,
+    t.obj#
+  FROM
+    sys.tab$ t,
+    sys.obj$ o
+  WHERE
+    t.obj# = o.obj#
+    AND (
+      userenv('SCHEMAID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,25 @@
+schema: SYS
+name: ALL_STREAMS_GLOBAL_RULES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.streams_name,
+    r.streams_type,
+    r.rule_type,
+    r.include_tagged_lcr,
+    r.source_database,
+    r.rule_name,
+    r.rule_owner,
+    r.rule_condition
+  from
+    dba_streams_global_rules r,
+    "_ALL_STREAMS_PROCESSES" p,
+    all_rules ar
+  where
+    r.streams_name = p.streams_name
+    and r.streams_type = p.streams_type
+    and ar.rule_owner = r.rule_owner
+    and ar.rule_name = r.rule_name
+columns: []
+referencedTables: []

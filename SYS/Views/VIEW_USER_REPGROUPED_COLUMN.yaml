@@ -1,0 +1,33 @@
+schema: SYS
+name: USER_REPGROUPED_COLUMN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    g.oname,
+    g.group_name,
+    g.column_name
+  from
+    user_tab_columns tc,
+    sys.dba_repgrouped_column g,
+    sys.user$ u
+  where
+    g.sname = u.name
+    and u.user# = userenv('SCHEMAID')
+    and g.oname = tc.table_name
+    and g.column_name = tc.column_name
+  union
+  select
+    g.oname,
+    g.group_name,
+    g.column_name
+  from
+    "_USER_REPL_NESTED_TABLE_NAMES" nt,
+    sys.dba_repgrouped_column g,
+    sys.user$ u
+  where
+    g.sname = u.name
+    and u.user# = userenv('SCHEMAID')
+    and g.oname = nt.table_name
+columns: []
+referencedTables: []

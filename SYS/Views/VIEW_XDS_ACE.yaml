@@ -1,0 +1,62 @@
+schema: SYS
+name: XDS_ACE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .object_id,
+    extractvalue(
+      value(b),
+      '/ace/@start_date',
+      'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+    ),
+    extractvalue(
+      value(b),
+      '/ace/@end_date',
+      'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+    ),
+    substr(
+      extractvalue(
+        value(b),
+        '/ace/grant',
+        'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+      ),
+      1,
+      5
+    ),
+    CASE
+      existsNode(
+        value(b),
+        '/ace/invert',
+        'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+      )
+      WHEN 1 THEN 'true'
+      ELSE 'false'
+    END,
+    CASE
+      existsNode(
+        value(b),
+        '/ace/invert',
+        'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+      )
+      WHEN 1 THEN extractvalue(
+        value(b),
+        '/ace/invert/principal',
+        'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+      )
+      ELSE extractvalue(
+        value(b),
+        '/ace/principal',
+        'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+      )
+    END,
+    extract(
+      value(b),
+      '/ace/privilege',
+      'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+    )
+  from
+    xdb.xdb$acl a,
+    table(XMLSequence(extract(a .object_value, '/acl/ace'))) b
+columns: []
+referencedTables: []

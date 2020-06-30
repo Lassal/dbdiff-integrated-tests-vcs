@@ -1,0 +1,83 @@
+schema: SYS
+name: USER_DATAPUMP_JOBS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    j.job_name,
+    j.operation,
+    j.job_mode,
+    j.state,
+    j.workers,
+    NVL(
+      (
+        SELECT
+          COUNT(*)
+        FROM
+          SYS.GV$DATAPUMP_SESSION s
+        WHERE
+          j.job_id = s.job_id
+          AND s.type = 'DBMS_DATAPUMP'
+        GROUP BY
+          s.job_id
+      ),
+      0
+    ),
+    NVL(
+      (
+        SELECT
+          COUNT(*)
+        FROM
+          SYS.GV$DATAPUMP_SESSION s
+        WHERE
+          j.job_id = s.job_id
+        GROUP BY
+          s.job_id
+      ),
+      0
+    )
+  FROM
+    SYS.GV$DATAPUMP_JOB j
+  WHERE
+    j.msg_ctrl_queue IS NOT NULL
+    AND j.owner_name = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+  UNION ALL
+    /* Not Running - Master Tables */
+  SELECT
+    o.name,
+    SUBSTR (c .comment$, 24, 30),
+    SUBSTR (c .comment$, 55, 30),
+    'NOT RUNNING',
+    0,
+    0,
+    0
+  FROM
+    sys.obj$ o,
+    sys.user$ u,
+    sys.com$ c
+  WHERE
+    SUBSTR (c .comment$, 1, 22) = 'Data Pump Master Table'
+    AND RTRIM (SUBSTR (c .comment$, 24, 30)) IN ('EXPORT', 'IMPORT', 'SQL_FILE')
+    AND RTRIM (SUBSTR (c .comment$, 55, 30)) IN (
+      'FULL',
+      'SCHEMA',
+      'TABLE',
+      'TABLESPACE',
+      'TRANSPORTABLE'
+    )
+    AND o.obj# = c .obj#
+    AND o.type# = 2
+    AND BITAND(o.flags, 128) <> 128
+    AND u.user# = o.owner#
+    AND u.name = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+    AND NOT EXISTS (
+      SELECT
+        1
+      FROM
+        SYS.GV$DATAPUMP_JOB
+      WHERE
+        owner_name = u.name
+        AND job_name = o.name
+    )
+columns: []
+referencedTables: []

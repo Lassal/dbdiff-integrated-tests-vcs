@@ -1,0 +1,28 @@
+schema: SYS
+name: USER_SUBSCRIBED_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    s.handle,
+    t.source_schema_name,
+    t.source_table_name,
+    s.column_name,
+    u.subscription_name,
+    z.source_database
+  FROM
+    sys.cdc_subscribed_columns$ s,
+    sys.cdc_change_tables$ t,
+    sys.cdc_subscribers$ u,
+    sys.user$ su,
+    sys.cdc_change_sets$ x,
+    sys.cdc_change_sources$ z
+  WHERE
+    s.change_table_obj# = t.obj#
+    AND s.handle = u.handle
+    AND u.username = su.name
+    AND su.user# = userenv('SCHEMAID')
+    AND t.change_set_name = x.set_name
+    AND x.change_source_name = z.source_name
+columns: []
+referencedTables: []

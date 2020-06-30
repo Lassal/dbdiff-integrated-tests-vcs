@@ -1,0 +1,15 @@
+schema: SYS
+name: GV_$REPLAY_CONTEXT_SYSDATE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "INST_ID",
+    "CONTEXT_ID",
+    "SYSDATE_VALUE",
+    "REPLAYED",
+    "CON_ID"
+  from
+    gv$replay_context_sysdate
+columns: []
+referencedTables: []

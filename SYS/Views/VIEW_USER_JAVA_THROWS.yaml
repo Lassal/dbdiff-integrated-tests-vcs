@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_JAVA_THROWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ no_cartesian(mmd) no_cartesian(mex) ordered use_nl(o mmd) */
+    mmd.kln,
+    mmd.mix,
+    mmd.mnm,
+    mex.xix,
+    mex.xln
+  from
+    sys.x$joxmex mex,
+    sys.x$joxmmd mmd
+  where
+    mmd.own = userenv('SCHEMAID')
+    and mmd.mix != -1
+    and mmd.mix = mex.mix
+    and mmd.obn = mex.obn
+columns: []
+referencedTables: []

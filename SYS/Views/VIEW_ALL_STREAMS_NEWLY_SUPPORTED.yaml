@@ -1,0 +1,19 @@
+schema: SYS
+name: ALL_STREAMS_NEWLY_SUPPORTED
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s. "OWNER",
+    s. "TABLE_NAME",
+    s. "REASON",
+    s. "COMPATIBLE"
+  from
+    dba_streams_newly_supported s,
+    all_objects a
+  where
+    s.owner = a .owner
+    and s.table_name = a .object_name
+    and a .object_type = 'TABLE'
+columns: []
+referencedTables: []

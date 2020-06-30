@@ -1,0 +1,16 @@
+schema: SYS
+name: LOADER_FILE_TS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    file$.ts#,
+    v$dbfile.name,
+    file$.relfile#
+  from
+    file$,
+    v$dbfile
+  where
+    file$.file# = v$dbfile.file#
+columns: []
+referencedTables: []

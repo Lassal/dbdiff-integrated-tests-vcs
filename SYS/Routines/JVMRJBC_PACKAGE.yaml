@@ -1,0 +1,46 @@
+schema: SYS
+name: JVMRJBC
+routineType: PACKAGE
+returnParamater:
+  name: INIT.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: DONE.SESSID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETLOB.SESSID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETPATH.SESSID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUTLOB.SESSID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUTLOB.L
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: PUTPATH.SESSID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUTPATH.PATHNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package jvmrjbc as -- this package is definers
+  function init return VARCHAR2;
+  procedure putpath(sessid VARCHAR2, pathname VARCHAR2);
+  function getlob(sessid VARCHAR2) return BLOB;
+  function getpath(sessid VARCHAR2) return VARCHAR2;
+  procedure putlob(sessid VARCHAR2, l BLOB);
+  procedure done(sessid VARCHAR2);
+  end jvmrjbc;

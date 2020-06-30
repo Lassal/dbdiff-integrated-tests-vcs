@@ -1,0 +1,14 @@
+schema: SYS
+name: DICTIONARY_OBJ_OWNER
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  function dictionary_obj_owner return varchar2 is
+  begin
+    return dbms_standard.dictionary_obj_owner;
+  end;

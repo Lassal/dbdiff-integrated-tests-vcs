@@ -1,0 +1,58 @@
+schema: SYS
+name: ALL_REPFLAVOR_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    fc.fname,
+    fc.gname,
+    fc.sname,
+    fc.oname,
+    fc.cname,
+    fc.type,
+    fc.pos,
+    fc.group_owner,
+    fc.type_toid,
+    fc.type_owner,
+    fc.type_hashcode,
+    fc.type_mod,
+    fc.top
+  FROM
+    dba_repflavor_columns fc,
+    all_tab_columns tc
+  WHERE
+    fc.sname = tc.owner
+    AND fc.oname = tc.table_name
+    AND (
+      (
+        fc.top IS NOT NULL
+        AND fc.top = tc.column_name
+      )
+      OR (
+        fc.top IS NULL
+        AND fc.cname = tc.column_name
+      )
+    )
+  UNION
+  SELECT
+    fc.fname,
+    fc.gname,
+    fc.sname,
+    fc.oname,
+    fc.cname,
+    fc.type,
+    fc.pos,
+    fc.group_owner,
+    fc.type_toid,
+    fc.type_owner,
+    fc.type_hashcode,
+    fc.type_mod,
+    fc.top
+  FROM
+    dba_repflavor_columns fc,
+    "_ALL_REPL_NESTED_TABLE_NAMES" nt
+  WHERE
+    fc.sname = nt.owner
+    AND fc.oname = nt.table_name
+columns: []
+referencedTables: []

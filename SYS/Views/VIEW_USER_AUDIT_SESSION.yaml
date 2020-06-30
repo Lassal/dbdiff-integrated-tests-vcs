@@ -1,0 +1,33 @@
+schema: SYS
+name: USER_AUDIT_SESSION
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    os_username,
+    username,
+    userhost,
+    terminal,
+    timestamp,
+    action_name,
+    logoff_time,
+    logoff_lread,
+    logoff_pread,
+    logoff_lwrite,
+    logoff_dlock,
+    sessionid,
+    returncode,
+    client_id,
+    session_cpu,
+    extended_timestamp,
+    proxy_sessionid,
+    global_uid,
+    instance_number,
+    os_process
+  from
+    user_audit_trail
+  where
+    action between 100
+    and 102
+columns: []
+referencedTables: []

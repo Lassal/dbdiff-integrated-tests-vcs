@@ -1,0 +1,48 @@
+schema: SYS
+name: KU$_TRLINK_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    tl.dbname,
+    decode(
+      tl.dbname,
+      '+*',
+      'DBMS_DISTRIBUTED_TRUST_ADMIN.ALLOW_ALL',
+      '-*',
+      'DBMS_DISTRIBUTED_TRUST_ADMIN.DENY_ALL',
+      fdef.function
+    ),
+    decode(tl.dbname, '+*', 0, '-*', 0, 1)
+  from
+    sys.trusted_list$ tl,
+    (
+      select
+        decode (
+          dbname,
+          '+*',
+          'DBMS_DISTRIBUTED_TRUST_ADMIN.DENY_SERVER',
+          '-*',
+          'DBMS_DISTRIBUTED_TRUST_ADMIN.ALLOW_SERVER'
+        ) function
+      from
+        sys.trusted_list$
+      where
+        dbname like '%*'
+    ) fdef
+  where
+    (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,50 @@
+schema: SYS
+name: USER_INTERNAL_TRIGGERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    'DEFERRED RPC QUEUE'
+  from
+    sys.tab$ t,
+    sys.obj$ o
+  where
+    o.owner# = userenv('SCHEMAID')
+    and t.obj# = o.obj#
+    and bitand(t.trigflag, 1) = 1
+  union
+  select
+    o.name,
+    'MVIEW LOG'
+  from
+    sys.tab$ t,
+    sys.obj$ o
+  where
+    o.owner# = userenv('SCHEMAID')
+    and t.obj# = o.obj#
+    and bitand(t.trigflag, 2) = 2
+  union
+  select
+    o.name,
+    'UPDATABLE MVIEW LOG'
+  from
+    sys.tab$ t,
+    sys.obj$ o
+  where
+    o.owner# = userenv('SCHEMAID')
+    and t.obj# = o.obj#
+    and bitand(t.trigflag, 4) = 4
+  union
+  select
+    o.name,
+    'CONTEXT'
+  from
+    sys.tab$ t,
+    sys.obj$ o
+  where
+    o.owner# = userenv('SCHEMAID')
+    and t.obj# = o.obj#
+    and bitand(t.trigflag, 8) = 8
+columns: []
+referencedTables: []

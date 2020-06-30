@@ -1,0 +1,118 @@
+schema: SYS
+name: KU$_STRMTABLE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    (
+      select
+        dbms_metadata_util.get_strm_minver
+      from
+        dual
+    ),
+    (
+      select
+        dbms_metadata_util.get_vers_dpapi
+      from
+        dual
+    ),
+    (
+      select
+        dbms_metadata_util.get_endianness
+      from
+        dual
+    ),
+    (
+      select
+        value
+      from
+        v$nls_parameters
+      where
+        parameter = 'NLS_CHARACTERSET'
+    ),
+    (
+      select
+        value
+      from
+        v$nls_parameters
+      where
+        parameter = 'NLS_NCHAR_CHARACTERSET'
+    ),
+    (
+      select
+        dbtimezone
+      from
+        dual
+    ),
+    (
+      select
+        utl_xml.getfdo
+      from
+        dual
+    ),
+    t.obj#,
+    o.owner_name,
+    o.name,
+    o.subname,
+    bitand(t.property, 4294967295),
+    trunc(t.property / power(2, 32)),
+    cast(
+      multiset(
+        select
+          *
+        from
+          ku$_strmcol_view c
+        where
+          c .obj_num = t.obj#
+          and bitand(c .property, 32768) = 0 -- unused column
+          and bitand(c .property2, 512) = 0 -- ILM column
+          /* exclude guard columns */
+          and bitand(c .property2, 128) = 0
+          /* exclude storage columns for xmltype */
+          and sys.dbms_metadata_util.isXml(t.obj#, c .intcol_num) = 0
+          /* prior to v12, exclude xmltype heirarchy enabled
+                                    table columns (XMLTYPE, and hidden columns)
+                                    named 'ACLOID' or 'OWNERID'. These have instance
+                                    specific content. In V12, full export can map the
+                                    content, so the columns are dealt with on import. */
+          and not (
+            (
+              exists (
+                select
+                  q.obj#
+                from
+                  sys.opqtype$ q
+                where
+                  q.obj# = t.obj#
+                  and q.type = 1
+              )
+            )
+            and
+            /* xmltype col */
+            (bitand(c .property, 32) != 0)
+            and (c .name IN ('OWNERID', 'ACLOID'))
+            and dbms_metadata.get_version < '12.00.00.00.00'
+          )
+        order by
+          c .col_sortkey
+      ) as ku$_strmcol_list_t
+    )
+  from
+    ku$_schemaobj_view o,
+    tab$ t
+  where
+    t.obj# = o.obj_num
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

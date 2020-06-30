@@ -1,0 +1,25 @@
+schema: SYS
+name: SYS_XMLAGG
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: INPUT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: FORMAT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  function SYS_XMLAGG(
+    input sys.xmltype,
+    format sys.XMLGenFormatType: = null
+  ) return sys.xmltype as
+  begin
+    null;
+  end;

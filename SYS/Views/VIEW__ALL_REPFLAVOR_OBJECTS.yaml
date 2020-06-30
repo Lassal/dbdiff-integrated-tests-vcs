@@ -1,0 +1,75 @@
+schema: SYS
+name: _ALL_REPFLAVOR_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    fo.flavor_id,
+    fo.gname,
+    fo.sname,
+    fo.oname,
+    fo.type,
+    fo.columns_present,
+    fl.published,
+    ro.flag,
+    fo.gowner,
+    fo.version#,
+    fo.hashcode
+  from
+    system.repcat$_flavor_objects fo,
+    all_objects o,
+    system.repcat$_flavors fl,
+    system.repcat$_repobject ro
+  where
+    fo.gname = fl.gname
+    and fo.gowner = fl.gowner
+    and fo.flavor_id = fl.flavor_id
+    and fo.sname = ro.sname
+    and fo.oname = ro.oname
+    and fo.type = ro.type
+    and fo.sname = o.owner
+    and fo.oname = o.object_name
+    and ro.id = o.object_id
+    and (
+      (
+        fo.type = -1
+        and o.object_type in ('VIEW', 'TABLE')
+      )
+      or (
+        fo.type > 0
+        and o.object_type = DECODE (
+          fo.type,
+          1,
+          'INDEX',
+          2,
+          'TABLE',
+          4,
+          'VIEW',
+          5,
+          'SYNONYM',
+          6,
+          'SEQUENCE',
+          7,
+          'PROCEDURE',
+          8,
+          'FUNCTION',
+          9,
+          'PACKAGE',
+          11,
+          'PACKAGE BODY',
+          12,
+          'TRIGGER',
+          13,
+          'TYPE',
+          14,
+          'TYPE BODY',
+          32,
+          'INDEXTYPE',
+          33,
+          'OPERATOR',
+          'UNDEFINED'
+        )
+      )
+    )
+columns: []
+referencedTables: []

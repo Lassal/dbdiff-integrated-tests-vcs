@@ -1,0 +1,15 @@
+schema: MDSYS
+name: USER_SDO_NETWORK_TIMESTAMPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    network,
+    table_name,
+    last_dml_time
+  FROM
+    sdo_network_timestamps
+  WHERE
+    owner = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

@@ -1,0 +1,28 @@
+schema: CTXSYS
+name: CTX_USER_INDEX_SUB_LEXERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ ORDERED */
+    idx_name isl_index_name,
+    substr(dri_sublxv_lang(ixv_value), 1, 30) isl_language,
+    substr(substr(ixv_value, instr(ixv_value, ':', -1) + 1), 1, 30) isl_alt_value,
+    substr(
+      substr(
+        ixv_value,
+        instr(ixv_value, ':') + 1,
+        instr(ixv_value, ':', -1) - instr(ixv_value, ':') - 1
+      ),
+      1,
+      30
+    ) isl_object
+  from
+    dr$index,
+    dr$index_value
+  where
+    ixv_oat_id = 60601
+    and idx_id = ixv_idx_id
+    and idx_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,18 @@
+schema: CTXSYS
+name: DRV$USER_EXTRACT_TKDICT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "ETD_POLID",
+    "ETD_TXT",
+    "ETD_SOE",
+    "ETD_EOE",
+    "ETD_BIGRAM",
+    "ETD_STATUS"
+  from
+    dr$user_extract_tkdict
+  where
+    etd_polid = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
+columns: []
+referencedTables: []

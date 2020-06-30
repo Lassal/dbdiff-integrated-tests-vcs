@@ -1,0 +1,76 @@
+schema: SYS
+name: USER_AWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    a .awseq#,
+    a .awname,
+    DECODE(
+      a .version,
+      0,
+      '9.1',
+      1,
+      '10.1',
+      2,
+      '10.2',
+      3,
+      '11.1',
+      4,
+      '11.2',
+      5,
+      '12.0',
+      NULL
+    ),
+    n.num,
+    g.gen,
+    f.frozen
+  FROM
+    aw$ a,
+    (
+      SELECT
+        awseq#,
+        COUNT(psgen) gen
+      FROM
+        ps$
+      WHERE
+        psnumber IS NULL
+      GROUP BY
+        awseq#
+    ) g,
+    (
+      SELECT
+        awseq#,
+        COUNT(UNIQUE(psnumber)) num
+      FROM
+        ps$
+      WHERE
+        psnumber IS NOT NULL
+      GROUP BY
+        awseq#
+    ) n,
+    (
+      SELECT
+        max(awseq#) awmax,
+        decode(
+          max(mapoffset),
+          1,
+          'Frozen',
+          2,
+          'NoThaw',
+          NULL
+        ) frozen
+      from
+        ps$
+      where
+        psnumber is NULL
+      group by
+        awseq#
+    ) f
+  WHERE
+    a .owner# = USERENV('SCHEMAID')
+    and a .awseq# = g.awseq#
+    and a .awseq# = n.awseq#
+    and a .awseq# = f.awmax
+columns: []
+referencedTables: []

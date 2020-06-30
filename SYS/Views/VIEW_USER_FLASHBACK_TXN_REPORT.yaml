@@ -1,0 +1,16 @@
+schema: SYS
+name: USER_FLASHBACK_TXN_REPORT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    COMPENSATING_XID,
+    COMPENSATING_TXN_NAME,
+    COMMIT_TIME,
+    XID_REPORT
+  FROM
+    TRANSACTION_BACKOUT_REPORT$
+  WHERE
+    USER # = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

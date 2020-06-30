@@ -1,0 +1,19 @@
+schema: SYS
+name: EXU10DEFPSWITCHES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    a .value,
+    b.value,
+    c .value
+  FROM
+    sys.v$parameter a,
+    sys.v$parameter b,
+    sys.v$parameter c
+  WHERE
+    a .name = 'plsql_compiler_flags'
+    AND b.name = 'nls_length_semantics'
+    AND c .name = 'plsql_optimize_level'
+columns: []
+referencedTables: []

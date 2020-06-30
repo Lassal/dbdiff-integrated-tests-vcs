@@ -1,0 +1,89 @@
+schema: SYS
+name: ALL_JOIN_IND_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ui.name,
+    oi.name,
+    uti.name,
+    oti.name,
+    ci.name,
+    uto.name,
+    oto.name,
+    co.name
+  from
+    sys.user$ ui,
+    sys.user$ uti,
+    sys.user$ uto,
+    sys.obj$ oi,
+    sys.obj$ oti,
+    sys.obj$ oto,
+    sys.col$ ci,
+    sys.col$ co,
+    sys.jijoin$ ji
+  where
+    ji.obj# = oi.obj#
+    and oi.owner# = ui.user#
+    and ji.tab1obj# = oti.obj#
+    and oti.owner# = uti.user#
+    and ci.obj# = oti.obj#
+    and ji.tab1col# = ci.intcol#
+    and ji.tab2obj# = oto.obj#
+    and oto.owner# = uto.user#
+    and co.obj# = oto.obj#
+    and ji.tab2col# = co.intcol#
+    and (
+      oi.owner# = userenv('SCHEMAID')
+      or oti.owner# = userenv('SCHEMAID')
+      or oto.owner# = userenv('SCHEMAID')
+      or oti.obj# in (
+        select
+          obj#
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or oto.obj# in (
+        select
+          obj#
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

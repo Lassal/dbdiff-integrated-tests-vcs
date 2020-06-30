@@ -1,0 +1,18 @@
+schema: MDSYS
+name: OGC_Y
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: P
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_Y(p ST_Point) RETURN NUMBER IS
+  BEGIN
+    RETURN p.ST_Y();
+  END OGC_Y;

@@ -1,0 +1,50 @@
+schema: SYS
+name: KU$_DEPTABLE_OBJNUM_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    exdo.d_obj#,
+    'T',
+    (
+      select
+        bitand(t.property, 4294967295)
+      from
+        tab$ t
+      where
+        t.obj# = po.obj_num
+    ),
+    (
+      select
+        trunc(t.property / power(2, 32))
+      from
+        tab$ t
+      where
+        t.obj# = po.obj_num
+    ),
+    NULL,
+    -- ts# not needed
+    value(po),
+    value(do)
+  from
+    expdepobj$ exdo,
+    ku$_schemaobj_view po,
+    ku$_schemaobj_view do
+  where
+    exdo.p_obj# = po.obj_num
+    AND exdo.d_obj# = do .obj_num
+    AND do .TYPE_name = 'TABLE'
+    AND (bitand(do .flags, 16) != 16)
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (po.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

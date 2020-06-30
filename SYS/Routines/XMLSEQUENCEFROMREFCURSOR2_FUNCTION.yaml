@@ -1,0 +1,15 @@
+schema: SYS
+name: XMLSEQUENCEFROMREFCURSOR2
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARRAY
+  parameterMode: OUT
+parameters:
+- name: DATA
+  ordinalPosition: 1
+  dataType: REF CURSOR
+  parameterMode: IN
+routineDefinition: function XMLSequenceFromRefCursor2(data SYS_REFCURSOR) return sys.XMLSequenceType
+  authid current_user pipelined using XMLSeqCur2_Imp_t;

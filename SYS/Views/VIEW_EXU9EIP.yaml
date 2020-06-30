@@ -1,0 +1,35 @@
+schema: SYS
+name: EXU9EIP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o$.obj#,
+    ip$.bo#,
+    o$.owner#,
+    o$.subname,
+    ip$.part#,
+    idpp$.parameters
+  FROM
+    sys.obj$ o$,
+    sys.indpart$ ip$,
+    sys.indpart_param$ idpp$
+  WHERE
+    o$.type# = 20
+    AND
+    /* Partitioned Index */
+    ip$.obj# = o$.obj#
+    AND idpp$.obj# = o$.obj#
+    AND (
+      userenv('SCHEMAID') IN (0, o$.owner#)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_SOURCE_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    DISTINCT s.source_schema_name,
+    s.source_table_name
+  FROM
+    sys.cdc_change_tables$ s,
+    all_tables t,
+    sys.user$ u
+  WHERE
+    s.change_table_schema = t.owner
+    AND s.change_table_name = t.table_name
+    AND s.change_table_schema = u.name
+    AND u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

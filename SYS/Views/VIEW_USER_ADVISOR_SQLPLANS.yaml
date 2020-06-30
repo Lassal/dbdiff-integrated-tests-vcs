@@ -1,0 +1,86 @@
+schema: SYS
+name: USER_ADVISOR_SQLPLANS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    t.name task_name,
+    h.task_id,
+    h.exec_name as execution_name,
+    h.sql_id,
+    h.object_id,
+    (
+      case
+        when h.attribute < power(2, 16) then decode(
+          h.attribute,
+          0,
+          'Original',
+          1,
+          'Original with adjusted cost',
+          2,
+          'Using SQL profile',
+          3,
+          'Using new indices',
+          5,
+          'Using baseline plan',
+          6,
+          'Using non-accepted plan',
+          7,
+          'Using parallel execution'
+        )
+        when h.attribute > 3 * power(2, 16)
+        and h.attribute < 4 * power(2, 16) then 'Plan from workload repository'
+        when h.attribute > 4 * power(2, 16)
+        and h.attribute < 5 * power(2, 16) then 'Plan from cursor cache'
+        when h.attribute > 5 * power(2, 16)
+        and h.attribute < 6 * power(2, 16) then 'Plan from SQL tuning set'
+        when h.attribute > 6 * power(2, 16) then 'Plan from SQL performance analyzer'
+      end
+    ) AS attribute,
+    p.statement_id,
+    h.plan_hash as PLAN_HASH_VALUE,
+    h.plan_id,
+    p.timestamp,
+    p.remarks,
+    p.operation,
+    p.options,
+    p.object_node,
+    p.object_owner,
+    p.object_name,
+    p.object_alias,
+    p.object_instance,
+    p.object_type,
+    p.optimizer,
+    p.search_columns,
+    p.id,
+    p.parent_id,
+    p.depth,
+    p.position,
+    p.cost,
+    p.cardinality,
+    p.bytes,
+    p.other_tag,
+    p.partition_start,
+    p.partition_stop,
+    p.partition_id,
+    p.other,
+    p.distribution,
+    p.cpu_cost,
+    p.io_cost,
+    p.temp_space,
+    p.access_predicates,
+    p.filter_predicates,
+    p.projection,
+    p.time,
+    p.qblock_name,
+    p.other_xml
+  FROM
+    wri$_adv_sqlt_plan_hash h,
+    wri$_adv_sqlt_plans p,
+    wri$_adv_tasks t
+  WHERE
+    h.task_id = t.id
+    and h.plan_id = p.plan_id
+    and t.owner# = SYS_CONTEXT('USERENV', 'CURRENT_USERID')
+columns: []
+referencedTables: []

@@ -1,0 +1,130 @@
+schema: SYS
+name: USER_MINING_MODEL_ATTRIBUTES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    a .name,
+    decode(
+      atyp,
+      /* attribute type */
+      1,
+      'NUMERICAL',
+      2,
+      'CATEGORICAL',
+      3,
+      'TEXT',
+      'UNDEFINED'
+    ),
+    case
+      when bitand(a .properties, 8) = 8 then decode(
+        dtyp,
+        /* nested data type */
+        1,
+        'DM_NESTED_CATEGORICALS',
+        2,
+        'DM_NESTED_NUMERICALS',
+        100,
+        'DM_NESTED_BINARY_FLOATS',
+        101,
+        'DM_NESTED_BINARY_DOUBLES'
+      )
+      else decode(
+        dtyp,
+        /* data type */
+        1,
+        decode(
+          bitand(a .properties, 16),
+          16,
+          'NVARCHAR2',
+          'VARCHAR2'
+        ),
+        2,
+        decode(
+          a .scale,
+          null,
+          decode(a .precision#, null, 'NUMBER', 'FLOAT'),
+          'NUMBER'
+        ),
+        4,
+        'FLOAT',
+        8,
+        'LONG',
+        9,
+        decode(
+          bitand(a .properties, 16),
+          16,
+          'NCHAR VARYING',
+          'VARCHAR'
+        ),
+        12,
+        'DATE',
+        23,
+        'RAW',
+        24,
+        'LONG RAW',
+        69,
+        'ROWID',
+        96,
+        decode(
+          bitand(a .properties, 16),
+          16,
+          'NCHAR',
+          'CHAR'
+        ),
+        100,
+        'BINARY_FLOAT',
+        101,
+        'BINARY_DOUBLE',
+        105,
+        'MLSLABEL',
+        106,
+        'MLSLABEL',
+        112,
+        decode(
+          bitand(a .properties, 16),
+          16,
+          'NCLOB',
+          'CLOB'
+        ),
+        113,
+        'BLOB',
+        114,
+        'BFILE',
+        115,
+        'CFILE',
+        178,
+        'TIME(' || a .scale || ')',
+        179,
+        'TIME(' || a .scale || ')' || ' WITH TIME ZONE',
+        180,
+        'TIMESTAMP(' || a .scale || ')',
+        181,
+        'TIMESTAMP(' || a .scale || ')' || ' WITH TIME ZONE',
+        231,
+        'TIMESTAMP(' || a .scale || ')' || ' WITH LOCAL TIME ZONE',
+        182,
+        'INTERVAL YEAR(' || a .precision# || ') TO MONTH',
+        183,
+        'INTERVAL DAY(' || a .precision# || ') TO SECOND(' || a .scale || ')',
+        208,
+        'UROWID',
+        'UNDEFINED'
+      )
+    end,
+    a .length,
+    a .precision#,
+    a .scale,
+    decode(bitand(a .properties, 1), 1, 'ACTIVE', 'INACTIVE'),
+    decode(bitand(a .properties, 2), 2, 'YES', 'NO'),
+    a .attrspec
+  from
+    sys.modelatt$ a,
+    sys.obj$ o
+  where
+    o.obj# = a .mod#
+    and o.owner# = userenv('SCHEMAID')
+    and bitand(a .properties, 4) = 0
+columns: []
+referencedTables: []

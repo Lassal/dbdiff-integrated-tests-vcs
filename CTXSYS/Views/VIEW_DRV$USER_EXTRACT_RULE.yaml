@@ -1,0 +1,20 @@
+schema: CTXSYS
+name: DRV$USER_EXTRACT_RULE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "ERL_POL_ID",
+    "ERL_RULE_ID",
+    "ERL_LANGUAGE",
+    "ERL_RULE",
+    "ERL_MODIFIER",
+    "ERL_TYPE",
+    "ERL_STATUS",
+    "ERL_COMMENTS"
+  from
+    dr$user_extract_rule
+  where
+    erl_pol_id = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
+columns: []
+referencedTables: []

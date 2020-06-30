@@ -1,0 +1,72 @@
+schema: SYS
+name: USER_SCHEDULER_JOB_LOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  (
+    SELECT
+      LOG_ID,
+      LOG_DATE,
+      OWNER,
+      DECODE(
+        instr(e.NAME, '"'),
+        0,
+        e.NAME,
+        substr(e.NAME, 1, instr(e.NAME, '"') -1)
+      ),
+      DECODE(
+        instr(e.NAME, '"'),
+        0,
+        NULL,
+        substr(e.NAME, instr(e.NAME, '"') + 1)
+      ),
+      co.NAME,
+      OPERATION,
+      e.STATUS,
+      USER_NAME,
+      CLIENT_ID,
+      GUID,
+      decode(
+        e.credential,
+        NULL,
+        NULL,
+        substr(e.credential, 1, instr(e.credential, '"') -1)
+      ),
+      decode(
+        e.credential,
+        NULL,
+        NULL,
+        substr(
+          e.credential,
+          instr(e.credential, '"') + 1,
+          length(e.credential) - instr(e.credential, '"')
+        )
+      ),
+      decode(
+        bitand(e.flags, 1),
+        0,
+        NULL,
+        substr(e.destination, 1, instr(e.destination, '"') -1)
+      ),
+      decode(
+        bitand(e.flags, 1),
+        0,
+        e.destination,
+        substr(
+          e.destination,
+          instr(e.destination, '"') + 1,
+          length(e.destination) - instr(e.destination, '"')
+        )
+      ),
+      ADDITIONAL_INFO
+    FROM
+      scheduler$_event_log e,
+      obj$ co
+    WHERE
+      e.type# = 66
+      and e.dbid is null
+      and e.class_id = co.obj#(+)
+      AND owner = SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA')
+  )
+columns: []
+referencedTables: []

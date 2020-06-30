@@ -1,0 +1,24 @@
+schema: SYS
+name: EXU8SEQU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OWNER",
+    "OWNERID",
+    "NAME",
+    "OBJID",
+    "CURVAL",
+    "MINVAL",
+    "MAXVAL",
+    "INCR",
+    "CACHE",
+    "CYCLE",
+    "ORDER$",
+    "AUDT"
+  FROM
+    sys.exu8seq
+  WHERE
+    userenv('SCHEMAID') = ownerid
+columns: []
+referencedTables: []

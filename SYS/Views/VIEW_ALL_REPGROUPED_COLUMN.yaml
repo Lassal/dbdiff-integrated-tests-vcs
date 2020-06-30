@@ -1,0 +1,31 @@
+schema: SYS
+name: ALL_REPGROUPED_COLUMN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    g.sname,
+    g.oname,
+    g.group_name,
+    g.column_name
+  from
+    all_tab_columns tc,
+    sys.dba_repgrouped_column g
+  where
+    g.sname = tc.owner
+    and g.oname = tc.table_name
+    and g.column_name = tc.column_name
+  union
+  select
+    g.sname,
+    g.oname,
+    g.group_name,
+    g.column_name
+  from
+    "_ALL_REPL_NESTED_TABLE_NAMES" nt,
+    sys.dba_repgrouped_column g
+  where
+    g.sname = nt.owner
+    and g.oname = nt.table_name
+columns: []
+referencedTables: []

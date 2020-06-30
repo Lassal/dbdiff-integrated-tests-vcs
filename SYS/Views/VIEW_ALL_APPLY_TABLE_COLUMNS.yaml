@@ -1,0 +1,21 @@
+schema: SYS
+name: ALL_APPLY_TABLE_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    do."OBJECT_OWNER",
+    do."OBJECT_NAME",
+    do."COLUMN_NAME",
+    do."COMPARE_OLD_ON_DELETE",
+    do."COMPARE_OLD_ON_UPDATE",
+    do."APPLY_DATABASE_LINK"
+  from
+    all_tab_columns a,
+    dba_apply_table_columns do
+  where
+    do .object_owner = a .owner
+    and do .object_name = a .table_name
+    and do .column_name = a .column_name
+columns: []
+referencedTables: []

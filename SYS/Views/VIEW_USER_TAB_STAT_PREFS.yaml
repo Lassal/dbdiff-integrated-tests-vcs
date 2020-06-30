@@ -1,0 +1,18 @@
+schema: SYS
+name: USER_TAB_STAT_PREFS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    p.pname,
+    p.valchar
+  from
+    sys.optstat_user_prefs$ p,
+    obj$ o
+  where
+    p.obj# = o.obj#
+    and o.type# = 2
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,35 @@
+schema: SYS
+name: EXU8VNCU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "VOBJID",
+    "VNAME",
+    "VTEXT",
+    "VOWNER",
+    "VOWNERID",
+    "VAUDIT",
+    "VCOMMENT",
+    "VCNAME",
+    "PROPERTY",
+    "DEFER",
+    "FLAGS",
+    "OIDLEN",
+    "OIDCLAUSE",
+    "TYPEOWNER",
+    "TYPENAME",
+    "VLEN"
+  FROM
+    sys.exu8vinfu vf$
+  WHERE
+    NOT EXISTS (
+      SELECT
+        0
+      FROM
+        sys.exu8vdptu vd$
+      WHERE
+        vd$.parent = vf$.vobjid
+    )
+columns: []
+referencedTables: []

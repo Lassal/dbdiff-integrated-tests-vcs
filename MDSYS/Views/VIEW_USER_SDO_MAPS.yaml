@@ -1,0 +1,15 @@
+schema: MDSYS
+name: USER_SDO_MAPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    NAME,
+    DESCRIPTION,
+    DEFINITION
+  FROM
+    SDO_MAPS_TABLE
+  WHERE
+    sdo_owner = sys_context('userenv', 'CURRENT_SCHEMA')
+columns: []
+referencedTables: []

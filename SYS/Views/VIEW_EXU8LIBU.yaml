@@ -1,0 +1,21 @@
+schema: SYS
+name: EXU8LIBU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "LOWNER",
+    "LIBNAME",
+    "OWNERID",
+    "FILENAME",
+    "AUDIT$",
+    "MTIME",
+    "OBJNO",
+    "ISSTATIC",
+    "ISTRUSTED"
+  FROM
+    sys.exu8lib
+  WHERE
+    ownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

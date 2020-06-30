@@ -1,0 +1,99 @@
+schema: SYS
+name: ALL_JAVA_ARGUMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ no_cartesian(mmd) no_cartesian(mag)  ordered use_nl(o mmd) */
+    u.name,
+    mmd.kln,
+    mmd.mix,
+    mmd.mnm,
+    mag.aix,
+    mag.aad,
+    decode(
+      mag.abt,
+      10,
+      'int',
+      11,
+      'long',
+      6,
+      'float',
+      7,
+      'double',
+      4,
+      'boolean',
+      8,
+      'byte',
+      5,
+      'char',
+      9,
+      'short',
+      2,
+      'class',
+      NULL
+    ),
+    mag.aln
+  from
+    sys.x$joxfm mmd,
+    sys.x$joxmag mag,
+    user $ u
+  where
+    mmd.own = u.user#
+    and mmd.mix != -1
+    and mmd.mix = mag.mix
+    and mmd.obn = mag.obn
+    and (
+      u.user# in (
+        userenv('SCHEMAID'),
+        1
+        /* PUBLIC */
+      )
+      or (
+        (
+          (
+            mmd.obn in (
+              select
+                obj#
+              from
+                sys.objauth$
+              where
+                grantee# in (
+                  select
+                    kzsrorol
+                  from
+                    x$kzsro
+                )
+                and privilege# = 12
+                /* EXECUTE */
+            )
+          )
+          or exists (
+            select
+              null
+            from
+              sys.sysauth$
+            where
+              grantee# in (
+                select
+                  kzsrorol
+                from
+                  x$kzsro
+              )
+              and (
+                (
+                  /* procedure */
+                  (
+                    privilege# = -144
+                    /* EXECUTE ANY PROCEDURE */
+                    or privilege# = -141
+                    /* CREATE ANY PROCEDURE */
+                  )
+                )
+              )
+          )
+        )
+      )
+    )
+columns: []
+referencedTables: []

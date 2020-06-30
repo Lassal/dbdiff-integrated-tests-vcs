@@ -1,0 +1,16 @@
+schema: SYS
+name: USER_XML_SCHEMA_SUBSTGRP_HEAD
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    SCHEMA_URL,
+    TARGET_NAMESPACE,
+    ELEMENT_NAME,
+    ELEMENT
+  from
+    DBA_XML_SCHEMA_SUBSTGRP_HEAD
+  where
+    OWNER = USER
+columns: []
+referencedTables: []

@@ -1,0 +1,79 @@
+schema: SYS
+name: _ALL_REPCONFLICT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    rc.sname,
+    rc.oname,
+    rc.conflict_type,
+    rc.reference_name,
+    decode(
+      rc.conflict_type,
+      'UPDATE',
+      1,
+      'UNIQUENESS',
+      2,
+      'DELETE',
+      3,
+      -1
+    )
+  from
+    all_repconflict rc
+  where
+    rc.conflict_type in ('UNIQUENESS', 'DELETE')
+  union
+  select
+    rc.sname,
+    rc.oname,
+    rc.conflict_type,
+    rc.reference_name,
+    decode(
+      rc.conflict_type,
+      'UPDATE',
+      1,
+      'UNIQUENESS',
+      2,
+      'DELETE',
+      3,
+      -1
+    )
+  from
+    all_repconflict rc,
+    all_represolution resol
+  where
+    rc.sname = resol.sname
+    and rc.oname = resol.oname
+    and rc.conflict_type = resol.conflict_type
+    and resol.method_name in (
+      'OVERWRITE',
+      'DISCARD',
+      'USER FUNCTION',
+      'USER FLAVOR FUNCTION'
+    )
+  union
+  select
+    /*+ ALL_ROWS */
+    rc.sname,
+    rc.oname,
+    rc.conflict_type,
+    rc.reference_name,
+    decode(
+      rc.conflict_type,
+      'UPDATE',
+      1,
+      'UNIQUENESS',
+      2,
+      'DELETE',
+      3,
+      -1
+    )
+  from
+    all_repconflict rc,
+    "_ALL_REPPARAMETER_COLUMN" rpcol
+  where
+    rc.reference_name = rpcol.reference_name
+    and rc.sname = rpcol.sname
+    and rc.oname = rpcol.oname
+columns: []
+referencedTables: []

@@ -1,0 +1,20 @@
+schema: CTXSYS
+name: DRV$USER_EXTRACT_ENTDICT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "EED_POLID",
+    "EED_ENTID",
+    "EED_LANG",
+    "EED_MENTION",
+    "EED_TYPE",
+    "EED_NORMID",
+    "EED_ALTCNT",
+    "EED_STATUS"
+  from
+    dr$user_extract_entdict
+  where
+    eed_polid = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
+columns: []
+referencedTables: []

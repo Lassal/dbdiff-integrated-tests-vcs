@@ -1,0 +1,26 @@
+schema: MDSYS
+name: OGC_POINTFROMTEXT
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: OBJECT
+  parameterMode: OUT
+parameters:
+- name: WKT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SRID
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_PointFromText(
+    wkt IN VARCHAR2,
+    srid IN INTEGER DEFAULT NULL
+  ) RETURN ST_Point IS
+  BEGIN
+    RETURN TREAT(ST_GEOMETRY.FROM_WKT(wkt, srid) AS ST_Point);
+  END OGC_PointFromText;

@@ -1,0 +1,622 @@
+schema: SYS
+name: DBMS_RULE_ADM
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: ADD_RULE.RULE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_RULE.RULE_SET_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_RULE.EVALUATION_CONTEXT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_RULE.RULE_COMMENT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_RULE_INT.RULE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_RULE_INT.RULE_SET_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_RULE_INT.EVALUATION_CONTEXT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_RULE_INT.RULE_COMMENT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT.EVALUATION_CONTEXT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT.TABLE_ALIASES
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT.REMOVE_TABLE_ALIASES
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT.VARIABLE_TYPES
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT.REMOVE_VARIABLE_TYPES
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT.EVALUATION_FUNCTION
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT.REMOVE_EVALUATION_FUNCTION
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT.EVALUATION_CONTEXT_COMMENT
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT.REMOVE_EVAL_CONTEXT_COMMENT
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT_INT.EVALUATION_CONTEXT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT_INT.TABLE_ALIASES
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT_INT.REMOVE_TABLE_ALIASES
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT_INT.VARIABLE_TYPES
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT_INT.REMOVE_VARIABLE_TYPES
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT_INT.EVALUATION_FUNCTION
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT_INT.REMOVE_EVALUATION_FUNCTION
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT_INT.EVALUATION_CONTEXT_COMMENT
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_EVALUATION_CONTEXT_INT.REMOVE_EVAL_CONTEXT_COMMENT
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ALTER_RULE.RULE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_RULE.CONDITION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_RULE.EVALUATION_CONTEXT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_RULE.REMOVE_EVALUATION_CONTEXT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ALTER_RULE.ACTION_CONTEXT
+  ordinalPosition: 5
+  dataType: OBJECT
+  parameterMode: IN
+- name: ALTER_RULE.REMOVE_ACTION_CONTEXT
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ALTER_RULE.RULE_COMMENT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_RULE.REMOVE_RULE_COMMENT
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ALTER_RULE_INT.RULE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_RULE_INT.CONDITION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_RULE_INT.EVALUATION_CONTEXT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_RULE_INT.REMOVE_EVALUATION_CONTEXT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ALTER_RULE_INT.ACTION_CONTEXT
+  ordinalPosition: 5
+  dataType: OBJECT
+  parameterMode: IN
+- name: ALTER_RULE_INT.REMOVE_ACTION_CONTEXT
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ALTER_RULE_INT.RULE_COMMENT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_RULE_INT.REMOVE_RULE_COMMENT
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CREATE_EVALUATION_CONTEXT.EVALUATION_CONTEXT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_EVALUATION_CONTEXT.TABLE_ALIASES
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CREATE_EVALUATION_CONTEXT.VARIABLE_TYPES
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: CREATE_EVALUATION_CONTEXT.EVALUATION_FUNCTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_EVALUATION_CONTEXT.EVALUATION_CONTEXT_COMMENT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_EVALUATION_CONTEXT_INT.EVALUATION_CONTEXT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_EVALUATION_CONTEXT_INT.TABLE_ALIASES
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CREATE_EVALUATION_CONTEXT_INT.VARIABLE_TYPES
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: CREATE_EVALUATION_CONTEXT_INT.EVALUATION_FUNCTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_EVALUATION_CONTEXT_INT.EVALUATION_CONTEXT_COMMENT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE.RULE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE.CONDITION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE.EVALUATION_CONTEXT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE.ACTION_CONTEXT
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: IN
+- name: CREATE_RULE.RULE_COMMENT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE_INT.RULE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE_INT.CONDITION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE_INT.EVALUATION_CONTEXT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE_INT.ACTION_CONTEXT
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: IN
+- name: CREATE_RULE_INT.RULE_COMMENT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE_SET.RULE_SET_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE_SET.EVALUATION_CONTEXT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE_SET.RULE_SET_COMMENT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE_SET.RESULT_CACHE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CREATE_RULE_SET_INT.RULE_SET_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE_SET_INT.EVALUATION_CONTEXT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE_SET_INT.RULE_SET_COMMENT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_RULE_SET_INT.RESULT_CACHE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DROP_EVALUATION_CONTEXT.EVALUATION_CONTEXT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_EVALUATION_CONTEXT.FORCE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DROP_EVALUATION_CONTEXT_INT.EVALUATION_CONTEXT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_EVALUATION_CONTEXT_INT.FORCE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DROP_RULE.RULE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_RULE.FORCE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DROP_RULE_INT.RULE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_RULE_INT.FORCE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DROP_RULE_SET.RULE_SET_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_RULE_SET.DELETE_RULES
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DROP_RULE_SET_INT.RULE_SET_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_RULE_SET_INT.DELETE_RULES
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GRANT_OBJECT_PRIVILEGE.PRIVILEGE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GRANT_OBJECT_PRIVILEGE.OBJECT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANT_OBJECT_PRIVILEGE.GRANTEE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANT_OBJECT_PRIVILEGE.GRANT_OPTION
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GRANT_SYSTEM_PRIVILEGE.PRIVILEGE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GRANT_SYSTEM_PRIVILEGE.GRANTEE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANT_SYSTEM_PRIVILEGE.GRANT_OPTION
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REMOVE_RULE.RULE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_RULE.RULE_SET_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_RULE.EVALUATION_CONTEXT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_RULE.ALL_EVALUATION_CONTEXTS
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REMOVE_RULE_INT.RULE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_RULE_INT.RULE_SET_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_RULE_INT.EVALUATION_CONTEXT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_RULE_INT.ALL_EVALUATION_CONTEXTS
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REVOKE_OBJECT_PRIVILEGE.PRIVILEGE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REVOKE_OBJECT_PRIVILEGE.OBJECT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKE_OBJECT_PRIVILEGE.REVOKEE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKE_SYSTEM_PRIVILEGE.PRIVILEGE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REVOKE_SYSTEM_PRIVILEGE.REVOKEE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_rule_adm AUTHID CURRENT_USER AS --------------------
+  --  PUBLIC CONSTANT
+  --
+  -- privilege code for rule engine objects
+  -- system privileges
+  CREATE_EVALUATION_CONTEXT_OBJ CONSTANT BINARY_INTEGER: = 1;
+  CREATE_ANY_EVALUATION_CONTEXT CONSTANT BINARY_INTEGER: = 2;
+  ALTER_ANY_EVALUATION_CONTEXT CONSTANT BINARY_INTEGER: = 3;
+  DROP_ANY_EVALUATION_CONTEXT CONSTANT BINARY_INTEGER: = 4;
+  EXECUTE_ANY_EVALUATION_CONTEXT CONSTANT BINARY_INTEGER: = 5;
+  CREATE_RULE_SET_OBJ CONSTANT BINARY_INTEGER: = 6;
+  CREATE_ANY_RULE_SET CONSTANT BINARY_INTEGER: = 7;
+  ALTER_ANY_RULE_SET CONSTANT BINARY_INTEGER: = 8;
+  DROP_ANY_RULE_SET CONSTANT BINARY_INTEGER: = 9;
+  EXECUTE_ANY_RULE_SET CONSTANT BINARY_INTEGER: = 10;
+  CREATE_RULE_OBJ CONSTANT BINARY_INTEGER: = 11;
+  CREATE_ANY_RULE CONSTANT BINARY_INTEGER: = 12;
+  ALTER_ANY_RULE CONSTANT BINARY_INTEGER: = 13;
+  DROP_ANY_RULE CONSTANT BINARY_INTEGER: = 14;
+  EXECUTE_ANY_RULE CONSTANT BINARY_INTEGER: = 15;
+  -- object privileges
+  EXECUTE_ON_EVALUATION_CONTEXT CONSTANT BINARY_INTEGER: = 16;
+  ALTER_ON_EVALUATION_CONTEXT CONSTANT BINARY_INTEGER: = 17;
+  ALL_ON_EVALUATION_CONTEXT CONSTANT BINARY_INTEGER: = 18;
+  EXECUTE_ON_RULE_SET CONSTANT BINARY_INTEGER: = 19;
+  ALTER_ON_RULE_SET CONSTANT BINARY_INTEGER: = 20;
+  ALL_ON_RULE_SET CONSTANT BINARY_INTEGER: = 21;
+  EXECUTE_ON_RULE CONSTANT BINARY_INTEGER: = 22;
+  ALTER_ON_RULE CONSTANT BINARY_INTEGER: = 23;
+  ALL_ON_RULE CONSTANT BINARY_INTEGER: = 24;
+  -- return codes for evaluation_function associated with an evaluation
+  -- context
+  -- These codes are interpreted as follows:
+  -- EVALUATION_SUCCESS: evaluation completed successfully
+  -- EVALUATION_FAILURE: evaluation failed due to errors
+  -- EVALUATION_CONTINUE: continue default evaluation of the rule set
+  EVALUATION_SUCCESS CONSTANT BINARY_INTEGER: = 0;
+  EVALUATION_FAILURE CONSTANT BINARY_INTEGER: = 1;
+  EVALUATION_CONTINUE CONSTANT BINARY_INTEGER: = 2;
+  -- named exceptions
+  INVALID_NV_NAME
+  EXCEPTION;
+  PRAGMA exception_init(INVALID_NV_NAME, -24161);
+  PROCEDURE create_evaluation_context(
+      evaluation_context_name IN varchar2,
+      table_aliases IN sys.re$table_alias_list: = NULL,
+      variable_types IN sys.re$variable_type_list: = NULL,
+      evaluation_function IN varchar2: = NULL,
+      evaluation_context_comment IN varchar2: = NULL
+    );
+  PROCEDURE create_evaluation_context_int(
+      evaluation_context_name IN varchar2,
+      table_aliases IN sys.re$table_alias_list: = NULL,
+      variable_types IN sys.re$variable_type_list: = NULL,
+      evaluation_function IN varchar2: = NULL,
+      evaluation_context_comment IN varchar2: = NULL
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(create_evaluation_context_int, AUTO);
+  PROCEDURE alter_evaluation_context(
+      evaluation_context_name IN varchar2,
+      table_aliases IN sys.re$table_alias_list: = NULL,
+      remove_table_aliases IN boolean: = FALSE,
+      variable_types IN sys.re$variable_type_list: = NULL,
+      remove_variable_types IN boolean: = FALSE,
+      evaluation_function IN varchar2: = NULL,
+      remove_evaluation_function IN boolean: = FALSE,
+      evaluation_context_comment IN varchar2: = NULL,
+      remove_eval_context_comment IN boolean: = FALSE
+    );
+  PROCEDURE alter_evaluation_context_int(
+      evaluation_context_name IN varchar2,
+      table_aliases IN sys.re$table_alias_list: = NULL,
+      remove_table_aliases IN boolean: = FALSE,
+      variable_types IN sys.re$variable_type_list: = NULL,
+      remove_variable_types IN boolean: = FALSE,
+      evaluation_function IN varchar2: = NULL,
+      remove_evaluation_function IN boolean: = FALSE,
+      evaluation_context_comment IN varchar2: = NULL,
+      remove_eval_context_comment IN boolean: = FALSE
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(alter_evaluation_context, AUTO);
+  PROCEDURE drop_evaluation_context(
+      evaluation_context_name IN varchar2,
+      force IN boolean: = FALSE
+    );
+  PROCEDURE drop_evaluation_context_int(
+      evaluation_context_name IN varchar2,
+      force IN boolean: = FALSE
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(drop_evaluation_context_int, AUTO);
+  PROCEDURE create_rule_set(
+      rule_set_name IN varchar2,
+      evaluation_context IN varchar2: = NULL,
+      rule_set_comment IN varchar2: = NULL,
+      result_cache IN boolean: = FALSE
+    );
+  PROCEDURE create_rule_set_int(
+      rule_set_name IN varchar2,
+      evaluation_context IN varchar2: = NULL,
+      rule_set_comment IN varchar2: = NULL,
+      result_cache IN boolean: = FALSE
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(create_rule_set_int, AUTO);
+  PROCEDURE drop_rule_set(
+      rule_set_name IN varchar2,
+      delete_rules IN boolean: = FALSE
+    );
+  PROCEDURE drop_rule_set_int(
+      rule_set_name IN varchar2,
+      delete_rules IN boolean: = FALSE
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(drop_rule_set_int, AUTO);
+  PROCEDURE create_rule(
+      rule_name IN varchar2,
+      condition IN varchar2,
+      evaluation_context IN varchar2: = NULL,
+      action_context IN sys.re$nv_list: = NULL,
+      rule_comment IN varchar2: = NULL
+    );
+  PROCEDURE create_rule_int(
+      rule_name IN varchar2,
+      condition IN varchar2,
+      evaluation_context IN varchar2: = NULL,
+      action_context IN sys.re$nv_list: = NULL,
+      rule_comment IN varchar2: = NULL
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(create_rule_int, AUTO);
+  PROCEDURE alter_rule(
+      rule_name IN varchar2,
+      condition IN varchar2: = NULL,
+      evaluation_context IN varchar2: = NULL,
+      remove_evaluation_context IN boolean: = FALSE,
+      action_context IN sys.re$nv_list: = NULL,
+      remove_action_context IN boolean: = FALSE,
+      rule_comment IN varchar2: = NULL,
+      remove_rule_comment IN boolean: = FALSE
+    );
+  PROCEDURE alter_rule_int(
+      rule_name IN varchar2,
+      condition IN varchar2: = NULL,
+      evaluation_context IN varchar2: = NULL,
+      remove_evaluation_context IN boolean: = FALSE,
+      action_context IN sys.re$nv_list: = NULL,
+      remove_action_context IN boolean: = FALSE,
+      rule_comment IN varchar2: = NULL,
+      remove_rule_comment IN boolean: = FALSE
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(alter_rule_int, AUTO);
+  PROCEDURE drop_rule(
+      rule_name IN varchar2,
+      force IN boolean: = FALSE
+    );
+  PROCEDURE drop_rule_int(
+      rule_name IN varchar2,
+      force IN boolean: = FALSE
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(drop_rule_int, AUTO);
+  PROCEDURE add_rule(
+      rule_name IN varchar2,
+      rule_set_name IN varchar2,
+      evaluation_context IN varchar2: = NULL,
+      rule_comment IN varchar2: = NULL
+    );
+  PROCEDURE add_rule_int(
+      rule_name IN varchar2,
+      rule_set_name IN varchar2,
+      evaluation_context IN varchar2: = NULL,
+      rule_comment IN varchar2: = NULL
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(add_rule_int, AUTO);
+  PROCEDURE remove_rule(
+      rule_name IN varchar2,
+      rule_set_name IN varchar2,
+      evaluation_context IN varchar2: = NULL,
+      all_evaluation_contexts IN boolean: = FALSE
+    );
+  PROCEDURE remove_rule_int(
+      rule_name IN varchar2,
+      rule_set_name IN varchar2,
+      evaluation_context IN varchar2: = NULL,
+      all_evaluation_contexts IN boolean: = FALSE
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(remove_rule_int, AUTO);
+  PROCEDURE grant_system_privilege(
+      privilege IN binary_integer,
+      grantee IN varchar2,
+      grant_option IN boolean: = FALSE
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(grant_system_privilege, AUTO);
+  PROCEDURE revoke_system_privilege(
+      privilege IN binary_integer,
+      revokee IN varchar2
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(revoke_system_privilege, AUTO);
+  PROCEDURE grant_object_privilege(
+      privilege IN binary_integer,
+      object_name IN varchar2,
+      grantee IN varchar2,
+      grant_option IN boolean: = FALSE
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(grant_object_privilege, AUTO);
+  PROCEDURE revoke_object_privilege(
+      privilege IN binary_integer,
+      object_name IN varchar2,
+      revokee IN varchar2
+    );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(revoke_object_privilege, AUTO);
+  END dbms_rule_adm;

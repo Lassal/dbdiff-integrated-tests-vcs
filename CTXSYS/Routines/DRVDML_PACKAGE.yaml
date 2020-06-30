@@ -1,0 +1,707 @@
+schema: CTXSYS
+name: DRVDML
+routineType: PACKAGE
+returnParamater:
+  name: IDX_POPULATE_MODE.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: ADD_REM_MDATA.ADD_REM
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_REM_MDATA.IDX_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_REM_MDATA.SECTION_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_REM_MDATA.MDATA_VALUES
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: ADD_REM_MDATA.MDATA_ROWIDS
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: ADD_REM_MDATA.PART_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDREMONEMDATA.ITAB
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDREMONEMDATA.DOCID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADDREMONEMDATA.MDATAID
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADDREMONEMDATA.ADDREM
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADDREMONEMDATA.VALUE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDREMONEMDATA.GTAB
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDREMONESDATA.SNTAB
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDREMONESDATA.DOCID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADDREMONESDATA.SDATAID
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADDREMONESDATA.ADDREM
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADDREMONESDATA.VALUE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_REM_SDATA.ADD_REM
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_REM_SDATA.IDX_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_REM_SDATA.SECTION_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_REM_SDATA.SDATA_VALUES
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: ADD_REM_SDATA.SDATA_ROWIDS
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: ADD_REM_SDATA.PART_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AUTO_SYNC_INDEX.IDX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AUTO_SYNC_INDEX.MEMORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AUTO_SYNC_INDEX.PART_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AUTO_SYNC_INDEX.PARALLEL_DEGREE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: AUTO_SYNC_INDEX.LOGFILE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AUTO_SYNC_INDEX.EVENTS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLEANDML.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLEANDML.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLEANDML.P_TABID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: COM_SYNC_INDEX.IDX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COM_SYNC_INDEX.MEMORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COM_SYNC_INDEX.PART_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CTXCAT_DML.IDX_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CTXCAT_DML.IDX_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CTXCAT_DML.DOINDEX
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CTXCAT_DML.UPDOP
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DELETEPENDING.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: DELETEPENDING.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: DELETEPENDING.P_RIDS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INS_DEL_MVDATA.INS_DEL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INS_DEL_MVDATA.IDX_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INS_DEL_MVDATA.SECTION_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INS_DEL_MVDATA.MVDATA_VALUES
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: INS_DEL_MVDATA.MVDATA_ROWIDS
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: INS_DEL_MVDATA.PART_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCK_OPT_MVDATA.CID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCK_OPT_MVDATA.PID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCK_OPT_REBUILD.CID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCK_OPT_REBUILD.PID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCK_OPT_REBUILD.LOCK_MODE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCK_OPT_REBUILD.TIMEOUT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCK_OPT_REBUILD.RELEASE_ON_COMMIT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MAINTAINKTAB(1).IDX
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAINTAINKTAB(1).IXP
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MAINTAINKTAB(1).P_STARTDOCID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: MAINTAINKTAB(1).P_PARALLEL_DEGREE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: MAINTAINKTAB(2).P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: MAINTAINKTAB(2).P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: MAINTAINKTAB(2).P_STARTDOCID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: MAINTAINKTAB(2).P_PARALLEL_DEGREE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: POPULATEPENDING.IDX
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: POPULATEPENDING.IXPNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSDML.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROCESSDML.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROCESSDML.P_IDXMEM
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROCESSDML.P_PARDEG
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PROCESSDML.P_DIRECT_PATH
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: PROCESSDML.P_MAXTIME
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PROCESSWAITING.P_IDXTYPE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PROCESSWAITING.P_IDXID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROCESSWAITING.P_IDXOWN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSWAITING.P_IDXNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSWAITING.P_IXPID
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROCESSWAITING.P_IXPNAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETLOCKFAILED.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SETLOCKFAILED.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SETLOCKFAILED.P_RID
+  ordinalPosition: 3
+  dataType: ROWID
+  parameterMode: IN
+- name: UPDATEMDATA.ITAB
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEMDATA.KTAB
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEMDATA.MDATA_ID
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: UPDATEMDATA.COLTYPE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEMDATA.RID
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEMDATA.OLDVAL
+  ordinalPosition: 6
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: UPDATEMDATA.NEWVAL
+  ordinalPosition: 7
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: UPDATEMDATA.GTAB
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_SDATA.IDX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_SDATA.SECTION_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_SDATA.SDATA_VALUE
+  ordinalPosition: 3
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: UPD_SDATA.SDATA_ROWID
+  ordinalPosition: 4
+  dataType: ROWID
+  parameterMode: IN
+- name: UPD_SDATA.PART_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package drvdml authid current_user as -- CTXCAT holding variables
+  type vctab is table of varchar2(30) index by binary_integer;
+  c_vctab vctab;
+  c_cttab vctab;
+  type numtab is table of number index by binary_integer;
+  c_numtab numtab;
+  type dttab is table of date index by binary_integer;
+  c_dttab dttab;
+  type cntab is table of varchar2(256) index by binary_integer;
+  c_cntab cntab;
+  c_text_vc2 varchar2(32767);
+  c_text_clob clob;
+  c_rowid rowid;
+  type updtab is table of boolean index by binary_integer;
+  c_updtab updtab;
+  -- 5079472: Mirror dbms_lock constants here because dbms_lock may not
+  -- be granted to public.
+  s_mode number: = dbms_lock.s_mode;
+  x_mode number: = dbms_lock.x_mode;
+  -- Indicates if index population to be done on per document basis
+  pv_idx_pop_per_doc boolean: = FALSE;
+  /*--------------------------- ProcessWaiting ------------------------------*/
+  procedure ProcessWaiting (
+    p_idxtype in binary_integer,
+    p_idxid in number,
+    p_idxown in varchar2,
+    p_idxname in varchar2,
+    p_ixpid in number,
+    p_ixpname in varchar2
+  );
+  /*--------------------------- ProcessDML ------------------------*/
+  /*
+
+    NAME
+
+      ProcessDML
+
+
+
+    DESCRIPTION
+
+      do a sync
+
+
+
+    ARGUMENTS
+
+      CID             in     - column to work on
+
+      parallel_degree in     - parallel degree
+
+      direct_path     in     - use direct-path inserts ?
+
+
+
+  */
+  procedure ProcessDML (
+    p_idxid in number,
+    p_ixpid in number,
+    p_idxmem in number,
+    p_pardeg in binary_integer default 1,
+    p_direct_path in boolean default false,
+    p_maxtime in binary_integer default 2147483647
+  );
+  /*--------------------------- MaintainKTab -------------------------*/
+  /*
+
+    NAME
+
+      MaintainKTab
+
+
+
+    DESCRIPTION
+
+      update the $K table after index creation/sync
+
+
+
+    ARGUMENTS
+
+      idx               in     - the index
+
+      ixp               in     - the partition of the index
+
+      p_startDocid      in     - docid to start from
+
+      p_parallel_degree in     - parallel degree
+
+
+
+  */
+  procedure MaintainKTab (
+    idx in dr_def.idx_rec,
+    ixp in dr_def.ixp_rec,
+    p_startDocid in number default null,
+    p_parallel_degree in number default 1
+  );
+  /*--------------------------- MaintainKTab -------------------------*/
+  /*
+
+    NAME
+
+      MaintainKTab
+
+
+
+    DESCRIPTION
+
+      update the $K table after index creation/sync
+
+
+
+    ARGUMENTS
+
+      p_idxid           in     - the index id
+
+      p_ixpid           in     - the partition id
+
+      p_startDocid      in     - docid to start from
+
+      p_parallel_degree in     - parallel degree
+
+  */
+  procedure MaintainKTab (
+    p_idxid in number,
+    p_ixpid in number,
+    p_startDocid in number default null,
+    p_parallel_degree in number default 1
+  );
+  /*--------------------------- DeletePending ------------------------*/
+  procedure DeletePending (
+    p_idxid in number,
+    p_ixpid in number,
+    p_rids in varchar2
+  );
+  /*----------------------------- CleanDML ---------------------------*/
+  procedure CleanDML (
+    p_idxid in number,
+    p_ixpid in number,
+    p_tabid in number
+  );
+  /*-------------------------- SetLockFailed -------------------------*/
+  procedure SetLockFailed (
+    p_idxid in number,
+    p_ixpid in number,
+    p_rid in rowid
+  );
+  /*--------------------------- ctxcat_dml ----------------------------*/
+  procedure ctxcat_dml(
+    idx_owner in varchar2,
+    idx_name in varchar2,
+    doindex in boolean,
+    updop in boolean
+  );
+  /*----------------------- auto_sync_index ------------------------*/
+  PROCEDURE auto_sync_index(
+    idx_name in varchar2 default NULL,
+    memory in varchar2 default NULL,
+    part_name in varchar2 default NULL,
+    parallel_degree in number default 1,
+    logfile in varchar2 default NULL,
+    events in number default NULL
+  );
+  /*----------------------- com_sync_index -------------------------*/
+  PROCEDURE com_sync_index(
+    idx_name in varchar2 default null,
+    memory in varchar2 default null,
+    part_name in varchar2 default null
+  );
+  /*----------------------- add_rem_mdata --------------------------*/
+  PROCEDURE add_rem_mdata(
+    add_rem in varchar2,
+    idx_name in varchar2,
+    section_name in varchar2,
+    mdata_values in sys.odcivarchar2list,
+    mdata_rowids in sys.odciridlist,
+    part_name in varchar2
+  );
+  /* 5364449: Removed csync since it is no longer used */
+  /*------------------- PopulatePending -----------------------------*/
+  PROCEDURE PopulatePending(
+    idx in dr_def.idx_rec,
+    ixpname in varchar2
+  );
+  /*------------------- UpdateMDATA -----------------------------*/
+  PROCEDURE UpdateMDATA(
+    itab in varchar2,
+    ktab in varchar2,
+    mdata_id in binary_integer,
+    coltype in varchar2,
+    rid in varchar2,
+    oldval in sys.anydata,
+    newval in sys.anydata,
+    gtab in varchar2 default null
+  );
+  /* Following 2 routines added for bug 5079472 */
+  /*------------------- lock_opt_rebuild ------------------------*/
+  PROCEDURE lock_opt_rebuild(
+    cid in number,
+    pid in number,
+    lock_mode in number,
+    timeout in number,
+    release_on_commit in boolean default FALSE
+  );
+  /*----------------- unlock_opt_rebuild ------------------------*/
+  PROCEDURE unlock_opt_rebuild;
+  /*--------------------------- lock_opt_mvdata -----------------*/
+  PROCEDURE lock_opt_mvdata(cid in number, pid in number);
+  /*-------------------- upd_sdata  -----------------------------*/
+  /*
+
+    NAME
+
+      upd_sdata
+
+
+
+    DESCRIPTION
+
+      update sdata section value
+
+
+
+    ARGUMENTS
+
+      idx_name     - index name
+
+      section_name - SDATA section name
+
+      sdata_value  - sdata value
+
+      sdata_rowid  - rowid
+
+      part_name    - partition name
+
+
+
+    NOTES
+
+
+
+    EXCEPTIONS
+
+  */
+  PROCEDURE upd_sdata(
+    idx_name in varchar2,
+    section_name in varchar2,
+    sdata_value in sys.anydata,
+    sdata_rowid in rowid,
+    part_name in varchar2 default NULL
+  );
+  /*----------------------- ins_del_mvdata --------------------------*/
+  /*
+
+    NAME
+
+      ins_del_mvdata
+
+
+
+    DESCRIPTION
+
+      update a set of docids with given MVDATA values
+
+
+
+    ARGUMENTS
+
+      ins_del       - dml mode flag (INS, DEL, UPD)
+
+      idx_name      - index name
+
+      section_name  - MVDATA section name
+
+      mvdata_values - mvdata values
+
+      mvdata_rowids - rowids
+
+      part_name     - partition name
+
+
+
+    NOTES
+
+
+
+    EXCEPTIONS
+
+  */
+  PROCEDURE ins_del_mvdata(
+    ins_del in varchar2,
+    idx_name in varchar2,
+    section_name in varchar2,
+    mvdata_values in sys.odcinumberlist,
+    mvdata_rowids in sys.odciridlist,
+    part_name in varchar2
+  );
+  /*----------------- AddRemOneMDATA ------------------------------------*/
+  procedure AddRemOneMDATA(
+    itab in varchar2,
+    docid in number,
+    mdataid in binary_integer,
+    addrem in binary_integer,
+    value in varchar2,
+    gtab in varchar2 default null
+  );
+  /*------------------------- idx_populate_mode ------------------------- */
+  FUNCTION idx_populate_mode return number;
+  PROCEDURE AddRemOneSDATA(
+    sntab in varchar2,
+    docid in number,
+    sdataid in binary_integer,
+    addrem in binary_integer,
+    value in varchar2
+  );
+  PROCEDURE add_rem_sdata(
+    add_rem in varchar2,
+    idx_name in varchar2,
+    section_name in varchar2,
+    sdata_values in sys.odcivarchar2list,
+    sdata_rowids in sys.odciridlist,
+    part_name in varchar2
+  );
+  end drvdml;

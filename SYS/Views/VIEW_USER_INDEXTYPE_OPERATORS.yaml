@@ -1,0 +1,26 @@
+schema: SYS
+name: USER_INDEXTYPE_OPERATORS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    u1.name,
+    op.name,
+    i.bind#
+  from
+    sys.user$ u,
+    sys.indop$ i,
+    sys.obj$ o,
+    sys.obj$ op,
+    sys.user$ u1
+  where
+    i.obj# = o.obj#
+    and i.oper# = op.obj#
+    and u.user# = o.owner#
+    and u1.user# = op.owner#
+    and o.owner# = userenv ('SCHEMAID')
+    and bitand(i.property, 4) != 4
+columns: []
+referencedTables: []

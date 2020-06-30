@@ -1,0 +1,19 @@
+schema: SYS
+name: EXPTABSUBPARTLOBFRAG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    lf.parentobj# PARENTOBJNO,
+    lf.ts# TSNO,
+    lf.fragobj# FRAGOBJNO,
+    row_number() OVER (
+      partition by lf.parentobj#
+      order by
+        lf.frag#
+    ) - 1 FRAGNO,
+    lf.tabfragobj# TABFRAGOBJNO
+  FROM
+    sys.lobfrag$ lf
+columns: []
+referencedTables: []

@@ -1,0 +1,22 @@
+schema: SYS
+name: EXU81SCMU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "SOWNER",
+    "SOWNERID",
+    "VNAME",
+    "TABNUM",
+    "SNACOL",
+    "MASCOL",
+    "MASPOS",
+    "ROLE",
+    "INSTSITE",
+    "SNAPOS"
+  FROM
+    sys.exu81scm
+  WHERE
+    sownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

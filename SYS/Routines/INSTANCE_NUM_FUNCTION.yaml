@@ -1,0 +1,14 @@
+schema: SYS
+name: INSTANCE_NUM
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  function instance_num return binary_integer is
+  begin
+    return dbms_standard.instance_num;
+  end;

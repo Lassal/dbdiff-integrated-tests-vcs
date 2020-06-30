@@ -1,0 +1,28 @@
+schema: SYS
+name: USER_REFRESH
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    d. "ROWNER",
+    d. "RNAME",
+    d. "REFGROUP",
+    d. "IMPLICIT_DESTROY",
+    d. "PUSH_DEFERRED_RPC",
+    d. "REFRESH_AFTER_ERRORS",
+    d. "ROLLBACK_SEG",
+    d. "JOB",
+    d. "NEXT_DATE",
+    d. "INTERVAL",
+    d. "BROKEN",
+    d. "PURGE_OPTION",
+    d. "PARALLELISM",
+    d. "HEAP_SIZE"
+  from
+    dba_refresh d,
+    sys.user$ u
+  where
+    d.rowner = u.name
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,48 @@
+schema: SYS
+name: _ALL_SQLSET_STATISTICS_ONLY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    stmts.sqlset_id,
+    stmts.con_dbid,
+    stat.stmt_id sql_seq,
+    stat.plan_hash_value,
+    stat.elapsed_time,
+    stat.cpu_time,
+    stat.buffer_gets,
+    stat.disk_reads,
+    stat.direct_writes,
+    stat.rows_processed,
+    stat.fetches,
+    stat.executions,
+    stat.end_of_fetch_count,
+    stat.optimizer_cost,
+    stat.first_load_time,
+    stat.stat_period,
+    stat.active_stat_period,
+    plns.plan_timestamp,
+    plns.binds_captured
+  FROM
+    WRI$_SQLSET_STATISTICS stat,
+    WRI$_SQLSET_STATEMENTS stmts,
+    WRI$_SQLSET_PLANS plns,
+    WRI$_SQLSET_DEFINITIONS defns
+  WHERE
+    defns.id = stmts.sqlset_id
+    AND stat.stmt_id = stmts.id
+    AND stat.plan_hash_value = plns.plan_hash_value
+    AND stat.stmt_id = plns.stmt_id
+    AND (
+      defns.owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+      OR EXISTS(
+        SELECT
+          1
+        FROM
+          v$enabledprivs
+        WHERE
+          priv_number = -273
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,15 @@
+schema: SYS
+name: MVAGGRAWBITOR
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: RAW
+  parameterMode: OUT
+parameters:
+- name: BITVEC
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+routineDefinition: FUNCTION MVAggRawBitOr(bitvec RAW) RETURN RAW PARALLEL_ENABLE AGGREGATE
+  USING MVAggRawBitOr_typ;

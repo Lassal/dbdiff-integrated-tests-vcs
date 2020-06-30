@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_UNUSED_COL_TABS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    count(*)
+  from
+    sys.col$ c,
+    sys.obj$ o
+  where
+    o.obj# = c .obj#
+    and o.owner# = userenv('SCHEMAID')
+    and bitand(c .property, 32768) = 32768 -- is unused columns
+    and bitand(c .property, 1) != 1 -- not ADT attribute col
+    and bitand(c .property, 1024) != 1024 -- not NTAB's setid col
+  group by
+    o.name
+columns: []
+referencedTables: []

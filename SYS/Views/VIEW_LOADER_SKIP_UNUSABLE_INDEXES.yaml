@@ -1,0 +1,14 @@
+schema: SYS
+name: LOADER_SKIP_UNUSABLE_INDEXES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    count(*) as value
+  from
+    v$parameter
+  where
+    upper(name) = 'SKIP_UNUSABLE_INDEXES'
+    and value = 'TRUE'
+columns: []
+referencedTables: []

@@ -1,0 +1,25 @@
+schema: SYS
+name: EXU8OIDU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "TOBJID",
+    "INTCOL",
+    "INAME",
+    "IDEFER",
+    "OWNERID",
+    "PCTFREE$",
+    "INITRANS",
+    "MAXTRANS",
+    "ITSNO",
+    "IFILE",
+    "IBLOCK",
+    "ITSNAME",
+    "IDOBJID"
+  FROM
+    sys.exu8oid
+  WHERE
+    ownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

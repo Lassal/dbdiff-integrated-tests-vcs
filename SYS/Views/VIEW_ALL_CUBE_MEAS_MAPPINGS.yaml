@@ -1,0 +1,133 @@
+schema: SYS
+name: ALL_CUBE_MEAS_MAPPINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name OWNER,
+    o.name CUBE_NAME,
+    owner_map.map_name CUBE_MAP_NAME,
+    m.map_name MAP_NAME,
+    m.map_id MAP_ID,
+    meas.measure_name MEASURE_NAME,
+    s1.syntax_clob MEASURE_EXPRESSION
+  FROM
+    olap_mappings$ m,
+    olap_mappings$ owner_map,
+    user $ u,
+    obj$ o,
+    olap_measures$ meas,
+    olap_syntax$ s1,
+    (
+      SELECT
+        obj#,
+        MIN(have_dim_access) have_all_dim_access
+      FROM
+        (
+          SELECT
+            c .obj# obj#,
+            (
+              CASE
+                WHEN (
+                  do .owner# in (userenv('SCHEMAID'), 1) -- public objects
+                  or do .obj# in (
+                    select
+                      obj# -- directly granted privileges
+                    from
+                      sys.objauth$
+                    where
+                      grantee# in (
+                        select
+                          kzsrorol
+                        from
+                          x$kzsro
+                      )
+                  )
+                  or -- user has system privileges
+                  (
+                    exists (
+                      select
+                        null
+                      from
+                        v$enabledprivs
+                      where
+                        priv_number in (
+                          -302,
+                          -- ALTER ANY PRIMARY DIMENSION
+                          -304,
+                          -- DELETE ANY PRIMARY DIMENSION
+                          -305,
+                          -- DROP ANY PRIMARY DIMENSION
+                          -306,
+                          -- INSERT ANY PRIMARY DIMENSION
+                          -307
+                        ) -- SELECT ANY PRIMARY DIMENSION
+                    )
+                  )
+                ) THEN 1
+                ELSE 0
+              END
+            ) have_dim_access
+          FROM
+            olap_cubes$ c,
+            dependency$ d,
+            obj$ do
+          WHERE
+            do .obj# = d.p_obj#
+            AND do .type# = 92 -- CUBE DIMENSION
+            AND c .obj# = d.d_obj#
+        )
+      GROUP BY
+        obj#
+    ) da
+  WHERE
+    m.map_type = 24
+    AND m.mapped_object_id = meas.measure_id
+    AND m.mapping_owner_id = owner_map.map_id
+    AND meas.cube_obj# = o.obj#
+    AND o.obj# = da.obj#(+)
+    AND o.owner# = u.user#
+    AND m.map_id = s1.owner_id(+)
+    AND m.map_type = s1.owner_type(+)
+    AND s1.ref_role(+) = 1
+    AND (
+      o.owner# in (userenv('SCHEMAID'), 1) -- public objects
+      or o.obj# in (
+        select
+          obj# -- directly granted privileges
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or -- user has system privileges
+      (
+        exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -309,
+              -- ALTER ANY CUBE
+              -311,
+              -- DROP ANY CUBE
+              -312,
+              -- SELECT ANY CUBE
+              -313
+            ) -- UPDATE ANY CUBE
+        )
+      )
+    )
+    AND (
+      (have_all_dim_access = 1)
+      OR (have_all_dim_access is NULL)
+    )
+columns: []
+referencedTables: []

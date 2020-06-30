@@ -1,0 +1,32 @@
+name: STMT_AUDIT_OPTION_MAP
+schema: SYS
+columns:
+- name: NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: OPTION#
+  ordinalPosition: 1
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: PROPERTY
+  ordinalPosition: 3
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<check-constraint>
+  name: SYS_C00630
+  type: CHECK
+  checkClause: '"OPTION#" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C00631
+  type: CHECK
+  checkClause: '"NAME" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C00632
+  type: CHECK
+  checkClause: '"PROPERTY" IS NOT NULL'
