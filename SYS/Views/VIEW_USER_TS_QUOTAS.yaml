@@ -1,0 +1,25 @@
+schema: SYS
+name: USER_TS_QUOTAS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ts.name,
+    spc.blocks * ts.blocksize,
+    decode(
+      spc.maxblocks,
+      -1,
+      -1,
+      spc.maxblocks * ts.blocksize
+    ),
+    spc.blocks,
+    spc.maxblocks,
+    decode(ts.online$, 3, 'YES', 'NO')
+  from
+    sys.ts$ ts,
+    sys.tbs_space_usage spc
+  where
+    spc.tsn = ts.ts#
+    and spc.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

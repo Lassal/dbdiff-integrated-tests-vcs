@@ -1,0 +1,470 @@
+schema: SYS
+name: DBMS_AW_EXP
+routineType: PACKAGE
+returnParamater:
+  name: TRANSPORTING.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: ALTER_LOB_SIZE.NEWSIZE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: IMPORT_BEGIN100.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_BEGIN100.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_BEGIN112.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_BEGIN112.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_BEGIN120.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_BEGIN120.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_BEGIN92.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_BEGIN92.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_CALLOUT112.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_CALLOUT120.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_CHUNK100.AMT
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: IMPORT_CHUNK100.STREAM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_CHUNK112.AMT
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: IMPORT_CHUNK112.STREAM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_CHUNK120.AMT
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: IMPORT_CHUNK120.STREAM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_CHUNK92.AMT
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: IMPORT_CHUNK92.STREAM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_FINISH100.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_FINISH100.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_FINISH112.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_FINISH112.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_FINISH120.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_FINISH120.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_FINISH92.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_FINISH92.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_TABLE_CALLOUT120.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_TABLE_CALLOUT120.TABNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_TABLE_CALLOUT120.PREPORT
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: INSTANCE_CALLOUT_IMP.OBJ_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSTANCE_CALLOUT_IMP.OBJ_SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSTANCE_CALLOUT_IMP.OBJ_TYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSTANCE_CALLOUT_IMP.PREPOST
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: INSTANCE_CALLOUT_IMP.ACTION
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: INSTANCE_CALLOUT_IMP.ALT_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: INSTANCE_EXTENDED_INFO_EXP.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSTANCE_EXTENDED_INFO_EXP.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSTANCE_EXTENDED_INFO_EXP.NAMESPACE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: INSTANCE_EXTENDED_INFO_EXP.TYPE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: INSTANCE_EXTENDED_INFO_EXP.PREPOST
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: INSTANCE_EXTENDED_INFO_EXP.EXP_USER
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSTANCE_EXTENDED_INFO_EXP.ISDBA
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: INSTANCE_EXTENDED_INFO_EXP.VERSION
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSTANCE_EXTENDED_INFO_EXP.NEW_BLOCK
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: LOB_WRITE(1).WLOB
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: INOUT
+- name: LOB_WRITE(1).POS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LOB_WRITE(1).DATA
+  ordinalPosition: 3
+  dataType: TABLE
+  parameterMode: IN
+- name: LOB_WRITE(2).WLOB
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: INOUT
+- name: LOB_WRITE(2).POS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LOB_WRITE(2).DATA
+  ordinalPosition: 3
+  dataType: TABLE
+  parameterMode: IN
+- name: LOB_WRITEAPPEND(1).WLOB
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: INOUT
+- name: LOB_WRITEAPPEND(1).DATA
+  ordinalPosition: 2
+  dataType: TABLE
+  parameterMode: IN
+- name: LOB_WRITEAPPEND(2).WLOB
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: INOUT
+- name: LOB_WRITEAPPEND(2).DATA
+  ordinalPosition: 2
+  dataType: TABLE
+  parameterMode: IN
+- name: SCHEMA_CALLOUT.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SCHEMA_CALLOUT.PREPOST
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SCHEMA_CALLOUT.ISDBA
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SCHEMA_CALLOUT.VERSION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SCHEMA_INFO_EXP.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SCHEMA_INFO_EXP.PREPOST
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SCHEMA_INFO_EXP.ISDBA
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SCHEMA_INFO_EXP.VERSION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SCHEMA_INFO_EXP.NEW_BLOCK
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: TRANS_BEGIN102.AWNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANS_BEGIN102.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANS_BEGIN102.NAMESPACE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: TRANS_BEGIN102.TYPE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: TRANS_CHUNK102.AMT
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: TRANS_CHUNK102.STREAM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANS_FINISH102.AWNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANS_FINISH102.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANS_FINISH102.NAMESPACE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: TRANS_FINISH102.TYPE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: TRANS_FINISH112.AWNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANS_FINISH112.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANS_FINISH112.NAMESPACE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: TRANS_FINISH112.TYPE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: TRANS_FINISH112.PREPOST
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_aw_exp AUTHID CURRENT_USER AS EIF_LOB_SIZE_OUT_OF_RANGE
+  EXCEPTION;
+  INVALID_AW_VERSION NUMBER: = -20004;
+  CROSS_PLATFORM_TRANSPORT NUMBER: = -20005;
+  AW_TOO_MANY_OBJECTS NUMBER: = -20006;
+  PROCEDURE alter_lob_size(newsize IN NUMBER);
+  PROCEDURE import_begin120(
+      schema IN VARCHAR2,
+      name IN VARCHAR2
+    );
+  PROCEDURE import_chunk120(
+      amt IN BINARY_INTEGER,
+      stream IN VARCHAR2
+    );
+  PROCEDURE import_finish120(
+      schema IN VARCHAR2,
+      name IN VARCHAR2
+    );
+  PROCEDURE import_begin112(
+      schema IN VARCHAR2,
+      name IN VARCHAR2
+    );
+  PROCEDURE import_chunk112(
+      amt IN BINARY_INTEGER,
+      stream IN VARCHAR2
+    );
+  PROCEDURE import_finish112(
+      schema IN VARCHAR2,
+      name IN VARCHAR2
+    );
+  PROCEDURE import_begin100(
+      schema IN VARCHAR2,
+      name IN VARCHAR2
+    );
+  PROCEDURE import_chunk100(
+      amt IN BINARY_INTEGER,
+      stream IN VARCHAR2
+    );
+  PROCEDURE import_finish100(
+      schema IN VARCHAR2,
+      name IN VARCHAR2
+    );
+  PROCEDURE import_begin92(
+      schema IN VARCHAR2,
+      name IN VARCHAR2
+    );
+  PROCEDURE import_chunk92(
+      amt IN BINARY_INTEGER,
+      stream IN VARCHAR2
+    );
+  PROCEDURE import_finish92(
+      schema IN VARCHAR2,
+      name IN VARCHAR2
+    );
+  -- Transportable tablespace support
+    PROCEDURE trans_begin102(
+      awname IN VARCHAR2,
+      schema IN VARCHAR2,
+      namespace IN PLS_INTEGER,
+      type IN PLS_INTEGER
+    );
+  PROCEDURE trans_chunk102(
+      amt IN BINARY_INTEGER,
+      stream IN VARCHAR2
+    );
+  PROCEDURE trans_finish102(
+      awname IN VARCHAR2,
+      schema IN VARCHAR2,
+      namespace IN PLS_INTEGER,
+      type IN PLS_INTEGER
+    );
+  PROCEDURE trans_finish112(
+      awname IN VARCHAR2,
+      schema IN VARCHAR2,
+      namespace IN PLS_INTEGER,
+      type IN PLS_INTEGER,
+      prepost IN PLS_INTEGER
+    );
+  FUNCTION schema_info_exp(
+      schema IN VARCHAR2,
+      prepost IN PLS_INTEGER,
+      isdba IN PLS_INTEGER,
+      version IN VARCHAR2,
+      new_block OUT PLS_INTEGER
+    ) RETURN VARCHAR2;
+  PROCEDURE schema_callout(
+      schema IN VARCHAR2,
+      prepost IN PLS_INTEGER,
+      isdba IN PLS_INTEGER,
+      version IN VARCHAR2
+    );
+  PROCEDURE import_callout120(schema IN VARCHAR2);
+  PROCEDURE import_callout112(schema IN VARCHAR2);
+  PROCEDURE import_table_callout120(
+      schema IN VARCHAR2,
+      tabname IN VARCHAR2,
+      preport IN PLS_INTEGER
+    );
+  FUNCTION instance_extended_info_exp(
+      name IN VARCHAR2,
+      schema IN VARCHAR2,
+      namespace IN PLS_INTEGER,
+      type IN PLS_INTEGER,
+      prepost IN PLS_INTEGER,
+      exp_user IN VARCHAR2,
+      isdba IN PLS_INTEGER,
+      version IN VARCHAR2,
+      new_block OUT PLS_INTEGER
+    ) RETURN VARCHAR2;
+  PROCEDURE instance_callout_imp(
+      obj_name IN VARCHAR2,
+      obj_schema IN VARCHAR2,
+      obj_type IN VARCHAR2,
+      prepost IN PLS_INTEGER,
+      action OUT VARCHAR2,
+      alt_name OUT VARCHAR2
+    );
+  TYPE rawvec_t IS TABLE OF RAW(31744);
+  TYPE varchar2vec_t IS TABLE OF VARCHAR2(31744);
+  FUNCTION lob_write(
+      wlob IN OUT NOCOPY BLOB,
+      pos IN BINARY_INTEGER,
+      data IN rawvec_t
+    ) RETURN BINARY_INTEGER;
+  FUNCTION lob_writeappend(
+      wlob IN OUT NOCOPY BLOB,
+      data IN rawvec_t
+    ) RETURN BINARY_INTEGER;
+  FUNCTION lob_write(
+      wlob IN OUT NOCOPY CLOB CHARACTER
+      SET
+        ANY_CS,
+        pos IN BINARY_INTEGER,
+        data IN varchar2vec_t
+    ) RETURN BINARY_INTEGER;
+  FUNCTION lob_writeappend(
+      wlob IN OUT NOCOPY CLOB CHARACTER
+      SET
+        ANY_CS,
+        data IN varchar2vec_t
+    ) RETURN BINARY_INTEGER;
+  -- Exported for DBMS_CUBE_EXP
+    FUNCTION transporting RETURN BOOLEAN;
+  END dbms_aw_exp;

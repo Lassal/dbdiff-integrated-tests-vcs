@@ -1,0 +1,14 @@
+schema: SYS
+name: NLS_DATABASE_PARAMETERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    name,
+    substr(value $, 1, 64)
+  from
+    x$props
+  where
+    name like 'NLS%'
+columns: []
+referencedTables: []

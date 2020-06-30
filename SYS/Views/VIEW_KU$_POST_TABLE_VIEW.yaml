@@ -1,0 +1,22 @@
+schema: SYS
+name: KU$_POST_TABLE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    o.obj_num,
+    value(o),
+    sys.dbms_metadata.get_prepost_table_act (e.prepost, o.owner_name, o.name)
+  from
+    sys.ku$_schemaobj_view o,
+    sys.tab$ t,
+    ku$_expact_view e
+  where
+    o.obj_num = t.obj#
+    and e.prepost = 2
+    and e.owner = o.owner_name
+    and e.name = o.name
+columns: []
+referencedTables: []

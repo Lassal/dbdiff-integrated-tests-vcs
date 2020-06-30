@@ -1,0 +1,70 @@
+schema: XFILES
+name: XFILES_LOGWRITER
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: DEQUEUE_LOG_RECORD.CONTEXT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DEQUEUE_LOG_RECORD.REGINFO
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: DEQUEUE_LOG_RECORD.DESCR
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: DEQUEUE_LOG_RECORD.PAYLOAD
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: DEQUEUE_LOG_RECORD.PAYLOADL
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: ENQUEUE_LOG_RECORD.LOG_RECORD
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: FOLDER_LOG_RECORD.LOG_RECORD_XML
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PROCESSLOGRECORD.P_XMLREF
+  ordinalPosition: 1
+  dataType: REF
+  parameterMode: IN
+- name: PROCESSLOGRECORD.P_USER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSLOGRECORD.P_TIMESTAMP
+  ordinalPosition: 3
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: PROCESSLOGRECORD.P_LOG_RECORD_TYPE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package XFILES_LOGWRITER AUTHID DEFINER as procedure ENQUEUE_LOG_RECORD(LOG_RECORD XMLTYPE);
+  procedure DEQUEUE_LOG_RECORD(
+    context raw,
+    reginfo sys.aq$_reg_info,
+    descr sys.aq$_descriptor,
+    payload raw,
+    payloadl number
+  );
+  procedure PROCESSLOGRECORD(
+    P_XMLREF REF XMLTYPE,
+    P_USER VARCHAR2,
+    P_TIMESTAMP TIMESTAMP WITH TIME ZONE,
+    P_LOG_RECORD_TYPE VARCHAR2
+  );
+  procedure DELETELOGGINGFOLDERS;
+  procedure CREATELOGGINGFOLDERS;
+  procedure RESETLOGGINGFOLDERS;
+  procedure FOLDER_LOG_RECORD(LOG_RECORD_XML XMLTYPE);
+  end;

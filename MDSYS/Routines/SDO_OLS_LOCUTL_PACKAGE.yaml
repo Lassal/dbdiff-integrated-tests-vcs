@@ -1,0 +1,28 @@
+schema: MDSYS
+name: SDO_OLS_LOCUTL
+routineType: PACKAGE
+returnParamater:
+  name: MAKEOPENLS10REQUEST.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: GEOCODESINGLEADR.ADDRESSINREQUEST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: GEOCODESINGLEADR.OPENLSVERSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKEOPENLS10REQUEST.REQUEST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE sdo_ols_locutl AUTHID current_user AS FUNCTION geocodeSingleAdr(
+    addressInRequest XMLTYPE,
+    openLsVersion VARCHAR2
+  ) RETURN XMLTYPE;
+  FUNCTION makeOpenLS10Request(request XMLTYPE) RETURN XMLTYPE;
+  END sdo_ols_locutl;

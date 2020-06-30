@@ -1,0 +1,29 @@
+schema: SYS
+name: USER_RSRC_CONSUMER_GROUP_PRIVS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    g.name,
+    decode(bitand(nvl(o.option$, 0), 17), 0, 'NO', 'YES'),
+    decode(
+      nvl(cgm.consumer_group, 'DEFAULT_CONSUMER_GROUP'),
+      g.name,
+      'YES',
+      'NO'
+    )
+  from
+    sys.user$ u
+    left outer join sys.resource_group_mapping$ cgm on (
+      cgm.attribute = 'ORACLE_USER'
+      and cgm.status = 'ACTIVE'
+      and cgm.value = u.name
+    ),
+    sys.resource_consumer_group$ g,
+    sys.objauth$ o
+  where
+    o.obj# = g.obj#
+    and o.grantee# = u.user#
+    and o.grantee# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

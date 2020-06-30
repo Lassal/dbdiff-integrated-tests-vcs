@@ -1,0 +1,951 @@
+schema: ORDS_METADATA
+name: OAUTH
+routineType: PACKAGE
+returnParamater:
+  name: VERIFY_CLIENT.(--return--)
+  ordinalPosition: 0
+  dataType: REF CURSOR
+  parameterMode: OUT
+parameters:
+- name: APPROVAL_BY_TOKEN.P_TOKEN
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPROVAL_BY_TOKEN.P_TOKEN_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPROVAL_PRIVS_VALID.P_APPROVAL_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: BEARER_APPROVAL_VALID.P_BEARER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_APPROVAL.P_EDITING_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_APPROVAL.P_STATUS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_APPROVAL.P_CLIENT_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_APPROVAL_PRIVILEGE(1).P_EDITING_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_APPROVAL_PRIVILEGE(1).P_APPROVAL_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_APPROVAL_PRIVILEGE(1).P_PRIVILEGE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_APPROVAL_PRIVILEGE(2).P_EDITING_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_APPROVAL_PRIVILEGE(2).P_APPROVAL_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_APPROVAL_PRIVILEGE(2).P_PRIVILEGE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_CLIENT(1).P_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(1).P_GRANT_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(1).P_OWNER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(1).P_DESCRIPTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(1).P_ALLOWED_ORIGINS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(1).P_REDIRECT_URI
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(1).P_SUPPORT_EMAIL
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(1).P_SUPPORT_URI
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(1).P_PRIVILEGE_NAMES
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(2).P_EDITING_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(2).P_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(2).P_DESCRIPTION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(2).P_RESPONSE_TYPE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(2).P_ALLOWED_ORIGINS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(2).P_REDIRECT_URI
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(2).P_SUPPORT_EMAIL
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(2).P_SUPPORT_URI
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(2).P_AUTH_FLOW
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CLIENT(2).P_PRIV_NAMES
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PENDING_APPROVAL.P_EDITING_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PENDING_APPROVAL.P_STATE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PENDING_APPROVAL.P_APPROVAL_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SESSION.P_EDITING_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SESSION.P_STATE
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: CREATE_SESSION.P_APPROVAL_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SESSION.P_BEARER_TOKEN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SESSION.P_REFRESH_TOKEN
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SESSION.P_TOKEN_DURATION
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SESSION.P_REFRESH_DURATION
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SESSION.P_FIRST_PARTY_TOKEN
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SESSION.P_FIRST_PARTY_DURATION
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SESSION.P_AUTH_CODE_TOKEN
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SESSION.P_AUTH_CODE_DURATION
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: DELETE_CLIENT(1).P_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_CLIENT(2).P_CLIENT_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: DELETE_CLIENT(2).P_EDITING_USER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_SESSION.P_SESSION_ID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANT_CLIENT_ROLE.P_CLIENT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANT_CLIENT_ROLE.P_ROLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MODIFY_APPROVAL_STATUS.P_STATUS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MODIFY_APPROVAL_STATUS.P_UPDATED_BY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MODIFY_APPROVAL_STATUS.P_APPROVAL_USER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MODIFY_APPROVAL_STATUS.P_APPROVAL_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: PENDING_APPROVAL_PRIVS_VALID.P_PAPPROVAL_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: RENAME_CLIENT.P_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAME_CLIENT.P_NEW_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKE_CLIENT_ROLE.P_CLIENT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKE_CLIENT_ROLE.P_ROLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SESSION_BY_TOKEN.P_TOKEN
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SESSION_BY_TOKEN.P_TOKEN_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SESSION_STATE.P_SESSION_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: STATE_FROM_BEARER.P_BEARER_TOKEN
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_APPROVAL.P_EDITING_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_APPROVAL.P_PENDING_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATE_APPROVAL.P_STATUS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT(1).P_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT(1).P_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT(1).P_DESCRIPTION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT(1).P_GRANT_TYPE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT(1).P_REDIRECT_URI
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT(1).P_PRIVILEGE_NAMES
+  ordinalPosition: 6
+  dataType: TABLE
+  parameterMode: IN
+- name: UPDATE_CLIENT(2).P_CLIENT_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATE_CLIENT(2).P_EDITING_USER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT(2).P_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT(2).P_DESCRIPTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT(2).P_ALLOWED_ORIGINS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT(2).P_REDIRECT_URI
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT(2).P_SUPPORT_EMAIL
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT(2).P_SUPPORT_URI
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT(2).P_PRIV_NAMES
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT_LOGO.P_CLIENT_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATE_CLIENT_LOGO.P_EDITING_USER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT_LOGO.P_CONTENT_TYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_CLIENT_LOGO.P_LOGO
+  ordinalPosition: 4
+  dataType: BLOB
+  parameterMode: IN
+- name: VERIFY_CLIENT.P_CLIENT_IDENTIFIER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VERIFY_CLIENT.P_CLIENT_SECRET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE OAUTH AUTHID current_user AS
+  /**
+
+     * Create an OAuth client registration.
+
+     *
+
+     * @param p_name Human readable name for the client, displayed to the end user
+
+     *               during the approval phase of three-legged OAuth.
+
+     *               This value must not be null
+
+     * @param p_owner The name of the party that owns the client application.
+
+     * @param p_description Human readable description of the purpose of the
+
+     *                      client, displayed to the end user during the
+
+     *                      approval phase of three-legged OAuth. May be null
+
+     *                      if p_grant_type == 'client_credentials', non null
+
+     *                      otherwise.
+
+     *
+
+     * @param p_grant_type Must be one of: authorization_code, implicit or
+
+     *                     client_credentials.
+
+     *
+
+     * @param p_redirect_uri Client controlled URI to which redirect containing
+
+     *                       OAuth access token/error will be sent. May be null
+
+     *                      if p_grant_type == 'client_credentials', non null
+
+     *                      otherwise.
+
+     * @param p_privilege_names Names of the privileges that the client wishes to
+
+     *                          access. Each privilege name must be separated by a comma character.
+
+     */
+  procedure create_client(
+    p_name varchar2,
+    p_grant_type varchar2,
+    p_owner varchar2 default null,
+    p_description varchar2 default null,
+    p_allowed_origins varchar2 default null,
+    p_redirect_uri varchar2 default null,
+    p_support_email varchar2 default null,
+    p_support_uri varchar2 default null,
+    p_privilege_names varchar2
+  );
+  /**
+
+     * Update an OAuth client registration.
+
+     *
+
+     * @param p_name Human readable name for the client, displayed to the end user
+
+     *               during the approval phase of three-legged OAuth.
+
+     *               This value must not be null
+
+     * @param p_owner The name of the party that owns the client application.
+
+     * @param p_description Human readable description of the purpose of the
+
+     *                      client, displayed to the end user during the
+
+     *                      approval phase of three-legged OAuth. May be null
+
+     *                      if p_grant_type == 'client_credentials', non null
+
+     *                      otherwise.
+
+     *
+
+     * @param p_grant_type Must be one of: authorization_code, implicit or
+
+     *                     client_credentials.
+
+     *
+
+     * @param p_redirect_uri Client controlled URI to which redirect containing
+
+     *                       OAuth access token/error will be sent. May be null
+
+     *                      if p_grant_type == 'client_credentials', non null
+
+     *                      otherwise.
+
+     * @param p_privilege_names Names of the privileges that the client wishes to
+
+     *                          access.
+
+     */
+  procedure update_client(
+    p_name varchar2,
+    p_owner varchar2,
+    p_description varchar2,
+    p_grant_type varchar2,
+    p_redirect_uri varchar2,
+    p_privilege_names t_ords_vchar_tab
+  );
+  /**
+
+     * Update the name of a client
+
+     * @param p_name Human readable name for the client, displayed to the end user
+
+     *               during the approval phase of three-legged OAuth.
+
+     *               This value must not be null
+
+     * @param p_new_name The new name for the client
+
+     */
+  procedure rename_client(p_name varchar2, p_new_name varchar2);
+  /**
+
+     * Delete an OAuth client registration
+
+     * @param p_name Name of the OAuth Client
+
+     */
+  procedure delete_client(p_name varchar2);
+  /**
+
+     * Grant an OAuth client the specified role, enabling clients performing
+
+     * two-legged OAuth to access Privileges requiring the role
+
+     *
+
+     * @param p_client_name Name of the client, must not be null
+
+     *
+
+     * @param p_role_name Name of the role, must not be null
+
+     */
+  procedure grant_client_role(
+    p_client_name varchar2,
+    p_role_name varchar2
+  );
+  /**
+
+     * Revoke the specified role from an OAuth Client, preventing
+
+     * it accessing Privileges requiring the role via two-legged OAuth
+
+     *
+
+     * @param p_client_name Name of the client, must not be null
+
+     *
+
+     * @param p_role_name Name of the role, must not be null
+
+     */
+  procedure revoke_client_role(
+    p_client_name varchar2,
+    p_role_name varchar2
+  );
+  /**
+
+    * Enable/disables a particular approval. This should be called from the SCHEMA context related
+
+    * to the approval you want to modify or a DBA context. Make sure that the input is safe.
+
+    *
+
+    * @param p_status If 'APPROVED' OAUTH APPROVAL is enabled, if 'DENIED' it is disabled.
+
+    * @param p_updated_by The user you want to update as.
+
+
+
+    * @param p_approval_user The name of the oauth user owning the approval.
+
+    * @param p_approval_id The id of the approval to modify
+
+    */
+  PROCEDURE modify_approval_status(
+    p_status VARCHAR2,
+    p_updated_by VARCHAR2,
+    p_approval_user VARCHAR2,
+    p_approval_id NUMBER
+  );
+  /**
+
+    * Updates the client information
+
+    *
+
+    * @param p_client_id The ID of the client to be modified
+
+    * @param p_editing_user The user you want to update as.
+
+
+
+    * @param p_name The name of the client
+
+    * @param p_description The description of the client
+
+    * @param p_allowed_origins allowed origins
+
+    * @param p_redirect_uri Redirect URI
+
+    * @param p_support_email Support e-mail for client users
+
+    * @param p_support_uri Support URI for client users
+
+    * @param p_priv_names Comma separated privilege names
+
+    */
+  PROCEDURE update_client(
+    p_client_id NUMBER,
+    p_editing_user VARCHAR2,
+    p_name VARCHAR2,
+    p_description VARCHAR2,
+    p_allowed_origins VARCHAR2,
+    p_redirect_uri VARCHAR2,
+    p_support_email VARCHAR2,
+    p_support_uri VARCHAR2,
+    p_priv_names VARCHAR2
+  );
+  /**
+
+    * Updates the client logo file
+
+    *
+
+    * @param p_client_id The ID of the client owner of the logo
+
+    * @param p_editing_user The user you want to update as.
+
+
+
+    * @param p_content_type The content type of the logo (when served)
+
+    *                        The caller must ensure to provide the appropriate ctype
+
+    * @param p_logo de logo binary
+
+    */
+  PROCEDURE update_client_logo(
+    p_client_id NUMBER,
+    p_editing_user VARCHAR2,
+    p_content_type VARCHAR2,
+    p_logo BLOB
+  );
+  /**
+
+    * Removes a client and all of the related privileges
+
+    *
+
+    * @param p_client_id The ID of the client to be removed
+
+    * @param p_editing_user The user you want to remove as.
+
+    */
+  PROCEDURE delete_client(
+    p_client_id NUMBER,
+    p_editing_user VARCHAR2
+  );
+  /**
+
+    * Creates a new client
+
+    *
+
+    * @param p_editing_user The user you want to create as.
+
+
+
+    * @param p_name The name of the client
+
+    * @param p_description The description of the client
+
+    * @param p_response_type The response type 'TOKEN' or 'CODE'
+
+    * @param p_allowed_origins allowed origins
+
+    * @param p_redirect_uri Redirect URI
+
+    * @param p_support_email Support e-mail for client users
+
+    * @param p_support_uri Support URI for client users
+
+    * @param p_auth_flow The auth flow, typically 'AUTH_CODE'
+
+    * @param p_priv_ids Command separated privilege ID's
+
+    *
+
+    * RETURNING the ID of the client created
+
+    */
+  FUNCTION create_client(
+    p_editing_user VARCHAR2,
+    p_name VARCHAR2,
+    p_description VARCHAR2,
+    p_response_type VARCHAR2,
+    p_allowed_origins VARCHAR2,
+    p_redirect_uri VARCHAR2,
+    p_support_email VARCHAR2,
+    p_support_uri VARCHAR2,
+    p_auth_flow VARCHAR2,
+    p_priv_names VARCHAR2
+  ) RETURN NUMBER;
+  /**
+
+    * Creates an approval privilege
+
+    *
+
+    * @param p_editing_user The tenant
+
+    * @param p_approval_id  Approval Id belonging to the current context
+
+    * @param p_privilege_id The Id of the privilege
+
+    */
+  FUNCTION create_approval(
+    p_editing_user VARCHAR2,
+    p_status VARCHAR2,
+    p_client_id NUMBER
+  ) RETURN NUMBER;
+  /**
+
+    * Creates an approval privilege
+
+    *
+
+    * @param p_editing_user The tenant
+
+    * @param p_approval_id  Approval Id belonging to the current context
+
+    * @param p_privilege_id The Id of the privilege
+
+    */
+  FUNCTION create_approval_privilege(
+    p_editing_user VARCHAR2,
+    p_approval_id NUMBER,
+    p_privilege_id NUMBER
+  ) RETURN NUMBER;
+  /**
+
+    * Creates an OAuth Pending approval
+
+    *
+
+    * @param p_editing_user The tenant
+
+    * @param p_state        The HTTP Request state
+
+    * @param p_approval_id  Approval Id belonging to the current context
+
+    */
+  FUNCTION create_pending_approval(
+    p_editing_user VARCHAR2,
+    p_state VARCHAR2,
+    p_approval_id NUMBER
+  ) RETURN NUMBER;
+  /**
+
+    * Creates an OAuth session for the tenant in the current context
+
+    *
+
+    * @param p_editing_user          The tenant
+
+    * @param p_state                 JSON state to persist
+
+    * @param p_approval_id           Approval Id belonging to the current context
+
+    * @param p_bearer_token          OAuth Bearer Token
+
+    * @param p_refresh_token         OAuth Refresh Token
+
+    * @param p_token_duration        OAuth Bearer Token duration
+
+    * @param p_refresh_duration      OAuth Refresh Token duration
+
+    * @param p_first_party_token     First Party Token
+
+    * @param p_first_party_duration (Optiona) First Party Token duration
+
+    */
+  FUNCTION create_session(
+    p_editing_user VARCHAR2,
+    p_state CLOB,
+    p_approval_id NUMBER,
+    p_bearer_token VARCHAR2,
+    p_refresh_token VARCHAR2,
+    p_token_duration NUMBER,
+    p_refresh_duration NUMBER,
+    p_first_party_token VARCHAR2,
+    p_first_party_duration NUMBER,
+    -- Optional, if not set, the duration will be the same as the token_duration
+    p_auth_code_token VARCHAR2,
+    p_auth_code_duration NUMBER
+  ) RETURN NUMBER;
+  /**
+
+    * Removes a session existing in the caller context.
+
+    *
+
+    * @param p_session_id session id
+
+    */
+  PROCEDURE delete_session(p_session_id VARCHAR2);
+  /**
+
+    * Obtains an approval id based on a refresh token for a session in the caller context.
+
+    *
+
+    * @param p_token The token
+
+    * @param p_token_type The token type
+
+    */
+  FUNCTION approval_by_token(
+    p_token VARCHAR2,
+    p_token_type VARCHAR2
+  ) RETURN NUMBER;
+  /**
+
+    * Obtains the session id of an approval that exists in the caller context.
+
+    *
+
+    * @param p_token The token
+
+    * @param p_token_type The token type
+
+    */
+  FUNCTION session_by_token(
+    p_token VARCHAR2,
+    p_token_type VARCHAR2
+  ) RETURN NUMBER;
+  /**
+
+    * Sets a new status for en existing pending approval in the caller context.
+
+    *
+
+    * @param p_editing_user The tenant to edit as (usually the creator)
+
+    * @param p_pending_id   The OAuth pending approval id to edit
+
+    * @param p_status       Status to be written
+
+    */
+  FUNCTION update_approval(
+    p_editing_user VARCHAR2,
+    p_pending_id NUMBER,
+    p_status VARCHAR2
+  ) RETURN NUMBER;
+  /**
+
+    * Returns null if the client is invalid
+
+    * Returns a cursor of rolls the client exists in the caller context and the
+
+    * id and secret are valid.
+
+    *
+
+    * @param p_client_identifier The OAuth Client Identifier
+
+    * @param p_client_secret     The OAuth Client Secret
+
+    */
+  FUNCTION verify_client(
+    p_client_identifier VARCHAR2,
+    p_client_secret VARCHAR2
+  ) RETURN sys_refcursor;
+  /**
+
+    * Returns a clob containing a state for a particular session related to the given
+
+    * token if the token exists in the caller context and is still valid.
+
+    *
+
+    * @param p_bearer_token The OAuth Bearer Token
+
+    */
+  FUNCTION state_from_bearer(p_bearer_token VARCHAR2) RETURN CLOB;
+  /**
+
+    * Returns a clob containing a state for a particular session related to the provided
+
+    * session id.
+
+    *
+
+    * @param p_session_id The OAuth session id
+
+    */
+  FUNCTION session_state(p_session_id NUMBER) RETURN CLOB;
+  /**
+
+    * Procedure that records a privilege for a given approval. Usually used when creating the privilege
+
+    * calling it for each client approval.
+
+    *
+
+    * @param p_editing_user The editing user
+
+    * @param p_approval_id The OAuth approval id
+
+    * @param p_privilege_id The ORDS privilege id
+
+    */
+  PROCEDURE create_approval_privilege(
+    p_editing_user VARCHAR2,
+    p_approval_id NUMBER,
+    p_privilege_id NUMBER
+  );
+  /**
+
+    * Function that determines if an approval still has it's privileges synched with the client.
+
+    * If not in synch, the approval and all it's related sessions are dropped and the
+
+    * result is 'FALSE'.
+
+    *
+
+    * @param p_approval_id The OAuth approval id
+
+    * @return 'TRUE' if valid, 'FALSE' otherwise
+
+    */
+  FUNCTION approval_privs_valid(p_approval_id NUMBER) RETURN VARCHAR2;
+  /**
+
+    * Function that determines if an approval still has it's privileges synched with the client based
+
+    * on the pending approval.
+
+    * If not in synch,  the approval and all it's related sessions are dropped and the
+
+    * result is 'FALSE'.
+
+    *
+
+    * @param p_papproval_id The OAuth pending approval id
+
+    * @return 'TRUE' if valid, 'FALSE' otherwise
+
+    */
+  FUNCTION pending_approval_privs_valid(p_papproval_id NUMBER) RETURN VARCHAR2;
+  /**
+
+    * Function that determines if an approval still has it's privileges synched with the client based
+
+    * on a bearer token.
+
+    * If not in synch,  the approval and all it's related sessions are dropped and the
+
+    * result is 'FALSE'.
+
+    *
+
+    * @param p_bearer The OAuth bearer token (third party token)
+
+    * @return 'TRUE' if valid, 'FALSE' otherwise
+
+    */
+  FUNCTION bearer_approval_valid(p_bearer VARCHAR2) RETURN VARCHAR2;
+  END OAUTH;

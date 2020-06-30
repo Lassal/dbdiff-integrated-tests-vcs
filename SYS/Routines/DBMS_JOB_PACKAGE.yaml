@@ -1,0 +1,299 @@
+schema: SYS
+name: DBMS_JOB
+routineType: PACKAGE
+returnParamater:
+  name: IS_JOBQ.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: BROKEN.JOB
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: BROKEN.BROKEN
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BROKEN.NEXT_DATE
+  ordinalPosition: 3
+  dataType: DATE
+  parameterMode: IN
+- name: CHANGE.JOB
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CHANGE.WHAT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHANGE.NEXT_DATE
+  ordinalPosition: 3
+  dataType: DATE
+  parameterMode: IN
+- name: CHANGE.INTERVAL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHANGE.INSTANCE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CHANGE.FORCE
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: INSTANCE.JOB
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: INSTANCE.INSTANCE
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: INSTANCE.FORCE
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: INTERVAL.JOB
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: INTERVAL.INTERVAL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISUBMIT.JOB
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ISUBMIT.WHAT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISUBMIT.NEXT_DATE
+  ordinalPosition: 3
+  dataType: DATE
+  parameterMode: IN
+- name: ISUBMIT.INTERVAL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISUBMIT.NO_PARSE
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: NEXT_DATE.JOB
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: NEXT_DATE.NEXT_DATE
+  ordinalPosition: 2
+  dataType: DATE
+  parameterMode: IN
+- name: REMOVE.JOB
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: RUN.JOB
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: RUN.FORCE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SUBMIT.JOB
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: SUBMIT.WHAT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBMIT.NEXT_DATE
+  ordinalPosition: 3
+  dataType: DATE
+  parameterMode: IN
+- name: SUBMIT.INTERVAL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBMIT.NO_PARSE
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SUBMIT.INSTANCE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SUBMIT.FORCE
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: USER_EXPORT(1).JOB
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: USER_EXPORT(1).MYCALL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: USER_EXPORT(2).JOB
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: USER_EXPORT(2).MYCALL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: USER_EXPORT(2).MYINST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: WHAT.JOB
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: WHAT.WHAT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_job AUTHID CURRENT_USER IS -- for backward compatibility. Not used anymore.
+  any_instance CONSTANT BINARY_INTEGER: = 0;
+  -- Parameters are:
+  --
+  -- JOB is the number of the job being executed.
+  -- WHAT is the PL/SQL procedure to execute.
+  --   The job must always be a single call to a procedure.  The
+  --     routine may take any number of hardcoded parameters.
+  --     Special parameter values recognized are:
+  --       job:       an in parameter, the number of the current job
+  --       next_date: in/out, the date of the next refresh
+  --       broken:    in/out, is the job broken.  The IN values is FALSE.
+  --   Always remember the trailing semicolon.
+  --   Some legal values of WHAT (assuming the routines exist) are
+  --     'myproc( ''10-JAN-82'', next_date, broken);'
+  --     'scott.emppackage.give_raise( ''JENKINS'', 30000.00);'
+  --     'dbms_job.remove( job);'
+  -- NEXT_DATE is the date at which the job will next be automatically run,
+  --   assuming there are background processes attempting to run it.
+  -- INTERVAL is a date function, evaluated immediately before the job starts
+  --   executing.  If the job completes successfully, this new date is placed
+  --   in NEXT_DATE.  INTERVAL is evaluated by plugging it into the statement
+  --     select INTERVAL into next_date from dual;
+  --   INTERVAL must evaluate to a time in the future.  Legal intervals include
+  --     'sysdate + 7'                    -- execute once a week
+  --     'NEXT_DAY(sysdate,''TUESDAY'')'  -- execute once every tuesday
+  --     'null'                           -- only execute once
+  --   If INTERVAL evaluates to null and a job completes successfully, then
+  --   the job is automatically deleted from the queue.
+  PROCEDURE isubmit (
+    job IN BINARY_INTEGER,
+    what IN VARCHAR2,
+    next_date IN DATE,
+    interval IN VARCHAR2 DEFAULT 'null',
+    no_parse IN BOOLEAN DEFAULT FALSE
+  );
+  -- Submit a new job with a given job number.
+  PROCEDURE submit (
+    job OUT BINARY_INTEGER,
+    what IN VARCHAR2,
+    next_date IN DATE DEFAULT sysdate,
+    interval IN VARCHAR2 DEFAULT 'null',
+    no_parse IN BOOLEAN DEFAULT FALSE,
+    -- Bug 1346620: replace pkg vars with constants.
+    -- Default for instance = dbms_job.any_instance.
+    instance IN BINARY_INTEGER DEFAULT 0,
+    force IN BOOLEAN DEFAULT FALSE
+  );
+  -- Submit a new job.  Chooses JOB from the sequence sys.jobseq.
+  -- instance and force are added for jobq queue affinity
+  -- If FORCE is TRUE, then any positive  integer is acceptable as the job
+  -- instance. If FORCE is FALSE, then the specified instance must be running;
+  -- otherwise the routine raises an exception.
+  -- For example,
+  --   variable x number;
+  --   execute dbms_job.submit(:x,'pack.proc(''arg1'');',sysdate,'sysdate+1');
+  PROCEDURE remove (job IN BINARY_INTEGER);
+  -- Remove an existing job from the job queue.
+  -- This currently does not stop a running job.
+  --   execute dbms_job.remove(14144);
+  PROCEDURE change (
+    job IN BINARY_INTEGER,
+    what IN VARCHAR2,
+    next_date IN DATE,
+    interval IN VARCHAR2,
+    instance IN BINARY_INTEGER DEFAULT NULL,
+    force IN BOOLEAN DEFAULT FALSE
+  );
+  -- Change any of the the user-settable fields in a job
+  -- Parameter instance and force are added for job queue affinity
+  -- If what, next_date,or interval is null, leave that value as-is.
+  -- instance defaults to NULL indicates instance affinity is not changed.
+  -- If FORCE is FALSE, the specified instance (to which the instance number
+  -- change) must be running. Otherwise the routine raises an exception.
+  -- If FORCE is TRUE, any positive  integer is acceptable as the job instance.
+  --   execute dbms_job.change( 14144, null, null, 'sysdate+3');
+  PROCEDURE what (
+    job IN BINARY_INTEGER,
+    what IN VARCHAR2
+  );
+  -- Change what an existing job does, and replace its environment
+  PROCEDURE next_date (
+    job IN BINARY_INTEGER,
+    next_date IN DATE
+  );
+  -- Change when an existing job will next execute
+  PROCEDURE instance (
+    job IN BINARY_INTEGER,
+    instance IN BINARY_INTEGER,
+    force IN BOOLEAN DEFAULT FALSE
+  );
+  -- Change job instance affinity. FORCE parameter works same as in SUBMIT
+  PROCEDURE interval (
+    job IN BINARY_INTEGER,
+    interval IN VARCHAR2
+  );
+  -- Change how often a job executes
+  PROCEDURE broken (
+    job IN BINARY_INTEGER,
+    broken IN BOOLEAN,
+    next_date IN DATE DEFAULT SYSDATE
+  );
+  --  Set the broken flag.  Broken jobs are never run.
+  PROCEDURE run (
+    job IN BINARY_INTEGER,
+    force IN BOOLEAN DEFAULT FALSE
+  );
+  --  Run job JOB now.  Run it even if it is broken.
+  --  Running the job will recompute next_date, see view user_jobs.
+  --    execute dbms_job.run(14144);
+  --  Warning: this will reinitialize the current session's packages
+  --  FORCE is added for job queue affinity
+  --  If FORCE is TRUE, instance affinity is irrelevant for running jobs in
+  --  the foreground process. If FORCE is FALSE, the job can be run in the
+  --  foreground only in the specified instance. dbms_job.run will raise an
+  --  exception if FORCE is FALSE and the connected instance is the wrong one.
+  PROCEDURE user_export (
+    job IN BINARY_INTEGER,
+    mycall IN OUT VARCHAR2
+  );
+  --  Produce the text of a call to recreate the given job
+  PROCEDURE user_export (
+    job IN BINARY_INTEGER,
+    mycall IN OUT VARCHAR2,
+    myinst IN OUT VARCHAR2
+  );
+  -- Procedure is added for altering instance affinity (8.1+) and perserve the
+  -- compatibility
+  --------------------------------------------------------------
+  -- Return boolean value indicating whether execution is in background
+  -- process or foreground process
+  -- jobq processes are no longer background processes, background_processes
+  -- will be removed in 8.3 or later
+  -------------------------------------------------------------
+  FUNCTION background_process RETURN BOOLEAN;
+  FUNCTION is_jobq RETURN BOOLEAN;
+  END;

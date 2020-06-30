@@ -1,0 +1,18 @@
+schema: SYS
+name: USER_POLICY_ATTRIBUTES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    OBJECT_OWNER,
+    OBJECT_NAME,
+    POLICY_GROUP,
+    POLICY_NAME,
+    NAMESPACE,
+    ATTRIBUTE
+  FROM
+    DBA_POLICY_ATTRIBUTES
+  WHERE
+    OBJECT_OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

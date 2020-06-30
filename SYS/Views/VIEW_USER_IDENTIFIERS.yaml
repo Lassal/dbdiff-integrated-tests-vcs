@@ -1,0 +1,23 @@
+schema: SYS
+name: USER_IDENTIFIERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    NAME,
+    SIGNATURE,
+    TYPE,
+    OBJECT_NAME,
+    OBJECT_TYPE,
+    USAGE,
+    USAGE_ID,
+    LINE,
+    COL,
+    USAGE_CONTEXT_ID,
+    ORIGIN_CON_ID
+  from
+    NO_ROOT_SW_FOR_LOCAL(INT $DBA_IDENTIFIERS)
+  where
+    OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

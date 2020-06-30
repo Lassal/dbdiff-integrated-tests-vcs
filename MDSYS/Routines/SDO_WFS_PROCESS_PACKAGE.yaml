@@ -1,0 +1,1309 @@
+schema: MDSYS
+name: SDO_WFS_PROCESS
+routineType: PACKAGE
+returnParamater:
+  name: STRIP_SPECIAL_CHARS.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: CONTAINSSDO.NS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONTAINSSDO.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONTAINSSDO.FTID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONTAINSSDOINTERNAL.ROOTNS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONTAINSSDOINTERNAL.ROOTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONTAINSSDOINTERNAL.NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONTAINSSDOINTERNAL.NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONTAINSSDOINTERNAL.FTID
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: DELETEFEATURETYPEXMLINFO.FTYPEID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: DROPFEATURETYPE.FTNSURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROPFEATURETYPE.FTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROPFEATURETYPES.FTNSURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENUMERATEARRPATHS.PATHPATTERN
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENUMERATEARRPATHS.NSPARAM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENUMERATEARRPATHS.DATA
+  ordinalPosition: 3
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EXPANDPATH.ALIASEDPATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPANDPATH.NSPARAM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTID.XMLDATA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EXTRACTID.IDPATHS
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: EXTRACTSDO.XMLDATA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EXTRACTSDO.SPATIALPATHS
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: EXTRACTSDO.SRSNS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTSDO.ISGML3
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTSDO.SPPATHSSRSNSLIST
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: FINDNSURL.NSALIAS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FINDNSURL.NSALIASLIST
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: FINDNSURL.NSURLLIST
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: GENCOLLECTIONPROCSHELPER.OBJNS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENCOLLECTIONPROCSHELPER.OBJNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATEALIASSTRING.ALIASLIST
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: GENERATEPARSEDSPATIALPATH.SPATIALPATHS
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: GENIDVALUE.DATA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: GENIDVALUE.IDPATHS
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GENIDVALUE.TNS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENIDVALUE.TNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENIDVALUE.FTUSERNAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENRECORDTYPEPROCESSINGLOGIC.TNS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENRECORDTYPEPROCESSINGLOGIC.TNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENSPATIALARRINFO.TABLENAMEPREFIX
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENSPATIALARRINFO.PKVAL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENSPATIALARRINFO.L_SPATIALARRLIST
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: GENSPATIALARRINFO.DATA
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: GENSPATIALARRINFO.SRSNS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENSPATIALARRINFO.SPATIALARRUPDMAP
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENSPATIALARRINFO.ISGML3
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENSPATIALARRINFO.SPARRPATHSSRSNSLIST
+  ordinalPosition: 8
+  dataType: VARRAY
+  parameterMode: IN
+- name: GENSPATIALPATHELEMCOLINDEX.SPATIALPATHS
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: GENSPATIALPATHELEMCOLINDEX.SPATIALPATHELEM
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: GENTRIGGERS.TNS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENTRIGGERS.TNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENUPDATESTR.SPATIALCOLCOUNT
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GENUPDATESTR.UPDATE_PREFIX
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENUPDATESTR.UPDATE_SUFFIX
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETALIAS.NSURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETALIAS.ALIASLIST
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GETCOUNT.PATHPATTERN
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETCOUNT.NSPARAM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETCOUNT.DATA
+  ordinalPosition: 3
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: GETFEATURETYPEID.FTNSURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETFEATURETYPEID.FTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETPARSEDPATH.PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETPATH.PATH
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: GETUPDATEMAP.SPATIALARRLIST
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: GETXMLTAGTYPE.TYPEOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETXMLTAGTYPE.TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANTFEATURETYPETOUSER.FTNSURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANTFEATURETYPETOUSER.FTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANTFEATURETYPETOUSER.USERNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANTMDACCESSTOADMINUSER.USERNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANTMDACCESSTOUSER.USERNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSERTCAPABILITIESINFO.CAPABILITIESINFO
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: INSERTCAPABILITIESINFO.WFS_VERSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSERTFTDATAUPDATED.NS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSERTFTDATAUPDATED.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSERTFTDATAUPDATED.UPDATEDROWLIST
+  ordinalPosition: 3
+  dataType: TABLE
+  parameterMode: IN
+- name: INSERTFTDATAUPDATED.UPDATETS
+  ordinalPosition: 4
+  dataType: TIMESTAMP
+  numericPrecision: 6
+  parameterMode: IN
+- name: INSERTFTMDUPDATED.NS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSERTFTMDUPDATED.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSERTFTMDUPDATED.UPDATETS
+  ordinalPosition: 3
+  dataType: TIMESTAMP
+  numericPrecision: 6
+  parameterMode: IN
+- name: ISCOMPLEXOBJECTTYPE.ELEMTYPE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISCOMPLEXOBJECTTYPE.GMLALIAS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISINLIST.L
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: ISINLIST.ITEM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISLISTMEMBER.FEATURETYPENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISLISTMEMBER.NAMESPACEURL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISLISTMEMBER.FTIDLIST
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: ISPKCOLIN.R
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISPKCOLIN.RLIST
+  ordinalPosition: 2
+  dataType: TABLE
+  parameterMode: IN
+- name: ISROWIDIN.R
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: ISROWIDIN.RLIST
+  ordinalPosition: 2
+  dataType: TABLE
+  parameterMode: IN
+- name: NOTINARRAY.P
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: NOTINARRAY.PLIST
+  ordinalPosition: 2
+  dataType: TABLE
+  parameterMode: IN
+- name: ORDERINLIST.L
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: ORDERINLIST.ITEM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PARSEPATH.PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POPULATEFEATURETYPEXMLINFO.XMLCOLTYPEXSD
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: POPULATEFEATURETYPEXMLINFO.FTYPEID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: POPULATEFEATURETYPEXMLINFO.COLUMNNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POPULATEFEATURETYPEXMLINFO.OBJPATHINFO
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: POPULATEVARYINGALIASES.FTXSD
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: POPULATEVARYINGALIASES.FTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POPULATEVARYINGALIASES.FEATURETYPEID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: POPULATEVARYINGALIASES.COL_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POPULATEVARYINGALIASES.TAGTYPENAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: PREPARE_FOR_EXPORT_ALL(2).EXPORTSDOMETADATA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE_FOR_EXPORT_FT_INT.FTNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE_FOR_EXPORT_FT_INT.FTNSURL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE_FOR_EXPORT_FT_INT.EXPORTSDOMETADATA
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE_FOR_EXPORT_FT_M_INT.FTNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE_FOR_EXPORT_FT_M_INT.FTNSURL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE_FOR_EXPORT_FT_M_INT.EXPORTSDOMETADATA
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE_FOR_EXPORT_FTS(1).FTLIST
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPARE_FOR_EXPORT_FTS(2).FTLIST
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPARE_FOR_EXPORT_FTS(2).EXPORTSDOMETADATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE_FOR_EXPORT_USER(2).EXPORTSDOMETADATA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSINSERT.XMLDATA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PREPROCESSINSERT.IDPATHS
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSINSERT.SPATIALPATHS
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSINSERT.PARSEDALIASSPPATH
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSINSERT.SPPATHSSRSNSLIST
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSINSERT.SPATIALARRPATHSLIST
+  ordinalPosition: 6
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSINSERT.SPARRPATHSSRSNSLIST
+  ordinalPosition: 7
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSINSERT.FTNS
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSINSERT.FTNAME
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSINSERT.FTID
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: PREPROCESSINSERT.FTUSERNAME
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSINSERT.TABLENAME
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSINSERT.SRSNS
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSINSERT.ISGML3
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSINSERT.SPATIALPATHSSTGSRIDS
+  ordinalPosition: 15
+  dataType: TABLE
+  parameterMode: IN
+- name: PREPROCESSINSERT.SPATIALARRPATHSSTGSRIDS
+  ordinalPosition: 16
+  dataType: TABLE
+  parameterMode: IN
+- name: PREPROCESSINSERT.PKCOLVAL
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: PREPROCESSUPDATE.XMLDATA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PREPROCESSUPDATE.OLDID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSUPDATE.SPCOLUPDMAP
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSUPDATE.SPARRCOLUPDMAP
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSUPDATE.IDPATHS
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSUPDATE.SPATIALPATHS
+  ordinalPosition: 6
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSUPDATE.PARSEDALIASSPPATH
+  ordinalPosition: 7
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSUPDATE.SPPATHSSRSNSLIST
+  ordinalPosition: 8
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSUPDATE.SPATIALARRPATHSLIST
+  ordinalPosition: 9
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSUPDATE.SPARRPATHSSRSNSLIST
+  ordinalPosition: 10
+  dataType: VARRAY
+  parameterMode: IN
+- name: PREPROCESSUPDATE.FTNS
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSUPDATE.FTNAME
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSUPDATE.FTID
+  ordinalPosition: 13
+  dataType: NUMBER
+  parameterMode: IN
+- name: PREPROCESSUPDATE.FTUSERNAME
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSUPDATE.TABLENAME
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSUPDATE.SRSNS
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSUPDATE.ISGML3
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPROCESSUPDATE.SPATIALPATHSSTGSRIDS
+  ordinalPosition: 18
+  dataType: TABLE
+  parameterMode: IN
+- name: PREPROCESSUPDATE.SPATIALARRPATHSSTGSRIDS
+  ordinalPosition: 19
+  dataType: TABLE
+  parameterMode: IN
+- name: PREPROCESSUPDATE.COMPUTESP
+  ordinalPosition: 20
+  dataType: NUMBER
+  parameterMode: IN
+- name: PREPROCESSUPDATE.NEWID
+  ordinalPosition: 21
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: PROCESSCOMPLEXELEMENT.FTXSD
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PROCESSCOMPLEXELEMENT.ELEMENTTYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOMPLEXELEMENT.SPATIALCOLS
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: INOUT
+- name: PROCESSCOMPLEXELEMENT.CURRGMLELEMENTSCNT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: PROCESSCOMPLEXELEMENT.GMLELEMENTSCNT
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROCESSCOMPLEXELEMENT.PARENTELEMPATH
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOMPLEXELEMENT.GMLALIAS
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSIDPATH.SRCPATHS
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: PROCESSINLINECOMPLEXELEMENT.FTXSD
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PROCESSINLINECOMPLEXELEMENT.ELEMENTXML
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PROCESSINLINECOMPLEXELEMENT.ELEMINDEX
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROCESSINLINECOMPLEXELEMENT.SPATIALCOLS
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: INOUT
+- name: PROCESSINLINECOMPLEXELEMENT.CURRGMLELEMENTSCNT
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: PROCESSINLINECOMPLEXELEMENT.GMLELEMENTSCNT
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROCESSINLINECOMPLEXELEMENT.PARENTELEMPATH
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSINLINECOMPLEXELEMENT.GMLALIAS
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSPATH.SRCPATHS
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: PROCESSPATH.GENARRIDX
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).DATASRC
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).FTNSURL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).FTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).FTNSALIAS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).FEATUREDESC
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).SCHEMALOCATION
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).PKEYCOL
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).COLUMNINFO
+  ordinalPosition: 8
+  dataType: VARRAY
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).PSPATIALCOL
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).FEATUREMEMBERNS
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).FEATUREMEMBERNAME
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).SRSNS
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).SRSNSALIAS
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).MANDATORYCOLUMNINFO
+  ordinalPosition: 14
+  dataType: VARRAY
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).WFS_VERSION
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).FTXSD
+  ordinalPosition: 16
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(1).CUSTOMSRSNAMEPREFIXES
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).DATASRC
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).FTNSURL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).FTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).FTNSALIAS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).FEATUREDESC
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).SCHEMALOCATION
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).PKEYCOL
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).COLUMNINFO
+  ordinalPosition: 8
+  dataType: VARRAY
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).PSPATIALCOL
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).FEATUREMEMBERNS
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).FEATUREMEMBERNAME
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).SRSNS
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).SRSNSALIAS
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).VIEWTABLENAME
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).VIEWTABLEPKEYCOL
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).MANDATORYCOLUMNINFO
+  ordinalPosition: 16
+  dataType: VARRAY
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).WFS_VERSION
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).FTXSD
+  ordinalPosition: 18
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(2).CUSTOMSRSNAMEPREFIXES
+  ordinalPosition: 19
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).DATASRC
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).FTNSURL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).FTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).FTNSALIAS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).FEATUREDESC
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).SCHEMALOCATION
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).PKEYCOL
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).COLUMNINFO
+  ordinalPosition: 8
+  dataType: VARRAY
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).PSPATIALCOL
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).FEATUREMEMBERNS
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).FEATUREMEMBERNAME
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).SRSNS
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).SRSNSALIAS
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).FEATURECOLLECTIONNS
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).FEATURECOLLECTIONNAME
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).ISGML3
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).FORMATTEDKEYCOLS
+  ordinalPosition: 17
+  dataType: VARRAY
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).VIEWTABLENAME
+  ordinalPosition: 18
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).VIEWTABLEPKEYCOL
+  ordinalPosition: 19
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).VIEWTABLEFMTKEYCOLS
+  ordinalPosition: 20
+  dataType: VARRAY
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).MANDATORYCOLUMNINFO
+  ordinalPosition: 21
+  dataType: VARRAY
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).WFS_VERSION
+  ordinalPosition: 22
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).FTXSD
+  ordinalPosition: 23
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(3).CUSTOMSRSNAMEPREFIXES
+  ordinalPosition: 24
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(4).FTXSD
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(4).FEATUREDESC
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PUBLISHFEATURETYPE(4).WFS_VERSION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISH_FEATURETYPES_IN_SCHEMA.P_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISH_FEATURETYPES_IN_SCHEMA.P_NAMESPACE_URL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISH_FEATURETYPES_IN_SCHEMA.P_NAMESPACE_ALIAS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISH_FEATURETYPES_IN_SCHEMA.P_WLS_POSTXML_URL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISH_FEATURETYPES_IN_SCHEMA.P_TABLENAME_PATTERN
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISH_FEATURETYPES_IN_SCHEMA.P_WFS_VERSION
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISH_FEATURETYPES_IN_SCHEMA.P_WRITE_XSD
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUTALIAS.NSURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUTALIAS.ALIAS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUTALIAS.ALIASLIST
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERMTABLEVIEW(1).FTNSURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERMTABLEVIEW(1).FTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERMTABLEVIEW(1).VIEWTABLELIST
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERMTABLEVIEW(1).VIEWTABLEPKEYCOLLIST
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERMTABLEVIEW(1).TABLEPKEYCOLLIST
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERMTABLEVIEW(2).FTNSURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERMTABLEVIEW(2).FTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERMTABLEVIEW(2).VIEWTABLELIST
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERMTABLEVIEW(2).VIEWTABLEPKEYCOLLIST
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERMTABLEVIEW(2).FORMATTEDVIEWTABLECOLLIST
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTERMTABLEVIEW(2).TABLEPKEYCOLLIST
+  ordinalPosition: 6
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTEROBJECT.OBJNS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTEROBJECT.OBJNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTEROBJECT.FTNSURL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTEROBJECT.CURROBJCOLPATH
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTEROBJECT.OBJNAMEINDEX
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTEROBJECT.FTID
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTEROBJECT.SPATIALCOLINFO
+  ordinalPosition: 7
+  dataType: VARRAY
+  parameterMode: IN
+- name: REGISTEROBJECT.SPATIALCOLINFOINDEX
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: REVOKEFEATURETYPEFROMUSER.FTNSURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKEFEATURETYPEFROMUSER.FTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKEFEATURETYPEFROMUSER.USERNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKEMDACCESSFROMADMINUSER.USERNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKEMDACCESSFROMUSER.USERNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SORTSPCONTENTBYCOLINDEX.SPATIALPATHS
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: SORTSPCONTENTBYCOLINDEX.SPATIALPATHINFO
+  ordinalPosition: 2
+  dataType: TABLE
+  parameterMode: IN
+- name: SORTSPCONTENTBYCOLINDEX.USERNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SORTSPCONTENTBYCOLINDEX.TABLENAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: STRIP_SPECIAL_CHARS.INPUT_STR
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: STRIP_SPECIAL_CHARS.CHARS_TO_BE_DELETED
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: STRIP_SPECIAL_CHARS.PLACEHOLDERS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNREGISTERMTABLEVIEW.FTNSURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNREGISTERMTABLEVIEW.FTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEOBJECTREF(1).REFOBJNS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEOBJECTREF(1).REFOBJNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEOBJECTREF(1).FEATURETYPEID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATEOBJECTREF(1).REFOBJSEQNO
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATEOBJECTREF(2).REFOBJNS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEOBJECTREF(2).REFOBJNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEOBJECTREF(2).REFOBJSEQNO
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATEOBJECTREF(2).NSURL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEOBJECTREF(2).CONTAINEROBJNS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEOBJECTREF(2).CONTAINEROBJNAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEOBJECTREF(2).CONTAINEROBJNAMEINDEX
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATEOBJECTREF(2).FEATURETYPEID
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: "PACKAGE SDO_WFS_PROCESS AUTHID current_user AS SPATIALCOLSEP varchar2(40):\
+  \ = '<>';\nSPATIALPATHELEMSEP varchar2(20): = '>';\nNS_SEP varchar2(20): = '<';\n\
+  NULL_NS varchar2(20): = 'null';\nKEY_SEP varchar2(20): = ';';\nCOMMIT_THRESHOLD\
+  \ number: = 1000;\nLARGE_THRESHOLD number: = 0;\n-- publish from relation table\
+  \ content\nprocedure publishFeatureType(\n  dataSrc IN VARCHAR2,\n  ftnsUrl IN VARCHAR2,\n\
+  \  ftName IN VARCHAR2,\n  ftnsAlias IN VARCHAR2,\n  featureDesc IN XMLType,\n  SCHEMALOCATION\
+  \ IN VARCHAR2,\n  pkeyCol IN VARCHAR2,\n  columnInfo IN mdsys.StringList,\n  pSpatialCol\
+  \ varchar2,\n  featureMemberNS varchar2,\n  featureMemberName varchar2,\n  srsNS\
+  \ varchar2,\n  srsNSAlias varchar2,\n  mandatoryColumnInfo IN mdsys.StringList default\
+  \ mdsys.StringList('$ALL$'),\n  wfs_version IN varchar2 default '1.0.0',\n  ftXSD\
+  \ IN XMLType default NULL\n  /*,\n  \n                                       ftVaryingNSAlias_ColName\
+  \ IN StringList default NULL*/,\n  customSrsNamePrefixes IN VARCHAR2 default NULL\n\
+  );\nprocedure publishFeatureType(\n  dataSrc IN VARCHAR2,\n  ftnsUrl IN VARCHAR2,\n\
+  \  ftName IN VARCHAR2,\n  ftnsAlias IN VARCHAR2,\n  featureDesc IN XMLType,\n  SCHEMALOCATION\
+  \ IN VARCHAR2,\n  pkeyCol IN VARCHAR2,\n  columnInfo IN mdsys.StringList,\n  pSpatialCol\
+  \ varchar2,\n  featureMemberNS varchar2,\n  featureMemberName varchar2,\n  srsNS\
+  \ varchar2,\n  srsNSAlias varchar2,\n  viewTableName varchar2,\n  viewTablepkeyCol\
+  \ varchar2,\n  mandatoryColumnInfo IN mdsys.StringList default mdsys.StringList('$ALL$'),\n\
+  \  wfs_version IN varchar2 default '1.0.0',\n  ftXSD IN XMLType default NULL\n \
+  \ /*,\n  \n                                       ftVaryingNSAlias_ColName IN StringList\
+  \ default NULL*/,\n  customSrsNamePrefixes IN VARCHAR2 default NULL\n);\n-- publish\
+  \ from a external feature xsd\nprocedure publishFeatureType(\n  dataSrc IN VARCHAR2,\n\
+  \  ftnsUrl IN VARCHAR2,\n  ftName IN VARCHAR2,\n  ftnsAlias IN VARCHAR2,\n  featureDesc\
+  \ IN XMLType,\n  SCHEMALOCATION IN VARCHAR2,\n  pkeyCol IN VARCHAR2,\n  columnInfo\
+  \ IN mdsys.StringList,\n  pSpatialCol varchar2,\n  featureMemberNS varchar2,\n \
+  \ featureMemberName varchar2,\n  srsNS varchar2,\n  srsNSAlias varchar2,\n  featureCollectionNS\
+  \ varchar2,\n  featureCollectionName varchar2,\n  isGML3 varchar2,\n  formattedkeyCols\
+  \ mdsys.StringList,\n  viewTableName varchar2,\n  viewTablepkeyCol varchar2,\n \
+  \ viewTableFmtKeyCols mdsys.StringList,\n  mandatoryColumnInfo IN mdsys.StringList\
+  \ default mdsys.StringList('$ALL$'),\n  wfs_version IN varchar2 default '1.0.0',\n\
+  \  ftXSD IN XMLType default NULL\n  /*,\n  \n                                  \
+  \     ftVaryingNSAlias_ColName IN StringList default NULL*/,\n  customSrsNamePrefixes\
+  \ IN VARCHAR2 default NULL\n);\nfunction populateVaryingAliases(\n  ftXSD IN XMLType,\n\
+  \  ftName IN VARCHAR2,\n  featureTypeId IN NUMBER,\n  col_name IN VARCHAR2,\n  tagTypeName\
+  \ OUT VARCHAR2\n) return varchar2;\nfunction strip_special_chars(\n  input_str varchar2,\n\
+  \  chars_to_be_deleted varchar2,\n  placeholders varchar2 default CHR(1)\n) return\
+  \ varchar2;\nprocedure publish_featureTypes_in_schema(\n  p_owner varchar2,\n  p_namespace_url\
+  \ varchar2,\n  p_namespace_alias varchar2,\n  p_wls_postxml_url varchar2,\n  p_tablename_pattern\
+  \ varchar2 default '%',\n  p_wfs_version varchar2 default '1.1.0',\n  p_write_xsd\
+  \ varchar2 default 'N'\n);\n-- publish from a external feature xsd\nprocedure publishFeatureType(\n\
+  \  ftxsd IN XMLType,\n  featureDesc IN XMLType,\n  wfs_version IN varchar2 default\
+  \ '1.0.0'\n);\nprocedure processInLineComplexElement(\n  ftxsd IN XMLType,\n  elementXml\
+  \ IN XMLType,\n  elemIndex IN number,\n  spatialCols IN OUT NOCOPY mdsys.StringList,\n\
+  \  currGmlElementsCnt IN OUT number,\n  gmlElementsCnt IN number,\n  parentElemPath\
+  \ IN varchar2,\n  gmlAlias IN VARCHAR2\n);\nprocedure processComplexElement(\n \
+  \ ftxsd IN XMLType,\n  elementType IN varchar2,\n  spatialCols IN OUT NOCOPY mdsys.StringList,\n\
+  \  currGmlElementsCnt IN OUT number,\n  gmlElementsCnt IN number,\n  parentElemPath\
+  \ IN varchar2,\n  gmlAlias IN VARCHAR2\n);\nfunction isComplexObjectType(elemType\
+  \ IN VARCHAR2, gmlAlias IN VARCHAR2) return number;\nfunction isInList(l mdsys.StringList,\
+  \ item varchar2) return number;\nfunction orderInList(l mdsys.StringList, item varchar2)\
+  \ return number;\nprocedure registerObject(\n  objNs IN VARCHAR2,\n  objName IN\
+  \ VARCHAR2,\n  ftnsUrl IN VARCHAR2,\n  currObjColPath varchar2,\n  objNameIndex\
+  \ IN NUMBER,\n  ftId IN NUMBER,\n  spatialColInfo mdsys.StringList,\n  spatialColInfoIndex\
+  \ IN OUT NUMBER\n);\nfunction getXMLTagType(typeOwner IN VARCHAR2, type IN VARCHAR2)\
+  \ RETURN VARCHAR2;\nprocedure dropFeatureType(ftnsUrl IN VARCHAR2, ftName IN VARCHAR2);\n\
+  procedure dropFeatureTypes(ftnsUrl IN VARCHAR2);\nprocedure insertFtMDUpdated(ns\
+  \ varchar2, name varchar2, updateTs timestamp);\nprocedure insertFtDataUpdated(\n\
+  \  ns varchar2,\n  name varchar2,\n  updatedRowList ROWPOINTERLIST,\n  updateTs\
+  \ timestamp\n);\nprocedure insertCapabilitiesInfo(\n  capabilitiesInfo xmltype,\n\
+  \  wfs_version IN varchar2 default '1.0.0'\n);\nprocedure deleteCapabilitiesInfo;\n\
+  procedure genCollectionProcs;\nprocedure genCollectionProcsHelper(objNs IN VARCHAR2,\
+  \ objName IN VARCHAR2);\nprocedure populateFeatureTypeXMLInfo(\n  xmlcoltypexsd\
+  \ XMLType,\n  fTypeId number,\n  columnName varchar2,\n  objPathInfo mdsys.StringList\n\
+  );\nprocedure deleteFeatureTypeXMLInfo(fTypeId number);\nfunction containsSDO(ns\
+  \ varchar2, name varchar2, ftId number) return number;\nfunction containsSDOInternal(\n\
+  \  rootns varchar2,\n  rootname varchar2,\n  ns varchar2,\n  name varchar2,\n  ftId\
+  \ number\n) return number;\nprocedure updateObjectRef(\n  refObjNs varchar2,\n \
+  \ refObjName varchar2,\n  featureTypeId number,\n  refObjSeqNo number\n);\nprocedure\
+  \ updateObjectRef(\n  refObjNs varchar2,\n  refObjName varchar2,\n  refObjSeqNo\
+  \ number,\n  nsUrl varchar2,\n  containerObjNs varchar2,\n  containerObjName varchar2,\n\
+  \  containerObjNameIndex number,\n  featureTypeId number\n);\nfunction sortSpContentByColIndex\
+  \ (\n  spatialPaths mdsys.StringList,\n  spatialPathInfo sdo_geom_path_info,\n \
+  \ userName varchar2,\n  tableName in varchar2\n) return sdo_geom_path_info;\nfunction\
+  \ genSpatialPathElemColIndex(\n  spatialPaths mdsys.StringList,\n  spatialPathElem\
+  \ sdo_geom_path_elem\n) return number;\nfunction genIdValue(\n  data xmltype,\n\
+  \  idPaths mdsys.StringList,\n  tNS varchar2,\n  tName varchar2,\n  ftUserName varchar2\n\
+  ) return varchar2;\nfunction getPath(path mdsys.StringList) return varchar2;\nfunction\
+  \ getParsedPath(path varchar2) return mdsys.StringList;\n-- (ns1, name1, ns2, name2....)\n\
+  procedure genRecordTypeProcessingLogic(tNS varchar2, tName varchar2);\nfunction\
+  \ extractSDO(\n  xmldata XMLType,\n  spatialPaths mdsys.StringList,\n  srsNs varchar2,\n\
+  \  ISGML3 varchar2,\n  spPathsSRSNSList mdsys.StringListList\n) return sdo_geom_path_info;\n\
+  function parsePath(path varchar2) return mdsys.StringList;\nfunction generateParsedSpatialPath(spatialPaths\
+  \ mdsys.StringList) return mdsys.StringListList;\nfunction processPath(srcPaths\
+  \ mdsys.StringListList, genArrIdx number) return mdsys.StringListList;\nfunction\
+  \ generateAliasString(aliasList mdsys.StringList) return varchar2;\nfunction getAlias(nsurl\
+  \ varchar2, aliasList mdsys.StringList) return varchar2;\nfunction putAlias (\n\
+  \  nsurl varchar2,\n  alias varchar2,\n  aliasList mdsys.StringList\n) return mdsys.StringList;\n\
+  function isRowIdIn (r ROWID, rlist RowPointerList) return number;\nfunction isPKColIn\
+  \ (r varchar2, rlist RowPointerList) return number;\nfunction extractID(xmldata\
+  \ XMLType, idPaths mdsys.StringList) return varchar2;\nfunction processIdPath(srcPaths\
+  \ mdsys.StringList) return mdsys.StringList;\nfunction getFeatureTypeId(\n  ftnsUrl\
+  \ IN VARCHAR2,\n  ftName IN VARCHAR2\n) return number;\nprocedure grantMDAccessToAdminUser(userName\
+  \ IN varchar2);\nprocedure grantMDAccessToUser(userName IN varchar2);\nprocedure\
+  \ revokeMDAccessFromAdminUser(userName IN varchar2);\nprocedure revokeMDAccessFromUser(userName\
+  \ IN varchar2);\nprocedure grantFeatureTypeToUser(\n  ftnsUrl IN VARCHAR2,\n  ftName\
+  \ IN VARCHAR2,\n  userName IN varchar2\n);\nprocedure revokeFeatureTypeFromUser(\n\
+  \  ftnsUrl IN VARCHAR2,\n  ftName IN VARCHAR2,\n  userName IN varchar2\n);\nprocedure\
+  \ registerMTableView(\n  ftNSUrl varchar2,\n  ftName varchar2,\n  viewTableList\
+  \ mdsys.StringList,\n  viewTablePkeyColList mdsys.StringList,\n  tablePKeyColList\
+  \ mdsys.StringList\n);\nprocedure registerMTableView(\n  ftNSUrl varchar2,\n  ftName\
+  \ varchar2,\n  viewTableList mdsys.StringList,\n  viewTablePkeyColList mdsys.StringList,\n\
+  \  formattedViewTableColList mdsys.StringListList,\n  tablePKeyColList mdsys.StringList\n\
+  );\nprocedure unRegisterMTableView(\n  ftNSUrl varchar2,\n  ftName varchar2\n);\n\
+  function notInArray(p varchar2, pList mdsys.RowPointerList) return number;\nfunction\
+  \ genSpatialArrInfo(\n  tableNamePrefix varchar2,\n  pkVal varchar2,\n  l_spatialArrList\
+  \ mdsys.StringListList,\n  data XMLType,\n  srsNs varchar2,\n  spatialArrUpdMap\
+  \ varchar2,\n  ISGML3 varchar2,\n  spArrPathsSRSNSList mdsys.StringListList\n) return\
+  \ mdsys.SDO_GEOM_PATH_INFO_LIST;\nfunction getUpdateMap(spatialArrList mdsys.StringListList)\
+  \ return varchar2;\nfunction expandPath(aliasedPath varchar2, nsParam varchar2)\
+  \ return varchar2;\nfunction findNSUrl(\n  nsAlias varchar2,\n  nsAliasList mdsys.StringList,\n\
+  \  nsUrlList mdsys.StringList\n) return varchar2;\nfunction getCount(\n  pathPattern\
+  \ varchar2,\n  nsParam varchar2,\n  data xmltype\n) return number;\nfunction enumerateArrPaths(\n\
+  \  pathPattern varchar2,\n  nsParam varchar2,\n  data xmltype\n) return mdsys.StringList;\n\
+  procedure genTriggers(tNS varchar2, tName varchar2);\nfunction isListMember(\n \
+  \ featureTypeName varchar2,\n  namespaceUrl varchar2,\n  ftIdList mdsys.StringListList\n\
+  ) return number;\nPROCEDURE initialize_after_import;\nFUNCTION prepare_for_export_user\
+  \ return varchar2;\nFUNCTION prepare_for_export_user(exportSDOMetadata varchar2)\
+  \ return varchar2;\nFUNCTION prepare_for_export_fts (ftList mdsys.StringListList)\
+  \ return varchar2;\nFUNCTION prepare_for_export_fts (\n  ftList mdsys.StringListList,\n\
+  \  exportSDOMetadata varchar2\n) return varchar2;\nPROCEDURE prepare_for_export_ft_m_int(\n\
+  \  ftName in varchar2,\n  ftNsUrl in varchar2,\n  exportSDOMetadata varchar2\n);\n\
+  PROCEDURE prepare_for_export_ft_int(\n  ftName in varchar2,\n  ftNsUrl in varchar2,\n\
+  \  exportSDOMetadata varchar2\n);\nFUNCTION prepare_for_export_all return varchar2;\n\
+  FUNCTION prepare_for_export_all(exportSDOMetadata varchar2) return varchar2;\nprocedure\
+  \ drop_export_tables;\nprocedure genUpdateStr(\n  spatialColCount number,\n  update_prefix\
+  \ varchar2,\n  update_suffix varchar2\n);\nprocedure preProcessInsert (\n  xmldata\
+  \ xmltype,\n  idPaths mdsys.StringList,\n  spatialPaths mdsys.StringList,\n  parsedAliasSpPath\
+  \ mdsys.StringListList,\n  spPathsSRSNSList mdsys.StringListList,\n  spatialArrPathsList\
+  \ mdsys.StringListList,\n  spArrPathsSRSNSList mdsys.StringListList,\n  ftNS varchar2,\n\
+  \  ftName varchar2,\n  ftId number,\n  ftUserName varchar2,\n  tableName varchar2,\n\
+  \  srsNs varchar2,\n  ISGML3 varchar2,\n  spatialPathsStgSrIds mdsys.sdoNumList,\n\
+  \  -- spatialPaths storage srid\n  spatialArrPathsStgSrIds mdsys.sdoNumList,\n \
+  \ pkColVal OUT VARCHAR2\n);\n-- spatial Arr paths storage srids\nprocedure preProcessUpdate(\n\
+  \  xmldata xmltype,\n  oldId varchar2,\n  spColUpdMap mdsys.StringList,\n  spArrColUpdMap\
+  \ mdsys.StringList,\n  idPaths mdsys.StringList,\n  spatialPaths mdsys.StringList,\n\
+  \  parsedAliasSpPath mdsys.StringListList,\n  spPathsSRSNSList mdsys.StringListList,\n\
+  \  spatialArrPathsList mdsys.StringListList,\n  spArrPathsSRSNSList mdsys.StringListList,\n\
+  \  ftNS varchar2,\n  ftName varchar2,\n  ftId number,\n  ftUserName varchar2,\n\
+  \  tableName varchar2,\n  srsNs varchar2,\n  ISGML3 varchar2,\n  spatialPathsStgSrIds\
+  \ mdsys.sdoNumList,\n  -- spatialPaths storage srid\n  spatialArrPathsStgSrIds mdsys.sdoNumList,\n\
+  \  -- spatial Arr paths storage srids\n  computeSp number,\n  newId OUT varchar2\n\
+  );\nEND SDO_WFS_PROCESS;"

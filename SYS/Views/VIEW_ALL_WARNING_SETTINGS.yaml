@@ -1,0 +1,147 @@
+schema: SYS
+name: ALL_WARNING_SETTINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name,
+    o.name,
+    o.obj#,
+    DECODE(
+      o.type#,
+      7,
+      'PROCEDURE',
+      8,
+      'FUNCTION',
+      9,
+      'PACKAGE',
+      11,
+      'PACKAGE BODY',
+      12,
+      'TRIGGER',
+      13,
+      'TYPE',
+      14,
+      'TYPE BODY',
+      'UNDEFINED'
+    ),
+    DECODE(
+      w.warning,
+      -1,
+      'INFORMATIONAL',
+      -2,
+      'PERFORMANCE',
+      -3,
+      'SEVERE',
+      -4,
+      'ALL',
+      w.warning
+    ),
+    DECODE(
+      w.setting,
+      0,
+      'DISABLE',
+      1,
+      'ENABLE',
+      2,
+      'ERROR',
+      'INVALID'
+    )
+  FROM
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.user$ u,
+    TABLE(
+      dbms_warning_internal.show_warning_settings(o.obj#)
+    ) w
+  WHERE
+    o.owner# = u.user#
+    AND o.linkname IS NULL
+    AND o.type# IN (7, 8, 9, 11, 12, 13, 14)
+    AND w.obj_no = o.obj#
+    AND (
+      o.owner# IN (
+        userenv('SCHEMAID'),
+        1
+        /* PUBLIC */
+      )
+      OR (
+        (
+          (
+            (
+              o.type# = 7
+              OR o.type# = 8
+              OR o.type# = 9
+              OR o.type# = 13
+            )
+            and o.obj# in (
+              select
+                obj#
+              from
+                sys.objauth$
+              where
+                grantee# in (
+                  select
+                    kzsrorol
+                  from
+                    x$kzsro
+                )
+                and privilege# = 12
+                /* EXECUTE */
+            )
+          )
+          or exists (
+            select
+              null
+            from
+              sys.sysauth$
+            where
+              grantee# in (
+                select
+                  kzsrorol
+                from
+                  x$kzsro
+              )
+              and (
+                (
+                  /* procedure */
+                  (
+                    o.type# = 7
+                    or o.type# = 8
+                    or o.type# = 9
+                  )
+                  and (
+                    privilege# = -144
+                    /* EXECUTE ANY PROCEDURE */
+                    or privilege# = -141
+                    /* CREATE ANY PROCEDURE */
+                  )
+                )
+                or (
+                  /* package body */
+                  o.type# = 11
+                  and privilege# = -141
+                  /* CREATE ANY PROCEDURE */
+                )
+                or (
+                  /* type */
+                  o.type# = 13
+                  and (
+                    privilege# = -184
+                    /* EXECUTE ANY TYPE */
+                    or privilege# = -181
+                    /* CREATE ANY TYPE */
+                  )
+                )
+                or (
+                  /* type body */
+                  o.type# = 14
+                  and privilege# = -181
+                  /* CREATE ANY TYPE */
+                )
+              )
+          )
+        )
+      )
+    )
+columns: []
+referencedTables: []

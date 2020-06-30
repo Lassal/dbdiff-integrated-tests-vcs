@@ -1,0 +1,23 @@
+schema: SYS
+name: USER_XS_ACES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    acl,
+    ace_order,
+    start_date,
+    end_date,
+    grant_type,
+    inverted_principal,
+    principal,
+    principal_type,
+    privilege,
+    security_class,
+    security_class_owner
+  from
+    sys.dba_xs_aces
+  where
+    owner = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

@@ -1,0 +1,30 @@
+schema: SYS
+name: KU$_RLS_POLICY_OBJNUM_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.obj#,
+    r.pname,
+    r.pfschma,
+    r.ppname,
+    r.pfname,
+    value(sov)
+  from
+    ku$_schemaobj_view sov,
+    sys.rls$ r
+  where
+    r.obj# = sov.obj_num
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') in (sov.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

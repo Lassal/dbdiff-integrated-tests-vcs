@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_MVIEW_DETAIL_SUBPARTITION
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    m. "OWNER",
+    m. "MVIEW_NAME",
+    m. "DETAILOBJ_OWNER",
+    m. "DETAILOBJ_NAME",
+    m. "DETAIL_PARTITION_NAME",
+    m. "DETAIL_SUBPARTITION_NAME",
+    m. "DETAIL_SUBPARTITION_POSITION",
+    m. "FRESHNESS"
+  from
+    dba_mview_detail_subpartition m,
+    sys.user$ u
+  where
+    u.user# = userenv('SCHEMAID')
+    and m.owner = u.name
+columns: []
+referencedTables: []

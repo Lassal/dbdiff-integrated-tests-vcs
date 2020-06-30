@@ -1,0 +1,122 @@
+schema: SYS
+name: DBMS_SUMMARY
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: DISABLE_DEPENDENT.DETAIL_TABLES
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_DEPENDENT.DETAIL_TABLES
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ESTIMATE_MVIEW_SIZE.STMT_ID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ESTIMATE_MVIEW_SIZE.SELECT_CLAUSE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ESTIMATE_MVIEW_SIZE.NUM_ROWS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: ESTIMATE_MVIEW_SIZE.NUM_BYTES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+- name: SET_LOGFILE_NAME.FILENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_DIMENSION.DIMENSION_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_DIMENSION.DIMENSION_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_DIMENSION.INCREMENTAL
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: VALIDATE_DIMENSION.CHECK_NULLS
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_summary authid current_user
+  /*
+
+   || Program: dbms_summary
+
+   ||  Author: William D. Norcott, Oracle Corportation
+
+   ||    File: dbmssum.sql
+
+   || Created: September 11, 1997 15:11:36
+
+   */
+  IS -- Package global variables
+  dimensionnotfound
+  EXCEPTION;
+  -- Package constant variables
+    -- Interface for private trace facility used by the advisor
+    PROCEDURE set_logfile_name(filename IN VARCHAR2);
+  --    PROCEDURE DBMS_SUMMARY.VALIDATE_DIMENSION
+    --    PURPOSE: To verify that the relationships specified in a DIMENSION
+    --             are correct. Offending rowids are stored in advisor repository
+    --    PARAMETERS:
+    --         dimension_name: VARCHAR2
+    --            Name of the dimension to analyze
+    --
+    --         dimension_owner: VARCHAR2
+    --            Owner of the dimension
+    --
+    --         incremental: BOOLEAN (default: TRUE)
+    --            If TRUE, then tests are performed only for the rows specified
+    --            in the sumdelta$ table for tables of this dimension; if FALSE,
+    --            check all rows.
+    --
+    --         check_nulls: BOOLEAN (default: FALSE)
+    --            If TRUE, then all level columns are verified to be non-null;
+    --            If FALSE, this check is omitted. Specify FALSE when non-nullness
+    --            is guaranteed by other means, such as NOT NULL constraints.
+    --
+    --    EXCEPTIONS:
+    --             dimensionnotfound       The specified dimension was not found
+    PROCEDURE validate_dimension (
+      dimension_name IN VARCHAR2,
+      dimension_owner IN VARCHAR2,
+      incremental IN BOOLEAN,
+      check_nulls IN BOOLEAN
+    );
+  --    PROCEDURE DBMS_SUMMARY.ESTIMATE_MVIEW_SIZE
+    --    PURPOSE: Estimate materialized size in terms of rows and bytes
+    --    PARAMETERS:
+    --         stmt_id: NUMBER
+    --            User-specified id
+    --         select_clause: VARCHAR@
+    --            SQL text for the defining query
+    --         num_row: NUMBER
+    --            Estimated number of rows
+    --         num_col: NUMBER
+    --            Estimated number of bytes
+    --   COMMENTS:
+    --         This procedure requires that 'utlxplan.sql' be executed
+    PROCEDURE estimate_mview_size (
+      stmt_id IN VARCHAR2,
+      select_clause IN VARCHAR2,
+      num_rows OUT NUMBER,
+      num_bytes OUT NUMBER
+    );
+  PROCEDURE enable_dependent (
+      detail_tables IN VARCHAR2
+    );
+  PROCEDURE disable_dependent (
+      detail_tables IN VARCHAR2
+    );
+  END dbms_summary;

@@ -1,0 +1,55 @@
+schema: SYS
+name: USER_SYS_PRIVS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    decode(sa.grantee#, 1, 'PUBLIC', su.name),
+    spm.name,
+    decode(min(mod(option $, 2)), 1, 'YES', 'NO'),
+    'NO'
+  from
+    sys.system_privilege_map spm,
+    sys.sysauth$ sa,
+    sys.user$ su
+  where
+    (
+      (
+        sa.grantee# = userenv('SCHEMAID')
+        and su.user# = sa.grantee#
+      )
+      or sa.grantee# = 1
+    )
+    and sa.privilege# = spm.privilege
+    and bitand(nvl(option $, 0), 4) = 0
+    /* Local, and maybe Common, Privs */
+  group by
+    decode(sa.grantee#, 1, 'PUBLIC', su.name),
+    spm.name
+  union all
+    /* Common Privileges */
+  select
+    decode(sa.grantee#, 1, 'PUBLIC', su.name),
+    spm.name,
+    decode(min(bitand(option $, 16)), 16, 'YES', 'NO'),
+    'YES'
+  from
+    sys.system_privilege_map spm,
+    sys.sysauth$ sa,
+    sys.user$ su
+  where
+    (
+      (
+        sa.grantee# = userenv('SCHEMAID')
+        and su.user# = sa.grantee#
+      )
+      or sa.grantee# = 1
+    )
+    and sa.privilege# = spm.privilege
+    and bitand(option $, 8) = 8
+    /* Common, and maybe Local, priv */
+  group by
+    decode(sa.grantee#, 1, 'PUBLIC', su.name),
+    spm.name
+columns: []
+referencedTables: []

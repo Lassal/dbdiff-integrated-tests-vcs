@@ -1,0 +1,77 @@
+schema: SYS
+name: USER_RECYCLEBIN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    r.original_name,
+    decode(
+      r.operation,
+      0,
+      'DROP',
+      1,
+      'TRUNCATE',
+      'UNDEFINED'
+    ),
+    decode(
+      r.type#,
+      1,
+      'TABLE',
+      2,
+      'INDEX',
+      3,
+      'INDEX',
+      4,
+      'NESTED TABLE',
+      5,
+      'LOB',
+      6,
+      'LOB INDEX',
+      7,
+      'DOMAIN INDEX',
+      8,
+      'IOT TOP INDEX',
+      9,
+      'IOT OVERFLOW SEGMENT',
+      10,
+      'IOT MAPPING TABLE',
+      11,
+      'TRIGGER',
+      12,
+      'CONSTRAINT',
+      13,
+      'Table Partition',
+      14,
+      'Table Composite Partition',
+      15,
+      'Index Partition',
+      16,
+      'Index Composite Partition',
+      17,
+      'LOB Partition',
+      18,
+      'LOB Composite Partition',
+      'UNDEFINED'
+    ),
+    t.name,
+    to_char(o.ctime, 'YYYY-MM-DD:HH24:MI:SS'),
+    to_char(r.droptime, 'YYYY-MM-DD:HH24:MI:SS'),
+    r.dropscn,
+    r.partition_name,
+    decode(bitand(r.flags, 4), 0, 'NO', 4, 'YES', 'NO'),
+    decode(bitand(r.flags, 2), 0, 'NO', 2, 'YES', 'NO'),
+    r.related,
+    r.bo,
+    r.purgeobj,
+    r.space
+  from
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.recyclebin$ r,
+    sys.ts$ t
+  where
+    r.owner# = userenv('SCHEMAID')
+    and o.obj# = r.obj#
+    and r.ts# = t.ts#(+)
+columns: []
+referencedTables: []

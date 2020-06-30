@@ -1,0 +1,893 @@
+schema: ORDSYS
+name: ORD_DICOM
+routineType: PACKAGE
+returnParamater:
+  name: ISCONFORMANCEVALID(3).(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: OUT
+parameters:
+- name: CREATEDICOMIMAGE(1).SRC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: CREATEDICOMIMAGE(1).METADATA
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: CREATEDICOMIMAGE(1).DEST
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: CREATEDICOMIMAGE(2).SRC
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: CREATEDICOMIMAGE(2).METADATA
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: CREATEDICOMIMAGE(2).DEST
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: CREATEDICOMIMAGE(3).SRC
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CREATEDICOMIMAGE(3).METADATA
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: CREATEDICOMIMAGE(3).DEST
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: EXPORT.SRC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: EXPORT.DEST_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT.DEST_LOCATION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT.DEST_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTMETADATA(1).DATA
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: EXTRACTMETADATA(1).EXTRACTOPTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTMETADATA(1).DOCNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTMETADATA(2).DATA
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: EXTRACTMETADATA(2).EXTRACTOPTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTMETADATA(2).DOCNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTMETADATA(3).DATA
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: EXTRACTMETADATA(3).EXTRACTOPTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTMETADATA(3).DOCNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETDICTIONARYTAG.ATTRIBUTENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETDICTIONARYTAG.DEFINERNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETMAPPINGXPATH.TAG
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETMAPPINGXPATH.DOCNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETMAPPINGXPATH.DEFINERNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORTFROM.DEST
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: INOUT
+- name: IMPORTFROM.SOURCE_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORTFROM.SOURCE_LOCATION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORTFROM.SOURCE_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISANONYMOUS(1).SRC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: ISANONYMOUS(1).ANONYMITYDOCNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISANONYMOUS(2).SRC
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: ISANONYMOUS(2).ANONYMITYDOCNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISANONYMOUS(3).SRC
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: ISANONYMOUS(3).ANONYMITYDOCNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISCONFORMANCEVALID(1).SRC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: ISCONFORMANCEVALID(1).CONSTRAINTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISCONFORMANCEVALID(2).SRC
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: ISCONFORMANCEVALID(2).CONSTRAINTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ISCONFORMANCEVALID(3).SRC
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: ISCONFORMANCEVALID(3).CONSTRAINTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKEANONYMOUS(1).SRC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: MAKEANONYMOUS(1).DEST_SOP_INSTANCE_UID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKEANONYMOUS(1).DEST
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: MAKEANONYMOUS(1).ANONYMITYDOCNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKEANONYMOUS(2).SRC
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: MAKEANONYMOUS(2).DEST_SOP_INSTANCE_UID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKEANONYMOUS(2).DEST
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: MAKEANONYMOUS(2).ANONYMITYDOCNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKEANONYMOUS(3).SRC
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: MAKEANONYMOUS(3).DEST_SOP_INSTANCE_UID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKEANONYMOUS(3).DEST
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: MAKEANONYMOUS(3).ANONYMITYDOCNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOPY(1).SRC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: PROCESSCOPY(1).COMMAND
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOPY(1).DEST
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: PROCESSCOPY(2).SRC
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: PROCESSCOPY(2).COMMAND
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOPY(2).DEST
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: PROCESSCOPY(3).SRC
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROCESSCOPY(3).COMMAND
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOPY(3).DEST
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: PROCESSCOPY(4).SRC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: PROCESSCOPY(4).COMMAND
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOPY(4).DEST_SOP_INSTANCE_UID
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOPY(4).DEST
+  ordinalPosition: 4
+  dataType: BLOB
+  parameterMode: INOUT
+- name: PROCESSCOPY(4).METADATA
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PROCESSCOPY(5).SRC
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: PROCESSCOPY(5).COMMAND
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOPY(5).DEST_SOP_INSTANCE_UID
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOPY(5).DEST
+  ordinalPosition: 4
+  dataType: BLOB
+  parameterMode: INOUT
+- name: PROCESSCOPY(5).METADATA
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PROCESSCOPY(6).SRC
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROCESSCOPY(6).COMMAND
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOPY(6).DEST_SOP_INSTANCE_UID
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOPY(6).DEST
+  ordinalPosition: 4
+  dataType: BLOB
+  parameterMode: INOUT
+- name: PROCESSCOPY(6).METADATA
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: SETDATAMODEL(1).MODELNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETDATAMODEL(2).MODELNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETDATAMODEL(2).FORCE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRITEMETADATA(1).SRC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: WRITEMETADATA(1).METADATA
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: WRITEMETADATA(1).DEST
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: WRITEMETADATA(2).SRC
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: WRITEMETADATA(2).METADATA
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: WRITEMETADATA(2).DEST
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: WRITEMETADATA(3).SRC
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: WRITEMETADATA(3).METADATA
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: WRITEMETADATA(3).DEST
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+routineDefinition: |-
+  PACKAGE ORD_DICOM authid current_user AS --
+  -- public constants
+  --
+  DEFAULT_ANONYMITY_DOC CONSTANT VARCHAR2(64): = 'ordcman.xml';
+  DEFAULT_MAPPING_DOC CONSTANT VARCHAR2(64): = 'ordcmmp.xml';
+  DEFAULT_METADATA_NS CONSTANT VARCHAR2(64): = 'http://xmlns.oracle.com/ord/dicom/metadata_1_0';
+  DATATYPE_NS CONSTANT VARCHAR2(64): = 'http://xmlns.oracle.com/ord/dicom/datatype_1_0';
+  DEFAULT_EXTRACT_OPTION VARCHAR2(32): = 'ALL';
+  --
+  -- public functions/procedures
+  --
+  --
+  -- Description:    Import DICOM binary data from a given source into BLOB.
+  -- Input:
+  --   dest: Destination storage of the imported DICOM file.
+  --   source_type: The type of the source(FILE)
+  --   source_location: The source location. (File directory object)
+  --   source_name: The name of the source file.
+  -- Exception: None.
+  --
+  PROCEDURE importFrom(
+    dest IN OUT NOCOPY BLOB,
+    source_type IN VARCHAR2,
+    source_location IN VARCHAR2,
+    source_name IN VARCHAR2
+  );
+  --
+  -- Description:   Export DICOM binary data in a BLOB to the specified
+  --                destination.
+  --   src: The source location of the DICOM binary data.
+  --   dest_type: The type of the destination. (FILE)
+  --   dest_location: The destination location . (File directory object)
+  --   dest_name: The name of the destination file.
+  -- Exception:  None.
+  --
+  PROCEDURE export(
+    src IN BLOB,
+    dest_type IN VARCHAR2,
+    dest_location IN VARCHAR2,
+    dest_name IN VARCHAR2
+  );
+  --
+  -- Description:  Get DICOM metadata in XML for a given XML metadata schema.
+  -- Input:
+  --   data: The input DICOM binary data stored in BLOB.
+  --   extractOption:
+  --    'ALL': Default. Extract all attributes from the DICOM binary data.
+  --    'MAPPED': Extract only mapped attributes.
+  --    'STANDARD': Extract only DICOM Standard attributes and mapped
+  --                attributes.
+  --   docName: The name  of the mapping document. The default mapping document
+  --     ordcmmp.xml is loaded during installation and refers to the default
+  --     metadata namespace of "http://xmlns.oracle.com/ord/dicom/metadata_1_0"
+  -- Return: Metadata encoded in XML (not schema-validated)
+  -- Exception: None.
+  --
+  FUNCTION extractMetadata (
+    data IN BLOB,
+    extractOption IN VARCHAR2 DEFAULT DEFAULT_EXTRACT_OPTION,
+    docName IN VARCHAR2 DEFAULT DEFAULT_MAPPING_DOC
+  ) RETURN SYS.XMLTYPE;
+  --
+  -- Description:  Get DICOM metadata in XML for a given XML metadata schema.
+  -- Input:
+  --   data: The input DICOM binary data stored in BFILE.
+  --   extractOption:
+  --    'ALL': Default. Extract all attributes from the DICOM binary data.
+  --    'MAPPED': Extract only mapped attributes.
+  --    'STANDARD': Extract only DICOM Standard attributes and mapped
+  --                attributes.
+  --   docName: The name  of the mapping document. The default mapping document
+  --     ordcmmp.xml is loaded during installation and refers to the default
+  --     metadata namespace of "http://xmlns.oracle.com/ord/dicom/metadata_1_0"
+  -- Return: Metadata encoded in XML (not schema-validated)
+  -- Exception:  None.
+  --
+  FUNCTION extractMetadata (
+    data IN BFILE,
+    extractOption IN VARCHAR2 DEFAULT DEFAULT_EXTRACT_OPTION,
+    docName IN VARCHAR2 DEFAULT DEFAULT_MAPPING_DOC
+  ) RETURN SYS.XMLTYPE;
+  --
+  -- Description:  Get DICOM metadata in XML for a given XML metadata schema.
+  -- Input:
+  --   data: The input DICOM binary data stored in ORDSYS.ORDImage object.
+  --   extractOption:
+  --    'ALL': Default. Extract all attributes from the DICOM binary data.
+  --    'MAPPED': Extract only mapped attributes.
+  --    'STANDARD': Extract only DICOM Standard attributes and mapped
+  --                attributes.
+  --   docName: The name  of the mapping document. The default mapping document
+  --     ordcmmp.xml is loaded during installation and refers to the default
+  --     metadata namespace of "http://xmlns.oracle.com/ord/dicom/metadata_1_0"
+  -- Return: Metadata encoded in XML (not schema-validated)
+  -- Exception:  None.
+  --
+  FUNCTION extractMetadata (
+    data IN ORDSYS.ORDImage,
+    extractOption IN VARCHAR2 DEFAULT DEFAULT_EXTRACT_OPTION,
+    docName IN VARCHAR2 DEFAULT DEFAULT_MAPPING_DOC
+  ) RETURN SYS.XMLTYPE;
+  --
+  -- Description: Write/modify the current DICOM binary data with the provided
+  -- metadata by making a copy of the existing DICOM binary data and creating a
+  -- new DICOM binary data. The original DICOM binary data is not changed.
+  -- The destination DICOM binary data's attributes will be from the input XML
+  -- metadata.
+  -- Input:
+  --   src: The input DICOM binary data stored in BLOB.
+  --   metadata: The DICOM metadata in XMLTYPE. It should have all the
+  --             standard attributes and private attributes. The SOP instance
+  --             UID in the metadata must ensure the global uniqueness for the
+  --             destination DICOM binary data.
+  --   dest: BLOB to store the new DICOM binary data with the new metadata.
+  -- Exception: None.
+  --
+  PROCEDURE writeMetadata (
+    src IN BLOB,
+    metadata IN SYS.XMLTYPE,
+    dest IN OUT NOCOPY BLOB
+  );
+  --
+  -- Description: Write/modify the current DICOM binary data with the provided
+  -- metadata by making a copy of the existing DICOM binary data and creating a
+  -- new DICOM binary data. The original DICOM binary data is not changed.
+  -- The destination DICOM binary data's attributes will be from the input XML
+  -- metadata.
+  -- Input:
+  --   src: The input DICOM binary data stored in BFILE.
+  --   metadata: The DICOM metadata in XMLTYPE. It should have all the
+  --             standard attributes and private attributes. The SOP instance
+  --             UID in the metadata must ensure the global uniqueness for the
+  --             destination DICOM binary data.
+  --   dest: BLOB to store the new DICOM binary data with the new metadata.
+  -- Exception: None.
+  --
+  PROCEDURE writeMetadata (
+    src IN BFILE,
+    metadata IN SYS.XMLTYPE,
+    dest IN OUT NOCOPY BLOB
+  );
+  --
+  -- Description: Write/modify the current DICOM binary data with the provided
+  -- metadata by making a copy of the existing DICOM binary data and creating a
+  -- new DICOM binary data. The original DICOM binary data is not changed.
+  -- The destination DICOM binary data's attributes will be from the input XML
+  -- metadata.
+  -- Input:
+  --   src: The input DICOM binary data stored in ORDSYS.ORDImage object.
+  --   metadata: The DICOM metadata in XMLTYPE. It should have all the
+  --             standard attributes and private attributes. The SOP instance
+  --             UID in the metadata must ensure the global uniqueness for the
+  --             destination DICOM binary data.
+  --   dest: BLOB to store the new DICOM binary data with the new metadata.
+  -- Exception:  None.
+  --
+  PROCEDURE writeMetadata (
+    src IN ORDSYS.ORDImage,
+    metadata IN SYS.XMLTYPE,
+    dest IN OUT NOCOPY BLOB
+  );
+  --
+  -- Description: Process and copy the input DICOM image data into a raster
+  -- image. The input DICOM image is not changed.
+  -- Input:
+  --   src: The input DICOM image data stored in the source BLOB.
+  --   command: The command could have following verbs:
+  --            fileformat, frameNumber (default 0), contentformat,
+  --            compressionformat, cut, scale, rotate, etc.
+  --            Refer to "Oracle Multimedia Reference Guide" process command
+  --            for details on each verb.
+  --   dest: The destination image stored in the destination BLOB.
+  -- Exception: None.
+  --
+  PROCEDURE processCopy (
+    src IN BLOB,
+    command IN VARCHAR2,
+    dest IN OUT NOCOPY BLOB
+  );
+  --
+  -- Description: Process and copy the input DICOM image data into a raster
+  -- image. The input DICOM image is not changed.
+  -- Input:
+  --   src: The input DICOM image data stored in the source BFILE.
+  --   command: The command could have following verbs:
+  --            fileformat, frameNumber (default 0), contentformat,
+  --            compressionformat, cut, scale, rotate, etc.
+  --            Refer to "Oracle Multimedia Reference Guide" process command
+  --            for details on each verb.
+  --   dest: The destination image stored in the destination BLOB.
+  -- Exception: None.
+  --
+  PROCEDURE processCopy (
+    src IN BFILE,
+    command IN VARCHAR2,
+    dest IN OUT NOCOPY BLOB
+  );
+  --
+  -- Description: Process and copy the input DICOM image data into a raster
+  -- image. The input DICOM image is not changed.
+  -- Input:
+  --   src: The input DICOM image data stored in the source ORDImage object.
+  --   command: The command could have following verbs:
+  --            fileformat, frameNumber (default 0), contentformat,
+  --            compressionformat, cut, scale, rotate, etc.
+  --            Refer to "Oracle Multimedia Reference Guide" process command
+  --            for details on each verb.
+  --   dest: The destination image stored in the destination BLOB.
+  -- Exception: None.
+  --
+  PROCEDURE processCopy (
+    src IN ORDSYS.ORDImage,
+    command IN VARCHAR2,
+    dest IN OUT NOCOPY BLOB
+  );
+  --
+  -- Description: Process and copy the input DICOM image into a
+  -- new DICOM image/raster image. The input DICOM image is not changed.
+  -- Input:
+  --   src: The input DICOM image stored in the source BLOB.
+  --   command: The command could have following verbs:
+  --            frameNumber (default 0),
+  --            contentformat, compressionformat, cut, scale, rotate.
+  --            Refer to "Oracle Multimedia Reference Guide" process command
+  --            for details on each verb.
+  --   dest_SOP_INSTANCE_UID: The SOP instance UID of the destination
+  --                          DICOM image.
+  --   dest: The destination image stored in the destination BLOB.
+  --   metadata: The new metadata to be written into the new DICOM
+  --             image.
+  -- Exception: None.
+  --
+  PROCEDURE processCopy (
+    src IN BLOB,
+    command IN VARCHAR2,
+    dest_SOP_INSTANCE_UID IN VARCHAR2,
+    dest IN OUT NOCOPY BLOB,
+    metadata IN SYS.XMLTYPE DEFAULT NULL
+  );
+  --
+  -- Description: Process and copy the input DICOM image into a
+  -- new DICOM image/raster image. The input DICOM image is not changed.
+  -- Input:
+  --   src: The input DICOM image stored in the source BFILE.
+  --   command: The command could have following verbs:
+  --            frameNumber (default 0),
+  --            contentformat, compressionformat, cut, scale, rotate.
+  --            Refer to "Oracle Multimedia Reference Guide" process command
+  --            for details on each verb.
+  --   dest_SOP_INSTANCE_UID: The SOP instance UID of the destination
+  --                          DICOM image.
+  --   dest: The destination image stored in the destination BLOB.
+  --   metadata: The new metadata to be written into the new DICOM
+  --             image.
+  -- Exception: None.
+  --
+  PROCEDURE processCopy (
+    src IN BFILE,
+    command IN VARCHAR2,
+    dest_SOP_INSTANCE_UID IN VARCHAR2,
+    dest IN OUT NOCOPY BLOB,
+    metadata IN SYS.XMLTYPE DEFAULT NULL
+  );
+  --
+  -- Description: Process and copy the input DICOM image into a
+  -- new DICOM image/raster image. The input DICOM image is not changed.
+  -- Input:
+  --   src: The input DICOM image stored in the source ORDImage object.
+  --   command: The command could have following verbs:
+  --            frameNumber (default 0),
+  --            contentformat, compressionformat, cut, scale, rotate.
+  --            Refer to "Oracle Multimedia Reference Guide" process command
+  --            for details on each verb.
+  --   dest_SOP_INSTANCE_UID: The SOP instance UID of the destination
+  --                          DICOM image.
+  --   dest: The destination image stored in the destination BLOB.
+  --   metadata: The new metadata to be written into the new DICOM
+  --             image.
+  -- Exception: None.
+  --
+  PROCEDURE processCopy (
+    src IN ORDSYS.ORDImage,
+    command IN VARCHAR2,
+    dest_SOP_INSTANCE_UID IN VARCHAR2,
+    dest IN OUT NOCOPY BLOB,
+    metadata IN SYS.XMLTYPE DEFAULT NULL
+  );
+  --
+  -- Description: Create a DICOM image from a source raster image and
+  -- DICOM metadata.
+  -- Input:
+  --   src: The source raster image stored in BLOB.
+  --   metadata: DICOM metadata in XMLTYPE. It should have all the standard
+  --             and private attributes. It should have a new SOP instance
+  --             UID for the destination DICOM image.
+  --   dest: A DICOM image created from the source image and metadata.
+  -- Exception: None.
+  --
+  PROCEDURE createDICOMImage (
+    src IN BLOB,
+    metadata IN SYS.XMLTYPE,
+    dest IN OUT NOCOPY BLOB
+  );
+  --
+  -- Description: Create a DICOM image from a source raster image and
+  -- DICOM metadata.
+  -- Input:
+  --   src: The source raster image stored in BFILE.
+  --   metadata: DICOM metadata in XMLTYPE. It should have all the standard
+  --             and private attributes. It should have a new SOP instance
+  --             UID for the destination DICOM image.
+  --   dest: A DICOM image created from the source image and metadata.
+  -- Exception:  None.
+  --
+  PROCEDURE createDICOMImage (
+    src IN BFILE,
+    metadata IN SYS.XMLTYPE,
+    dest IN OUT NOCOPY BLOB
+  );
+  --
+  -- Description: Create a DICOM image from a source raster image and
+  -- DICOM metadata.
+  -- Input:
+  --   src: The source raster image stored in ORDImage object.
+  --   metadata: DICOM metadata in XMLTYPE. It should have all the standard
+  --             and private attributes. It should have a new SOP instance
+  --             UID for the destination DICOM image.
+  --   dest: A DICOM image created from the source image and metadata.
+  -- Exception:  None.
+  --
+  PROCEDURE createDICOMImage (
+    src IN ORDSYS.ORDImage,
+    metadata IN SYS.XMLTYPE,
+    dest IN OUT NOCOPY BLOB
+  );
+  --
+  -- Description:    Make the source DICOM binary data anonymous after copying
+  -- into another DICOM binary data. How to make the DICOM binary data
+  -- anonymous is determined by the parameter anonymityDocName.
+  -- Input:
+  --   src: The input DICOM binary data in the source BLOB.
+  --   dest_SOP_INSTANCE_UID: The SOP instance UID of the destination
+  --                          DICOM binary data.
+  --   dest: The anonymous DICOM binary data in the destination BLOB.
+  --   anonymityDocName: The name of the anonymity definition document.
+  -- Exception:  None.
+  --
+  PROCEDURE makeAnonymous (
+    src IN BLOB,
+    dest_SOP_INSTANCE_UID IN VARCHAR2,
+    dest IN OUT NOCOPY BLOB,
+    anonymityDocName IN VARCHAR2 DEFAULT DEFAULT_ANONYMITY_DOC
+  );
+  --
+  -- Description:    Make the source DICOM binary data anonymous after copying
+  -- into another DICOM binary data. How to make the DICOM binary data
+  -- anonymous is determined by the parameter anonymityDocName.
+  -- Input:
+  --   src: The input DICOM binary data in the source BFILE.
+  --   dest_SOP_INSTANCE_UID: The SOP instance UID of the destination
+  --                          DICOM binary data.
+  --   dest: The anonymous DICOM binary data in the destination BLOB.
+  --   anonymityDocName: The name of the anonymity definition document.
+  -- Exception:  None.
+  --
+  PROCEDURE makeAnonymous (
+    src IN BFILE,
+    dest_SOP_INSTANCE_UID IN VARCHAR2,
+    dest IN OUT NOCOPY BLOB,
+    anonymityDocName IN VARCHAR2 DEFAULT DEFAULT_ANONYMITY_DOC
+  );
+  --
+  -- Description:    Make the source DICOM binary data anonymous after copying
+  -- into another DICOM binary data. How to make the DICOM binary data
+  -- anonymous is determined by the parameter anonymityDocName.
+  -- Input:
+  --   src: The input DICOM binary data in the source ORDImage object.
+  --   dest_SOP_INSTANCE_UID: The SOP instance UID of the destination
+  --                          DICOM binary data.
+  --   dest: The anonymous DICOM binary data in the destination BLOB.
+  --   anonymityDocName: The name of the anonymity definition document.
+  -- Exception:  None.
+  --
+  PROCEDURE makeAnonymous (
+    src IN ORDSYS.ORDImage,
+    dest_SOP_INSTANCE_UID IN VARCHAR2,
+    dest IN OUT NOCOPY BLOB,
+    anonymityDocName IN VARCHAR2 DEFAULT DEFAULT_ANONYMITY_DOC
+  );
+  --
+  -- Description:    Check if a DICOM binary data is anonymous according to the
+  -- anonymity definition document.
+  -- Input:
+  --   src: The input DICOM binary data in the source BLOB.
+  --   anonymityDocName: The name of the anonymity definition document.
+  -- Return: 0: not anonymous,
+  --         1: anonymous.
+  -- Exception:  None.
+  --
+  FUNCTION isAnonymous(
+    src IN BLOB,
+    anonymityDocName IN VARCHAR2 DEFAULT DEFAULT_ANONYMITY_DOC
+  ) RETURN INTEGER;
+  --
+  -- Description:    Check if a DICOM binary data is anonymous according to the
+  -- anonymity definition document.
+  -- Input:
+  --   src: The input DICOM binary data in the source BFILE.
+  --   anonymityDocName: The name of the anonymity definition document.
+  -- Return: 0: not anonymous,
+  --         1: anonymous.
+  -- Exception:  None.
+  --
+  FUNCTION isAnonymous(
+    src IN BFILE,
+    anonymityDocName IN VARCHAR2 DEFAULT DEFAULT_ANONYMITY_DOC
+  ) RETURN INTEGER;
+  --
+  -- Description:    Check if a DICOM binary data is anonymous according to the
+  -- anonymity definition document.
+  -- Input:
+  --   src: The input DICOM binary data in the source ORDImage object.
+  --   anonymityDocName: The name of the anonymity definition document.
+  -- Return: 0: not anonymous,
+  --         1: anonymous.
+  -- Exception:  None.
+  --
+  FUNCTION isAnonymous(
+    src IN ORDSYS.ORDImage,
+    anonymityDocName IN VARCHAR2 DEFAULT DEFAULT_ANONYMITY_DOC
+  ) RETURN INTEGER;
+  --
+  -- Description:    Check if a DICOM binary data conforms to a certain set of
+  -- constraint rules identified by the parameter constraintDocName.
+  -- Input:
+  --   src: The input DICOM binary data in the source BLOB.
+  --   constraintDocName: The name of the constraint.
+  -- Return: 0: invalid,
+  --         1: valid.
+  -- Exception:  None.
+  --
+  FUNCTION isConformanceValid (
+    src IN BLOB,
+    constraintName IN VARCHAR2
+  ) RETURN INTEGER;
+  --
+  -- Description:    Check if a DICOM binary data conforms to a certain set of
+  -- constraint rules identified by the parameter constraintName.
+  -- Input:
+  --   src: The input DICOM binary data in the source BFILE.
+  --   constraintName: The name of the constraint.
+  -- Return: 0: invalid,
+  --         1: valid.
+  -- Exception:  None.
+  --
+  FUNCTION isConformanceValid (
+    src IN BFILE,
+    constraintName IN VARCHAR2
+  ) RETURN INTEGER;
+  --
+  -- Description:    Check if a DICOM binary data conforms to a certain set of
+  -- constraint rules identified by the parameter constraintDocName.
+  -- Input:
+  --   src: The input DICOM binary data in the source ORDImage object.
+  --   constraintDocName: The name of the constraint.
+  -- Return: 0: invalid,
+  --         1: valid.
+  -- Exception:  None.
+  --
+  FUNCTION isConformanceValid (
+    src IN ORDSYS.ORDImage,
+    constraintName IN VARCHAR2
+  ) RETURN INTEGER;
+  --Name: getMappingXPath
+  --Desc:  Returns the absolute xpath from the specified mapping document
+  --Input:
+  --      tag     :  specifies a tag of the mapping document .
+  --                 This tag is a hexadecimal string  eg: '00110001'.
+  --                 The tag must be a simple tag  and not a wild card tag like 6011xx01
+  --      docName :  specifies the name of a mapping document.
+  --                The default value is 'ordcmmp.xml'
+  --      definerName: specifies the definer name of the tag in the mapping document.
+  --                  The default value is 'DICOM' which refers to the DICOM standard.
+  -- Returns: The absolute xpath associated with the tag and definer in the
+  --          specified mapping document.
+  --          Null  - if the tag  is not associated with a path.
+  FUNCTION getMappingXpath(
+    tag IN VARCHAR2,
+    docName IN VARCHAR2 DEFAULT 'ordcmmp.xml',
+    definerName IN VARCHAR2 DEFAULT 'DICOM'
+  ) RETURN VARCHAR2 DETERMINISTIC;
+  --Name: getDictionaryTag
+  --Desc: :  Lookup the standard and/or private dictionaries for the given tag name
+  --         and definer name and return a hexadecimal tag string.
+  --Input:
+  -- attributeName:  specifies the name of tag in the standard or private dictionary .
+  --            eg: 'Patient's Name'
+  -- definerName: specifies the definer name of the tag  in the standard
+  --              or private dictionary. The default value is 'DICOM'
+  --Returns: The hexadecimal tag string for the given tag name and definer name
+  --           The returned string will always be a  simple tag like 60116011.
+  FUNCTION getDictionaryTag(
+    attributeName IN VARCHAR2,
+    definerName IN VARCHAR2 DEFAULT 'DICOM'
+  ) return varchar2 DETERMINISTIC;
+  --Name: setDataModel
+  --Desc: Loads the default repository data model into sql and java
+  --Input: modelName - Only DEFAULT is supported in this release
+  --Returns: None
+  PROCEDURE setDataModel(modelName IN VARCHAR2 DEFAULT 'DEFAULT');
+  --Name: setDataModel with force option ( Not recommended)
+  -- Desc: unconditionally refreshes the datamodel if force = 1.
+  --Returns: None
+  PROCEDURE setDataModel(
+    modelName IN VARCHAR2 DEFAULT 'DEFAULT',
+    force in NUMBER
+  );
+  END ORD_DICOM;

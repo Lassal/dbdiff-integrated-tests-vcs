@@ -1,0 +1,79 @@
+schema: SYS
+name: USER_ADVISOR_SQLSTATS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    t.name task_name,
+    p.TASK_ID,
+    exec_name EXECUTION_NAME,
+    exec_type EXECUTION_TYPE,
+    OBJECT_ID,
+    p.plan_id,
+    p.sql_id,
+    p.PLAN_HASH as plan_hash_value,
+    p.spare_n1 as attr1,
+    -- the time stats in the old version are in milliseconds. In the
+    -- new code, we used a bit in "flags" to indicate that if the
+    -- time stats are in microseconds in the new code. So if
+    -- the flags are not set or NULL, we will need to convert them
+    -- into microseconds.
+    decode(
+      bitand(nvl(s.flags, 0), 2),
+      2,
+      parse_time,
+      parse_time * 1000
+    ) as PARSE_TIME,
+    decode(
+      bitand(nvl(s.flags, 0), 2),
+      2,
+      exec_time,
+      exec_time * 1000
+    ) as ELAPSED_TIME,
+    decode(
+      bitand(nvl(s.flags, 0), 2),
+      2,
+      cpu_time,
+      cpu_time * 1000
+    ) as CPU_TIME,
+    decode(
+      bitand(nvl(s.flags, 0), 2),
+      2,
+      user_io_time,
+      user_io_time * 1000
+    ) as USER_IO_TIME,
+    BUFFER_GETS,
+    DISK_READS,
+    DIRECT_WRITES,
+    s.spare_n1 PHYSICAL_READ_REQUESTS,
+    s.spare_n2 PHYSICAL_WRITE_REQUESTS,
+    s.spare_n3 PHYSICAL_READ_BYTES,
+    s.spare_n4 PHYSICAL_WRITE_BYTES,
+    ROWS_PROCESSED,
+    FETCHES,
+    EXECUTIONS,
+    END_OF_FETCH_COUNT,
+    OPTIMIZER_COST,
+    OTHER,
+    TESTEXEC_TOTAL_EXECS,
+    io_interconnect_bytes,
+    decode(bitand(s.flags, 1), 1, 'Y', 'N') as TESTEXEC_FIRST_EXEC_IGNORED,
+    p.con_dbid
+  FROM
+    wri$_adv_sqlt_plan_hash p,
+    wri$_adv_sqlt_plan_stats s,
+    wri$_adv_executions e,
+    wri$_adv_tasks t
+  WHERE
+    p.plan_id = s.plan_id
+    AND p.exec_name = e.name
+    AND p.task_id = e.task_id
+    AND p.task_id = t.id
+    AND t.owner# = SYS_CONTEXT('USERENV', 'CURRENT_USERID')
+    AND (
+      p.attribute < power (2, 16)
+      OR p.attribute >= 3 * power (2, 16)
+    )
+    /* hide special plans */
+columns: []
+referencedTables: []

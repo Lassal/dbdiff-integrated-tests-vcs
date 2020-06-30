@@ -1,0 +1,24 @@
+schema: SYS
+name: USER_ADDM_INSTANCES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .task_id as task_id,
+    a .instance_number as instance_number,
+    a .instance_name as instance_name,
+    a .host_name as host_name,
+    a .status as status,
+    a .database_time as database_time,
+    a .active_sessions as active_sessions,
+    a .perc_active_sess as perc_active_sess,
+    a .meter_level as meter_level,
+    a .local_task_id as local_task_id
+  from
+    wri$_adv_addm_inst a,
+    wri$_adv_tasks tn
+  where
+    a .task_id = tn.id
+    and tn.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

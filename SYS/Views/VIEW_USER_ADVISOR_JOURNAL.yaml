@@ -1,0 +1,41 @@
+schema: SYS
+name: USER_ADVISOR_JOURNAL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .task_id as task_id,
+    b.name as task_name,
+    a .exec_name as execution_name,
+    a .seq_id as journal_entry_seq,
+    decode(
+      a .type,
+      1,
+      'FATAL',
+      2,
+      'ERROR',
+      3,
+      'WARNING',
+      4,
+      'INFORMATION',
+      5,
+      'INFORMATION2',
+      6,
+      'INFORMATION3',
+      7,
+      'INFORMATION4',
+      8,
+      'INFORMATION5',
+      9,
+      'INFORMATION6'
+    ) as journal_entry_type,
+    dbms_advisor.format_message_group(a .msg_id) as journal_entry
+  from
+    wri$_adv_journal a,
+    wri$_adv_tasks b
+  where
+    a .task_id = b.id
+    and bitand(b.property, 4) = 4
+    and b.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

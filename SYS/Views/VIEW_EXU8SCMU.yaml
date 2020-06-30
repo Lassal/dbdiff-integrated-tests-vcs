@@ -1,0 +1,20 @@
+schema: SYS
+name: EXU8SCMU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "SOWNER",
+    "SOWNERID",
+    "VNAME",
+    "TABNUM",
+    "SNACOL",
+    "MASCOL",
+    "MASPOS",
+    "ROLE"
+  FROM
+    sys.exu8scm
+  WHERE
+    sownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

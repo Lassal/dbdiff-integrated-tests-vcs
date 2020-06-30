@@ -1,0 +1,23 @@
+schema: MDSYS
+name: USER_GEOMETRY_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "F_TABLE_SCHEMA",
+    "F_TABLE_NAME",
+    "F_GEOMETRY_COLUMN",
+    "G_TABLE_SCHEMA",
+    "G_TABLE_NAME",
+    "STORAGE_TYPE",
+    "GEOMETRY_TYPE",
+    "COORD_DIMENSION",
+    "MAX_PPR",
+    "SRID"
+  from
+    OGIS_GEOMETRY_COLUMNS
+  where
+    f_table_schema = user
+    and g_table_schema = user
+columns: []
+referencedTables: []

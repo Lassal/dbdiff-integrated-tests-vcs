@@ -1,0 +1,27 @@
+schema: SYS
+name: KU$_EDITION_TRIG_EXISTS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.obj#,
+    t.baseobject,
+    o.owner_name
+  from
+    sys.ku$_edition_schemaobj_view o,
+    sys.trigger$ t
+  where
+    t.obj# = o.obj_num
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

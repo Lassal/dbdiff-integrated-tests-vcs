@@ -1,0 +1,67 @@
+schema: SYS
+name: KU$_PROCDEPOBJ_GRANT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    o.obj_num,
+    value(o),
+    p.class,
+    p.prepost,
+    p.type#,
+    p.level#,
+    p.package,
+    p.schema,
+    value(oo),
+    sys.dbms_metadata.get_procobj_grant (
+      p.package,
+      p.schema,
+      'GRANT_EXP',
+      o.obj_num,
+      (
+        select
+          1
+        from
+          dual
+        where
+          (
+            SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+            OR EXISTS (
+              SELECT
+                *
+              FROM
+                sys.session_roles
+              WHERE
+                role = 'SELECT_CATALOG_ROLE'
+            )
+          )
+      )
+    )
+  from
+    sys.ku$_schemaobj_view o,
+    sys.ku$_schemaobj_view oo,
+    sys.exppkgobj$ p,
+    sys.expdepobj$ d
+  where
+    p.class = 3
+    and p.type# = o.type_num
+    and d.d_obj# = o.obj_num
+    AND d.p_obj# = oo.obj_num
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+  order by
+    p.level#,
+    p.type#
+columns: []
+referencedTables: []

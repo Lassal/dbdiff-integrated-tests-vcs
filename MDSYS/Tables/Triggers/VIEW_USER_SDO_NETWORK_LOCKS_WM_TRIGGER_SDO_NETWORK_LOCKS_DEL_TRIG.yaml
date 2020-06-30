@@ -1,0 +1,18 @@
+targetObjectSchema: MDSYS
+targetObjectName: USER_SDO_NETWORK_LOCKS_WM
+targetObjectType: VIEW
+name: SDO_NETWORK_LOCKS_DEL_TRIG
+eventTiming: INSTEAD OF
+event: DELETE
+eventActionBody: |-
+  DECLARE
+    user_name VARCHAR2(256);
+  BEGIN
+    EXECUTE IMMEDIATE 'SELECT USER FROM DUAL' INTO user_name;
+  DELETE FROM
+    sdo_network_locks_wm
+  WHERE
+    NLS_UPPER(SDO_OWNER) = NLS_UPPER(user_name)
+    AND lock_id = :o.lock_id;
+  END;
+executionOrder: 1

@@ -1,0 +1,22 @@
+schema: CTXSYS
+name: CTX_USER_PREFERENCES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    pre_name pre_name,
+    cla_name pre_class,
+    obj_name pre_object
+  from
+    dr$preference,
+    dr$object,
+    dr$class
+  where
+    pre_obj_id = obj_id
+    and pre_cla_id = obj_cla_id
+    and obj_cla_id = cla_id
+    and obj_system = 'N'
+    and cla_system = 'N'
+    and pre_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,286 @@
+schema: SYS
+name: DBMS_METADATA_DIFF
+routineType: PACKAGE
+returnParamater:
+  name: OPENC.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: ADD_DOCUMENT(1).HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_DOCUMENT(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: ADD_DOCUMENT(2).HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_DOCUMENT(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: CLOSE.HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: COMPARE_ALTER.OBJECT_TYPE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_ALTER.NAME1
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_ALTER.NAME2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_ALTER.SCHEMA1
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_ALTER.SCHEMA2
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_ALTER.NETWORK_LINK1
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_ALTER.NETWORK_LINK2
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_ALTER_XML.OBJECT_TYPE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_ALTER_XML.NAME1
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_ALTER_XML.NAME2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_ALTER_XML.SCHEMA1
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_ALTER_XML.SCHEMA2
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_ALTER_XML.NETWORK_LINK1
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_ALTER_XML.NETWORK_LINK2
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_SXML.OBJECT_TYPE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_SXML.NAME1
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_SXML.NAME2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_SXML.SCHEMA1
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_SXML.SCHEMA2
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_SXML.NETWORK_LINK1
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_SXML.NETWORK_LINK2
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FETCH_CLOB(1).HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: FETCH_CLOB(2).HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: FETCH_CLOB(2).XMLDOC
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: FETCH_CLOB(3).HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: FETCH_CLOB(3).XMLDOC
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: FETCH_CLOB(3).DIFFS
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: OPENC.OBJECT_TYPE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_metadata_diff AUTHID CURRENT_USER AS ---------------------------------------------------------------------
+  -- Overview
+  -- This pkg implements the comparison interface of the Data Pump Metadata API.
+  --
+  --      USE OF THIS PACKAGE REQUIRES A LICENSE TO THE ORACLE ENTERPRISE
+  --      MANAGER CHANGE MANAGEMENT OPTION.
+  ---------------------------------------------------------------------
+  -- SECURITY
+  -- This package is owned by SYS with execute access granted to PUBLIC.
+  -- It runs with invokers rights, i.e., with the security profile of
+  -- the caller.  It calls DBMS_METADATA_INT to perform privileged
+  -- functions.
+  ---------------------------
+  -- PROCEDURES AND FUNCTIONS
+  --
+  -- OPENC:
+  --        This function establishes a 'compare' context and specifies the
+  --        object type for comparing to (S)XML documents.
+  -- PARAMETERS:
+  --      object_type  - Identifies the type of objects to be compared; i.e.,
+  --              TABLE, INDEX, etc.
+  -- RETURNS:
+  --      A handle to be used in subsequent calls to ADD_DOCUMENT,
+  --      COMPARE_SXML, etc
+  -- EXCEPTIONS:
+  --      INVALID_ARGVAL  - a NULL or invalid value was supplied for an input
+  --              parameter.
+  FUNCTION openc (object_type IN VARCHAR2) RETURN NUMBER;
+  -- ADD_DOCUMENT : Specifies an (S)XML document (as XMLTYPE) to be compared.
+  -- PARAMETERS:
+  --      handle          - Context handle from previous OPENC call.
+  --      document        - document (xmltype) to be compared
+  -- EXCEPTIONS:
+  --      INVALID_ARGVAL  - a NULL or invalid value was supplied for an input
+  --              parameter.
+  PROCEDURE add_document (
+    handle IN NUMBER,
+    document IN sys.XMLType
+  );
+  -- ADD_DOCUMENT : Specifies an (S)XML document (as clob) to be compared.
+  -- PARAMETERS:
+  --      handle          - Context handle from previous OPENC call.
+  --      document        - document (clob) to be compared
+  -- EXCEPTIONS:
+  --      INVALID_ARGVAL  - a NULL or invalid value was supplied for an input
+  --              parameter.
+  PROCEDURE add_document (
+    handle IN NUMBER,
+    document IN CLOB
+  );
+  -- PROCEDURE FETCH_CLOB: Return SXML diff document.
+  -- PARAMETERS:  handle - (IN) Context handle from previous OPENC call.
+  --              xmldoc - (IN OUT) previously allocated CLOB to hold the
+  --                       returned diff document.
+  --              diffs  - (OUT) flag (1 == diffs found; 0==no diffs found)
+  FUNCTION fetch_clob (handle IN NUMBER) RETURN CLOB;
+  PROCEDURE fetch_clob (
+    handle IN NUMBER,
+    xmldoc IN OUT NOCOPY CLOB
+  );
+  PROCEDURE fetch_clob (
+    handle IN NUMBER,
+    xmldoc IN OUT NOCOPY CLOB,
+    diffs OUT BOOLEAN
+  );
+  -- CLOSE:       Cleanup all context associated with handle.
+  -- PARAMETERS:  handle  - Context handle from previous OPENC call.
+  PROCEDURE CLOSE (handle IN NUMBER);
+  -- COMPARE_SXML:
+  --        The functions compares the metadata for two objects and returns
+  --        an sxml difference document.
+  -- RETURNS:
+  --        CLOB containing sxml difference document.
+  -- PARAMETERS:
+  --        object_type   - type of object to be retrieved and compared
+  --        name1         - first object to be compared
+  --        name2         - second object to be compared
+  --        schema1       - schema of the first obj to be compared
+  --        schema2       - schema of the second obj to be compared
+  --        network_link1 - name of a database link where the first obj
+  --                        resides.
+  --        network_link2 - name of a database link where the second obj
+  --                        resides.
+  -- EXCEPTIONS:  Throws an exception if COMPARE failed.
+  FUNCTION compare_sxml (
+    object_type IN VARCHAR2,
+    name1 IN VARCHAR2,
+    name2 IN VARCHAR2,
+    schema1 IN VARCHAR2 DEFAULT NULL,
+    schema2 IN VARCHAR2 DEFAULT NULL,
+    network_link1 IN VARCHAR2 DEFAULT NULL,
+    network_link2 IN VARCHAR2 DEFAULT NULL
+  ) RETURN CLOB;
+  -- COMPARE_ALTER:
+  --        This function compares the metadata for two objects and returns a
+  --        set of ALTER statements for making object 1 like object2.
+  -- RETURNS:
+  --        CLOB containing alter statements for making object 1 like object 2
+  -- PARAMETERS:
+  --        object_type   - type of object to be retrieved and compared
+  --        name1         - first object to be compared
+  --        name2         - second object to be compared
+  --        schema1       - schema of the first obj to be compared
+  --        schema2       - schema of the second obj to be compared
+  --        network_link1 - name of a database link where the first obj
+  --                        resides.
+  --        network_link2 - name of a database link where the second obj
+  --                        resides.
+  -- EXCEPTIONS:  Throws an exception if COMPARE failed.
+  FUNCTION compare_alter (
+    object_type IN VARCHAR2,
+    name1 IN VARCHAR2,
+    name2 IN VARCHAR2,
+    schema1 IN VARCHAR2 DEFAULT NULL,
+    schema2 IN VARCHAR2 DEFAULT NULL,
+    network_link1 IN VARCHAR2 DEFAULT NULL,
+    network_link2 IN VARCHAR2 DEFAULT NULL
+  ) RETURN CLOB;
+  -- COMPARE_ALTER_XML:
+  --        This function compares the metadata for two objects and returns
+  --        an ALTER_XML document.
+  -- RETURNS:
+  --        CLOB containing sxml difference document.
+  -- PARAMETERS:
+  --        object_type   - type of object to be retrieved and compared
+  --        name1         - first object to be compared
+  --        name2         - second object to be compared
+  --        schema1       - schema of the first obj to be compared
+  --        schema2       - schema of the second obj to be compared
+  --        network_link1 - name of a database link where the first obj
+  --                        resides.
+  --        network_link2 - name of a database link where the second obj
+  --                        resides.
+  -- EXCEPTIONS:  Throws an exception if COMPARE failed.
+  FUNCTION compare_alter_xml (
+    object_type IN VARCHAR2,
+    name1 IN VARCHAR2,
+    name2 IN VARCHAR2,
+    schema1 IN VARCHAR2 DEFAULT NULL,
+    schema2 IN VARCHAR2 DEFAULT NULL,
+    network_link1 IN VARCHAR2 DEFAULT NULL,
+    network_link2 IN VARCHAR2 DEFAULT NULL
+  ) RETURN CLOB;
+  END DBMS_METADATA_DIFF;

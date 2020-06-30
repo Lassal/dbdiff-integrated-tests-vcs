@@ -1,0 +1,143 @@
+schema: SYS
+name: USER_USTATS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    o.subname,
+    decode (bitand(s.property, 3), 1, 'INDEX', 2, 'COLUMN'),
+    decode (
+      bitand(s.property, 12),
+      8,
+      'DIRECT',
+      4,
+      'IMPLICIT'
+    ),
+    c .name,
+    u1.name,
+    o1.name,
+    s.statistics
+  from
+    sys.user$ u,
+    sys.obj$ o,
+    sys.col$ c,
+    sys.ustats$ s,
+    sys.user$ u1,
+    sys.obj$ o1
+  where
+    bitand(s.property, 3) = 2
+    and s.obj# = o.obj#
+    and o.owner# = u.user#
+    and s.intcol# = c .intcol#
+    and s.statstype# = o1.obj#
+    and o1.owner# = u1.user#
+    and c .obj# = s.obj#
+    and o.owner# = userenv('SCHEMAID')
+  union all
+    -- partition case
+  select
+    u.name,
+    o.name,
+    o.subname,
+    decode (bitand(s.property, 3), 1, 'INDEX', 2, 'COLUMN'),
+    decode (
+      bitand(s.property, 12),
+      8,
+      'DIRECT',
+      4,
+      'IMPLICIT'
+    ),
+    c .name,
+    u1.name,
+    o1.name,
+    s.statistics
+  from
+    sys.user$ u,
+    sys.user$ u1,
+    sys.obj$ o,
+    sys.obj$ o1,
+    sys.col$ c,
+    sys.ustats$ s,
+    sys.tabpart$ t,
+    sys.obj$ o2
+  where
+    bitand(s.property, 3) = 2
+    and s.obj# = o.obj#
+    and s.obj# = t.obj#
+    and t.bo# = o2.obj#
+    and o2.owner# = u.user#
+    and s.intcol# = c .intcol#
+    and s.statstype# = o1.obj#
+    and o1.owner# = u1.user#
+    and t.bo# = c .obj#
+    and o.owner# = userenv('SCHEMAID')
+  union all
+  select
+    u.name,
+    o.name,
+    o.subname,
+    decode (bitand(s.property, 3), 1, 'INDEX', 2, 'COLUMN'),
+    decode (
+      bitand(s.property, 12),
+      8,
+      'DIRECT',
+      4,
+      'IMPLICIT'
+    ),
+    NULL,
+    u1.name,
+    o1.name,
+    s.statistics
+  from
+    sys.user$ u,
+    sys.obj$ o,
+    sys.ustats$ s,
+    sys.user$ u1,
+    sys.obj$ o1
+  where
+    bitand(s.property, 3) = 1
+    and s.obj# = o.obj#
+    and o.owner# = u.user#
+    and s.statstype# = o1.obj#
+    and o1.owner# = u1.user#
+    and o.type# = 1
+    and o.owner# = userenv('SCHEMAID')
+  union all
+    -- index partition
+  select
+    u.name,
+    o.name,
+    o.subname,
+    decode (bitand(s.property, 3), 1, 'INDEX', 2, 'COLUMN'),
+    decode (
+      bitand(s.property, 12),
+      8,
+      'DIRECT',
+      4,
+      'IMPLICIT'
+    ),
+    NULL,
+    u1.name,
+    o1.name,
+    s.statistics
+  from
+    sys.user$ u,
+    sys.user$ u1,
+    sys.obj$ o,
+    sys.obj$ o1,
+    sys.ustats$ s,
+    sys.indpart$ i,
+    sys.obj$ o2
+  where
+    bitand(s.property, 3) = 1
+    and s.obj# = o.obj#
+    and s.obj# = i.obj#
+    and i.bo# = o2.obj#
+    and o2.owner# = u.user#
+    and s.statstype# = o1.obj#
+    and o1.owner# = u1.user#
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_XS_REALM_CONSTRAINTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    policy,
+    realm_order,
+    realm_type,
+    static,
+    realm,
+    realm_description,
+    acl,
+    acl_owner,
+    parent_object,
+    parent_schema
+  from
+    sys.dba_xs_realm_constraints
+  where
+    policy_owner = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

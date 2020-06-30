@@ -1,0 +1,31 @@
+schema: OLAPSYS
+name: ALL$OLAP2_AW_DIM_LEVELS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    AW.AWOWNER as AW_OWNER,
+    AW.AWNAME as AW_NAME,
+    AW.AWOBJECT as AW_LOGICAL_NAME,
+    AW.COL1 as LEVEL_NAME,
+    AW.COL2 as DISPLAY_NAME,
+    AW.COL3 as DESCRIPTION
+  FROM
+    TABLE(
+      CAST (
+        OLAP_TABLE(
+          'SYS.AWMD duration query',
+          'olapsys.ALL_OLAP2_AW_METADATA_T',
+          'ACTIVE_CATALOG ''ALL_DIM_LEVELS'' ''ALL''',
+          'MEASURE AWOWNER FROM SYS.AWMD!DL_OWNER
+                          MEASURE AWNAME FROM SYS.AWMD!DL_AWNAME
+                          MEASURE AWOBJECT FROM SYS.AWMD!DL_DIMENSION_NAME
+                          MEASURE COL1 FROM SYS.AWMD!DL_LEVEL_NAME
+                          MEASURE COL2 FROM SYS.AWMD!DL_DISPLAY_NAME
+                          MEASURE COL3 FROM SYS.AWMD!DL_DESCRIPTION
+                          DIMENSION AWMDKEY FROM SYS.AWMD!AWMDKEY_DL'
+        ) AS olapsys.ALL_OLAP2_AW_METADATA_T
+      )
+    ) AW
+columns: []
+referencedTables: []

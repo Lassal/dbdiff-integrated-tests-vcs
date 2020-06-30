@@ -1,0 +1,18 @@
+schema: SYS
+name: ALL_REPSCHEMA
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.sname,
+    r.dblink,
+    r.masterdef,
+    r.snapmaster,
+    r.master_comment,
+    r.sname,
+    r.master,
+    r.gowner
+  from
+    repcat_repschema r
+columns: []
+referencedTables: []

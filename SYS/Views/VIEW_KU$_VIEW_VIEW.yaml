@@ -1,0 +1,148 @@
+schema: SYS
+name: KU$_VIEW_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '4',
+    v.obj#,
+    value(o),
+    replace(v.audit$, chr(0), '-'),
+    v.cols,
+    v.intcols,
+    bitand(v.property, 4294967295),
+    trunc(v.property / power(2, 32)),
+    v.flags,
+    v.textlength,
+    sys.dbms_metadata_util.long2clob(
+      v.textlength,
+      'SYS.VIEW$',
+      'TEXT',
+      v.rowid
+    ),
+    sys.dbms_metadata.parse_query(
+      o.owner_name,
+      v.textlength,
+      'SYS.VIEW$',
+      'TEXT',
+      v.rowid,
+      bitand(v.property, 16384),
+      (
+        select
+          case
+            when exists (
+              select
+                cd.con#
+              from
+                cdef$ cd
+              where
+                cd.obj# = v.obj#
+                and cd.type# = 5
+            ) then 1
+            else 0
+          end
+        from
+          dual
+      )
+    ),
+    (
+      select
+        value (t)
+      from
+        sys.ku$_constraint0_view t,
+        cdef$ cd
+      where
+        cd.obj# = v.obj#
+        and t.con_num = cd.con#
+        and cd.type# = 5
+    ),
+    NULL,
+    cast(
+      multiset(
+        select
+          *
+        from
+          ku$_simple_col_view c
+        where
+          c .obj_num = v.obj#
+          and (bitand(v.property, 1) = 0)
+        order by
+          c .intcol_num
+      ) as ku$_simple_col_list_t
+    ),
+    cast(
+      multiset(
+        select
+          *
+        from
+          ku$_column_view c
+        where
+          c .obj_num = v.obj#
+          and (bitand(v.property, 1) = 1)
+        order by
+          c .intcol_num
+      ) as ku$_column_list_t
+    ),
+    tv.typeowner,
+    tv.typename,
+    tv.typetextlength,
+    tv.typetext,
+    tv.oidtextlength,
+    tv.oidtext,
+    tv.transtextlength,
+    sys.dbms_metadata_util.long2varchar(
+      tv.transtextlength,
+      'SYS.TYPED_VIEW$',
+      'TRANSTEXT',
+      tv.rowid
+    ),
+    tv.undertextlength,
+    sys.dbms_metadata_util.long2varchar(
+      tv.undertextlength,
+      'SYS.TYPED_VIEW$',
+      'UNDERTEXT',
+      tv.rowid
+    ),
+    cast(
+      multiset(
+        select
+          *
+        from
+          ku$_constraint1_view con
+        where
+          con.obj_num = v.obj#
+      ) as ku$_constraint1_list_t
+    ),
+    cast(
+      multiset(
+        select
+          *
+        from
+          ku$_constraint2_view con
+        where
+          con.obj_num = v.obj#
+      ) as ku$_constraint2_list_t
+    )
+  from
+    sys.ku$_edition_schemaobj_view o,
+    sys.obj$ oo,
+    sys.view$ v,
+    sys.typed_view$ tv
+  where
+    oo.obj# = o.obj_num
+    and oo.obj# = v.obj#
+    and oo.obj# = tv.obj# (+)
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

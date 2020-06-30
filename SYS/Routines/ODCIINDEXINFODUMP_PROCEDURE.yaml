@@ -1,0 +1,67 @@
+schema: SYS
+name: ODCIINDEXINFODUMP
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: IA
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE ODCIIndexInfoDump(ia ODCIIndexInfo) IS col NUMBER;
+  BEGIN
+    if ia is null then dbms_output.put_line('ODCIIndexInfo is null');
+  return;
+  end if;
+  dbms_output.put_line('ODCIIndexInfo');
+  dbms_output.put_line('Index owner : ' || ia.IndexSchema);
+  dbms_output.put_line('Index name : ' || ia.IndexName);
+  if (ia.IndexPartition IS NOT NULL) then dbms_output.put_line('Index partition name : ' || ia.IndexPartition);
+  end if;
+  if (ia.IndexInfoFlags != 0) then ODCIIndexInfoFlagsDump(ia.IndexInfoFlags);
+  end if;
+  if (
+    bitand(ia.IndexInfoFlags, ODCIConst.Parallel) = ODCIConst.Parallel
+  ) then if (
+    ia.IndexParaDegree < ODCIConst.DefaultDegree
+    and ia.IndexParaDegree > 0
+  ) then dbms_output.put_line('Parallel degree : ' || ia.IndexParaDegree);
+  elsif (ia.IndexParaDegree = ODCIConst.DefaultDegree) then dbms_output.put_line('Parallel degree : DEFAULT');
+  end if;
+  end if;
+  -- use first index column's table name as table name for index
+  -- (ok since all index columns  belong to same table)
+  dbms_output.put_line('Table owner : ' || ia.IndexCols(1) .TableSchema);
+  dbms_output.put_line('Table name : ' || ia.IndexCols(1) .TableName);
+  if (ia.IndexCols(1) .TablePartition IS NOT NULL) then dbms_output.put_line(
+    'Table partition name : ' || ia.IndexCols(1) .TablePartition
+  );
+  end if;
+  FOR col IN ia.IndexCols.FIRST..ia.IndexCols.LAST
+  LOOP
+    dbms_output.put_line(
+      'Indexed column : ' || ia.IndexCols(col) .ColName
+    );
+  dbms_output.put_line(
+      'Indexed column type :' || ia.IndexCols(col) .ColTypeName
+    );
+  dbms_output.put_line(
+      'Indexed column type schema:' || ia.IndexCols(col) .ColTypeSchema
+    );
+  if (ia.IndexCols(col) .ColInfoFlags != 0) then ODCIColInfoFlagsDump(ia.IndexCols(col) .ColInfoFlags);
+  end if;
+  if (ia.IndexCols(col) .OrderByPosition > 0) then dbms_output.put_line(
+    'Indexed column position in order by: ' || ia.IndexCols(col) .OrderByPosition
+  );
+  end if;
+  END
+  LOOP;
+  if (ia.IndexPartitionIden != 0) then dbms_output.put_line(
+      'Index partition identifier : ' || ia.IndexPartitionIden
+    );
+  end if;
+  if (ia.IndexPartitionTotal > 1) then dbms_output.put_line(
+    'Index partition total : ' || ia.IndexPartitionTotal
+  );
+  end if;
+  END;

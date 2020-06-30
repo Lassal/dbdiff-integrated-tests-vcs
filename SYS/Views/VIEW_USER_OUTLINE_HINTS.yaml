@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_OUTLINE_HINTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.ol_name,
+    h.node#,
+    h.stage#,
+    table_pos,
+    NVL(h.hint_string, h.hint_text)
+  from
+    outln.ol$ o,
+    outln.ol$hints h,
+    sys.user$ u
+  where
+    o.ol_name = h.ol_name
+    and o.creator = u.name
+    and u.user# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

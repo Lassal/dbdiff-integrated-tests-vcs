@@ -1,0 +1,19 @@
+schema: SYS
+name: DBA_FLASHBACK_ARCHIVE_TS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    f.FANAME,
+    fts.FA#,
+    t.NAME,
+    decode(fts.QUOTA, 0, NULL, fts.QUOTA)
+  from
+    SYS_FBA_FA f,
+    SYS_FBA_TSFA fts,
+    TS$ t
+  where
+    fts.TS# = t.TS#
+    and fts.FA# = f.FA#
+columns: []
+referencedTables: []

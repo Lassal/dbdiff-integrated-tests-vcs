@@ -1,0 +1,18 @@
+schema: SYS
+name: KU$_FUNC_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.vers_major,
+    t.vers_minor,
+    t.obj_num,
+    t.type_num,
+    t.schema_obj,
+    t.source_lines
+  from
+    ku$_base_proc_view t
+  where
+    t.type_num = 8
+columns: []
+referencedTables: []

@@ -1,0 +1,14 @@
+schema: SYS
+name: CDB_OPERATOR_COMMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OWNER",
+    "OPERATOR_NAME",
+    "COMMENTS",
+    "CON_ID"
+  FROM
+    CONTAINERS("SYS"."DBA_OPERATOR_COMMENTS")
+columns: []
+referencedTables: []

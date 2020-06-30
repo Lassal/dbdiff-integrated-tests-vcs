@@ -1,0 +1,37 @@
+schema: CTXSYS
+name: CTX_USER_PENDING
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ ORDERED USE_NL(i p d)*/
+    idx_name pnd_index_name,
+    ixp_name pnd_partition_name,
+    pnd_rowid,
+    pnd_timestamp
+  from
+    dr$index i,
+    dr$index_partition p,
+    dr$pending d
+  where
+    idx_id = ixp_idx_id
+    and pnd_pid = ixp_id
+    and pnd_cid != 0
+    and pnd_cid = idx_id
+    and idx_owner# = userenv('SCHEMAID')
+  UNION ALL
+  select
+    /*+ ORDERED USE_NL(i d) */
+    idx_name pnd_index_name,
+    null pnd_partition_name,
+    pnd_rowid,
+    pnd_timestamp
+  from
+    dr$index i,
+    dr$pending d
+  where
+    pnd_pid = 0
+    and pnd_cid = idx_id
+    and idx_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,124 @@
+schema: SYS
+name: DBMS_AUTO_TASK
+routineType: PACKAGE
+returnParamater:
+  name: WINDOW_CALENDAR.(--return--)
+  ordinalPosition: 0
+  dataType: TABLE
+  parameterMode: OUT
+parameters:
+- name: CHECK_CLIENT_STATUS_OVERRIDE.CLIENT_ID
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DECODE_ATTRIBUTES.ATTR
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_CLIENT_STATUS_OVERRIDE.CLIENT_ID
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_SCHEDULE_DATE.TASKNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_SCHEDULE_DATE.START_DATE
+  ordinalPosition: 2
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: GET_SCHEDULE_DATE.END_DATE
+  ordinalPosition: 3
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: GET_SCHEDULE_DATE.SCHEDULED_LIST
+  ordinalPosition: 4
+  dataType: TABLE
+  parameterMode: OUT
+- name: RECONCILE_ATTRIBUTES.CLI_COMP_ATTR
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: RECONCILE_ATTRIBUTES.CLI_REP_ATTR
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: RECONCILE_ATTRIBUTES.OP_COMP_ATTR
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: RECONCILE_ATTRIBUTES.OP_REP_ATTR
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: RECONCILE_ATTRIBUTES.TASK_COMP_ATTR
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: RECONCILE_ATTRIBUTES.TASK_REP_ATTR
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: WINDOW_CALENDAR.W
+  ordinalPosition: 1
+  dataType: REF CURSOR
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_auto_task AS TYPE window_calendar_entry IS RECORD (
+    window_name dba_scheduler_windows.window_name % TYPE,
+    start_time TIMESTAMP WITH TIME ZONE,
+    duration dba_scheduler_windows.duration % TYPE
+  );
+  TYPE window_calendar_t IS TABLE OF window_calendar_entry;
+  TYPE winname_t IS RECORD (
+    window_name dba_scheduler_windows.window_name % TYPE,
+    start_date TIMESTAMP WITH TIME ZONE,
+    end_date TIMESTAMP WITH TIME ZONE
+  );
+  TYPE refcur_winname_t IS REF CURSOR RETURN winname_t;
+  FUNCTION WINDOW_CALENDAR(w refcur_winname_t) RETURN window_calendar_t PIPELINED;
+  -- compute a list of  the task scheduled date provide the start and end dates.
+  -- taskname is the defined autotask name (used by EM)
+  PROCEDURE get_schedule_date (
+    taskname IN VARCHAR2,
+    start_date IN timestamp with time zone,
+    end_date IN timestamp with time zone,
+    scheduled_list OUT ket$_window_list
+  );
+  --
+  -- combines supplied attribute flag sets into a single set of attribute
+  -- flags. Arguments listed in order of descending priority. I.e.
+  -- task_rep_attr settings, if any, override all of the other setings.
+  --
+  FUNCTION reconcile_attributes (
+    cli_comp_attr IN NUMBER DEFAULT 0,
+    -- client compile-time attributes
+    cli_rep_attr IN NUMBER DEFAULT 0,
+    -- client repository attributes
+    op_comp_attr IN NUMBER DEFAULT 0,
+    -- operation compile-time attributes
+    op_rep_attr IN NUMBER DEFAULT 0,
+    -- operation repository attributes
+    task_comp_attr IN NUMBER DEFAULT 0,
+    -- task client-defined attributes
+    task_rep_attr IN NUMBER DEFAULT 0 -- task repository override attributes
+  ) RETURN NUMBER;
+  --
+  -- decode attribute flags into a string for display
+  --
+  FUNCTION decode_attributes (attr NUMBER DEFAULT 0) RETURN VARCHAR2;
+  --
+  -- determine if a given client's status should be overridden to DISABLED
+  -- even if it is ENABLED on disk (e.g. pack disabled, underscore parameter, etc).
+  -- A return value of 1 means such an override exists, 0 means it does not.
+  --
+  FUNCTION get_client_status_override(client_id IN PLS_INTEGER) RETURN PLS_INTEGER;
+  --
+  -- signal an error if the client is overridden to DISABLED even if it is
+  -- enabled on disk (e.g. pack disabled, underscore parameter, etc).  Called to
+  -- validate an ENABLE operation.
+  --
+  PROCEDURE check_client_status_override(client_id IN PLS_INTEGER);
+  END dbms_auto_task;

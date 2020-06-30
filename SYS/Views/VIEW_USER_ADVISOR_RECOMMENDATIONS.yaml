@@ -1,0 +1,38 @@
+schema: SYS
+name: USER_ADVISOR_RECOMMENDATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .id as rec_id,
+    a .task_id as task_id,
+    b.name as task_name,
+    a .exec_name as execution_name,
+    a .finding_id as finding_id,
+    a .type,
+    a .rank as rank,
+    a .parent_recs as parent_rec_ids,
+    dbms_advisor.format_message_group(a .benefit_msg_id) as benefit_type,
+    a .benefit_val as benefit,
+    decode(
+      annotation,
+      1,
+      'ACCEPT',
+      2,
+      'REJECT',
+      3,
+      'IGNORE',
+      4,
+      'IMPLEMENTED'
+    ) as annotation_status,
+    a .flags as flags,
+    nvl(a .filtered, 'N') as filtered
+  from
+    wri$_adv_recommendations a,
+    wri$_adv_tasks b
+  where
+    a .task_id = b.id
+    and b.owner# = userenv('SCHEMAID')
+    and bitand(b.property, 6) = 4
+columns: []
+referencedTables: []

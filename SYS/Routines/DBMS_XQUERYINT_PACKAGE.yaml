@@ -1,0 +1,585 @@
+schema: SYS
+name: DBMS_XQUERYINT
+routineType: PACKAGE
+returnParamater:
+  name: PREPAREXCLB.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: BIND.HDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: BIND.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BIND.FLAGS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: BIND.XCTX
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: IN
+- name: BIND.SCHEMA
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BINDWITHTYPE.HDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: BINDWITHTYPE.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BINDWITHTYPE.FLAGS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: BINDWITHTYPE.XCTX
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: IN
+- name: BINDWITHTYPE.SCHEMA
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BINDWITHTYPE.XQTYPE
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: BINDXML.HDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: BINDXML.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BINDXML.XCTX
+  ordinalPosition: 3
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: CLOSEHDL.HDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXEC.HDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXEC.RETSEQ
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECALL.XQRY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALL.NLSSRT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALL.NLSCMP
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALL.DBCHR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALL.RETSEQ
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECALL.FLAGS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECALL.HDL
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: EXECALLCMN.XQRY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALLCMN.NLSSRT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALLCMN.NLSCMP
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALLCMN.DBCHR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALLCMN.RETSEQ
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECALLCMN.FLAGS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECALLCMN.XQRYCLB
+  ordinalPosition: 7
+  dataType: CLOB
+  parameterMode: IN
+- name: EXECALLCMN.XQISCLOB
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECALLCMN.HDL
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: EXECALL_EXISTS.XQRY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALL_EXISTS.NLSSRT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALL_EXISTS.NLSCMP
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALL_EXISTS.DBCHR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALL_EXISTS.RETSEQ
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECALL_EXISTS.FLAGS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECALL_EXISTS.HDL
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: EXECALLXCLB.XQRYCLB
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: EXECALLXCLB.NLSSRT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALLXCLB.NLSCMP
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALLXCLB.DBCHR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALLXCLB.RETSEQ
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECALLXCLB.FLAGS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECALLXCLB.HDL
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: EXECALLXCLB_EXISTS.XQRYCLB
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: EXECALLXCLB_EXISTS.NLSSRT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALLXCLB_EXISTS.NLSCMP
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALLXCLB_EXISTS.DBCHR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECALLXCLB_EXISTS.RETSEQ
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECALLXCLB_EXISTS.FLAGS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECALLXCLB_EXISTS.HDL
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: EXEC_EXISTS.HDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXEC_EXISTS.RETSEQ
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECQUERY.HDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECUTE.XQRY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE.XCTX
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EXECUTE.RETSEQ
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECUTECMN.XQRY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTECMN.XCTX
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EXECUTECMN.RETSEQ
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECUTECMN.XQRYCLB
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: IN
+- name: EXECUTECMN.XQISCLOB
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECUTEXCLB.XQRY
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: EXECUTEXCLB.XCTX
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EXECUTEXCLB.RETSEQ
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: FETCHALL.HDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: FETCHALL.XCTX
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: FETCHALL.FLAGS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: FETCHONE.HDL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: FETCHONE.XCTX
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: FETCHONE.FLAGS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: FETCHONE.STR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: FETCHONE.XQTYPE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: GETXQUERYX.XQRY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETXQUERYXXCLB.XQRY
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: PREPARE.XQRY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE.NLSSRT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE.NLSCMP
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE.DBCHR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE.FLAGS
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: PREPAREXCLB.XQRY
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: PREPAREXCLB.NLSSRT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPAREXCLB.NLSCMP
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPAREXCLB.DBCHR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPAREXCLB.FLAGS
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  package dbms_xqueryint authid current_user is
+  /* flags defined in qmxqrs.c and OXQServer.java */
+  /* Fragment flag */
+  QMXQRS_JAVA_FRAGMENT CONSTANT NUMBER: = 1;
+  QMXQRS_JAVA_SCHEMABASED CONSTANT NUMBER: = 2;
+  /* variable bind is SQL scalar input value */
+  QMXQRS_JAVA_XS_DEC_INPUT CONSTANT NUMBER: = 4;
+  QMXQRS_JAVA_XS_STR_INPUT CONSTANT NUMBER: = 8;
+  QMXQRS_JAVA_XS_FLT_INPUT CONSTANT NUMBER: = 16;
+  QMXQRS_JAVA_XS_DBL_INPUT CONSTANT NUMBER: = 32;
+  QMXQRS_JAVA_XS_DATE_INPUT CONSTANT NUMBER: = 64;
+  QMXQRS_JAVA_XS_TIME_INPUT CONSTANT NUMBER: = 128;
+  QMXQRS_JAVA_XS_DATETIME_INPUT CONSTANT NUMBER: = 256;
+  QMXQRS_JAVA_XDT_DYTMDUR_INPUT CONSTANT NUMBER: = 512;
+  QMXQRS_JAVA_XDT_YRMONDUR_INPUT CONSTANT NUMBER: = 1024;
+  /* called by exists evaluation */
+  QMXQRS_JAVA_CHK_EXSTS CONSTANT NUMBER: = 2048;
+  QMXQRS_JAVA_NO_DOCWRAP CONSTANT NUMBER: = 4096;
+  /* qmt.h */
+  QMTXT_ANYTYPE CONSTANT NUMBER: = 0;
+  QMTXT_ANYSIMPLETYPE CONSTANT NUMBER: = 1;
+  QMTXT_STRING CONSTANT NUMBER: = 2;
+  QMTXT_BOOLEAN CONSTANT NUMBER: = 3;
+  QMTXT_DECIMAL CONSTANT NUMBER: = 4;
+  QMTXT_FLOAT CONSTANT NUMBER: = 5;
+  QMTXT_DOUBLE CONSTANT NUMBER: = 6;
+  QMTXT_DURATION CONSTANT NUMBER: = 7;
+  QMTXT_DATETIME CONSTANT NUMBER: = 8;
+  QMTXT_TIME CONSTANT NUMBER: = 9;
+  QMTXT_DATE CONSTANT NUMBER: = 10;
+  QMTXT_GDAY CONSTANT NUMBER: = 11;
+  QMTXT_GMONTH CONSTANT NUMBER: = 12;
+  QMTXT_GYEAR CONSTANT NUMBER: = 13;
+  QMTXT_GYEARMONTH CONSTANT NUMBER: = 14;
+  QMTXT_GMONTHDAY CONSTANT NUMBER: = 15;
+  QMTXT_HEXBINARY CONSTANT NUMBER: = 16;
+  QMTXT_BASE64BINARY CONSTANT NUMBER: = 17;
+  QMTXT_ANYURI CONSTANT NUMBER: = 18;
+  QMTXT_QNAME CONSTANT NUMBER: = 19;
+  QMTXT_NOTATION CONSTANT NUMBER: = 20;
+  /*  Derived */
+  QMTXT_NORMALIZEDSTRING CONSTANT NUMBER: = 21;
+  QMTXT_TOKEN CONSTANT NUMBER: = 22;
+  QMTXT_LANGUAGE CONSTANT NUMBER: = 23;
+  QMTXT_NMTOKEN CONSTANT NUMBER: = 24;
+  QMTXT_NMTOKENS CONSTANT NUMBER: = 25;
+  QMTXT_NAME CONSTANT NUMBER: = 26;
+  QMTXT_NCNAME CONSTANT NUMBER: = 27;
+  QMTXT_ID CONSTANT NUMBER: = 28;
+  QMTXT_IDREF CONSTANT NUMBER: = 29;
+  QMTXT_IDREFS CONSTANT NUMBER: = 30;
+  QMTXT_ENTITY CONSTANT NUMBER: = 31;
+  QMTXT_ENTITIES CONSTANT NUMBER: = 32;
+  QMTXT_INTEGER CONSTANT NUMBER: = 33;
+  QMTXT_NONPOSITIVEINTEGER CONSTANT NUMBER: = 34;
+  QMTXT_NEGATIVEINTEGER CONSTANT NUMBER: = 35;
+  QMTXT_LONG CONSTANT NUMBER: = 36;
+  QMTXT_INT CONSTANT NUMBER: = 37;
+  QMTXT_SHORT CONSTANT NUMBER: = 38;
+  QMTXT_BYTE CONSTANT NUMBER: = 39;
+  QMTXT_NONNEGATIVEINTEGER CONSTANT NUMBER: = 40;
+  QMTXT_UNSIGNEDLONG CONSTANT NUMBER: = 41;
+  QMTXT_UNSIGNEDINT CONSTANT NUMBER: = 42;
+  QMTXT_UNSIGNEDSHORT CONSTANT NUMBER: = 43;
+  QMTXT_UNSIGNEDBYTE CONSTANT NUMBER: = 44;
+  QMTXT_POSITIVEINTEGER CONSTANT NUMBER: = 45;
+  /* XDB standard simple types */
+  QMTXT_REF CONSTANT NUMBER: = 46;
+  /* Oracle extensions */
+  QMTXT_QNAMES CONSTANT NUMBER: = 47;
+  /*************** XDT basic types for XQuery Primitive Types Beg***************/
+  QMTXT_XDT_ANYATOMICTYPE CONSTANT NUMBER: = 48;
+  QMTXT_XDT_UNTYPEDANY CONSTANT NUMBER: = 49;
+  QMTXT_XDT_UNTYPEDATOMIC CONSTANT NUMBER: = 50;
+  QMTXT_XDT_DAYTIMEDURATION CONSTANT NUMBER: = 51;
+  QMTXT_XDT_YEARMONTHDURATION CONSTANT NUMBER: = 52;
+  /*************** XDT basic types for XQuery Primitive Types End***************/
+  QMTXT_INVALIDTYPE CONSTANT NUMBER: = 255;
+  /* dtydef.h */
+  DTYCHR CONSTANT NUMBER: = 1;
+  DTYNUM CONSTANT NUMBER: = 2;
+  DTYIBFLOAT CONSTANT NUMBER: = 100;
+  DTYIBDOUBLE CONSTANT NUMBER: = 101;
+  DTYSTZ CONSTANT NUMBER: = 181;
+  DTYESTZ CONSTANT NUMBER: = 188;
+  DTYBIN CONSTANT NUMBER: = 23;
+  DTYIDS CONSTANT NUMBER: = 183;
+  DTYEIDS CONSTANT NUMBER: = 190;
+  DTYIYM CONSTANT NUMBER: = 182;
+  DTYEIYM CONSTANT NUMBER: = 189;
+  /* flags used when prepare an XQuery,
+
+    * defined in qmxqrs.c and Configuration.java */
+  QMXQRS_JCONF_XQ_PUSHDOWN CONSTANT NUMBER: = 1;
+  QMXQRS_JCONF_VAR_AS_EXTL CONSTANT NUMBER: = 2;
+  QMXQRS_JCONF_EXTL_FUNC_LAX CONSTANT NUMBER: = 4;
+  QMXQRS_JCONF_NO_XP_PUSHDOWN CONSTANT NUMBER: = 8;
+  QMXQRS_JCONF_NO_STATIC_TYPING CONSTANT NUMBER: = 16;
+  QMXQRS_JCONF_ENABLE_LAZY_DOM CONSTANT NUMBER: = 32;
+  function exec(hdl in number, retseq in number) return sys.xmltype parallel_enable;
+  /****************/
+  FUNCTION execallCmn(
+    xqry in varchar2,
+    nlssrt in varchar2,
+    nlscmp in varchar2,
+    dbchr in varchar2,
+    retseq in number,
+    flags in number,
+    xqryclb in clob,
+    xqisclob in number,
+    hdl in out number
+  ) return sys.xmltype;
+  FUNCTION execall(
+    xqry in varchar2,
+    nlssrt in varchar2,
+    nlscmp in varchar2,
+    dbchr in varchar2,
+    retseq in number,
+    flags in number,
+    hdl in out number
+  ) return sys.xmltype parallel_enable;
+  FUNCTION execallxclb(
+    xqryclb in clob,
+    nlssrt in varchar2,
+    nlscmp in varchar2,
+    dbchr in varchar2,
+    retseq in number,
+    flags in number,
+    hdl in out number
+  ) return sys.xmltype parallel_enable;
+  /****************/
+  /****************/
+  FUNCTION executeCmn(
+    xqry in varchar2,
+    xctx in xmltype: = null,
+    retseq in number: = 0,
+    xqryclb in clob,
+    xqisclob in number
+  ) return sys.xmltype parallel_enable;
+  function execute(
+    xqry in varchar2,
+    xctx in xmltype: = null,
+    retseq in number: = 0
+  ) return sys.xmltype parallel_enable;
+  function executexclb(
+    xqry in clob,
+    xctx in xmltype: = null,
+    retseq in number: = 0
+  ) return sys.xmltype parallel_enable;
+  /****************/
+  function getXQueryX(xqry in varchar2) return clob parallel_enable;
+  function getXQueryXxclb(xqry in clob) return clob parallel_enable;
+  function prepare(
+    xqry in varchar2,
+    nlssrt in varchar2,
+    nlscmp in varchar2,
+    dbchr in varchar2,
+    flags in number
+  ) return number;
+  function preparexclb(
+    xqry in clob,
+    nlssrt in varchar2,
+    nlscmp in varchar2,
+    dbchr in varchar2,
+    flags in number
+  ) return number;
+  procedure bind(
+    hdl in number,
+    name in varchar2,
+    flags in number,
+    xctx in clob,
+    schema in varchar2
+  );
+  procedure bindWithType(
+    hdl in number,
+    name in varchar2,
+    flags in number,
+    xctx in clob,
+    schema in varchar2,
+    xqtype in number
+  );
+  function bindXML(
+    hdl in number,
+    name in varchar2,
+    xctx in sys.xmltype
+  ) return number as LANGUAGE JAVA NAME 'oracle.xquery.OXQServer.bindXML(int, java.lang.String, oracle.xdb.XMLType)
+
+       return int';
+  procedure execQuery(hdl in number);
+  function fetchAll(
+    hdl in number,
+    xctx in out clob,
+    flags in out number
+  ) return number;
+  function fetchOne(
+    hdl in number,
+    xctx in out clob,
+    flags in out number,
+    str out varchar2,
+    xqtype in out number
+  ) return number;
+  procedure closeHdl(hdl in number);
+  /* XMLExists Support */
+  function exec_exists(hdl in number, retseq in number) return number;
+  function execall_exists(
+    xqry in varchar2,
+    nlssrt in varchar2,
+    nlscmp in varchar2,
+    dbchr in varchar2,
+    retseq in number,
+    flags in number,
+    hdl in out number
+  ) return number;
+  FUNCTION execallxclb_exists(
+    xqryclb in clob,
+    nlssrt in varchar2,
+    nlscmp in varchar2,
+    dbchr in varchar2,
+    retseq in number,
+    flags in number,
+    hdl in out number
+  ) return number;
+  end;

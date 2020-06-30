@@ -1,0 +1,20 @@
+schema: WMSYS
+name: ALL_WM_LOCKED_TABLES
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    /*+ LEADING(t) */
+    t.owner table_owner,
+    t.table_name,
+    t.lock_mode,
+    t.lock_owner,
+    t.locking_state
+  from
+    wmsys.wm$all_locks_view t,
+    all_views s
+  where
+    t.owner = s.owner
+    and t.table_name = s.view_name WITH READ ONLY
+columns: []
+referencedTables: []

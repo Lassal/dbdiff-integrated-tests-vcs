@@ -1,0 +1,28 @@
+schema: SYS
+name: KU$_AUDIT_OBJ_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    value(ku$)
+  from
+    sys.ku$_audit_obj_base_view ku$
+  where
+    trim(
+      '-'
+      from
+        ku$.audit_val
+    ) IS NOT NULL
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (ku$.base_obj.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

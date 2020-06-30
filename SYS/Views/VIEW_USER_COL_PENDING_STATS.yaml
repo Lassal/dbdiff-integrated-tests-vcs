@@ -1,0 +1,146 @@
+schema: SYS
+name: USER_COL_PENDING_STATS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    null,
+    null,
+    c .name,
+    h.distcnt,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then h.lowval
+      else null
+    end,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then h.hival
+      else null
+    end,
+    h.density,
+    h.null_cnt,
+    h.avgcln,
+    h.sample_size,
+    h.TIMESTAMP#
+  from
+    sys.obj$ o,
+    sys.col$ c,
+    sys.wri$_optstat_histhead_history h
+  where
+    h.obj# = c .obj#
+    and h.intcol# = c .intcol#
+    and h.obj# = o.obj#
+    and o.type# = 2
+    and h.savtime > systimestamp
+    and o.owner# = userenv('SCHEMAID')
+  union all
+    -- partitions
+  select
+    o.name,
+    o.subname,
+    null,
+    c .name,
+    h.distcnt,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then h.lowval
+      else null
+    end,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then h.hival
+      else null
+    end,
+    h.density,
+    h.null_cnt,
+    h.avgcln,
+    h.sample_size,
+    h.TIMESTAMP#
+  from
+    sys.user$ u,
+    sys.obj$ o,
+    sys.col$ c,
+    sys.tabpart$ t,
+    sys.wri$_optstat_histhead_history h
+  where
+    t.bo# = c .obj#
+    and t.obj# = o.obj#
+    and h.intcol# = c .intcol#
+    and h.obj# = o.obj#
+    and o.type# = 19
+    and o.owner# = u.user#
+    and h.savtime > systimestamp
+    and o.owner# = userenv('SCHEMAID')
+  union all
+  select
+    o.name,
+    o.subname,
+    null,
+    c .name,
+    h.distcnt,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then h.lowval
+      else null
+    end,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then h.hival
+      else null
+    end,
+    h.density,
+    h.null_cnt,
+    h.avgcln,
+    h.sample_size,
+    h.TIMESTAMP#
+  from
+    sys.user$ u,
+    sys.obj$ o,
+    sys.col$ c,
+    sys.tabcompart$ t,
+    sys.wri$_optstat_histhead_history h
+  where
+    t.bo# = c .obj#
+    and t.obj# = o.obj#
+    and h.intcol# = c .intcol#
+    and h.obj# = o.obj#
+    and o.type# = 19
+    and o.owner# = u.user#
+    and h.savtime > systimestamp
+    and o.owner# = userenv('SCHEMAID')
+  union all
+    -- sub partitions
+  select
+    op.name,
+    op.subname,
+    os.subname,
+    c .name,
+    h.distcnt,
+    case
+      when SYS_OP_DV_CHECK(os.name, os.owner#) = 1 then h.lowval
+      else null
+    end,
+    case
+      when SYS_OP_DV_CHECK(os.name, os.owner#) = 1 then h.hival
+      else null
+    end,
+    h.density,
+    h.null_cnt,
+    h.avgcln,
+    h.sample_size,
+    h.timestamp#
+  from
+    sys.obj$ os,
+    sys.tabsubpart$ tsp,
+    sys.tabcompart$ tcp,
+    sys.col$ c,
+    sys.obj$ op,
+    sys.wri$_optstat_histhead_history h
+  where
+    os.obj# = tsp.obj#
+    and h.obj# = tsp.obj#
+    and h.intcol# = c .intcol#
+    and tsp.pobj# = tcp.obj#
+    and tcp.bo# = c .obj#
+    and tcp.obj# = op.obj#
+    and os.type# = 34
+    and h.savtime > systimestamp
+    and os.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

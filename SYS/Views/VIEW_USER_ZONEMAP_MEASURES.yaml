@@ -1,0 +1,20 @@
+schema: SYS
+name: USER_ZONEMAP_MEASURES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    z. "OWNER",
+    z. "ZONEMAP_NAME",
+    z. "MEASURE",
+    z. "POSITION_IN_SELECT",
+    z. "AGG_FUNCTION",
+    z. "AGG_COLUMN_NAME"
+  from
+    dba_zonemap_measures z,
+    sys.user$ u
+  where
+    u.user# = userenv('SCHEMAID')
+    and z.owner = u.name
+columns: []
+referencedTables: []

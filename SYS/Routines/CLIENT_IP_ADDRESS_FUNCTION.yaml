@@ -1,0 +1,14 @@
+schema: SYS
+name: CLIENT_IP_ADDRESS
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  function client_ip_address return varchar2 is
+  begin
+    return dbms_standard.client_ip_address;
+  end;

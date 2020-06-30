@@ -1,0 +1,135 @@
+schema: SYS
+name: DBMS_LOBUTIL
+routineType: PACKAGE
+returnParamater:
+  name: GETLOBMAP(2).(--return--)
+  ordinalPosition: 0
+  dataType: OBJECT
+  parameterMode: OUT
+parameters:
+- name: COPY_PRIMARY_DEDUP(1).LOB_LOC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: INOUT
+- name: COPY_PRIMARY_DEDUP(1).PHASH
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: COPY_PRIMARY_DEDUP(1).FHASH
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: COPY_PRIMARY_DEDUP(1).SCN
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: COPY_PRIMARY_DEDUP(1).PAR
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: COPY_PRIMARY_DEDUP(2).LOB_LOC
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: INOUT
+- name: COPY_PRIMARY_DEDUP(2).PHASH
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: COPY_PRIMARY_DEDUP(2).FHASH
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: COPY_PRIMARY_DEDUP(2).SCN
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: COPY_PRIMARY_DEDUP(2).PAR
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETDEDUPSET(1).LOB_LOC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: GETDEDUPSET(2).LOB_LOC
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: GETEXTENTS.CRS
+  ordinalPosition: 1
+  dataType: REF CURSOR
+  parameterMode: IN
+- name: GETINODE(1).LOB_LOC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: GETINODE(2).LOB_LOC
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: GETLOBMAP(1).LOB_LOC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: GETLOBMAP(1).N
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETLOBMAP(2).LOB_LOC
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: GETLOBMAP(2).N
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_lobutil AS -- inode query
+  FUNCTION getinode(lob_loc IN BLOB) RETURN dbms_lobutil_inode_t DETERMINISTIC;
+  PRAGMA RESTRICT_REFERENCES(getinode, WNDS, RNDS, WNPS, RNPS, TRUST);
+  FUNCTION getinode(
+    lob_loc IN CLOB CHARACTER
+    SET
+      ANY_CS
+  ) RETURN dbms_lobutil_inode_t DETERMINISTIC;
+  PRAGMA RESTRICT_REFERENCES(getinode, WNDS, RNDS, WNPS, RNPS, TRUST);
+  -- lobmap query
+  FUNCTION getlobmap(lob_loc IN BLOB, n IN NUMBER) RETURN dbms_lobutil_lobmap_t DETERMINISTIC;
+  PRAGMA RESTRICT_REFERENCES(getlobmap, WNDS, RNDS, WNPS, RNPS, TRUST);
+  FUNCTION getlobmap(
+    lob_loc IN CLOB CHARACTER
+    SET
+      ANY_CS,
+      n IN NUMBER
+  ) RETURN dbms_lobutil_lobmap_t DETERMINISTIC;
+  PRAGMA RESTRICT_REFERENCES(getlobmap, WNDS, RNDS, WNPS, RNPS, TRUST);
+  -- extent expansion
+  FUNCTION getextents(crs IN sys_refcursor) RETURN dbms_lobutil_lobextents_t DETERMINISTIC PIPELINED;
+  PRAGMA RESTRICT_REFERENCES(getextents, WNDS, RNDS, WNPS, RNPS, TRUST);
+  -- deduplication set query
+  FUNCTION getdedupset(lob_loc IN BLOB) RETURN dbms_lobutil_dedupset_t DETERMINISTIC;
+  PRAGMA RESTRICT_REFERENCES(getdedupset, WNDS, RNDS, WNPS, RNPS, TRUST);
+  FUNCTION getdedupset(
+    lob_loc IN CLOB CHARACTER
+    SET
+      ANY_CS
+  ) RETURN dbms_lobutil_dedupset_t DETERMINISTIC;
+  PRAGMA RESTRICT_REFERENCES(getdedupset, WNDS, RNDS, WNPS, RNPS, TRUST);
+  -- copy the primary lob of a dedup set.
+  PROCEDURE copy_primary_dedup(
+    lob_loc IN OUT NOCOPY BLOB,
+    phash IN RAW,
+    fhash IN RAW,
+    scn IN NUMBER DEFAULT 0,
+    par IN NUMBER
+  );
+  PROCEDURE copy_primary_dedup(
+    lob_loc IN OUT NOCOPY CLOB CHARACTER
+    SET
+      ANY_CS,
+      phash IN RAW,
+      fhash IN RAW,
+      scn IN NUMBER DEFAULT 0,
+      par IN NUMBER
+  );
+  END;

@@ -1,0 +1,48 @@
+schema: SYS
+name: KU$_TYPE_ATTR_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .toid,
+    a .version#,
+    a .name,
+    a .attribute#,
+    a .attr_version#,
+    a .attr_toid,
+    a .synobj#,
+    a .properties,
+    a .charsetid,
+    a .charsetform,
+    a .length,
+    a .precision#,
+    a .scale,
+    a .externname,
+    a .xflags,
+    a .spare1,
+    a .spare2,
+    a .spare3,
+    a .spare4,
+    a .spare5,
+    a .setter,
+    a .getter,
+    (
+      select
+        value(st)
+      from
+        ku$_simple_type_view st
+      where
+        a .attr_toid = st.toid
+        and st.version = (
+          SELECT
+            MAX(ST2.VERSION)
+          FROM
+            ku$_simple_type_View st2
+          WHERE
+            ST2.TOID = a .attr_toid
+        )
+    )
+  from
+    sys.attribute$ a
+columns: []
+referencedTables: []

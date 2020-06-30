@@ -1,0 +1,19 @@
+schema: CTXSYS
+name: CTX_INDEX_SET_INDEXES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name ixx_index_set_owner,
+    ixs_name ixx_index_set_name,
+    ixx_collist,
+    ixx_storage
+  from
+    dr$index_set_index,
+    dr$index_set,
+    sys.user$ u
+  where
+    ixs_owner# = u.user#
+    and ixx_ixs_id = ixs_id
+columns: []
+referencedTables: []

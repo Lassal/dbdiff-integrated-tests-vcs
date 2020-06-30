@@ -1,0 +1,28 @@
+schema: SYS
+name: USER_REPCATLOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.id,
+    r.source,
+    r.userid,
+    r.timestamp,
+    r.role,
+    r.master,
+    r.sname,
+    r.request,
+    r.oname,
+    r.type,
+    r.status,
+    r.message,
+    r.errnum,
+    r.gname
+  from
+    repcat_repcatlog r,
+    user_users u
+  where
+    r.sname = u.username
+    or r.userid = u.username
+columns: []
+referencedTables: []

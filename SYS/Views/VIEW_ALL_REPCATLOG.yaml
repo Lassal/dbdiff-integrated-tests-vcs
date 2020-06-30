@@ -1,0 +1,56 @@
+schema: SYS
+name: ALL_REPCATLOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.id,
+    r.source,
+    r.userid,
+    r.timestamp,
+    r.role,
+    r.master,
+    r.sname,
+    r.request,
+    r.oname,
+    r.type,
+    r.status,
+    r.message,
+    r.errnum,
+    r.gname
+  from
+    repcat_repcatlog r,
+    all_objects o
+  where
+    (
+      r.sname = 'PUBLIC'
+      or r.sname in (
+        select
+          u.username
+        from
+          all_users u
+      )
+    )
+    and r.sname = o.owner
+    and r.oname = o.object_name
+    and r.type = o.object_type
+  union
+  select
+    r.id,
+    r.source,
+    r.userid,
+    r.timestamp,
+    r.role,
+    r.master,
+    r.sname,
+    r.request,
+    r.oname,
+    r.type,
+    r.status,
+    r.message,
+    r.errnum,
+    r.gname
+  from
+    user_repcatlog r
+columns: []
+referencedTables: []

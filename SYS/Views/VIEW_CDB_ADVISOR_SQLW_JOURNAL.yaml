@@ -1,0 +1,17 @@
+schema: SYS
+name: CDB_ADVISOR_SQLW_JOURNAL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OWNER",
+    "WORKLOAD_ID",
+    "WORKLOAD_NAME",
+    "JOURNAL_ENTRY_SEQ",
+    "JOURNAL_ENTRY_TYPE",
+    "JOURNAL_ENTRY",
+    "CON_ID"
+  FROM
+    CONTAINERS("SYS"."DBA_ADVISOR_SQLW_JOURNAL")
+columns: []
+referencedTables: []

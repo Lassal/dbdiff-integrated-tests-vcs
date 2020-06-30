@@ -1,0 +1,163 @@
+schema: SYS
+name: ALL_TSTZ_TAB_COLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  with rw (p_obj#, d_obj#, property) as (
+    select
+      p_obj#,
+      d_obj#,
+      property
+    from
+      sys.dependency$
+    where
+      p_obj# in (
+        select
+          distinct o.obj#
+        from
+          sys.obj$ o,
+          sys.attribute$ a
+        where
+          o.oid$ = a .toid
+          and a .attr_toid = '0000000000000000000000000000003E'
+        union all
+        select
+          distinct o.obj#
+        from
+          sys.obj$ o,
+          sys.collection$ c
+        where
+          o.oid$ = c .toid
+          and c .elem_toid = '0000000000000000000000000000003E'
+      )
+    union all
+    select
+      d.p_obj#,
+      d.d_obj#,
+      d.property
+    from
+      rw,
+      sys.dependency$ d
+    where
+      rw.d_obj# = d.p_obj#
+      and bitand(rw.property, 1) = 1
+  ),
+  va_of_tstz_typ (name) as (
+    select
+      distinct o.name
+    from
+      rw,
+      sys.obj$ o,
+      sys.coltype$ c
+    where
+      rw.p_obj# = o.obj#
+      and o.oid$ = c .toid
+      and bitand(c .flags, 8) = 8
+  ),
+  all_tstz_candiate_tab_cols (
+    owner,
+    table_name,
+    table_property,
+    table_nested,
+    column_name,
+    data_type,
+    qualified_col_name,
+    virtual_column
+  ) as (
+    select
+      u.name,
+      o.name,
+      t.property,
+      case
+        when bitand(t.property, 8192) = 8192 then 1
+        else 0
+      end,
+      c .name,
+      case
+        when c .type# = 181 then 'TIMESTAMP(' || c .scale || ')' || ' WITH TIME ZONE'
+        when c .type# in (58, 111, 121, 122, 123) then nvl2(
+          ac.synobj#,
+          (
+            select
+              o.name
+            from
+              obj$ o
+            where
+              o.obj# = ac.synobj#
+          ),
+          ot.name
+        )
+        else 'UNDEFINED'
+      end,
+      decode(
+        bitand(c .property, 1024),
+        1024,
+        (
+          select
+            decode(bitand(cl.property, 1), 1, rc.name, cl.name)
+          from
+            sys.col$ cl,
+            attrcol$ rc
+          where
+            cl.intcol# = c .intcol# -1
+            and cl.obj# = c .obj#
+            and c .obj# = rc.obj#(+)
+            and cl.intcol# = rc.intcol#(+)
+        ),
+        decode(
+          bitand(c .property, 1),
+          0,
+          c .name,
+          (
+            select
+              tc.name
+            from
+              sys.attrcol$ tc
+            where
+              c .obj# = tc.obj#
+              and c .intcol# = tc.intcol#
+          )
+        )
+      ),
+      decode(
+        c .property,
+        0,
+        0,
+        decode(bitand(c .property, 8), 8, 1, 0)
+      )
+    from
+      sys.col$ c,
+      sys. "_CURRENT_EDITION_OBJ" o,
+      sys.user$ u,
+      sys.coltype$ ac,
+      sys.obj$ ot,
+      sys.tab$ t
+    where
+      o.obj# = c .obj#
+      and o.owner# = u.user#
+      and c .obj# = ac.obj#(+)
+      and c .intcol# = ac.intcol#(+)
+      and ac.toid = ot.oid$(+)
+      and ot.type#(+) = 13
+      and o.obj# = t.obj#
+      and c .type# in (58, 111, 121, 122, 123, 181)
+  )
+  select
+    owner,
+    table_name,
+    column_name,
+    qualified_col_name,
+    table_nested,
+    virtual_column
+  from
+    all_tstz_candiate_tab_cols
+  where
+    data_type like 'TIMESTAMP%WITH TIME ZONE'
+    or data_type in (
+      select
+        name
+      from
+        va_of_tstz_typ
+    )
+columns: []
+referencedTables: []

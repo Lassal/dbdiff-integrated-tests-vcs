@@ -1,0 +1,18 @@
+schema: MDSYS
+name: OGC_ENDPOINT
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: OBJECT
+  parameterMode: OUT
+parameters:
+- name: C
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_EndPoint(c ST_Curve) RETURN ST_Point IS
+  BEGIN
+    RETURN c .ST_EndPoint();
+  END OGC_EndPoint;

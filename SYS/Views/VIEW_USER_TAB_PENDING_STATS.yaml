@@ -1,0 +1,66 @@
+schema: SYS
+name: USER_TAB_PENDING_STATS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    null,
+    null,
+    h.rowcnt,
+    h.blkcnt,
+    h.avgrln,
+    h.samplesize,
+    h.analyzetime
+  from
+    sys.obj$ o,
+    sys.wri$_optstat_tab_history h
+  where
+    h.obj# = o.obj#
+    and o.type# = 2
+    and o.owner# = userenv('SCHEMAID')
+    and h.savtime > systimestamp
+  union all
+    -- partitions
+  select
+    o.name,
+    o.subname,
+    null,
+    h.rowcnt,
+    h.blkcnt,
+    h.avgrln,
+    h.samplesize,
+    h.analyzetime
+  from
+    sys.obj$ o,
+    sys.wri$_optstat_tab_history h
+  where
+    h.obj# = o.obj#
+    and o.type# = 19
+    and o.owner# = userenv('SCHEMAID')
+    and h.savtime > systimestamp
+  union all
+    -- sub partitions
+  select
+    osp.name,
+    ocp.subname,
+    osp.subname,
+    h.rowcnt,
+    h.blkcnt,
+    h.avgrln,
+    h.samplesize,
+    h.analyzetime
+  from
+    sys.obj$ osp,
+    sys.obj$ ocp,
+    sys.tabsubpart$ tsp,
+    sys.wri$_optstat_tab_history h
+  where
+    h.obj# = osp.obj#
+    and osp.type# = 34
+    and osp.obj# = tsp.obj#
+    and tsp.pobj# = ocp.obj#
+    and osp.owner# = userenv('SCHEMAID')
+    and h.savtime > systimestamp
+columns: []
+referencedTables: []

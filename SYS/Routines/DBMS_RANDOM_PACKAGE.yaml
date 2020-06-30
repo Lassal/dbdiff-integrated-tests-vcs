@@ -1,0 +1,129 @@
+schema: SYS
+name: DBMS_RANDOM
+routineType: PACKAGE
+returnParamater:
+  name: VALUE(2).(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: INITIALIZE.VAL
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: RECORD_RANDOM_NUMBER.VAL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEED(1).VAL
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SEED(2).VAL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: STRING.OPT
+  ordinalPosition: 1
+  dataType: CHAR
+  parameterMode: IN
+- name: STRING.LEN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALUE(2).LOW
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALUE(2).HIGH
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_random AUTHID DEFINER AS ------------
+  --  OVERVIEW
+  --
+  --  This package should be installed as SYS.  It generates a sequence of
+  --  random 38-digit Oracle numbers.  The expected length of the sequence
+  --  is about power(10,28), which is hopefully long enough.
+  --
+  --------
+  --  USAGE
+  --
+  --  This is a random number generator.  Do not use for cryptography.
+  --  For more options the cryptographic toolkit should be used.
+  --
+  --  By default, the package is initialized with the current user
+  --  name, current time down to the second, and the current session.
+  --
+  --  If this package is seeded twice with the same seed, then accessed
+  --  in the same way, it will produce the same results in both cases.
+  --
+  --------
+  --  EXAMPLES
+  --
+  --  To initialize or reset the generator, call the seed procedure as in:
+  --      execute dbms_random.seed(12345678);
+  --    or
+  --      execute dbms_random.seed(TO_CHAR(SYSDATE,'MM-DD-YYYY HH24:MI:SS'));
+  --  To get the random number, simply call the function, e.g.
+  --      my_random_number BINARY_INTEGER;
+  --      my_random_number := dbms_random.random;
+  --    or
+  --      my_random_real NUMBER;
+  --      my_random_real := dbms_random.value;
+  --  To use in SQL statements:
+  --      select dbms_random.value from dual;
+  --      insert into a values (dbms_random.value);
+  --      variable x NUMBER;
+  --      execute :x := dbms_random.value;
+  --      update a set a2=a2+1 where a1 < :x;
+  -- Seed with a binary integer
+  PROCEDURE seed(val IN BINARY_INTEGER);
+  PRAGMA restrict_references (seed, WNDS);
+  -- Seed with a string (up to length 2000)
+  PROCEDURE seed(val IN VARCHAR2);
+  PRAGMA restrict_references (seed, WNDS);
+  -- Get a random 38-digit precision number, 0.0 <= value < 1.0
+  FUNCTION value RETURN NUMBER PARALLEL_ENABLE;
+  PRAGMA restrict_references (value, WNDS);
+  -- get a random Oracle number x, low <= x < high
+  FUNCTION value (low IN NUMBER, high IN NUMBER) RETURN NUMBER PARALLEL_ENABLE;
+  PRAGMA restrict_references (value, WNDS);
+  -- get a random number from a normal distribution
+  FUNCTION normal RETURN NUMBER PARALLEL_ENABLE;
+  PRAGMA restrict_references (normal, WNDS);
+  -- get a random string
+  FUNCTION string (opt char, len NUMBER)
+  /* "opt" specifies that the returned string may contain:
+
+               'u','U'  :  upper case alpha characters only
+
+               'l','L'  :  lower case alpha characters only
+
+               'a','A'  :  alpha characters only (mixed case)
+
+               'x','X'  :  any alpha-numeric characters (upper)
+
+               'p','P'  :  any printable characters
+
+            */
+  RETURN VARCHAR2 PARALLEL_ENABLE;
+  -- string of <len> characters
+  PRAGMA restrict_references (string, WNDS);
+  -- external C function to record random value
+  PROCEDURE record_random_number(val IN NUMBER);
+  PRAGMA restrict_references (record_random_number, WNDS);
+  -- external C function to replay random value
+  FUNCTION replay_random_number RETURN NUMBER;
+  PRAGMA restrict_references (replay_random_number, WNDS);
+  -- Obsolete, just calls seed(val)
+  PROCEDURE initialize(val IN BINARY_INTEGER);
+  PRAGMA restrict_references (initialize, WNDS);
+  -- Obsolete, get integer in ( -power(2,31) <= random < power(2,31) )
+  FUNCTION random RETURN BINARY_INTEGER PARALLEL_ENABLE;
+  PRAGMA restrict_references (random, WNDS);
+  -- Obsolete, does nothing
+  PROCEDURE terminate;
+  TYPE num_array IS TABLE OF NUMBER INDEX BY BINARY_INTEGER;
+  END dbms_random;

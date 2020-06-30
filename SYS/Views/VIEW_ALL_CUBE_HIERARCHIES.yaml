@@ -1,0 +1,81 @@
+schema: SYS
+name: ALL_CUBE_HIERARCHIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name OWNER,
+    o.name DIMENSION_NAME,
+    h.hierarchy_name HIERARCHY_NAME,
+    h.hierarchy_id HIERARCHY_ID,
+    DECODE(h.hierarchy_type, 1, 'LEVEL', 2, 'VALUE') HIERARCHY_TYPE,
+    d.description_value DESCRIPTION,
+    (
+      case
+        when io.option_num_value is null then 0
+        else io.option_num_value
+      end
+    ) IS_RAGGED,
+    (
+      case
+        when io2.option_num_value is null then 0
+        else io2.option_num_value
+      end
+    ) IS_SKIP_LEVEL,
+    io3.option_value REFRESH_MVIEW_NAME,
+    syn.syntax_clob CUSTOM_ORDER
+  FROM
+    olap_hierarchies$ h,
+    user $ u,
+    obj$ o,
+    (
+      select
+        d. *
+      from
+        olap_descriptions$ d,
+        nls_session_parameters n
+      where
+        n.parameter = 'NLS_LANGUAGE'
+        and d.description_type = 'Description'
+        and d.owning_object_type = 13 --HIERARCHY
+        and (
+          d.language = n.value
+          or d.language like n.value || '\_%' escape '\')) d,
+    olap_impl_options$ io,
+    olap_impl_options$ io2,
+    olap_impl_options$ io3,
+    olap_syntax$ syn
+  WHERE
+    h.dim_obj#=o.obj#
+    AND o.owner#=u.user#
+    AND d.owning_object_id(+)=h.hierarchy_id
+    AND io.object_type(+) = 13 -- HIERARCHY
+    AND io.owning_objectid(+) = h.hierarchy_id
+    AND io.option_type(+) = 6 -- IS_RAGGED
+    AND io2.object_type(+) = 13 -- HIERARCHY
+    AND io2.owning_objectid(+) = h.hierarchy_id
+    AND io2.option_type(+) = 1 -- IS_SKIP_LEVEL
+    AND io3.object_type(+) = 13 -- HIERARCHY
+    AND io3.owning_objectid(+) = h.hierarchy_id
+    AND io3.option_type(+) = 30 -- refresh MV name
+    AND syn.owner_id(+) = h.hierarchy_id
+    AND syn.owner_type(+) = 13
+    AND syn.ref_role(+) = 23 -- CustomOrder
+    AND (o.owner# in (userenv(' SCHEMAID '), 1)   -- public objects
+         or o.obj# in
+              ( select obj#  -- directly granted privileges
+                from sys.objauth$
+                where grantee# in ( select kzsrorol from x$kzsro )
+              )
+         or   -- user has system privileges
+                ( exists (select null from v$enabledprivs
+                          where priv_number in (-302, -- ALTER ANY PRIMARY DIMENSION
+                                                -304, -- DELETE ANY PRIMARY DIMENSION
+                                                -305, -- DROP ANY PRIMARY DIMENSION
+                                                -306, -- INSERT ANY PRIMARY DIMENSION
+                                                -307) -- SELECT ANY PRIMARY DIMENSION
+                          )
+                )
+              )
+columns: []
+referencedTables: []

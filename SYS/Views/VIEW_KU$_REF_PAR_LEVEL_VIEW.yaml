@@ -1,0 +1,28 @@
+schema: SYS
+name: KU$_REF_PAR_LEVEL_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    obj#,
+    level
+  from
+    cdef$
+  start with
+    robj# IN (
+      select
+        obj#
+      from
+        partobj$
+      where
+        parttype != 5
+        AND bitand(flags, 32) != 0
+    )
+    AND type # = 4
+    AND bitand(defer, 512) != 0
+  connect by
+    prior obj# = robj#
+    AND type # = 4
+    AND bitand(defer, 512) != 0
+columns: []
+referencedTables: []

@@ -1,0 +1,24 @@
+schema: MDSYS
+name: HHLENGTH
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+parameters:
+- name: HHC
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DIM
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION hhlength (hhc IN RAW, dim IN BINARY_INTEGER: = NULL) RETURN BINARY_INTEGER IS
+  begin
+    if dim is NULL then return md.hhlength(hhc);
+  end if;
+  return md.hhlength(hhc, dim);
+  end;

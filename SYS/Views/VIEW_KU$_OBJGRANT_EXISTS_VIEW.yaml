@@ -1,0 +1,31 @@
+schema: SYS
+name: KU$_OBJGRANT_EXISTS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.obj#,
+    u.name,
+    o.owner#,
+    g.grantor#,
+    NVL(g.option$, 0)
+  from
+    obj$ o,
+    user $ u,
+    objauth$ g
+  where
+    o.owner# = u.user#
+    and o.obj# = g.obj#
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

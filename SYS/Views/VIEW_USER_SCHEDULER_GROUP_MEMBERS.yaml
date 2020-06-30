@@ -1,0 +1,44 @@
+schema: SYS
+name: USER_SCHEDULER_GROUP_MEMBERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    wgm.group_name,
+    wgm.cred || wgm.mem_name
+  FROM
+    (
+      SELECT
+        o.name group_name,
+        wg.member_oid2 member_oid2,
+        decode(
+          member_oid2,
+          null,
+          null,
+          '"' || cmu.name || '"."' || cmo.name || '"@'
+        ) cred,
+        decode(
+          wmu.name || '"' || substr(wmo.name, 1, 12),
+          'SYS"SCHED$_LOCAL',
+          'LOCAL',
+          '"' || wmu.name || '"."' || wmo.name || '"'
+        ) mem_name
+      FROM
+        obj$ o,
+        scheduler$_window_group w,
+        scheduler$_wingrp_member wg,
+        user $ wmu,
+        obj$ wmo,
+        user $ cmu,
+        obj$ cmo
+      WHERE
+        w.obj# = wg.oid
+        AND w.obj# = o.obj#
+        AND o.owner# = USERENV('SCHEMAID')
+        AND wg.member_oid = wmo.obj#
+        AND wmo.owner# = wmu.user#
+        AND cmo.obj#(+) = wg.member_oid2
+        AND cmo.owner# = cmu.user#(+)
+    ) wgm
+columns: []
+referencedTables: []

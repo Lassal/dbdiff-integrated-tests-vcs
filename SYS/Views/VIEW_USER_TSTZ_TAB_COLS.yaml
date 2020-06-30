@@ -1,0 +1,87 @@
+schema: SYS
+name: USER_TSTZ_TAB_COLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  with va_of_tstz_typ as (
+    select
+      distinct o.name
+    from
+      (
+        select
+          p_obj# obj#
+        from
+          sys.dependency$
+        start with
+          p_obj# in (
+            select
+              distinct o.obj#
+            from
+              sys.obj$ o,
+              sys.attribute$ a
+            where
+              o.oid$ = a .toid
+              and a .attr_toid = '0000000000000000000000000000003E'
+            union all
+            select
+              distinct o.obj#
+            from
+              sys.obj$ o,
+              sys.collection$ c
+            where
+              o.oid$ = c .toid
+              and c .elem_toid = '0000000000000000000000000000003E'
+          )
+        connect by
+          prior d_obj# = p_obj#
+          and bitand(prior property, 1) = 1 order siblings by d_obj#,
+          p_obj#
+      ) t,
+      sys.obj$ o,
+      sys.coltype$ c
+    where
+      t.obj# = o.obj#
+      and o.oid$ = c .toid
+      and bitand(c .flags, 8) = 8
+  )
+  select
+    table_name,
+    qualified_col_name
+  from
+    (
+      select
+        utc.table_name,
+        utc.qualified_col_name,
+        data_type
+      from
+        user_tab_cols utc,
+        user_all_tables uat
+      where
+        (
+          data_type like 'TIMESTAMP%WITH TIME ZONE'
+          or data_type in (
+            select
+              name
+            from
+              va_of_tstz_typ
+          )
+        )
+        and utc.table_name = uat.table_name
+      union all
+      select
+        table_name,
+        qualified_col_name,
+        data_type
+      from
+        user_nested_table_cols
+      where
+        data_type like 'TIMESTAMP%WITH TIME ZONE'
+        or data_type in (
+          select
+            name
+          from
+            va_of_tstz_typ
+        )
+    )
+columns: []
+referencedTables: []

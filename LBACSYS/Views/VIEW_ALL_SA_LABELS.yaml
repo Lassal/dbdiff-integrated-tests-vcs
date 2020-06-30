@@ -1,0 +1,35 @@
+schema: LBACSYS
+name: ALL_SA_LABELS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    p.pol_name AS policy_name,
+    l.slabel AS label,
+    l.nlabel AS label_tag,
+    DECODE (
+      l.flags,
+      2,
+      'USER LABEL',
+      3,
+      'USER/DATA LABEL',
+      'UNDEFINED'
+    ) AS label_type
+  FROM
+    LBACSYS.ols$lab l,
+    LBACSYS.sa$pol p
+  WHERE
+    p.pol# = l.pol#
+    AND (
+      p.pol# in (
+        select
+          pol#
+        from
+          LBACSYS.sa$admin
+        where
+          usr_name = user
+      )
+      OR LBACSYS.lbac$sa.enforce_read(p.pol_name, l.ilabel) > 0
+    )
+columns: []
+referencedTables: []

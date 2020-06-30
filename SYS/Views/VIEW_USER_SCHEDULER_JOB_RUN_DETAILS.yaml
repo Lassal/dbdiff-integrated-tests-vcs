@@ -1,0 +1,81 @@
+schema: SYS
+name: USER_SCHEDULER_JOB_RUN_DETAILS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  (
+    SELECT
+      j.LOG_ID,
+      j.LOG_DATE,
+      e.OWNER,
+      DECODE(
+        instr(e.NAME, '"'),
+        0,
+        e.NAME,
+        substr(e.NAME, 1, instr(e.NAME, '"') -1)
+      ),
+      DECODE(
+        instr(e.NAME, '"'),
+        0,
+        NULL,
+        substr(e.NAME, instr(e.NAME, '"') + 1)
+      ),
+      e.STATUS,
+      j.ERROR#,
+      j.REQ_START_DATE,
+      j.START_DATE,
+      j.RUN_DURATION,
+      j.INSTANCE_ID,
+      j.SESSION_ID,
+      j.SLAVE_PID,
+      j.CPU_USED,
+      decode(
+        e.credential,
+        NULL,
+        NULL,
+        substr(e.credential, 1, instr(e.credential, '"') -1)
+      ),
+      decode(
+        e.credential,
+        NULL,
+        NULL,
+        substr(
+          e.credential,
+          instr(e.credential, '"') + 1,
+          length(e.credential) - instr(e.credential, '"')
+        )
+      ),
+      decode(
+        bitand(e.flags, 1),
+        0,
+        NULL,
+        substr(e.destination, 1, instr(e.destination, '"') -1)
+      ),
+      decode(
+        bitand(e.flags, 1),
+        0,
+        e.destination,
+        substr(
+          e.destination,
+          instr(e.destination, '"') + 1,
+          length(e.destination) - instr(e.destination, '"')
+        )
+      ),
+      j.ADDITIONAL_INFO,
+      dbms_scheduler.get_varchar2_value(o.errors),
+      dbms_scheduler.get_varchar2_value(o.output),
+      o.ERRORS,
+      o.OUTPUT
+    FROM
+      scheduler$_job_run_details j,
+      scheduler$_event_log e,
+      scheduler$_job_output o
+    WHERE
+      j.log_id = e.log_id
+      AND j.log_id = o.log_id(+)
+      AND e.dbid is null
+      AND e.type# = 66
+      AND e.owner = SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA')
+  )
+columns: []
+referencedTables: []

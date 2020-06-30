@@ -1,0 +1,17 @@
+schema: CTXSYS
+name: CTX_USER_SQES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name sqe_owner,
+    sqe_name,
+    sqe_query
+  from
+    dr$sqe sqe,
+    sys.user$ u
+  where
+    sqe_owner# = u.user#
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

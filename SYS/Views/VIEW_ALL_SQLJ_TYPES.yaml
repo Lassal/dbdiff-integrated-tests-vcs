@@ -1,0 +1,90 @@
+schema: SYS
+name: ALL_SQLJ_TYPES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    decode(bitand(t.properties, 64), 64, null, u.name),
+    o.name,
+    t.toid,
+    t.externname,
+    decode(
+      t.externtype,
+      1,
+      'SQLData',
+      2,
+      'CustomDatum',
+      3,
+      'Serializable',
+      4,
+      'Serializable Internal',
+      5,
+      'ORAData',
+      'unknown'
+    ),
+    decode(
+      t.typecode,
+      108,
+      'OBJECT',
+      122,
+      'COLLECTION',
+      o.name
+    ),
+    t.attributes,
+    t.methods,
+    decode(bitand(t.properties, 16), 16, 'YES', 0, 'NO'),
+    decode(bitand(t.properties, 256), 256, 'YES', 0, 'NO'),
+    decode(bitand(t.properties, 8), 8, 'NO', 'YES'),
+    decode(bitand(t.properties, 65536), 65536, 'NO', 'YES'),
+    su.name,
+    so.name,
+    t.local_attrs,
+    t.local_methods
+  from
+    sys.user$ u,
+    sys.type$ t,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys. "_CURRENT_EDITION_OBJ" so,
+    sys.user$ su
+  where
+    o.owner# = u.user#
+    and o.oid$ = t.tvoid
+    and o.subname IS NULL -- only latest version
+    and o.type# <> 10 -- must not be invalid
+    and bitand(t.properties, 2048) = 0 -- not system-generated
+    and t.supertoid = so.oid$ (+)
+    and so.owner# = su.user# (+)
+    and t.externtype < 5
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -184
+            /* EXECUTE ANY TYPE */,
+            -181
+            /* CREATE ANY TYPE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

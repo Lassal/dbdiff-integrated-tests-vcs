@@ -1,0 +1,93 @@
+schema: SYS
+name: ALL_MVIEWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    m. "OWNER",
+    m. "MVIEW_NAME",
+    m. "CONTAINER_NAME",
+    m. "QUERY",
+    m. "QUERY_LEN",
+    m. "UPDATABLE",
+    m. "UPDATE_LOG",
+    m. "MASTER_ROLLBACK_SEG",
+    m. "MASTER_LINK",
+    m. "REWRITE_ENABLED",
+    m. "REWRITE_CAPABILITY",
+    m. "REFRESH_MODE",
+    m. "REFRESH_METHOD",
+    m. "BUILD_MODE",
+    m. "FAST_REFRESHABLE",
+    m. "LAST_REFRESH_TYPE",
+    m. "LAST_REFRESH_DATE",
+    m. "LAST_REFRESH_END_TIME",
+    m. "STALENESS",
+    m. "AFTER_FAST_REFRESH",
+    m. "UNKNOWN_PREBUILT",
+    m. "UNKNOWN_PLSQL_FUNC",
+    m. "UNKNOWN_EXTERNAL_TABLE",
+    m. "UNKNOWN_CONSIDER_FRESH",
+    m. "UNKNOWN_IMPORT",
+    m. "UNKNOWN_TRUSTED_FD",
+    m. "COMPILE_STATE",
+    m. "USE_NO_INDEX",
+    m. "STALE_SINCE",
+    m. "NUM_PCT_TABLES",
+    m. "NUM_FRESH_PCT_REGIONS",
+    m. "NUM_STALE_PCT_REGIONS",
+    m. "SEGMENT_CREATED",
+    m. "EVALUATION_EDITION",
+    m. "UNUSABLE_BEFORE",
+    m. "UNUSABLE_BEGINNING"
+  from
+    dba_mviews m,
+    sys.obj$ o,
+    sys.user$ u
+  where
+    o.owner# = u.user#
+    and m.mview_name = o.name
+    and u.name = m.owner
+    and o.type# = 2
+    /* table */
+    and (
+      u.user# in (userenv('SCHEMAID'), 1)
+      or o.obj# in (
+        select
+          obj#
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

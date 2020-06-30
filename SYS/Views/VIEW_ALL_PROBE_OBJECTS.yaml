@@ -1,0 +1,48 @@
+schema: SYS
+name: ALL_PROBE_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    DISTINCT all_objects. "OWNER",
+    all_objects. "OBJECT_NAME",
+    all_objects. "SUBOBJECT_NAME",
+    all_objects. "OBJECT_ID",
+    all_objects. "DATA_OBJECT_ID",
+    all_objects. "OBJECT_TYPE",
+    all_objects. "CREATED",
+    all_objects. "LAST_DDL_TIME",
+    all_objects. "TIMESTAMP",
+    all_objects. "STATUS",
+    all_objects. "TEMPORARY",
+    all_objects. "GENERATED",
+    all_objects. "SECONDARY",
+    all_objects. "NAMESPACE",
+    all_objects. "EDITION_NAME",
+    all_objects. "SHARING",
+    all_objects. "EDITIONABLE",
+    all_objects. "ORACLE_MAINTAINED",
+    decode(idl_char$.part, null, 'F', 0, 'F', 'T') debuginfo
+  FROM
+    idl_char$,
+    all_objects
+  WHERE
+    all_objects.object_id = idl_char$.obj# (+)
+    AND (
+      idl_char$.part IS NULL
+      OR (
+        idl_char$.part = 0 -- Diana
+        AND NOT EXISTS (
+          SELECT
+            *
+          FROM
+            idl_char$
+          WHERE
+            all_objects.object_id = idl_char$.obj#
+            AND idl_char$.part = 1
+        )
+      )
+      OR idl_char$.part = 1 -- PCode
+    )
+columns: []
+referencedTables: []

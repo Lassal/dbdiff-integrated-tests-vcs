@@ -1,0 +1,42 @@
+schema: SYS
+name: KU$_TYPE_BODY_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    oo.obj#,
+    value(o),
+    sys.dbms_metadata_util.get_source_lines(oo.name, oo.obj#, oo.type#),
+    (
+      select
+        value(c)
+      from
+        ku$_switch_compiler_view c
+      where
+        c .obj_num = oo.obj#
+    )
+  from
+    sys.obj$ oo,
+    sys.ku$_edition_schemaobj_view o,
+    type_misc$ t
+  where
+    oo.type# = 14
+    and oo.obj# = o.obj_num
+    and t.obj# = o.obj_num
+    and bitand(t.properties, 16 + 32) = 0
+    /* exclude SQLJ type bodies (see above)*/
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,35 @@
+schema: SYS
+name: USER_JOIN_IND_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    oi.name,
+    uti.name,
+    oti.name,
+    ci.name,
+    uto.name,
+    oto.name,
+    co.name
+  from
+    sys.user$ uti,
+    sys.user$ uto,
+    sys.obj$ oi,
+    sys.obj$ oti,
+    sys.obj$ oto,
+    sys.col$ ci,
+    sys.col$ co,
+    sys.jijoin$ ji
+  where
+    ji.obj# = oi.obj#
+    and ji.tab1obj# = oti.obj#
+    and oti.owner# = uti.user#
+    and ci.obj# = oti.obj#
+    and ji.tab1col# = ci.intcol#
+    and ji.tab2obj# = oto.obj#
+    and oto.owner# = uto.user#
+    and co.obj# = oto.obj#
+    and ji.tab2col# = co.intcol#
+    and oi.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

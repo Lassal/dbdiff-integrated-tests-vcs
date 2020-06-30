@@ -1,0 +1,125 @@
+schema: SYS
+name: DICTIONARY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    c .comment$
+  from
+    sys.obj$ o,
+    sys.com$ c
+  where
+    o.obj# = c .obj#(+)
+    and c .col# is null
+    and o.owner# = 0
+    and o.type# = 4
+    and (
+      o.name like 'USER%'
+      or o.name like 'ALL%'
+      or (
+        o.name like 'DBA%'
+        and exists (
+          select
+            null
+          from
+            sys.v$enabledprivs
+          where
+            priv_number = -47
+            /* SELECT ANY TABLE */
+            or priv_number = -397
+            /* READ ANY TABLE */
+        )
+      )
+    )
+  union all
+  select
+    o.name,
+    c .comment$
+  from
+    sys.obj$ o,
+    sys.com$ c
+  where
+    o.obj# = c .obj#(+)
+    and o.owner# = 0
+    and o.name in (
+      'AUDIT_ACTIONS',
+      'COLUMN_PRIVILEGES',
+      'DICTIONARY',
+      'DICT_COLUMNS',
+      'DUAL',
+      'GLOBAL_NAME',
+      'INDEX_HISTOGRAM',
+      'INDEX_STATS',
+      'RESOURCE_COST',
+      'ROLE_ROLE_PRIVS',
+      'ROLE_SYS_PRIVS',
+      'ROLE_TAB_PRIVS',
+      'SESSION_PRIVS',
+      'SESSION_ROLES',
+      'TABLE_PRIVILEGES',
+      'NLS_SESSION_PARAMETERS',
+      'NLS_INSTANCE_PARAMETERS',
+      'NLS_DATABASE_PARAMETERS',
+      'DATABASE_COMPATIBLE_LEVEL',
+      'DBMS_ALERT_INFO',
+      'DBMS_LOCK_ALLOCATED'
+    )
+    and c .col# is null
+  union all
+  select
+    so.name,
+    'Synonym for ' || sy.name
+  from
+    sys.obj$ ro,
+    sys.syn$ sy,
+    sys.obj$ so
+  where
+    so.type# = 5
+    and ro.linkname is null
+    and so.owner# = 1
+    and so.obj# = sy.obj#
+    and so.name <> sy.name
+    and sy.owner = 'SYS'
+    and sy.name = ro.name
+    and ro.owner# = 0
+    and ro.type# = 4
+    and (
+      ro.owner# = userenv('SCHEMAID')
+      or ro.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,39 @@
+schema: SYS
+name: KU$_CODE_BASE_GRANT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    r.name,
+    u.name,
+    o.name,
+    decode(
+      o.type#,
+      7,
+      'PROCEDURE',
+      8,
+      'FUNCTION',
+      9,
+      'PACKAGE',
+      13,
+      'TYPE',
+      'UNDEFINED'
+    ),
+    c .obj#,
+    c .privilege#
+  from
+    sys.obj$ o,
+    sys.user$ u,
+    sys.user$ r,
+    sys.codeauth$ c
+  where
+    o.obj# = c .obj#
+    and u.user# = o.owner#
+    and (
+      c .privilege# = r.user#
+      and r.type# = 0
+    )
+columns: []
+referencedTables: []

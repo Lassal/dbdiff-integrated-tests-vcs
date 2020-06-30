@@ -1,0 +1,23 @@
+schema: SYS
+name: USER_JAVA_NCOMPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ no_cartesian(t) ordered use_nl(o t) */
+    nvl(j.longdbcs, o.name),
+    t.joxftncompsource,
+    t.joxftncompinitializer,
+    t.joxftncomplibraryfile,
+    t.joxftncomplibrary
+  from
+    sys.javasnm$ j,
+    sys.obj$ o,
+    sys.x$joxobj t
+  where
+    o.obj# = t.joxftobn
+    and o.type# = 29
+    and o.owner# = userenv('SCHEMAID')
+    and j.short(+) = o.name
+columns: []
+referencedTables: []

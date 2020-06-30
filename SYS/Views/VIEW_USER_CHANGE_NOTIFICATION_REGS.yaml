@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_CHANGE_NOTIFICATION_REGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.regid,
+    r.regflags,
+    r.callback,
+    r.operations_filter,
+    r.changelag,
+    r.timeout,
+    r.table_name
+  from
+    DBA_CHANGE_NOTIFICATION_REGS r,
+    user $ u
+  where
+    u.user# = userenv('SCHEMAID')
+    and u.name = r.username
+columns: []
+referencedTables: []

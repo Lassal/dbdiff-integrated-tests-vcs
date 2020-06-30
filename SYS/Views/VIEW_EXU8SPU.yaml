@@ -1,0 +1,21 @@
+schema: SYS
+name: EXU8SPU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OWNERID",
+    "UNAME",
+    "ID",
+    "NAME",
+    "TIME",
+    "TYPEID",
+    "TYPE",
+    "AUDT",
+    "SQLVER"
+  FROM
+    sys.exu8spr
+  WHERE
+    userenv('SCHEMAID') = ownerid
+columns: []
+referencedTables: []

@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_XML_SCHEMA_SUBSTGRP_MBRS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    SCHEMA_URL,
+    TARGET_NAMESPACE,
+    ELEMENT_NAME,
+    ELEMENT,
+    HEAD_OWNER,
+    HEAD_SCHEMA_URL,
+    HEAD_TARGET_NAMESPACE,
+    HEAD_ELEMENT_NAME,
+    HEAD_ELEMENT
+  from
+    DBA_XML_SCHEMA_SUBSTGRP_MBRS
+  where
+    OWNER = USER
+columns: []
+referencedTables: []

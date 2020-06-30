@@ -1,0 +1,19 @@
+schema: MDSYS
+name: OGC_NUMINTERIORRINGS
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: OUT
+parameters:
+- name: P
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_NumInteriorRings(p ST_Polygon) RETURN Integer IS
+  BEGIN
+    RETURN p.ST_InteriorRingsP() .LAST;
+  END OGC_NumInteriorRings;

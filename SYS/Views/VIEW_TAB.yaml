@@ -1,0 +1,30 @@
+schema: SYS
+name: TAB
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    decode(
+      o.type#,
+      2,
+      'TABLE',
+      3,
+      'CLUSTER',
+      4,
+      'VIEW',
+      5,
+      'SYNONYM'
+    ),
+    t.tab#
+  from
+    sys.tab$ t,
+    sys. "_CURRENT_EDITION_OBJ" o
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.type# >= 2
+    and o.type# <= 5
+    and o.linkname is null
+    and o.obj# = t.obj# (+)
+columns: []
+referencedTables: []

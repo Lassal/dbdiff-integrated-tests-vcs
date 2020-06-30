@@ -1,0 +1,27 @@
+schema: SYS
+name: GET_OLDVERSION_HASHCODE2
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: RAW
+  parameterMode: OUT
+parameters:
+- name: TOID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: VSN
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION get_oldversion_hashcode2 (toid raw, vsn pls_integer) return raw is LANGUAGE C NAME "GET_OLDVSN_HASHCODE2" LIBRARY UTL_OBJECTS_LIB parameters(
+    toid RAW,
+    toid INDICATOR sb4,
+    toid LENGTH sb4,
+    vsn ub2,
+    vsn indicator sb2,
+    return indicator sb2,
+    return OCIRaw
+  );

@@ -1,0 +1,76 @@
+schema: XDBPM
+name: XDBPM_ANALYZE_XMLSCHEMA
+routineType: PACKAGE
+returnParamater:
+  name: SHOWSQLTYPES.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: ANALYZECOMPLEXTYPE(1).P_COMPLEX_TYPE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZECOMPLEXTYPE(2).P_COMPLEX_TYPE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZECOMPLEXTYPE(2).P_SCHEMA_URL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZEGLOBALELEMENT(1).P_GLOBAL_ELEMENT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZEGLOBALELEMENT(2).P_GLOBAL_ELEMENT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZEGLOBALELEMENT(2).P_SCHEMA_URL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZETYPEHIERARCHY(1).P_GLOBAL_OBJECT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZETYPEHIERARCHY(2).P_GLOBAL_OBJECT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ANALYZETYPEHIERARCHY(2).P_SCHEMA_URL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETCOMPLEXTYPEELEMENTLIST.P_SQLTYPE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETCOMPLEXTYPEELEMENTLIST.P_SQLSCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOWSQLTYPES.SCHEMAFOLDER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_ANALYZE_XMLSCHEMA authid CURRENT_USER as function analyzeTypeHierarchy(P_GLOBAL_OBJECT_NAME VARCHAR2) return XMLTYPE;
+  function analyzeTypeHierarchy(
+    P_GLOBAL_OBJECT_NAME VARCHAR2,
+    P_SCHEMA_URL VARCHAR2
+  ) return XMLTYPE;
+  function analyzeComplexType(P_COMPLEX_TYPE_NAME VARCHAR2) return XMLTYPE;
+  function analyzeComplexType(
+    P_COMPLEX_TYPE_NAME VARCHAR2,
+    P_SCHEMA_URL VARCHAR2
+  ) return XMLTYPE;
+  function analyzeGlobalElement(P_GLOBAL_ELEMENT_NAME VARCHAR2) return XMLTYPE;
+  function analyzeGlobalElement(
+    P_GLOBAL_ELEMENT_NAME VARCHAR2,
+    P_SCHEMA_URL VARCHAR2
+  ) return XMLTYPE;
+  function getComplexTypeElementList(P_SQLTYPE VARCHAR2, P_SQLSCHEMA VARCHAR2) return XDB.XDB$XMLTYPE_REF_LIST_T;
+  function showSQLTypes(schemaFolder VARCHAR2) return XMLType;
+  end XDBPM_ANALYZE_XMLSCHEMA;

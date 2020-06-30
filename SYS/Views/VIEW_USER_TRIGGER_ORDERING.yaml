@@ -1,0 +1,16 @@
+schema: SYS
+name: USER_TRIGGER_ORDERING
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    trigger_name,
+    referenced_trigger_owner,
+    referenced_trigger_name,
+    ordering_type
+  from
+    sys. "_DBA_TRIGGER_ORDERING"
+  where
+    trigger_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,15 @@
+schema: CTXSYS
+name: DRV$DELETE2
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "DEL_IDX_ID",
+    "DEL_IXP_ID",
+    "DEL_DOCID"
+  from
+    dr$delete
+  where
+    del_idx_id = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
+columns: []
+referencedTables: []

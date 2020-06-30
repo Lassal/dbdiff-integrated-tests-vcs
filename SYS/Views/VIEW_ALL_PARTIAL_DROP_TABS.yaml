@@ -1,0 +1,58 @@
+schema: SYS
+name: ALL_PARTIAL_DROP_TABS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name
+  from
+    sys.user$ u,
+    sys.obj$ o,
+    sys.tab$ t
+  where
+    o.owner# = u.user#
+    and o.obj# = t.obj#
+    and bitand(t.flags, 32768) = 32768
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+  group by
+    u.name,
+    o.name
+columns: []
+referencedTables: []

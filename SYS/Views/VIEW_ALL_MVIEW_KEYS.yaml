@@ -1,0 +1,84 @@
+schema: SYS
+name: ALL_MVIEW_KEYS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    distinct u1.name,
+    o1.name,
+    sk.sumcolpos#,
+    c1.name,
+    u2.name,
+    o2.name,
+    sd.detailalias,
+    decode(sk.detailobjtype, 1, 'TABLE', 2, 'VIEW'),
+    c2.name
+  from
+    sys.sumkey$ sk,
+    sys.obj$ o1,
+    sys.user$ u1,
+    sys.col$ c1,
+    sys.sum$ s,
+    sys.sumdetail$ sd,
+    sys.obj$ o2,
+    sys.user$ u2,
+    sys.col$ c2
+  where
+    sk.sumobj# = o1.obj#
+    AND o1.owner# = u1.user#
+    AND sk.sumobj# = s.obj#
+    AND s.containerobj# = c1.obj#
+    AND c1.col# = sk.containercol#
+    AND sk.detailobj# = o2.obj#
+    AND o2.owner# = u2.user#
+    AND sk.sumobj# = sd.sumobj#
+    AND sk.detailobj# = sd.detailobj#
+    AND sk.detailobj# = c2.obj#
+    AND sk.detailcol# = c2.intcol#
+    AND sk.instance# = sd.instance#
+    AND (
+      o1.owner# = userenv('SCHEMAID')
+      or o1.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+    AND bitand(s.xpflags, 8388608) = 0
+    /* NOT REWRITE EQUIVALENCE SUMMARY */
+    AND bitand(sk.detailcolfunction, 2147483648) = 0
+    AND bitand(sd.detaileut, 2147483648) = 0
+    /* NOT 2nd cube mv pct metadata */
+columns: []
+referencedTables: []

@@ -1,0 +1,40 @@
+schema: SYS
+name: KU$_SIMPLE_TYPE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    toid,
+    version#,
+    version,
+    typecode,
+    properties,
+    attributes,
+    local_attrs,
+    methods,
+    hiddenMethods,
+    typeid,
+    roottoid,
+    hashcode,
+    (
+      select
+        value(so)
+      from
+        ku$_edition_schemaobj_view so
+      where
+        so.oid = toid
+        and so.type_num = 13
+    ),
+    (
+      select
+        name
+      from
+        obj$ o
+      where
+        o.oid$ = toid
+        and o.type# = 13
+    )
+  from
+    type $ t
+columns: []
+referencedTables: []

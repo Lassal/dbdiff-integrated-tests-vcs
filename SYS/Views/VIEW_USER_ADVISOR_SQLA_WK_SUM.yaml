@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_ADVISOR_SQLA_WK_SUM
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    b.name as task_name,
+    b.id as task_id,
+    a .num_select as num_select_stmt,
+    a .num_update as num_update_stmt,
+    a .num_delete as num_delete_stmt,
+    a .num_insert as num_insert_stmt,
+    a .num_merge as num_merge_stmt
+  from
+    wri$_adv_sqla_sum a,
+    wri$_adv_tasks b
+  where
+    b.owner# = userenv('SCHEMAID')
+    and a .task_id = b.id
+    and b.advisor_id = 2
+columns: []
+referencedTables: []

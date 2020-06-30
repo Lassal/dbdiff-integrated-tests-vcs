@@ -1,0 +1,414 @@
+schema: SYS
+name: DBMS_ILM
+routineType: PACKAGE
+returnParamater:
+  name: ARCHIVESTATENAME.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: ADD_TO_ILM.TASK_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_TO_ILM.OWN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_TO_ILM.OBJNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_TO_ILM.SUBOBJNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ARCHIVESTATENAME.VALUE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_ILM(1).TASK_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: OUT
+- name: EXECUTE_ILM(1).ILM_SCOPE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECUTE_ILM(1).EXECUTION_MODE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECUTE_ILM(2).OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_ILM(2).OBJECT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_ILM(2).TASK_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: EXECUTE_ILM(2).SUBOBJECT_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_ILM(2).POLICY_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_ILM(2).EXECUTION_MODE
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECUTE_ILM_TASK.TASK_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECUTE_ILM_TASK.EXECUTION_MODE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXECUTE_ILM_TASK.EXECUTION_SCHEDULE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: FLUSH_SEGMENT_ACCESS.OWNER_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FLUSH_SEGMENT_ACCESS.OBJECT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FLUSH_SEGMENT_ACCESS.SUBOBJECT_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FLUSH_SEGMENT_ROWMAP.OWNER_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FLUSH_SEGMENT_ROWMAP.OBJECT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FLUSH_SEGMENT_ROWMAP.SUBOBJECT_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREVIEW_ILM.TASK_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: OUT
+- name: PREVIEW_ILM.ILM_SCOPE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: REMOVE_FROM_ILM.TASK_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: REMOVE_FROM_ILM.OWN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_FROM_ILM.OBJNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_FROM_ILM.SUBOBJNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: STOP_ILM.TASK_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: STOP_ILM.P_DROP_RUNNING_JOBS
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: |-
+  package dbms_ilm authid current_user is
+  /* constants specifying ROW ARCHIVAL state */
+  archive_state_active constant varchar2(1): = '0';
+  archive_state_archived constant varchar2(1): = '1';
+  /*
+
+       *  description - Given a value for the ORA_ARCHIVE_STATE column this
+
+       *   function returns the mapping for the value.
+
+       *
+
+       *  value - "0", "1" or other values from the ORA_ARCHIVE_STATE column of
+
+       *          a row archival enabled table
+
+       *  returns either "archive_state_active" or "archive_state_archived"
+
+       */
+  function archiveStateName(value in varchar2) return varchar2;
+  /* constants specifying the scope of ilm execution*/
+  /* execute all ilm policies in the database */
+  SCOPE_DATABASE constant number: = 1;
+  /* execute all ilm policies in the scope */
+  SCOPE_SCHEMA constant number: = 2;
+  /* ILM Execution mode constants */
+  ILM_EXECUTION_OFFLINE constant number: = 1;
+  ILM_EXECUTION_ONLINE constant number: = 2;
+  ILM_EXECUTION_DEFAULT constant number: = 3;
+  /* Constant specifying all ILM policies of an object*/
+  ILM_ALL_POLICIES constant varchar2(20): = 'ALL POLICIES';
+  /* constants specifying when ILM task should be scheduled */
+  /* Schedule ILM task for immediate execution */
+  SCHEDULE_IMMEDIATE constant number: = 1;
+  procedure preview_ilm(
+    task_id out number,
+    ilm_scope in number default SCOPE_SCHEMA
+  );
+  /*
+
+       *  description - Evaluate all ilm policies in the scope specified
+
+       *  through an argument
+
+       *
+
+       * ilm_scope - identifies the scope of execution. should be a constant
+
+       *  specified in the package definition
+
+       * execution_id - Identifies a particular execution of ILM
+
+       */
+  procedure add_to_ilm(
+    task_id in number,
+    own in varchar2,
+    objname in varchar2,
+    subobjname in varchar2 default null
+  );
+  /*
+
+       * description - Add an object to a particular ILM task
+
+       *
+
+       * p_execution_id - Identify the particular ILM task
+
+       * own            - owner of the object
+
+       * objname        - name of the object
+
+       * subobjname     - name of the subobject (partition name in the case of
+
+       *                    partitioned tables)
+
+       */
+  procedure remove_from_ilm(
+    task_id in number,
+    own in varchar2,
+    objname in varchar2,
+    subobjname in varchar2 default null
+  );
+  /*
+
+       * description - Remove an object to a particular ILM task
+
+       *
+
+       * execution_id   - Identify the particular ILM task
+
+       * own            - owner of the object
+
+       * objname        - name of the object
+
+       * subobjname     - name of the subobject (partition name in the case of
+
+       *                    partitioned tables)
+
+       */
+  procedure execute_ilm_task(
+    task_id in number,
+    execution_mode in number default ILM_EXECUTION_ONLINE,
+    execution_schedule in number default SCHEDULE_IMMEDIATE
+  );
+  /*
+
+       *  description - execute all ilm policies in a previously evaluated
+
+       *                ILM task. The ILM policies would not be evaluated again
+
+       *
+
+       *
+
+       *  execution_id        - Identifies an ILM task
+
+       *  execution_schedule  - Identifies when the ILM task should be executed.
+
+       *                        The choices available are identified using
+
+       *                        constants defined in the package. The choices
+
+       *                        include , schedule the ILM task for immediate
+
+       *                        execution or use the background ILM scheduling
+
+       *                        infrastructure to schedule the ILM task execution
+
+       */
+  procedure execute_ilm(
+    task_id out number,
+    ilm_scope in number default SCOPE_SCHEMA,
+    execution_mode in number default ILM_EXECUTION_ONLINE
+  );
+  /*
+
+       *  description - execute all ilm policies in the scope specified
+
+       *  through an argument
+
+       *
+
+       * ilm_scope - identifies the scope of execution. should be a constant
+
+       *  specified in the package definition
+
+       * execution_id - Identifies a particular execution of ILM
+
+       */
+  procedure execute_ILM(
+    owner in varchar2,
+    object_name in varchar2,
+    task_id out number,
+    subobject_name in varchar2 default null,
+    policy_name in varchar2 default ILM_ALL_POLICIES,
+    execution_mode in number default ILM_EXECUTION_ONLINE
+  );
+  /*
+
+       * description - execute all ilm policies for an object in the calling
+
+       * schema.
+
+       *
+
+       * owner          - owner of the object
+
+       * object_name    - name of the object
+
+       * subobject_name - name of the subobject (partition name in the case of
+
+       *                    partitioned tables)
+
+       */
+  procedure stop_ilm (
+    task_id in number,
+    p_drop_running_jobs in boolean default false
+  );
+  /*
+
+       * description - stop ilm related jobs created for a specific
+
+       *               executio.
+
+       *
+
+       *
+
+       * execution_id        -  number that uniquely identifies a particular
+
+       *                        ilm execution
+
+       * p_drop_running_jobs - should running jobs be dropped?
+
+       */
+  /*****************************************************************
+
+       * Activity Tracking
+
+       *****************************************************************/
+  procedure flush_all_segments;
+  /*
+
+       * description - flush all in-memory segment access tracking info
+
+       */
+  procedure flush_segment_access(
+    owner_name IN VARCHAR2,
+    object_name IN VARCHAR2,
+    subobject_name IN VARCHAR2 default NULL
+  );
+  /*
+
+       * description: flush in-memory access tracking info for the object
+
+       *
+
+       *  owner_name  - Name of the object owner
+
+       *  object_name - Name of the object
+
+       *  subobject_name - Name of the sub-object e.g. partition name
+
+       */
+  procedure flush_rowmaps;
+  /*
+
+       * description - flush all in-memory segment rowid bitmaps info
+
+       */
+  procedure flush_segment_rowmap(
+    owner_name IN VARCHAR2,
+    object_name IN VARCHAR2,
+    subobject_name IN VARCHAR2 default NULL
+  );
+  /*
+
+       * description: flush in-memory rowid bitmap for the object
+
+       *
+
+       *  owner_name  - Name of the object owner
+
+       *  object_name - Name of the object
+
+       *  subobject_name - Name of the sub-object e.g. partition name
+
+       */
+  /* exceptions:
+
+       *
+
+       * dbms_ilm api operations can raise any one of the following top-level
+
+       * exceptions.
+
+       *
+
+       */
+  /* invalid arugment value */
+  invalid_argument_value
+  exception;
+  pragma exception_init(invalid_argument_value, -38327);
+    /* inconsistent dictionary state */
+    invalid_ilm_dictionary
+  exception;
+  pragma exception_init(invalid_ilm_dictionary, -38328);
+    /* internal error */
+    internal_ilm_error
+  exception;
+  pragma exception_init(internal_ilm_error, -38329);
+    /* insufficient privileges */
+    insufficient_privileges
+  exception;
+  pragma exception_init(insufficient_privileges, -38330);
+    /* ADO online mode unsupported with Supplemental Logging */
+    unsupported_ilm_supl
+  exception;
+  pragma exception_init(unsupported_ilm_supl, -38343);
+  end dbms_ilm;

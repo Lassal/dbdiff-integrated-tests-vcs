@@ -1,0 +1,36 @@
+schema: SYS
+name: EXU81PROCOBJ
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    o.obj#,
+    u.name,
+    o.owner#,
+    o.type#,
+    p.class,
+    p.prepost,
+    p.level#,
+    p.package,
+    p.schema
+  FROM
+    sys.exu81obj o,
+    sys.user$ u,
+    sys.exppkgobj$ p
+  WHERE
+    p.type# = o.type#
+    AND o.owner# = u.user#
+    AND (
+      userenv('SCHEMAID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

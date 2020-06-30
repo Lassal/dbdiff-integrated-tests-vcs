@@ -1,0 +1,17 @@
+schema: ORDSYS
+name: SI_IMAGE_FORMAT_CONVERSIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    a .SI_format SI_source_format,
+    b.si_format SI_target_format
+  FROM
+    ORDSYS.SI_image_formats_tab a,
+    ORDSYS.SI_image_formats_tab b
+  where
+    a .read_flg = 'Y'
+    and b.write_flg = 'Y'
+    and a .si_format <> b.si_format
+columns: []
+referencedTables: []

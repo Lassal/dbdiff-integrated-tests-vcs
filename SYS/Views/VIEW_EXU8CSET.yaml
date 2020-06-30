@@ -1,0 +1,17 @@
+schema: SYS
+name: EXU8CSET
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    name,
+    DECODE (value $, 'AL16UTF16', 'UTF8', value $)
+  FROM
+    sys.props$
+  WHERE
+    name IN (
+      'NLS_CHARACTERSET',
+      'NLS_NCHAR_CHARACTERSET'
+    )
+columns: []
+referencedTables: []

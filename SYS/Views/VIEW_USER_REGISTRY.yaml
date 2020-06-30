@@ -1,0 +1,31 @@
+schema: SYS
+name: USER_REGISTRY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    r.cid,
+    r.cname,
+    r.version,
+    SUBSTR(dbms_registry.status_name(r.status), 1, 11),
+    TO_CHAR(r.modified, 'DD-MON-YYYY HH24:MI:SS'),
+    r.namespace,
+    i.name,
+    s.name,
+    r.vproc,
+    DECODE(bitand(r.flags, 1), 1, 'REQUIRED', NULL),
+    r.pid,
+    dbms_registry.schema_list_string(r.cid)
+  FROM
+    registry$ r,
+    user $ s,
+    user $ i
+  WHERE
+    (
+      r.schema# = USERENV('SCHEMAID')
+      OR r.invoker# = USERENV('SCHEMAID')
+    )
+    AND r.schema# = s.user#
+    AND r.invoker# = i.user#
+columns: []
+referencedTables: []

@@ -1,0 +1,22 @@
+schema: SYS
+name: EXU8USRU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "NAME",
+    "USERID",
+    "PASSWD",
+    "DEFROLE",
+    "DATATS",
+    "TEMPTS",
+    "PROFILE#",
+    "PROFNAME",
+    "ASTATUS",
+    "EXT_USERNAME"
+  FROM
+    sys.exu8usr
+  WHERE
+    userid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

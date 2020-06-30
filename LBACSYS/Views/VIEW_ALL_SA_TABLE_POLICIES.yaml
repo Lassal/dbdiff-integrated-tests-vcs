@@ -1,0 +1,28 @@
+schema: LBACSYS
+name: ALL_SA_TABLE_POLICIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    t.policy_name,
+    schema_name,
+    table_name,
+    t.status,
+    table_options,
+    function,
+    predicate
+  FROM
+    LBACSYS.sa$pol p,
+    LBACSYS.dba_lbac_table_policies t
+  WHERE
+    p.pol_name = t.policy_name
+    AND pol# in (
+      select
+        pol#
+      from
+        LBACSYS.sa$admin
+      where
+        usr_name = user
+    )
+columns: []
+referencedTables: []

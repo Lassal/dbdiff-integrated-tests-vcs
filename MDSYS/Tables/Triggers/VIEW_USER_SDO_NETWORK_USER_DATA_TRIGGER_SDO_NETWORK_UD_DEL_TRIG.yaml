@@ -1,0 +1,20 @@
+targetObjectSchema: MDSYS
+targetObjectName: USER_SDO_NETWORK_USER_DATA
+targetObjectType: VIEW
+name: SDO_NETWORK_UD_DEL_TRIG
+eventTiming: INSTEAD OF
+event: DELETE
+eventActionBody: |-
+  DECLARE
+    user_name VARCHAR2(256);
+  BEGIN
+    EXECUTE IMMEDIATE 'SELECT USER FROM DUAL' INTO user_name;
+  DELETE FROM
+    sdo_network_user_data
+  WHERE
+    NLS_UPPER(SDO_OWNER) = NLS_UPPER(user_name)
+    AND network = NLS_UPPER(:o.network)
+    AND table_type = NLS_UPPER(:o.table_type)
+    AND data_name = NLS_UPPER(:o.data_name);
+  END;
+executionOrder: 1

@@ -1,0 +1,203 @@
+schema: XDBPM
+name: XDBPM_IMPORT_UTILITIES
+routineType: PACKAGE
+returnParamater:
+  name: PATCHXMLREFERENCE.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: CLEARPRINTMODE.P_PRINT_MODE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATERESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATERESOURCE.P_CONTENT_BLOB
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: CREATERESOURCE.P_DUPLICATE_POLICY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT.P_PARAMETERS
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EXPORT_FILE_AS_SQL.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT_FILES_AS_SQL.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: GETLOBLOCATOR.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETVERSIONDETAILS.P_RESID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: IMPORT.P_PARAMETERS
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: IMPORTFOLDER.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORTLINK.P_LINK_DEFINITION
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: IMPORTRESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORTRESOURCE.P_RESOURCE_TEXT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: MATCHPATH.P_PATH_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PATCHXMLREFERENCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PATCHXMLREFERENCE.P_XML_REFERENCE
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: REMOVEACLFOLDER.P_TEMPORARY_ACL_FOLDER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESETACLFOLDER.P_TEMPORARY_ACL_FOLDER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETDUPLICATEPOLICY.P_DUPLICATE_POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETPRINTMODE.P_PRINT_MODE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: STARTIMPORT.P_DUPLICATE_POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: STARTIMPORT.P_ROOT_FOLDER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNZIP.P_ZIP_FILE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNZIP.P_LOG_FILE_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNZIP.P_TARGET_FOLDER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNZIP.P_DUPLICATE_ACTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATERESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATERESOURCE.P_NEW_VALUES
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: ZIP.P_PARAMETERS
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_IMPORT_UTILITIES authid CURRENT_USER as C_LINE_01 constant VARCHAR2(128): = 'declare' || CHR(13) || CHR(10);
+  C_LINE_02 constant VARCHAR2(128): = '  V_RESULT  BOOLEAN;' || CHR(13) || CHR(10);
+  C_LINE_03 constant VARCHAR2(128): = '  V_CONTENT BLOB;' || CHR(13) || CHR(10);
+  C_LINE_04 constant VARCHAR2(128): = '  V_RESOURCE VARCHAR2(1024) := ';
+  C_LINE_05 constant VARCHAR2(128): = 'begin' || CHR(13) || CHR(10);
+  C_LINE_06 constant VARCHAR2(128): = '  if (DBMS_XDB.EXISTSRESOURCE(V_RESOURCE)) then' || CHR(13) || CHR(10);
+  C_LINE_07 constant VARCHAR2(128): = '    DBMS_XDB.DELETERESOURCE(V_RESOURCE);' || CHR(13) || CHR(10);
+  C_LINE_08 constant VARCHAR2(128): = '  end if;' || CHR(13) || CHR(10);
+  C_LINE_09 constant VARCHAR2(128): = '  DBMS_LOB.CREATETEMPORARY(V_CONTENT,TRUE);' || CHR(13) || CHR(10);
+  C_LINE_10 constant VARCHAR2(128): = '  DBMS_LOB.APPEND(V_CONTENT,HEXTORAW(';
+  C_LINE_11 constant VARCHAR2(128): = '  V_RESULT := DBMS_XDB.CREATERESOURCE(V_RESOURCE,V_CONTENT);' || CHR(13) || CHR(10);
+  C_LINE_12 constant VARCHAR2(128): = '  DBMS_LOB.FREETEMPORARY(V_CONTENT);' || CHR(13) || CHR(10);
+  C_LINE_13 constant VARCHAR2(128): = '  COMMIT;' || CHR(13) || CHR(10);
+  C_LINE_14 constant VARCHAR2(128): = 'end;' || CHR(13) || CHR(10);
+  C_LINE_15 constant VARCHAR2(128): = '/' || CHR(13) || CHR(10);
+  C_COMMENT constant VARCHAR2(129): = '-- SCRIPT GENEREATED BY XDB_IMPORT_UTILITIES ';
+  C_RESOURCE_CREATED constant NUMBER(2): = 1;
+  C_RESOURCE_UPDATED constant NUMBER(2): = 2;
+  C_RESOURCE_NEW_VERSION constant NUMBER(2): = 3;
+  C_RESOURCE_UNCHANGED constant NUMBER(2): = 4;
+  TYPE DECODED_REFERENCE_ROW_T IS RECORD (
+    OWNER VARCHAR2(32),
+    TABLE_NAME VARCHAR2(32),
+    OBJECT_ID RAW(16)
+  );
+  TYPE DECODED_REFERENCE_TABLE_T IS TABLE OF DECODED_REFERENCE_ROW_T;
+  TYPE RESOURCE_EXPORT_ROW_T is record (
+    RESID RAW(16),
+    VERSION NUMBER(4),
+    ACLOID RAW(16),
+    RES CLOB,
+    XMLLOB BLOB,
+    TABLE_NAME VARCHAR2(30),
+    OWNER VARCHAR2(30),
+    OBJECT_ID RAW(16)
+  );
+  TYPE RESOURCE_EXPORT_TABLE_T is table of RESOURCE_EXPORT_ROW_T;
+  procedure startImport(
+    P_DUPLICATE_POLICY VARCHAR2,
+    P_ROOT_FOLDER VARCHAR2
+  );
+  procedure resetAclFolder(P_TEMPORARY_ACL_FOLDER VARCHAR2);
+  procedure removeAclFolder(P_TEMPORARY_ACL_FOLDER VARCHAR2);
+  function importFolder(P_RESOURCE_PATH VARCHAR2) return number;
+  function importResource(P_RESOURCE_PATH VARCHAR2, P_RESOURCE_TEXT CLOB) return number;
+  function importLink(P_LINK_DEFINITION CLOB) return number;
+  function getLOBLocator(P_RESOURCE_PATH VARCHAR2) return BLOB;
+  function patchXMLReference(P_RESOURCE_PATH VARCHAR2, P_XML_REFERENCE CLOB) return number;
+  function getVersionDetails(P_RESID RAW) return RESOURCE_EXPORT_TABLE_T pipelined;
+  function matchPath(P_PATH_LIST XMLType) return VARCHAR2;
+  procedure updateResource(P_RESOURCE_PATH VARCHAR2, P_NEW_VALUES XMLTYPE);
+  procedure setDuplicatePolicy(P_DUPLICATE_POLICY VARCHAR2);
+  procedure setPrintMode(P_PRINT_MODE NUMBER);
+  procedure clearPrintMode(P_PRINT_MODE NUMBER);
+  procedure validateRepository;
+  procedure ZIP(P_PARAMETERS XMLType);
+  procedure UNZIP(
+    P_ZIP_FILE_PATH VARCHAR2,
+    P_LOG_FILE_PATH VARCHAR2,
+    P_TARGET_FOLDER VARCHAR2,
+    P_DUPLICATE_ACTION VARCHAR2
+  );
+  procedure EXPORT(P_PARAMETERS XMLTYPE);
+  procedure IMPORT(P_PARAMETERS XMLTYPE);
+  function EXPORT_FILE_AS_SQL(P_RESOURCE_PATH VARCHAR2) return CLOB;
+  function EXPORT_FILES_AS_SQL(P_RESOURCE_LIST XDB.XDB$STRING_LIST_T) return CLOB;
+  $IF DBMS_DB_VERSION.VER_LE_10_2 $THEN $ELSE procedure createResource(
+    P_RESOURCE_PATH VARCHAR2,
+    P_CONTENT_BLOB BLOB,
+    P_DUPLICATE_POLICY VARCHAR2
+  );
+  $END
+  end;

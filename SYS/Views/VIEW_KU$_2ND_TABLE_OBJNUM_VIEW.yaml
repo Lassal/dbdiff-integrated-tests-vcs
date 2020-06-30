@@ -1,0 +1,43 @@
+schema: SYS
+name: KU$_2ND_TABLE_OBJNUM_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.obj#,
+    'T',
+    bitand(t.property, 4294967295),
+    trunc(t.property / power(2, 32)),
+    t.ts#,
+    value(o),
+    value(o2)
+  from
+    ku$_schemaobj_view o,
+    ku$_schemaobj_view o2,
+    secobj$ s,
+    sys.tab$ t
+  where
+    o.obj_num = t.obj#
+    AND s.secobj# = o.obj_num
+    AND s.obj# = o2.obj_num
+    AND bitand(t.property, 8192) = 0
+    /* is not a nested table */
+    AND bitand(t.flags, 536870912) = 0
+    /* not an IOT mapping table */
+    AND bitand(trunc(t.property / power(2, 32)), 2) = 0
+    /* not FBA internal table */
+    AND bitand(t.property, power(2, 44)) = 0
+    /* not an ACLMV container table */
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

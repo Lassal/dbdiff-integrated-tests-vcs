@@ -1,0 +1,44 @@
+schema: SYS
+name: USER_CUBE_DIMENSIONALITY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    co.name CUBE_NAME,
+    do .name DIMENSION_NAME,
+    io_diml.option_value DIMENSIONALITY_NAME,
+    diml.dimensionality_id DIMENSIONALITY_ID,
+    diml.order_num ORDER_NUM,
+    (
+      case
+        when io.option_num_value is null then 0
+        else io.option_num_value
+      end
+    ) IS_SPARSE,
+    io_eap.option_value ET_ATTR_PREFIX
+  FROM
+    olap_cubes$ c,
+    obj$ co,
+    olap_dimensionality$ diml,
+    obj$ do,
+    olap_impl_options$ io,
+    olap_impl_options$ io_eap,
+    olap_impl_options$ io_diml
+  WHERE
+    co.obj# = c .obj#
+    AND co.owner# = USERENV('SCHEMAID')
+    AND diml.dimensioned_object_type = 1 --CUBE
+    AND diml.dimensioned_object_id = c .obj#
+    AND diml.dimension_type = 11 --DIMENSION
+    AND diml.dimension_id = do .obj#
+    AND io.object_type(+) = 16 -- DIMENSIONALITY
+    AND io.owning_objectid(+) = diml.dimensionality_id
+    AND io.option_type(+) = 10 -- IS_SPARSE_DIM
+    AND io_eap.object_type(+) = 16 -- DIMENSIONALITY
+    AND io_eap.owning_objectid(+) = diml.dimensionality_id
+    AND io_eap.option_type(+) = 36 -- ET_ATTR_PREFIX
+    AND io_diml.object_type(+) = 16 -- DIMENSIONALITY
+    AND io_diml.owning_objectid(+) = diml.dimensionality_id
+    AND io_diml.option_type(+) = 33 -- DIMENSIONALITY NAME
+columns: []
+referencedTables: []

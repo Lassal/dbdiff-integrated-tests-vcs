@@ -1,0 +1,24 @@
+schema: SYS
+name: ALL_DB_LINKS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    l.name,
+    l.userid,
+    l.host,
+    l.ctime
+  from
+    sys.link$ l,
+    sys.user$ u
+  where
+    l.owner# in (
+      select
+        kzsrorol
+      from
+        x$kzsro
+    )
+    and l.owner# = u.user#
+columns: []
+referencedTables: []

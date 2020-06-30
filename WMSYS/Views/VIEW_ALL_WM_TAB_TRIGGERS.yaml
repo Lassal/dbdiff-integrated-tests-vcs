@@ -1,0 +1,49 @@
+schema: WMSYS
+name: ALL_WM_TAB_TRIGGERS
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    trig_owner_name trigger_owner,
+    trig_name trigger_name,
+    table_owner_name table_owner,
+    table_name table_name,
+    wmsys.ltUtil.getTrigTypes(trig_flag) trigger_type,
+    status,
+    when_clause,
+    description,
+    trig_code trigger_body,
+    decode(bitand(event_flag, 32768), 0, 'OFF', 'ON') tab_merge_wo_remove,
+    decode(bitand(event_flag, 65536), 0, 'OFF', 'ON') tab_merge_w_remove,
+    decode(bitand(event_flag, 131072), 0, 'OFF', 'ON') wspc_merge_wo_remove,
+    decode(bitand(event_flag, 262144), 0, 'OFF', 'ON') wspc_merge_w_remove,
+    decode(bitand(event_flag, 524288), 0, 'OFF', 'ON') dml,
+    decode(bitand(event_flag, 33554432), 0, 'OFF', 'ON') table_import
+  from
+    wmsys.wm$udtrig_info
+  where
+    (
+      trig_owner_name = sys_context('userenv', 'current_user')
+      or table_owner_name = sys_context('userenv', 'current_user')
+      or exists (
+        select
+          1
+        from
+          user_sys_privs
+        where
+          privilege = 'CREATE ANY TRIGGER'
+      )
+      or exists (
+        select
+          1
+        from
+          session_roles sr,
+          role_sys_privs rsp
+        where
+          sr.role = rsp.role
+          and rsp.privilege = 'CREATE ANY TRIGGER'
+      )
+    )
+    and internal_type = 'USER_DEFINED' WITH READ ONLY
+columns: []
+referencedTables: []

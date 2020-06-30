@@ -1,0 +1,357 @@
+schema: SYS
+name: DBMS_ROWID
+routineType: PACKAGE
+returnParamater:
+  name: ROWID_VERIFY.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: ROWID_BLOCK_NUMBER.ROW_ID
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: ROWID_BLOCK_NUMBER.TS_TYPE_IN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ROWID_CREATE.ROWID_TYPE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ROWID_CREATE.OBJECT_NUMBER
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ROWID_CREATE.RELATIVE_FNO
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ROWID_CREATE.BLOCK_NUMBER
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: ROWID_CREATE.ROW_NUMBER
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: ROWID_INFO.ROWID_IN
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: ROWID_INFO.ROWID_TYPE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: ROWID_INFO.OBJECT_NUMBER
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: ROWID_INFO.RELATIVE_FNO
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+- name: ROWID_INFO.BLOCK_NUMBER
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: OUT
+- name: ROWID_INFO.ROW_NUMBER
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: OUT
+- name: ROWID_INFO.TS_TYPE_IN
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ROWID_OBJECT.ROW_ID
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: ROWID_RELATIVE_FNO.ROW_ID
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: ROWID_RELATIVE_FNO.TS_TYPE_IN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ROWID_ROW_NUMBER.ROW_ID
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: ROWID_TO_ABSOLUTE_FNO.ROW_ID
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: ROWID_TO_ABSOLUTE_FNO.SCHEMA_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ROWID_TO_ABSOLUTE_FNO.OBJECT_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ROWID_TO_EXTENDED.OLD_ROWID
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: ROWID_TO_EXTENDED.SCHEMA_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ROWID_TO_EXTENDED.OBJECT_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ROWID_TO_EXTENDED.CONVERSION_TYPE
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: ROWID_TO_RESTRICTED.OLD_ROWID
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: ROWID_TO_RESTRICTED.CONVERSION_TYPE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: ROWID_TYPE.ROW_ID
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: ROWID_VERIFY.ROWID_IN
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: ROWID_VERIFY.SCHEMA_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ROWID_VERIFY.OBJECT_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ROWID_VERIFY.CONVERSION_TYPE
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+routineDefinition: |-
+  package dbms_rowid is ------------
+  --  OVERVIEW
+  --
+  --  This package provides procedures to create ROWIDs and to interpret
+  --  their contents
+  --  SECURITY
+  --
+  --  The execution privilege is granted to PUBLIC. Procedures in this
+  --  package run under the caller security.
+  ----------------------------
+  ----------------------------
+  --  ROWID TYPES:
+  --
+  --   RESTRICTED - Restricted ROWID
+  --
+  --   EXTENDED   - Extended ROWID
+  --
+  rowid_type_restricted constant integer: = 0;
+  rowid_type_extended constant integer: = 1;
+  --  ROWID VERIFICATION RESULTS:
+  --
+  --   VALID   - Valid ROWID
+  --
+  --   INVALID - Invalid ROWID
+  --
+  rowid_is_valid constant integer: = 0;
+  rowid_is_invalid constant integer: = 1;
+  --  OBJECT TYPES:
+  --
+  --   UNDEFINED - Object Number not defined (for restricted ROWIDs)
+  --
+  rowid_object_undefined constant integer: = 0;
+  --  ROWID CONVERSION TYPES:
+  --
+  --   INTERNAL - convert to/from column of ROWID type
+  --
+  --   EXTERNAL - convert to/from string format
+  --
+  rowid_convert_internal constant integer: = 0;
+  rowid_convert_external constant integer: = 1;
+  --  EXCEPTIONS:
+  --
+  -- ROWID_INVALID  - invalid rowid format
+  --
+  -- ROWID_BAD_BLOCK - block is beyond end of file
+  --
+  ROWID_INVALID
+  exception;
+  pragma exception_init(ROWID_INVALID, -1410);
+  ROWID_BAD_BLOCK
+  exception;
+  pragma exception_init(ROWID_BAD_BLOCK, -28516);
+  --  PROCEDURES AND FUNCTIONS:
+    --
+    --
+    -- ROWID_CREATE constructs a ROWID from its constituents:
+    --
+    -- rowid_type - type (restricted/extended)
+    -- object_number - data object number (rowid_object_undefined for restricted)
+    -- relative_fno - relative file number
+    -- block_number - block number in this file
+    -- file_number - file number in this block
+    --
+    function rowid_create(
+      rowid_type IN number,
+      object_number IN number,
+      relative_fno IN number,
+      block_number IN number,
+      row_number IN number
+    ) return rowid;
+  pragma RESTRICT_REFERENCES(rowid_create, WNDS, RNDS, WNPS, RNPS);
+  --
+    -- ROWID_INFO breaks ROWID into its components and returns them:
+    --
+    -- rowid_in - ROWID to be interpreted
+    -- rowid_type - type (restricted/extended)
+    -- object_number - data object number (rowid_object_undefined for restricted)
+    -- relative_fno - relative file number
+    -- block_number - block number in this file
+    -- file_number - file number in this block
+    -- ts_type_in - type of tablespace which this row belongs to
+    --              'BIGFILE' indicates Bigfile Tablespace
+    --              'SMALLFILE' indicates Smallfile (traditional pre-10i) TS.
+    --              NOTE: These two are the only allowed values for this param
+    --
+    procedure rowid_info(
+      rowid_in IN rowid,
+      rowid_type OUT number,
+      object_number OUT number,
+      relative_fno OUT number,
+      block_number OUT number,
+      row_number OUT number,
+      ts_type_in IN varchar2 default 'SMALLFILE'
+    );
+  pragma RESTRICT_REFERENCES(rowid_info, WNDS, RNDS, WNPS, RNPS);
+  --
+    -- ROWID_TYPE returns the type of a ROWID (restricted/extended_nopart,..)
+    --
+    -- row_id - ROWID to be interpreted
+    --
+    function rowid_type(row_id IN rowid) return number;
+  pragma RESTRICT_REFERENCES(rowid_type, WNDS, RNDS, WNPS, RNPS);
+  --
+    -- ROWID_OBJECT extracts the data object number from a ROWID.
+    -- ROWID_OBJECT_UNDEFINED is returned for restricted rowids.
+    --
+    -- row_id - ROWID to be interpreted
+    --
+    function rowid_object(row_id IN rowid) return number;
+  pragma RESTRICT_REFERENCES(rowid_object, WNDS, RNDS, WNPS, RNPS);
+  --
+    -- ROWID_RELATIVE_FNO extracts the relative file number from a ROWID.
+    --
+    -- row_id - ROWID to be interpreted
+    -- ts_type_in - type of tablespace which this row belongs to
+    --
+    function rowid_relative_fno(
+      row_id IN rowid,
+      ts_type_in IN varchar2 default 'SMALLFILE'
+    ) return number;
+  pragma RESTRICT_REFERENCES(rowid_relative_fno, WNDS, RNDS, WNPS, RNPS);
+  --
+    -- ROWID_BLOCK_NUMBER extracts the block number from a ROWID.
+    --
+    -- row_id - ROWID to be interpreted
+    -- ts_type_in - type of tablespace which this row belongs to
+    --
+    --
+    function rowid_block_number(
+      row_id IN rowid,
+      ts_type_in IN varchar2 default 'SMALLFILE'
+    ) return number;
+  pragma RESTRICT_REFERENCES(rowid_block_number, WNDS, RNDS, WNPS, RNPS);
+  --
+    -- ROWID_ROW_NUMBER extracts the row number from a ROWID.
+    --
+    -- row_id - ROWID to be interpreted
+    --
+    function rowid_row_number(row_id IN rowid) return number;
+  pragma RESTRICT_REFERENCES(rowid_row_number, WNDS, RNDS, WNPS, RNPS);
+  --
+    -- ROWID_TO_ABSOLUTE_FNO extracts the relative file number from a ROWID,
+    -- which addresses a row in a given table
+    --
+    -- row_id - ROWID to be interpreted
+    --
+    -- schema_name - name of the schema which contains the table
+    --
+    -- object_name - table name
+    --
+    function rowid_to_absolute_fno(
+      row_id IN rowid,
+      schema_name IN varchar2,
+      object_name IN varchar2
+    ) return number;
+  pragma RESTRICT_REFERENCES(rowid_to_absolute_fno, WNDS, WNPS, RNPS);
+  --
+    -- ROWID_TO_EXTENDED translates the restricted ROWID which addresses
+    -- a row in a given table to the extended format. Later, it may be removed
+    -- from this package into a different place
+    --
+    -- old_rowid - ROWID to be converted
+    --
+    -- schema_name - name of the schema which contains the table (OPTIONAL)
+    --
+    -- object_name - table name (OPTIONAL)
+    --
+    -- conversion_type - rowid_convert_internal/external_convert_external
+    --                   (whether old_rowid was stored in a column of ROWID
+    --                    type, or the character string)
+    --
+    function rowid_to_extended(
+      old_rowid IN rowid,
+      schema_name IN varchar2,
+      object_name IN varchar2,
+      conversion_type IN integer
+    ) return rowid;
+  pragma RESTRICT_REFERENCES(rowid_to_extended, WNDS, WNPS, RNPS);
+  --
+    -- ROWID_TO_RESTRICTED translates the extnded ROWID into a restricted format
+    --
+    -- old_rowid - ROWID to be converted
+    --
+    -- conversion_type - internal/external (IN)
+    --
+    -- conversion_type - rowid_convert_internal/external_convert_external
+    --                   (whether returned rowid will be stored in a column of
+    --                    ROWID type, or the character string)
+    --
+    function rowid_to_restricted(
+      old_rowid IN rowid,
+      conversion_type IN integer
+    ) return rowid;
+  pragma RESTRICT_REFERENCES(rowid_to_restricted, WNDS, RNDS, WNPS, RNPS);
+  --
+    -- ROWID_VERIFY verifies the ROWID. It returns rowid_valid or rowid_invalid
+    -- value depending on whether a given ROWID is valid or not.
+    --
+    -- rowid_in - ROWID to be verified
+    --
+    -- schema_name - name of the schema which contains the table
+    --
+    -- object_name - table name
+    --
+    -- conversion_type - rowid_convert_internal/external_convert_external
+    --                   (whether old_rowid was stored in a column of ROWID
+    --                    type, or the character string)
+    --
+    function rowid_verify(
+      rowid_in IN rowid,
+      schema_name IN varchar2,
+      object_name IN varchar2,
+      conversion_type IN integer
+    ) return number;
+  pragma RESTRICT_REFERENCES(rowid_verify, WNDS, WNPS, RNPS);
+  end;

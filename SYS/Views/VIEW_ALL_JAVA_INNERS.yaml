@@ -1,0 +1,122 @@
+schema: SYS
+name: ALL_JAVA_INNERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    m.kln,
+    m.nix,
+    m.nsm,
+    m.nln,
+    decode(
+      BITAND(m.oac, 7),
+      1,
+      'PUBLIC',
+      2,
+      'PRIVATE',
+      4,
+      'PROTECTED',
+      NULL
+    ),
+    decode(BITAND(m.oac, 8), 8, 'YES', 0, 'NO'),
+    decode(BITAND(m.oac, 16), 16, 'YES', 0, 'NO'),
+    decode(BITAND(m.oac, 1024), 1024, 'YES', 0, 'NO'),
+    decode(BITAND(m.oac, 512), 512, 'YES', 0, 'NO'),
+    decode(BITAND(m.oac, 2048), 2048, 'YES', 0, 'NO'),
+    decode(BITAND(m.oac, 4096), 4096, 'YES', 0, 'NO'),
+    decode(BITAND(m.oac, 8192), 8192, 'YES', 0, 'NO'),
+    decode(BITAND(m.oac, 16384), 16384, 'YES', 0, 'NO'),
+    decode(
+      BITAND(m.oac, 512 + 8192 + 16384),
+      0,
+      'CLASS',
+      512,
+      'INTERFACE',
+      8192,
+      'ANNOTATION',
+      16384,
+      'ENUM',
+      '??? OAC = ' || BITAND(m.oac, 512 + 8192 + 16384)
+    ),
+    decode(
+      BITAND(m.oac, 7),
+      1,
+      'PUBLIC ',
+      2,
+      'PRIVATE ',
+      4,
+      'PROTECTED ',
+      ''
+    ) || decode(BITAND(m.oac, 8), 8, 'STATIC ', 0, '') || decode(BITAND(m.oac, 16), 16, 'FINAL ', 0, '') || decode(BITAND(m.oac, 1024), 1024, 'ABSTRACT ', 0, '') || decode(BITAND(m.oac, 2048), 2048, 'STRICTFP ', 0, '') || decode(BITAND(m.oac, 4096), 4096, 'SYNTHETIC ', 0, '') || decode(
+      BITAND(m.oac, 512 + 8192 + 16384),
+      0,
+      'CLASS',
+      512,
+      'INTERFACE',
+      8192,
+      'ANNOTATION',
+      16384,
+      'ENUM',
+      '??? OAC = ' || BITAND(m.oac, 512 + 8192 + 16384)
+    )
+  from
+    sys.x$joxmic m,
+    sys.user$ u
+  where
+    m.own = u.user#
+    and m.nix != -1
+    and (
+      m.own in (
+        userenv('SCHEMAID'),
+        1
+        /* PUBLIC */
+      )
+      or (
+        (
+          (
+            m.obn in (
+              select
+                obj#
+              from
+                sys.objauth$
+              where
+                grantee# in (
+                  select
+                    kzsrorol
+                  from
+                    x$kzsro
+                )
+                and privilege# = 12
+                /* EXECUTE */
+            )
+          )
+          or exists (
+            select
+              null
+            from
+              sys.sysauth$
+            where
+              grantee# in (
+                select
+                  kzsrorol
+                from
+                  x$kzsro
+              )
+              and (
+                (
+                  /* procedure */
+                  (
+                    privilege# = -144
+                    /* EXECUTE ANY PROCEDURE */
+                    or privilege# = -141
+                    /* CREATE ANY PROCEDURE */
+                  )
+                )
+              )
+          )
+        )
+      )
+    )
+columns: []
+referencedTables: []

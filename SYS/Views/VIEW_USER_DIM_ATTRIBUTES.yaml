@@ -1,0 +1,28 @@
+schema: SYS
+name: USER_DIM_ATTRIBUTES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    da.attname,
+    dl.levelname,
+    c .name,
+    'N'
+  from
+    sys.dimattr$ da,
+    sys.obj$ o,
+    sys.user$ u,
+    sys.dimlevel$ dl,
+    sys.col$ c
+  where
+    da.dimobj# = o.obj#
+    and o.owner# = u.user#
+    and da.dimobj# = dl.dimobj#
+    and da.levelid# = dl.levelid#
+    and da.detailobj# = c .obj#
+    and da.col# = c .intcol#
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,60 @@
+schema: SYS
+name: EXU10MVL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    ct.obj#,
+    ct.change_table_schema,
+    ct.change_table_name,
+    u.user#,
+    ct.created,
+    7,
+    DECODE(BITAND(ct.mvl_flag, 1), 1, 1, 0),
+    DECODE(BITAND(ct.mvl_flag, 2), 2, 1, 0),
+    DECODE(BITAND(ct.mvl_flag, 512), 512, 1, 0),
+    DECODE(BITAND(ct.mvl_flag, 1024), 1024, 1, 0),
+    ct.change_set_name,
+    ct.source_schema_name,
+    ct.source_table_name,
+    ct.created_scn,
+    ct.mvl_flag,
+    ct.captured_values,
+    ct.mvl_temp_log,
+    ct.mvl_v7trigger,
+    ct.last_altered,
+    ct.lowest_scn,
+    ct.mvl_oldest_rid,
+    ct.mvl_oldest_pk,
+    ct.mvl_oldest_oid,
+    ct.mvl_oldest_new,
+    ct.mvl_oldest_rid_time,
+    ct.mvl_oldest_pk_time,
+    ct.mvl_oldest_oid_time,
+    ct.mvl_oldest_new_time,
+    ct.mvl_backcompat_view,
+    ct.mvl_physmvl,
+    ct.highest_scn,
+    ct.highest_timestamp,
+    ct.mvl_oldest_seq,
+    ct.mvl_oldest_seq_time
+  FROM
+    sys.cdc_change_tables$ ct,
+    sys.user$ u
+  WHERE
+    ct.change_table_schema = u.name
+    AND ct.mvl_flag IS NOT NULL
+    AND BITAND(ct.mvl_flag, 128) = 128
+    AND (
+      userenv('SCHEMAID') IN (0, u.user#)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

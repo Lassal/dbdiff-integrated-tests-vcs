@@ -1,0 +1,36 @@
+schema: MDSYS
+name: SDO_RELATE_MASK
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: DELETE_MASK.MASK
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSERT_MASK.MASK
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSERT_MASK.RELATION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_MASK.MASK
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_MASK.RELATION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package sdo_relate_mask authid definer as procedure insert_mask(
+    mask in varchar2,
+    relation in varchar2
+  );
+  procedure update_mask(
+    mask in varchar2,
+    relation in varchar2
+  );
+  procedure delete_mask(mask in varchar2);
+  end sdo_relate_mask;

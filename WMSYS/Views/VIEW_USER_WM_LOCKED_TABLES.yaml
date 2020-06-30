@@ -1,0 +1,17 @@
+schema: WMSYS
+name: USER_WM_LOCKED_TABLES
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    t.owner table_owner,
+    t.table_name,
+    t.Lock_mode,
+    t.Lock_owner,
+    t.Locking_state
+  from
+    wmsys.wm$all_locks_view t
+  where
+    t.owner = sys_context('userenv', 'current_user') WITH READ ONLY
+columns: []
+referencedTables: []

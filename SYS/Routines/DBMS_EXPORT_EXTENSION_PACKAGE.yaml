@@ -1,0 +1,467 @@
+schema: SYS
+name: DBMS_EXPORT_EXTENSION
+routineType: PACKAGE
+returnParamater:
+  name: PRE_TABLE.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: BEGIN_IMPORT_DOMAIN_INDEX.IDXSCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BEGIN_IMPORT_DOMAIN_INDEX.IDXNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECK_MATCH_TEMPLATE.POBJNO
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: FUNC_INDEX_DEFAULT.TABOBJ
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: FUNC_INDEX_DEFAULT.COLNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_METADATA.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_METADATA.INDEX_SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_METADATA.TYPE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_METADATA.TYPE_SCHEMA
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_METADATA.VERSION
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_METADATA.NEWBLOCK
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GET_DOMAIN_INDEX_METADATA.GMFLAGS
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_METADATA.DATAPUMP_DEBUG
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_TABLES.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_TABLES.INDEX_SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_TABLES.TYPE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_TABLES.TYPE_SCHEMA
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_TABLES.READ_ONLY
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_TABLES.VERSION
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DOMAIN_INDEX_TABLES.GET_TABLES
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_OBJECT_COMMENT.OBJID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_OBJECT_COMMENT.OBJTYPE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_OBJECT_SOURCE.OBJID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_OBJECT_SOURCE.OBJTYPE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_V2_DOMAIN_INDEX_TABLES.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_V2_DOMAIN_INDEX_TABLES.INDEX_SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_V2_DOMAIN_INDEX_TABLES.TYPE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_V2_DOMAIN_INDEX_TABLES.TYPE_SCHEMA
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_V2_DOMAIN_INDEX_TABLES.READ_ONLY
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_V2_DOMAIN_INDEX_TABLES.VERSION
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_V2_DOMAIN_INDEX_TABLES.GET_TABLES
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_V2_DOMAIN_INDEX_TABLES.GMFLAGS
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: INSERT_SECOBJ.SECOBJSCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INSERT_SECOBJ.SECOBJNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: NULLTOCHR0.VALUE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POST_TABLES.OBJ_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POST_TABLES.OBJ_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PRE_TABLE.OBJ_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PRE_TABLE.OBJ_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_IMP_TIMEZONE.TIMEZONE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_RESUMNAM.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_RESUMNAMTIM.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_RESUMNAMTIM.TIME
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: SET_RESUMTIM.TIME
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE DBMS_EXPORT_EXTENSION AUTHID CURRENT_USER AS ------------------------------------------------------------
+  -- Overview
+  --
+  -- This package implements PL/SQL extensions to Export.
+  -- ...
+  ---------------------------------------------------------------------
+  -- SECURITY
+  -- This package is owned by SYS, invoker's rights, and is granted to PUBLIC.
+  -- The procedures dynamically called by the package are called using
+  -- dbms_sql.parse.  Privileged operations are done in a definer's rights
+  -- package, DBMS_EXPORT_EXTENSION_I (prvthpexpi.sql, prvtbpexpi.sql).
+  ------------------------------------------------------------------------------
+  -- EXCEPTIONS
+  --
+  unExecutedActions
+  EXCEPTION;
+  -- A function was not called with the same parameters until it returned NULL.
+    -- This indicates an internal error in EXPORT.
+    -- CONSTANTS
+    --
+    --   Function codes for the expact$ table.
+    --
+    func_pre_table CONSTANT NUMBER: = 1;
+    /* execute before loading table */
+    func_post_tables CONSTANT NUMBER: = 2;
+    /* execute after loading all tables */
+    func_pre_row CONSTANT NUMBER: = 3;
+    /* execute before loading row */
+    func_post_row CONSTANT NUMBER: = 4;
+    /* execute after loading row */
+    func_row CONSTANT NUMBER: = 5;
+    /* execute in lieu of loading row */
+    ------------------------------------------------------------------------------
+    -- PROCEDURES AND FUNCTIONS
+    FUNCTION pre_table(
+      obj_schema IN VARCHAR2,
+      obj_name IN VARCHAR2
+    ) RETURN VARCHAR2;
+  -- execute pre_table functions from the expact$ table, for a specific object
+    -- Input Parameters:
+    --   obj_schema
+    --     The schema of the object being exported.
+    --   obj_name
+    --     The name for the object being exported.
+    -- Result:
+    --   A string containg a procedure invocation to be put in the export stream.
+    --   If non-null, this procedure should be called again (immediately) for the
+    --   same object.  If NULL, there are no additional pre_table calls to
+    --   be exported to the stream for this object and function.
+    -- Exceptions:
+    --   unExecutedActions
+    --   Any error encountered during executing of the action
+    FUNCTION post_tables(
+      obj_schema IN VARCHAR2,
+      obj_name IN VARCHAR2
+    ) RETURN VARCHAR2;
+  -- execute post_tables functions from the expact$ table, for a specific object
+    -- Input Parameters:
+    --   obj_schema
+    --     The schema of the object being exported.
+    --   obj_name
+    --     The name for the object being exported.
+    -- Result:
+    --   A string containing a procedure invocation to be put in the export stream.
+    --   If non-null, this procedure should be called again (immediately) for the
+    --   same object.
+    --  If NULL, there are no additional post_tables calls to be exported to the
+    --   stream for this object.
+    -- Exceptions:
+    --   unExecutedActions
+    --   Any error encountered during executing of the action
+    ----------------------------------------------------------------------------
+    -- ROW FUNCTIONS WILL BE ADDED IN THE FUTURE
+    ----------------------------------------------------------------------------
+    FUNCTION get_domain_index_metadata (
+      index_name IN VARCHAR2,
+      index_schema IN VARCHAR2,
+      type_name IN VARCHAR2,
+      type_schema IN VARCHAR2,
+      version IN VARCHAR2,
+      newblock OUT PLS_INTEGER,
+      gmflags IN NUMBER DEFAULT -1,
+      -- Post-v1 DI only
+      datapump_debug IN NUMBER DEFAULT -1
+    ) RETURN VARCHAR2;
+  -- Acts as intermediary between export and the ODCIIndexGetMetadata method on
+    -- a domain index's implementation type. This allows the index to return
+    -- PL/SQL-based "metadata" such as policy info. Strings are returned
+    -- representing pieces of PL/SQL blocks to execute at import time. Multiple
+    -- PL/SQL blocks can be built
+    --
+    -- PARAMETERS:
+    --   index_name, index_schema   - Identifies current index
+    --   type_name, type_schema     - Identifies index's implementation type
+    --   exp_version  - Export's version; e.g, '08.01.03.00.00'
+    --   newblock - Allows callee to write multiple blocks of PL/SQL code.
+    --      non-zero: Return string starts a new block,
+    --      zero: Return string continues current block.
+    --   gmflags  - Only for post-V1 getindexmetadata call.  The default
+    --              value is -1 due to a bug in the use of NULL for NUMBER
+    --              datatypes.
+    --              See catodci.sql for description of the flags
+    --   datapump_debug - if > 0 the caller is Data Pump; write trace
+    --              information from exceptions
+    -- RETURNS:
+    -- A piece of a PL/SQL block to be executed at import time. The BEGIN/END;
+    -- surrounding each block should not be returned as export will add these.
+    -- This routine will be repeatedly called until an empty string is returned.
+    --
+    FUNCTION get_object_source (
+      objid IN NUMBER,
+      objtype IN NUMBER
+    ) RETURN VARCHAR2;
+  -- This function is used to get the source string for CREATE OPERATOR and
+    -- CREATE INDEXTYPE. The function is passed the object number and the
+    -- object type and the string returned is the SQL statement needed to
+    -- create the operator or the index type.
+    -- PARAMTERS:
+    --   objid   - object number of the operator or indextype
+    --   objtype - object type (32 for indextype, 33 for operators)
+    -- RETURNS:
+    -- The SQL string that can be used to create the operator or the indextype
+    -- specified by the object id
+    -- get_domain_index_tables
+    -- for post V1 domain index implementations, see the _v2_ version below
+    --------------------------
+    FUNCTION get_domain_index_tables (
+      index_name IN VARCHAR2,
+      index_schema IN VARCHAR2,
+      type_name IN VARCHAR2,
+      type_schema IN VARCHAR2,
+      read_only IN PLS_INTEGER,
+      version IN VARCHAR2,
+      get_tables IN PLS_INTEGER
+    ) RETURN VARCHAR2;
+  -- Acts as intermediary between export and the ODCIIndexUtilGetTableNames
+    -- method on a domain index's implementation type. This allows the index to
+    -- return list of secondary tablenames (seperated by comma) which are to be
+    -- exported and imported to speed up rebuild of domain indexes during import.
+    -- PARAMETERS:
+    --   index_name, index_schema   - Identifies current index
+    --   type_name, type_schema     - Identifies index's implementation type
+    --   version    - Export's version; e.g, '08.01.03.00.00'
+    --   read_only  - Is this a read-only transaction ?  True for Export if
+    --                CONSISTENT=y.  Note: some types may not be able to exploit
+    --                fast rebuild in a read-only environment.
+    --                1 => read_only.
+    --   get_tables - Export will first call this function with get_tables=1.
+    --   In this case, the function will instantiate both an instance of the
+    --   implementation type as defined by  type_name and type_schema, and an
+    --   object of type ODCIIndexInfo using parameters index_name and index_schema.
+    --   It will then call ODCIIndexUtilGetTableNames method on the implementation
+    --   type using the ODCIIndexInfo object just constructed. The routine will
+    --   also maintain in a PL/SQL variable of session scope the context returned
+    --   from ODCIIndexUtilGetTableNames to be handed back upon its second call.
+    --
+    --   After export writes all the tables returned on the first call to its
+    --   dump file, it will call get_domain_index_tables again with parameter
+    --   get_tables=0. In this case, this function will then call the
+    --   ODCIIndexCleanup method on the ODCIIndexInfo object constructed in the
+    --   first call handing in the internally stored context. When this returns,
+    --   it will clean up its state and return a NULL string to export.
+    -- get_v2_domain_index_tables
+    -- v1 domain index implementations use the above routine.
+    --------------------------
+    FUNCTION get_v2_domain_index_tables (
+      index_name IN VARCHAR2,
+      index_schema IN VARCHAR2,
+      type_name IN VARCHAR2,
+      type_schema IN VARCHAR2,
+      read_only IN PLS_INTEGER,
+      version IN VARCHAR2,
+      get_tables IN PLS_INTEGER,
+      gmflags IN NUMBER
+    ) RETURN INTEGER;
+  -- Acts as intermediary between export and the ODCIIndexUtilGetTableNames
+    -- method on a domain index's implementation type.
+    -- Unlike the initial (v1) impelementation, the _v2_ 0/1
+    -- value which export will use to determine if all the secondary objects
+    -- associated with a domain index should be exported (1) or not (0)
+    --
+    -- PARAMETERS:
+    --   index_name, index_schema   - Identifies current index
+    --   type_name, type_schema     - Identifies index's implementation type
+    --   version    - Export's version; e.g, '08.01.03.00.00'
+    --   read_only  - Is this a read-only transaction ?  True for Export if
+    --                CONSISTENT=y.  Note: some types may not be able to exploit
+    --                fast rebuild in a read-only environment.
+    --                1 => read_only.
+    --   get_tables - Ignored.
+    --   gmflags   - Flags for domain index.  May have TransTblspc set if
+    --               in transportable mode.
+    -- begin_import_domain_index
+    --------------------------
+    PROCEDURE begin_import_domain_index (
+      idxschema IN VARCHAR2,
+      idxname IN VARCHAR2
+    );
+  -- truncates the table odci_secobj$, and set up index schema and name
+    -- PARAMETERS:
+    --   idxschema, idxname   - Identifies current index
+    -- insert_secobj
+    --------------------------
+    PROCEDURE insert_secobj (
+      secobjschema IN VARCHAR2,
+      secobjname IN VARCHAR2
+    );
+  -- insert an entry into the table odci_secobj$,
+    -- PARAMETERS:
+    --   secobjschema, secobjname   - Identifies current secondary table
+    --
+    -- Checks to see if a partition has made use of a template partition clause
+    --
+    FUNCTION check_match_template (pobjno IN INTEGER) RETURN INTEGER;
+  -- get_object_comment
+    ---------------------------
+    FUNCTION get_object_comment (
+      objid IN NUMBER,
+      objtype IN NUMBER
+    ) RETURN VARCHAR2;
+  -- This function is used to get the source string for COMMENT OPERATOR and
+    -- COMMENT INDEXTYPE. The function is passed the object number, and the type
+    -- of object (indextype or operator).  The string returned is the SQL
+    -- statement needed to comment the operator or the indextype.  If there is no
+    -- comment registered for this operator or indextype, the return string is
+    -- empty.
+    -- PARAMETERS:
+    --   objid   - object number of the operator or indextype
+    --   objtype - object type (32 for indextype, 33 for operators)
+    -- RETURNS:
+    -- The SQL string that can be used to comment the operator or the indextype
+    -- specified by the object id.  If there is no comment registered, the string
+    -- is empty.
+    PROCEDURE set_imp_events;
+  PROCEDURE set_hakan_event;
+  PROCEDURE set_secondaryobj_event;
+  PROCEDURE reset_secondaryobj_event;
+  PROCEDURE set_iot_event;
+  PROCEDURE set_exp_opq_typ_event;
+  PROCEDURE reset_exp_opq_typ_event;
+  PROCEDURE set_no_outlines;
+  PROCEDURE set_nls_numeric_char;
+  PROCEDURE reset_nls_numeric_char;
+  PROCEDURE set_exp_timezone;
+  PROCEDURE set_exp_sortsize;
+  PROCEDURE set_statson;
+  PROCEDURE set_resum;
+  PROCEDURE set_resumnam (
+      name IN VARCHAR2
+    );
+  PROCEDURE set_resumtim (
+      time IN INTEGER
+    );
+  PROCEDURE set_resumnamtim (
+      name IN VARCHAR2,
+      time IN INTEGER
+    );
+  PROCEDURE set_imp_timezone(
+      timezone IN VARCHAR2
+    );
+  PROCEDURE set_imp_skip_indexes_on;
+  PROCEDURE set_imp_skip_indexes_off;
+  -- NULLTOCHR0 - Replace \0 with CHR(0) in varchar
+    -- PARAMETERS:
+    --      value           - varchar value
+    -- RETURNS: varchar value with substitutions made
+    FUNCTION nulltochr0(value IN VARCHAR2) RETURN VARCHAR2;
+  -- FUNC_INDEX_DEFAULT  - get default$ from col$ for a func index
+    --                       and convert it to varchar2 from long
+    -- PARAMETERS:
+    --      tabobj           - binary_integer value
+    --      colname          - varchar2 value
+    -- RETURNS: clob value converted from long
+    -- ERROR: if value > 32000 bytes, then pl/sql will raise error ORA-6502
+    -- The error should be fine as the default$ contains the expression for
+    -- a functional index which is unlikely to exceed 32000 bytes
+    FUNCTION func_index_default (tabobj IN NUMBER, colname IN VARCHAR2) RETURN CLOB;
+  END DBMS_EXPORT_EXTENSION;

@@ -1,0 +1,57 @@
+schema: SYS
+name: ALL_EVALUATION_CONTEXT_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    /*+ all_rows */
+    u.name,
+    o.name,
+    ect.tab_alias,
+    ect.tab_name
+  FROM
+    rec_tab$ ect,
+    obj$ o,
+    user $ u
+  WHERE
+    ect.ec_obj# = o.obj#
+    and (
+      o.owner# in (
+        USERENV('SCHEMAID'),
+        1
+        /* PUBLIC */
+      )
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -246,
+            /* create any evaluation context */
+            -247,
+            /* alter any evaluation context */
+            -248,
+            /* drop any evaluation context */
+            -249
+            /* execute any evaluation context */
+          )
+      )
+    )
+    and o.owner# = u.user#
+columns: []
+referencedTables: []

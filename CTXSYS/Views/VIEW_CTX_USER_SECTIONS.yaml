@@ -1,0 +1,57 @@
+schema: CTXSYS
+name: CTX_USER_SECTIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    sgp_name sec_section_group,
+    decode(
+      sec_type,
+      1,
+      'ZONE',
+      2,
+      'FIELD',
+      3,
+      'SPECIAL',
+      4,
+      'STOP',
+      5,
+      'ATTR',
+      7,
+      'MDATA',
+      8,
+      'COLUMN SDATA',
+      9,
+      'COLUMN MDATA',
+      10,
+      'SDATA',
+      11,
+      'NDATA',
+      null
+    ) sec_type,
+    sec_id sec_id,
+    decode(sec_type, 4, null, sec_name) sec_name,
+    sec_tag sec_tag,
+    sec_visible sec_visible,
+    decode(
+      sec_datatype,
+      2,
+      'NUMBER',
+      5,
+      'VARCHAR2',
+      12,
+      'DATE',
+      23,
+      'RAW',
+      96,
+      'CHAR',
+      null
+    ) sec_datatype
+  from
+    dr$section sec,
+    dr$section_group sgp
+  where
+    sgp.sgp_id = sec.sec_sgp_id
+    and sgp_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

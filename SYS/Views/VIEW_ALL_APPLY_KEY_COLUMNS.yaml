@@ -1,0 +1,19 @@
+schema: SYS
+name: ALL_APPLY_KEY_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    k.object_owner,
+    k.object_name,
+    k.column_name,
+    k.apply_database_link
+  from
+    all_tab_columns a,
+    dba_apply_key_columns k
+  where
+    k.object_owner = a .owner
+    and k.object_name = a .table_name
+    and k.column_name = a .column_name
+columns: []
+referencedTables: []

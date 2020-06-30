@@ -1,0 +1,55 @@
+name: DR$THS
+schema: CTXSYS
+columns:
+- name: THS_CASE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''N'' '
+  dataTypeLength: 1
+- name: THS_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: THS_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  dataTypeLength: 30
+- name: THS_OWNER#
+  ordinalPosition: 3
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: SYS_C005199
+  type: PRIMARY_KEY
+  columns:
+  - name: THS_NAME
+    ordinalPosition: 1
+- !<unique-constraint>
+  name: SYS_C005200
+  type: UNIQUE
+  columns:
+  - name: THP_PHRASE
+    ordinalPosition: 0
+- !<check-constraint>
+  name: SYS_C005195
+  type: CHECK
+  checkClause: '"THS_NAME" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005196
+  type: CHECK
+  checkClause: '"THS_OWNER#" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005197
+  type: CHECK
+  checkClause: '"THS_CASE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005198
+  type: CHECK
+  checkClause: ths_case IN ('Y', 'N')

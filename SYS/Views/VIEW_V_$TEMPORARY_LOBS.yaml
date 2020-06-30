@@ -1,0 +1,15 @@
+schema: SYS
+name: V_$TEMPORARY_LOBS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "SID",
+    "CACHE_LOBS",
+    "NOCACHE_LOBS",
+    "ABSTRACT_LOBS",
+    "CON_ID"
+  from
+    v$temporary_lobs
+columns: []
+referencedTables: []

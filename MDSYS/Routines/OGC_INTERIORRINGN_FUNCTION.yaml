@@ -1,0 +1,24 @@
+schema: MDSYS
+name: OGC_INTERIORRINGN
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: OBJECT
+  parameterMode: OUT
+parameters:
+- name: P
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: N
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_InteriorRingN(p ST_Polygon, n Integer) RETURN ST_LineString IS arr ST_LineString_Array;
+  BEGIN
+    arr: = p.ST_InteriorRingsP();
+  RETURN arr(n);
+  END OGC_InteriorRingN;

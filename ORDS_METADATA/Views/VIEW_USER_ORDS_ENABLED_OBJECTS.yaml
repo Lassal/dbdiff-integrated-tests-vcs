@@ -1,0 +1,26 @@
+schema: ORDS_METADATA
+name: USER_ORDS_ENABLED_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    ords_objects.ID AS ID,
+    ords_schemas.id AS SCHEMA_ID,
+    ords_schemas.parsing_schema,
+    ords_objects.PARSING_OBJECT,
+    ords_objects.OBJECT_ALIAS,
+    ords_objects.TYPE,
+    ords_objects.STATUS,
+    ords_objects.AUTO_REST_AUTH,
+    ords_objects.OPS_ALLOWED,
+    ords_objects.TYPE_PATH
+  FROM
+    ords_objects,
+    ords_schemas
+  WHERE
+    ords_schemas.id = ords_objects.SCHEMA_ID
+    AND ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+    AND ords_objects.STATUS = 'ENABLED'
+    AND ords_schemas.status = 'ENABLED'
+columns: []
+referencedTables: []

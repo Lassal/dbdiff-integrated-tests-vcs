@@ -1,0 +1,128 @@
+schema: SYS
+name: DBMS_ODCI
+routineType: PACKAGE
+returnParamater:
+  name: ESTIMATE_CPU_UNITS.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: CLEANUP.IA
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLEANUP.GTN_CONTEXT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ESTIMATE_CPU_UNITS.ELAPSED_TIME
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETMETADATA.IA
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GETMETADATA.EXP_VERSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETMETADATA.IDX_VERSION
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETMETADATA.STMT_STRING
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETMETADATA.NEW_BLOCK
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETTABLENAMES.IA
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GETTABLENAMES.READ_ONLY
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETTABLENAMES.EXP_VERSION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETTABLENAMES.IDX_VERSION
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETTABLENAMES.STMT_STRING
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETTABLENAMES.GTN_CONTEXT
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETTABLENAMES.STATUS
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: OUT
+- name: RESTOREREFCURSOR.RC
+  ordinalPosition: 1
+  dataType: REF CURSOR
+  parameterMode: OUT
+- name: RESTOREREFCURSOR.CURNUM
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SAVEREFCURSOR.RC
+  ordinalPosition: 1
+  dataType: REF CURSOR
+  parameterMode: IN
+- name: SAVEREFCURSOR.CURNUM
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: UPGRADE_SECOBJ.OBJLIST
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE DBMS_ODCI AS -- Overview
+  -- This is a generic package that can be used by all the extensibility
+  -- projects. This package is owned by SYS and is granted to PUBLIC
+  -- This function is used to help users estimate the number of CPU cycles
+  -- that have been used in a certain time interval.
+  FUNCTION estimate_cpu_units(elapsed_time IN NUMBER) RETURN NUMBER;
+  -- This procedure is used to maintain secobj$ during upgrade
+  PROCEDURE upgrade_secobj(objlist ODCISecObjTable);
+  PROCEDURE SaveRefCursor(rc IN SYS_REFCURSOR, curnum OUT NUMBER) IS LANGUAGE C LIBRARY odci_extopt_lib NAME "SaveRefCursor" WITH CONTEXT PARAMETERS (
+    CONTEXT,
+    rc,
+    curnum OCINumber,
+    curnum INDICATOR
+  );
+  PROCEDURE RestoreRefCursor(rc OUT SYS_REFCURSOR, curnum IN NUMBER) IS LANGUAGE C LIBRARY odci_extopt_lib NAME "RestoreRefCursor" WITH CONTEXT PARAMETERS (
+    CONTEXT,
+    rc,
+    curnum OCINumber,
+    curnum INDICATOR
+  );
+  PROCEDURE GetMetadata(
+    ia IN SYS.ODCIIndexInfo,
+    exp_version IN VARCHAR2,
+    idx_version IN NUMBER default 1,
+    stmt_string OUT VARCHAR2,
+    new_block OUT NUMBER
+  );
+  PROCEDURE GetTableNames(
+    ia IN SYS.ODCIIndexInfo,
+    read_only IN NUMBER,
+    exp_version IN VARCHAR2,
+    idx_version IN NUMBER,
+    stmt_string OUT VARCHAR2,
+    gtn_context OUT NUMBER,
+    status OUT NUMBER
+  );
+  PROCEDURE Cleanup(ia IN SYS.ODCIIndexInfo, gtn_context IN NUMBER);
+  END DBMS_ODCI;

@@ -1,0 +1,23 @@
+name: USER_PRIVILEGE_MAP
+schema: SYS
+columns:
+- name: NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: PRIVILEGE
+  ordinalPosition: 1
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<check-constraint>
+  name: SYS_C00628
+  type: CHECK
+  checkClause: '"PRIVILEGE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C00629
+  type: CHECK
+  checkClause: '"NAME" IS NOT NULL'

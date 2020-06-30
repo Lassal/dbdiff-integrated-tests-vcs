@@ -1,0 +1,21 @@
+schema: SYS
+name: EXU81ACTIONOBJ
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    oa.name,
+    oa.objid,
+    oa.owner,
+    oa.ownerid,
+    oa.property,
+    oa.type#,
+    oa.level#,
+    oa.package,
+    oa.pkg_schema
+  FROM
+    sys.exu9actionobj oa
+  WHERE
+    oa.class = 3
+columns: []
+referencedTables: []

@@ -1,0 +1,48 @@
+schema: SYS
+name: OWA_SEC
+routineType: PACKAGE
+returnParamater:
+  name: GET_USER_ID.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: SET_AUTHORIZATION.SCHEME
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: SET_PROTECTION_REALM.REALM
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package OWA_SEC is
+  /*******************************************************************/
+  /* PL/SQL Agent's authorization schemes                            */
+  /*******************************************************************/
+  NO_CHECK constant integer: = 1;
+  /* no authorization check             */
+  GLOBAL constant integer: = 2;
+  /* global check by a single procedure */
+  PER_PACKAGE constant integer: = 3;
+  /* use auth procedure in each package */
+  CUSTOM constant integer: = 4;
+  /* use custom auth procedure          */
+  /*              owa_custom.authorize  */
+  /*******************************************************************/
+  /* Procedure to specify the PL/SQL Agent's authorization scheme    */
+  /*******************************************************************/
+  procedure set_authorization(scheme in integer);
+  /*******************************************************************/
+  /* Functions to obtain the Web client's authentication information */
+  /*******************************************************************/
+  function get_user_id return varchar2;
+  function get_password return varchar2;
+  function get_client_ip return owa_util.ip_address;
+  function get_client_hostname return varchar2;
+  /*******************************************************************/
+  /* Procedure to specify the dynamic page's protection realm        */
+  /*******************************************************************/
+  procedure set_protection_realm(realm in varchar2);
+  end;

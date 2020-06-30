@@ -1,0 +1,183 @@
+schema: SYS
+name: USER_CUBE_CLASSIFICATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    CASE
+      d.owning_object_type
+      WHEN 4 -- ASSIGNMENT
+      THEN (
+        SELECT
+          o.name || '.' || m.model_name || '.' || a .member_name
+        FROM
+          olap_model_assignments$ a,
+          olap_models$ m,
+          obj$ o
+        WHERE
+          d.owning_object_id = a .assignment_id
+          AND m.model_id = a .model_id
+          AND m.owning_obj_type = 11
+          AND m.owning_obj_id = o.obj#
+      )
+      WHEN 3 -- model
+      THEN (
+        SELECT
+          o.name || '.' || m.model_name
+        FROM
+          olap_models$ m,
+          obj$ o
+        WHERE
+          d.owning_object_id = m.model_id
+          AND m.owning_obj_type = 11
+          AND m.owning_obj_id = o.obj#
+      )
+      WHEN 14 -- hier_level
+      THEN (
+        SELECT
+          o.name || '.' || h.hierarchy_name || '.' || dl.level_name
+        FROM
+          olap_hier_levels$ hl,
+          olap_dim_levels$ dl,
+          olap_hierarchies$ h,
+          obj$ o
+        WHERE
+          d.owning_object_id = hl.hierarchy_level_id
+          AND hl.dim_level_id = dl.level_id
+          AND hl.hierarchy_id = h.hierarchy_id
+          AND h.dim_obj# = o.obj#
+      )
+      WHEN 13 -- hierarchy
+      THEN (
+        SELECT
+          o.name || '.' || h.hierarchy_name
+        FROM
+          olap_hierarchies$ h,
+          obj$ o
+        WHERE
+          d.owning_object_id = h.hierarchy_id
+          AND h.dim_obj# = o.obj#
+      )
+      WHEN 12 -- dim_level
+      THEN (
+        SELECT
+          o.name || '.' || dl.level_name
+        FROM
+          olap_dim_levels$ dl,
+          obj$ o
+        WHERE
+          d.owning_object_id = dl.level_id
+          AND dl.dim_obj# = o.obj#
+      )
+      WHEN 15 -- attribute
+      THEN (
+        SELECT
+          o.name || '.' || a .attribute_name
+        FROM
+          olap_attributes$ a,
+          obj$ o
+        WHERE
+          d.owning_object_id = a .attribute_id
+          AND a .dim_obj# = o.obj#
+      )
+      WHEN 6 -- calc_member
+      THEN (
+        SELECT
+          o.name || '.' || c .member_name
+        FROM
+          OLAP_CALCULATED_MEMBERS$ c,
+          obj$ o
+        WHERE
+          d.owning_object_id = c .member_id
+          AND c .dim_obj# = o.obj#
+      )
+      WHEN 11 -- dimension
+      THEN (
+        SELECT
+          o.name
+        FROM
+          obj$ o
+        WHERE
+          d.owning_object_id = o.obj#
+      )
+      WHEN 2 -- measure
+      THEN (
+        SELECT
+          o.name || '.' || m.measure_name
+        FROM
+          olap_measures$ m,
+          olap_cubes$ c,
+          obj$ o
+        WHERE
+          d.owning_object_id = m.measure_id
+          AND m.cube_obj# = c .obj#
+          AND c .obj# = o.obj#
+      )
+      WHEN 1 -- cube
+      THEN (
+        SELECT
+          o.name
+        FROM
+          obj$ o
+        WHERE
+          d.owning_object_id = o.obj#
+      )
+      WHEN 10 -- measure_folder
+      THEN (
+        SELECT
+          o.name
+        FROM
+          obj$ o
+        WHERE
+          d.owning_object_id = o.obj#
+      )
+      WHEN 8 -- interaction
+      THEN (
+        SELECT
+          o.name
+        FROM
+          obj$ o
+        WHERE
+          d.owning_object_id = o.obj#
+      )
+      ELSE null
+    END AS OBJECT_NAME,
+    decode(
+      d.owning_object_type,
+      '4',
+      'ASSIGNMENT',
+      '3',
+      'MODEL',
+      '14',
+      'HIERARCHY LEVEL',
+      '13',
+      'HIERARCHY',
+      '12',
+      'DIMENSION LEVEL',
+      '15',
+      'ATTRIBUTE',
+      '6',
+      'CALCULATION MEMBER',
+      '11',
+      'DIMENSION',
+      '2',
+      'MEASURE',
+      '1',
+      'CUBE',
+      '10',
+      'MEASURE FOLDER',
+      '8',
+      'BUILD PROCESS'
+    ) OBJECT_TYPE,
+    d.language LANGUAGE,
+    d.description_value CLASSIFICATION,
+    d.description_order ORDER_NUM
+  FROM
+    olap_descriptions$ d,
+    obj$ o
+  WHERE
+    d.description_class = 1
+    AND d.obj# = o.obj#
+    AND o.owner# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

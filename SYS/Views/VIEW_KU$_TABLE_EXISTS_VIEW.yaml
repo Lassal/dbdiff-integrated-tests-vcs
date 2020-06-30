@@ -1,0 +1,27 @@
+schema: SYS
+name: KU$_TABLE_EXISTS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name,
+    o.name
+  FROM
+    sys.obj$ o,
+    sys.user$ u
+  WHERE
+    o.owner# = u.user#
+    AND o.type# = 2
+    AND (
+      UID IN (0, o.owner#)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,83 @@
+schema: SYS
+name: ALL_SCHEDULER_GROUP_MEMBERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    wgm.owner,
+    wgm.group_name,
+    wgm.cred || wgm.mem_name
+  FROM
+    (
+      SELECT
+        u.name owner,
+        o.name group_name,
+        wg.member_oid2 member_oid2,
+        decode(
+          member_oid2,
+          null,
+          null,
+          '"' || cmu.name || '"."' || cmo.name || '"@'
+        ) cred,
+        decode(
+          wmu.name || '"' || substr(wmo.name, 1, 12),
+          'SYS"SCHED$_LOCAL',
+          'LOCAL',
+          '"' || wmu.name || '"."' || wmo.name || '"'
+        ) mem_name
+      FROM
+        user $ u,
+        obj$ o,
+        scheduler$_window_group w,
+        scheduler$_wingrp_member wg,
+        user $ wmu,
+        obj$ wmo,
+        user $ cmu,
+        obj$ cmo
+      WHERE
+        w.obj# = wg.oid
+        AND w.obj# = o.obj#
+        AND o.owner# = u.user#
+        AND wg.member_oid = wmo.obj#
+        AND wmo.owner# = wmu.user#
+        AND cmo.obj#(+) = wg.member_oid2
+        AND cmo.owner# = cmu.user#(+)
+        AND (
+          bitand(w.flags, 8 + 16) = 0
+          OR -- this is not a job or dest group
+          (
+            bitand(w.flags, 8 + 16) != 0
+            AND -- this is a job or destination group
+            (
+              o.owner# = USERENV('SCHEMAID')
+              OR -- user owns this group
+              wg.oid IN (
+                select
+                  oa1.obj#
+                from
+                  sys.objauth$ oa1 -- has obj privs on group
+                where
+                  grantee# in (
+                    select
+                      kzsrorol
+                    from
+                      x$kzsro
+                  )
+              )
+              OR (
+                EXISTS (
+                  select
+                    null
+                  from
+                    v$enabledprivs -- has CREATE ANY JOB
+                  where
+                    priv_number = -265
+                )
+                AND o.owner# <> 0
+              )
+            )
+          )
+        )
+    ) wgm
+columns: []
+referencedTables: []

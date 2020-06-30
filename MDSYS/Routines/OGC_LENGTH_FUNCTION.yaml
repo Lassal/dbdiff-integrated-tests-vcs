@@ -1,0 +1,31 @@
+schema: MDSYS
+name: OGC_LENGTH
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: G
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_Length(g ST_Geometry) RETURN NUMBER DETERMINISTIC IS
+  BEGIN
+    IF(
+      nls_upper(OGC_GeometryType(g)) IN (
+        'LINESTRING',
+        'ST_CIRCULARSTRING',
+        'ST_COMPOUNDCURVE',
+        'ST_LINESTRING'
+      )
+    ) THEN RETURN TREAT(g AS ST_Curve) .ST_Length();
+  END IF;
+  IF(
+    nls_upper(OGC_GeometryType(g)) IN ('MULTILINESTRING', 'ST_MULTILINESTRING')
+  ) THEN RETURN TREAT(g AS ST_MultiCurve) .ST_Length();
+  END IF;
+  RETURN NULL;
+  END OGC_Length;

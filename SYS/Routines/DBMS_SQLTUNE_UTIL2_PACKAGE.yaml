@@ -1,0 +1,247 @@
+schema: SYS
+name: DBMS_SQLTUNE_UTIL2
+routineType: PACKAGE
+returnParamater:
+  name: SQL_BINDS_VARRAY_TO_NTAB.(--return--)
+  ordinalPosition: 0
+  dataType: TABLE
+  parameterMode: OUT
+parameters:
+- name: CHECK_PRIV.PRIV
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_TIMING_INFO.PHASE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_TIMING_INFO.ELAPSED
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: GET_TIMING_INFO.CPU
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: RESOLVE_EXEC_NAME.TASK_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESOLVE_EXEC_NAME.TASK_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESOLVE_EXEC_NAME.EXEC_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: RESOLVE_USERNAME.USER_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESOLVE_USERNAME.VALIDATE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: RESOLVE_USERNAME.CON_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SQL_BINDS_NTAB_TO_VARRAY.BINDS_NTAB
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: IN
+- name: SQL_BINDS_VARRAY_TO_NTAB.BINDS_VARRAY
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: VALIDATE_SNAPSHOT.BEGIN_SNAP
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_SNAPSHOT.END_SNAP
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_SNAPSHOT.INCL_BID
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_sqltune_util2 AUTHID CURRENT_USER AS ------------------------------ resolve_username -----------------------------
+  -- NAME:
+  --     resolve_username
+  --
+  -- DESCRIPTION:
+  --     When passed a NULL name, this function returns the current schema
+  --     owner.  Otherwise, it returns the name passed in, after validating
+  --     it.
+  --
+  -- PARAMETERS:
+  --     user_name    (IN) - the name of the user to resolve
+  --     validate     (IN) - true/false validate user name if one is given
+  --     con_id       (IN) - id of container in which to resolve user_name
+  --
+  -- RETURN:
+  --      VOID
+  -----------------------------------------------------------------------------
+  FUNCTION resolve_username(
+    user_name IN VARCHAR2,
+    validate IN BOOLEAN: = TRUE,
+    con_id IN NUMBER: = NULL
+  ) RETURN VARCHAR2;
+  -------------------------------- validate_snapshot --------------------------
+  -- NAME:
+  --     validate_snapshot
+  --
+  -- DESCRIPTION:
+  --     This function checks whether a snapshot id interval is valid.
+  --     It raises an error if passed an invalid interval.
+  --
+  -- PARAMETERS:
+  --     begin_snap (IN) - begin snapshot id
+  --     end_snap   (IN) - end snapshot id
+  --     incl_bid   (IN) - TRUE:  fully-inclusive [begin_snap, end_snap]
+  --                       FALSE: half-inclusive  (begin_snap, end_snap]
+  --
+  -- RETURN:
+  --      VOID
+  -----------------------------------------------------------------------------
+  PROCEDURE validate_snapshot(
+    begin_snap IN NUMBER,
+    end_snap IN NUMBER,
+    incl_bid IN BOOLEAN: = FALSE
+  );
+  --------------------------- sql_binds_ntab_to_varray ------------------------
+  -- NAME:
+  --     sql_binds_ntab_to_varray
+  --
+  -- DESCRIPTION:
+  --     This function converts the sql binds data from the nested table stored
+  --     in the staging table on an unpack/pack to the varray type used in the
+  --     SQLSET_ROW. It is called by the unpack_stgtab_sqlset function since it
+  --     needs to pass binds as a VARRAY to the load_sqlset function
+  --
+  -- PARAMETERS:
+  --     binds_nt      (IN)  - list of binds for a single statement, in the
+  --                           sql_binds nested table type
+  --
+  -- RETURN:
+  --     Corresponding varray type (sql_binds_varray) to the input, which is
+  --     an ordered list of bind values, of type ANYDATA.
+  --     If given null as input this function returns null.
+  --
+  -----------------------------------------------------------------------------
+  FUNCTION sql_binds_ntab_to_varray(binds_ntab IN SQL_BIND_SET) RETURN SQL_BINDS;
+  ------------------------- sql_binds_varray_to_ntab -------------------------
+  -- NAME:
+  --     sql_binds_varray_to_ntab
+  --
+  -- DESCRIPTION:
+  --     This function converts the sql binds data from a VARRAY as it exists
+  --     in SQLSET_ROW into a nested table that can be stored in the staging
+  --     table.
+  --     It is called by pack_stgtab_sqlset as it inserts into the staging
+  --     table from the output of a call to select_sqlset.
+  --
+  -- PARAMETERS:
+  --     binds_varray      (IN)  - list of binds for a single statement, in the
+  --                               sql_binds VARRAY type
+  --
+  -- RETURN:
+  --     Corresponding nested table type (sql_bind_set) to the input, which is
+  --     a list of (position, value) pairs for the information in STMT_BINDS.
+  --     If given null as input this function returns null.
+  --
+  -----------------------------------------------------------------------------
+  FUNCTION sql_binds_varray_to_ntab(binds_varray IN SQL_BINDS) RETURN SQL_BIND_SET;
+  ----------------------------------- check_priv ------------------------------
+  -- NAME:
+  --     check_priv
+  --
+  -- DESCRIPTION:
+  --     This function does a callout into the kernel to check for the given
+  --     system privilege.  It returns TRUE or FALSE based on whether the
+  --     current user has the privilege enabled.  This replaces the old-style
+  --     privilege detection through SQL with the added benefit that it allows
+  --     auditing of the privilege.  This function is just a wrapper around
+  --     kzpcap.  This is used for the ADVISOR, ADMINISTER SQL TUNING SET,
+  --     and ADMINISTER ANY SQL TUNING SET privileges.
+  --
+  --     NOTE that this function should only be used when checking privileges
+  --     from an INVOKER rights package.  In the callout function we do not
+  --     switch the user prior to calling kzpcap, so we rely on the proper
+  --     security context already being in effect prior to calling this
+  --     function.  If you call it after switching into a DEFINER rights
+  --     package, it will end up checking if SYS has the priv, not the user.
+  --     If you have any questions about its proper use, please consult the
+  --     file owner.
+  --
+  -- PARAMETERS:
+  --     priv (IN) - privilege name
+  --
+  -- RETURN:
+  --     TRUE if priv is enabled, FALSE otherwise
+  --
+  -----------------------------------------------------------------------------
+  FUNCTION check_priv(priv IN VARCHAR2) RETURN BOOLEAN;
+  ------------------------------- resolve_exec_name ---------------------------
+  -- NAME:
+  --     resolve_exec_name
+  --
+  -- DESCRIPTION:
+  --     This function validates the execution name of a SPA task to ensure
+  --     it was a Compare Performance (type id 5) while if NULL was supplied,
+  --     it returns the name of the most recent compare execution for the
+  --     given SPA task
+  --
+  --
+  -- PARAMETERS:
+  --     task_name         (IN)     - name of the SPA task whose execution we
+  --                                  are examining
+  --     compare_exec_name (IN/OUT) - execution name
+  --
+  -- RETURN:
+  --     TRUE if exec_name was valid or we found a valid compare execution
+  --     name of the given SPA task, FALSE otherwise
+  --
+  -----------------------------------------------------------------------------
+  FUNCTION resolve_exec_name(
+    task_name IN VARCHAR2,
+    task_owner IN VARCHAR2,
+    exec_name IN OUT VARCHAR2
+  ) RETURN NUMBER;
+  ------------------------------ get_timing_info ------------------------------
+  -- NAME:
+  --     get_timing_info
+  --
+  -- DESCRIPTION:
+  --     This function allows one to get elapsed and CPU timing information
+  --     for a section of PL/SQL code
+  --
+  -- PARAMETERS:
+  --     phase          (IN)      - When called: 0 for start, 1 for end
+  --     elapsed_time  (IN/OUT)  - When "phase" is 0, OUT parameter storing
+  --                               current timestamp. When "phase" is 1, used
+  --                               both as IN/OUT to return elpased time.
+  --     cpu_time      (IN/OUT)  - When "phase" is 0, OUT parameter storing
+  --                               current cpu time. When "phase" is 1, used
+  --                               both as IN/OUT to return cpu time.
+  --
+  -- DESCRIPTION
+  --   Use this procedure to measure the elapsed/cpu time of a region of
+  --   code:
+  --     get_timing_info(0, elapsed, cpu_time);
+  --     ...
+  --     get_timing_info(1, elapsed, cpu_time);
+  --
+  -- RETURN:
+  --     None
+  --
+  ----------------------------------------------------------------------------
+  PROCEDURE get_timing_info(
+    phase IN BINARY_INTEGER,
+    elapsed IN OUT NUMBER,
+    cpu IN OUT NUMBER
+  );
+  END dbms_sqltune_util2;

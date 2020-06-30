@@ -1,0 +1,297 @@
+schema: SYS
+name: JVMRJBCINV
+routineType: PACKAGE
+returnParamater:
+  name: START_LOADING_JAR.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: DEPLOY_COPY.B
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: DEPLOY_INVOKE.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEPLOY_INVOKE.CLASSNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEPLOY_OPEN.FILENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEPLOY_OPEN.B
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: OUT
+- name: DROP_JAR.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_JAR.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_JAR.MSG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: FINISH_LOADING_JAR.FLAGS
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: FINISH_LOADING_JAR.MSG
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: HANDLEMD5(1).S
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HANDLEMD5(1).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HANDLEMD5(1).TYPE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: HANDLEMD5(2).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HANDLEMD5(2).TYPE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: JAR_STATUS.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: JAR_STATUS.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: JAR_STATUS.MSG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: RJBC_DONE.ID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RJBC_INIT.FLAGS
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: RJBC_NORMALIZE.PATHNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RJBC_NORMALIZE.RTYPE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: RJBC_NORMALIZE.NORMALIZED_PATHNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: RJBC_OUTPUT.TEXT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RJBC_OUTPUT.NL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: RJBC_REQUEST.PATHNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RJBC_REQUEST.RTYPE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: RJBC_REQUEST.LOB
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: OUT
+- name: RJBC_RESPOND.SID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RJBC_RESPOND.STATUS
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: RJBC_RESPOND.P
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: RJBC_RESPOND.L
+  ordinalPosition: 4
+  dataType: BLOB
+  parameterMode: IN
+- name: START_LOADING_JAR.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: START_LOADING_JAR.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: START_LOADING_JAR.PATH
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: START_LOADING_JAR.FLAGS
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: START_LOADING_JAR.CONTENT
+  ordinalPosition: 5
+  dataType: BLOB
+  parameterMode: IN
+- name: START_LOADING_JAR.MSG
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: OUT
+routineDefinition: |-
+  package jvmrjbcinv authid current_user as function rjbc_sessid return VARCHAR2;
+  function rjbc_flags return VARCHAR2;
+  -- rjbc_init: setup back channel, return id that identifies it.  Called
+  -- prior to runjava in the same session as runjava will run in.
+  -- flags non zero means dont use back channel for file content
+  -- this corresponds to the ojvmjava runjava mode server_file_system
+  function rjbc_init(flags NUMBER) return VARCHAR2;
+  -- rjbc_request: called from runjava to ask for contents or directoriness
+  -- of file identified by pathname on the client filesystem.  Puts pathname
+  -- in the java$jvm$rjbc row then waits for client response.  rtype 0 means
+  -- get content, 1 means ask if directory
+  -- status returned is 0 if content returned or is directory, !0 otherwise
+  -- lob returned if pathname found
+  function rjbc_request(pathname VARCHAR2, rtype NUMBER, lob out BLOB) return NUMBER;
+  -- rjbc_normalize: called from runjava to ask for the normalized, absolute
+  -- pathname on the client filesystem of the file identified by the input
+  -- argument pathname.  Puts pathname in the java$jvm$rjbc row then waits
+  ---for client response.
+  -- rtype is not used.
+  -- status returned is 0 if the file is a directory, non-zero otherwise.
+  -- This value is also not used.
+  -- normalized_pathname is returned containing the normalized path.
+  function rjbc_normalize(
+    pathname VARCHAR2,
+    rtype NUMBER,
+    normalized_pathname out VARCHAR2
+  ) return NUMBER;
+  -- rjbc_output: set_output_to_sql entrypoint used by runjava to pass
+  -- output back to the client.
+  -- Puts text in the java$jvm$rjbc row then waits for client response.
+  procedure rjbc_output(text VARCHAR2, nl NUMBER);
+  -- rjbc_done: called from client to shutdown back channel
+  procedure rjbc_done(id VARCHAR2: = null);
+  -- back channel entrypoint
+  -- rjbc_respond. Called in loop by back channel client thread to respond
+  -- to requests queued by rjbc_request, rjbc_normalize and rjbc_output.
+  -- status argument indicates result of processing the previous request.
+  -- status values are: -1 = initial call (there was no previous request)
+  --                     0 = file content found and returned
+  --                     1 = file not found
+  -- p in argument receives the normalized path for an rjbc_normalize request
+  -- l in argument receives the lob containing the file content for an
+  -- rjbc_request request.
+  -- return values indicate the kind of the new request.  These values are:
+  --   -1 = no request (ie, time to exit)
+  --    0 = file content (rjbc_request)
+  --    1 = normalize path (rjbc_normalize)
+  --    2 = newline terminated output (rjbc_output)
+  --    3 = nonnewline terminated output (rjbc_output)
+  -- For return values 0 and 1, the p out argument contains the name of the
+  -- file to be processed.  For return values 2 and 3 p contains the text
+  -- to be output.
+  function rjbc_respond(
+    sid VARCHAR2,
+    status NUMBER,
+    p in out VARCHAR2,
+    l BLOB
+  ) return NUMBER;
+  -- The following functions are used by loadjava
+  -- starts the actions of copying a file to the server.
+  -- b is used repeatedly to copy chuncks.
+  procedure deploy_open(filename varchar, b out BLOB) as language java name 'oracle.aurora.server.tools.loadjava.Deploy.open(java.lang.String, oracle.sql.BLOB[])';
+  -- copys a chunk out of the BLOB
+  procedure deploy_copy(b BLOB) as language java name 'oracle.aurora.server.tools.loadjava.Deploy.copy(oracle.sql.BLOB)';
+  -- invokes the a deployed class
+  function deploy_invoke(schema varchar, classname varchar) return varchar as language java name 'oracle.aurora.server.tools.loadjava.Deploy.invoke(java.lang.String, java.lang.String) return java.lang.String';
+  -- handleMd5 accesses information about schema objects that
+  -- is needed by loadjava
+  function handleMd5(s varchar2, name varchar2, type number) return raw as language java name 'oracle.aurora.server.tools.loadjava.HandleMd5.get
+
+       (java.lang.String,java.lang.String,int) return oracle.sql.RAW';
+  -- variant that looks in current schema
+  function handleMd5(name varchar2, type number) return raw as language java name 'oracle.aurora.server.tools.loadjava.HandleMd5.get
+
+       (java.lang.String,int) return oracle.sql.RAW';
+  -- jar loading
+  function start_loading_jar(
+    name varchar2,
+    schema varchar2,
+    path varchar2,
+    flags number,
+    content blob,
+    msg out varchar2
+  ) return number as language java name 'oracle.aurora.rdbms.DbmsJava.startLoadingJar
+
+       (java.lang.String,
+
+        java.lang.String,
+
+        java.lang.String,
+
+        int,
+
+        oracle.sql.BLOB,
+
+        java.lang.String[])
+
+     return int';
+  function finish_loading_jar(
+    flags number,
+    msg out varchar2
+  ) return number as language java name 'oracle.aurora.rdbms.DbmsJava.finishLoadingJar
+
+       (int,
+
+        java.lang.String[])
+
+     return int';
+  function jar_status(
+    name varchar2,
+    schema varchar2,
+    msg out varchar2
+  ) return number as language java name 'oracle.aurora.rdbms.DbmsJava.jarStatus
+
+       (java.lang.String,
+
+        java.lang.String,
+
+        java.lang.String[])
+
+     return int';
+  function drop_jar(
+    name varchar2,
+    schema varchar2,
+    msg out varchar2
+  ) return number as language java name 'oracle.aurora.rdbms.DbmsJava.dropJar
+
+       (java.lang.String,
+
+        java.lang.String,
+
+        java.lang.String[])
+
+     return int';
+  end jvmrjbcinv;

@@ -1,0 +1,84 @@
+schema: SYS
+name: ALL_LOG_GROUPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ou.name,
+    oc.name,
+    o.name,
+    case
+      c .type#
+      when 14 then 'PRIMARY KEY LOGGING'
+      when 15 then 'UNIQUE KEY LOGGING'
+      when 16 then 'FOREIGN KEY LOGGING'
+      when 17 then 'ALL COLUMN LOGGING'
+      else 'USER LOG GROUP'
+    end,
+    case
+      bitand(c .defer, 64)
+      when 64 then 'ALWAYS'
+      else 'CONDITIONAL'
+    end,
+    case
+      bitand(c .defer, 8)
+      when 8 then 'GENERATED NAME'
+      else 'USER NAME'
+    end
+  from
+    sys.con$ oc,
+    sys.user$ ou,
+    sys.obj$ o,
+    sys.cdef$ c
+  where
+    oc.owner# = ou.user#
+    and oc.con# = c .con#
+    and c .obj# = o.obj#
+    and (
+      c .type# = 12
+      or c .type# = 14
+      or c .type# = 15
+      or c .type# = 16
+      or c .type# = 17
+    )
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          obj#
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

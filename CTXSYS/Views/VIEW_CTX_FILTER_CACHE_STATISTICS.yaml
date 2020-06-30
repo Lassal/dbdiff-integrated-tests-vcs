@@ -1,0 +1,30 @@
+schema: CTXSYS
+name: CTX_FILTER_CACHE_STATISTICS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u1.name fcs_index_owner,
+    i.idx_name fcs_index_name,
+    p.ixp_name fcs_partition_name,
+    ctxsys.drvparx.GetFilterCacheSize fcs_size,
+    ctxsys.drvparx.GetFilterCacheEntries fcs_entries,
+    ctxsys.drvparx.GetFilterCacheRequests fcs_requests,
+    ctxsys.drvparx.GetFilterCacheHits fcs_hits
+  from
+    ctxsys.dr$index i,
+    ctxsys.dr$index_partition p,
+    sys.user$ u1
+  where
+    i.idx_owner# = u1.user#
+    and i.idx_option like '%U%'
+    and i.idx_id = ctxsys.drvparx.FilterCacheGetStats(
+      i.idx_id,
+      i.idx_owner#,
+      u1.name,
+      i.idx_name,
+      p.ixp_name
+    )
+    and i.idx_id = p.ixp_idx_id (+)
+columns: []
+referencedTables: []

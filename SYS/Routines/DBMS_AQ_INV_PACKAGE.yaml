@@ -1,0 +1,363 @@
+schema: SYS
+name: DBMS_AQ_INV
+routineType: PACKAGE
+returnParamater:
+  name: PURGE_PROCEDURE_NAME.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: CREATE_PROC_BUFFERED_MCQ.PROC_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PROC_BUFFERED_MCQ.QT_SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PROC_BUFFERED_MCQ.QT_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PROC_BUFFERED_MCQ.INVOKER
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PROC_BUFFERED_SCQ.PROC_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PROC_BUFFERED_SCQ.QT_SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PROC_BUFFERED_SCQ.QT_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PROC_BUFFERED_SCQ.INVOKER
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INTERNAL_PURGE_QUEUE_TABLE.QT_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INTERNAL_PURGE_QUEUE_TABLE.QT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INTERNAL_PURGE_QUEUE_TABLE.QT_FLAGS
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: INTERNAL_PURGE_QUEUE_TABLE.TOBJNO
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: INTERNAL_PURGE_QUEUE_TABLE.QT_SORT_COLS
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: INTERNAL_PURGE_QUEUE_TABLE.DELIVERY_MODE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: INTERNAL_PURGE_QUEUE_TABLE.PURGE_CONDITION
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INTERNAL_PURGE_QUEUE_TABLE.INVOKER
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INTERNAL_PURGE_QUEUE_TABLE.IFJMS
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: PURGE_BUFFERED_MCQ_TABLE.QT_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_BUFFERED_MCQ_TABLE.QT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_BUFFERED_MCQ_TABLE.QT_OBJNO
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: PURGE_BUFFERED_MCQ_TABLE.QT_FLAGS
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: PURGE_BUFFERED_MCQ_TABLE.PURGE_CONDITION
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_BUFFERED_MCQ_TABLE.INVOKER
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_BUFFERED_SCQ_TABLE.QT_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_BUFFERED_SCQ_TABLE.QT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_BUFFERED_SCQ_TABLE.QT_OBJNO
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_BUFFERED_SCQ_TABLE.PURGE_CONDITION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_BUFFERED_SCQ_TABLE.INVOKER
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MESSAGES.QT_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MESSAGES.QT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MESSAGES.NAME_ARR
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MESSAGES.QUE_NUM_ARR
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MESSAGES.ENQ_TIME_ARR
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MESSAGES.STEP_NO_ARR
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MESSAGES.MSG_PRTY_ARR
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MESSAGES.CHAIN_NO_ARR
+  ordinalPosition: 8
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MESSAGES.LOCAL_ORDER_NO_ARR
+  ordinalPosition: 9
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MESSAGES.MSG_ID_ARR
+  ordinalPosition: 10
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MESSAGES.MSG_STATE_ARR
+  ordinalPosition: 11
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MESSAGES.QT_SORT_COLS
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MSGS_TXN.QT_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MSGS_TXN.QT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MSGS_TXN.NAME_ARR
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MSGS_TXN.QUE_NUM_ARR
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MSGS_TXN.ENQ_TIME_ARR
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MSGS_TXN.STEP_NO_ARR
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MSGS_TXN.MSG_PRTY_ARR
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MSGS_TXN.CHAIN_NO_ARR
+  ordinalPosition: 8
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MSGS_TXN.LOCAL_ORDER_NO_ARR
+  ordinalPosition: 9
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MSGS_TXN.MSG_ID_ARR
+  ordinalPosition: 10
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MSGS_TXN.MSG_STATE_ARR
+  ordinalPosition: 11
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_RCPT_MSGS_TXN.QT_SORT_COLS
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MESSAGES.QT_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MESSAGES.QT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MESSAGES.SUB_ID_ARR
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MESSAGES.ENQ_TIME_ARR
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MESSAGES.STEP_NO_ARR
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MESSAGES.MSG_PRTY_ARR
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MESSAGES.CHAIN_NO_ARR
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MESSAGES.LOCAL_ORDER_NO_ARR
+  ordinalPosition: 8
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MESSAGES.MSG_ID_ARR
+  ordinalPosition: 9
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MESSAGES.MSG_STATE_ARR
+  ordinalPosition: 10
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MESSAGES.QT_SORT_COLS
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MSGS_TXN.QT_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MSGS_TXN.QT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MSGS_TXN.SUB_ID_ARR
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MSGS_TXN.ENQ_TIME_ARR
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MSGS_TXN.STEP_NO_ARR
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MSGS_TXN.MSG_PRTY_ARR
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MSGS_TXN.CHAIN_NO_ARR
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MSGS_TXN.LOCAL_ORDER_NO_ARR
+  ordinalPosition: 8
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MSGS_TXN.MSG_ID_ARR
+  ordinalPosition: 9
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MSGS_TXN.MSG_STATE_ARR
+  ordinalPosition: 10
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PURGE_ELIGIBLE_SUB_MSGS_TXN.QT_SORT_COLS
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: PURGE_PERSISTENT_MCQ_TABLE.QT_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_PERSISTENT_MCQ_TABLE.QT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_PERSISTENT_MCQ_TABLE.PURGE_CONDITION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_PERSISTENT_MCQ_TABLE.QT_FLAGS
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: PURGE_PERSISTENT_MCQ_TABLE.QT_SORT_COLS
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: PURGE_PERSISTENT_MCQ_TABLE.IFJMS
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: PURGE_PERSISTENT_SCQ_TABLE.QT_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_PERSISTENT_SCQ_TABLE.QT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_PERSISTENT_SCQ_TABLE.PURGE_CONDITION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_PROCEDURE_NAME.QT_OBJNO
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: PURGE_PROCEDURE_NAME.IS_MCQ
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: PACKAGE dbms_aq_inv wrapped a000000 1 abcd abcd abcd abcd abcd
+  abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd 9 1485 436 KsR7 / SqEyHsR1IoMHrN
+  / JO2a72Iwg83qLtDrfC9DNJ0VrGph01uf6opmK3Z2EiWBSOCw + X1h cVYvH8vKqBQ / JJ8ikDzekjUfqN
+  / 8PhBCP4IgZYI + fELdgmcPIqr43iRzSw + dtea0fdpg838J 4bE8FsjnCgOCRtLlphpZ4IgNiF6rvm0
+  + GlLx + 9M + BhuudlNFBLBLovqebF8LvsJf9nU3NLJC V / 9ryZ5Cb1Tx2laWSeog6Ix6 + 8ZFQe0wizl0NHsi0Y
+  / HCpMh0aq63m4f2kOAhDi + ETak2MYB qQhKfXBBWS9uk6g + hadiYN / UtwoxaXNa5Fe + U0G5txer2XKHvAwIVxrGU7VoE0sTHCwfUrvZ
+  sz8 + FVv8QpYcZLDIIzLYu0HGlDtALtm / 2QPvwCR7ZB2jmOOPSpAeSorgGBmqZ8GWchOAxzT1 jWu0gAQwoKpRqpL8m4uS6BAZ6HrQHBlBQnOfI20nfIzdxKxMoGIwobZhlM9SOv
+  + M1WwCjjZN 96k0K / pVmVwErR263yy6G5 / AK39HDVxdy8BoknfxvLnKvPgNB9So3kAXxanSAz2mDVq5vmeo
+  6lwb + 7fTCbpmZQ2N9ObUb4 + 5wawV33CURcf3Zdc20PoXz6gcgwnwYIUl + HFrQaWi43R8v / IJ
+  fmXwCW4 + dadDUK1pkLmg / 3XZRYGGhY1FwiP6B1ZNtIB5BKk91rbZh1fuennIzecpSxwxE1Zi 9gAb4YPxKnUcsqDN5xCDh4wRS813fQsSahqv4i45tUbGYDlgTRTxGHAhRoXl
+  + KCPOTEqY2vT O69cpNDOlqFrrnGmQ + jT1HHZavanRclwkIsyDNZEQ75p + YdrifDhicD2AyNIjrX2jFfe
+  + 3p4 GKpTaZ7Il3 / OrsFuR64t681LeOk8vLN54ihXSDvyWeysNiPljldaIA / wlcQA + 8ZiT4w8CknE
+  P9vngZFgdmniEpHsWqWWJp2zCsIb2JvQZzJxTizjz6JOUxEqyiNZCHVofzv9 + i6ySWOCMpR4 wgz /
+  vRit7THRiXg4jOpZ9zZ5kb9R2i9X6SH6jZXH / ulTUxAI / VIaUJU =

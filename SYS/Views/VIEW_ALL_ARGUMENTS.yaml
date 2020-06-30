@@ -1,0 +1,69 @@
+schema: SYS
+name: ALL_ARGUMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    OWNER,
+    OBJECT_NAME,
+    PACKAGE_NAME,
+    OBJECT_ID,
+    OVERLOAD,
+    SUBPROGRAM_ID,
+    ARGUMENT_NAME,
+    POSITION,
+    SEQUENCE,
+    DATA_LEVEL,
+    DATA_TYPE,
+    DEFAULTED,
+    DEFAULT_VALUE,
+    DEFAULT_LENGTH,
+    IN_OUT,
+    DATA_LENGTH,
+    DATA_PRECISION,
+    DATA_SCALE,
+    RADIX,
+    CHARACTER_SET_NAME,
+    TYPE_OWNER,
+    TYPE_NAME,
+    TYPE_SUBNAME,
+    TYPE_LINK,
+    PLS_TYPE,
+    CHAR_LENGTH,
+    CHAR_USED,
+    ORIGIN_CON_ID
+  from
+    INT $DBA_ARGUMENTS
+  where
+    (
+      OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (-144, -141)
+      )
+      or OBJ_ID(
+        OWNER,
+        nvl(PACKAGE_NAME, OBJECT_NAME),
+        OBJECT_TYPE#,
+        OBJECT_ID
+      ) in (
+        select
+          obj#
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+          and privilege# = 12
+      )
+    )
+columns: []
+referencedTables: []

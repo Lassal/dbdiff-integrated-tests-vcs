@@ -1,0 +1,54 @@
+schema: SYS
+name: EXPPIOTMAP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    t.obj#,
+    t.dataobj#,
+    t.ts#,
+    t.file#,
+    t.block#,
+    NVL(po.deftiniexts, 0),
+    po.deflists,
+    po.defgroups,
+    DECODE(
+      bitand(po.spare1, 3),
+      1,
+      'KEEP',
+      2,
+      'RECYCLE',
+      'DEFAULT'
+    ),
+    t.bo#,
+    t.part#,
+    ts.name,
+    po.deflogging,
+    MOD(po.defpctfree, 100),
+    po.defpctused,
+    t.initrans,
+    t.maxtrans,
+    NVL(ts.blocksize, 2048)
+    /* non null for table/indexes */
+  FROM
+    sys.tabpart$ t,
+    sys.partobj$ po,
+    sys.ts$ ts,
+    sys.obj$ o
+  WHERE
+    ts.ts# = t.ts#
+    AND t.bo# = po.obj#
+    AND t.bo# = o.obj#
+    AND (
+      userenv('SCHEMAID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

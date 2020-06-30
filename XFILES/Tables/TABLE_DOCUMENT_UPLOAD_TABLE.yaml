@@ -1,0 +1,53 @@
+name: DOCUMENT_UPLOAD_TABLE
+schema: XFILES
+columns:
+- name: BLOB_CONTENT
+  ordinalPosition: 7
+  dataType: BLOB
+  nullable: true
+  dataTypeLength:
+- name: CONTENT_TYPE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  dataTypeLength: 128
+- name: DAD_CHARSET
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  dataTypeLength: 128
+- name: DOC_SIZE
+  ordinalPosition: 3
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: LAST_UPDATED
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: MIME_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  dataTypeLength: 128
+- name: NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: false
+  dataTypeLength: 256
+constraints:
+- !<unique-constraint>
+  name: SYS_C0010280
+  type: UNIQUE
+  columns:
+  - name: NAME
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0010279
+  type: CHECK
+  checkClause: '"NAME" IS NOT NULL'

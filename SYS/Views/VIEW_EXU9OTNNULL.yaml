@@ -1,0 +1,18 @@
+schema: SYS
+name: EXU9OTNNULL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    tobjid,
+    name,
+    conname,
+    defer
+  FROM
+    sys.exu8col_temp
+  WHERE
+    isnull = 1
+    AND BITAND(colprop, 32) != 32
+    /* Not hidden (exploded col/attrs) */
+columns: []
+referencedTables: []

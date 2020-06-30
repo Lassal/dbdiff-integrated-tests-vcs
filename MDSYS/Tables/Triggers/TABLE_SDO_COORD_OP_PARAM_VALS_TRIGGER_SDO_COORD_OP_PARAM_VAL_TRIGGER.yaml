@@ -1,0 +1,24 @@
+targetObjectSchema: MDSYS
+targetObjectName: SDO_COORD_OP_PARAM_VALS
+targetObjectType: TABLE
+name: SDO_COORD_OP_PARAM_VAL_TRIGGER
+eventTiming: AFTER EACH ROW
+event: INSERT OR UPDATE OR DELETE
+eventActionBody: |-
+  BEGIN
+    MDSYS.sdo_cs.sdo_cs_context_invalidate;
+  update
+    sdo_cs_srs
+  set
+    wktext = 'Getting updated'
+  where
+    srid in (
+      select
+        crs.srid
+      from
+        sdo_coord_ref_sys crs
+      where
+        crs.projection_conv_id = :new.coord_op_id
+    );
+  end;
+executionOrder: 1

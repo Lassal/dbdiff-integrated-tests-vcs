@@ -1,0 +1,161 @@
+schema: SYS
+name: UTL_URL
+routineType: PACKAGE
+returnParamater:
+  name: UNESCAPE.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: ESCAPE.URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ESCAPE.ESCAPE_RESERVED_CHARS
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ESCAPE.URL_CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNESCAPE.URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNESCAPE.URL_CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: "PACKAGE utl_url AS\n/*********************************************************************\n\
+  \n\n\n  A Uniform Resource Locator (URL) is a string that identifies a resource\n\
+  \n  (such as a Web page or a picture) on the Web that can be accessed usually\n\n\
+  \  via the HyperText Transfer Protocol (HTTP).  For example, the URL of the\n\n\
+  \  front-page of Oracle's Web site is \"http://www.oracle.com/\".\n\n\n\n  Normally,\
+  \ a URL contains English alphabets, digits, and some punctuation\n\n  characters.\
+  \  They are called the unreserved characters.  Any other\n\n  characters (including\
+  \ multi-byte characters) or binary octet codes in a\n\n  URL must be escaped in\
+  \ order that it can be safely handled by a\n\n  Web browser or a Web server.  Some\
+  \ punctuation characters, such as\n\n  \"$\", \"?\", \":\", and \"=\", are reserved\
+  \ as delimiters in a URL.\n\n  They are called the reserved characters.  If such\
+  \ characters are to be\n\n  taken literally instead of being treated as delimiters,\
+  \ they must be\n\n  escaped as well.\n\n\n\n  The unreserved characters consist\
+  \ of:\n\n    - \"A\" - \"Z\", \"a\" - \"z\",\n\n    - \"0\" - \"9\",\n\n    - \"\
+  -\", \"_\", \".\", \"!\", \"~\", \"*\", \"'\", \"(\", and \")\"\n\n\n\n  The reserved\
+  \ characters consist of:\n\n    - \";\", \"/\", \"?\", \":\". \"@\", \"&\", \"=\"\
+  . \"+\", \"$\", \",\", \"[\", \"]\"\n\n\n\n  This package provides two functions\
+  \ that escape and unescape characters\n\n  in a URL.  The escape function should\
+  \ be used to escape a URL before the URL\n\n  is used fetch a Web page via the UTL_HTTP\
+  \ package.  The unescape function\n\n  should be used to unescape an escaped URL\
+  \ before information is extracted\n\n  from the URL.\n\n\n\n  For more information,\
+  \ refer to the Request For Comments (RFC) document\n\n  RFC2396. Note that this\
+  \ URL escape and unescape mechanism is different from\n\n  the x-www-form-urlencoded\
+  \ encoding mechanism described in the HTML\n\n  specification:\n\n\n\n    http://www.w3.org/TR/html\n\
+  \n\n\n  You can implement the x-www-form-urlencoded encoding using the\n\n  UTL_URL.ESCAPE\
+  \ function as follows:\n\n\n\n    CREATE OR REPLACE FUNCTION form_url_encode(\n\n\
+  \      data    IN VARCHAR2,\n\n      charset IN VARCHAR2) RETURN VARCHAR2 AS\n\n\
+  \    BEGIN\n\n      RETURN utl_url.escape(data, TRUE, charset); -- note use of TURE\n\
+  \n    END;\n\n\n\n  Notice that this form_url_encode function encodes space characters\
+  \ in \"%HH\"\n\n  hex code format instead of \"+\" as stipulated by the form-URL-encode\
+  \ scheme.\n\n  However, this function will cause no noticeable difference to applications\n\
+  \n  that depend on the form-URL-encode scheme to submit data to a Web server in\n\
+  \n  most cases. Most Web servers will be able to decode the submitted data\n\n \
+  \ correctly. If the user's Web server does not accept space characters encoded\n\
+  \n  in \"%HH\" hex code format, the user will have to modify the form_url_encode\n\
+  \n  function to selectively encode space characters as \"+\" and encode the\n\n\
+  \  remaining characters using the UTL_URL.ESCAPE function.\n\n\n\n  For decoding\
+  \ data encoded with the form-URL-encode scheme, the following\n\n  function implements\
+  \ the decording scheme:\n\n\n\n    CREATE OR REPLACE FUNCTION form_url_decode(\n\
+  \n      data    IN VARCHAR2,\n\n      charset IN VARCHAR2) RETURN VARCHAR2 AS\n\n\
+  \    BEGIN\n\n      RETURN utl_url.unescape(replace(data, '+', ' '), charset);\n\
+  \n    END;\n\n\n\n  *********************************************************************/\n\
+  -- Exceptions\nbad_url\nEXCEPTION;\n-- URL contains badly formed escape code\n \
+  \ bad_fixed_width_charset\nEXCEPTION;\n-- Fixed-width multibyte character set\n\
+  \  -- not allowed for a URL\n  PRAGMA EXCEPTION_INIT(bad_url, -29262);\nPRAGMA EXCEPTION_INIT(bad_fixed_width_charset,\
+  \ -29274);\n  /**\n  \n     * Returns the URL with illegal characters (and optionally\
+  \ reserved\n  \n     * characters) escaped using \"%2-digit-hex-code\" format.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   url                    The URL\
+  \ to escape\n  \n     *   escape_reserved_chars  Escape the reserved characters\
+  \ as well or not?\n  \n     *   url_charset            When escaping a URL, what\
+  \ is the character\n  \n     *                          set that URL should be converted\
+  \ to before\n  \n     *                          the URL is escaped in %hex-code\
+  \ format?\n  \n     *                          If url_charset is NULL, the database\n\
+  \  \n     *                          charset is assumed and no character set\n \
+  \ \n     *                          conversion will occur.  The default value is\n\
+  \  \n     *                          the current default body character set of the\n\
+  \  \n     *                          UTL_HTTP package, whose default value is\n\
+  \  \n     *                          \"ISO-8859-1\".  The character set can be named\n\
+  \  \n     *                          in Internet Assigned Numbers Authority (IANA)\
+  \ or\n  \n     *                          Oracle naming convention.\n  \n     *\
+  \ EXCEPTIONS\n  \n     *   bad_fixed_width_charset  when the url_charset is a fixed-width\n\
+  \  \n     *                            multibyte character set that is not allowed\
+  \ as\n  \n     *                            an encoding of a URL as the character\
+  \ set\n  \n     *                            does not contain the \"%\" or other\
+  \ single-byte\n  \n     *                            characters.\n  \n     *   +\
+  \ plus miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *   Normally,\
+  \ a user will escape the whole URL, which contains the\n  \n     * reserved characters\
+  \ (delimiters) that should not be escaped.\n  \n     * For example,\n  \n     *\n\
+  \  \n     *   utl_url.escape('http://www.acme.com/a url with space.html')\n  \n\
+  \     *\n  \n     * will return\n  \n     *\n  \n     *   'http://foo.com/a%20url%20with%20space.html'\n\
+  \  \n     *\n  \n     *   In other situations, a user may want to send a query string\
+  \ with a\n  \n     * value that contains reserved characters.  In that case, he\
+  \ should escape\n  \n     * just the value fully (with escape_reserved_chars set\
+  \ to TRUE) and then\n  \n     * concatenate it with the rest of the URL.  For example,\n\
+  \  \n     *\n  \n     *   url := 'http://www.acme.com/search?check=' ||\n  \n  \
+  \   *             utl_url.escape('Is the use of the \"$\" sign okay?', TRUE);\n\
+  \  \n     *\n  \n     * That will escape the \"?\", \"$\", and space characters\
+  \ in\n  \n     * 'Is the use of the \"$\" sign okay?' but not the \"?\" after \"\
+  search\" in the\n  \n     * URL that denotes the use of a query string.\n  \n  \
+  \   *\n  \n     *   Note that the Web server that a user intends to fetch Web pages\
+  \ from\n  \n     * may use a character set that is different from that of the user's\n\
+  \  \n     * database.  In that case, the user must specify the url_charset\n  \n\
+  \     * as the Web server's character set so that the characters that need\n  \n\
+  \     * to be escaped are escaped in the URL character set.  For example,\n  \n\
+  \     * a user of an EBCDIC database who wants to access an ASCII Web server\n \
+  \ \n     * should escape the URL using \"US7ASCII\" so that a space is escaped\n\
+  \  \n     * as \"%20\" (hex code of a space in ASCII) instead of \"%40\" (hex code\n\
+  \  \n     * of a space in EBCDIC).  When the url_charset is specified, the\n  \n\
+  \     * escape function will convert the URL to the URL character set,\n  \n   \
+  \  * escape the URL, and convert the escaped URL from the URL character set\n  \n\
+  \     * back to the database character set.\n  \n     *\n  \n     *   This function\
+  \ does not validate a URL for the proper URL format.\n  \n     */\n  FUNCTION escape(\n\
+  \    url IN VARCHAR2 CHARACTER\n    SET\n      ANY_CS,\n      escape_reserved_chars\
+  \ IN BOOLEAN DEFAULT FALSE,\n      url_charset IN VARCHAR2 DEFAULT utl_http.get_body_charset\n\
+  \  ) RETURN VARCHAR2 CHARACTER\nSET\n  url % CHARSET;\n  /**\n  \n     * Unescapes\
+  \ the escape character sequences to their original form in an URL,\n  \n     * namely\
+  \ to convert \"%XX\" escape character sequences to the original\n  \n     * characters.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   url              The URL to unescape\n\
+  \  \n     *   url_charset      When unescaping a URL, what is the character\n  \n\
+  \     *                    set that URL should be converted to before\n  \n    \
+  \ *                    the URL is unescaped from %hex-code format?\n  \n     * \
+  \                   If url_charset is NULL, the database\n  \n     *           \
+  \         charset is assumed and no character set\n  \n     *                  \
+  \  conversion will occur.  The default value is\n  \n     *                    the\
+  \ current default body character set of the\n  \n     *                    UTL_HTTP\
+  \ package, whose default value is\n  \n     *                    \"ISO-8859-1\"\
+  .  The character set can be named\n  \n     *                    in Internet Assigned\
+  \ Numbers Authority (IANA) or\n  \n     *                    Oracle naming convention.\n\
+  \  \n     *\n  \n     * EXCEPTIONS\n  \n     *   bad_url                  when the\
+  \ URL contains badly-formed\n  \n     *                            escape codes.\n\
+  \  \n     *   bad_fixed_width_charset  when the url_charset is a fixed-width\n \
+  \ \n     *                            multibyte character set that is not allowed\
+  \ as\n  \n     *                            an encoding of a URL as the character\
+  \ set\n  \n     *                            does not contain the \"%\" or other\
+  \ single-byte\n  \n     *                            characters.\n  \n     *   +\
+  \ plus miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *   Note that\
+  \ the Web server that a user receives the URL from\n  \n     * may use a character\
+  \ set that is different from that of the user's\n  \n     * database.  In that case,\
+  \ the user must specify the url_charset\n  \n     * as the Web server's character\
+  \ set so that the characters that need\n  \n     * to be unescaped are unescaped\
+  \ in the URL character set.  For example,\n  \n     * user of an EBCDIC database\
+  \ who receives a URL from an ASCII Web server\n  \n     * should unescape the URL\
+  \ using \"US7ASCII\" so that \"%20\" is unescaped as\n  \n     * a space (0x20 is\
+  \ the hex code of a space in ASCII) instead of a \"?\"\n  \n     * (because 0x20\
+  \ is not a valid character in EBCDIC).  When the\n  \n     * url_charset is specified,\
+  \ the unescape function converts the URL to\n  \n     * the URL character set, unescape\
+  \ the URL, and convert the unescaped URL\n  \n     * from the URL character set\
+  \ back to the database character set.\n  \n     *\n  \n     *   This function does\
+  \ not validate a URL for the proper URL format.\n  \n     */\n  FUNCTION unescape(\n\
+  \    url IN VARCHAR2 CHARACTER\n    SET\n      ANY_CS,\n      url_charset IN VARCHAR2\
+  \ DEFAULT utl_http.get_body_charset\n  ) RETURN VARCHAR2 CHARACTER\nSET\n  url %\
+  \ CHARSET;\nEND;"

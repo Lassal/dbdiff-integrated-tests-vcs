@@ -1,0 +1,62 @@
+schema: SYS
+name: ALL_RULE_SETS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    /*+ all_rows */
+    u.name,
+    o.name,
+    bu.name,
+    bo.name,
+    r.rs_comment
+  FROM
+    rule_set$ r,
+    obj$ o,
+    user $ u,
+    obj$ bo,
+    user $ bu
+  WHERE
+    r.obj# = o.obj#
+    and (
+      o.owner# in (
+        USERENV('SCHEMAID'),
+        1
+        /* PUBLIC */
+      )
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -251,
+            /* create any rule set */
+            -252,
+            /* alter any rule set */
+            -253,
+            /* drop any rule set */
+            -254
+            /* execute any rule set */
+          )
+      )
+    )
+    and u.user# = o.owner#
+    and r.ectx# = bo.obj#(+)
+    and bo.owner# = bu.user#(+)
+columns: []
+referencedTables: []

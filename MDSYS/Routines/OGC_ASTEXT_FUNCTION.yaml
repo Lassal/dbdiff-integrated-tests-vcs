@@ -1,0 +1,18 @@
+schema: MDSYS
+name: OGC_ASTEXT
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: G
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_AsText(g ST_Geometry) RETURN VARCHAR2 IS
+  BEGIN
+    RETURN g.GET_WKT();
+  END OGC_AsText;

@@ -1,0 +1,19 @@
+schema: SYS
+name: SYSFILES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ts.name,
+    dbf.name,
+    f.blocks
+  from
+    sys.ts$ ts,
+    sys.file$ f,
+    sys.v$dbfile dbf
+  where
+    ts.ts# = f.ts#(+)
+    and dbf.file# = f.file#
+    and f.status$ = 2
+columns: []
+referencedTables: []

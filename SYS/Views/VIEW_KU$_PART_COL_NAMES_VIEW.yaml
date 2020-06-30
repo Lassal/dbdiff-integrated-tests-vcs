@@ -1,0 +1,58 @@
+schema: SYS
+name: KU$_PART_COL_NAMES_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name,
+    o.name,
+    c .name
+  FROM
+    user $ u,
+    obj$ o,
+    sys.col$ c,
+    partcol$ pc
+  WHERE
+    pc.obj# = c .obj#
+    and pc.intcol# = c .intcol#
+    and pc.obj# = o.obj#
+    and o.owner# = u.user#
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') in (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+  UNION ALL
+  SELECT
+    u.name,
+    o.name,
+    c .name
+  FROM
+    user $ u,
+    obj$ o,
+    sys.col$ c,
+    subpartcol$ sc
+  WHERE
+    sc.obj# = c .obj#
+    and sc.intcol# = c .intcol#
+    and sc.obj# = o.obj#
+    and o.owner# = u.user#
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') in (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,35 @@
+schema: SYS
+name: KU$_ON_USER_GRANT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    u.name,
+    u1.name,
+    u2.name,
+    us.sequence#
+  from
+    sys.userauth$ us,
+    sys.user$ u,
+    sys.user$ u1,
+    sys.user$ u2
+  where
+    us.user# = u.user#
+    and us.grantor# = u1.user#
+    and us.grantee# = u2.user#
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (us.grantee#, 0)
+      OR us.grantee# = 1
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

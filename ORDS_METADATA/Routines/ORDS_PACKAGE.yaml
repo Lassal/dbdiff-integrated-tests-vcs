@@ -1,0 +1,375 @@
+schema: ORDS_METADATA
+name: ORDS
+routineType: PACKAGE
+returnParamater:
+  name: INSTALLED_VERSION.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: CREATE_PRIVILEGE(1).P_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PRIVILEGE(1).P_ROLES
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: CREATE_PRIVILEGE(1).P_LABEL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PRIVILEGE(1).P_DESCRIPTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PRIVILEGE(2).P_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PRIVILEGE(2).P_ROLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PRIVILEGE(2).P_LABEL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PRIVILEGE(2).P_DESCRIPTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PRIVILEGE_MAPPING(1).P_PRIVILEGE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PRIVILEGE_MAPPING(1).P_PATTERNS
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: CREATE_PRIVILEGE_MAPPING(2).P_PRIVILEGE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PRIVILEGE_MAPPING(2).P_PATTERN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROLE.P_ROLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SERVICE.P_MODULE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 255
+  parameterMode: IN
+- name: CREATE_SERVICE.P_BASE_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 255
+  parameterMode: IN
+- name: CREATE_SERVICE.P_PATTERN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 600
+  parameterMode: IN
+- name: CREATE_SERVICE.P_METHOD
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 10
+  parameterMode: IN
+- name: CREATE_SERVICE.P_SOURCE_TYPE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 30
+  parameterMode: IN
+- name: CREATE_SERVICE.P_SOURCE
+  ordinalPosition: 6
+  dataType: CLOB
+  parameterMode: IN
+- name: CREATE_SERVICE.P_ITEMS_PER_PAGE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SERVICE.P_STATUS
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 30
+  parameterMode: IN
+- name: CREATE_SERVICE.P_ETAG_TYPE
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 30
+  parameterMode: IN
+- name: CREATE_SERVICE.P_ETAG_QUERY
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  parameterMode: IN
+- name: CREATE_SERVICE.P_MIMES_ALLOWED
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 255
+  parameterMode: IN
+- name: CREATE_SERVICE.P_MODULE_COMMENTS
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  parameterMode: IN
+- name: CREATE_SERVICE.P_TEMPLATE_COMMENTS
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  parameterMode: IN
+- name: CREATE_SERVICE.P_HANDLER_COMMENTS
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  parameterMode: IN
+- name: DELETE_PRIVILEGE.P_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_PRIVILEGE_MAPPING.P_PRIVILEGE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_PRIVILEGE_MAPPING.P_PATTERN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_ROLE.P_ROLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_REST_FOR_SCHEMA.P_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_OBJECT.P_ENABLED
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ENABLE_OBJECT.P_SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_OBJECT.P_OBJECT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_OBJECT.P_OBJECT_TYPE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_OBJECT.P_OBJECT_ALIAS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_OBJECT.P_AUTO_REST_AUTH
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ENABLE_SCHEMA.P_ENABLED
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ENABLE_SCHEMA.P_SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_SCHEMA.P_URL_MAPPING_TYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_SCHEMA.P_URL_MAPPING_PATTERN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_SCHEMA.P_AUTO_REST_AUTH
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: RENAME_PRIVILEGE.P_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAME_PRIVILEGE.P_NEW_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAME_ROLE.P_ROLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAME_ROLE.P_NEW_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_URL_MAPPING.P_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_URL_MAPPING.P_URL_MAPPING_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_URL_MAPPING.P_URL_MAPPING_PATTERN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_PRIVILEGE.P_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_PRIVILEGE.P_ROLES
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: UPDATE_PRIVILEGE.P_LABEL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_PRIVILEGE.P_DESCRIPTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: "PACKAGE ORDS AUTHID current_user AS source_type_query CONSTANT\
+  \ varchar(255): = 'json/query';\nsource_type_csv_query CONSTANT varchar(255): =\
+  \ 'csv/query';\nsource_type_query_one_row CONSTANT varchar(255): = 'json/query;type=single';\n\
+  source_type_feed CONSTANT varchar(255): = 'json/query;type=feed';\nsource_type_media\
+  \ CONSTANT varchar(255): = 'resource/lob';\nsource_type_plsql CONSTANT varchar(255):\
+  \ = 'plsql/block';\nsource_type_collection_feed CONSTANT varchar(255): = 'json/collection';\n\
+  source_type_collection_item CONSTANT varchar(255): = 'json/item';\nPROCEDURE create_service(\n\
+  \  p_module_name IN ords_modules.name % type,\n  p_base_path IN ords_modules.uri_prefix\
+  \ % type,\n  p_pattern IN ords_templates.uri_template % type,\n  p_method IN ords_handlers.method\
+  \ % type DEFAULT 'GET',\n  p_source_type IN ords_handlers.source_type % type DEFAULT\
+  \ ords.source_type_collection_feed,\n  p_source IN ords_handlers.source % type,\n\
+  \  p_items_per_page IN ords_modules.items_per_page % type DEFAULT 25,\n  p_status\
+  \ IN ords_modules.status % type DEFAULT 'PUBLISHED',\n  p_etag_type IN ords_templates.etag_type\
+  \ % type DEFAULT 'HASH',\n  p_etag_query IN ords_templates.etag_query % type DEFAULT\
+  \ NULL,\n  p_mimes_allowed IN ords_handlers.mimes_allowed % type DEFAULT NULL,\n\
+  \  p_module_comments IN ords_modules.comments % type DEFAULT NULL,\n  p_template_comments\
+  \ IN ords_modules.comments % type DEFAULT NULL,\n  p_handler_comments IN ords_modules.comments\
+  \ % type DEFAULT NULL\n);\n/**\n\n  * Create a Privilege. Privileges are used to\
+  \ protect resources. \n\n  * A Party accessing the resource must posess at least\
+  \ one of the roles\n\n  * enumerated by the Privilege.\n\n  *\n\n  * @param p_name\
+  \ The name of the privilege, must conform to the syntax\n\n  *               of\
+  \ scope names specified by section 3.3 of the OAuth 2.0 spec.\n\n  *           \
+  \    This value must not be null.\n\n  *\n\n  * @param p_role_names The names of\
+  \ the roles that the privilege requires at\n\n  *                     least one\
+  \ of. May be empty in which case the user\n\n  *                     must be authenticated\
+  \ but does not require any specific \n\n  *                     role. Unauthenticated\
+  \ users will be denied access.\n\n  *                     This value must not be\
+  \ null.\n\n  *\n\n  * @param p_label Human readable title to assign the privilege.\
+  \ Displayed\n\n  *                to end user during approval phase of three-legged\
+  \ OAuth.\n\n  *                If null Privilege can only be used in two-legged\
+  \ OAuth flows\n\n  *\n\n  * @param p_description Human readable description of purpose\
+  \ of Privilege.\n\n  *                      Displayed to end user during approval\
+  \ phase of \n\n  *                      three-legged OAuth. If null Privilege can\
+  \ only be\n\n  *                      used in two-legged OAuth flows.\n\n  */\n\
+  procedure create_privilege(\n  p_name varchar2,\n  p_roles owa.vc_arr,\n  p_label\
+  \ varchar2 default null,\n  p_description varchar2 default null\n);\n/**\n\n  *\
+  \ Convenience method that makes creating a Privilege with a single role easier.\n\
+  \n  *\n\n  * @param p_role_name The name of the role that the privilege requires.\n\
+  \n  *                    This value must not be null.\n\n  */\nprocedure create_privilege(\n\
+  \  p_name varchar2,\n  p_role_name varchar2,\n  p_label varchar2 default null,\n\
+  \  p_description varchar2 default null\n);\n/**\n\n  * Update a privilege definition\n\
+  \n  * @param p_name The name of the privilege, must conform to the syntax\n\n  *\
+  \               of scope names specified by section 3.3 of the OAuth 2.0 spec.\n\
+  \n  *               This value must not be null.\n\n  *\n\n  * @param p_role_names\
+  \ The names of the roles that the privilege requires at\n\n  *                 \
+  \    least one of. May be empty in which case the user\n\n  *                  \
+  \   must be authenticated but does not require any specific \n\n  *            \
+  \         role. Unauthenticated users will be denied access.\n\n  *            \
+  \         This value must not be null.\n\n  *\n\n  * @param p_label Human readable\
+  \ title to assign the privilege. Displayed\n\n  *                to end user during\
+  \ approval phase of three-legged OAuth.\n\n  *                If null Privilege\
+  \ can only be used in two-legged OAuth flows\n\n  *\n\n  * @param p_description\
+  \ Human readable description of purpose of Privilege.\n\n  *                   \
+  \   Displayed to end user during approval phase of \n\n  *                     \
+  \ three-legged OAuth. If null Privilege can only be\n\n  *                     \
+  \ used in two-legged OAuth flows.\n\n  */\nprocedure update_privilege(\n  p_name\
+  \ varchar2,\n  p_roles owa.vc_arr,\n  p_label varchar2,\n  p_description varchar2\n\
+  );\n/**\n\n  * Rename a privilege\n\n  * @param p_name Name of the privilege to\
+  \ rename\n\n  * @param p_new_name New name to assign the privilege\n\n  */\nprocedure\
+  \ rename_privilege(p_name varchar2, p_new_name varchar2);\n/**\n\n  * Delete a privilege\
+  \ and all its associated mappings \n\n  * @param p_name The name of the privilege\n\
+  \n  */\nprocedure delete_privilege(p_name varchar2);\n/**\n\n  * <p>Associate a\
+  \ privilege with a set of resources. Before servicing any\n\n  * resource matching\
+  \ the pattern, the authenticated user will be verified\n\n  * to ensure they possess\
+  \ at least one of the roles enumerated by the Privilege.\n\n  * </p>\n\n  * <p>The\
+  \ pattern must conform to the following syntax:</p>\n\n  * <ul>\n\n  *  <li>The\
+  \ pattern may contain any printable character except those defined by\n\n  *   \
+  \   RFC 3986 section 2.2 as 'reserved', however the / and *\n\n  *      characters\
+  \ are permitted, subject to the rules below.\n\n  *  </li>\n\n  *  <li>The pattern\
+  \ must start with the <code>/</code> character</li>\n\n  *  <li>The pattern may\
+  \ end with the * character. If present the * character\n\n  *      must be immediately\
+  \ preceded by the / character</li>\n\n  * </ul>\n\n  * <p>Each pattern is matched\
+  \ against the sub-portion of the path of a request \n\n  * URI immediately after\
+  \ the context root of the current request.</p>\n\n  * <p>The pattern is matched\
+  \ against the non URL encoded form of the request\n\n  * path.</p>\n\n  * <p>If\
+  \ a pattern ends with the <code>/*</code> sequence, then the pattern\n\n  * will\
+  \ match any path starting with the characters preceding the * character.\n\n  *\
+  \ Otherwise the pattern will match an exact character for character match.\n\n \
+  \ * </p>\n\n  * <h3>Examples</h3>\n\n  * Assume ORDS schema deployed at <code>https://example.com/ords/scott/</code>.\n\
+  \n  \n\n  * The pattern <code>/foo/bar/*</code> will match the following request\
+  \ URIs:\n\n  * <ul>\n\n  *  <li><code>https://example.com/ords/scott/foo/bar/</code></li>\n\
+  \n  *  <li><code>https://example.com/ords/scott/foo/bar/baz/resource.json</code></li>\n\
+  \n  * </ul>\n\n  * The pattern will not match the following request URIs:\n\n  *\
+  \ <ul>\n\n  *  <li><code>https://example.com/ords/scott/foo/bar</code></li>\n\n\
+  \  *  <li><code>https://example.com/ords/scott/foo/barstool</code></li>\n\n  * </ul>\n\
+  \n  \n\n  * @param p_privilege_name The name of the Privilege.\n\n  *          \
+  \               This value must not be null.\n\n  *\n\n  * @param p_patterns   \
+  \    The patterns of resources to match.\n\n  */\nprocedure create_privilege_mapping(\n\
+  \  p_privilege_name varchar2,\n  p_patterns owa.vc_arr\n);\n/**\n\n  * Convenience\
+  \ method that makes creating a mapping with a single pattern\n\n  * easier.\n\n\
+  \  */\nprocedure create_privilege_mapping(\n  p_privilege_name varchar2,\n  p_pattern\
+  \ varchar2\n);\n/**\n\n  * Delete the specified privilege mapping.\n\n  * @param\
+  \ p_privilege_name The name of the Privilege.\n\n  *                         This\
+  \ value must not be null.\n\n  *\n\n  * @param p_pattern       The pattern to remove,\
+  \ if this value is null all\n\n  *                        mappings for the named\
+  \ privilege are removed.\n\n  */\nprocedure delete_privilege_mapping(\n  p_privilege_name\
+  \ varchar2,\n  p_pattern varchar2 default null\n);\n/**\n\n  * Create a role with\
+  \ the specified name\n\n  * @param p_role_name The role name\n\n  */\nprocedure\
+  \ create_role(p_role_name varchar2);\n/**\n\n  * Delete the named role, this will\
+  \ delete any association between\n\n  * the role and any privileges that reference\
+  \ the role\n\n  * @param p_role_name The role name\n\n  */\nprocedure delete_role(p_role_name\
+  \ varchar2);\n/**\n\n  * Rename the named role\n\n  * @param p_role_name The role\
+  \ name\n\n  */\nprocedure rename_role(p_role_name varchar2, p_new_name varchar2);\n\
+  --  OP_GET_SCHEMA_METADATA CONSTANT PLS_INTEGER := 1;\n--  OP_QUERY_TABLE_DATA CONSTANT\
+  \ PLS_INTEGER := 2;\n--  OP_INSERT_TABLE_ROW CONSTANT PLS_INTEGER := 4;\n--  OP_UPDATE_TABLE_ROW\
+  \ CONSTANT PLS_INTEGER := 8;\n--  OP_DELETE_TABLE_ROW CONSTANT PLS_INTEGER := 16;\n\
+  --  OP_BULK_UPDATE_ROWS CONSTANT PLS_INTEGER := 32;\n--  AUTHORISATION_REQUIRED\
+  \ CONSTANT PLS_INTEGER := 64;\n--\n--  OP_ALL_OPERATIONS CONSTANT PLS_INTEGER :=\
+  \ OP_GET_SCHEMA_METADATA +\n--                                            OP_QUERY_TABLE_DATA\
+  \ +\n--                                            OP_INSERT_TABLE_ROW +\n--   \
+  \                                         OP_UPDATE_TABLE_ROW +\n--            \
+  \                                OP_DELETE_TABLE_ROW +\n--                     \
+  \                       OP_BULK_UPDATE_ROWS;\n/**\n\n  * Enable/disable the specified\
+  \ schema for ORDS access.\n\n  * Only DBA users can enable/disable a schema other\
+  \ than their own.\n\n  * @param p_enabled If true ORDS access is enabled, if false\
+  \ it is disabled.\n\n  * @param p_schema The name of the schema to enable/disable.\n\
+  \n  */\nPROCEDURE enable_schema(\n  p_enabled BOOLEAN DEFAULT TRUE,\n  p_schema\
+  \ VARCHAR2 DEFAULT NULL,\n  p_url_mapping_type VARCHAR2 DEFAULT 'BASE_PATH',\n \
+  \ p_url_mapping_pattern VARCHAR2 DEFAULT NULL,\n  p_auto_rest_auth BOOLEAN DEFAULT\
+  \ NULL\n);\n/**\n\n  * delete all auto rest ords metadata associated schema\n\n\
+  \  */\nPROCEDURE drop_rest_for_schema(p_schema VARCHAR2 DEFAULT NULL);\n/**\n\n\
+  \  * Enable/disable the specified object for ORDS access.\n\n  * Only DBA users\
+  \ can enable/disable a objects other than their own.\n\n  * @param p_enabled If\
+  \ true ORDS access is enabled, if false it is disabled.\n\n  * @param p_schema The\
+  \ name of the object to enable/disable.\n\n  */\nPROCEDURE enable_object(\n  p_enabled\
+  \ BOOLEAN DEFAULT TRUE,\n  p_schema VARCHAR2 DEFAULT NULL,\n  p_object VARCHAR2,\n\
+  \  p_object_type VARCHAR2 DEFAULT 'TABLE',\n  p_object_alias VARCHAR2 DEFAULT NULL,\n\
+  \  p_auto_rest_auth BOOLEAN DEFAULT NULL\n);\n/**\n\n  * Configure how the sepcified\
+  \ schema is mapped to request URLs.\n\n  * Only DBA users can update the mapping\
+  \ of a schema other than their own.\n\n  * @param p_schema The name of the schema\
+  \ to map.\n\n  * @param p_url_mapping_type The URL Mapping type, 'BASE_PATH' or\
+  \ 'BASE_URL'.\n\n  * @param p_url_mapping_pattern The URL Mapping pattern.\n\n \
+  \ */\nPROCEDURE set_url_mapping(\n  p_schema VARCHAR2 DEFAULT NULL,\n  p_url_mapping_type\
+  \ VARCHAR2,\n  p_url_mapping_pattern VARCHAR2\n);\n--  PROCEDURE SET_DEFAULT_OPERATION(p_schema\
+  \        VARCHAR2 DEFAULT NULL,\n--                                  p_operation\
+  \     PLS_INTEGER,\n--                                  p_allowed       BOOLEAN\
+  \ DEFAULT TRUE);\n/**\n\n    * Return the installed ORDS version number\n\n    */\n\
+  FUNCTION installed_version RETURN VARCHAR2;\nEND;"

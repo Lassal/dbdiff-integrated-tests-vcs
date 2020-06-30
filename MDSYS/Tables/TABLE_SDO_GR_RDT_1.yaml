@@ -1,0 +1,61 @@
+name: SDO_GR_RDT_1
+schema: MDSYS
+columns:
+- name: BANDBLOCKNUMBER
+  ordinalPosition: 4
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: BLOCKMBR
+  ordinalPosition: 7
+  dataType: SDO_GEOMETRY
+  nullable: true
+  dataTypeLength:
+- name: COLUMNBLOCKNUMBER
+  ordinalPosition: 6
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: PYRAMIDLEVEL
+  ordinalPosition: 3
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: RASTERBLOCK
+  ordinalPosition: 8
+  dataType: BLOB
+  nullable: true
+  dataTypeLength:
+- name: RASTERDATATABLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: RASTERID
+  ordinalPosition: 2
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: ROWBLOCKNUMBER
+  ordinalPosition: 5
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: SDO_GR_RDT_1_PK
+  type: PRIMARY_KEY
+  columns:
+  - name: BANDBLOCKNUMBER
+    ordinalPosition: 4
+  - name: COLUMNBLOCKNUMBER
+    ordinalPosition: 6
+  - name: PYRAMIDLEVEL
+    ordinalPosition: 3
+  - name: RASTERDATATABLE
+    ordinalPosition: 1
+  - name: RASTERID
+    ordinalPosition: 2
+  - name: ROWBLOCKNUMBER
+    ordinalPosition: 5

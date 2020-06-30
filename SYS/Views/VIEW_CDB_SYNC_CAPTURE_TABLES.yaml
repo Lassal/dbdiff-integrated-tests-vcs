@@ -1,0 +1,14 @@
+schema: SYS
+name: CDB_SYNC_CAPTURE_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "TABLE_OWNER",
+    "TABLE_NAME",
+    "ENABLED",
+    "CON_ID"
+  FROM
+    CONTAINERS("SYS"."DBA_SYNC_CAPTURE_TABLES")
+columns: []
+referencedTables: []

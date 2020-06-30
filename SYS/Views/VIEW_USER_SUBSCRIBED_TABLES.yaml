@@ -1,0 +1,24 @@
+schema: SYS
+name: USER_SUBSCRIBED_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    s.handle,
+    t.source_schema_name,
+    t.source_table_name,
+    s.view_name,
+    t.change_set_name,
+    u.subscription_name
+  FROM
+    sys.cdc_subscribed_tables$ s,
+    sys.cdc_change_tables$ t,
+    sys.cdc_subscribers$ u,
+    sys.user$ su
+  WHERE
+    s.change_table_obj# = t.obj#
+    AND s.handle = u.handle
+    AND u.username = su.name
+    AND su.user# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

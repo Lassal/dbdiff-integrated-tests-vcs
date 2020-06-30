@@ -1,0 +1,14 @@
+schema: CTXSYS
+name: CTX_USER_AUTO_OPTIMIZE_INDEXES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.aoi_idxname aoi_index_name,
+    o.aoi_partname aoi_partition_name
+  from
+    dr$autoopt o
+  where
+    o.aoi_ownid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

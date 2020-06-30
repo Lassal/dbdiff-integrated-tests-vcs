@@ -1,0 +1,17 @@
+schema: SYS
+name: GV_$REPLAY_CONTEXT_LOB
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "INST_ID",
+    "CONTEXT_ID",
+    "LOB_ID",
+    "LOB_VERSION_BASE",
+    "LOB_VERSION_WRAP",
+    "MATCHED",
+    "CON_ID"
+  from
+    gv$replay_context_lob
+columns: []
+referencedTables: []

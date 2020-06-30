@@ -1,0 +1,96 @@
+schema: SYS
+name: ALL_TRANSFORMATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.transformation_id,
+    t.owner,
+    t.name,
+    t.from_type,
+    t.to_type
+  from
+    transformations$ t,
+    sys.user$ u
+  where
+    u.user# = USERENV('SCHEMAID')
+    and (
+      u.name = t.owner
+      /* user is the owner */
+      or (
+        exists (
+          select
+            null
+          from
+            v$enabledprivs
+            /* user has system privelege */
+          where
+            priv_number in (
+              -184
+              /* EXECUTE ANY TYPE */
+            )
+        )
+      )
+      or (
+        t.from_type in
+        /* user has execute on from type */
+        (
+          select
+            t.from_type
+          from
+            transformations$ t,
+            obj$ o,
+            objauth$ oa
+          where
+            o.obj# = oa.obj#
+            and t.from_type = o.name
+            and (
+              oa.grantor# = userenv('SCHEMAID')
+              OR oa.obj# in (
+                select
+                  ro.obj#
+                from
+                  sys.objauth$ ro
+                where
+                  grantee# in (
+                    select
+                      kzsrorol
+                    from
+                      x$kzsro
+                  )
+              )
+            )
+            and t.to_type in
+            /* user has execute on to type */
+            (
+              select
+                t.to_type
+              from
+                transformations$ t,
+                obj$ o,
+                objauth$ oa
+              where
+                o.obj# = oa.obj#
+                and t.to_type = o.name
+                and (
+                  oa.grantor# = userenv('SCHEMAID')
+                  OR oa.obj# in (
+                    select
+                      ro.obj#
+                    from
+                      sys.objauth$ ro
+                    where
+                      grantee# in (
+                        select
+                          kzsrorol
+                        from
+                          x$kzsro
+                      )
+                  )
+                )
+            )
+        )
+      )
+    )
+columns: []
+referencedTables: []

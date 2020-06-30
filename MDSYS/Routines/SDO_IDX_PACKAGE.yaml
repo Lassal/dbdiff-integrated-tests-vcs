@@ -1,0 +1,280 @@
+schema: MDSYS
+name: SDO_IDX
+routineType: PACKAGE
+returnParamater:
+  name: PROCESS_PARAMS.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: CMT_IDX_CHNGS.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CMT_IDX_CHNGS.INAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CMT_IDX_CHNGS.IPTN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CMT_IDX_CHNGS.INS_NO
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CMT_IDX_CHNGS.DEL_NO
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: ENDIANCONVERT.ENTRY
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: ENDIANCONVERT.FANOUT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ENDIANCONVERT.DIM
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROCESS_PARAMS.PARAMS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESS_PARAMS.INVERT_MASK
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROCESS_PARAMS.MASK_STR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: PROCESS_PARAMS.DST
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: PROCESS_PARAMS.UNITS_STR
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: PROCESS_PARAMS.MLTPL_MSKS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: TTS_INDEX_INITIALIZE.SCHEMA_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_INDEX_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_LEVEL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_NUMTILES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_MAXLEVEL
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_COMMIT_INTERVAL
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_INDEX_TABLE
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_INDEX_NAME
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_INDEX_PRIMARY
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_TSNAME
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_COLUMN_NAME
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_RTREE_HEIGHT
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_RTREE_NUM_NODES
+  ordinalPosition: 13
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_RTREE_DIMENSIONALITY
+  ordinalPosition: 14
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_RTREE_FANOUT
+  ordinalPosition: 15
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_RTREE_ROOT
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_RTREE_SEQ_NAME
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_FIXED_META
+  ordinalPosition: 18
+  dataType: RAW
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_TABLESPACE
+  ordinalPosition: 19
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_INITIAL_EXTENT
+  ordinalPosition: 20
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_NEXT_EXTENT
+  ordinalPosition: 21
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_PCTINCREASE
+  ordinalPosition: 22
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_MIN_EXTENTS
+  ordinalPosition: 23
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_MAX_EXTENTS
+  ordinalPosition: 24
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_INDEX_DIMS
+  ordinalPosition: 25
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_LAYER_GTYPE
+  ordinalPosition: 26
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_RTREE_PCTFREE
+  ordinalPosition: 27
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_INDEX_PARTITION
+  ordinalPosition: 28
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_PARTITIONED
+  ordinalPosition: 29
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_RTREE_QUALITY
+  ordinalPosition: 30
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_INDEX_VERSION
+  ordinalPosition: 31
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_INDEX_GEODETIC
+  ordinalPosition: 32
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_INDEX_STATUS
+  ordinalPosition: 33
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_NL_INDEX_TABLE
+  ordinalPosition: 34
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_DML_BATCH_SIZE
+  ordinalPosition: 35
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_RTREE_ENT_XPND
+  ordinalPosition: 36
+  dataType: NUMBER
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.SDO_ROOT_MBR
+  ordinalPosition: 37
+  dataType: OBJECT
+  parameterMode: IN
+- name: TTS_INDEX_INITIALIZE.ENDIAN_FLAG
+  ordinalPosition: 38
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE sdo_idx AUTHID current_user AS PROCEDURE ie_crt_geom_metadata;
+  PROCEDURE cmt_idx_chngs(
+    schema IN varchar2,
+    iname IN varchar2,
+    iptn IN varchar2,
+    ins_no IN number,
+    del_no IN number
+  );
+  FUNCTION ENDIANCONVERT(
+    entry IN BLOB,
+    fanout IN NUMBER,
+    dim IN NUMBER
+  ) RETURN BLOB DETERMINISTIC PARALLEL_ENABLE;
+  PROCEDURE tts_index_initialize(
+    schema_name IN VARCHAR2,
+    SDO_INDEX_TYPE IN VARCHAR2,
+    SDO_LEVEL IN NUMBER,
+    SDO_NUMTILES IN NUMBER,
+    SDO_MAXLEVEL IN NUMBER,
+    SDO_COMMIT_INTERVAL IN NUMBER,
+    SDO_INDEX_TABLE IN VARCHAR2,
+    SDO_INDEX_NAME IN VARCHAR2,
+    SDO_INDEX_PRIMARY IN NUMBER,
+    SDO_TSNAME IN VARCHAR2,
+    SDO_COLUMN_NAME IN VARCHAR2,
+    SDO_RTREE_HEIGHT IN NUMBER,
+    SDO_RTREE_NUM_NODES IN NUMBER,
+    SDO_RTREE_DIMENSIONALITY IN NUMBER,
+    SDO_RTREE_FANOUT IN NUMBER,
+    SDO_RTREE_ROOT IN VARCHAR2,
+    SDO_RTREE_SEQ_NAME IN VARCHAR2,
+    SDO_FIXED_META IN RAW,
+    SDO_TABLESPACE IN VARCHAR2,
+    SDO_INITIAL_EXTENT IN VARCHAR2,
+    SDO_NEXT_EXTENT IN VARCHAR2,
+    SDO_PCTINCREASE IN NUMBER,
+    SDO_MIN_EXTENTS IN NUMBER,
+    SDO_MAX_EXTENTS IN NUMBER,
+    SDO_INDEX_DIMS IN NUMBER,
+    SDO_LAYER_GTYPE IN VARCHAR2,
+    SDO_RTREE_PCTFREE IN NUMBER,
+    SDO_INDEX_PARTITION IN VARCHAR2,
+    SDO_PARTITIONED IN NUMBER,
+    SDO_RTREE_QUALITY IN NUMBER,
+    SDO_INDEX_VERSION IN NUMBER,
+    SDO_INDEX_GEODETIC IN VARCHAR2,
+    SDO_INDEX_STATUS IN VARCHAR2,
+    SDO_NL_INDEX_TABLE IN VARCHAR2,
+    SDO_DML_BATCH_SIZE IN NUMBER,
+    SDO_RTREE_ENT_XPND IN NUMBER,
+    SDO_ROOT_MBR IN MDSYS.SDO_GEOMETRY,
+    ENDIAN_FLAG IN VARCHAR2
+  );
+  FUNCTION process_params(
+    params IN varchar2,
+    invert_mask IN number,
+    mask_str IN OUT varchar2,
+    dst IN OUT number,
+    units_str IN OUT varchar2,
+    mltpl_msks IN OUT number
+  ) RETURN number;
+  END sdo_idx;

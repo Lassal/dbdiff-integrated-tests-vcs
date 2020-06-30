@@ -1,0 +1,15 @@
+schema: CTXSYS
+name: DRV$ONLINE_PENDING
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "ONL_CID",
+    "ONL_ROWID",
+    "ONL_INDEXPARTITION"
+  from
+    dr$online_pending
+  where
+    onl_cid = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
+columns: []
+referencedTables: []

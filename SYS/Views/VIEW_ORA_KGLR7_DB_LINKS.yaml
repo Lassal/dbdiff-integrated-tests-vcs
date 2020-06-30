@@ -1,0 +1,21 @@
+schema: SYS
+name: ORA_KGLR7_DB_LINKS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    l.name,
+    l.userid
+  from
+    sys.link$ l,
+    sys.user$ u
+  where
+    l.owner# in (
+      userenv('SCHEMAID'),
+      1
+      /* PUBLIC */
+    )
+    and l.owner# = u.user#
+columns: []
+referencedTables: []

@@ -1,0 +1,26 @@
+schema: SYS
+name: EXU102XTYPU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "TYPENAME",
+    "TYPEOWNER",
+    "TYPOWNID",
+    "TYPOBJ#",
+    "TOID",
+    "MTIME",
+    "TYPEAUDIT",
+    "PROPERTY",
+    "STATUS",
+    "VERSION",
+    "HASHCODE",
+    "TYPEID",
+    "ROOTTOID",
+    "TABOBJNO"
+  FROM
+    sys.exu102xtyp
+  WHERE
+    typownid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

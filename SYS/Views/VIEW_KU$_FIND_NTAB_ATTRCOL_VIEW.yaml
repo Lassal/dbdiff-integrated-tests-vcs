@@ -1,0 +1,34 @@
+schema: SYS
+name: KU$_FIND_NTAB_ATTRCOL_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    c .name,
+    a .name
+  from
+    sys.col$ c,
+    sys.obj$ o,
+    user $ u,
+    sys.attrcol$ a
+  where
+    c .obj# = o.obj#
+    and o.owner# = u.user#
+    and c .intcol# - 1 = a .intcol#
+    and a .obj# = c .obj#
+    and bitand(c .property, 1056) = 1056
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

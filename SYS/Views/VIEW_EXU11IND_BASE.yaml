@@ -1,0 +1,77 @@
+schema: SYS
+name: EXU11IND_BASE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    i$.obj#,
+    i$.dataobj#,
+    i$.name,
+    ui$.name,
+    i$.owner#,
+    ts$.name,
+    ind$.ts#,
+    ind$.file#,
+    ind$.block#,
+    t$.name,
+    t$.obj#,
+    ut$.name,
+    t$.owner#,
+    NVL(tb$.property, 0),
+    NVL(tb$.bobj#, 0),
+    ind$.property,
+    DECODE(t$.type#, 3, 1, 0),
+    ind$.pctfree$,
+    ind$.initrans,
+    ind$.maxtrans,
+    NVL(ind$.blevel, -1),
+    DECODE(ind$.type#, 2, 1, 0),
+    DECODE(BITAND(ind$.flags, 4), 4, 1, 0),
+    ts$.dflogging,
+    NVL(ind$.degree, 1),
+    NVL(ind$.instances, 1),
+    ind$.type#,
+    NVL(ind$.rowcnt, -1),
+    NVL(ind$.leafcnt, -1),
+    NVL(ind$.distkey, -1),
+    NVL(ind$.lblkkey, -1),
+    NVL(ind$.dblkkey, -1),
+    NVL(ind$.clufac, -1),
+    NVL(ind$.spare2, 0),
+    ind$.flags,
+    DECODE(BITAND(i$.flags, 4), 4, 1, 0)
+  FROM
+    sys.obj$ t$,
+    sys.obj$ i$,
+    sys.ind$ ind$,
+    sys.user$ ui$,
+    sys.user$ ut$,
+    sys.ts$ ts$,
+    sys.tab$ tb$
+  WHERE
+    ind$.bo# = t$.obj#
+    AND ind$.obj# = i$.obj#
+    AND ind$.bo# = tb$.obj# (+)
+    AND ts$.ts# = ind$.ts#
+    AND i$.owner# = ui$.user#
+    AND t$.owner# = ut$.user#
+    AND BITAND(ind$.flags, 4096) = 0
+    AND
+    /* skip fake index */
+    (
+      userenv('SCHEMAID') = 0
+      OR (
+        userenv('SCHEMAID') = i$.owner#
+        AND userenv('SCHEMAID') = t$.owner#
+      )
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

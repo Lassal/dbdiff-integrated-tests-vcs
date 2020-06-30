@@ -1,0 +1,16 @@
+schema: SYS
+name: EXU8FUL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name
+  FROM
+    sys.x$kzsro,
+    sys.user$ u
+  WHERE
+    kzsrorol != userenv('SCHEMAID')
+    AND kzsrorol != 1
+    AND u.user# = kzsrorol
+columns: []
+referencedTables: []

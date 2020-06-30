@@ -1,0 +1,50 @@
+schema: WMSYS
+name: ALL_WORKSPACE_SAVEPOINTS
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    t.savepoint,
+    t.workspace,
+    decode(t.is_implicit, 0, 'NO', 1, 'YES') implicit,
+    t.position,
+    t.owner,
+    t.createTime,
+    t.description,
+    decode(sign(t.version - max .pv), -1, 'NO', 'YES') canRollbackTo,
+    decode(
+      t.is_implicit || decode(
+        parent_vers.parent_version,
+        null,
+        'NOT_EXISTS',
+        'EXISTS'
+      ),
+      '1EXISTS',
+      'NO',
+      'YES'
+    ) removable,
+    t.version
+  from
+    wmsys.wm$workspace_savepoints_table t,
+    wmsys.all_workspaces_internal asi,
+    (
+      select
+        max(parent_version) pv,
+        parent_workspace pw
+      from
+        wmsys.wm$workspaces_table
+      group by
+        parent_workspace
+    ) max,
+    (
+      select
+        unique parent_version
+      from
+        wmsys.wm$workspaces_table
+    ) parent_vers
+  where
+    t.workspace = asi.workspace
+    and t.workspace = max .pw (+)
+    and t.version = parent_vers.parent_version (+) WITH READ ONLY
+columns: []
+referencedTables: []

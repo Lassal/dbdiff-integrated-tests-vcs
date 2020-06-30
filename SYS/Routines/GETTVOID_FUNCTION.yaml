@@ -1,0 +1,29 @@
+schema: SYS
+name: GETTVOID
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: RAW
+  parameterMode: OUT
+parameters:
+- name: TYPE_OID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: VSN
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  Function GetTvoid(type_oid IN RAW, vsn IN PLS_INTEGER) return RAW AS tv_oid RAW(16);
+  begin
+  select
+    tvoid into tv_oid
+  from
+    type $
+  where
+    toid = type_oid
+    and version# = vsn;
+  return (tv_oid);
+  end;

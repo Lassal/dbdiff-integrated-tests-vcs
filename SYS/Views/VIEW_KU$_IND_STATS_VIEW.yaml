@@ -1,0 +1,58 @@
+schema: SYS
+name: KU$_IND_STATS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '3',
+    '0',
+    i.obj#,
+    i.bo#,
+    decode(
+      i.type#,
+      8,
+      (
+        select
+          value(sov)
+        from
+          ku$_schemaobj_view sov
+        where
+          sov.obj_num = dbms_metadata_util.get_anc(i.bo#)
+      ),
+      (
+        select
+          value(sov)
+        from
+          ku$_schemaobj_view sov
+        where
+          sov.obj_num = i.bo#
+      )
+    ),
+    (
+      select
+        value(sov)
+      from
+        ku$_schemaobj_view sov
+      where
+        sov.obj_num = i.obj#
+    ),
+    i.type#,
+    i.property
+  from
+    sys.obj$ o,
+    sys.ind$ i
+  where
+    i.obj# = o.obj#
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

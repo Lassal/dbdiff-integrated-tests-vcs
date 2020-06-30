@@ -1,0 +1,23 @@
+schema: SYS
+name: ALL_CLUSTERING_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    c .owner,
+    c .table_name,
+    c .clustering_type,
+    c .on_load,
+    c .on_datamovement,
+    c .valid,
+    c .with_zonemap,
+    c .last_load_clst,
+    c .last_datamove_clst
+  from
+    DBA_CLUSTERING_TABLES c,
+    ALL_TABLES t
+  WHERE
+    c .OWNER = t.OWNER
+    AND c .TABLE_NAME = t.TABLE_NAME
+columns: []
+referencedTables: []

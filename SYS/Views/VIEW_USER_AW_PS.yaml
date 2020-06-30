@@ -1,0 +1,23 @@
+schema: SYS
+name: USER_AW_PS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    a .awseq#,
+    a .awname,
+    p.psnumber,
+    count(unique(p.psgen)),
+    max(p.maxpages)
+  FROM
+    aw$ a,
+    ps$ p
+  WHERE
+    a .owner# = USERENV('SCHEMAID')
+    and a .awseq# = p.awseq#
+  group by
+    a .awseq#,
+    a .awname,
+    p.psnumber
+columns: []
+referencedTables: []

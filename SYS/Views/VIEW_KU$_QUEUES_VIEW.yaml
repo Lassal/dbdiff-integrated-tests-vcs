@@ -1,0 +1,41 @@
+schema: SYS
+name: KU$_QUEUES_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    t.objno,
+    q.eventid,
+    (
+      select
+        value(o)
+      from
+        sys.ku$_schemaobj_view o
+      where
+        o.obj_num = q.eventid
+    ),
+    (
+      select
+        value(b)
+      from
+        sys.ku$_schemaobj_view b
+      where
+        b.obj_num = t.objno
+    ),
+    t.flags,
+    q.usage,
+    q.max_retries,
+    q.retry_delay,
+    q.enable_flag,
+    q.properties,
+    q.ret_time,
+    q.queue_comment
+  from
+    system.aq$_queues q,
+    system.aq$_queue_tables t
+  where
+    q.table_objno = t.objno
+columns: []
+referencedTables: []

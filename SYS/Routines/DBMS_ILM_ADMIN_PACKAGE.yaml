@@ -1,0 +1,190 @@
+schema: SYS
+name: DBMS_ILM_ADMIN
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: CLEAR_HEAT_MAP_TABLE.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEAR_HEAT_MAP_TABLE.TABLENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEAR_HEAT_MAP_TABLE.PARTITION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEAR_HEAT_MAP_TABLE.ACCESS_DATE
+  ordinalPosition: 4
+  dataType: DATE
+  parameterMode: IN
+- name: CLEAR_HEAT_MAP_TABLE.SEGMENT_ACCESS_SUMMARY
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CUSTOMIZE_ILM.PARAMETER
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CUSTOMIZE_ILM.VALUE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET_HEAT_MAP_ALL.ACCESS_DATE
+  ordinalPosition: 1
+  dataType: DATE
+  parameterMode: IN
+- name: SET_HEAT_MAP_ALL.SEGMENT_ACCESS_SUMMARY
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET_HEAT_MAP_START.START_DATE
+  ordinalPosition: 1
+  dataType: DATE
+  parameterMode: IN
+- name: SET_HEAT_MAP_TABLE.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_HEAT_MAP_TABLE.TABLENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_HEAT_MAP_TABLE.PARTITION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_HEAT_MAP_TABLE.ACCESS_DATE
+  ordinalPosition: 4
+  dataType: DATE
+  parameterMode: IN
+- name: SET_HEAT_MAP_TABLE.SEGMENT_ACCESS_SUMMARY
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  package dbms_ilm_admin authid definer as
+  /*
+
+      * Parameters for controling ILM execution
+
+      */
+  JOBLIMIT constant number: = 5;
+  EXECUTION_MODE constant number: = 4;
+  RETENTION_TIME constant number: = 2;
+  EXECUTION_INTERVAL constant number: = 1;
+  ENABLED constant number: = 7;
+  TBS_PERCENT_USED constant number: = 8;
+  TBS_PERCENT_FREE constant number: = 9;
+  DEG_PARALLEL constant number: = 10;
+  POLICY_TIME constant number: = 11;
+  /*
+
+      * Constants for parameter values
+
+      */
+  /* ILM Execution mode constants */
+  ILM_EXECUTION_OFFLINE constant number: = 1;
+  ILM_EXECUTION_ONLINE constant number: = 2;
+  ILM_EXECUTION_DEFAULT constant number: = 3;
+  ILM_ENABLED constant number: = 1;
+  ILM_DISABLED constant number: = 2;
+  ILM_LIMIT_DEF constant number: = 2;
+  ILM_POLICY_IN_DAYS constant number: = 0;
+  ILM_POLICY_IN_SECONDS constant number: = 1;
+  /* ADO execution data is purged periodically for all completed jobs
+
+       * older then the ILM_RETENTION_TIME */
+  ILM_RETENTION_TIME constant number: = 30;
+  /*
+
+      * description - Customize environment for ILM execution by specifying
+
+      *               the values for ILM execution related parameters. These
+
+      *               values take effect for the next background ILM execution
+
+      *
+
+      *  parameter - One of the constants defined in this package
+
+      *  value     - Value of this parameter.
+
+      */
+  procedure customize_ilm(
+    parameter number,
+    value in number
+  );
+  /* Procedure to turn off background ILM */
+  procedure disable_ilm;
+  /* Procedure to turn on background ILM */
+  procedure enable_ilm;
+  /* Heat map segment access constants */
+  HEAT_MAP_SEG_WRITE constant number: = 1;
+  HEAT_MAP_SEG_READ constant number: = 2;
+  HEAT_MAP_SEG_SCAN constant number: = 4;
+  HEAT_MAP_SEG_LOOKUP constant number: = 8;
+  /* Procedure to delete all rows except the dummy row. */
+  procedure clear_heat_map_all;
+  /* Procedure to Update/insert heat map rows for all tables */
+  procedure set_heat_map_all(
+    access_date IN DATE,
+    segment_access_summary IN number
+  );
+  /* Procedure to update/insert a row for this table/segment. */
+  procedure set_heat_map_table(
+    owner IN VARCHAR2,
+    tablename IN VARCHAR2,
+    partition IN VARCHAR2 default '',
+    access_date IN DATE,
+    segment_access_summary IN number
+  );
+  /*
+
+      * Procedure to clear all/some statistics for table: deletes rows for
+
+      * given table/segment which match given pattern or all such rows
+
+      */
+  procedure clear_heat_map_table(
+    owner IN VARCHAR2,
+    tablename IN VARCHAR2,
+    partition IN VARCHAR2 default '',
+    access_date IN DATE default NULL,
+    segment_access_summary IN number default NULL
+  );
+  /*
+
+      * Procedure to set start date of heat map data
+
+      */
+  procedure set_heat_map_start(start_date IN DATE);
+  /* exceptions:
+
+      *
+
+      * dbms_ilm_admin api operations can raise any one of the following
+
+      * top-level exceptions.
+
+      *
+
+      */
+  /* insufficient privileges */
+  insufficient_privileges
+  exception;
+  pragma exception_init(insufficient_privileges, -38330);
+    /* invalid arugment value */
+    invalid_argument_value
+  exception;
+  pragma exception_init(invalid_argument_value, -38327);
+    /* invalid dictionary state */
+    invalid_ilm_dictionary
+  exception;
+  pragma exception_init(invalid_ilm_dictionary, -38328);
+    /* ADO online mode unsupported with Supplemental Logging */
+    unsupported_ilm_supl
+  exception;
+  pragma exception_init(unsupported_ilm_supl, -38343);
+  end dbms_ilm_admin;

@@ -1,0 +1,91 @@
+schema: SYS
+name: _ALL_REPPARAMETER_COLUMN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    p.sname,
+    p.oname,
+    decode(
+      p.conflict_type_id,
+      1,
+      'UPDATE',
+      2,
+      'UNIQUENESS',
+      3,
+      'DELETE',
+      'UNDEFINED'
+    ),
+    p.reference_name,
+    p.sequence_no,
+    r.method_name,
+    r.function_name,
+    r.priority_group,
+    p.parameter_table_name,
+    p.parameter_column_name,
+    p.parameter_sequence_no,
+    p.column_pos,
+    p.attribute_sequence_no
+  from
+    system.repcat$_parameter_column p,
+    all_tab_columns tc,
+    system.repcat$_resolution r,
+    system.repcat$_repcolumn rc
+  where
+    p.sname = tc.owner
+    and p.oname = tc.table_name
+    and p.sname = rc.sname
+    and p.oname = rc.oname
+    and p.column_pos = rc.pos
+    and (
+      (NVL(rc.top, rc.lcname) = tc.column_name)
+      or -- SOID column
+      (
+        utl_raw.bit_and(utl_raw.substr(rc.property, 1, 1), '10') = '10'
+      )
+    )
+    and p.oname = p.parameter_table_name
+    and p.sname = r.sname
+    and p.oname = r.oname
+    and p.conflict_type_id = r.conflict_type_id
+    and p.reference_name = r.reference_name
+    and p.sequence_no = r.sequence_no
+  union
+  select
+    p.sname,
+    p.oname,
+    decode(
+      p.conflict_type_id,
+      1,
+      'UPDATE',
+      2,
+      'UNIQUENESS',
+      3,
+      'DELETE',
+      'UNDEFINED'
+    ),
+    p.reference_name,
+    p.sequence_no,
+    r.method_name,
+    r.function_name,
+    r.priority_group,
+    p.parameter_table_name,
+    p.parameter_column_name,
+    p.parameter_sequence_no,
+    p.column_pos,
+    p.attribute_sequence_no
+  from
+    system.repcat$_parameter_column p,
+    "_ALL_REPL_NESTED_TABLE_NAMES" nt,
+    system.repcat$_resolution r
+  where
+    p.sname = nt.owner
+    and p.parameter_table_name = nt.table_name
+    and p.oname = p.parameter_table_name
+    and p.sname = r.sname
+    and p.oname = r.oname
+    and p.conflict_type_id = r.conflict_type_id
+    and p.reference_name = r.reference_name
+    and p.sequence_no = r.sequence_no
+columns: []
+referencedTables: []

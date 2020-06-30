@@ -1,0 +1,48 @@
+schema: SYS
+name: USER_SUMMARY_AGGREGATES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    sa.sumcolpos#,
+    c .name,
+    decode(
+      sa.aggfunction,
+      15,
+      'AVG',
+      16,
+      'SUM',
+      17,
+      'COUNT',
+      18,
+      'MIN',
+      19,
+      'MAX',
+      97,
+      'VARIANCE',
+      98,
+      'STDDEV',
+      440,
+      'USER'
+    ),
+    decode(sa.flags, 0, 'N', 'Y'),
+    sa.aggtext
+  from
+    sys.sumagg$ sa,
+    sys.obj$ o,
+    sys.user$ u,
+    sys.sum$ s,
+    sys.col$ c
+  where
+    sa.sumobj# = o.obj#
+    AND o.owner# = u.user#
+    AND sa.sumobj# = s.obj#
+    AND c .obj# = s.containerobj#
+    AND c .col# = sa.containercol#
+    AND o.owner# = userenv('SCHEMAID')
+    AND bitand(s.xpflags, 8388608) = 0
+    /* NOT REWRITE EQUIVALENCE SUMMARY */
+columns: []
+referencedTables: []

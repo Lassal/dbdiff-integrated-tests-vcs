@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_DIM_CHILD_OF
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    d. "OWNER",
+    d. "DIMENSION_NAME",
+    d. "HIERARCHY_NAME",
+    d. "POSITION",
+    d. "CHILD_LEVEL_NAME",
+    d. "JOIN_KEY_ID",
+    d. "PARENT_LEVEL_NAME"
+  FROM
+    dba_dim_child_of d,
+    sys.user$ u
+  where
+    u.user# = userenv('SCHEMAID')
+    and d.owner = u.name
+columns: []
+referencedTables: []

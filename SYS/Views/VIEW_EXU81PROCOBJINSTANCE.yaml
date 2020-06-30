@@ -1,0 +1,31 @@
+schema: SYS
+name: EXU81PROCOBJINSTANCE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    o.objid,
+    o.owner,
+    o.ownerid,
+    o.type#,
+    o.class,
+    o.prepost,
+    o.level#,
+    o.package,
+    o.pkg_schema,
+    op.name,
+    d.p_obj#,
+    t.property
+  FROM
+    sys.exu81procobj o,
+    sys.expdepobj$ d,
+    sys.exu81obj op,
+    sys.tab$ t
+  WHERE
+    o.class = 3
+    AND d.d_obj# = o.objid
+    AND d.p_obj# = op.obj#
+    AND d.p_obj# = t.obj#
+columns: []
+referencedTables: []

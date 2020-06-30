@@ -1,0 +1,82 @@
+schema: SYS
+name: OUTLN_EDIT_PKG
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: CHANGE_JOIN_POS.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHANGE_JOIN_POS.HINTNO
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CHANGE_JOIN_POS.NEWPOS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GENERATE_SIGNATURE.SQLTXT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATE_SIGNATURE.SIGNATURE
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: OUT
+- name: REFRESH_PRIVATE_OUTLINE.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE outln_edit_pkg AUTHID CURRENT_USER as --
+  -- NAME - create_edit_tables
+  --
+  -- DESCRIPTION
+  --      Create outline editing tables in calling user's schema.
+  --
+  -- USAGE NOTES
+  --
+  PROCEDURE create_edit_tables;
+  --
+  -- NAME - drop_edit_tables
+  --
+  -- DESCRIPTION
+  --      drop outline editing tables in calling user's schema.
+  --
+  -- USAGE NOTES
+  --
+  PROCEDURE drop_edit_tables;
+  --
+  -- NAME: refresh_private_outline
+  --
+  -- DESCRIPTION:
+  --      Refresh the in-memory copy of the outline, synchronizing
+  --      its data with the edits made to the outline hints.
+  --
+  -- PARAMETERS
+  --
+  --  name - Name of the private outline to be refreshed
+  --
+  -- USAGE NOTES:
+  --  1. If the private outline specified by the user is not found then an
+  --     Ora-20001 error is raised to alert the user of this.
+  --
+  PROCEDURE refresh_private_outline(name IN VARCHAR2);
+  --
+  -- NAME: change_join_pos
+  --
+  -- DESCRIPTION:
+  --      Change the join position for the hint identified by outline name
+  --      and hint number to the position specified by newpos.
+  --
+  -- PARAMETERS
+  --
+  --      name - Name of the private outline to be modified
+  --      hintno - hint number to be modified
+  --      newpos - new join position for the target hint
+  --
+  -- USAGE NOTES:
+  --
+  PROCEDURE CHANGE_JOIN_POS(name VARCHAR2, hintno NUMBER, newpos NUMBER);
+  PROCEDURE generate_signature(sqltxt IN VARCHAR2, signature OUT RAW);
+  END;

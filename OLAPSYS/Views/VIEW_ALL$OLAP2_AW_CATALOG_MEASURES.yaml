@@ -1,0 +1,33 @@
+schema: OLAPSYS
+name: ALL$OLAP2_AW_CATALOG_MEASURES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    AW.AWOWNER as AW_OWNER,
+    AW.AWNAME as AW_NAME,
+    AW.COL5 as CATALOG_ID,
+    AW.COL4 as CATALOG_NAME,
+    AW.COL1 as ENTITY_OWNER,
+    AW.COL2 as ENTITY_NAME,
+    AW.COL3 as CHILD_ENTITY_NAME
+  FROM
+    TABLE(
+      CAST(
+        OLAP_TABLE(
+          'SYS.AWMD duration query',
+          'olapsys.ALL_OLAP2_AW_METADATA_T',
+          'ACTIVE_CATALOG ''ALL_CATALOG_MEASURES'' ''ALL''',
+          'MEASURE AWOWNER FROM sys.awmd!CATM_AWOWNER
+                          MEASURE AWNAME FROM sys.awmd!CATM_AWNAME
+                          MEASURE COL5 FROM sys.awmd!CATM_CATALOG_ID
+                          MEASURE COL1 FROM sys.awmd!CATM_AWOWNER
+                          MEASURE COL2 FROM sys.awmd!CATM_CUBE_NAME
+                          MEASURE COL3 FROM sys.awmd!CATM_MEASURE_NAME
+                          MEASURE COL4 FROM sys.awmd!CATM_MEASFOLDERNAME
+                          DIMENSION AWMDKEY FROM sys.awmd!AWMDKEY_CATM'
+        ) AS olapsys.ALL_OLAP2_AW_METADATA_T
+      )
+    ) AW
+columns: []
+referencedTables: []

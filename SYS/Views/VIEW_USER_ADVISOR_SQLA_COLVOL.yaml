@@ -1,0 +1,27 @@
+schema: SYS
+name: USER_ADVISOR_SQLA_COLVOL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .name as task_name,
+    a .id as task_id,
+    e.owner_name as table_owner,
+    e.table_name as table_name,
+    d.name as column_name,
+    b.upd_freq as update_freq,
+    b.upd_rows as updated_rows
+  from
+    wri$_adv_tasks a,
+    wri$_adv_sqla_colvol b,
+    sys.col$ d,
+    wri$_adv_sqla_tabvol e
+  where
+    a .id = b.task_id
+    and a .id = e.task_id
+    and d.col# = b.col#
+    and e.table# = b.table#
+    and a .owner# = userenv('SCHEMAID')
+    and a .advisor_id = 2
+columns: []
+referencedTables: []

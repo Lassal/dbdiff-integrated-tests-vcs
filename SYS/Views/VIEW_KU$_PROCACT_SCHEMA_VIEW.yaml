@@ -1,0 +1,66 @@
+schema: SYS
+name: KU$_PROCACT_SCHEMA_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    u.name,
+    p.package,
+    p.schema,
+    p.level#,
+    p.class,
+    pr.prepost,
+    case
+      when p.class = 2 then sys.dbms_metadata.get_action_schema (
+        p.package,
+        p.schema,
+        'SCHEMA_INFO_EXP',
+        u.name,
+        pr.prepost,
+        (
+          select
+            1
+          from
+            dual
+          where
+            (
+              SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+              OR EXISTS (
+                SELECT
+                  *
+                FROM
+                  sys.session_roles
+                WHERE
+                  role = 'SELECT_CATALOG_ROLE'
+              )
+            )
+        )
+      )
+      else null
+    end
+  FROM
+    sys.user$ u,
+    sys.exppkgact$ p,
+    ku$_prepost_view pr
+  where
+    p.class = 2
+    and u.type# = 1
+    and p.package != 'DBMS_RULE_EXP_RULES' -- current is a problem, need to remove
+    -- once the problem is fixed
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (u.user#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+  order by
+    p.level#
+columns: []
+referencedTables: []

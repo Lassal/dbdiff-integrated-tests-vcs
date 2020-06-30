@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_OPARGUMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    c .name,
+    b.name,
+    a .bind#,
+    a .position,
+    a .type
+  from
+    sys.oparg$ a,
+    sys.obj$ b,
+    sys.user$ c
+  where
+    a .obj# = b.obj#
+    and b.owner# = c .user#
+    and b.owner# = userenv ('SCHEMAID')
+columns: []
+referencedTables: []

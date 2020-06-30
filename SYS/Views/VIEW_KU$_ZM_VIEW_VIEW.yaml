@@ -1,0 +1,20 @@
+schema: SYS
+name: KU$_ZM_VIEW_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    *
+  from
+    ku$_m_view_view_base b
+  where
+    bitand(b.flag2, 33554432) = 33554432
+    /* secondary mviews. */
+    and (
+      bitand(b.flag3, 512) = 0
+      /* snapshot != zonemap */
+      or bitand(b.xpflags, 34359738368) = 0
+    )
+    /* summary != zonemap */
+columns: []
+referencedTables: []

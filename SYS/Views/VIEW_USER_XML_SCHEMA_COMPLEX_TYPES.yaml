@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_XML_SCHEMA_COMPLEX_TYPES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    SCHEMA_URL,
+    TARGET_NAMESPACE,
+    COMPLEX_TYPE_NAME,
+    COMPLEX_TYPE,
+    BASE_NAME,
+    BASE_SCHEMA_URL,
+    BASE_TARGET_NAMESPACE,
+    MAINTAIN_DOM,
+    SQL_TYPE,
+    SQL_SCHEMA
+  from
+    DBA_XML_SCHEMA_COMPLEX_TYPES
+  where
+    OWNER = USER
+columns: []
+referencedTables: []

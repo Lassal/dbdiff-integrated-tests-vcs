@@ -1,0 +1,17 @@
+schema: SYS
+name: ALL_APPLY_DML_CONF_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    c."APPLY_NAME",
+    c."CONFLICT_HANDLER_NAME",
+    c."COLUMN_NAME"
+  from
+    ALL_APPLY_DML_CONF_HANDLERS h,
+    DBA_APPLY_DML_CONF_COLUMNS c
+  where
+    c .apply_name = h.apply_name
+    and c .conflict_handler_name = h.conflict_handler_name
+columns: []
+referencedTables: []

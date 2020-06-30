@@ -1,0 +1,71 @@
+schema: SYS
+name: DBMS_FBT
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: FBT_ANALYZE(1).TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FBT_ANALYZE(1).FLASHBACK_SCN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: FBT_ANALYZE(1).TMPTBCUR
+  ordinalPosition: 3
+  dataType: REF CURSOR
+  parameterMode: OUT
+- name: FBT_ANALYZE(2).TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FBT_ANALYZE(2).FLASHBACK_TIME
+  ordinalPosition: 2
+  dataType: TIMESTAMP
+  numericPrecision: 6
+  parameterMode: IN
+- name: FBT_ANALYZE(2).TMPTBCUR
+  ordinalPosition: 3
+  dataType: REF CURSOR
+  parameterMode: OUT
+- name: FBT_EXECUTE(1).TABLE_NAMES
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: FBT_EXECUTE(1).FLASHBACK_SCN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: FBT_EXECUTE(2).TABLE_NAMES
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: FBT_EXECUTE(2).FLASHBACK_TIME
+  ordinalPosition: 2
+  dataType: TIMESTAMP
+  numericPrecision: 6
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_fbt AUTHID CURRENT_USER IS -- PUBLIC TYPES
+  TYPE TMPTBCURTYPE IS REF CURSOR;
+  -- PUBLIC PROCEDURES AND FUNCTIONS
+  PROCEDURE fbt_analyze(
+    table_name IN VARCHAR2,
+    flashback_scn IN NUMBER,
+    tmptbcur OUT TMPTBCURTYPE
+  );
+  PROCEDURE fbt_analyze(
+    table_name IN VARCHAR2,
+    flashback_time IN TIMESTAMP,
+    tmptbcur OUT TMPTBCURTYPE
+  );
+  PROCEDURE fbt_execute(
+    table_names IN FLASHBACKTBLIST,
+    flashback_scn IN NUMBER
+  );
+  PROCEDURE fbt_execute(
+    table_names IN FLASHBACKTBLIST,
+    flashback_time IN TIMESTAMP
+  );
+  PROCEDURE fbt_discard;
+  END;

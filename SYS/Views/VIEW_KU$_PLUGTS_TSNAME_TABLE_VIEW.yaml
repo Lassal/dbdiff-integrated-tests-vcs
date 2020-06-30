@@ -1,0 +1,39 @@
+schema: SYS
+name: KU$_PLUGTS_TSNAME_TABLE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    null,
+    tts.obj_num,
+    tts.partobj,
+    'DBMS_PLUGTS',
+    'SYS',
+    0,
+    101,
+    0,
+    tts.ts_name,
+    tts.ts_num,
+    null,
+    null,
+    null,
+    null,
+    null
+  FROM
+    sys.ku$_tts_tab_tablespace_view tts
+  where
+    (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

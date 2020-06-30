@@ -1,0 +1,24 @@
+schema: ORDPLUGINS
+name: ORDX_DEFAULT_DOC
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: SETPROPERTIES.CTX
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: INOUT
+- name: SETPROPERTIES.OBJ
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: SETPROPERTIES.SETCOMMENTS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE ORDX_DEFAULT_DOC authid current_user AS PROCEDURE setProperties(
+    ctx IN OUT RAW,
+    obj IN OUT NOCOPY ORDSYS.ORDDoc,
+    setComments IN NUMBER: = 0
+  );
+  END;

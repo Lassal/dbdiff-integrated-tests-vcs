@@ -1,0 +1,16 @@
+schema: SYS
+name: KU$_11_2_ROGRANT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    *
+  from
+    ku$_rogrant_view r
+  where
+    r.role NOT IN (
+      'AUDIT_ADMIN',
+      'AUDIT_VIEWER'
+    )
+columns: []
+referencedTables: []

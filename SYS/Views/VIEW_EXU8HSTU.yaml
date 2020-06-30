@@ -1,0 +1,18 @@
+schema: SYS
+name: EXU8HSTU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "POBJID",
+    "TOWNERID",
+    "INTCOL",
+    "BUCKET",
+    "ENDPTHASH",
+    "ENDPTVAL"
+  FROM
+    sys.exu8hst
+  WHERE
+    townerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

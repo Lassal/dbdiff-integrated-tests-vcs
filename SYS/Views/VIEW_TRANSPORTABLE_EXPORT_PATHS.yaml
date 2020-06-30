@@ -1,0 +1,21 @@
+schema: SYS
+name: TRANSPORTABLE_EXPORT_PATHS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    OBJECT_PATH,
+    0
+  from
+    dba_export_paths
+  where
+    het_type = 'TRANSPORTABLE_EXPORT'
+  UNION
+  select
+    'TABLE_DATA',
+    0
+  from
+    dual
+    /* hack */
+columns: []
+referencedTables: []

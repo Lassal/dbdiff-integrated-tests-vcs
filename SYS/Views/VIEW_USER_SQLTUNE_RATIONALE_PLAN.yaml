@@ -1,0 +1,47 @@
+schema: SYS
+name: USER_SQLTUNE_RATIONALE_PLAN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    rp.task_id,
+    rp.exec_name as execution_name,
+    rp.rtn_id AS rationale_id,
+    rp.object_id,
+    rp.operation_id,
+    (
+      case
+        when rp.plan_attr < power(2, 16) then decode(
+          rp.plan_attr,
+          0,
+          'Original',
+          1,
+          'Original with adjusted cost',
+          2,
+          'Using SQL profile',
+          3,
+          'Using new indices',
+          7,
+          'Using parallel execution'
+        )
+        when rp.plan_attr > 3 * power(2, 16)
+        and rp.plan_attr < 4 * power(2, 16) then 'Plan from workload repository'
+        when rp.plan_attr > 4 * power(2, 16)
+        and rp.plan_attr < 5 * power(2, 16) then 'Plan from cursor cache'
+        when rp.plan_attr > 5 * power(2, 16)
+        and rp.plan_attr < 6 * power(2, 16) then 'Plan from SQL tuning set'
+        when rp.plan_attr > 6 * power(2, 16) then 'Plan from SQL performance analyzer'
+      end
+    ) AS plan_attribute
+  FROM
+    wri$_adv_sqlt_rtn_plan rp,
+    wri$_adv_objects o,
+    wri$_adv_tasks t
+  WHERE
+    rp.object_id = o.id
+    and rp.task_id = o.task_id
+    and o.task_id = t.id
+    and o.exec_name = rp.exec_name
+    and t.owner# = SYS_CONTEXT('USERENV', 'CURRENT_USERID')
+columns: []
+referencedTables: []

@@ -1,0 +1,120 @@
+schema: SYS
+name: ALL_STORED_SETTINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    owner,
+    object_name,
+    object_id,
+    object_type,
+    param_name,
+    param_value,
+    origin_con_id
+  FROM
+    int $dba_stored_settings int $dba_stored_settings
+  WHERE
+    (
+      int $dba_stored_settings.owner = 'PUBLIC'
+      or (
+        (
+          (
+            (
+              int $dba_stored_settings.object_type# = 7
+              or int $dba_stored_settings.object_type# = 8
+              or int $dba_stored_settings.object_type# = 9
+              or int $dba_stored_settings.object_type# = 13
+            )
+            and obj_id(
+              int $dba_stored_settings.owner,
+              int $dba_stored_settings.object_name,
+              int $dba_stored_settings.object_type#,
+              int $dba_stored_settings.object_id
+            ) in (
+              select
+                obj#
+              from
+                sys.objauth$
+              where
+                grantee# in (
+                  select
+                    kzsrorol
+                  from
+                    x$kzsro
+                )
+                and privilege# in (
+                  12
+                  /* EXECUTE */,
+                  26
+                  /* DEBUG */
+                )
+            )
+          )
+          or exists (
+            select
+              null
+            from
+              sys.sysauth$
+            where
+              grantee# in (
+                select
+                  kzsrorol
+                from
+                  x$kzsro
+              )
+              and (
+                (
+                  /* procedure */
+                  (
+                    int $dba_stored_settings.object_type# = 7
+                    or int $dba_stored_settings.object_type# = 8
+                    or int $dba_stored_settings.object_type# = 9
+                  )
+                  and (
+                    privilege# = -144
+                    /* EXECUTE ANY PROCEDURE */
+                    or privilege# = -141
+                    /* CREATE ANY PROCEDURE */
+                    or privilege# = -241
+                    /* DEBUG ANY PROCEDURE */
+                  )
+                )
+                or (
+                  /* package body */
+                  int $dba_stored_settings.object_type# = 11
+                  and (
+                    privilege# = -141
+                    /* CREATE ANY PROCEDURE */
+                    or privilege# = -241
+                    /* DEBUG ANY PROCEDURE */
+                  )
+                )
+                or (
+                  /* type */
+                  int $dba_stored_settings.object_type# = 13
+                  and (
+                    privilege# = -184
+                    /* EXECUTE ANY TYPE */
+                    or privilege# = -181
+                    /* CREATE ANY TYPE */
+                    or privilege# = -241
+                    /* DEBUG ANY PROCEDURE */
+                  )
+                )
+                or (
+                  /* type body */
+                  int $dba_stored_settings.object_type# = 14
+                  and (
+                    privilege# = -181
+                    /* CREATE ANY TYPE */
+                    or privilege# = -241
+                    /* DEBUG ANY PROCEDURE */
+                  )
+                )
+              )
+          )
+        )
+      )
+    )
+columns: []
+referencedTables: []

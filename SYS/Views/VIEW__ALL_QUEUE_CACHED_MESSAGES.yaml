@@ -1,0 +1,49 @@
+schema: SYS
+name: _ALL_QUEUE_CACHED_MESSAGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    q.name QUEUE_NAME,
+    q.eventid QUEUE_ID,
+    gv.msgid,
+    gv.bitmap SUBSCRIBER_BITMAP
+  FROM
+    system.aq$_queues q,
+    system.aq$_queue_tables t,
+    sys.user$ cu,
+    gv$aq_msgbm gv,
+    sys.obj$ o
+  where
+    q.table_objno = t.objno
+    and q.usage != 1
+    and q.eventid = gv.queue_id
+    and q.eventid = o.obj#
+    and o.owner# = cu.user#
+    and (
+      t.schema = sys_context('USERENV', 'CURRENT_USER')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          oa.privilege# = 21
+          and grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number = -220
+      )
+    )
+columns: []
+referencedTables: []

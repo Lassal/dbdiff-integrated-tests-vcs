@@ -1,0 +1,18 @@
+schema: SYS
+name: ALL_CAPTURE_EXTRA_ATTRIBUTES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    e. "CAPTURE_NAME",
+    e. "ATTRIBUTE_NAME",
+    e. "INCLUDE",
+    e. "ROW_ATTRIBUTE",
+    e. "DDL_ATTRIBUTE"
+  from
+    dba_capture_extra_attributes e,
+    all_capture c
+  where
+    e.capture_name = c .capture_name
+columns: []
+referencedTables: []

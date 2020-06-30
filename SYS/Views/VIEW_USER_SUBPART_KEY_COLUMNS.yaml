@@ -1,0 +1,52 @@
+schema: SYS
+name: USER_SUBPART_KEY_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    'TABLE',
+    decode(bitand(c .property, 1), 1, a .name, c .name),
+    spc.pos#
+  from
+    obj$ o,
+    subpartcol$ spc,
+    col$ c,
+    attrcol$ a
+  where
+    spc.obj# = o.obj#
+    and spc.obj# = c .obj#
+    and c .intcol# = spc.intcol#
+    and o.owner# = userenv('SCHEMAID')
+    and c .obj# = a .obj#(+)
+    and c .intcol# = a .intcol#(+)
+    and o.namespace = 1
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+    and o.subname IS NULL
+  union
+  select
+    o.name,
+    'INDEX',
+    decode(bitand(c .property, 1), 1, a .name, c .name),
+    spc.pos#
+  from
+    obj$ o,
+    subpartcol$ spc,
+    col$ c,
+    ind$ i,
+    attrcol$ a
+  where
+    spc.obj# = i.obj#
+    and i.obj# = o.obj#
+    and i.bo# = c .obj#
+    and c .intcol# = spc.intcol#
+    and o.owner# = userenv('SCHEMAID')
+    and c .obj# = a .obj#(+)
+    and c .intcol# = a .intcol#(+)
+    and o.namespace = 4
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+    and o.subname IS NULL
+columns: []
+referencedTables: []

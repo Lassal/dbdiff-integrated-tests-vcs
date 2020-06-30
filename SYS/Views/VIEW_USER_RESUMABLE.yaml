@@ -1,0 +1,44 @@
+schema: SYS
+name: USER_RESUMABLE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    distinct R.SID as SESSION_ID,
+    R.INST_ID as INSTANCE_ID,
+    P.QCINST_ID,
+    P.QCSID,
+    R.STATUS,
+    R.TIMEOUT,
+    NVL(T.START_TIME, R.SUSPEND_TIME) as START_TIME,
+    R.SUSPEND_TIME,
+    R.RESUME_TIME,
+    R.NAME,
+    Q.SQL_TEXT,
+    R.ERROR_NUMBER,
+    R.ERROR_PARAMETER1,
+    R.ERROR_PARAMETER2,
+    R.ERROR_PARAMETER3,
+    R.ERROR_PARAMETER4,
+    R.ERROR_PARAMETER5,
+    R.ERROR_MSG
+  from
+    GV$RESUMABLE R,
+    GV$SESSION S,
+    GV$TRANSACTION T,
+    GV$SQL Q,
+    GV$PX_SESSION P
+  where
+    S.SID = R.SID
+    and S.INST_ID = R.INST_ID
+    and S.SADDR = T.SES_ADDR(+)
+    and S.INST_ID = T.INST_ID(+)
+    and S.SQL_ADDRESS = Q.ADDRESS(+)
+    and S.INST_ID = Q.INST_ID(+)
+    and S.SADDR = P.SADDR(+)
+    and S.INST_ID = P.INST_ID(+)
+    and R.ENABLED = 'YES'
+    and NVL(T.SPACE(+), 'NO') = 'NO'
+    and S.USER# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

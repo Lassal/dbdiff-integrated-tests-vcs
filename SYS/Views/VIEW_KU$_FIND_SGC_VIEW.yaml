@@ -1,0 +1,110 @@
+schema: SYS
+name: KU$_FIND_SGC_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    oi.obj#,
+    cdef$.cols,
+    ui.name,
+    oi.name,
+    ut.name,
+    ot.name,
+    cast(
+      multiset(
+        select
+          value(sgcc)
+        from
+          sys.ku$_find_sgc_cols_view sgcc
+        where
+          sgcc.con_num = cdef$.con#
+      ) as ku$_sgi_col_list_t
+    )
+  from
+    sys.cdef$,
+    sys.obj$ oi,
+    sys.obj$ ot,
+    sys.con$,
+    sys.user$ ui,
+    sys.user$ ut
+  where
+    cdef$.obj# = ot.obj#
+    and cdef$.con# = con$.con#
+    and oi.obj# = cdef$.enabled
+    and ot.owner# = ut.user#
+    and oi.owner# = ui.user#
+    and bitand(cdef$.defer, 8) = 8
+    and
+    /* system generated */
+    cdef$.type# = 3
+    and
+    /* unique constraint */
+    con$.name != oi.name
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (ui.user#, ut.user#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+  UNION ALL
+  select
+    i.obj#,
+    i.intcols,
+    ui.name,
+    o.name,
+    ut.name,
+    ot.name,
+    cast(
+      multiset(
+        select
+          value(sgic)
+        from
+          sys.ku$_find_sgi_cols_view sgic
+        where
+          sgic.obj_num = i.obj#
+          and bitand(o.flags, 4) = 4
+          and
+          /* system generated */
+          bitand(i.property, 1) = 1
+      )
+      /* constraint index */
+      as ku$_sgi_col_list_t
+    )
+  from
+    sys.obj$ o,
+    sys.obj$ ot,
+    sys.ind$ i,
+    sys.user$ ui,
+    sys.user$ ut
+  where
+    i.obj# = o.obj#
+    and i.bo# = ot.obj#
+    and o.owner# = ui.user#
+    and ot.owner# = ut.user#
+    and i.type# != 8
+    and
+    /* no lob indexes */
+    bitand(o.flags, 4) = 4
+    and
+    /* system generated */
+    bitand(i.property, 1) = 1
+    and
+    /* constraint index */
+    (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

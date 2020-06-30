@@ -1,0 +1,1716 @@
+schema: MDSYS
+name: SDO_TOPO_MAP
+routineType: PACKAGE
+returnParamater:
+  name: VALIDATE_TOPO_MAP(2).(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: ADD_EDGE.TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_EDGE.NODE_ID1
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_EDGE.NODE_ID2
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_EDGE.GEOM
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: IN
+- name: ADD_ISOLATED_NODE(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_ISOLATED_NODE(1).FACE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_ISOLATED_NODE(1).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: ADD_ISOLATED_NODE(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_ISOLATED_NODE(2).FACE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_ISOLATED_NODE(2).X
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_ISOLATED_NODE(2).Y
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_ISOLATED_NODE(3).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_ISOLATED_NODE(3).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: ADD_ISOLATED_NODE(4).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_ISOLATED_NODE(4).X
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_ISOLATED_NODE(4).Y
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_LINEAR_GEOMETRY(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_LINEAR_GEOMETRY(1).CURVE
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: ADD_LINEAR_GEOMETRY(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_LINEAR_GEOMETRY(2).COORDS
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: ADD_LOOP.TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_LOOP.NODE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_LOOP.GEOM
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: ADD_NODE(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_NODE(1).EDGE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_NODE(1).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: ADD_NODE(1).COORD_INDEX
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_NODE(1).IS_NEW_SHAPE_POINT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_NODE(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_NODE(2).EDGE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_NODE(2).X
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_NODE(2).Y
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_NODE(2).COORD_INDEX
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_NODE(2).IS_NEW_SHAPE_POINT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_POINT_GEOMETRY(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_POINT_GEOMETRY(1).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: ADD_POINT_GEOMETRY(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_POINT_GEOMETRY(2).COORD
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: ADD_POLYGON_GEOMETRY(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_POLYGON_GEOMETRY(1).POLYGON
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: ADD_POLYGON_GEOMETRY(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_POLYGON_GEOMETRY(2).COORDS
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CHANGE_EDGE_COORDS(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHANGE_EDGE_COORDS(1).EDGE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CHANGE_EDGE_COORDS(1).GEOM
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: CHANGE_EDGE_COORDS(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHANGE_EDGE_COORDS(2).EDGE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CHANGE_EDGE_COORDS(2).GEOM
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: CHANGE_EDGE_COORDS(2).MOVED_ISO_NODES
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: OUT
+- name: CHANGE_EDGE_COORDS(2).MOVED_ISO_EDGES
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: OUT
+- name: CHANGE_EDGE_COORDS(2).ALLOW_ISO_MOVES
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEAR_TOPO_MAP.TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_EDGE_INDEX.TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FACE_INDEX.TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FEATURE(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FEATURE(1).TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FEATURE(1).COLUMN_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FEATURE(1).GEOM
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: IN
+- name: CREATE_FEATURE(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FEATURE(2).TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FEATURE(2).COLUMN_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FEATURE(2).GEOM
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: IN
+- name: CREATE_FEATURE(2).SNAPFEATURE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_FEATURE(3).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FEATURE(3).TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FEATURE(3).COLUMN_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_FEATURE(3).DML_CONDITION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TOPO_MAP(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TOPO_MAP(1).TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TOPO_MAP(1).NUMBER_OF_EDGES
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_TOPO_MAP(1).NUMBER_OF_NODES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_TOPO_MAP(1).NUMBER_OF_FACES
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_TOPO_MAP(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TOPO_MAP(2).TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_TOPO_MAP.TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_CONTAINING_FACE(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_CONTAINING_FACE(1).TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_CONTAINING_FACE(1).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_CONTAINING_FACE(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_CONTAINING_FACE(2).TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_CONTAINING_FACE(2).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_CONTAINING_FACE(2).ALLOW_ISO_COINCIDENCE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_CONTAINING_FACE(3).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_CONTAINING_FACE(3).TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_CONTAINING_FACE(3).X
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_CONTAINING_FACE(3).Y
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_EDGE_COORDS.TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_EDGE_COORDS.TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_EDGE_COORDS.EDGE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_EDGE_NODES.TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_EDGE_NODES.TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_EDGE_NODES.EDGE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_FACE_BOUNDARY.TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FACE_BOUNDARY.TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FACE_BOUNDARY.FACE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_FACE_BOUNDARY.OPITON
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEAREST_EDGE(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NEAREST_EDGE(1).TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NEAREST_EDGE(1).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEAREST_EDGE(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NEAREST_EDGE(2).TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NEAREST_EDGE(2).X
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEAREST_EDGE(2).Y
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEAREST_EDGE_IN_CACHE(1).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NEAREST_EDGE_IN_CACHE(1).X
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEAREST_EDGE_IN_CACHE(1).Y
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEAREST_EDGE_IN_CACHE(2).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NEAREST_EDGE_IN_CACHE(2).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEAREST_NODE(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NEAREST_NODE(1).TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NEAREST_NODE(1).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEAREST_NODE(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NEAREST_NODE(2).TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NEAREST_NODE(2).X
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEAREST_NODE(2).Y
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEAREST_NODE_IN_CACHE(1).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NEAREST_NODE_IN_CACHE(1).X
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEAREST_NODE_IN_CACHE(1).Y
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEAREST_NODE_IN_CACHE(2).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NEAREST_NODE_IN_CACHE(2).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NODE_COORD.TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NODE_COORD.TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NODE_COORD.NODE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NODE_FACE_STAR.TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NODE_FACE_STAR.TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NODE_FACE_STAR.NODE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NODE_STAR.TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NODE_STAR.TOPO_MAP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_NODE_STAR.NODE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_TOPO_NAME.TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(1).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(1).XMIN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(1).YMIN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(1).XMAX
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(1).YMAX
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(1).ALLOW_UPDATES
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(2).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(2).XMIN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(2).YMIN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(2).XMAX
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(2).YMAX
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(2).ALLOW_UPDATES
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(2).BUILD_INDEXES
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(3).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(3).XMIN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(3).YMIN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(3).XMAX
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(3).YMAX
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(3).ALLOW_UPDATES
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(3).BUILD_INDEXES
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(3).NEXT_LOAD
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(4).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(4).ALLOW_UPDATES
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(5).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(5).ALLOW_UPDATES
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(5).BUILD_INDEXES
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(6).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(6).XMIN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(6).YMIN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(6).XMAX
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(6).YMAX
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(6).ALLOW_UPDATES
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(7).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(7).XMIN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(7).YMIN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(7).XMAX
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(7).YMAX
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(7).ALLOW_UPDATES
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(7).BUILD_INDEXES
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(8).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(8).ALLOW_UPDATES
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(9).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(9).ALLOW_UPDATES
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TOPO_MAP(9).BUILD_INDEXES
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVE_EDGE(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVE_EDGE(1).EDGE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_EDGE(1).S_NODE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_EDGE(1).T_NODE_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_EDGE(1).EDGE_COORDS
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: MOVE_EDGE(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVE_EDGE(2).EDGE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_EDGE(2).S_NODE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_EDGE(2).T_NODE_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_EDGE(2).EDGE_COORDS
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: MOVE_EDGE(2).MOVED_ISO_NODES
+  ordinalPosition: 6
+  dataType: VARRAY
+  parameterMode: OUT
+- name: MOVE_EDGE(2).MOVED_ISO_EDGES
+  ordinalPosition: 7
+  dataType: VARRAY
+  parameterMode: OUT
+- name: MOVE_EDGE(2).ALLOW_ISO_MOVES
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(1).NODE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(1).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(2).NODE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(2).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(2).ALLOW_FACE_CHANGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(3).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(3).NODE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(3).X
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(3).Y
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(4).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(4).NODE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(4).X
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(4).Y
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_ISOLATED_NODE(4).ALLOW_FACE_CHANGE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVE_NODE(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVE_NODE(1).NODE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_NODE(1).EDGES_COORDS
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: MOVE_NODE(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVE_NODE(2).NODE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: MOVE_NODE(2).EDGES_COORDS
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: MOVE_NODE(2).MOVED_ISO_NODES
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: OUT
+- name: MOVE_NODE(2).MOVED_ISO_EDGES
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: OUT
+- name: MOVE_NODE(2).ALLOW_ISO_MOVES
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_EDGE.TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_EDGE.EDGE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: REMOVE_NODE.TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_NODE.NODE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: REMOVE_OBSOLETE_NODES.TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SEARCH_EDGE_RTREE_TOPO_MAP.TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SEARCH_EDGE_RTREE_TOPO_MAP.XMIN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEARCH_EDGE_RTREE_TOPO_MAP.YMIN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEARCH_EDGE_RTREE_TOPO_MAP.XMAX
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEARCH_EDGE_RTREE_TOPO_MAP.YMAX
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEARCH_EDGE_RTREE_TOPO_MAP.CAPACITY
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEARCH_FACE_RTREE_TOPO_MAP.TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SEARCH_FACE_RTREE_TOPO_MAP.XMIN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEARCH_FACE_RTREE_TOPO_MAP.YMIN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEARCH_FACE_RTREE_TOPO_MAP.XMAX
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEARCH_FACE_RTREE_TOPO_MAP.YMAX
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEARCH_FACE_RTREE_TOPO_MAP.CAPACITY
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET_MAX_MEMORY_SIZE.BYTES
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(1).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(2).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(2).PREVENT_UPDATES
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(3).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(3).PREVENT_UPDATES
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(3).LEVEL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(4).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(4).XMIN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(4).YMIN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(4).XMAX
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(4).YMAX
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(5).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(5).XMIN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(5).YMIN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(5).XMAX
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(5).YMAX
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(5).PREVENT_UPDATES
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(6).TOPOLOGY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(6).XMIN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(6).YMIN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(6).XMAX
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(6).YMAX
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(6).PREVENT_UPDATES
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_TOPOLOGY(6).LEVEL
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_TOPO_MAP(1).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_TOPO_MAP(2).TOPO_MAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_TOPO_MAP(2).LEVEL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  package SDO_TOPO_MAP AUTHID current_user AS PROCEDURE set_max_memory_size(bytes NUMBER) AS LANGUAGE JAVA NAME 'oracle.aurora.vm.OracleRuntime.setMaxMemorySize(long)';
+  PROCEDURE create_topo_map(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    number_of_edges NUMBER,
+    number_of_nodes NUMBER,
+    number_of_faces NUMBER
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.createTopoMap(java.lang.String,
+
+       java.lang.String, int, int, int)';
+  PROCEDURE create_topo_map(topology VARCHAR2, topo_map VARCHAR2) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.createTopoMap(java.lang.String,
+
+       java.lang.String)';
+  FUNCTION list_topo_maps RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.listTopoMaps()
+
+       return java.lang.String';
+  FUNCTION get_topo_name(topo_map VARCHAR2) RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getTopoName(java.lang.String)
+
+       return java.lang.String';
+  FUNCTION load_topo_map(
+    topo_map VARCHAR2,
+    xmin NUMBER,
+    ymin NUMBER,
+    xmax NUMBER,
+    ymax NUMBER,
+    allow_updates VARCHAR2
+  ) RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.loadTopoMap(
+
+       java.lang.String,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, java.lang.String) return java.lang.String';
+  FUNCTION load_topo_map(
+    topo_map VARCHAR2,
+    xmin NUMBER,
+    ymin NUMBER,
+    xmax NUMBER,
+    ymax NUMBER,
+    allow_updates VARCHAR2,
+    build_indexes VARCHAR2
+  ) RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.loadTopoMap(
+
+       java.lang.String,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, java.lang.String, java.lang.String)
+
+      return java.lang.String';
+  FUNCTION load_topo_map(
+    topo_map VARCHAR2,
+    xmin NUMBER,
+    ymin NUMBER,
+    xmax NUMBER,
+    ymax NUMBER,
+    allow_updates VARCHAR2,
+    build_indexes VARCHAR2,
+    next_load VARCHAR2
+  ) RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.loadTopoMap(
+
+       java.lang.String,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, java.lang.String, java.lang.String,  java.lang.String)
+
+      return java.lang.String';
+  FUNCTION load_topo_map(topo_map VARCHAR2, allow_updates VARCHAR2) RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.loadTopoMap(
+
+       java.lang.String, java.lang.String) return java.lang.String';
+  FUNCTION load_topo_map(
+    topo_map VARCHAR2,
+    allow_updates VARCHAR2,
+    build_indexes VARCHAR2
+  ) RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.loadTopoMap(
+
+       java.lang.String,
+
+       java.lang.String, java.lang.String) return java.lang.String';
+  PROCEDURE load_topo_map(
+    topo_map VARCHAR2,
+    xmin NUMBER,
+    ymin NUMBER,
+    xmax NUMBER,
+    ymax NUMBER,
+    allow_updates VARCHAR2
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.loadTopoMap2(
+
+       java.lang.String,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, java.lang.String)';
+  PROCEDURE load_topo_map(
+    topo_map VARCHAR2,
+    xmin NUMBER,
+    ymin NUMBER,
+    xmax NUMBER,
+    ymax NUMBER,
+    allow_updates VARCHAR2,
+    build_indexes VARCHAR2
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.loadTopoMap2(
+
+       java.lang.String,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, java.lang.String, java.lang.String)';
+  PROCEDURE load_topo_map(topo_map VARCHAR2, allow_updates VARCHAR2) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.loadTopoMap2(
+
+       java.lang.String, java.lang.String)';
+  PROCEDURE load_topo_map(
+    topo_map VARCHAR2,
+    allow_updates VARCHAR2,
+    build_indexes VARCHAR2
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.loadTopoMap2(
+
+       java.lang.String,
+
+       java.lang.String, java.lang.String)';
+  PROCEDURE create_edge_index(topo_map VARCHAR2) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.createEdgeIndex(
+
+       java.lang.String)';
+  PROCEDURE create_face_index(topo_map VARCHAR2) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.createFaceIndex(
+
+       java.lang.String)';
+  PROCEDURE update_topo_map AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.updateTopoMap()';
+  PROCEDURE commit_topo_map AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.commitTopoMap()';
+  PROCEDURE rollback_topo_map AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.rollbackTopoMap()';
+  PROCEDURE clear_topo_map(topo_map VARCHAR2) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.clearTopoMap(
+
+       java.lang.String)';
+  PROCEDURE drop_topo_map(topo_map VARCHAR2) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.dropTopoMap(java.lang.String)';
+  FUNCTION validate_topo_map(topo_map VARCHAR2) RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.validateTopoMap(
+
+       java.lang.String) return java.lang.String';
+  FUNCTION validate_topo_map(topo_map VARCHAR2, level NUMBER) RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.validateTopoMap(
+
+       java.lang.String, oracle.sql.NUMBER) return java.lang.String';
+  FUNCTION search_face_rtree_topo_map(
+    topo_map VARCHAR2,
+    xmin NUMBER,
+    ymin NUMBER,
+    xmax NUMBER,
+    ymax NUMBER,
+    capacity NUMBER
+  ) RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.searchFaceRTreeTopoMap(
+
+       java.lang.String, oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER, oracle.sql.NUMBER
+
+       ) return oracle.spatial.type.SdoNumberArray';
+  FUNCTION search_edge_rtree_topo_map(
+    topo_map VARCHAR2,
+    xmin NUMBER,
+    ymin NUMBER,
+    xmax NUMBER,
+    ymax NUMBER,
+    capacity NUMBER
+  ) RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.searchEdgeRTreeTopoMap(
+
+       java.lang.String, oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER, oracle.sql.NUMBER
+
+       ) return oracle.spatial.type.SdoNumberArray';
+  FUNCTION get_node_changes RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNodeChanges()
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION get_edge_changes RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getEdgeChanges()
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION get_face_changes RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getFaceChanges()
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION get_node_additions RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNodeAdditions()
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION get_edge_additions RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getEdgeAdditions()
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION get_face_additions RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getFaceAdditions()
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION get_node_deletions RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNodeDeletions()
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION get_edge_deletions RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getEdgeDeletions()
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION get_face_deletions RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getFaceDeletions()
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION validate_topology(topology VARCHAR2) RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.validateTopology(
+
+       java.lang.String) return java.lang.String';
+  FUNCTION validate_topology(topology VARCHAR2, prevent_updates VARCHAR2) RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.validateTopology(
+
+       java.lang.String, java.lang.String) return java.lang.String';
+  FUNCTION validate_topology(
+    topology VARCHAR2,
+    prevent_updates VARCHAR2,
+    level NUMBER
+  ) RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.validateTopology(
+
+       java.lang.String, java.lang.String, oracle.sql.NUMBER)
+
+       return java.lang.String';
+  FUNCTION validate_topology(
+    topology VARCHAR2,
+    xmin NUMBER,
+    ymin NUMBER,
+    xmax NUMBER,
+    ymax NUMBER
+  ) RETURN VARCHAR2 AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.validateTopology(
+
+       java.lang.String, oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER) return java.lang.String';
+  FUNCTION validate_topology(
+    topology VARCHAR2,
+    xmin NUMBER,
+    ymin NUMBER,
+    xmax NUMBER,
+    ymax NUMBER,
+    prevent_updates VARCHAR2
+  ) RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.validateTopology(
+
+       java.lang.String, oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER, java.lang.String)
+
+       return java.lang.String';
+  FUNCTION validate_topology(
+    topology VARCHAR2,
+    xmin NUMBER,
+    ymin NUMBER,
+    xmax NUMBER,
+    ymax NUMBER,
+    prevent_updates VARCHAR2,
+    level NUMBER
+  ) RETURN VARCHAR2 DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.validateTopology(
+
+       java.lang.String, oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER, java.lang.String,
+
+       oracle.sql.NUMBER) return java.lang.String';
+  FUNCTION add_edge(
+    topology VARCHAR2,
+    node_id1 NUMBER,
+    node_id2 NUMBER,
+    geom SDO_GEOMETRY
+  ) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addEdge(java.lang.String,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.spatial.type.SdoGeometry) return oracle.sql.NUMBER';
+  FUNCTION add_loop(
+    topology VARCHAR2,
+    node_id NUMBER,
+    geom SDO_GEOMETRY
+  ) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addLoop(java.lang.String,
+
+       oracle.sql.NUMBER,
+
+       oracle.spatial.type.SdoGeometry) return oracle.sql.NUMBER';
+  FUNCTION get_edge_coords(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    edge_id NUMBER
+  ) RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getEdgeCoords(java.lang.String,
+
+       java.lang.String, oracle.sql.NUMBER)
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION add_node(
+    topology VARCHAR2,
+    edge_id NUMBER,
+    point SDO_GEOMETRY,
+    coord_index NUMBER,
+    is_new_shape_point VARCHAR2
+  ) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addNode(java.lang.String,
+
+       oracle.sql.NUMBER,
+
+       oracle.spatial.type.SdoGeometry, int, java.lang.String)
+
+       return oracle.sql.NUMBER';
+  FUNCTION add_node(
+    topology VARCHAR2,
+    edge_id NUMBER,
+    x NUMBER,
+    Y NUMBER,
+    coord_index NUMBER,
+    is_new_shape_point VARCHAR2
+  ) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addNode(java.lang.String,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, int, java.lang.String)
+
+       return oracle.sql.NUMBER';
+  FUNCTION add_isolated_node(
+    topology VARCHAR2,
+    face_id NUMBER,
+    point SDO_GEOMETRY
+  ) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addIsolatedNode(
+
+       java.lang.String, oracle.sql.NUMBER,
+
+       oracle.spatial.type.SdoGeometry) return oracle.sql.NUMBER';
+  FUNCTION add_isolated_node(
+    topology VARCHAR2,
+    face_id NUMBER,
+    x NUMBER,
+    y NUMBER
+  ) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addIsolatedNode(
+
+       java.lang.String, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER) return oracle.sql.NUMBER';
+  FUNCTION add_isolated_node(topology VARCHAR2, point SDO_GEOMETRY) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addIsolatedNode(
+
+       java.lang.String,
+
+       oracle.spatial.type.SdoGeometry) return oracle.sql.NUMBER';
+  FUNCTION add_isolated_node(topology VARCHAR2, x NUMBER, y NUMBER) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addIsolatedNode(
+
+       java.lang.String, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER) return oracle.sql.NUMBER';
+  FUNCTION get_node_coord(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    node_id NUMBER
+  ) RETURN SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNodeCoord(java.lang.String,
+
+       java.lang.String, oracle.sql.NUMBER)
+
+       return oracle.spatial.type.SdoGeometry';
+  PROCEDURE move_node(
+    topology VARCHAR2,
+    node_id NUMBER,
+    edges_coords SDO_EDGE_ARRAY
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.moveNode(
+
+       java.lang.String, oracle.sql.NUMBER,
+
+       oracle.spatial.type.SdoEdgeArray)';
+  PROCEDURE move_node(
+    topology VARCHAR2,
+    node_id NUMBER,
+    edges_coords SDO_EDGE_ARRAY,
+    moved_iso_nodes OUT SDO_NUMBER_ARRAY,
+    moved_iso_edges OUT SDO_NUMBER_ARRAY,
+    allow_iso_moves VARCHAR2
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.moveNode(
+
+       java.lang.String, oracle.sql.NUMBER,
+
+       oracle.spatial.type.SdoEdgeArray,
+
+       oracle.spatial.type.SdoNumberArray[],
+
+       oracle.spatial.type.SdoNumberArray[],
+
+       java.lang.String)';
+  PROCEDURE move_isolated_node(
+    topology VARCHAR2,
+    node_id NUMBER,
+    point SDO_GEOMETRY
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.moveIsolatedNode(
+
+       java.lang.String, oracle.sql.NUMBER,
+
+       oracle.spatial.type.SdoGeometry)';
+  PROCEDURE move_isolated_node(
+    topology VARCHAR2,
+    node_id NUMBER,
+    point SDO_GEOMETRY,
+    allow_face_change VARCHAR2
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.moveIsolatedNode(
+
+       java.lang.String, oracle.sql.NUMBER,
+
+       oracle.spatial.type.SdoGeometry,java.lang.String)';
+  PROCEDURE move_isolated_node(
+    topology VARCHAR2,
+    node_id NUMBER,
+    x NUMBER,
+    y NUMBER
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.moveIsolatedNode(
+
+       java.lang.String, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER)';
+  PROCEDURE move_isolated_node(
+    topology VARCHAR2,
+    node_id NUMBER,
+    x NUMBER,
+    y NUMBER,
+    allow_face_change VARCHAR2
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.moveIsolatedNode(
+
+       java.lang.String, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER,java.lang.String)';
+  PROCEDURE remove_node(topology VARCHAR2, node_id NUMBER) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.removeNode(
+
+       java.lang.String, oracle.sql.NUMBER)';
+  PROCEDURE remove_obsolete_nodes(topology VARCHAR2) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.removeObsoleteNodes(
+
+       java.lang.String)';
+  PROCEDURE move_edge(
+    topology VARCHAR2,
+    edge_id NUMBER,
+    s_node_id NUMBER,
+    t_node_id NUMBER,
+    edge_coords SDO_NUMBER_ARRAY
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.moveEdge(
+
+       java.lang.String,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.spatial.type.SdoNumberArray)';
+  PROCEDURE move_edge(
+    topology VARCHAR2,
+    edge_id NUMBER,
+    s_node_id NUMBER,
+    t_node_id NUMBER,
+    edge_coords SDO_NUMBER_ARRAY,
+    moved_iso_nodes OUT SDO_NUMBER_ARRAY,
+    moved_iso_edges OUT SDO_NUMBER_ARRAY,
+    allow_iso_moves VARCHAR2
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.moveEdge(
+
+       java.lang.String,
+
+       oracle.sql.NUMBER, oracle.sql.NUMBER, oracle.sql.NUMBER,
+
+       oracle.spatial.type.SdoNumberArray,
+
+       oracle.spatial.type.SdoNumberArray[],
+
+       oracle.spatial.type.SdoNumberArray[],
+
+       java.lang.String)';
+  PROCEDURE remove_edge(topology VARCHAR2, edge_id NUMBER) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.removeEdge(
+
+       java.lang.String, oracle.sql.NUMBER)';
+  PROCEDURE change_edge_coords(
+    topology VARCHAR2,
+    edge_id NUMBER,
+    geom SDO_GEOMETRY
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.changeEdgeCoords(
+
+       java.lang.String, oracle.sql.NUMBER,
+
+       oracle.spatial.type.SdoGeometry)';
+  PROCEDURE change_edge_coords(
+    topology VARCHAR2,
+    edge_id NUMBER,
+    geom SDO_GEOMETRY,
+    moved_iso_nodes OUT SDO_NUMBER_ARRAY,
+    moved_iso_edges OUT SDO_NUMBER_ARRAY,
+    allow_iso_moves VARCHAR2
+  ) AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.changeEdgeCoords(
+
+       java.lang.String, oracle.sql.NUMBER,
+
+       oracle.spatial.type.SdoGeometry,
+
+       oracle.spatial.type.SdoNumberArray[],
+
+       oracle.spatial.type.SdoNumberArray[],
+
+       java.lang.String)';
+  FUNCTION add_point_geometry(topology VARCHAR2, point SDO_GEOMETRY) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addPointGeometry(
+
+       java.lang.String, oracle.spatial.type.SdoGeometry)
+
+       return oracle.sql.NUMBER';
+  FUNCTION add_point_geometry(topology VARCHAR2, coord SDO_NUMBER_ARRAY) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addPointGeometry(
+
+       java.lang.String, oracle.spatial.type.SdoNumberArray)
+
+       return oracle.sql.NUMBER';
+  FUNCTION add_linear_geometry(topology VARCHAR2, curve SDO_GEOMETRY) RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addLinearGeometry(
+
+       java.lang.String, oracle.spatial.type.SdoGeometry)
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION add_linear_geometry(topology VARCHAR2, coords SDO_NUMBER_ARRAY) RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addLinearGeometry(
+
+       java.lang.String, oracle.spatial.type.SdoNumberArray)
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION add_polygon_geometry(topology VARCHAR2, polygon SDO_GEOMETRY) RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addPolygonGeometry(
+
+       java.lang.String, oracle.spatial.type.SdoGeometry)
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION add_polygon_geometry(topology VARCHAR2, coords SDO_NUMBER_ARRAY) RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.addPolygonGeometry(
+
+        java.lang.String, oracle.spatial.type.SdoNumberArray)
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION create_feature(
+    topology VARCHAR2,
+    table_name VARCHAR2,
+    column_name VARCHAR2,
+    geom SDO_GEOMETRY
+  ) RETURN SDO_TOPO_GEOMETRY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.createFeature(
+
+        java.lang.String, java.lang.String, java.lang.String,
+
+        oracle.spatial.type.SdoGeometry)
+
+       return oracle.spatial.type.SdoTopoGeometry';
+  FUNCTION create_feature(
+    topology VARCHAR2,
+    table_name VARCHAR2,
+    column_name VARCHAR2,
+    geom SDO_GEOMETRY,
+    snapFeature number
+  ) RETURN SDO_TOPO_GEOMETRY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.createFeature(
+
+        java.lang.String, java.lang.String, java.lang.String,
+
+        oracle.spatial.type.SdoGeometry,oracle.sql.NUMBER)
+
+       return oracle.spatial.type.SdoTopoGeometry';
+  FUNCTION create_feature(
+    topology VARCHAR2,
+    table_name VARCHAR2,
+    column_name VARCHAR2,
+    dml_condition VARCHAR2
+  ) RETURN SDO_TOPO_GEOMETRY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.createFeature(
+
+        java.lang.String, java.lang.String, java.lang.String,
+
+        java.lang.String)
+
+       return oracle.spatial.type.SdoTopoGeometry';
+  FUNCTION get_containing_face(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    point SDO_GEOMETRY
+  ) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getContainingFace(
+
+       java.lang.String, java.lang.String,
+
+       oracle.spatial.type.SdoGeometry)  return oracle.sql.NUMBER';
+  FUNCTION get_containing_face(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    point SDO_GEOMETRY,
+    allow_iso_coincidence varchar2
+  ) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getContainingFace(
+
+       java.lang.String, java.lang.String,
+
+       oracle.spatial.type.SdoGeometry, java.lang.String)
+
+      return oracle.sql.NUMBER';
+  FUNCTION get_containing_face(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    x NUMBER,
+    y NUMBER
+  ) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getContainingFace(
+
+       java.lang.String, java.lang.String, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER) return oracle.sql.NUMBER';
+  FUNCTION get_node_star(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    node_id NUMBER
+  ) RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNodeStar(
+
+       java.lang.String, java.lang.String, oracle.sql.NUMBER)
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION get_node_face_star(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    node_id NUMBER
+  ) RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNodeFaceStar(
+
+       java.lang.String, java.lang.String, oracle.sql.NUMBER)
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION get_edge_nodes(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    edge_id NUMBER
+  ) RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getEdgeNodes(
+
+       java.lang.String, java.lang.String, oracle.sql.NUMBER)
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION get_face_boundary(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    face_id NUMBER,
+    opiton NUMBER
+  ) RETURN SDO_NUMBER_ARRAY DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getFaceBoundary(
+
+       java.lang.String, java.lang.String, oracle.sql.NUMBER, oracle.sql.NUMBER)
+
+       return oracle.spatial.type.SdoNumberArray';
+  FUNCTION get_nearest_node(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    point SDO_GEOMETRY
+  ) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNearestNode(
+
+       java.lang.String, java.lang.String, oracle.spatial.type.SdoGeometry)
+
+       return oracle.sql.NUMBER';
+  FUNCTION get_nearest_node(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    x NUMBER,
+    y NUMBER
+  ) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNearestNode(
+
+       java.lang.String, java.lang.String, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER) return oracle.sql.NUMBER';
+  FUNCTION get_nearest_edge(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    point SDO_GEOMETRY
+  ) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNearestEdge(
+
+       java.lang.String, java.lang.String, oracle.spatial.type.SdoGeometry)
+
+       return oracle.sql.NUMBER';
+  FUNCTION get_nearest_edge(
+    topology VARCHAR2,
+    topo_map VARCHAR2,
+    x NUMBER,
+    y NUMBER
+  ) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNearestEdge(
+
+       java.lang.String, java.lang.String, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER) return oracle.sql.NUMBER';
+  FUNCTION get_nearest_node_in_cache(topo_map VARCHAR2, x NUMBER, y NUMBER) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNearestNodeInCache(
+
+       java.lang.String, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER) return oracle.sql.NUMBER';
+  FUNCTION get_nearest_node_in_cache(topo_map VARCHAR2, point SDO_GEOMETRY) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNearestNodeInCache(
+
+       java.lang.String, oracle.spatial.type.SdoGeometry)
+
+      return oracle.sql.NUMBER';
+  FUNCTION get_nearest_edge_in_cache(topo_map VARCHAR2, x NUMBER, y NUMBER) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNearestEdgeInCache(
+
+       java.lang.String, oracle.sql.NUMBER,
+
+       oracle.sql.NUMBER) return oracle.sql.NUMBER';
+  FUNCTION get_nearest_edge_in_cache(topo_map VARCHAR2, point SDO_GEOMETRY) RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getNearestEdgeInCache(
+
+       java.lang.String, oracle.spatial.type.SdoGeometry)
+
+      return oracle.sql.NUMBER';
+  FUNCTION get_topo_transaction_id RETURN NUMBER DETERMINISTIC AS LANGUAGE JAVA NAME 'oracle.spatial.type.TopoMapWrapper.getTopoTransactionId()
+
+       return oracle.sql.NUMBER';
+  END SDO_TOPO_MAP;
