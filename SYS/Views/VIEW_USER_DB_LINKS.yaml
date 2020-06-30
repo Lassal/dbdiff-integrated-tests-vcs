@@ -1,0 +1,17 @@
+schema: SYS
+name: USER_DB_LINKS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    l.name,
+    l.userid,
+    l.password,
+    l.host,
+    l.ctime
+  from
+    sys.link$ l
+  where
+    l.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

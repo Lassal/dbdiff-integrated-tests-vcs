@@ -1,0 +1,13 @@
+schema: SYS
+name: KU$_10_1_HTABLE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t. *
+  from
+    ku$_htable_view t
+  where
+    bitand(t.trigflag, 65536 + 131072) = 0
+columns: []
+referencedTables: []

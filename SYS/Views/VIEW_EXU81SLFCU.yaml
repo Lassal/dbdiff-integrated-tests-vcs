@@ -1,0 +1,18 @@
+schema: SYS
+name: EXU81SLFCU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "MOWNER",
+    "MOWNERID",
+    "MASTER",
+    "COLNAME",
+    "OLDEST",
+    "FLAG"
+  FROM
+    sys.exu81slfc
+  WHERE
+    mownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

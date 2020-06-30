@@ -1,0 +1,24 @@
+schema: SYS
+name: _ALL_FILE_GROUP_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    g.file_group_owner,
+    g.file_group_name,
+    v.version_name,
+    v.version_id,
+    ti.version_guid,
+    ti.schema_name,
+    ti.table_name,
+    ti.tablespace_name,
+    ti.scn
+  from
+    "_ALL_FILE_GROUPS" g,
+    sys.fgr$_table_info ti,
+    sys.fgr$_file_group_versions v
+  where
+    ti.version_guid = v.version_guid
+    and v.file_group_id = g.file_group_id
+columns: []
+referencedTables: []

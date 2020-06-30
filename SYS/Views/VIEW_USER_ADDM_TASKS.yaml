@@ -1,0 +1,54 @@
+schema: SYS
+name: USER_ADDM_TASKS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    at."TASK_ID",
+    at."TASK_NAME",
+    at."DESCRIPTION",
+    at."ADVISOR_NAME",
+    at."CREATED",
+    at."LAST_MODIFIED",
+    at."PARENT_TASK_ID",
+    at."PARENT_REC_ID",
+    at."LAST_EXECUTION",
+    at."EXECUTION_TYPE",
+    at."EXECUTION_START",
+    at."EXECUTION_END",
+    at."STATUS",
+    at."STATUS_MESSAGE",
+    at."PCT_COMPLETION_TIME",
+    at."PROGRESS_METRIC",
+    at."METRIC_UNITS",
+    at."ACTIVITY_COUNTER",
+    at."RECOMMENDATION_COUNT",
+    at."ERROR_MESSAGE",
+    at."SOURCE",
+    at."HOW_CREATED",
+    at."READ_ONLY",
+    at."SYSTEM_TASK",
+    at."ADVISOR_ID",
+    at."STATUS#",
+    a .dbid as dbid,
+    a .dbname as dbname,
+    a .dbversion as dbversion,
+    a .analysis_version as analysis_version,
+    a .begin_snap_id as begin_snap_id,
+    a .begin_time as begin_time,
+    a .end_snap_id as end_snap_id,
+    a .end_time as end_time,
+    a .requested_analysis as requested_analysis,
+    a .actual_analysis as actual_analysis,
+    a .database_time as database_time,
+    a .active_sessions as active_sessions,
+    a .meter_level as meter_level,
+    a .fdg_count as fdg_count
+  from
+    wri$_adv_addm_tasks a,
+    user_advisor_tasks at
+  where
+    at .task_id = a .task_id
+    and at .status = 'COMPLETED'
+columns: []
+referencedTables: []

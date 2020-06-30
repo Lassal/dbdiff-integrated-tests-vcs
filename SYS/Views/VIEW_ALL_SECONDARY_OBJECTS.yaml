@@ -1,0 +1,67 @@
+schema: SYS
+name: ALL_SECONDARY_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    u1.name,
+    o1.name,
+    decode(
+      s.spare1,
+      0,
+      'FROM INDEXTYPE',
+      1,
+      'FROM STATISTICS TYPE'
+    )
+  from
+    sys.user$ u,
+    sys.obj$ o,
+    sys.user$ u1,
+    sys.obj$ o1,
+    sys.secobj$ s
+  where
+    s.obj# = o.obj#
+    and o.owner# = u.user#
+    and s.secobj# = o1.obj#
+    and o1.owner# = u1.user#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          obj#
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

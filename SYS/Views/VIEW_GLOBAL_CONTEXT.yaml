@@ -1,0 +1,18 @@
+schema: SYS
+name: GLOBAL_CONTEXT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    namespace,
+    attribute,
+    value,
+    username,
+    clientidentifier
+  from
+    v$globalcontext
+  where
+    clientidentifier is null
+    or clientidentifier = SYS_CONTEXT('USERENV', 'CLIENT_IDENTIFIER')
+columns: []
+referencedTables: []

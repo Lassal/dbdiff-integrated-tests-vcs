@@ -1,0 +1,21 @@
+schema: SYS
+name: KU$_USER_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ubv. *,
+    cast(
+      multiset(
+        select
+          *
+        from
+          ku$_user_editioning_view uev
+        where
+          uev.user_id = ubv.user_id
+      ) as ku$_user_editioning_list_t
+    )
+  from
+    sys.ku$_user_base_view ubv
+columns: []
+referencedTables: []

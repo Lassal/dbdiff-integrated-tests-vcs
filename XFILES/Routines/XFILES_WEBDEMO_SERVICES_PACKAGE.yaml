@@ -1,0 +1,33 @@
+schema: XFILES
+name: XFILES_WEBDEMO_SERVICES
+routineType: PACKAGE
+returnParamater:
+  name: EXPLAINPLAN.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: DESCRIBE.P_OBJECT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DESCRIBE.P_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTESQL.P_STATEMENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EXPLAINPLAN.P_STATEMENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  package XFILES_WEBDEMO_SERVICES authid current_user as function EXECUTESQL(P_STATEMENT XMLType) return NUMBER;
+  function DESCRIBE(
+    P_OBJECT_NAME VARCHAR2,
+    P_OWNER VARCHAR2 default USER
+  ) return XMLType;
+  function EXPLAINPLAN(P_STATEMENT XMLType) return XMLType;
+  end;

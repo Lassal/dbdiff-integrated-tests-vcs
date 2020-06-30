@@ -1,0 +1,69 @@
+schema: SYS
+name: EXU81IND
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "IOBJID",
+    "IDOBJID",
+    "INAME",
+    "IOWNER",
+    "IOWNERID",
+    "ISPACE",
+    "ITSNO",
+    "IFILENO",
+    "IBLOCKNO",
+    "BTNAME",
+    "BTOBJID",
+    "BTOWNER",
+    "BTOWNERID",
+    "BTPROPERTY",
+    "BTCLUSTERFLAG",
+    "PROPERTY",
+    "CLUSTER$",
+    "PCTFREE$",
+    "INITRANS",
+    "MAXTRANS",
+    "BLEVEL",
+    "BITMAP",
+    "DEFLOG",
+    "TSDEFLOG",
+    "DEGREE",
+    "INSTANCES",
+    "TYPE",
+    "ROWCNT",
+    "LEAFCNT",
+    "DISTKEY",
+    "LBLKKEY",
+    "DBLKKEY",
+    "CLUFAC",
+    "PRECCNT",
+    "IFLAGS",
+    "SYSGENCONST"
+  FROM
+    sys.exu9ind
+  WHERE
+    sysgenconst = 0
+    AND BITAND(property, 1) = 0
+    OR
+    /* not unique */
+    NOT EXISTS (
+      SELECT
+        *
+      FROM
+        sys.con$ c $,
+        sys.cdef$ cd$
+      WHERE
+        c $.name = iname
+        AND
+        /* same name as constraint */
+        c $.owner# = iownerid
+        AND c $.con# = cd$.con#
+        AND NVL(cd$.enabled, 0) = iobjid
+        AND
+        /* cons enable */
+        ((BITAND(cd$.defer, 8) = 8))
+    )
+    /* sys gen'd */
+columns: []
+referencedTables: []

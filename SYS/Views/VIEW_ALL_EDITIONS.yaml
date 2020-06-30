@@ -1,0 +1,18 @@
+schema: SYS
+name: ALL_EDITIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    po.name,
+    decode(bitand(e.flags, 1), 1, 'NO', 'YES')
+  from
+    sys.obj$ o,
+    sys.edition$ e,
+    sys.obj$ po
+  where
+    o.obj# = e.obj#
+    and po.obj# (+) = e.p_obj#
+columns: []
+referencedTables: []

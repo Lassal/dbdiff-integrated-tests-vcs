@@ -1,0 +1,26 @@
+schema: MDSYS
+name: ALL_SDO_NETWORK_JAVA_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    sdo_owner owner,
+    constraint name,
+    description,
+    class_name,
+    class,
+    java_interface
+  FROM
+    sdo_network_constraints
+  WHERE
+    EXISTS (
+      SELECT
+        NULL
+      FROM
+        all_java_classes
+      WHERE
+        owner = sdo_owner
+        AND name = class_name
+    )
+columns: []
+referencedTables: []

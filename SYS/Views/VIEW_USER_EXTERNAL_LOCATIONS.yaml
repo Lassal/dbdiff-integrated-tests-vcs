@@ -1,0 +1,20 @@
+schema: SYS
+name: USER_EXTERNAL_LOCATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    xl.name,
+    'SYS',
+    nvl(xl.dir, xt.default_dir)
+  from
+    sys.external_location$ xl,
+    sys.obj$ o,
+    sys.external_tab$ xt
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.obj# = xl.obj#
+    and o.obj# = xt.obj#
+columns: []
+referencedTables: []

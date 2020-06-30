@@ -1,0 +1,73 @@
+schema: SYS
+name: ALL_TAB_IDENTITY_COLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    c .name,
+    decode(
+      bitand(c .property, 137438953472 + 274877906944),
+      137438953472,
+      'ALWAYS',
+      274877906944,
+      'BY DEFAULT'
+    ),
+    so.name,
+    'START WITH: ' || i.startwith || ', INCREMENT BY: ' || s.increment$ || ', MAX_VALUE: ' || s.maxvalue || ', MIN_VALUE: ' || s.minvalue || ', CYCLE_FLAG: ' || decode (s.cycle#, 0, 'N', 1, 'Y') || ', CACHE_SIZE: ' || s.cache || ', ORDER_FLAG: ' || decode (s.order$, 0, 'N', 1, 'Y')
+  from
+    sys.idnseq$ i,
+    sys.obj$ o,
+    sys.user$ u,
+    sys.col$ c,
+    sys.seq$ s,
+    sys.obj$ so
+  where
+    o.owner# = u.user#
+    and o.obj# = i.obj#
+    and c .intcol# = i.intcol#
+    and c .obj# = i.obj#
+    and s.obj# = i.seqobj#
+    and so.obj# = i.seqobj#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

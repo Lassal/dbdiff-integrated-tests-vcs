@@ -1,0 +1,38 @@
+schema: SYS
+name: ALL_SEC_RELEVANT_COLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    OBJECT_OWNER,
+    OBJECT_NAME,
+    POLICY_GROUP,
+    POLICY_NAME,
+    SEC_REL_COLUMN,
+    COLUMN_OPTION
+  from
+    DBA_SEC_RELEVANT_COLS,
+    ALL_TABLES t
+  WHERE
+    (
+      OBJECT_OWNER = t.OWNER
+      AND OBJECT_NAME = t.TABLE_NAME
+    )
+  union all
+  SELECT
+    OBJECT_OWNER,
+    OBJECT_NAME,
+    POLICY_GROUP,
+    POLICY_NAME,
+    SEC_REL_COLUMN,
+    COLUMN_OPTION
+  from
+    DBA_SEC_RELEVANT_COLS,
+    ALL_VIEWS v
+  WHERE
+    (
+      OBJECT_OWNER = v.OWNER
+      AND OBJECT_NAME = v.VIEW_NAME
+    )
+columns: []
+referencedTables: []

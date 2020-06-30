@@ -1,0 +1,31 @@
+schema: SYS
+name: KU$_XSOBJ_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    o.name,
+    o.ws,
+    o.owner,
+    o.tenant,
+    o.id,
+    o.type,
+    o.status,
+    o.flags,
+    o.early_dep_cnt,
+    o.late_dep_cnt,
+    o.aclid,
+    (
+      select
+        value(p)
+      from
+        ku$_xsprin_view p
+      where
+        p.prin_id = o.id
+    )
+  from
+    xs$obj o
+columns: []
+referencedTables: []

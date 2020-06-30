@@ -1,0 +1,105 @@
+schema: SYS
+name: USER_IND_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    idx.name,
+    base.name,
+    decode(
+      bitand(c .property, 1024),
+      1024,
+      (
+        select
+          decode(bitand(tc.property, 1), 1, ac.name, tc.name)
+        from
+          sys.col$ tc,
+          attrcol$ ac
+        where
+          tc.intcol# = c .intcol# -1
+          and tc.obj# = c .obj#
+          and tc.obj# = ac.obj#(+)
+          and tc.intcol# = ac.intcol#(+)
+      ),
+      decode(ac.name, null, c .name, ac.name)
+    ),
+    ic.pos#,
+    c .length,
+    c .spare3,
+    decode(
+      bitand(c .property, 131072),
+      131072,
+      'DESC',
+      'ASC'
+    )
+  from
+    sys.col$ c,
+    sys.obj$ idx,
+    sys.obj$ base,
+    sys.icol$ ic,
+    sys.ind$ i,
+    sys.attrcol$ ac
+  where
+    c .obj# = base.obj#
+    and ic.bo# = base.obj#
+    and decode(bitand(i.property, 1024), 0, ic.intcol#, ic.spare2) = c .intcol#
+    and base.owner# = userenv('SCHEMAID')
+    and base.namespace in (1, 5)
+    /* table or cluster namespace */
+    and ic.obj# = idx.obj#
+    and idx.obj# = i.obj#
+    and i.type# in (1, 2, 3, 4, 6, 7, 9)
+    and c .obj# = ac.obj#(+)
+    and c .intcol# = ac.intcol#(+)
+  union all
+  select
+    idx.name,
+    base.name,
+    decode(
+      bitand(c .property, 1024),
+      1024,
+      (
+        select
+          decode(bitand(tc.property, 1), 1, ac.name, tc.name)
+        from
+          sys.col$ tc,
+          attrcol$ ac
+        where
+          tc.intcol# = c .intcol# -1
+          and tc.obj# = c .obj#
+          and tc.obj# = ac.obj#(+)
+          and tc.intcol# = ac.intcol#(+)
+      ),
+      decode(ac.name, null, c .name, ac.name)
+    ),
+    ic.pos#,
+    c .length,
+    c .spare3,
+    decode(
+      bitand(c .property, 131072),
+      131072,
+      'DESC',
+      'ASC'
+    )
+  from
+    sys.col$ c,
+    sys.obj$ idx,
+    sys.obj$ base,
+    sys.icol$ ic,
+    sys.ind$ i,
+    sys.attrcol$ ac
+  where
+    c .obj# = base.obj#
+    and i.bo# = base.obj#
+    and base.owner# != userenv('SCHEMAID')
+    and decode(bitand(i.property, 1024), 0, ic.intcol#, ic.spare2) = c .intcol#
+    and idx.owner# = userenv('SCHEMAID')
+    and idx.namespace = 4
+    /* index namespace */
+    and ic.obj# = idx.obj#
+    and idx.obj# = i.obj#
+    and i.type# in (1, 2, 3, 4, 6, 7, 9)
+    and c .obj# = ac.obj#(+)
+    and c .intcol# = ac.intcol#(+)
+columns: []
+referencedTables: []

@@ -1,0 +1,26 @@
+schema: ORDS_METADATA
+name: USER_ORDS_APPROVALS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    c .name title,
+    c .description description,
+    c .id icon_id,
+    c .support_email,
+    c .support_uri,
+    a .updated_on updated_on,
+    a .status status,
+    a .id approval_id,
+    a .user_name,
+    s.parsing_schema
+  FROM
+    oauth_clients c,
+    oauth_approvals a,
+    ords_schemas s
+  WHERE
+    c .id = a .client_id
+    AND a .schema_id = s.id
+    AND s.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

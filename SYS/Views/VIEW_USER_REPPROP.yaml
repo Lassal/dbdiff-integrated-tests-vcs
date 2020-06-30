@@ -1,0 +1,30 @@
+schema: SYS
+name: USER_REPPROP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.sname,
+    r.oname,
+    r.type,
+    r.dblink,
+    r.how,
+    r.propagate_comment
+  from
+    repcat_repprop r,
+    repcat_repobject ro,
+    user_users u
+  where
+    r.sname = u.username
+    and r.sname = ro.sname
+    and r.oname = ro.oname
+    and r.type = ro.type
+    and ro.type in (
+      'PROCEDURE',
+      'PACKAGE',
+      'PACKAGE BODY',
+      'TABLE',
+      'SNAPSHOT'
+    )
+columns: []
+referencedTables: []

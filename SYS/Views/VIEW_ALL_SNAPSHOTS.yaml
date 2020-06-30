@@ -1,0 +1,82 @@
+schema: SYS
+name: ALL_SNAPSHOTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s. "OWNER",
+    s. "NAME",
+    s. "TABLE_NAME",
+    s. "MASTER_VIEW",
+    s. "MASTER_OWNER",
+    s. "MASTER",
+    s. "MASTER_LINK",
+    s. "CAN_USE_LOG",
+    s. "UPDATABLE",
+    s. "REFRESH_METHOD",
+    s. "LAST_REFRESH",
+    s. "ERROR",
+    s. "FR_OPERATIONS",
+    s. "CR_OPERATIONS",
+    s. "TYPE",
+    s. "NEXT",
+    s. "START_WITH",
+    s. "REFRESH_GROUP",
+    s. "UPDATE_TRIG",
+    s. "UPDATE_LOG",
+    s. "QUERY",
+    s. "MASTER_ROLLBACK_SEG",
+    s. "STATUS",
+    s. "REFRESH_MODE",
+    s. "PREBUILT"
+  from
+    dba_snapshots s,
+    sys.obj$ o,
+    sys.user$ u
+  where
+    o.owner# = u.user#
+    and s.table_name = o.name
+    and u.name = s.owner
+    and o.type# = 2
+    /* table */
+    and (
+      u.user# in (userenv('SCHEMAID'), 1)
+      or o.obj# in (
+        select
+          obj#
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,39 @@
+schema: XFILES
+name: XFILES_USER_SERVICES
+routineType: PACKAGE
+returnParamater:
+  name: GETUSERPRIVILEGES.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: RESETUSEROPTIONS.P_NEW_PASSWORD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESETUSEROPTIONS.P_RESET_HOME_FOLDER
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: RESETUSEROPTIONS.P_RECREATE_HOME_PAGE
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: RESETUSEROPTIONS.P_RESET_PUBLIC_FOLDER
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: RESETUSEROPTIONS.P_RECREATE_PUBLIC_PAGE
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: |-
+  package XFILES_USER_SERVICES AUTHID CURRENT_USER as procedure RESETUSEROPTIONS(
+    P_NEW_PASSWORD VARCHAR2 DEFAULT NULL,
+    P_RESET_HOME_FOLDER BOOLEAN DEFAULT FALSE,
+    P_RECREATE_HOME_PAGE BOOLEAN DEFAULT FALSE,
+    P_RESET_PUBLIC_FOLDER BOOLEAN DEFAULT FALSE,
+    P_RECREATE_PUBLIC_PAGE BOOLEAN DEFAULT FALSE
+  );
+  function GETUSERPRIVILEGES return XMLType;
+  end;

@@ -1,0 +1,28 @@
+schema: MDSYS
+name: SDO_OLS_ROUTE
+routineType: PACKAGE
+returnParamater:
+  name: MANEUVERORACLETOOPENLS.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: MAKEOPENLS10REQUEST.REQUEST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: MANEUVERORACLETOOPENLS.ORACLE
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: MANEUVERORACLETOOPENLS.OPENLS_VERSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE sdo_ols_route AUTHID current_user AS FUNCTION maneuverOracleToOpenLS(
+    oracle XMLTYPE,
+    openls_version VARCHAR2
+  ) RETURN XMLTYPE;
+  FUNCTION makeOpenLS10Request(request XMLTYPE) RETURN XMLTYPE;
+  END sdo_ols_route;

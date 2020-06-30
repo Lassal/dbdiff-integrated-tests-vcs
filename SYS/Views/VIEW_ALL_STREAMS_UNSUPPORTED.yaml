@@ -1,0 +1,19 @@
+schema: SYS
+name: ALL_STREAMS_UNSUPPORTED
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s. "OWNER",
+    s. "TABLE_NAME",
+    s. "REASON",
+    s. "AUTO_FILTERED"
+  from
+    DBA_STREAMS_UNSUPPORTED s,
+    ALL_OBJECTS a
+  where
+    s.owner = a .owner
+    and s.table_name = a .object_name
+    and a .object_type = 'TABLE'
+columns: []
+referencedTables: []

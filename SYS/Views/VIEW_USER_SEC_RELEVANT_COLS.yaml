@@ -1,0 +1,17 @@
+schema: SYS
+name: USER_SEC_RELEVANT_COLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    OBJECT_NAME,
+    POLICY_GROUP,
+    POLICY_NAME,
+    SEC_REL_COLUMN,
+    COLUMN_OPTION
+  FROM
+    ALL_SEC_RELEVANT_COLS
+  WHERE
+    OBJECT_OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

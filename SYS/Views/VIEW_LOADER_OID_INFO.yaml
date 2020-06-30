@@ -1,0 +1,80 @@
+schema: SYS
+name: LOADER_OID_INFO
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    decode(
+      c .property,
+      1056,
+      1,
+      decode(bitand(c .property, 2), 0, 2, 1)
+    ),
+    decode(ac.name, null, c .name, ac.name),
+    c .type#,
+    c .length,
+    c .spare3,
+    decode(c .precision#, null, 0, c .precision#),
+    decode(c .scale, null, 0, c .scale),
+    decode(sign(c .null$), 0, 1, 0),
+    c .charsetid,
+    ic.pos#,
+    decode(bitand(c .property, 8388608), 8388608, 1, 0)
+  from
+    sys.col$ c,
+    sys.obj$ o,
+    sys.user$ u,
+    sys.attrcol$ ac,
+    sys.icol$ ic
+  where
+    o.owner# = u.user#
+    and c .obj# = o.obj#
+    and c .obj# = ac.obj# (+)
+    and c .intcol# = ac.intcol# (+)
+    and c .obj# = ic.bo#
+    and c .col# = ic.col#
+    and c .intcol# = ic.intcol#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+  order by
+    o.obj#,
+    ic.pos#
+columns: []
+referencedTables: []

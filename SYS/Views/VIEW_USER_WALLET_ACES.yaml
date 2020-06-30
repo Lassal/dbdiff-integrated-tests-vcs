@@ -1,0 +1,27 @@
+schema: SYS
+name: USER_WALLET_ACES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    wallet_path,
+    privilege,
+    decode(status, 0, 'DENIED', 1, 'GRANTED', null)
+  from
+    (
+      select
+        w.wallet_path,
+        xo.name privilege,
+        sys_check_privilege(sys_xsid_to_raw(xo.id), w.acl#, null) status
+      from
+        sys.nacl$_wallet w,
+        dba_xs_objects xo
+      where
+        xo.owner = 'SYS'
+        and xo.name in ('USE_CLIENT_CERTIFICATES', 'USE_PASSWORDS')
+        and xo.type = 'PRIVILEGE'
+    )
+  where
+    status in (0, 1)
+columns: []
+referencedTables: []

@@ -1,0 +1,22 @@
+schema: CTXSYS
+name: CTX_USER_THES_PHRASES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ths_name thp_thesaurus,
+    thp_phrase thp_phrase,
+    thp_qualify thp_qualifier,
+    thp_note thp_scope_note
+  from
+    dr$ths_phrase,
+    dr$ths
+  where
+    thp_thsid = ths_id
+    and ths_owner# = userenv('SCHEMAID')
+  order by
+    thp_thsid,
+    thp_phrase,
+    thp_qualify
+columns: []
+referencedTables: []

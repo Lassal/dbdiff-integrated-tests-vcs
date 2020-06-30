@@ -1,0 +1,129 @@
+schema: SYS
+name: ALL_QUEUE_SUBSCRIBERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    su.owner OWNER,
+    su.queue_name QUEUE_NAME,
+    su.queue_table QUEUE_TABLE,
+    su.consumer_name CONSUMER_NAME,
+    su.address ADDRESS,
+    su.protocol PROTOCOL,
+    su.transformation TRANSFORMATION,
+    r.rule_condition RULE,
+    decode(
+      bitand(su.sub_type, 192),
+      64,
+      'PERSISTENT',
+      128,
+      'BUFFERED',
+      192,
+      'PERSISTENT_OR_BUFFERED',
+      'NONE'
+    ) DELIVERY_MODE,
+    decode(
+      bitand(su.sub_type, 32960),
+      32960,
+      'YES',
+      'NO'
+    ) IF_NONDURABLE_SUBSCRIBER,
+    decode(bitand(su.sub_type, 512), 512, 'TRUE', 'FALSE') QUEUE_TO_QUEUE,
+    su.subscriber_id SUBSCRIBER_ID,
+    su.pos_bitmap POS_BITMAP
+  FROM
+    (
+      select
+        u.name OWNER,
+        q.name QUEUE_NAME,
+        t.name QUEUE_TABLE,
+        s.name CONSUMER_NAME,
+        s.address ADDRESS,
+        s.protocol PROTOCOL,
+        s.trans_name TRANSFORMATION,
+        s.sub_type SUB_TYPE,
+        s.rule_name RULE_NAME,
+        s.subscriber_id SUBSCRIBER_ID,
+        s.pos_bitmap POS_BITMAP
+      FROM
+        system.aq$_queues q,
+        system.aq$_queue_tables t,
+        sys.user$ u,
+        sys.obj$ ro,
+        sys.user$ cu,
+        TABLE(
+          aq$_get_subscribers(
+            u.name,
+            q.name,
+            t.name,
+            cu.name,
+            q.eventid,
+            t.flags
+          )
+        ) s
+      where
+        u.name = t.schema
+        and q.table_objno = t.objno
+        and bitand(t.flags, 1) = 1
+        and q.usage != 1
+        and ro.owner# = u.user#
+        and ro.obj# = q.eventid
+        and cu.user# = userenv('SCHEMAID')
+        and (
+          ro.owner# = userenv('SCHEMAID')
+          or ro.obj# in (
+            select
+              oa.obj#
+            from
+              sys.objauth$ oa
+            where
+              oa.privilege# in (21, 41)
+              and grantee# in (
+                select
+                  kzsrorol
+                from
+                  x$kzsro
+              )
+          )
+          or exists (
+            select
+              null
+            from
+              v$enabledprivs
+            where
+              priv_number = -220
+          )
+          or ro.obj# in (
+            select
+              q.eventid
+            from
+              system.aq$_queues q,
+              system.aq$_queue_tables t
+            where
+              q.table_objno = t.objno
+              and bitand(t.flags, 8) = 0
+              and exists (
+                select
+                  null
+                from
+                  sys.objauth$ oa,
+                  sys.obj$ o
+                where
+                  oa.obj# = o.obj#
+                  and (
+                    o.name = 'DBMS_AQ'
+                    or o.name = 'DBMS_AQADM'
+                  )
+                  and o.owner# = 0
+                  and o.type# = 9
+                  and oa.grantee# = userenv('SCHEMAID')
+              )
+          )
+        )
+    ) su,
+    sys.dba_rules r
+  where
+    su.rule_name = r.rule_name(+)
+    and su.owner = r.rule_owner(+)
+columns: []
+referencedTables: []

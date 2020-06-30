@@ -1,0 +1,18 @@
+schema: MDSYS
+name: SDO_CRS_GEOCENTRIC
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    SRID,
+    COORD_REF_SYS_NAME,
+    COORD_SYS_ID,
+    DATUM_ID,
+    INFORMATION_SOURCE,
+    DATA_SOURCE
+  FROM
+    MDSYS.SDO_COORD_REF_SYS
+  WHERE
+    COORD_REF_SYS_KIND = 'GEOCENTRIC'
+columns: []
+referencedTables: []

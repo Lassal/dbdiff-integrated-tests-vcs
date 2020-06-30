@@ -1,0 +1,137 @@
+schema: SYS
+name: ALL_OBJ_COLATTRS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    c .name,
+    lpad(decode(bitand(ct.flags, 512), 512, 'Y', 'N'), 15)
+  from
+    sys.coltype$ ct,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.col$ c,
+    sys.user$ u
+  where
+    o.owner# = u.user#
+    and bitand(ct.flags, 2) = 2
+    /* ADT column */
+    and o.obj# = ct.obj#
+    and o.obj# = c .obj#
+    and c .intcol# = ct.intcol#
+    and bitand(c .property, 32768) != 32768
+    /* not unused column */
+    and not exists (
+      select
+        null
+        /* Doesn't exist in attrcol$ */
+      from
+        sys.attrcol$ ac
+      where
+        ac.intcol# = ct.intcol#
+        and ac.obj# = ct.obj#
+    )
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+  union all
+  select
+    u.name,
+    o.name,
+    ac.name,
+    lpad(decode(bitand(ct.flags, 512), 512, 'Y', 'N'), 15)
+  from
+    sys.coltype$ ct,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.attrcol$ ac,
+    sys.user$ u,
+    col$ c
+  where
+    o.owner# = u.user#
+    and bitand(ct.flags, 2) = 2
+    /* ADT column */
+    and o.obj# = ct.obj#
+    and o.obj# = c .obj#
+    and o.obj# = ac.obj#
+    and c .intcol# = ct.intcol#
+    and c .intcol# = ac.intcol#
+    and bitand(c .property, 32768) != 32768
+    /* not unused column */
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,126 @@
+schema: SYS
+name: USER_PART_INDEXES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    io.name,
+    o.name,
+    decode(
+      po.parttype,
+      1,
+      'RANGE',
+      2,
+      'HASH',
+      3,
+      'SYSTEM',
+      4,
+      'LIST',
+      5,
+      'REFERENCE',
+      'UNKNOWN'
+    ),
+    decode(
+      mod(po.spare2, 256),
+      0,
+      'NONE',
+      1,
+      'RANGE',
+      2,
+      'HASH',
+      3,
+      'SYSTEM',
+      4,
+      'LIST',
+      5,
+      'REFERENCE',
+      'UNKNOWN'
+    ),
+    po.partcnt,
+    mod(trunc(po.spare2 / 65536), 65536),
+    po.partkeycols,
+    mod(trunc(po.spare2 / 256), 256),
+    decode(bitand(po.flags, 1), 1, 'LOCAL', 'GLOBAL'),
+    decode(
+      po.partkeycols,
+      0,
+      'NONE',
+      decode(
+        bitand(po.flags, 2),
+        2,
+        'PREFIXED',
+        'NON_PREFIXED'
+      )
+    ),
+    ts.name,
+    po.defpctfree,
+    po.definitrans,
+    po.defmaxtrans,
+    decode(po.deftiniexts, NULL, 'DEFAULT', po.deftiniexts),
+    decode(po.defextsize, NULL, 'DEFAULT', po.defextsize),
+    decode(po.defminexts, NULL, 'DEFAULT', po.defminexts),
+    decode(po.defmaxexts, NULL, 'DEFAULT', po.defmaxexts),
+    decode(po.defmaxsize, NULL, 'DEFAULT', po.defmaxsize),
+    decode(po.defextpct, NULL, 'DEFAULT', po.defextpct),
+    po.deflists,
+    po.defgroups,
+    decode(
+      po.deflogging,
+      0,
+      'NONE',
+      1,
+      'YES',
+      2,
+      'NO',
+      'UNKNOWN'
+    ),
+    decode(
+      bitand(po.spare1, 3),
+      1,
+      'KEEP',
+      2,
+      'RECYCLE',
+      'DEFAULT'
+    ),
+    decode(
+      bitand(po.spare1, 12) / 4,
+      1,
+      'KEEP',
+      2,
+      'NONE',
+      'DEFAULT'
+    ),
+    decode(
+      bitand(po.spare1, 48) / 16,
+      1,
+      'KEEP',
+      2,
+      'NONE',
+      'DEFAULT'
+    ),
+    po.parameters,
+    case
+      when (
+        po.parttype = 5
+        and bitand(po.flags, 64) = 64
+      ) then 'YES'
+      else po.interval_str
+    end
+  from
+    sys.obj$ io,
+    sys.obj$ o,
+    sys.partobj$ po,
+    sys.ts$ ts,
+    sys.ind$ i
+  where
+    io.obj# = po.obj#
+    and po.defts# = ts.ts# (+)
+    and i.obj# = io.obj#
+    and o.obj# = i.bo#
+    and io.owner# = userenv('SCHEMAID')
+    and io.namespace = 4
+    and io.remoteowner IS NULL
+    and io.linkname IS NULL
+    and io.subname IS NULL
+columns: []
+referencedTables: []

@@ -1,0 +1,233 @@
+schema: SYS
+name: USER_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    o.subname,
+    o.obj#,
+    o.dataobj#,
+    decode(
+      o.type#,
+      0,
+      'NEXT OBJECT',
+      1,
+      'INDEX',
+      2,
+      'TABLE',
+      3,
+      'CLUSTER',
+      4,
+      'VIEW',
+      5,
+      'SYNONYM',
+      6,
+      'SEQUENCE',
+      7,
+      'PROCEDURE',
+      8,
+      'FUNCTION',
+      9,
+      'PACKAGE',
+      11,
+      'PACKAGE BODY',
+      12,
+      'TRIGGER',
+      13,
+      'TYPE',
+      14,
+      'TYPE BODY',
+      19,
+      'TABLE PARTITION',
+      20,
+      'INDEX PARTITION',
+      21,
+      'LOB',
+      22,
+      'LIBRARY',
+      23,
+      'DIRECTORY',
+      24,
+      'QUEUE',
+      28,
+      'JAVA SOURCE',
+      29,
+      'JAVA CLASS',
+      30,
+      'JAVA RESOURCE',
+      32,
+      'INDEXTYPE',
+      33,
+      'OPERATOR',
+      34,
+      'TABLE SUBPARTITION',
+      35,
+      'INDEX SUBPARTITION',
+      40,
+      'LOB PARTITION',
+      41,
+      'LOB SUBPARTITION',
+      42,
+      NVL(
+        (
+          SELECT
+            'REWRITE EQUIVALENCE'
+          FROM
+            sum $ s
+          WHERE
+            s.obj# = o.obj#
+            and bitand(s.xpflags, 8388608) = 8388608
+        ),
+        'MATERIALIZED VIEW'
+      ),
+      43,
+      'DIMENSION',
+      44,
+      'CONTEXT',
+      46,
+      'RULE SET',
+      47,
+      'RESOURCE PLAN',
+      48,
+      'CONSUMER GROUP',
+      51,
+      'SUBSCRIPTION',
+      52,
+      'LOCATION',
+      55,
+      'XML SCHEMA',
+      56,
+      'JAVA DATA',
+      57,
+      'EDITION',
+      59,
+      'RULE',
+      60,
+      'CAPTURE',
+      61,
+      'APPLY',
+      62,
+      'EVALUATION CONTEXT',
+      66,
+      'JOB',
+      67,
+      'PROGRAM',
+      68,
+      'JOB CLASS',
+      69,
+      'WINDOW',
+      72,
+      'SCHEDULER GROUP',
+      74,
+      'SCHEDULE',
+      79,
+      'CHAIN',
+      81,
+      'FILE GROUP',
+      82,
+      'MINING MODEL',
+      87,
+      'ASSEMBLY',
+      90,
+      'CREDENTIAL',
+      92,
+      'CUBE DIMENSION',
+      93,
+      'CUBE',
+      94,
+      'MEASURE FOLDER',
+      95,
+      'CUBE BUILD PROCESS',
+      100,
+      'FILE WATCHER',
+      101,
+      'DESTINATION',
+      114,
+      'SQL TRANSLATION PROFILE',
+      115,
+      'UNIFIED AUDIT POLICY',
+      'UNDEFINED'
+    ),
+    o.ctime,
+    o.mtime,
+    to_char(o.stime, 'YYYY-MM-DD:HH24:MI:SS'),
+    decode(o.status, 0, 'N/A', 1, 'VALID', 'INVALID'),
+    decode(bitand(o.flags, 2), 0, 'N', 2, 'Y', 'N'),
+    decode(bitand(o.flags, 4), 0, 'N', 4, 'Y', 'N'),
+    decode(bitand(o.flags, 16), 0, 'N', 16, 'Y', 'N'),
+    o.namespace,
+    o.defining_edition,
+    decode(
+      bitand(o.flags, 196608),
+      65536,
+      'METADATA LINK',
+      131072,
+      'OBJECT LINK',
+      'NONE'
+    ),
+    case
+      when o.type# in (4, 5, 7, 8, 9, 11, 12, 13, 14, 22, 87, 114) then decode(
+        bitand(o.flags, 1048576),
+        0,
+        'Y',
+        1048576,
+        'N',
+        'Y'
+      )
+      else null
+    end,
+    decode(bitand(o.flags, 4194304), 4194304, 'Y', 'N')
+  from
+    sys. "_CURRENT_EDITION_OBJ" o
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.linkname is null
+    and (
+      o.type# not in (
+        1
+        /* INDEX - handled below */,
+        10
+        /* NON-EXISTENT */
+      )
+      or (
+        o.type# = 1
+        and 1 = (
+          select
+            1
+          from
+            sys.ind$ i
+          where
+            i.obj# = o.obj#
+            and i.type# in (1, 2, 3, 4, 6, 7, 8, 9)
+        )
+      )
+    )
+    and o.name != '_NEXT_OBJECT'
+    and o.name != '_default_auditing_options_'
+    and bitand(o.flags, 128) = 0
+  union all
+  select
+    l.name,
+    NULL,
+    to_number(null),
+    to_number(null),
+    'DATABASE LINK',
+    l.ctime,
+    to_date(null),
+    NULL,
+    'VALID',
+    'N',
+    'N',
+    'N',
+    NULL,
+    NULL,
+    'NONE',
+    NULL,
+    'N'
+  from
+    sys.link$ l
+  where
+    l.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

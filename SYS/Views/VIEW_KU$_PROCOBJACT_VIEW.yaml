@@ -1,0 +1,25 @@
+schema: SYS
+name: KU$_PROCOBJACT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    distinct p.package,
+    p.schema
+  FROM
+    sys.exppkgact$ p
+  WHERE
+    (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR SYS_CONTEXT('USERENV', 'SESSION_USER') = p.schema
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

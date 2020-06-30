@@ -1,0 +1,18 @@
+schema: SYS
+name: KU$_USER_EDITIONING_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.user#,
+    et.editionable_type
+  from
+    sys.user$ u,
+    sys.v$editionable_types et,
+    sys.user_editioning$ ue -- PACKAGE and TYPE are inclusive of BODY.
+  where
+    et.type# = ue.type#
+    and ue.user# = u.user#
+    and ue.type# not in (11, 14)
+columns: []
+referencedTables: []

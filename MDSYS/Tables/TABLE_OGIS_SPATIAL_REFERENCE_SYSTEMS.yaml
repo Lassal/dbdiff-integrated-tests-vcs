@@ -1,0 +1,37 @@
+name: OGIS_SPATIAL_REFERENCE_SYSTEMS
+schema: MDSYS
+columns:
+- name: AUTH_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  dataTypeLength: 100
+- name: AUTH_SRID
+  ordinalPosition: 3
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: SRID
+  ordinalPosition: 1
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: SRNUM
+  ordinalPosition: 5
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: SRTEXT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  dataTypeLength: 1000
+constraints:
+- !<unique-constraint>
+  name: PK_SRID
+  type: PRIMARY_KEY
+  columns:
+  - name: SRID
+    ordinalPosition: 1

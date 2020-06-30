@@ -1,0 +1,24 @@
+schema: SYS
+name: IMP_TAB_TRIG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    u.name,
+    o.type#
+  FROM
+    sys.trigger$ tr,
+    sys.obj$ o,
+    sys.user$ u
+  WHERE
+    tr.baseobject = o.obj#
+    AND u.user# = o.owner#
+    AND tr.type# = 1
+    /* BEFORE ROW */
+    AND tr.insert$ = 1
+    /* for INSERT */
+    AND tr.enabled = 1
+    AND o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,292 @@
+schema: SYS
+name: DBMS_CDC_SUBSCRIBE
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: ACTIVATE_SUBSCRIPTION(1).SUBSCRIPTION_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ACTIVATE_SUBSCRIPTION(2).SUBSCRIPTION_HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_SUBSCRIPTION.CHANGE_SET_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SUBSCRIPTION.DESCRIPTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SUBSCRIPTION.SUBSCRIPTION_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_SUBSCRIBER_VIEW.SUBSCRIPTION_HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: DROP_SUBSCRIBER_VIEW.SOURCE_SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_SUBSCRIBER_VIEW.SOURCE_TABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_SUBSCRIPTION(1).SUBSCRIPTION_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_SUBSCRIPTION(2).SUBSCRIPTION_HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: EXTEND_WINDOW(1).SUBSCRIPTION_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTEND_WINDOW(1).UPPER_BOUND
+  ordinalPosition: 2
+  dataType: DATE
+  parameterMode: IN
+- name: EXTEND_WINDOW(2).SUBSCRIPTION_HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_SUBSCRIPTION_HANDLE.CHANGE_SET
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_SUBSCRIPTION_HANDLE.DESCRIPTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_SUBSCRIPTION_HANDLE.SUBSCRIPTION_HANDLE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: PREPARE_SUBSCRIBER_VIEW.SUBSCRIPTION_HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: PREPARE_SUBSCRIBER_VIEW.SOURCE_SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE_SUBSCRIBER_VIEW.SOURCE_TABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE_SUBSCRIBER_VIEW.VIEW_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: PURGE_WINDOW(1).SUBSCRIPTION_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_WINDOW(1).LOWER_BOUND
+  ordinalPosition: 2
+  dataType: DATE
+  parameterMode: IN
+- name: PURGE_WINDOW(2).SUBSCRIPTION_HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SUBSCRIBE(1).SUBSCRIPTION_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE(1).SOURCE_SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE(1).SOURCE_TABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE(1).COLUMN_LIST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE(1).SUBSCRIBER_VIEW
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE(2).SUBSCRIPTION_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE(2).PUBLICATION_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SUBSCRIBE(2).COLUMN_LIST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE(2).SUBSCRIBER_VIEW
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE(3).SUBSCRIPTION_HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SUBSCRIBE(3).SOURCE_SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE(3).SOURCE_TABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE(3).COLUMN_LIST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE(4).SUBSCRIPTION_HANDLE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SUBSCRIBE(4).PUBLICATION_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SUBSCRIBE(4).COLUMN_LIST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE DBMS_CDC_SUBSCRIBE AS ------------------------------------------------------------------------------
+  --  PROCEDURE DBMS_CDC_SUBSCRIBE.CREATE_SUBSCRIPTION
+  --
+  --  Purpose: Obtains a subscription name to be passed to all the other
+  --  subscription APIs
+  --
+  --  PROCEDURE DBMS_CDC_SUBSCRIBE.SUBSCRIBE
+  --
+  --  Purpose: Registers interest in a published source table or publication and
+  --  subscribes to those changes.
+  --
+  --  PROCEDURE DBMS_CDC_SUBSCRIBE.ACTIVATE_SUBSCRIPTION
+  --
+  --  Purpose: Activates a subscription, making it ready to receive change data.
+  --
+  --                          PARAMETERS
+  --
+  --  change_set: The name of an existing change set
+  --
+  --  description: A description of the subscription and what it will be used for
+  --
+  --  subscription_name: Subscription name for a given subscription.
+  --
+  --  source_schema: Schema name where source tables reside
+  --
+  --  source_table: Name of a published source table
+  --
+  --  column_list: A comma-separated list of columns from the published
+  --  source table
+  --
+  --  publication_id: A specific publication ID (often used to distinguish
+  --  multiple publications on the same source_schema/source_table).
+  --
+  --  subscriber_view: Optional name of the subscriber view for subscription
+  --  to a particular source_schema/source_table or publication ID.
+  --
+  --                  EXCEPTION DESCRIPTION
+  --
+  --
+  ------------------------------------------------------------------------------
+  --  PROCEDURE DBMS_CDC_SUBSCRIBE.EXTEND_WINDOW
+  --
+  --  Purpose: This procedure sets the high water mark of the subscription
+  --  window, thus permitting newly added change data to be seen.
+  --
+  --  PROCEDURE DBMS_CDC_SUBSCRIBE.PURGE_WINDOW
+  --
+  --  Purpose: Sets the low water mark equal to the high water mark for
+  --  this subscription window.  The subscription can no longer see any of the
+  --  old change data.
+  --
+  --  PROCEDURE DBMS_CDC_SUBSCRIBE.DROP_SUBSCRIPTION
+  --
+  --  Purpose: Remove an existing subscription.
+  --
+  --                          PARAMETERS
+  --
+  --  subscription_name: Name of an existing subscription
+  --
+  --
+  --                  EXCEPTION DESCRIPTION
+  --
+  --
+  ------------------------------------------------------------------------------
+  --
+  -- 10i subscriber interface
+  --
+  PROCEDURE create_subscription (
+    change_set_name IN VARCHAR2,
+    description IN VARCHAR2,
+    subscription_name IN VARCHAR2
+  );
+  PROCEDURE subscribe (
+    subscription_name IN VARCHAR2,
+    source_schema IN VARCHAR2,
+    source_table IN VARCHAR2,
+    column_list IN VARCHAR2,
+    subscriber_view IN VARCHAR2
+  );
+  PROCEDURE subscribe (
+    subscription_name IN VARCHAR2,
+    publication_id IN NUMBER,
+    column_list IN VARCHAR2,
+    subscriber_view IN VARCHAR2
+  );
+  PROCEDURE activate_subscription (subscription_name IN VARCHAR2);
+  PROCEDURE extend_window (
+    subscription_name IN VARCHAR2,
+    upper_bound IN DATE DEFAULT NULL
+  );
+  PROCEDURE purge_window (
+    subscription_name IN VARCHAR2,
+    lower_bound IN DATE DEFAULT NULL
+  );
+  PROCEDURE drop_subscription (subscription_name IN VARCHAR2);
+  --
+  -- 9i subscriber interface - deprecated
+  --
+  PROCEDURE get_subscription_handle (
+    change_set IN VARCHAR2,
+    description IN VARCHAR2,
+    subscription_handle OUT NUMBER
+  );
+  PROCEDURE subscribe (
+    subscription_handle IN NUMBER,
+    source_schema IN VARCHAR2,
+    source_table IN VARCHAR2,
+    column_list IN VARCHAR2
+  );
+  PROCEDURE subscribe (
+    subscription_handle IN NUMBER,
+    publication_id IN NUMBER,
+    column_list IN VARCHAR2
+  );
+  PROCEDURE activate_subscription (subscription_handle IN NUMBER);
+  PROCEDURE extend_window (subscription_handle IN NUMBER);
+  PROCEDURE prepare_subscriber_view (
+    subscription_handle IN NUMBER,
+    source_schema IN VARCHAR2,
+    source_table IN VARCHAR2,
+    view_name OUT VARCHAR2
+  );
+  PROCEDURE drop_subscriber_view (
+    subscription_handle IN NUMBER,
+    source_schema IN VARCHAR2,
+    source_table IN VARCHAR2
+  );
+  PROCEDURE purge_window (subscription_handle IN NUMBER);
+  PROCEDURE drop_subscription (subscription_handle IN NUMBER);
+  END DBMS_CDC_SUBSCRIBE;

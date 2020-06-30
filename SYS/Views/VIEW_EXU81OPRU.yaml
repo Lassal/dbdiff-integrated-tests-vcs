@@ -1,0 +1,18 @@
+schema: SYS
+name: EXU81OPRU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "NAME",
+    "OBJID",
+    "OWNER",
+    "OWNERID",
+    "OLEVEL",
+    "SQLVER"
+  FROM
+    sys.exu81opr
+  WHERE
+    ownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

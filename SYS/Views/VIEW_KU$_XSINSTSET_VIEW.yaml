@@ -1,0 +1,37 @@
+schema: SYS
+name: KU$_XSINSTSET_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    i.xdsid#,
+    i.order#,
+    i.type,
+    (
+      select
+        value(r)
+      from
+        ku$_xsinst_rule_view r
+      where
+        r.xdsid = i.xdsid#
+        and r.order_num = i.order#
+    ),
+    (
+      cast(
+        multiset(
+          select
+            value(a)
+          from
+            ku$_xsinst_inh_view a
+          where
+            a .xdsid = i.xdsid#
+            and a .order_num = i.order#
+        ) as ku$_xsinstinh_list_t
+      )
+    )
+  from
+    xs$instset_list i
+columns: []
+referencedTables: []

@@ -1,0 +1,14 @@
+schema: SYS
+name: _ALL_INSTANTIATION_DDL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    refresh_template_id,
+    ddl_text,
+    ddl_num,
+    phase
+  from
+    system.repcat$_instantiation_ddl
+columns: []
+referencedTables: []

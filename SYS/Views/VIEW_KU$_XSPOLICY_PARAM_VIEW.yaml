@@ -1,0 +1,31 @@
+schema: SYS
+name: KU$_XSPOLICY_PARAM_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    p.xdsid#,
+    (
+      select
+        name
+      from
+        xs$obj
+      where
+        id = p.xdsid#
+    ),
+    (
+      select
+        owner
+      from
+        xs$obj
+      where
+        id = p.xdsid#
+    ),
+    p.pname,
+    p.type
+  from
+    xs$policy_param p
+columns: []
+referencedTables: []

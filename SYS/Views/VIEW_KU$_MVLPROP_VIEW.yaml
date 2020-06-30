@@ -1,0 +1,34 @@
+schema: SYS
+name: KU$_MVLPROP_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.obj#,
+    m.master,
+    m.mowner,
+    o.flags,
+    t.property
+  from
+    obj$ o,
+    tab$ t,
+    user $ u,
+    mlog$ m
+  where
+    o.owner# = u.user#
+    and o.obj# = t.obj#
+    and m.mowner = u.name
+    and m.log = o.name
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

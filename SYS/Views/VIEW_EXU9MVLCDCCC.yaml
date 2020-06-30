@@ -1,0 +1,39 @@
+schema: SYS
+name: EXU9MVLCDCCC
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    column_name,
+    created,
+    created_scn,
+    change_table_obj#
+  FROM
+    sys.cdc_change_columns$
+  WHERE
+    change_table_obj# IN (
+      SELECT
+        obj#
+      FROM
+        sys.cdc_change_tables$ ct,
+        sys.user$ u
+      WHERE
+        (
+          userenv('SCHEMAID') = u.user#
+          AND ct.change_table_schema = u.name
+        )
+        OR (
+          userenv('SCHEMAID') = 0
+          AND ct.change_table_schema = u.name
+        )
+        OR EXISTS (
+          SELECT
+            role
+          FROM
+            sys.session_roles
+          WHERE
+            role = 'SELECT_CATALOG_ROLE'
+        )
+    )
+columns: []
+referencedTables: []

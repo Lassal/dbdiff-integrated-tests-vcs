@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_RSRC_MANAGER_SYSTEM_PRIVS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    spm.name,
+    decode(min(bitand(nvl(sa.option$, 0), 17)), 0, 'NO', 'YES')
+  from
+    sys.user$ u,
+    system_privilege_map spm,
+    sys.sysauth$ sa
+  where
+    sa.grantee# = u.user#
+    and sa.privilege# = spm.privilege
+    and sa.privilege# = -227
+    and sa.grantee# = userenv('SCHEMAID')
+  group by
+    spm.name
+columns: []
+referencedTables: []

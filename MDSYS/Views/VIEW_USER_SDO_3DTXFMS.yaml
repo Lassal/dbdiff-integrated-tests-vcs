@@ -1,0 +1,19 @@
+schema: MDSYS
+name: USER_SDO_3DTXFMS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    NAME,
+    DESCRIPTION,
+    TYPE,
+    AFFINE_PARAMETERS,
+    COORD_TXFM_SRC_SRID,
+    COORD_TXFM_TGT_SRID,
+    TXFM_SERIES_IDS
+  FROM
+    SDO_3DTXFMS_TABLE
+  WHERE
+    sdo_owner = sys_context('userenv', 'CURRENT_USER')
+columns: []
+referencedTables: []

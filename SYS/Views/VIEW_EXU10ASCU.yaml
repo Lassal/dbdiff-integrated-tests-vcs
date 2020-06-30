@@ -1,0 +1,25 @@
+schema: SYS
+name: EXU10ASCU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "TOBJID",
+    "POBJID",
+    "TOWNERID",
+    "COLNAME",
+    "INTCOL",
+    "DISTCOUNT",
+    "LOWVAL",
+    "HIVAL",
+    "DENSITY",
+    "NULLCOUNT",
+    "AVGCLN",
+    "CFLAGS",
+    "PROPERTY"
+  FROM
+    sys.exu10asc
+  WHERE
+    townerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,31 @@
+schema: SYS
+name: ALL_SQLSET
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    name,
+    id,
+    con_dbid,
+    owner,
+    description,
+    created,
+    last_modified,
+    statement_count
+  from
+    WRI$_SQLSET_DEFINITIONS
+  where
+    owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+    OR EXISTS (
+      select
+        1
+      from
+        V$ENABLEDPRIVS
+      where
+        priv_number in (
+          -273
+          /*ADMINISTER ANY SQL TUNING SET*/
+        )
+    )
+columns: []
+referencedTables: []

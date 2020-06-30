@@ -1,0 +1,16 @@
+schema: SYS
+name: CDB_FLASHBACK_ARCHIVE_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "TABLE_NAME",
+    "OWNER_NAME",
+    "FLASHBACK_ARCHIVE_NAME",
+    "ARCHIVE_TABLE_NAME",
+    "STATUS",
+    "CON_ID"
+  FROM
+    CONTAINERS("SYS"."DBA_FLASHBACK_ARCHIVE_TABLES")
+columns: []
+referencedTables: []

@@ -1,0 +1,125 @@
+schema: ORDS_METADATA
+name: USER_ORDS_OBJ_MEMBERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    MBRS.SCHEMA_ID SCHEMA_ID,
+    MBRS.OBJECT_ID OBJECT_ID,
+    MBRS.ID ID,
+    MBRS.PARSING_SCHEMA PARSING_SCHEMA,
+    MBRS.PARSING_OBJECT PARSING_OBJECT,
+    MBRS.PARSING_MEMBER PARSING_MEMBER,
+    MBRS.MEMBER_ALIAS MEMBER_ALIAS,
+    MBRS.TYPE TYPE,
+    MBRS.VISIBLE VISIBLE,
+    MBRS. "ORDER" "ORDER",
+    PKEY.PK_ORDER PK_ORDER
+  FROM
+    (
+      SELECT
+        COALESCE(REALMBRS.SCHEMA_ID, ORDSMBRS.SCHEMA_ID) SCHEMA_ID,
+        COALESCE(REALMBRS.OBJECT_ID, ORDSMBRS.OBJECT_ID) OBJECT_ID,
+        NULL ID,
+        REALMBRS.PARSING_SCHEMA PARSING_SCHEMA,
+        REALMBRS.PARSING_OBJECT PARSING_OBJECT,
+        REALMBRS.PARSING_MEMBER PARSING_MEMBER,
+        REALMBRS.MEMBER_ALIAS MEMBER_ALIAS,
+        REALMBRS.TYPE TYPE,
+        REALMBRS.VISIBLE VISIBLE,
+        REALMBRS. "ORDER" "ORDER"
+      FROM
+        (
+          SELECT
+            TABVIEWS.SCHEMA_ID,
+            TABVIEWS.OBJECT_ID,
+            sys_context('USERENV', 'CURRENT_USER') PARSING_SCHEMA,
+            SYS.USER_TAB_COLUMNS.TABLE_NAME PARSING_OBJECT,
+            SYS.USER_TAB_COLUMNS.COLUMN_NAME PARSING_MEMBER,
+            LOWER(SYS.USER_TAB_COLUMNS.COLUMN_NAME) MEMBER_ALIAS,
+            SYS.USER_TAB_COLUMNS.DATA_TYPE TYPE,
+            'ENABLED' VISIBLE,
+            SYS.USER_TAB_COLUMNS.COLUMN_ID "ORDER"
+          FROM
+            SYS.USER_TAB_COLUMNS,
+            (
+              SELECT
+                OO.SCHEMA_ID,
+                OO.OBJECT_ID,
+                TVS.PARSING_OBJECT
+              FROM
+                (
+                  SELECT
+                    sys_context('USERENV', 'CURRENT_USER') PARSING_SCHEMA,
+                    TABLE_NAME PARSING_OBJECT
+                  FROM
+                    SYS.USER_TABLES
+                  WHERE
+                    TEMPORARY = 'N'
+                    AND SECONDARY = 'N'
+                  UNION
+                  SELECT
+                    sys_context('USERENV', 'CURRENT_USER') PARSING_SCHEMA,
+                    VIEW_NAME PARSING_OBJECT
+                  FROM
+                    SYS.USER_VIEWS
+                ) TVS,
+                (
+                  SELECT
+                    ords_schemas.id SCHEMA_ID,
+                    ords_objects.ID OBJECT_ID,
+                    ords_schemas.parsing_schema,
+                    ords_objects.PARSING_OBJECT
+                  FROM
+                    ords_objects,
+                    ords_schemas
+                  WHERE
+                    ords_objects.SCHEMA_ID = ords_schemas.id
+                    AND ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+                ) OO
+              WHERE
+                OO.parsing_schema = TVS.PARSING_SCHEMA
+                AND OO.PARSING_OBJECT = TVS.PARSING_OBJECT
+            ) TABVIEWS
+          WHERE
+            SYS.USER_TAB_COLUMNS.TABLE_NAME = TABVIEWS.PARSING_OBJECT
+        ) REALMBRS,
+        (
+          SELECT
+            ords_schemas.id SCHEMA_ID,
+            ords_objects.ID OBJECT_ID,
+            ords_schemas.parsing_schema PARSING_SCHEMA,
+            ords_objects.PARSING_OBJECT PARSING_OBJECT
+          FROM
+            ords_objects,
+            ords_schemas
+          WHERE
+            ords_objects.SCHEMA_ID = ords_schemas.id
+            AND ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+        ) ORDSMBRS
+      WHERE
+        REALMBRS.PARSING_OBJECT = ORDSMBRS.PARSING_OBJECT(+)
+    ) MBRS,
+    (
+      SELECT
+        ICC.OWNER OWNER,
+        ICC.TABLE_NAME TABLE_NAME,
+        ICC.COLUMN_NAME COLUMN_NAME,
+        ICC.POSITION PK_ORDER
+      FROM
+        USER_CONSTRAINTS IUC,
+        USER_CONS_COLUMNS ICC
+      WHERE
+        IUC.OWNER = ICC.OWNER
+        AND IUC.CONSTRAINT_NAME = ICC.CONSTRAINT_NAME
+        AND CONSTRAINT_TYPE = 'P'
+    ) PKEY
+  WHERE
+    PKEY.OWNER(+) = MBRS.PARSING_SCHEMA
+    AND PKEY.TABLE_NAME(+) = MBRS.PARSING_OBJECT
+    AND PKEY.COLUMN_NAME(+) = MBRS.PARSING_MEMBER
+  ORDER BY
+    PARSING_OBJECT,
+    "ORDER"
+columns: []
+referencedTables: []

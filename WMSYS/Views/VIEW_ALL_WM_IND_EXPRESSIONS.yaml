@@ -1,0 +1,21 @@
+schema: WMSYS
+name: ALL_WM_IND_EXPRESSIONS
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    /*+ USE_NL(t1 t2) */
+    t2.index_owner,
+    t2.index_name,
+    t1.owner,
+    t1.table_name,
+    t2.column_expression,
+    t2.column_position
+  from
+    wmsys.wm$constraints_table t1,
+    all_ind_expressions t2
+  where
+    t1.index_owner = t2.index_owner
+    and t1.index_name = t2.index_name WITH READ ONLY
+columns: []
+referencedTables: []

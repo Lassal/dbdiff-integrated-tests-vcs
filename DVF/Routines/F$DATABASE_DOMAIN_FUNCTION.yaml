@@ -1,0 +1,14 @@
+schema: DVF
+name: F$DATABASE_DOMAIN
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  FUNCTION "F$DATABASE_DOMAIN" RETURN VARCHAR2 AS
+  BEGIN
+    RETURN DVSYS.get_factor(p_factor = > 'Database_Domain');
+  END;

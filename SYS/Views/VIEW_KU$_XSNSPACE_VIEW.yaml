@@ -1,0 +1,57 @@
+schema: SYS
+name: KU$_XSNSPACE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    (
+      select
+        value(xo)
+      from
+        ku$_xsobj_view xo
+      where
+        n.ns# = xo.id
+    ),
+    n.ns#,
+    n.acl#,
+    n.hschema,
+    n.hpname,
+    n.hfname,
+    n.ctime,
+    n.mtime,
+    n.description,
+    (
+      cast(
+        multiset(
+          select
+            value(a)
+          from
+            ku$_xsnstmpl_attr_view a
+          where
+            a .ns_num = n.ns#
+        ) as ku$_xsnstmpl_attr_list_t
+      )
+    )
+  from
+    xs$nstmpl n,
+    xs$obj xo
+  where
+    xo.type = 7
+    AND n.ns# = xo.id
+    AND bitand(xo.flags, 1) = 0
+    /* not Oracle supplied */
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USER') IN (xo.owner, 'SYS')
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

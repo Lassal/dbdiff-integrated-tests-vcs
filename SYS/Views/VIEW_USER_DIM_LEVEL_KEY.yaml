@@ -1,0 +1,27 @@
+schema: SYS
+name: USER_DIM_LEVEL_KEY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    dl.levelname,
+    dlk.keypos#,
+    c .name
+  from
+    sys.dimlevelkey$ dlk,
+    sys.obj$ o,
+    sys.user$ u,
+    sys.dimlevel$ dl,
+    sys.col$ c
+  where
+    dlk.dimobj# = o.obj#
+    and o.owner# = u.user#
+    and dlk.dimobj# = dl.dimobj#
+    and dlk.levelid# = dl.levelid#
+    and dlk.detailobj# = c .obj#
+    and dlk.col# = c .intcol#
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

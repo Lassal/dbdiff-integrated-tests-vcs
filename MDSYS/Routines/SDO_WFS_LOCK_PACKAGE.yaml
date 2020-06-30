@@ -1,0 +1,238 @@
+schema: MDSYS
+name: SDO_WFS_LOCK
+routineType: PACKAGE
+returnParamater:
+  name: QUERYTOKENSESSIONMAP.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: DELETETOKENSESSIONMAP.TID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(1).USERNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(1).TABLENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(1).TABLEALIAS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(1).EXPIRYTIME
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCKROWSBYID(1).ROWSLOCKED
+  ordinalPosition: 5
+  dataType: TABLE
+  parameterMode: OUT
+- name: LOCKROWSBYID(1).ROWSNOTLOCKED
+  ordinalPosition: 6
+  dataType: TABLE
+  parameterMode: OUT
+- name: LOCKROWSBYID(1).LOCKALL
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(1).PKEYCOLS
+  ordinalPosition: 8
+  dataType: VARRAY
+  parameterMode: IN
+- name: LOCKROWSBYID(1).AUTOCOMMIT
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(1).ROWSTOBELOCKED
+  ordinalPosition: 10
+  dataType: TABLE
+  parameterMode: IN
+- name: LOCKROWSBYID(1).ORDERCLAUSE
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(1).INDEXCLAUSE
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(1).MAXCNT
+  ordinalPosition: 13
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCKROWSBYID(2).PTOKENID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(2).USERNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(2).TABLENAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(2).TABLEALIAS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(2).EXPIRYTIME
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCKROWSBYID(2).ROWSLOCKED
+  ordinalPosition: 6
+  dataType: TABLE
+  parameterMode: OUT
+- name: LOCKROWSBYID(2).ROWSNOTLOCKED
+  ordinalPosition: 7
+  dataType: TABLE
+  parameterMode: OUT
+- name: LOCKROWSBYID(2).LOCKALL
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(2).PKEYCOLS
+  ordinalPosition: 9
+  dataType: VARRAY
+  parameterMode: IN
+- name: LOCKROWSBYID(2).AUTOCOMMIT
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(2).ROWSTOBELOCKED
+  ordinalPosition: 11
+  dataType: TABLE
+  parameterMode: IN
+- name: LOCKROWSBYID(2).ORDERCLAUSE
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(2).INDEXCLAUSE
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKROWSBYID(2).MAXCNT
+  ordinalPosition: 14
+  dataType: NUMBER
+  parameterMode: IN
+- name: QUERYTOKENSESSIONMAP.TID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERFEATURETABLE.USERNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERFEATURETABLE.TABLENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESETTOKENEXPIRY.TID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFERTOKENBYID.PTOKENID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNLOCKROWSBYID.PTOKENID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNLOCKROWSBYID.USERNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNLOCKROWSBYID.TABLENAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNLOCKROWSBYID.TABLEALIAS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNLOCKROWSBYID.PKEYCOLS
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: UNLOCKROWSBYID.AUTOCOMMIT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNLOCKROWSBYID.ROWSTOBEUNLOCKED
+  ordinalPosition: 7
+  dataType: TABLE
+  parameterMode: IN
+- name: UNREGISTERFEATURETABLE.USERNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNREGISTERFEATURETABLE.TABLENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATETOKENSESSIONMAP.TID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATETOKENSESSIONMAP.SID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE SDO_WFS_LOCK authid current_user AS cleanup number: = 1;
+  ROWCNT_THRESHOLD number: = 100;
+  procedure registerFeatureTable(userName IN varchar2, tableName IN varchar2);
+  procedure unRegisterFeatureTable(userName IN varchar2, tableName IN varchar2);
+  function lockRowsById(
+    userName IN VARCHAR2,
+    tableName IN varchar2,
+    tableAlias varchar2,
+    expiryTime IN number,
+    rowsLocked OUT mdsys.RowPointerList,
+    rowsNotLocked OUT mdsys.RowPointerList,
+    lockAll varchar2,
+    pkeyCols mdsys.StringList,
+    autoCommit varchar2,
+    rowsToBeLocked IN mdsys.RowPointerList,
+    orderClause varchar2,
+    indexClause varchar2,
+    maxcnt number
+  ) return number;
+  procedure lockRowsById(
+    pTokenId IN varchar2,
+    userName IN VARCHAR2,
+    tableName IN varchar2,
+    tableAlias varchar2,
+    expiryTime IN number,
+    rowsLocked OUT mdsys.RowPointerList,
+    rowsNotLocked OUT mdsys.RowPointerList,
+    lockAll varchar2,
+    pkeyCols mdsys.StringList,
+    autoCommit varchar2,
+    rowsToBeLocked IN mdsys.RowPointerList,
+    orderClause varchar2,
+    indexClause varchar2,
+    maxcnt number
+  );
+  procedure unlockRowsById(
+    pTokenId IN varchar2,
+    userName IN VARCHAR2,
+    tableName IN varchar2,
+    tableAlias IN varchar2,
+    pkeyCols IN mdsys.StringList,
+    autoCommit IN varchar2,
+    rowsToBeUnLocked IN mdsys.RowPointerList
+  );
+  procedure transferTokenById (pTokenId IN varchar2);
+  procedure updateTokenSessionMap(tId varchar2, sId varchar2);
+  procedure deleteTokenSessionMap(tId varchar2);
+  function queryTokenSessionMap (tId varchar2) return varchar2;
+  procedure resetTokenExpiry(tId varchar2);
+  function generateTokenId return varchar2;
+  procedure enableDBTxns;
+  end;

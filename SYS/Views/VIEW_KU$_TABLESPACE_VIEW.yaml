@@ -1,0 +1,101 @@
+schema: SYS
+name: KU$_TABLESPACE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    t.ts#,
+    t.name,
+    t.owner#,
+    t.online$,
+    t.contents$,
+    t.undofile#,
+    t.undoblock#,
+    t.blocksize,
+    t.inc#,
+    t.scnwrp,
+    t.scnbas,
+    t.dflminext,
+    t.dflmaxext,
+    t.dflinit,
+    t.dflincr,
+    t.dflminlen,
+    t.dflextpct,
+    t.dflogging,
+    t.affstrength,
+    t.bitmapped,
+    t.plugged,
+    t.directallowed,
+    -- Convert 'flags' to a value that the pre-11.2 xsl stylesheet
+    -- can process: if archive compressed and version < 11.2,
+    -- turn off compression.  The block format for archive compression
+    -- is not supported pre-11.2, so the compression bits must be
+    -- set to NOCOMPRESS.
+    --  #define KTT_COMPRESSED              0x40      (64)
+    -- #define KTT_ARCH1_COMPRESSION  ((ub4)0x20000)  (131072)
+    -- #define KTT_ARCH2_COMPRESSION  ((ub4)0x40000)  (262144)
+    -- #define KTT_ARCH3_COMPRESSION  ((ub4)0x80000)  (524288)
+    -- #define KTT_HCC_ROW_LOCKING    ((ub4)0x400000) (4194304)
+    case
+      when bitand (t.flags, 131072 + 262144 + 524288 + 4194304) = 0 then t.flags
+      when dbms_metadata.get_version >= '11.02.00.00.00' then t.flags
+      else t.flags - bitand(t.flags, 64 + 131072 + 262144 + 524288 + 4194304)
+    end,
+    t.pitrscnwrp,
+    t.pitrscnbas,
+    t.ownerinstance,
+    t.backupowner,
+    case
+      bitand(t.flags, 1024)
+      when 1024 then (
+        select
+          t2.name
+        from
+          ts$ t2
+        where
+          t.dflmaxext = t2.ts#
+      )
+      else NULL
+    end,
+    t.spare1,
+    t.spare2,
+    t.spare3,
+    to_char(t.spare4, 'YYYY/MM/DD HH24:MI:SS'),
+    cast(
+      multiset(
+        select
+          value(f)
+        from
+          ku$_file_view f
+        where
+          f.ts_num = t.ts#
+      ) as ku$_file_list_t
+    ),
+    (
+      select
+        encryptionalg
+      from
+        v$encrypted_tablespaces et
+      where
+        et.ts# = t.ts#
+    )
+  from
+    ts$ t
+  where
+    t.online$ IN (1, 2, 4)
+    and bitand(t.flags, 2048) = 0
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_SQLSET
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    NAME,
+    ID,
+    CON_DBID,
+    DESCRIPTION,
+    CREATED,
+    LAST_MODIFIED,
+    STATEMENT_COUNT
+  from
+    WRI$_SQLSET_DEFINITIONS
+  where
+    owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

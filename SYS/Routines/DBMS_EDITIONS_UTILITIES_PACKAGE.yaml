@@ -1,0 +1,89 @@
+schema: SYS
+name: DBMS_EDITIONS_UTILITIES
+routineType: PACKAGE
+returnParamater:
+  name: COMPARE_EDITION.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: OUT
+parameters:
+- name: COMPARE_EDITION.ED1OBJN
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: COMPARE_EDITION.ED2OBJN
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: SET_EDITIONING_VIEWS_READ_ONLY.TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_EDITIONING_VIEWS_READ_ONLY.OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_EDITIONING_VIEWS_READ_ONLY.READ_ONLY
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_NULL_COLUMN_VALUES_TO_EXPR.TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_NULL_COLUMN_VALUES_TO_EXPR.COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_NULL_COLUMN_VALUES_TO_EXPR.EXPRESSION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: "PACKAGE dbms_editions_utilities AUTHID CURRENT_USER AS ---------------------------------------------------------------------\n\
+  -- Overview\n-- This pkg implements the Edition API, which provides helper function\n\
+  -- for edition related operations\n---------------------------------------------------------------------\n\
+  -- SECURITY\n-- This package is owned by SYS with execute access granted to PUBLIC.\n\
+  -- It runs with invokers rights, i.e., with the security profile of\n-- the caller.\n\
+  --------------------\n-- EXCEPTION\ninsuf_priv\nexception;\npragma exception_init(insuf_priv,\
+  \ -38817);\nmissing_tab\nexception;\npragma exception_init(missing_tab, -942);\n\
+  invalid_edition\nexception;\npragma exception_init(invalid_edition, -38802);\n--\
+  \ The relationship between any two editions can be determined by the\n  -- following\
+  \ return values\n  IDENTICAL constant integer: = 0;\nANCESTOR constant integer:\
+  \ = 1;\nDESCENDENT constant integer: = 2;\nUNRELATED constant integer: = 3;\n--\
+  \ PUBLIC FUNCTION\n  /* Given the table name, set the all the Editioning views in\
+  \ all editions\n  \n       to read-only or read write.\n  \n  \n  \n       NOTE:\n\
+  \  \n         User must have the following privileges:\n  \n           1. owner\
+  \ of the table or has ALTER ANY TABLE system privileges\n  \n           2. \"USE\"\
+  \ object privilege on all the editions which the views are\n  \n              definied.\n\
+  \  \n  \n  \n       PARAMETERS:\n  \n         table_name - the base table of the\
+  \ editioning views\n  \n         owner      - the base table schema. The default\
+  \ (or null) is the current\n  \n                      schema.\n  \n         read_only\
+  \  - true if set the views to read-only; false (or null) will\n  \n            \
+  \          set the views to read/write. Default is true.\n  \n  \n  \n       EXCEPTIONS:\n\
+  \  \n         INSUF_PRIV exception will be raised if the user doesn't have the above\n\
+  \  \n         privileges.\n  \n    */\n  PROCEDURE set_editioning_views_read_only(\n\
+  \    table_name IN VARCHAR2,\n    owner IN VARCHAR2 DEFAULT NULL,\n    read_only\
+  \ IN BOOLEAN DEFAULT TRUE\n  );\n  /*\n  \n      Procedure: Set_Null_Column_Values_To_Expr\n\
+  \  \n  \n  \n      Replaces null values in a replacement column with the value of\
+  \ an\n  \n      expression. The expression evaluation cost is deferred to future\
+  \ updates\n  \n      and queries.\n  \n  \n  \n      Parameters:\n  \n  \n  \n \
+  \       table_name - A potentially schema-qualified table name.\n  \n        column_name\
+  \ - The name of the column to be updated.\n  \n        expression - An expression\
+  \ composed of columns in the same table,\n  \n                     constants, and\
+  \ SQL functions.\n  \n     */\n  PROCEDURE Set_Null_Column_Values_To_Expr(\n   \
+  \ table_name IN VARCHAR2,\n    column_name IN VARCHAR2,\n    expression IN VARCHAR2\n\
+  \  );\n  /*\n  \n      Function: compare_edition\n  \n  \n  \n      Compare the\
+  \ two given editions to determine their parent/child relation.\n  \n  \n  \n   \
+  \   Parameters:\n  \n  \n  \n        ed1objn - The object number of the first edition\
+  \ to be compared.\n  \n        ed2objn - The object number of the second edition\
+  \ to be compared.\n  \n  \n  \n      Returns:\n  \n  \n  \n        The relationship\
+  \ between the editions.\n  \n          IDENTICAL  if the editions are the same.\n\
+  \  \n          ANCESTOR   if the first edition is an ancestor of the second edition.\n\
+  \  \n          DESCENDENT if the first edition is a descendant of the second edition.\n\
+  \  \n          UNRELATED  if the editions are not related.\n  \n  \n  \n       EXCEPTIONS:\n\
+  \  \n         INVALID_EDITION exception will be raised if either ed1objn or ed2objn\n\
+  \  \n         is an invalid edition object number.\n  \n     */\n  FUNCTION compare_edition(ed1objn\
+  \ IN INTEGER, ed2objn IN INTEGER) RETURN INTEGER;\nEND dbms_editions_utilities;"

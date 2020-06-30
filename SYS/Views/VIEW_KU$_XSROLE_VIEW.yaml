@@ -1,0 +1,39 @@
+schema: SYS
+name: KU$_XSROLE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    (
+      select
+        value(xo)
+      from
+        ku$_xsobj_view xo
+      where
+        p.prin# = xo.id
+        and p.type in (1, 2)
+    ),
+    (
+      cast(
+        multiset(
+          select
+            *
+          from
+            ku$_xsrole_grant_view r
+          where
+            r.role_num = o.id
+        ) as ku$_xsrgrant_list_t
+      )
+    )
+  from
+    xs$obj o,
+    xs$prin p
+  where
+    o.id = p.prin#
+    and bitand(o.flags, 1) = 0
+    /* not Oracle supplied */
+    and p.type in (1, 2)
+columns: []
+referencedTables: []

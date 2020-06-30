@@ -1,0 +1,24 @@
+schema: CTXSYS
+name: CTX_USER_SUB_LEXERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    p1.pre_name slx_name,
+    slx_language slx_language,
+    slx_alt_value slx_alt_value,
+    u2.name slx_sub_owner,
+    p2.pre_name slx_sub_name,
+    slx_lang_dependent slx_lang_dependent
+  from
+    dr$sub_lexer,
+    dr$preference p1,
+    dr$preference p2,
+    sys.user$ u2
+  where
+    p2.pre_owner# = u2.user#
+    and p1.pre_owner# = userenv('SCHEMAID')
+    and slx_sub_pre_id = p2.pre_id
+    and slx_pre_id = p1.pre_id
+columns: []
+referencedTables: []

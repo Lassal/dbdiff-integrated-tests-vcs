@@ -1,0 +1,23 @@
+schema: SYS
+name: USER_SQLSET_REFERENCES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    d.name as sqlset_name,
+    r.sqlset_id,
+    r.id,
+    r.owner,
+    r.description,
+    r.created
+  from
+    wri$_sqlset_definitions d,
+    wri$_sqlset_references r
+  where
+    d.id = r.sqlset_id
+    and (
+      d.owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+      or r.owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,77 @@
+schema: SYS
+name: _ALL_REPCOLUMN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.sname,
+    r.oname,
+    r.type,
+    r.lcname,
+    r.id,
+    r.pos,
+    r.flag,
+    r.ctype,
+    r.length,
+    r.precision#,
+    r.scale,
+    r.null$,
+    r.charsetid,
+    r.charsetform,
+    r.cname,
+    r.toid,
+    r.ctype_owner,
+    r.ctype_name,
+    r.version#,
+    r.hashcode,
+    r.top,
+    r.property,
+    r.clength
+  from
+    all_tab_columns tc,
+    system.repcat$_repcolumn r
+  where
+    r.sname = tc.owner
+    and r.oname = tc.table_name
+    and (
+      (NVL(r.top, r.cname) = tc.column_name)
+      OR (
+        r.top IS NULL
+        AND r.cname = 'SYS_NC_OID$'
+        AND -- sOID column
+        utl_raw.bit_and(utl_raw.substr(r.property, 1, 1), '10') = '10'
+      )
+    )
+  union
+  select
+    r.sname,
+    r.oname,
+    r.type,
+    r.lcname,
+    r.id,
+    r.pos,
+    r.flag,
+    r.ctype,
+    r.length,
+    r.precision#,
+    r.scale,
+    r.null$,
+    r.charsetid,
+    r.charsetform,
+    r.cname,
+    r.toid,
+    r.ctype_owner,
+    r.ctype_name,
+    r.version#,
+    r.hashcode,
+    r.top,
+    r.property,
+    r.clength
+  from
+    "_ALL_REPL_NESTED_TABLE_NAMES" nt,
+    system.repcat$_repcolumn r
+  where
+    r.sname = nt.owner
+    and r.oname = nt.table_name
+columns: []
+referencedTables: []

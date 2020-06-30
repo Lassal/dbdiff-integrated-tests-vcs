@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_COMPARISON_SCAN_SUMMARY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    comparison_name,
+    scan_id,
+    parent_scan_id,
+    root_scan_id,
+    status,
+    current_dif_count,
+    initial_dif_count,
+    count_rows,
+    scan_nulls,
+    last_update_time
+  FROM
+    dba_comparison_scan_summary
+  WHERE
+    owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

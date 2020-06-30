@@ -1,0 +1,17 @@
+schema: SYS
+name: CDB_ADDM_FDG_BREAKDOWN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "TASK_ID",
+    "FINDING_ID",
+    "INSTANCE_NUMBER",
+    "DATABASE_TIME",
+    "ACTIVE_SESSIONS",
+    "PERC_ACTIVE_SESSIONS",
+    "CON_ID"
+  FROM
+    CONTAINERS("SYS"."DBA_ADDM_FDG_BREAKDOWN")
+columns: []
+referencedTables: []

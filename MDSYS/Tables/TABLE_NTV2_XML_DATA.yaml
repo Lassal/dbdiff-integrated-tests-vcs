@@ -1,0 +1,35 @@
+name: NTV2_XML_DATA
+schema: MDSYS
+columns:
+- name: NTV2_FILE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: SEQUENCE_NUMBER
+  ordinalPosition: 2
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: XML
+  ordinalPosition: 3
+  dataType: XMLTYPE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: NTV2_XML_DATA_PK
+  type: PRIMARY_KEY
+  columns:
+  - name: NTV2_FILE_ID
+    ordinalPosition: 1
+  - name: SEQUENCE_NUMBER
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C006115
+  type: CHECK
+  checkClause: '"NTV2_FILE_ID" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C006116
+  type: CHECK
+  checkClause: '"SEQUENCE_NUMBER" IS NOT NULL'

@@ -1,0 +1,15 @@
+schema: SYS
+name: USER_XS_COLUMN_CONSTRAINTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    policy,
+    column_name,
+    privilege
+  from
+    sys.dba_xs_column_constraints
+  where
+    owner = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

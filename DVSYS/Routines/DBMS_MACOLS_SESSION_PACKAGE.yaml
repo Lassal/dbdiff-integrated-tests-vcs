@@ -1,0 +1,206 @@
+schema: DVSYS
+name: DBMS_MACOLS_SESSION
+routineType: PACKAGE
+returnParamater:
+  name: SET_ACCESS_PROFILE.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: CAN_SET_LABEL.POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CAN_SET_LABEL.LABEL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IS_MAC_LABEL_SET.POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IS_MAC_POLICY.POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LABEL_AUDIT_RAISE.POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LABEL_AUDIT_RAISE.LABEL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LABEL_AUDIT_RAISE.PROC_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESTORE_DEFAULT_LABELS.POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RESTORE_DEFAULT_LABELS.X_SESSION_LABEL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: RESTORE_DEFAULT_LABELS.X_MAC_LABEL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: SET_ACCESS_PROFILE.POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_ACCESS_PROFILE.USER_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_ACCESS_PROFILE.P_MAX_SESSION_LABEL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_ACCESS_PROFILE.X_NEW_SESSION_LABEL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: SET_POLICY_LABEL_CONTEXT.POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_POLICY_LABEL_CONTEXT.LABEL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_POLICY_LABEL_CONTEXT.ATTRIBUTE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_macols_session AS -- Audit action codes
+  G_MAC_OLS_UPGRADE_AUDIT_CODE CONSTANT PLS_INTEGER: = 10010;
+  /**
+
+      * Is OLS policy is protected by MAC OLS under DV
+
+      *
+
+      * @param policy_name OLS Policy Name
+
+      */
+  FUNCTION is_mac_policy(policy_name VARCHAR2) RETURN NUMBER;
+  /**
+
+      * Is the max_session_label of the  mac OLS policy set
+
+      *
+
+      * @param policy_name OLS Policy Name
+
+      */
+  FUNCTION is_mac_label_set(policy_name VARCHAR2) RETURN NUMBER;
+  /**
+
+      * Can the label be set under MAC OLS for this policy beyond max session label
+
+      *
+
+      * @param policy_name OLS Policy Name
+
+      * @param label OLS Label for the policy
+
+      */
+  FUNCTION can_set_label(policy_name VARCHAR2, label VARCHAR2) RETURN NUMBER;
+  /**
+
+      * Set the MAC OLS session context variable for the attribute specified
+
+      *
+
+      * @param policy_name OLS Policy Name
+
+      * @param label OLS Label for the policy
+
+      * @param attribute session context attribute
+
+      */
+  PROCEDURE set_policy_label_context(
+    policy_name VARCHAR2,
+    label VARCHAR2,
+    attribute VARCHAR2
+  );
+  /**
+
+      * Audit invalid attempt to set/change the label for this policy
+
+      * beyond max session label and raise the appropriate exception
+
+      * This procedure is invoked by sa_session.set_label,
+
+      * sa_session.set_access_profile, sa_session.restore_default_labels
+
+      * in two cases: a. the label to set is beyond the max session label;
+
+      * b. the max_session_label is NULL.
+
+      *
+
+      * @param policy_name OLS Policy Name
+
+      * @param label OLS Label for the policy
+
+      * @param proc_name Name of the procedure/function invoking this procedure.
+
+      */
+  PROCEDURE label_audit_raise(
+    policy_name VARCHAR2,
+    label VARCHAR2,
+    proc_name VARCHAR2
+  );
+  /**
+
+      * MAC OLS processing to merge default session label for the policy
+
+      * with the labels of any factors associated to the policy after the
+
+      * SA_SESSION restore_default_labels method is called
+
+      *
+
+      * @param policy_name OLS Policy Name
+
+      * @param x_session_label resulting session label after the merge
+
+      * @param x_mac_label resulting MAX session label after the merge
+
+      */
+  PROCEDURE restore_default_labels(
+    policy_name IN VARCHAR2,
+    x_session_label OUT VARCHAR2,
+    x_mac_label OUT VARCHAR2
+  );
+  /**
+
+      * MAC OLS processing to merge default session label for the policy
+
+      * with the exist MAX session label after the
+
+      * SA_SESSION set_access_profile method is called
+
+      *
+
+      * @param policy_name OLS Policy Name
+
+      * @param user_name OLS Policy User Name
+
+      * @param p_max_session_label existing MAX session label for the policy
+
+      * @param x_new_max_session_label new MAX session label for the policy
+
+      */
+  FUNCTION set_access_profile(
+    policy_name VARCHAR2,
+    user_name VARCHAR2,
+    p_max_session_label IN VARCHAR2,
+    x_new_session_label OUT VARCHAR2
+  ) RETURN NUMBER;
+  END;

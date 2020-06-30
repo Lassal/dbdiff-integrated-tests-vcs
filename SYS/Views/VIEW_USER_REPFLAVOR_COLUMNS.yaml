@@ -1,0 +1,62 @@
+schema: SYS
+name: USER_REPFLAVOR_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    fc.fname,
+    fc.gname,
+    fc.sname,
+    fc.oname,
+    fc.cname,
+    fc.type,
+    fc.pos,
+    fc.group_owner,
+    fc.type_toid,
+    fc.type_owner,
+    fc.type_hashcode,
+    fc.type_mod,
+    fc.top
+  FROM
+    user_tab_columns tc,
+    dba_repflavor_columns fc,
+    sys.user$ u
+  WHERE
+    fc.sname = u.name
+    AND u.user# = userenv('SCHEMAID')
+    AND fc.oname = tc.table_name
+    AND (
+      (
+        fc.top IS NOT NULL
+        AND fc.top = tc.column_name
+      )
+      OR (
+        fc.top IS NULL
+        AND fc.cname = tc.column_name
+      )
+    )
+  UNION
+  SELECT
+    fc.fname,
+    fc.gname,
+    fc.sname,
+    fc.oname,
+    fc.cname,
+    fc.type,
+    fc.pos,
+    fc.group_owner,
+    fc.type_toid,
+    fc.type_owner,
+    fc.type_hashcode,
+    fc.type_mod,
+    fc.top
+  FROM
+    "_USER_REPL_NESTED_TABLE_NAMES" nt,
+    dba_repflavor_columns fc,
+    sys.user$ u
+  WHERE
+    fc.sname = u.name
+    AND u.user# = userenv('SCHEMAID')
+    AND fc.oname = nt.table_name
+columns: []
+referencedTables: []

@@ -1,0 +1,14 @@
+schema: SYS
+name: CDB_TSTZ_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OWNER",
+    "TABLE_NAME",
+    "UPGRADE_IN_PROGRESS",
+    "CON_ID"
+  FROM
+    CONTAINERS("SYS"."DBA_TSTZ_TABLES")
+columns: []
+referencedTables: []

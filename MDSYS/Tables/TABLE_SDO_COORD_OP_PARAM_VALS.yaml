@@ -1,0 +1,100 @@
+name: SDO_COORD_OP_PARAM_VALS
+schema: MDSYS
+columns:
+- name: COORD_OP_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: COORD_OP_METHOD_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: PARAMETER_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: PARAMETER_VALUE
+  ordinalPosition: 4
+  dataType: FLOAT
+  numericPrecision: 49
+  nullable: true
+  dataTypeLength: 49
+- name: PARAM_VALUE_FILE
+  ordinalPosition: 6
+  dataType: CLOB
+  nullable: true
+  defaultValue: NULL
+  dataTypeLength:
+- name: PARAM_VALUE_FILE_REF
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 254
+  nullable: true
+  dataTypeLength: 254
+- name: PARAM_VALUE_XML
+  ordinalPosition: 7
+  dataType: XMLTYPE
+  nullable: true
+  defaultValue: NULL
+  dataTypeLength:
+- name: UOM_ID
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+constraints:
+- !<unique-constraint>
+  name: COORD_OP_PARA_VAL_PRIM
+  type: PRIMARY_KEY
+  columns:
+  - name: COORD_OP_ID
+    ordinalPosition: 1
+  - name: PARAMETER_ID
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: COORD_OP_PARA_VAL_FOREIGN_METH
+  type: FOREIGN_KEY
+  columns:
+  - name: COORD_OP_METHOD_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_COORD_OP_METHODS
+    referencedTableColumnName: COORD_OP_METHOD_ID
+- !<fk-constraint>
+  name: COORD_OP_PARA_VAL_FOREIGN_OP
+  type: FOREIGN_KEY
+  columns:
+  - name: COORD_OP_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_COORD_OPS
+    referencedTableColumnName: COORD_OP_ID
+- !<fk-constraint>
+  name: COORD_OP_PARA_VAL_FOREIGN_PARA
+  type: FOREIGN_KEY
+  columns:
+  - name: PARAMETER_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_COORD_OP_PARAMS
+    referencedTableColumnName: PARAMETER_ID
+- !<fk-constraint>
+  name: COORD_OP_PARA_VAL_FOREIGN_UOM
+  type: FOREIGN_KEY
+  columns:
+  - name: UOM_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_UNITS_OF_MEASURE
+    referencedTableColumnName: UOM_ID

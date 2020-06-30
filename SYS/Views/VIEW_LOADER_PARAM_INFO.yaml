@@ -1,0 +1,16 @@
+schema: SYS
+name: LOADER_PARAM_INFO
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    v1.value,
+    v2.value
+  from
+    v$parameter v1,
+    v$parameter v2
+  where
+    v1.name = 'db_block_size'
+    and v2.name = 'serializable'
+columns: []
+referencedTables: []

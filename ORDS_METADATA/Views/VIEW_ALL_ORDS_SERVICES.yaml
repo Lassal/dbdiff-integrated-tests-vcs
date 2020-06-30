@@ -1,0 +1,36 @@
+schema: ORDS_METADATA
+name: ALL_ORDS_SERVICES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    s.parsing_schema owner,
+    h.method,
+    m.uri_prefix base_path,
+    t.uri_template pattern,
+    t.priority,
+    m.name,
+    m.status,
+    p.name privilege_name,
+    NVL(h.items_per_page, m.items_per_page) items_per_page,
+    m.id module_id,
+    t.id template_id,
+    h.id handler_id,
+    h.source_type,
+    h.source
+  FROM
+    ords_handlers h
+    INNER JOIN ords_templates t ON h.template_id = t.id
+    AND h.schema_id = t.schema_id
+    INNER JOIN ords_modules m ON t.module_id = m.id
+    AND t.schema_id = m.schema_id
+    INNER JOIN ords_schemas s ON m.schema_id = s.id
+    LEFT JOIN sec_privilege_modules pm ON m.id = pm.module_id
+    LEFT JOIN sec_privileges p ON pm.privilege_id = p.id
+  ORDER BY
+    owner,
+    t.priority DESC,
+    base_path,
+    pattern
+columns: []
+referencedTables: []

@@ -1,0 +1,108 @@
+schema: SYS
+name: DBMS_HS_PARALLEL
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: CREATE_OR_REPLACE_VIEW.REMOTE_TABLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_OR_REPLACE_VIEW.DATABASE_LINK
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_OR_REPLACE_VIEW.ORACLE_VIEW
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_OR_REPLACE_VIEW.PARALLEL_DEGREE
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: CREATE_TABLE_TEMPLATE.REMOTE_TABLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TABLE_TEMPLATE.DATABASE_LINK
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TABLE_TEMPLATE.ORACLE_TABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TABLE_TEMPLATE.CREATE_TABLE_TEMPLATE_STRING
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: DROP_VIEW.ORACLE_VIEW
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TABLE.REMOTE_TABLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TABLE.DATABASE_LINK
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TABLE.ORACLE_TABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOAD_TABLE.TRUNCATE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: LOAD_TABLE.PARALLEL_DEGREE
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: LOAD_TABLE.ROW_COUNT
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: OUT
+routineDefinition: |-
+  PACKAGE DBMS_HS_PARALLEL authid current_user as no_dblink
+  exception;
+  no_remote_table
+  exception;
+  no_view
+  exception;
+  pragma exception_init(no_dblink, -24277);
+  pragma exception_init(no_remote_table, -24278);
+  pragma exception_init(no_view, -24279);
+  no_dblink_num number: = -24277;
+  no_remote_table_num number: = -24278;
+  no_view_num number: = -24279;
+  type hs_part_rec is record (t hs_partition_obj);
+  type hs_partion_rec is record (t hs_part_obj);
+  type hs_sample_rec is record (t hs_sample_obj);
+  type hs_part_refcur_t is ref cursor return hs_part_rec;
+  type hs_partion_refcur_t is ref cursor return hs_partion_rec;
+  type hs_sample_refcur_t is ref cursor return hs_sample_rec;
+  procedure LOAD_TABLE(
+      remote_table in varchar2,
+      database_link in varchar2,
+      oracle_table in varchar2: = null,
+      truncate in boolean: = true,
+      parallel_degree in integer: = null,
+      row_count out number
+    );
+  procedure CREATE_OR_REPLACE_VIEW(
+      remote_table in varchar2,
+      database_link in varchar2,
+      oracle_view in varchar2: = null,
+      parallel_degree in integer: = null
+    );
+  procedure DROP_VIEW(oracle_view in varchar2);
+  procedure CREATE_TABLE_TEMPLATE (
+      remote_table in varchar2,
+      database_link in varchar2,
+      oracle_table in varchar2: = null,
+      create_table_template_string out varchar2
+    );
+  end DBMS_HS_PARALLEL;

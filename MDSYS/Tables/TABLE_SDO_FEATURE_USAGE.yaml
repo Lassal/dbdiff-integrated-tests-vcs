@@ -1,0 +1,26 @@
+name: SDO_FEATURE_USAGE
+schema: MDSYS
+columns:
+- name: FEATURE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 24
+  nullable: false
+  dataTypeLength: 24
+- name: USED
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: SYS_C006275
+  type: PRIMARY_KEY
+  columns:
+  - name: ID
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C006274
+  type: CHECK
+  checkClause: '"FEATURE_NAME" IS NOT NULL'

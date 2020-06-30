@@ -1,0 +1,40 @@
+schema: LBACSYS
+name: ALL_SA_LEVELS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    p.pol_name as policy_name,
+    l.level# AS level_num,
+    l.code AS short_name,
+    l.name AS long_name
+  FROM
+    LBACSYS.sa$pol p,
+    LBACSYS.ols$levels l
+  WHERE
+    p.pol# = l.pol#
+    AND p.pol# in (
+      select
+        pol#
+      from
+        LBACSYS.sa$admin
+      where
+        usr_name = user
+    )
+  UNION
+  SELECT
+    p.pol_name as policy_name,
+    l.level# AS level_num,
+    l.code AS short_name,
+    l.name AS long_name
+  FROM
+    LBACSYS.sa$pol p,
+    LBACSYS.ols$levels l,
+    LBACSYS.ols$user_levels ul
+  WHERE
+    p.pol# = l.pol#
+    and l.pol# = ul.pol#
+    and l.level# <= ul.max_level
+    and ul.usr_name = sa_session.sa_user_name(lbac_cache.policy_name(ul.pol#))
+columns: []
+referencedTables: []

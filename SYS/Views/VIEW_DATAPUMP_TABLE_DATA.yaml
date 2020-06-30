@@ -1,0 +1,19 @@
+schema: SYS
+name: DATAPUMP_TABLE_DATA
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    htype,
+    name,
+    seq#
+  from
+    sys.metanametrans$
+  where
+    properties != 0
+    and name like '%/TABLE_DATA'
+    and name not like '%INDEX%'
+    and name not like '%VIEWS_AS_TABLES%'
+    and name not like '%OPTIONS%'
+columns: []
+referencedTables: []

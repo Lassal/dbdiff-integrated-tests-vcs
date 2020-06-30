@@ -1,0 +1,88 @@
+schema: SYS
+name: KU$_OUTLINE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    ol.ol_name,
+    sys.dbms_metadata_util.long2clob(
+      ol.textlen,
+      'OUTLN.OL$',
+      'SQL_TEXT',
+      ol.rowid
+    ),
+    ol.textlen,
+    ol.signature,
+    ol.hash_value,
+    ol.category,
+    ol.version,
+    ol.creator,
+    to_char(ol.timestamp, 'YYYY/MM/DD HH24:MI:SS'),
+    ol.flags,
+    ol.hintcount,
+    cast(
+      multiset(
+        select
+          ol_name,
+          hint#,
+          category,
+          hint_type,
+          hint_text,
+          stage#,
+          node#,
+          table_name,
+          table_tin,
+          table_pos,
+          ref_id,
+          user_table_name,
+          cost,
+          cardinality,
+          bytes,
+          hint_textoff,
+          hint_textlen,
+          join_pred
+        from
+          outln.ol$hints h
+        where
+          h.ol_name = ol.ol_name
+        order by
+          h.stage#,
+          h.node#
+      ) as ku$_outline_hint_list_t
+    ),
+    cast(
+      multiset(
+        select
+          ol_name,
+          category,
+          node_id,
+          parent_id,
+          node_type,
+          node_textlen,
+          node_textoff
+        from
+          outln.ol$nodes n
+        where
+          n.ol_name = ol.ol_name
+      ) as ku$_outline_node_list_t
+    )
+  from
+    outln.ol$ ol,
+    sys.user$ u
+  where
+    ol.creator = u.name
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (u.user#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

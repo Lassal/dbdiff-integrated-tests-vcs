@@ -1,0 +1,47 @@
+schema: SYS
+name: USER_REPCAT_TEMPLATE_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    rt.refresh_template_name,
+    t.object_name,
+    ot.object_type_name object_type,
+    t.ddl_num,
+    t.ddl_text,
+    t.master_rollback_seg,
+    t.derived_from_sname,
+    t.derived_from_oname,
+    t.flavor_id
+  from
+    system.repcat$_refresh_templates rt,
+    system.repcat$_template_objects t,
+    system.repcat$_object_types ot,
+    system.repcat$_template_types tt
+  where
+    t.refresh_template_id = rt.refresh_template_id
+    and rt.template_type_id = tt.template_type_id
+    and bitand(rawtohex(tt.flags), 1) = 1
+    and ot.object_type_id = t.object_type
+    and rt.refresh_template_id in (
+      select
+        rt.refresh_template_id
+      from
+        system.repcat$_refresh_templates rt
+      where
+        public_template = 'Y'
+      union
+      select
+        rt.refresh_template_id
+      from
+        system.repcat$_refresh_templates rt,
+        system.repcat$_user_authorizations at,
+        sys.all_users au
+      where
+        at .refresh_template_id = rt.refresh_template_id
+        and au.user_id = at .user_id
+        and nvl(rt.public_template, 'N') = 'N'
+        and au.user_id = userenv('SCHEMAID')
+    )
+columns: []
+referencedTables: []

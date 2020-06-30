@@ -1,0 +1,38 @@
+schema: SYS
+name: KU$_DEFROLE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    u.user#,
+    u.name,
+    u.type#,
+    u.defrole,
+    cast(
+      multiset (
+        select
+          *
+        from
+          ku$_defrole_list_view df
+        where
+          df.user_id = u.user#
+      ) as ku$_defrole_list_t
+    )
+  from
+    sys.user$ u
+  where
+    (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

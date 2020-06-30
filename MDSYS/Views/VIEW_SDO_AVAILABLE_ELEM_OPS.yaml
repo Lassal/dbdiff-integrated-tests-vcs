@@ -1,0 +1,31 @@
+schema: MDSYS
+name: SDO_AVAILABLE_ELEM_OPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  (
+    SELECT
+      OPS.SOURCE_SRID,
+      OPS.COORD_OP_ID "COORD_OP_ID",
+      OPS.TARGET_SRID,
+      OPS.IS_IMPLEMENTED_FORWARD "IS_IMPLEMENTED"
+    FROM
+      MDSYS.SDO_COORD_OPS OPS
+    WHERE
+      NOT (OPS.COORD_OP_TYPE = 'CONCATENATED OPERATION')
+  )
+  UNION
+    (
+      SELECT
+        OPS.TARGET_SRID "SOURCE_SRID",
+        - OPS.COORD_OP_ID "COORD_OP_ID",
+        OPS.SOURCE_SRID "TARGET_SRID",
+        OPS.IS_IMPLEMENTED_REVERSE "IS_IMPLEMENTED"
+      FROM
+        MDSYS.SDO_COORD_OPS OPS
+      WHERE
+        NOT (OPS.COORD_OP_TYPE = 'CONCATENATED OPERATION')
+        AND OPS.REVERSE_OP = 1
+    )
+columns: []
+referencedTables: []

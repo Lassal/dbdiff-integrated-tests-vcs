@@ -1,0 +1,39 @@
+schema: SYS
+name: USER_SNAPSHOTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s. "OWNER",
+    s. "NAME",
+    s. "TABLE_NAME",
+    s. "MASTER_VIEW",
+    s. "MASTER_OWNER",
+    s. "MASTER",
+    s. "MASTER_LINK",
+    s. "CAN_USE_LOG",
+    s. "UPDATABLE",
+    s. "REFRESH_METHOD",
+    s. "LAST_REFRESH",
+    s. "ERROR",
+    s. "FR_OPERATIONS",
+    s. "CR_OPERATIONS",
+    s. "TYPE",
+    s. "NEXT",
+    s. "START_WITH",
+    s. "REFRESH_GROUP",
+    s. "UPDATE_TRIG",
+    s. "UPDATE_LOG",
+    s. "QUERY",
+    s. "MASTER_ROLLBACK_SEG",
+    s. "STATUS",
+    s. "REFRESH_MODE",
+    s. "PREBUILT"
+  from
+    dba_snapshots s,
+    sys.user$ u
+  where
+    u.user# = userenv('SCHEMAID')
+    and s.owner = u.name
+columns: []
+referencedTables: []

@@ -1,0 +1,39 @@
+schema: SYS
+name: KU$_REFPAR_LEVEL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    sys.dbms_metadata_util.ref_par_level(t.obj#),
+    u.name,
+    o.name
+  FROM
+    sys.obj$ o,
+    sys.tab$ t,
+    sys.user$ u
+  where
+    u.user# = o.owner#
+    AND o.obj# = t.obj#
+    AND bitand(t.property, 32 + 64 + 128 + 256 + 512) = 32
+    AND EXISTS(
+      SELECT
+        *
+      from
+        sys.partobj$ po
+      WHERE
+        po.obj# = t.obj#
+        AND po.parttype = 5
+    )
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

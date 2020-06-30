@@ -1,0 +1,1710 @@
+schema: SYS
+name: DBMS_CRYPTO_TOOLKIT
+routineType: PACKAGE
+returnParamater:
+  name: VERIFY(4).(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: ABORTIDENTITY.IDENTITY
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: CLOSEPERSONA.PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: CLOSEWALLET(1).WALLET
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: CREATEIDENTITY.IDENTITYTYPE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CREATEIDENTITY.PUBLIC_IDENTITY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEIDENTITY.ALIAS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEIDENTITY.LONGER_DESCRIPTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEIDENTITY.TRUST_QUALIFIER
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEIDENTITY.IDENTITY
+  ordinalPosition: 6
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: CREATEPERSONA.CIPHER_TYPE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CREATEPERSONA.PRIVATE_INFORMATION
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: CREATEPERSONA.PRL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEPERSONA.ALIAS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEPERSONA.LONGER_DESCRIPTION
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEPERSONA.PERSONA
+  ordinalPosition: 6
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: CREATEWALLET(1).PASSWORD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEWALLET(1).WALLET
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: CREATEWALLET(1).WALLET_RESOURCE_LOCATOR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEWALLET(2).PASSWORD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEWALLET(2).WALLET_RESOURCE_LOCATOR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DECRYPT(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: DECRYPT(1).ENCRYPTED_DATA
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DECRYPT(1).DECRYPTED_DATA
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: DECRYPT(1).DECRYPTION_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DECRYPT(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: DECRYPT(2).ENCRYPTED_DATA
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DECRYPT(2).DECRYPTION_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DECRYPT(3).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: DECRYPT(3).ENCRYPTED_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DECRYPT(3).DECRYPTED_STRING
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: DECRYPT(3).DECRYPTION_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DECRYPT(4).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: DECRYPT(4).ENCRYPTED_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DECRYPT(4).DECRYPTION_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DEENVELOPE(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: DEENVELOPE(1).ENVELOPED_DATA
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DEENVELOPE(1).OUTPUT_DATA
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: DEENVELOPE(1).VERIFIED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: DEENVELOPE(1).VALIDATED
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: DEENVELOPE(1).SENDER_IDENTITY
+  ordinalPosition: 6
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: DEENVELOPE(1).DECRYPTION_STATE
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DEENVELOPE(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: DEENVELOPE(2).ENVELOPED_DATA
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DEENVELOPE(2).VERIFIED
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: DEENVELOPE(2).VALIDATED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: DEENVELOPE(2).SENDER_IDENTITY
+  ordinalPosition: 5
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: DEENVELOPE(2).DECRYPTION_STATE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DEENVELOPE(3).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: DEENVELOPE(3).ENVELOPED_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEENVELOPE(3).OUTPUT_STRING
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: DEENVELOPE(3).VERIFIED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: DEENVELOPE(3).VALIDATED
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: DEENVELOPE(3).SENDER_IDENTITY
+  ordinalPosition: 6
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: DEENVELOPE(3).DECRYPTION_STATE
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DEENVELOPE(4).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: DEENVELOPE(4).ENVELOPED_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEENVELOPE(4).VERIFIED
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: DEENVELOPE(4).VALIDATED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: DEENVELOPE(4).SENDER_IDENTITY
+  ordinalPosition: 5
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: DEENVELOPE(4).DECRYPTION_STATE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DESTROYWALLET.PASSWORD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DESTROYWALLET.WALLET_RESOURCE_LOCATOR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENCRYPT(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENCRYPT(1).INPUT
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: ENCRYPT(1).ENCRYPTED_DATA
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: ENCRYPT(1).ENCRYPTION_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENCRYPT(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENCRYPT(2).INPUT
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: ENCRYPT(2).ENCRYPTION_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENCRYPT(3).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENCRYPT(3).INPUT_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENCRYPT(3).ENCRYPTION_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENVELOPE(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(1).RECIPIENT
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(1).INPUT
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: ENVELOPE(1).ENVELOPED_DATA
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: OUT
+- name: ENVELOPE(1).ENCRYPTION_STATE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENVELOPE(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(2).RECIPIENT
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(2).INPUT
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: ENVELOPE(2).ENCRYPTION_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENVELOPE(3).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(3).RECIPIENT
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(3).INPUT_STRING
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENVELOPE(3).ENVELOPED_STRING
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: ENVELOPE(3).ENCRYPTION_STATE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENVELOPE(4).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(4).RECIPIENT
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(4).INPUT_STRING
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENVELOPE(4).ENCRYPTION_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENVELOPE(5).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(5).NUMBER_OF_RECIPIENTS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENVELOPE(5).RECIPIENT_LIST
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(5).INPUT
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: ENVELOPE(5).ENVELOPED_DATA
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: OUT
+- name: ENVELOPE(5).ENCRYPTION_STATE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENVELOPE(6).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(6).NUMBER_OF_RECIPIENTS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENVELOPE(6).RECIPIENT_LIST
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(6).INPUT
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: ENVELOPE(6).ENCRYPTION_STATE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENVELOPE(7).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(7).NUMBER_OF_RECIPIENTS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENVELOPE(7).RECIPIENT_LIST
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(7).INPUT_STRING
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENVELOPE(7).ENVELOPED_STRING
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: ENVELOPE(7).ENCRYPTION_STATE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENVELOPE(8).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(8).NUMBER_OF_RECIPIENTS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENVELOPE(8).RECIPIENT_LIST
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: ENVELOPE(8).INPUT_STRING
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENVELOPE(8).ENCRYPTION_STATE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: HASH(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: HASH(1).INPUT
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: HASH(1).HASH
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: HASH(1).HASH_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: HASH(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: HASH(2).INPUT
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: HASH(2).HASH_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: HASH(3).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: HASH(3).INPUT_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HASH(3).HASH
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: HASH(3).HASH_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: HASH(4).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: HASH(4).INPUT_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HASH(4).HASH_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: KEYEDHASH(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: KEYEDHASH(1).INPUT
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: KEYEDHASH(1).KEYED_HASH
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: KEYEDHASH(1).HASH_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: KEYEDHASH(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: KEYEDHASH(2).INPUT
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: KEYEDHASH(2).HASH_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: KEYEDHASH(3).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: KEYEDHASH(3).INPUT_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: KEYEDHASH(3).KEYED_HASH
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: KEYEDHASH(3).HASH_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: KEYEDHASH(4).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: KEYEDHASH(4).INPUT_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: KEYEDHASH(4).HASH_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: OPENPERSONA.PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: OPENWALLET(1).PASSWORD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPENWALLET(1).WALLET
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: OPENWALLET(1).PERSONA_LIST
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: OPENWALLET(1).WALLET_RESOURCE_LOCATOR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPENWALLET(2).PASSWORD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPENWALLET(2).PERSONA_LIST
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: OPENWALLET(2).WALLET_RESOURCE_LOCATOR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKDECRYPT(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKDECRYPT(1).INPUT
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: PKDECRYPT(1).DECRYPTED_DATA
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: PKDECRYPT(1).DECRYPTION_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKDECRYPT(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKDECRYPT(2).INPUT
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: PKDECRYPT(2).DECRYPTION_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKDECRYPT(3).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKDECRYPT(3).INPUT_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKDECRYPT(3).DECRYPTED_STRING
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: PKDECRYPT(3).DECRYPTION_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKDECRYPT(4).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKDECRYPT(4).INPUT_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKDECRYPT(4).DECRYPTION_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKENCRYPT(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(1).RECIPIENT
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(1).INPUT
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: PKENCRYPT(1).ENCRYPTED_DATA
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: OUT
+- name: PKENCRYPT(1).ENCRYPTION_STATE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKENCRYPT(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(2).RECIPIENT
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(2).INPUT
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: PKENCRYPT(2).ENCRYPTION_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKENCRYPT(3).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(3).RECIPIENT
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(3).INPUT_STRING
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCRYPT(3).ENCRYPTED_STRING
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: PKENCRYPT(3).ENCRYPTION_STATE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKENCRYPT(4).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(4).RECIPIENT
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(4).INPUT_STRING
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCRYPT(4).ENCRYPTION_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKENCRYPT(5).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(5).NUMBER_OF_RECIPIENTS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKENCRYPT(5).RECIPIENT_LIST
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(5).INPUT
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: PKENCRYPT(5).ENCRYPTED_DATA
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: OUT
+- name: PKENCRYPT(5).ENCRYPTION_STATE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKENCRYPT(6).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(6).NUMBER_OF_RECIPIENTS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKENCRYPT(6).RECIPIENT_LIST
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(6).INPUT
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: PKENCRYPT(6).ENCRYPTION_STATE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKENCRYPT(7).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(7).NUMBER_OF_RECIPIENTS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKENCRYPT(7).RECIPIENT_LIST
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(7).INPUT_STRING
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCRYPT(7).ENCRYPTED_STRING
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: PKENCRYPT(7).ENCRYPTION_STATE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKENCRYPT(8).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(8).NUMBER_OF_RECIPIENTS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PKENCRYPT(8).RECIPIENT_LIST
+  ordinalPosition: 3
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PKENCRYPT(8).INPUT_STRING
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCRYPT(8).ENCRYPTION_STATE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: RANDOMBYTES(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: RANDOMBYTES(1).NUMBER_OF_BYTES_DESIRED
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: RANDOMBYTES(1).RANDOM_BYTES
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: RANDOMBYTES(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: RANDOMBYTES(2).NUMBER_OF_BYTES_DESIRED
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: RANDOMNUMBER(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: RANDOMNUMBER(1).RANDOM_NUMBER
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: RANDOMNUMBER(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: REMOVEIDENTITY.IDENTITY
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: REMOVEPERSONA.PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: SEEDRANDOM(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SEEDRANDOM(1).SEED
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: SEEDRANDOM(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SEEDRANDOM(2).SEED
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SEEDRANDOM(3).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SEEDRANDOM(3).SEED
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SIGN(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SIGN(1).INPUT
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: SIGN(1).SIGNATURE
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: SIGN(1).SIGNATURE_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SIGN(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SIGN(2).INPUT
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: SIGN(2).SIGNATURE_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SIGN(3).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SIGN(3).INPUT_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SIGN(3).SIGNATURE
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: SIGN(3).SIGNATURE_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SIGN(4).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SIGN(4).INPUT_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SIGN(4).SIGNATURE_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SIGNDETACHED(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SIGNDETACHED(1).INPUT
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: SIGNDETACHED(1).SIGNATURE
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: SIGNDETACHED(1).SIGNATURE_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SIGNDETACHED(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SIGNDETACHED(2).INPUT
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: SIGNDETACHED(2).SIGNATURE_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SIGNDETACHED(3).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SIGNDETACHED(3).INPUT_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SIGNDETACHED(3).SIGNATURE
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: SIGNDETACHED(3).SIGNATURE_STATE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SIGNDETACHED(4).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SIGNDETACHED(4).INPUT_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SIGNDETACHED(4).SIGNATURE_STATE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: STOREPERSONA(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: STOREPERSONA(1).WALLET
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: STOREPERSONA(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: STORETRUSTEDIDENTITY.IDENTITY
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: STORETRUSTEDIDENTITY.PERSONA
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: VALIDATE.PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: VALIDATE.IDENTITY
+  ordinalPosition: 2
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: VERIFY(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: VERIFY(1).SIGNATURE
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: VERIFY(1).EXTRACTED_MESSAGE
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: VERIFY(1).VERIFIED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: VERIFY(1).VALIDATED
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: VERIFY(1).SIGNING_PARTY_IDENTITY
+  ordinalPosition: 6
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: VERIFY(1).SIGNATURE_STATE
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VERIFY(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: VERIFY(2).SIGNATURE
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: VERIFY(2).VERIFIED
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: VERIFY(2).VALIDATED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: VERIFY(2).SIGNING_PARTY_IDENTITY
+  ordinalPosition: 5
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: VERIFY(2).SIGNATURE_STATE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VERIFY(3).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: VERIFY(3).SIGNATURE
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: VERIFY(3).EXTRACTED_MESSAGE_STRING
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: VERIFY(3).VERIFIED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: VERIFY(3).VALIDATED
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: VERIFY(3).SIGNING_PARTY_IDENTITY
+  ordinalPosition: 6
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: VERIFY(3).SIGNATURE_STATE
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VERIFY(4).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: VERIFY(4).SIGNATURE
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: VERIFY(4).VERIFIED
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: VERIFY(4).VALIDATED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: VERIFY(4).SIGNING_PARTY_IDENTITY
+  ordinalPosition: 5
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: VERIFY(4).SIGNATURE_STATE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VERIFYDETACHED(1).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: VERIFYDETACHED(1).DATA
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: VERIFYDETACHED(1).SIGNATURE
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: VERIFYDETACHED(1).VERIFIED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: VERIFYDETACHED(1).VALIDATED
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: VERIFYDETACHED(1).SIGNING_PARTY_IDENTITY
+  ordinalPosition: 6
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: VERIFYDETACHED(1).SIGNATURE_STATE
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VERIFYDETACHED(2).PERSONA
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: VERIFYDETACHED(2).DATA_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VERIFYDETACHED(2).SIGNATURE
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: VERIFYDETACHED(2).VERIFIED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: VERIFYDETACHED(2).VALIDATED
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: VERIFYDETACHED(2).SIGNING_PARTY_IDENTITY
+  ordinalPosition: 6
+  dataType: PL/SQL RECORD
+  parameterMode: OUT
+- name: VERIFYDETACHED(2).SIGNATURE_STATE
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_crypto_toolkit AS SUBTYPE Crypto_Engine_Function IS dbms_crypto_toolkit_types.Crypto_Engine_Function;
+  DETACHEDSIGNATURE CONSTANT Crypto_Engine_Function: = 1;
+  -- Signature, detached from content
+  SIGNATURE CONSTANT Crypto_Engine_Function: = 2;
+  -- Signature combined with content
+  ENVELOPING CONSTANT Crypto_Engine_Function: = 3;
+  -- Signature and encryption with content
+  PKENCRYPTION CONSTANT Crypto_Engine_Function: = 4;
+  -- Encryption for one or more recipients
+  ENCRYPTION CONSTANT Crypto_Engine_Function: = 5;
+  -- Symmetric encryption
+  KEYEDHASH_CHECKSUM CONSTANT Crypto_Engine_Function: = 6;
+  -- Keyed hash/checksum
+  HASH_CHECKSUM CONSTANT Crypto_Engine_Function: = 7;
+  -- Hash/checksum
+  RANDOM CONSTANT Crypto_Engine_Function: = 8;
+  -- Random byte generation
+  SUBTYPE Crypto_Engine_State IS dbms_crypto_toolkit_types.Crypto_Engine_State;
+  CONTINUE_PROCESSING CONSTANT Crypto_Engine_State: = 1;
+  -- Continue processing input
+  END_PROCESSING CONSTANT Crypto_Engine_State: = 2;
+  -- End processing input
+  RESET_PROCESSING CONSTANT Crypto_Engine_State: = 3;
+  -- Reset processing and skip generating output
+  SUBTYPE Identity_Type IS dbms_crypto_toolkit_types.Identity_Type;
+  X509V1 CONSTANT Identity_Type: = 1;
+  -- X.509v1
+  SYMMETRIC CONSTANT Identity_Type: = 2;
+  -- Symmetric
+  SUBTYPE Cipher IS dbms_crypto_toolkit_types.Cipher;
+  RSA CONSTANT Cipher: = 1;
+  -- RSA public key
+  DES CONSTANT Cipher: = 2;
+  -- DES
+  RC4 CONSTANT Cipher: = 3;
+  -- RC4
+  MD5DES CONSTANT Cipher: = 4;
+  -- DES encrypted MD5 with salt (PBE)
+  MD5RC2 CONSTANT Cipher: = 5;
+  -- RC2 encrypted MD5 with salt (PBE)
+  MD5 CONSTANT Cipher: = 6;
+  -- MD5
+  SHA CONSTANT Cipher: = 7;
+  -- SHA
+  SUBTYPE Data_Unit_Format IS dbms_crypto_toolkit_types.Data_Unit_Format;
+  PKCS7 CONSTANT Data_Unit_Format: = 1;
+  -- PKCS7 format
+  RSAPAD CONSTANT Data_Unit_Format: = 2;
+  -- RSA padded format
+  ORACLEv1 CONSTANT Data_Unit_Format: = 3;
+  -- Oracle v1 format
+  package_wallet_is_not_open
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(package_wallet_is_not_open, -28836);
+  package_wallet_is_open
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(package_wallet_is_open, -28840);
+  -- Aliases to reduce typing.
+    SUBTYPE Wallet IS dbms_crypto_toolkit_types.Wallet;
+  SUBTYPE Persona IS dbms_crypto_toolkit_types.Persona;
+  SUBTYPE Identity IS dbms_crypto_toolkit_types.Identity;
+  SUBTYPE Identity_Array IS dbms_crypto_toolkit_types.Identity_Array;
+  SUBTYPE Alias_String IS dbms_crypto_toolkit_types.Alias_String;
+  SUBTYPE Comment_String IS dbms_crypto_toolkit_types.Comment_String;
+  SUBTYPE Identity_Description IS dbms_crypto_toolkit_types.Identity_Description;
+  SUBTYPE Identity_Description_List IS dbms_crypto_toolkit_types.Identity_Description_List;
+  SUBTYPE Persona_Description IS dbms_crypto_toolkit_types.Persona_Description;
+  SUBTYPE Persona_List IS dbms_crypto_toolkit_types.Persona_List;
+  SUBTYPE Private_Persona_Information IS dbms_crypto_toolkit_types.Private_Persona_Information;
+  ---------------------- FUNCTIONS AND PROCEDURES ---------------------------
+    PROCEDURE Initialize;
+  PROCEDURE Terminate;
+  PROCEDURE OpenWallet(
+      password IN VARCHAR2,
+      wallet IN OUT Wallet,
+      persona_list OUT Persona_List,
+      wallet_resource_locator IN VARCHAR2 DEFAULT NULL
+    );
+  -- Used by applications which want to use the wallet kept by the package.
+    PROCEDURE OpenWallet(
+      password IN VARCHAR2,
+      persona_list OUT Persona_List,
+      wallet_resource_locator IN VARCHAR2 DEFAULT NULL
+    );
+  PROCEDURE CloseWallet(wallet IN OUT Wallet);
+  -- Used by applications which want to use the wallet kept by the package.
+    PROCEDURE CloseWallet;
+  PROCEDURE CreateWallet(
+      password IN VARCHAR2,
+      wallet IN OUT Wallet,
+      wallet_resource_locator IN VARCHAR2 DEFAULT NULL
+    );
+  -- Used by applications which want to use the wallet kept by the package.
+    PROCEDURE CreateWallet(
+      password IN VARCHAR2,
+      wallet_resource_locator IN VARCHAR2 DEFAULT NULL
+    );
+  PROCEDURE DestroyWallet(
+      password IN VARCHAR2,
+      wallet_resource_locator IN VARCHAR2 DEFAULT NULL
+    );
+  PROCEDURE StorePersona(
+      persona IN OUT Persona,
+      wallet IN OUT Wallet
+    );
+  -- Used by applications which want to use the wallet kept by the package.
+    PROCEDURE StorePersona(persona IN OUT Persona);
+  PROCEDURE OpenPersona(persona IN OUT Persona);
+  PROCEDURE ClosePersona(persona IN OUT Persona);
+  PROCEDURE RemovePersona(persona IN OUT Persona);
+  PROCEDURE CreatePersona(
+      cipher_type IN Cipher,
+      private_information IN Private_Persona_Information,
+      prl IN VARCHAR2,
+      alias IN VARCHAR2,
+      longer_description IN VARCHAR2,
+      persona OUT Persona
+    );
+  PROCEDURE RemoveIdentity(identity OUT Identity);
+  PROCEDURE CreateIdentity(
+      identitytype IN Identity_Type,
+      public_identity IN VARCHAR2,
+      alias IN VARCHAR2,
+      longer_description IN VARCHAR2,
+      trust_qualifier IN VARCHAR2,
+      identity OUT Identity
+    );
+  PROCEDURE AbortIdentity(identity IN OUT Identity);
+  PROCEDURE StoreTrustedIdentity(
+      identity IN OUT Identity,
+      persona IN Persona
+    );
+  FUNCTION Validate(
+      persona IN Persona,
+      identity IN Identity
+    ) RETURN BOOLEAN;
+  --------------------------- DIGITAL SIGNATURE -----------------------------
+    -- The following routines create and verify digital signatures.
+    -- There are two versions of each procedure: one for raw data and the
+    -- other for strings.
+    ---------------------------------------------------------------------------
+    PROCEDURE Sign(
+      persona IN Persona,
+      input IN RAW,
+      signature OUT RAW,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION Sign(
+      persona IN Persona,
+      input IN RAW,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE Sign(
+      persona IN Persona,
+      input_string IN VARCHAR2,
+      signature OUT RAW,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION Sign(
+      persona IN Persona,
+      input_string IN VARCHAR2,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE Verify(
+      persona IN Persona,
+      signature IN RAW,
+      extracted_message OUT RAW,
+      verified OUT BOOLEAN,
+      validated OUT BOOLEAN,
+      signing_party_identity OUT Identity,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION Verify(
+      persona IN Persona,
+      signature IN RAW,
+      verified OUT BOOLEAN,
+      validated OUT BOOLEAN,
+      signing_party_identity OUT Identity,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE Verify(
+      persona IN Persona,
+      signature IN RAW,
+      extracted_message_string OUT VARCHAR2,
+      verified OUT BOOLEAN,
+      validated OUT BOOLEAN,
+      signing_party_identity OUT Identity,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION Verify(
+      persona IN Persona,
+      signature IN RAW,
+      verified OUT BOOLEAN,
+      validated OUT BOOLEAN,
+      signing_party_identity OUT Identity,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN VARCHAR2;
+  PROCEDURE SignDetached(
+      persona IN Persona,
+      input IN RAW,
+      signature OUT RAW,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION SignDetached(
+      persona IN Persona,
+      input IN RAW,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE SignDetached(
+      persona IN Persona,
+      input_string IN VARCHAR2,
+      signature OUT RAW,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION SignDetached(
+      persona IN Persona,
+      input_string IN VARCHAR2,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE VerifyDetached(
+      persona IN Persona,
+      data IN RAW,
+      signature IN RAW,
+      verified OUT BOOLEAN,
+      validated OUT BOOLEAN,
+      signing_party_identity OUT Identity,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  PROCEDURE VerifyDetached(
+      persona IN Persona,
+      data_string IN VARCHAR2,
+      signature IN RAW,
+      verified OUT BOOLEAN,
+      validated OUT BOOLEAN,
+      signing_party_identity OUT Identity,
+      signature_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  ---------------------------- DATA ENCRYPTION ------------------------------
+    -- The following routines encrypt and decrypt data.
+    -- There are two versions of each procedure: one for raw data and the
+    -- other for strings.
+    ---------------------------------------------------------------------------
+    -- Encrypt for one recipient
+    PROCEDURE PKEncrypt(
+      persona IN Persona,
+      recipient IN Identity,
+      input IN RAW,
+      encrypted_data OUT RAW,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION PKEncrypt(
+      persona IN Persona,
+      recipient IN Identity,
+      input IN RAW,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE PKEncrypt(
+      persona IN Persona,
+      recipient IN Identity,
+      input_string IN VARCHAR2,
+      encrypted_string OUT VARCHAR2,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION PKEncrypt(
+      persona IN Persona,
+      recipient IN Identity,
+      input_string IN VARCHAR2,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN VARCHAR2;
+  PROCEDURE PKEncrypt(
+      persona IN Persona,
+      number_of_recipients IN POSITIVE,
+      recipient_list IN Identity_Array,
+      input IN RAW,
+      encrypted_data OUT RAW,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION PKEncrypt(
+      persona IN Persona,
+      number_of_recipients IN POSITIVE,
+      recipient_list IN Identity_Array,
+      input IN RAW,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE PKEncrypt(
+      persona IN Persona,
+      number_of_recipients IN POSITIVE,
+      recipient_list IN Identity_Array,
+      input_string IN VARCHAR2,
+      encrypted_string OUT VARCHAR2,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION PKEncrypt(
+      persona IN Persona,
+      number_of_recipients IN POSITIVE,
+      recipient_list IN Identity_Array,
+      input_string IN VARCHAR2,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN VARCHAR2;
+  PROCEDURE PKDecrypt(
+      persona IN Persona,
+      input IN RAW,
+      decrypted_data OUT RAW,
+      decryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION PKDecrypt(
+      persona IN Persona,
+      input IN RAW,
+      decryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE PKDecrypt(
+      persona IN Persona,
+      input_string IN VARCHAR2,
+      decrypted_string OUT VARCHAR2,
+      decryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION PKDecrypt(
+      persona IN Persona,
+      input_string IN VARCHAR2,
+      decryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN VARCHAR2;
+  PROCEDURE Encrypt(
+      persona IN Persona,
+      input IN RAW,
+      encrypted_data OUT RAW,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION Encrypt(
+      persona IN Persona,
+      input IN RAW,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  FUNCTION Encrypt(
+      persona IN Persona,
+      input_string IN VARCHAR2,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN VARCHAR2;
+  PROCEDURE Decrypt(
+      persona IN Persona,
+      encrypted_data IN RAW,
+      decrypted_data OUT RAW,
+      decryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION Decrypt(
+      persona IN Persona,
+      encrypted_data IN RAW,
+      decryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE Decrypt(
+      persona IN Persona,
+      encrypted_string IN VARCHAR2,
+      decrypted_string OUT VARCHAR2,
+      decryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION Decrypt(
+      persona IN Persona,
+      encrypted_string IN VARCHAR2,
+      decryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN VARCHAR2;
+  -- Envelope data for one recipient
+    PROCEDURE Envelope(
+      persona IN Persona,
+      recipient IN Identity,
+      input IN RAW,
+      enveloped_data OUT RAW,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION Envelope(
+      persona IN Persona,
+      recipient IN Identity,
+      input IN RAW,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE Envelope(
+      persona IN Persona,
+      recipient IN Identity,
+      input_string IN VARCHAR2,
+      enveloped_string OUT VARCHAR2,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION Envelope(
+      persona IN Persona,
+      recipient IN Identity,
+      input_string IN VARCHAR2,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN VARCHAR2;
+  PROCEDURE Envelope(
+      persona IN Persona,
+      number_of_recipients IN POSITIVE,
+      recipient_list IN Identity_Array,
+      input IN RAW,
+      enveloped_data OUT RAW,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION Envelope(
+      persona IN Persona,
+      number_of_recipients IN POSITIVE,
+      recipient_list IN Identity_Array,
+      input IN RAW,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE Envelope(
+      persona IN Persona,
+      number_of_recipients IN POSITIVE,
+      recipient_list IN Identity_Array,
+      input_string IN VARCHAR2,
+      enveloped_string OUT VARCHAR2,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION Envelope(
+      persona IN Persona,
+      number_of_recipients IN POSITIVE,
+      recipient_list IN Identity_Array,
+      input_string IN VARCHAR2,
+      encryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN VARCHAR2;
+  PROCEDURE DeEnvelope(
+      persona IN Persona,
+      enveloped_data IN RAW,
+      output_data OUT RAW,
+      verified OUT BOOLEAN,
+      validated OUT BOOLEAN,
+      sender_identity OUT Identity,
+      decryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION DeEnvelope(
+      persona IN Persona,
+      enveloped_data IN RAW,
+      verified OUT BOOLEAN,
+      validated OUT BOOLEAN,
+      sender_identity OUT Identity,
+      decryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE DeEnvelope(
+      persona IN Persona,
+      enveloped_string IN VARCHAR2,
+      output_string OUT VARCHAR2,
+      verified OUT BOOLEAN,
+      validated OUT BOOLEAN,
+      sender_identity OUT Identity,
+      decryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION DeEnvelope(
+      persona IN Persona,
+      enveloped_string IN VARCHAR2,
+      verified OUT BOOLEAN,
+      validated OUT BOOLEAN,
+      sender_identity OUT Identity,
+      decryption_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN VARCHAR2;
+  --------------------------------- HASH ------------------------------------
+    -- The following routines generate checksums.
+    -- There are two versions of each procedure: one for raw data and the
+    -- other for strings.
+    ---------------------------------------------------------------------------
+    PROCEDURE KeyedHash(
+      persona IN Persona,
+      input IN RAW,
+      keyed_hash OUT RAW,
+      hash_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION KeyedHash(
+      persona IN Persona,
+      input IN RAW,
+      hash_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE KeyedHash(
+      persona IN Persona,
+      input_string IN VARCHAR2,
+      keyed_hash OUT RAW,
+      hash_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION KeyedHash(
+      persona IN Persona,
+      input_string IN VARCHAR2,
+      hash_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE Hash(
+      persona IN Persona,
+      input IN RAW,
+      hash OUT RAW,
+      hash_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION Hash(
+      persona IN Persona,
+      input IN RAW,
+      hash_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  PROCEDURE Hash(
+      persona IN Persona,
+      input_string IN VARCHAR2,
+      hash OUT RAW,
+      hash_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    );
+  FUNCTION Hash(
+      persona IN Persona,
+      input_string IN VARCHAR2,
+      hash_state IN Crypto_Engine_State DEFAULT END_PROCESSING
+    ) RETURN RAW;
+  ----------------------------- RANDOM NUMBER -------------------------------
+    PROCEDURE SeedRandom(
+      persona IN Persona,
+      seed IN RAW
+    );
+  PROCEDURE SeedRandom(
+      persona IN Persona,
+      seed IN VARCHAR2
+    );
+  PROCEDURE SeedRandom(
+      persona IN Persona,
+      seed IN BINARY_INTEGER
+    );
+  PROCEDURE RandomBytes(
+      persona IN Persona,
+      number_of_bytes_desired IN POSITIVE,
+      random_bytes OUT RAW
+    );
+  FUNCTION RandomBytes(
+      persona IN Persona,
+      number_of_bytes_desired IN POSITIVE
+    ) RETURN RAW;
+  PROCEDURE RandomNumber(
+      persona IN Persona,
+      random_number OUT BINARY_INTEGER
+    );
+  FUNCTION RandomNumber(persona IN Persona) RETURN BINARY_INTEGER;
+  PRAGMA RESTRICT_REFERENCES(DEFAULT, WNDS, RNDS);
+  END dbms_crypto_toolkit;

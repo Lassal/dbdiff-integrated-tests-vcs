@@ -1,0 +1,53 @@
+schema: XDBPM
+name: XDBPM_CONSTANTS
+routineType: PACKAGE
+returnParamater:
+  name: VERSION.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  package XDBPM_CONSTANTS as C_PATH_HOME constant VARCHAR2(700): = '/home';
+  C_PATH_DEBUG constant VARCHAR2(128): = '/debug';
+  C_PATH_PUBLIC constant VARCHAR2(700): = '/publishedContent';
+  C_PATH_SYSTEM constant VARCHAR2(700): = '/sys';
+  C_PATH_SYSTEM_ACLS constant VARCHAR2(700): = C_PATH_SYSTEM || '/' || 'acls';
+  C_PATH_SYSTEM_SCHEMAS constant VARCHAR2(700): = C_PATH_SYSTEM || '/' || 'schemas';
+  C_PATH_SYSTEM_SCHEMAS_PUBLIC constant VARCHAR2(700): = C_PATH_SYSTEM_SCHEMAS || '/' || 'PUBLIC';
+  C_PATH_SYSTEM_SCHEMAS_PRIVATE constant VARCHAR2(700): = C_PATH_SYSTEM_SCHEMAS || '/' || XDBPM_USERNAME.GET_USERNAME();
+  C_ACL_ALL_PUBLIC constant VARCHAR2(700): = C_PATH_SYSTEM_ACLS || '/' || 'all_all_acl.xml';
+  C_ACL_ALL_OWNER constant VARCHAR2(700): = C_PATH_SYSTEM_ACLS || '/' || 'all_owner_acl.xml';
+  C_ACL_READONLY_ALL constant VARCHAR2(700): = C_PATH_SYSTEM_ACLS || '/' || 'ro_all_acl.xml';
+  C_ACL_BOOTSTRAP constant VARCHAR2(700): = C_PATH_SYSTEM_ACLS || '/' || 'bootstrap_acl.xml';
+  C_PATH_USER_HOME constant VARCHAR2(700): = C_PATH_HOME || '/' || XDBPM_USERNAME.GET_USERNAME();
+  C_PATH_USER_DEBUG constant VARCHAR2(128): = C_PATH_DEBUG || '/' || XDBPM_USERNAME.GET_USERNAME();
+  C_PATH_USER_PUBLIC constant VARCHAR2(700): = C_PATH_PUBLIC || '/' || XDBPM_USERNAME.GET_USERNAME();
+  C_VERSION constant VARCHAR2(12): = 'VERSION';
+  C_OVERWRITE constant VARCHAR2(12): = 'OVERWRITE';
+  C_RAISE_ERROR constant VARCHAR2(12): = 'RAISE';
+  C_SKIP constant VARCHAR2(12): = 'SKIP';
+  function FOLDER_SYSTEM return VARCHAR2 deterministic;
+  function FOLDER_SYSTEM_ACLS return VARCHAR2 deterministic;
+  function FOLDER_SYSTEM_SCHEMAS return VARCHAR2 deterministic;
+  function FOLDER_SYSTEM_SCHEMAS_PUBLIC return VARCHAR2 deterministic;
+  function FOLDER_SYSTEM_SCHEMAS_PRIVATE return VARCHAR2 deterministic;
+  function ACL_ALL_PUBLIC return VARCHAR2 deterministic;
+  function ACL_ALL_OWNER return VARCHAR2 deterministic;
+  function ACL_READONLY_ALL return VARCHAR2 deterministic;
+  function ACL_BOOTSTRAP return VARCHAR2 deterministic;
+  function FOLDER_HOME return VARCHAR2 deterministic;
+  function FOLDER_DEBUG return VARCHAR2 deterministic;
+  function FOLDER_PUBLIC return VARCHAR2 deterministic;
+  function FOLDER_USER_HOME return VARCHAR2 deterministic;
+  function FOLDER_USER_DEBUG return VARCHAR2 deterministic;
+  function FOLDER_USER_PUBLIC return VARCHAR2 deterministic;
+  function ENCODING_UTF8 return VARCHAR2 deterministic;
+  function ENCODING_WIN1252 return VARCHAR2 deterministic;
+  function ENCODING_ISOLATIN1 return VARCHAR2 deterministic;
+  function ENCODING_DEFAULT return VARCHAR2 deterministic;
+  function VERSION return VARCHAR2 deterministic;
+  function OVERWRITE return VARCHAR2 deterministic;
+  function RAISE_ERROR return VARCHAR2 deterministic;
+  function SKIP return VARCHAR2 deterministic;
+  end;

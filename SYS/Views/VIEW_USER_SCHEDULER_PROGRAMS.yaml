@@ -1,0 +1,43 @@
+schema: SYS
+name: USER_SCHEDULER_PROGRAMS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    po.name,
+    DECODE(
+      bitand(p.flags, 2 + 4 + 8 + 16 + 32 + 2048 + 4096 + 8192),
+      2,
+      'PLSQL_BLOCK',
+      4,
+      'STORED_PROCEDURE',
+      32,
+      'EXECUTABLE',
+      2048,
+      'EXTERNAL_SCRIPT',
+      4096,
+      'SQL_SCRIPT',
+      8192,
+      'BACKUP_SCRIPT',
+      ''
+    ),
+    p.action,
+    p.number_of_args,
+    DECODE(BITAND(p.flags, 1), 0, 'FALSE', 1, 'TRUE'),
+    DECODE(BITAND(p.flags, 256), 0, 'FALSE', 'TRUE'),
+    p.schedule_limit,
+    p.priority,
+    p.job_weight,
+    p.max_runs,
+    p.max_failures,
+    p.max_run_duration,
+    p.nls_env,
+    p.comments
+  FROM
+    obj$ po,
+    sys.scheduler$_program p
+  WHERE
+    po.owner# = USERENV('SCHEMAID')
+    AND p.obj# = po.obj#
+columns: []
+referencedTables: []

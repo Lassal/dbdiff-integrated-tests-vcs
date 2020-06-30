@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_MVIEW_DETAIL_PARTITION
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    m. "OWNER",
+    m. "MVIEW_NAME",
+    m. "DETAILOBJ_OWNER",
+    m. "DETAILOBJ_NAME",
+    m. "DETAIL_PARTITION_NAME",
+    m. "DETAIL_PARTITION_POSITION",
+    m. "FRESHNESS"
+  from
+    dba_mview_detail_partition m,
+    sys.user$ u
+  where
+    u.user# = userenv('SCHEMAID')
+    and m.owner = u.name
+columns: []
+referencedTables: []

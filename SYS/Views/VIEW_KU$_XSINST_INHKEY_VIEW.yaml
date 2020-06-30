@@ -1,0 +1,20 @@
+schema: SYS
+name: KU$_XSINST_INHKEY_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    k.xdsid#,
+    k.order#,
+    k.pkey,
+    /* primary key (col name from master table) */
+    k.fkey,
+    /* foreign key (col name or value in detail table */
+    k.fkey_type
+    /* 1=fk is col name; 2=fk is col value */
+  from
+    xs$instset_inh_key k
+columns: []
+referencedTables: []

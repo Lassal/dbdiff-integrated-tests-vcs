@@ -1,0 +1,48 @@
+schema: SYS
+name: USER_PUBLISHED_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    s.change_set_name,
+    s.obj#,
+    s.source_schema_name,
+    s.source_table_name,
+    c .column_name,
+    c .data_type,
+    c .data_length,
+    c .data_precision,
+    c .data_scale,
+    c .nullable
+  FROM
+    sys.cdc_change_tables$ s,
+    all_tables t,
+    all_tab_columns c,
+    sys.user$ u
+  WHERE
+    s.change_table_schema = t.owner
+    AND s.change_table_name = t.table_name
+    AND c .owner = s.change_table_schema
+    AND c .table_name = s.change_table_name
+    AND c .column_name NOT IN (
+      'OPERATION$',
+      'CSCN$',
+      'DDLDESC$',
+      'DDLPDOBJN$',
+      'DDLOPER$',
+      'RSID$',
+      'SOURCE_COLMAP$',
+      'TARGET_COLMAP$',
+      'COMMIT_TIMESTAMP$',
+      'TIMESTAMP$',
+      'USERNAME$',
+      'ROW_ID$',
+      'XIDUSN$',
+      'XIDSLT$',
+      'XIDSEQ$',
+      'SYS_NC_OID$'
+    )
+    AND s.change_table_schema = u.name
+    AND u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

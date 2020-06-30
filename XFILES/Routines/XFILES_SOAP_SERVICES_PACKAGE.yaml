@@ -1,0 +1,892 @@
+schema: XFILES
+name: XFILES_SOAP_SERVICES
+routineType: PACKAGE
+returnParamater:
+  name: TRANSFORMRESOURCE2.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: ADDPAGEHITCOUNTER.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDPAGEHITCOUNTERLIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: CHANGEOWNER.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHANGEOWNER.P_NEW_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHANGEOWNER.P_DEEP
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CHANGEOWNERLIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: CHANGEOWNERLIST.P_NEW_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHANGEOWNERLIST.P_DEEP
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CHECKIN.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECKIN.P_COMMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECKIN.P_DEEP
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CHECKINLIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: CHECKINLIST.P_COMMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECKINLIST.P_DEEP
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CHECKOUT.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECKOUT.P_DEEP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CHECKOUTLIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: CHECKOUTLIST.P_DEEP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: COPYRESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COPYRESOURCE.P_TARGET_FOLDER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COPYRESOURCE.P_DEEP
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: COPYRESOURCELIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: COPYRESOURCELIST.P_TARGET_FOLDER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COPYRESOURCELIST.P_DEEP
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CREATEINDEXPAGE.P_FOLDER_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEINDEXPAGE.P_TIMEZONE_OFFSET
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATEINDEXPAGE.P_CACHE_RESULT
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATEINDEXPAGE.P_UPDATED_RESOURCE
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: CREATENEWFOLDER.P_FOLDER_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATENEWFOLDER.P_DESCRIPTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATENEWFOLDER.P_TIMEZONE_OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATENEWFOLDER.P_CACHE_RESULT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATENEWFOLDER.P_UPDATED_RESOURCE
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: CREATENEWWIKIPAGE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATENEWWIKIPAGE.P_DESCRIPTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATENEWWIKIPAGE.P_TIMEZONE_OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATENEWWIKIPAGE.P_CACHE_RESULT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATENEWWIKIPAGE.P_UPDATED_RESOURCE
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: CREATEZIPFILE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEZIPFILE.P_DESCRIPTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEZIPFILE.P_RESOURCE_LIST
+  ordinalPosition: 3
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: CREATEZIPFILE.P_TIMEZONE_OFFSET
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATEZIPFILE.P_CACHE_RESULT
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATEZIPFILE.P_UPDATED_RESOURCE
+  ordinalPosition: 6
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: DELETERESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETERESOURCE.P_DEEP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DELETERESOURCE.P_FORCE
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DELETERESOURCELIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: DELETERESOURCELIST.P_DEEP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DELETERESOURCELIST.P_FORCE
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GENERATEPREVIEW.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATEPREVIEW.P_LINES
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETACLLIST.P_ACL_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+- name: GETFOLDERLISTING.P_FOLDER_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETFOLDERLISTING.P_INCLUDE_METADATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETFOLDERLISTING.P_TIMEZONE_OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETFOLDERLISTING.P_CACHE_RESULT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETFOLDERLISTING.P_FOLDER
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: GETRESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETRESOURCE.P_TIMEZONE_OFFSET
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETRESOURCE.P_CACHE_RESULT
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETRESOURCE.P_RESOURCE
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: GETRESOURCEWITHCONTENT.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETRESOURCEWITHCONTENT.P_TIMEZONE_OFFSET
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETRESOURCEWITHCONTENT.P_CACHE_RESULT
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETRESOURCEWITHCONTENT.P_RESOURCE
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: GETTARGETFOLDERTREE.P_TREE
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: GETVERSIONHISTORY.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETVERSIONHISTORY.P_TIMEZONE_OFFSET
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETVERSIONHISTORY.P_CACHE_RESULT
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETVERSIONHISTORY.P_RESOURCE
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: LINKRESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LINKRESOURCE.P_TARGET_FOLDER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LINKRESOURCE.P_LINK_TYPE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: LINKRESOURCELIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: LINKRESOURCELIST.P_TARGET_FOLDER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LINKRESOURCELIST.P_LINK_TYPE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCKRESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOCKRESOURCE.P_DEEP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: LOCKRESOURCELIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: LOCKRESOURCELIST.P_DEEP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MAKEVERSIONED.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKEVERSIONED.P_DEEP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MAKEVERSIONEDLIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: MAKEVERSIONEDLIST.P_DEEP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MOVERESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVERESOURCE.P_TARGET_FOLDER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVERESOURCELIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: MOVERESOURCELIST.P_TARGET_FOLDER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHRESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUBLISHRESOURCE.P_DEEP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: PUBLISHRESOURCELIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PUBLISHRESOURCELIST.P_DEEP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: RENAMERESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAMERESOURCE.P_NEW_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENDERASXHTML.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETACL.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETACL.P_ACL_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETACL.P_DEEP
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETACLLIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: SETACLLIST.P_ACL_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETACLLIST.P_DEEP
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETCUSTOMVIEWER.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETCUSTOMVIEWER.P_VIEWER_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETCUSTOMVIEWERLIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: SETCUSTOMVIEWERLIST.P_VIEWER_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETPASSWORD.P_PASSWORD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETRSSFEED.P_FOLDER_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETRSSFEED.P_ENABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETRSSFEED.P_ITEMS_CHANGED_IN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETRSSFEED.P_DEEP
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: TESTFOLDERLISTING.P_FOLDER_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TESTFOLDERLISTING.P_INCLUDE_METADATA
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: TESTFOLDERLISTING.P_TIMEZONE_OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: TESTRESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TESTRESOURCE.P_TIMEZONE_OFFSET
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: TESTRESOURCEWITHCONTENT.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TESTRESOURCEWITHCONTENT.P_TIMEZONE_OFFSET
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: TESTVERSIONHISTORY.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TESTVERSIONHISTORY.P_TIMEZONE_OFFSET
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: TRANSFORMCONTENT1.P_CONTENT_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMCONTENT1.P_XSL_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMCONTENT2.P_CONTENT_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMCONTENT2.P_XSL_DOCUMENT
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMDOCUMENTTOHTML1.P_XML_DOCUMENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMDOCUMENTTOHTML1.P_XSL_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMDOCUMENTTOHTML2.P_XML_DOCUMENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMDOCUMENTTOHTML2.P_XSL_DOCUMENT
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMDOCUMENT1.P_XML_DOCUMENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMDOCUMENT1.P_XSL_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMDOCUMENT2.P_XML_DOCUMENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMDOCUMENT2.P_XSL_DOCUMENT
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMRESOURCE1.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMRESOURCE1.P_XSL_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMRESOURCE1.P_TIMEZONE_OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: TRANSFORMRESOURCE2.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSFORMRESOURCE2.P_XSL_DOCUMENT
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: TRANSFORMRESOURCE2.P_TIMEZONE_OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: UNLOCKRESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNLOCKRESOURCE.P_DEEP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: UNLOCKRESOURCELIST.P_RESOURCE_LIST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: UNLOCKRESOURCELIST.P_DEEP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: UNZIP.P_FOLDER_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNZIP.P_RESOURCE_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNZIP.P_DUPLICATE_ACTION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNZIPLIST.P_FOLDER_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNZIPLIST.P_RESOURCE_LIST
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: UNZIPLIST.P_DUPLICATE_ACTION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEPROPERTIES.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEPROPERTIES.P_NEW_VALUES
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: UPDATEPROPERTIES.P_TIMEZONE_OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATEPROPERTIES.P_CACHE_RESULT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPDATEPROPERTIES.P_UPDATED_RESOURCE
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: UPLOADRESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADRESOURCE.P_CONTENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: UPLOADRESOURCE.P_CONTENT_TYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADRESOURCE.P_DESCRIPTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADRESOURCE.P_LANGUAGE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADRESOURCE.P_CHARACTER_SET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADRESOURCE.P_DUPLICATE_POLICY
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITELOGRECORD.P_LOG_RECORD
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  package XFILES_SOAP_SERVICES AUTHID CURRENT_USER as procedure CHANGEOWNER(
+    P_RESOURCE_PATH VARCHAR2,
+    P_NEW_OWNER VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure CHANGEOWNERLIST(
+    P_RESOURCE_LIST XMLTYPE,
+    P_NEW_OWNER VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure CHECKIN(
+    P_RESOURCE_PATH VARCHAR2,
+    P_COMMENT VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure CHECKINLIST(
+    P_RESOURCE_LIST XMLTYPE,
+    P_COMMENT VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure CHECKOUT(
+    P_RESOURCE_PATH VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure CHECKOUTLIST(
+    P_RESOURCE_LIST XMLTYPE,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure COPYRESOURCE(
+    P_RESOURCE_PATH VARCHAR2,
+    P_TARGET_FOLDER VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure COPYRESOURCELIST(
+    P_RESOURCE_LIST XMLTYPE,
+    P_TARGET_FOLDER VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure DELETERESOURCE(
+    P_RESOURCE_PATH VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE,
+    P_FORCE BOOLEAN DEFAULT FALSE
+  );
+  procedure DELETERESOURCELIST(
+    P_RESOURCE_LIST XMLTYPE,
+    P_DEEP BOOLEAN DEFAULT FALSE,
+    P_FORCE BOOLEAN DEFAULT FALSE
+  );
+  procedure LINKRESOURCE(
+    P_RESOURCE_PATH VARCHAR2,
+    P_TARGET_FOLDER VARCHAR2,
+    P_LINK_TYPE NUMBER DEFAULT DBMS_XDB.LINK_TYPE_WEAK
+  );
+  procedure LINKRESOURCELIST(
+    P_RESOURCE_LIST XMLTYPE,
+    P_TARGET_FOLDER VARCHAR2,
+    P_LINK_TYPE NUMBER DEFAULT DBMS_XDB.LINK_TYPE_WEAK
+  );
+  procedure LOCKRESOURCE(
+    P_RESOURCE_PATH VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure LOCKRESOURCELIST(
+    P_RESOURCE_LIST XMLTYPE,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure MAKEVERSIONED(
+    P_RESOURCE_PATH VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure MAKEVERSIONEDLIST(
+    P_RESOURCE_LIST XMLTYPE,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure MOVERESOURCE(
+    P_RESOURCE_PATH VARCHAR2,
+    P_TARGET_FOLDER VARCHAR2
+  );
+  procedure MOVERESOURCELIST(
+    P_RESOURCE_LIST XMLTYPE,
+    P_TARGET_FOLDER VARCHAR2
+  );
+  procedure PUBLISHRESOURCE(
+    P_RESOURCE_PATH VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure PUBLISHRESOURCELIST(
+    P_RESOURCE_LIST XMLTYPE,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure RENAMERESOURCE(P_RESOURCE_PATH VARCHAR2, P_NEW_NAME VARCHAR2);
+  procedure SETACL(
+    P_RESOURCE_PATH VARCHAR2,
+    P_ACL_PATH VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure SETACLLIST(
+    P_RESOURCE_LIST XMLTYPE,
+    P_ACL_PATH VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure SETRSSFEED(
+    P_FOLDER_PATH VARCHAR2,
+    P_ENABLE BOOLEAN,
+    P_ITEMS_CHANGED_IN VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure SETCUSTOMVIEWER(P_RESOURCE_PATH VARCHAR2, P_VIEWER_PATH VARCHAR2);
+  procedure SETCUSTOMVIEWERLIST(P_RESOURCE_LIST XMLTYPE, P_VIEWER_PATH VARCHAR2);
+  procedure ADDPAGEHITCOUNTER(P_RESOURCE_PATH VARCHAR2);
+  procedure ADDPAGEHITCOUNTERLIST(P_RESOURCE_LIST XMLTYPE);
+  procedure UNLOCKRESOURCE(
+    P_RESOURCE_PATH VARCHAR2,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure UNLOCKRESOURCELIST(
+    P_RESOURCE_LIST XMLTYPE,
+    P_DEEP BOOLEAN DEFAULT FALSE
+  );
+  procedure UNZIP(
+    P_FOLDER_PATH VARCHAR2,
+    P_RESOURCE_PATH VARCHAR2,
+    P_DUPLICATE_ACTION VARCHAR2
+  );
+  procedure UNZIPLIST(
+    P_FOLDER_PATH VARCHAR2,
+    P_RESOURCE_LIST XMLTYPE,
+    P_DUPLICATE_ACTION VARCHAR2
+  );
+  procedure UPLOADRESOURCE(
+    P_RESOURCE_PATH VARCHAR2,
+    P_CONTENT BLOB,
+    P_CONTENT_TYPE VARCHAR2,
+    P_DESCRIPTION VARCHAR2,
+    P_LANGUAGE VARCHAR2,
+    P_CHARACTER_SET VARCHAR2,
+    P_DUPLICATE_POLICY VARCHAR2
+  );
+  procedure UPDATEPROPERTIES(
+    P_RESOURCE_PATH VARCHAR2,
+    P_NEW_VALUES XMLType,
+    P_TIMEZONE_OFFSET NUMBER DEFAULT 0,
+    P_CACHE_RESULT NUMBER DEFAULT 0,
+    P_UPDATED_RESOURCE IN OUT XMLType
+  );
+  procedure CREATENEWFOLDER(
+    P_FOLDER_PATH VARCHAR2,
+    P_DESCRIPTION VARCHAR2,
+    P_TIMEZONE_OFFSET NUMBER DEFAULT 0,
+    P_CACHE_RESULT NUMBER DEFAULT 0,
+    P_UPDATED_RESOURCE IN OUT XMLType
+  );
+  procedure CREATENEWWIKIPAGE(
+    P_RESOURCE_PATH VARCHAR2,
+    P_DESCRIPTION VARCHAR2,
+    P_TIMEZONE_OFFSET NUMBER DEFAULT 0,
+    P_CACHE_RESULT NUMBER DEFAULT 0,
+    P_UPDATED_RESOURCE IN OUT XMLType
+  );
+  procedure CREATEZIPFILE(
+    P_RESOURCE_PATH VARCHAR2,
+    P_DESCRIPTION VARCHAR2,
+    P_RESOURCE_LIST XMLType,
+    P_TIMEZONE_OFFSET NUMBER DEFAULT 0,
+    P_CACHE_RESULT NUMBER DEFAULT 0,
+    P_UPDATED_RESOURCE IN OUT XMLType
+  );
+  procedure CREATEINDEXPAGE(
+    P_FOLDER_PATH VARCHAR2,
+    P_TIMEZONE_OFFSET NUMBER DEFAULT 0,
+    P_CACHE_RESULT NUMBER DEFAULT 0,
+    P_UPDATED_RESOURCE IN OUT XMLType
+  );
+  procedure getResourceWithContent(
+    P_RESOURCE_PATH IN VARCHAR2,
+    P_TIMEZONE_OFFSET NUMBER DEFAULT 0,
+    P_CACHE_RESULT NUMBER DEFAULT 0,
+    P_RESOURCE IN OUT XMLType
+  );
+  procedure getResource(
+    P_RESOURCE_PATH IN VARCHAR2,
+    P_TIMEZONE_OFFSET NUMBER DEFAULT 0,
+    P_CACHE_RESULT NUMBER DEFAULT 0,
+    P_RESOURCE IN OUT XMLType
+  );
+  procedure getFolderListing(
+    P_FOLDER_PATH IN VARCHAR2,
+    P_INCLUDE_METADATA VARCHAR2 DEFAULT 'FALSE',
+    P_TIMEZONE_OFFSET NUMBER DEFAULT 0,
+    P_CACHE_RESULT NUMBER DEFAULT 0,
+    P_FOLDER IN OUT XMLType
+  );
+  procedure getVersionHistory(
+    P_RESOURCE_PATH IN VARCHAR2,
+    P_TIMEZONE_OFFSET NUMBER DEFAULT 0,
+    P_CACHE_RESULT NUMBER DEFAULT 0,
+    P_RESOURCE IN OUT XMLType
+  );
+  procedure getACLList(P_ACL_LIST out XMLType);
+  function GENERATEPREVIEW(P_RESOURCE_PATH VARCHAR2, P_LINES number) return XMLType;
+  function renderAsXHTML(P_RESOURCE_PATH VARCHAR2) return XMLType;
+  procedure getTargetFolderTree(P_TREE IN OUT XMLType);
+  procedure SETPASSWORD(P_PASSWORD VARCHAR2);
+  function transformResource1(
+    P_RESOURCE_PATH VARCHAR2,
+    P_XSL_PATH VARCHAR2,
+    P_TIMEZONE_OFFSET NUMBER
+  ) return XMLType;
+  function transformResource2(
+    P_RESOURCE_PATH VARCHAR2,
+    P_XSL_DOCUMENT XMLTYPE,
+    P_TIMEZONE_OFFSET NUMBER
+  ) return XMLType;
+  function transformContent1(P_CONTENT_PATH VARCHAR2, P_XSL_PATH VARCHAR2) return XMLType;
+  function transformContent2(P_CONTENT_PATH VARCHAR2, P_XSL_DOCUMENT XMLTYPE) return XMLType;
+  function transformDocument1(P_XML_DOCUMENT XMLTYPE, P_XSL_PATH VARCHAR2) return XMLType;
+  function transformDocument2(P_XML_DOCUMENT XMLTYPE, P_XSL_DOCUMENT XMLTYPE) return XMLType;
+  function transformDocumentToHTML1(P_XML_DOCUMENT XMLTYPE, P_XSL_PATH VARCHAR2) return XMLType;
+  function transformDocumentToHTML2(P_XML_DOCUMENT XMLTYPE, P_XSL_DOCUMENT XMLTYPE) return XMLType;
+  procedure writeLogRecord(P_LOG_RECORD XMLTYPE);
+  function testResource(
+    P_RESOURCE_PATH IN VARCHAR2,
+    P_TIMEZONE_OFFSET NUMBER DEFAULT 0
+  ) return XMLType;
+  function testResourceWithContent(
+    P_RESOURCE_PATH IN VARCHAR2,
+    P_TIMEZONE_OFFSET NUMBER DEFAULT 0
+  ) return XMLType;
+  function testFolderListing(
+    P_FOLDER_PATH IN VARCHAR2,
+    P_INCLUDE_METADATA NUMBER DEFAULT 0,
+    P_TIMEZONE_OFFSET NUMBER DEFAULT 0
+  ) return XMLType;
+  function testVersionHistory(
+    P_RESOURCE_PATH IN VARCHAR2,
+    P_TIMEZONE_OFFSET NUMBER DEFAULT 0
+  ) return XMLType;
+  end;

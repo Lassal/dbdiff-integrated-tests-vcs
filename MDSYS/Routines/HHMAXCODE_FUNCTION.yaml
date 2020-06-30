@@ -1,0 +1,22 @@
+schema: MDSYS
+name: HHMAXCODE
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: RAW
+  parameterMode: OUT
+parameters:
+- name: HHC
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: MAXLEN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION hhmaxcode(hhc IN RAW, maxlen IN NUMBER) RETURN RAW IS
+  begin
+    return md.hhmaxcode(hhc, maxlen);
+  end;

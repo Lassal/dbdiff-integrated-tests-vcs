@@ -1,0 +1,65 @@
+schema: SYS
+name: ALL_APPLY_ERROR
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  (
+    select
+      e.apply_name,
+      e.queue_name,
+      e.queue_owner,
+      e.local_transaction_id,
+      e.source_database,
+      e.source_transaction_id,
+      e.source_commit_scn,
+      e.message_number,
+      e.error_number,
+      e.error_message,
+      e.recipient_id,
+      e.recipient_name,
+      e.message_count,
+      e.error_creation_time,
+      e.source_commit_position,
+      e.error_type,
+      e.source_root_name,
+      e.error_position
+    from
+      dba_apply_error e,
+      all_users u,
+      all_queues q
+    where
+      e.recipient_id = u.user_id
+      and q.name = e.queue_name
+      and q.owner = e.queue_owner
+    union all
+    select
+      e.apply_name,
+      e.queue_name,
+      e.queue_owner,
+      e.local_transaction_id,
+      e.source_database,
+      e.source_transaction_id,
+      e.source_commit_scn,
+      e.message_number,
+      e.error_number,
+      e.error_message,
+      e.recipient_id,
+      e.recipient_name,
+      e.message_count,
+      e.error_creation_time,
+      e.source_commit_position,
+      e.error_type,
+      e.source_root_name,
+      e.error_position
+    from
+      dba_apply_error e
+    where
+      e.recipient_id NOT IN (
+        select
+          user_id
+        from
+          dba_users
+      )
+  )
+columns: []
+referencedTables: []

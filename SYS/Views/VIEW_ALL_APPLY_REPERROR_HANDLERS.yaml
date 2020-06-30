@@ -1,0 +1,26 @@
+schema: SYS
+name: ALL_APPLY_REPERROR_HANDLERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    rh. "APPLY_NAME",
+    rh. "OBJECT_OWNER",
+    rh. "OBJECT_NAME",
+    rh. "SOURCE_OBJECT_OWNER",
+    rh. "SOURCE_OBJECT_NAME",
+    rh. "ERROR_NUMBER",
+    rh. "METHOD",
+    rh. "MAX_RETRIES",
+    rh. "DELAY_CSECS",
+    rh. "SET_BY"
+  from
+    DBA_APPLY_REPERROR_HANDLERS rh,
+    ALL_APPLY a,
+    all_tables t
+  where
+    rh.apply_name = a .apply_name
+    and rh.object_owner = t.owner
+    and rh.object_name = t.table_name
+columns: []
+referencedTables: []

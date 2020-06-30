@@ -1,0 +1,46 @@
+schema: SYS
+name: KU$_MZPROP_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o2.obj#,
+    o1.name,
+    u1.name,
+    o1.flags,
+    t.property
+  from
+    obj$ o1,
+    obj$ o2,
+    obj$ o3,
+    tab$ t,
+    user $ u1,
+    user $ u2,
+    snap$ s
+  where
+    o2.owner# = u2.user#
+    and s.mowner = u2.name
+    and s.master = o2.name
+    and s.mlink is null
+    and o2.type# = 2
+    and o1.owner# = u1.user#
+    and s.sowner = u1.name
+    and s.tname = o1.name
+    and o1.type# = 42
+    and s.sowner = u1.name
+    and s.tname = o3.name
+    and o3.type# = 2
+    and o3.obj# = t.obj#
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o1.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

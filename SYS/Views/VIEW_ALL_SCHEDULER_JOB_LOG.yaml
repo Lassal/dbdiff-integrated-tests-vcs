@@ -1,0 +1,120 @@
+schema: SYS
+name: ALL_SCHEDULER_JOB_LOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  (
+    SELECT
+      e.LOG_ID,
+      e.LOG_DATE,
+      e.OWNER,
+      DECODE(
+        instr(e.NAME, '"'),
+        0,
+        e.NAME,
+        substr(e.NAME, 1, instr(e.NAME, '"') -1)
+      ),
+      DECODE(
+        instr(e.NAME, '"'),
+        0,
+        NULL,
+        substr(e.NAME, instr(e.NAME, '"') + 1)
+      ),
+      co.NAME,
+      OPERATION,
+      e.STATUS,
+      e.USER_NAME,
+      e.CLIENT_ID,
+      e.GUID,
+      decode(
+        e.credential,
+        NULL,
+        NULL,
+        substr(e.credential, 1, instr(e.credential, '"') -1)
+      ),
+      decode(
+        e.credential,
+        NULL,
+        NULL,
+        substr(
+          e.credential,
+          instr(e.credential, '"') + 1,
+          length(e.credential) - instr(e.credential, '"')
+        )
+      ),
+      decode(
+        bitand(e.flags, 1),
+        0,
+        NULL,
+        substr(e.destination, 1, instr(e.destination, '"') -1)
+      ),
+      decode(
+        bitand(e.flags, 1),
+        0,
+        e.destination,
+        substr(
+          e.destination,
+          instr(e.destination, '"') + 1,
+          length(e.destination) - instr(e.destination, '"')
+        )
+      ),
+      e.ADDITIONAL_INFO
+    FROM
+      scheduler$_event_log e,
+      obj$ co
+    WHERE
+      e.type# = 66
+      and e.dbid is null
+      and e.class_id = co.obj#(+)
+      AND (
+        e.owner = SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA')
+        or
+        /* user has object privileges */
+        (
+          select
+            jo.obj#
+          from
+            obj$ jo,
+            user $ ju
+          where
+            DECODE(
+              instr(e.NAME, '"'),
+              0,
+              e.NAME,
+              substr(e.NAME, 1, instr(e.NAME, '"') -1)
+            ) = jo.name
+            and e.owner = ju.name
+            and jo.owner# = ju.user#
+            and jo.subname is null
+            and jo.type# = 66
+        ) in (
+          select
+            oa.obj#
+          from
+            sys.objauth$ oa
+          where
+            grantee# in (
+              select
+                kzsrorol
+              from
+                x$kzsro
+            )
+        )
+        or
+        /* user has system privileges */
+        (
+          exists (
+            select
+              null
+            from
+              v$enabledprivs
+            where
+              priv_number = -265
+              /* CREATE ANY JOB */
+          )
+          and e.owner != 'SYS'
+        )
+      )
+  )
+columns: []
+referencedTables: []

@@ -1,0 +1,33 @@
+schema: LBACSYS
+name: ALL_SA_USER_COMPARTMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    p.pol_name AS policy_name,
+    uc.usr_name AS user_name,
+    c .code AS comp,
+    DECODE(uc.rw_access, '1', 'WRITE', 'READ') AS rw_access,
+    uc.def_comp,
+    uc.row_comp
+  FROM
+    LBACSYS.sa$pol p,
+    LBACSYS.ols$user_compartments uc,
+    LBACSYS.ols$compartments c
+  WHERE
+    p.pol# = uc.pol#
+    AND uc.pol# = c .pol#
+    AND uc.comp# = c .comp#
+    AND (
+      p.pol# in (
+        select
+          pol#
+        from
+          LBACSYS.sa$admin
+        where
+          usr_name = user
+      )
+      or uc.usr_name = sa_session.sa_user_name(lbac_cache.policy_name(p.pol#))
+    )
+columns: []
+referencedTables: []

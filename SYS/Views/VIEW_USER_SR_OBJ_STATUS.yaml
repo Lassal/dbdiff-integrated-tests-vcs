@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_SR_OBJ_STATUS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    NAME,
+    TYPE,
+    GROUP_ID,
+    STATUS,
+    ERROR_NUMBER,
+    ERROR_MESSAGE,
+    LAST_MODIFIED_TIME
+  from
+    dba_sr_obj_status
+  where
+    owner = SYS_CONTEXT ('USERENV', 'SESSION_USER')
+columns: []
+referencedTables: []

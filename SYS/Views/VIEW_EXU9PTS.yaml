@@ -1,0 +1,71 @@
+schema: SYS
+name: EXU9PTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o$.name,
+    o$.name,
+    s$.name,
+    s$.owner,
+    s$.node,
+    DECODE(o$.owner#, 1, 1, 0),
+    uo$.name,
+    o$.owner#,
+    us$.user#,
+    s$.obj#,
+    o$.ctime
+  FROM
+    sys.exu81obj o$,
+    sys.syn$ s$,
+    sys.user$ us$,
+    sys.user$ uo$
+  WHERE
+    s$.obj# = o$.obj#
+    AND o$.owner# = uo$.user#
+    AND s$.owner = us$.name(+)
+    AND NVL(s$.owner, 'SYS') NOT IN (
+      'ORDSYS',
+      'MDSYS',
+      'CTXSYS',
+      'ORDPLUGINS',
+      'LBACSYS',
+      'XDB',
+      'SI_INFORMTN_SCHEMA',
+      'DIP',
+      'DBSNMP',
+      'EXFSYS',
+      'WMSYS',
+      'ORACLE_OCM',
+      'ANONYMOUS',
+      'XS$NULL',
+      'APPQOSSYS',
+      'OJVMSYS',
+      'SYSBACKUP',
+      'SYSDG',
+      'SYSKM',
+      'DVSYS',
+      'DVF',
+      'DBHADOOP',
+      'ORDDATA',
+      'GSMADMIN_INTERNAL',
+      'GSMUSER',
+      'GSMCATUSER',
+      'LOGSTDBY_ADMINISTRATOR',
+      'OLAPSYS',
+      'FLOWS_FILES',
+      'APEX_040200'
+    )
+    AND o$.owner# = 1
+    AND EXISTS (
+      SELECT
+        obj#
+      FROM
+        sys.obj$ e
+      WHERE
+        e.name = s$.name
+        AND e.owner# = us$.user#
+        AND e.type# = 13
+    )
+columns: []
+referencedTables: []

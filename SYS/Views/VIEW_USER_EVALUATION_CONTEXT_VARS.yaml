@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_EVALUATION_CONTEXT_VARS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    ecv.var_name,
+    ecv.var_type,
+    ecv.var_val_func,
+    ecv.var_mthd_func
+  FROM
+    rec_var$ ecv,
+    obj$ o
+  WHERE
+    ecv.ec_obj# = o.obj#
+    and o.owner# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

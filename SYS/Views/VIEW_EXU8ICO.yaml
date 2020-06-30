@@ -1,0 +1,66 @@
+schema: SYS
+name: EXU8ICO
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    io$.obj#,
+    u$.name,
+    io$.owner#,
+    io$.name,
+    DECODE(BITAND(c $.property, 1), 1, a $.name, c $.name),
+    to $.name,
+    ic$.pos#,
+    DECODE(
+      BITAND(i$.property, 1024),
+      0,
+      i$.cols,
+      i$.intcols
+    ),
+    c $.property,
+    ic$.bo#,
+    c $.default$,
+    c $.deflength
+  FROM
+    sys.col$ c $,
+    sys.icol$ ic$,
+    sys.obj$ io$,
+    sys.user$ u$,
+    sys.attrcol$ a $,
+    sys.obj$ to $,
+    sys.ind$ i$
+  WHERE
+    c $.obj# = ic$.bo#
+    AND (
+      (
+        BITAND(i$.property, 1024) = 1024
+        AND c $.intcol# = ic$.spare2
+      )
+      OR (
+        (NOT (BITAND(i$.property, 1024) = 1024))
+        AND c $.intcol# = ic$.intcol#
+      )
+    )
+    AND ic$.obj# = io$.obj#
+    AND io$.owner# = u$.user#
+    AND i$.bo# = to $.obj#
+    AND i$.obj# = io$.obj#
+    AND c $.obj# = a $.obj# (+)
+    AND c $.intcol# = a $.intcol# (+)
+    AND (
+      userenv('SCHEMAID') = 0
+      OR (
+        userenv('SCHEMAID') = io$.owner#
+        AND userenv('SCHEMAID') = to $.owner#
+      )
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

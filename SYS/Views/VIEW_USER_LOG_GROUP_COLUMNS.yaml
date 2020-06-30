@@ -1,0 +1,33 @@
+schema: SYS
+name: USER_LOG_GROUP_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    c .name,
+    o.name,
+    decode(ac.name, null, col.name, ac.name),
+    cc.pos#,
+    decode(cc.spare1, 1, 'NO LOG', 'LOG')
+  from
+    sys.user$ u,
+    sys.con$ c,
+    sys.col$ col,
+    sys.ccol$ cc,
+    sys.cdef$ cd,
+    sys.obj$ o,
+    sys.attrcol$ ac
+  where
+    c .owner# = u.user#
+    and c .con# = cd.con#
+    and cd.type# = 12
+    and cd.con# = cc.con#
+    and cc.obj# = col.obj#
+    and cc.intcol# = col.intcol#
+    and cc.obj# = o.obj#
+    and c .owner# = userenv('SCHEMAID')
+    and col.obj# = ac.obj#(+)
+    and col.intcol# = ac.intcol#(+)
+columns: []
+referencedTables: []

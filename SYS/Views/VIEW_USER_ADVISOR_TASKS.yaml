@@ -1,0 +1,61 @@
+schema: SYS
+name: USER_ADVISOR_TASKS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .id as task_id,
+    a .name as task_name,
+    a .description as description,
+    a .advisor_name as advisor_name,
+    a .ctime as created,
+    a .mtime as last_modified,
+    a .parent_id as parent_task_id,
+    a .parent_rec_id as parent_rec_id,
+    a .last_exec_name as last_execution,
+    e.exec_type as execution_type,
+    nvl(e.exec_start, a .exec_start) as execution_start,
+    nvl(e.exec_end, a .exec_end) as execution_end,
+    decode(
+      nvl(e.status, a .status),
+      1,
+      'INITIAL',
+      2,
+      'EXECUTING',
+      3,
+      'COMPLETED',
+      4,
+      'INTERRUPTED',
+      5,
+      'CANCELLED',
+      6,
+      'FATAL ERROR'
+    ) as status,
+    dbms_advisor.format_message_group(
+      nvl(e.status_msg_id, a .status_msg_id)
+    ) as status_message,
+    a .pct_completion_time as pct_completion_time,
+    a .progress_metric as progress_metric,
+    a .metric_units as metric_units,
+    a .activity_counter as activity_counter,
+    a .rec_count as recommendation_count,
+    dbms_advisor.format_message_group(
+      nvl(e.error_msg_id, a .error_msg#)
+    ) as error_message,
+    a .source as source,
+    a .how_created as how_created,
+    decode(bitand(a .property, 1), 1, 'TRUE', 'FALSE') as read_only,
+    decode(bitand(a .property, 32), 32, 'TRUE', 'FALSE') as system_task,
+    a .advisor_id as advisor_id,
+    nvl(e.status, a .status) as status#
+  from
+    wri$_adv_tasks a,
+    wri$_adv_executions e
+  where
+    a .id = e.task_id(+)
+    and a .last_exec_name = e.name(+)
+    and a .advisor_id = e.advisor_id(+)
+    and a .owner# = userenv('SCHEMAID')
+    and bitand(a .property, 6) = 4
+columns: []
+referencedTables: []

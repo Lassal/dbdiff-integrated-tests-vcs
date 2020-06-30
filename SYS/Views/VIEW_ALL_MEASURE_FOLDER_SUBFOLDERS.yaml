@@ -1,0 +1,57 @@
+schema: SYS
+name: ALL_MEASURE_FOLDER_SUBFOLDERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name OWNER,
+    o.name MEASURE_FOLDER_NAME,
+    uchild.name MEASURE_SUBFOLDER_OWNER,
+    ochild.name MEASURE_SUBFOLDER_NAME
+  FROM
+    olap_meas_folder_contents$ mfc,
+    obj$ o,
+    obj$ ochild,
+    user $ uchild,
+    user $ u
+  WHERE
+    mfc.MEASURE_FOLDER_OBJ# = o.obj# -- PARENT
+    AND ochild.owner# = uchild.user# -- SUBFOLDER_OWNER
+    AND o.owner# = u.user#
+    AND mfc.object_type = 10 --MEASURE_FOLDER
+    AND ochild.obj# = mfc.OBJECT_ID --CHILD
+    AND (
+      o.owner# in (userenv('SCHEMAID'), 1) -- public objects
+      or o.obj# in (
+        select
+          obj# -- directly granted privileges
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or -- user has system privileges
+      (
+        exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -316,
+              -- DELETE ANY MEASURE FOLDER
+              -317,
+              -- DROP ANY MEASURE FOLDER
+              -318
+            ) -- INSERT ANY MEASURE FOLDER
+        )
+      )
+    )
+columns: []
+referencedTables: []

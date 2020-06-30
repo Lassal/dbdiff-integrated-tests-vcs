@@ -1,0 +1,3073 @@
+schema: CTXSYS
+name: CTX_DOC
+routineType: PACKAGE
+returnParamater:
+  name: SNIPPET_CLOB_QUERY.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: FILTER(1).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FILTER(1).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FILTER(1).RESTAB
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FILTER(1).QUERY_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: FILTER(1).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: FILTER(1).USE_SAVED_COPY
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: FILTER(2).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FILTER(2).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FILTER(2).RESTAB
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: INOUT
+- name: FILTER(2).PLAINTEXT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: FILTER(2).USE_SAVED_COPY
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: GIST(1).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GIST(1).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GIST(1).RESTAB
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GIST(1).QUERY_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GIST(1).GLEVEL
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GIST(1).POV
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GIST(1).NUMPARAGRAPHS
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: GIST(1).MAXPERCENT
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: GIST(1).NUM_THEMES
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: GIST(1).USE_SAVED_COPY
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: GIST(2).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GIST(2).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GIST(2).RESTAB
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: INOUT
+- name: GIST(2).GLEVEL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GIST(2).POV
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GIST(2).NUMPARAGRAPHS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: GIST(2).MAXPERCENT
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: GIST(2).NUM_THEMES
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: GIST(2).USE_SAVED_COPY
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: HIGHLIGHT(1).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HIGHLIGHT(1).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HIGHLIGHT(1).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HIGHLIGHT(1).RESTAB
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HIGHLIGHT(1).QUERY_ID
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: HIGHLIGHT(1).PLAINTEXT
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: HIGHLIGHT(1).USE_SAVED_COPY
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: HIGHLIGHT(2).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HIGHLIGHT(2).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HIGHLIGHT(2).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HIGHLIGHT(2).RESTAB
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: HIGHLIGHT(2).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: HIGHLIGHT(2).USE_SAVED_COPY
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: HIGHLIGHT_CLOB_QUERY(1).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HIGHLIGHT_CLOB_QUERY(1).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HIGHLIGHT_CLOB_QUERY(1).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: HIGHLIGHT_CLOB_QUERY(1).RESTAB
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HIGHLIGHT_CLOB_QUERY(1).QUERY_ID
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: HIGHLIGHT_CLOB_QUERY(1).PLAINTEXT
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: HIGHLIGHT_CLOB_QUERY(1).USE_SAVED_COPY
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: HIGHLIGHT_CLOB_QUERY(2).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HIGHLIGHT_CLOB_QUERY(2).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HIGHLIGHT_CLOB_QUERY(2).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: HIGHLIGHT_CLOB_QUERY(2).RESTAB
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: HIGHLIGHT_CLOB_QUERY(2).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: HIGHLIGHT_CLOB_QUERY(2).USE_SAVED_COPY
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: IFILTER.DATA
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: IFILTER.TEXT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: MARKUP(1).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(1).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(1).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(1).RESTAB
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(1).QUERY_ID
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: MARKUP(1).PLAINTEXT
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MARKUP(1).TAGSET
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(1).STARTTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(1).ENDTAG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(1).PREVTAG
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(1).NEXTTAG
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(1).USE_SAVED_COPY
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: MARKUP(2).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(2).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(2).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(2).RESTAB
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: MARKUP(2).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MARKUP(2).TAGSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(2).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(2).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(2).PREVTAG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(2).NEXTTAG
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP(2).USE_SAVED_COPY
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(1).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(1).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(1).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(1).RESTAB
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(1).QUERY_ID
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(1).PLAINTEXT
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(1).TAGSET
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(1).STARTTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(1).ENDTAG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(1).PREVTAG
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(1).NEXTTAG
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(1).USE_SAVED_COPY
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(2).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(2).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(2).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(2).RESTAB
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: MARKUP_CLOB_QUERY(2).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(2).TAGSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(2).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(2).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(2).PREVTAG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(2).NEXTTAG
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MARKUP_CLOB_QUERY(2).USE_SAVED_COPY
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: PKENCODE.PK1
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK2
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK3
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK4
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK5
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK6
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK7
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK8
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK9
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK10
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK11
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK12
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK13
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK14
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK15
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PKENCODE.PK16
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_FILTER(1).RESTAB
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_FILTER(1).PLAINTEXT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_FILTER(1).LANGUAGE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(1).FORMAT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(1).CHARSET
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: POLICY_FILTER(2).RESTAB
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_FILTER(2).PLAINTEXT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_FILTER(2).LANGUAGE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(2).FORMAT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(2).CHARSET
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(3).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(3).DOCUMENT
+  ordinalPosition: 2
+  dataType: BFILE
+  parameterMode: IN
+- name: POLICY_FILTER(3).RESTAB
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_FILTER(3).PLAINTEXT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_FILTER(3).LANGUAGE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(3).FORMAT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(3).CHARSET
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(4).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(4).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(4).RESTAB
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_FILTER(4).PLAINTEXT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_FILTER(4).LANGUAGE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(4).FORMAT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_FILTER(4).CHARSET
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(1).RESTAB
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_GIST(1).GLEVEL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(1).POV
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(1).NUMPARAGRAPHS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_GIST(1).MAXPERCENT
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_GIST(1).NUM_THEMES
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_GIST(1).LANGUAGE
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(1).FORMAT
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(1).CHARSET
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_GIST(2).RESTAB
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_GIST(2).GLEVEL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(2).POV
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(2).NUMPARAGRAPHS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_GIST(2).MAXPERCENT
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_GIST(2).NUM_THEMES
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_GIST(2).LANGUAGE
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(2).FORMAT
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(2).CHARSET
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(3).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(3).DOCUMENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: POLICY_GIST(3).RESTAB
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_GIST(3).GLEVEL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(3).POV
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(3).NUMPARAGRAPHS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_GIST(3).MAXPERCENT
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_GIST(3).NUM_THEMES
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_GIST(3).LANGUAGE
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(3).FORMAT
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(3).CHARSET
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(4).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(4).DOCUMENT
+  ordinalPosition: 2
+  dataType: BFILE
+  parameterMode: IN
+- name: POLICY_GIST(4).RESTAB
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_GIST(4).GLEVEL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(4).POV
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(4).NUMPARAGRAPHS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_GIST(4).MAXPERCENT
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_GIST(4).NUM_THEMES
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_GIST(4).LANGUAGE
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(4).FORMAT
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_GIST(4).CHARSET
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(1).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(1).RESTAB
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_HIGHLIGHT(1).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(1).LANGUAGE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(1).FORMAT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(1).CHARSET
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(2).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(2).RESTAB
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_HIGHLIGHT(2).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(2).LANGUAGE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(2).FORMAT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(2).CHARSET
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(3).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(3).DOCUMENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(3).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(3).RESTAB
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_HIGHLIGHT(3).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(3).LANGUAGE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(3).FORMAT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(3).CHARSET
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(4).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(4).DOCUMENT
+  ordinalPosition: 2
+  dataType: BFILE
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(4).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(4).RESTAB
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_HIGHLIGHT(4).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(4).LANGUAGE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(4).FORMAT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT(4).CHARSET
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(1).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(1).RESTAB
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(1).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(1).LANGUAGE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(1).FORMAT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(1).CHARSET
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(2).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(2).RESTAB
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(2).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(2).LANGUAGE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(2).FORMAT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(2).CHARSET
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(3).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(3).DOCUMENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(3).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(3).RESTAB
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(3).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(3).LANGUAGE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(3).FORMAT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(3).CHARSET
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(4).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(4).DOCUMENT
+  ordinalPosition: 2
+  dataType: BFILE
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(4).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(4).RESTAB
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(4).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(4).LANGUAGE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(4).FORMAT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_HIGHLIGHT_CLOB_QUERY(4).CHARSET
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_LANGUAGES(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_LANGUAGES(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_LANGUAGES(1).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_LANGUAGES(1).FORMAT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_LANGUAGES(1).CHARSET
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_LANGUAGES(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_LANGUAGES(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_LANGUAGES(2).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_LANGUAGES(2).FORMAT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_LANGUAGES(2).CHARSET
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(1).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(1).RESTAB
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_MARKUP(1).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_MARKUP(1).TAGSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(1).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(1).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(1).PREVTAG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(1).NEXTTAG
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(1).LANGUAGE
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(1).FORMAT
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(1).CHARSET
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_MARKUP(2).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(2).RESTAB
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_MARKUP(2).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_MARKUP(2).TAGSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(2).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(2).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(2).PREVTAG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(2).NEXTTAG
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(2).LANGUAGE
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(2).FORMAT
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(2).CHARSET
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(3).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(3).DOCUMENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: POLICY_MARKUP(3).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(3).RESTAB
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_MARKUP(3).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_MARKUP(3).TAGSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(3).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(3).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(3).PREVTAG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(3).NEXTTAG
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(3).LANGUAGE
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(3).FORMAT
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(3).CHARSET
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(4).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(4).DOCUMENT
+  ordinalPosition: 2
+  dataType: BFILE
+  parameterMode: IN
+- name: POLICY_MARKUP(4).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(4).RESTAB
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_MARKUP(4).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_MARKUP(4).TAGSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(4).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(4).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(4).PREVTAG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(4).NEXTTAG
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(4).LANGUAGE
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(4).FORMAT
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP(4).CHARSET
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(1).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(1).RESTAB
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_MARKUP_CLOB_QUERY(1).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(1).TAGSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(1).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(1).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(1).PREVTAG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(1).NEXTTAG
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(1).LANGUAGE
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(1).FORMAT
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(1).CHARSET
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(2).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(2).RESTAB
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_MARKUP_CLOB_QUERY(2).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(2).TAGSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(2).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(2).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(2).PREVTAG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(2).NEXTTAG
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(2).LANGUAGE
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(2).FORMAT
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(2).CHARSET
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(3).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(3).DOCUMENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(3).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(3).RESTAB
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_MARKUP_CLOB_QUERY(3).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(3).TAGSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(3).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(3).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(3).PREVTAG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(3).NEXTTAG
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(3).LANGUAGE
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(3).FORMAT
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(3).CHARSET
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(4).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(4).DOCUMENT
+  ordinalPosition: 2
+  dataType: BFILE
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(4).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(4).RESTAB
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: POLICY_MARKUP_CLOB_QUERY(4).PLAINTEXT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(4).TAGSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(4).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(4).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(4).PREVTAG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(4).NEXTTAG
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(4).LANGUAGE
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(4).FORMAT
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_MARKUP_CLOB_QUERY(4).CHARSET
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_NOUN_PHRASES(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_NOUN_PHRASES(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_NOUN_PHRASES(1).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_NOUN_PHRASES(1).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_NOUN_PHRASES(1).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_NOUN_PHRASES(1).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_NOUN_PHRASES(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_NOUN_PHRASES(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_NOUN_PHRASES(2).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_NOUN_PHRASES(2).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_NOUN_PHRASES(2).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_NOUN_PHRASES(2).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_PART_OF_SPEECH(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_PART_OF_SPEECH(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_PART_OF_SPEECH(1).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_PART_OF_SPEECH(1).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_PART_OF_SPEECH(1).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_PART_OF_SPEECH(1).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_PART_OF_SPEECH(1).DISAMBIGUATE_TAGS
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_PART_OF_SPEECH(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_PART_OF_SPEECH(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_PART_OF_SPEECH(2).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_PART_OF_SPEECH(2).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_PART_OF_SPEECH(2).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_PART_OF_SPEECH(2).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_PART_OF_SPEECH(2).DISAMBIGUATE_TAGS
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_SNIPPET(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(1).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(1).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(1).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(1).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(1).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(1).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(1).ENTITY_TRANSLATION
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_SNIPPET(1).SEPARATOR
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(1).RADIUS
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET(1).MAX_LENGTH
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_SNIPPET(2).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(2).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(2).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(2).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(2).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(2).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(2).ENTITY_TRANSLATION
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_SNIPPET(2).SEPARATOR
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(2).RADIUS
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET(2).MAX_LENGTH
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET(3).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(3).DOCUMENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: POLICY_SNIPPET(3).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(3).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(3).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(3).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(3).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(3).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(3).ENTITY_TRANSLATION
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_SNIPPET(3).SEPARATOR
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(3).RADIUS
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET(3).MAX_LENGTH
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET(4).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(4).DOCUMENT
+  ordinalPosition: 2
+  dataType: BFILE
+  parameterMode: IN
+- name: POLICY_SNIPPET(4).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(4).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(4).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(4).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(4).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(4).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(4).ENTITY_TRANSLATION
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_SNIPPET(4).SEPARATOR
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET(4).RADIUS
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET(4).MAX_LENGTH
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(1).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(1).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(1).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(1).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(1).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(1).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(1).ENTITY_TRANSLATION
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(1).SEPARATOR
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(1).RADIUS
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(1).MAX_LENGTH
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(2).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(2).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(2).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(2).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(2).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(2).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(2).ENTITY_TRANSLATION
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(2).SEPARATOR
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(2).RADIUS
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(2).MAX_LENGTH
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(3).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(3).DOCUMENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(3).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(3).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(3).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(3).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(3).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(3).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(3).ENTITY_TRANSLATION
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(3).SEPARATOR
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(3).RADIUS
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(3).MAX_LENGTH
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(4).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(4).DOCUMENT
+  ordinalPosition: 2
+  dataType: BFILE
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(4).TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(4).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(4).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(4).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(4).STARTTAG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(4).ENDTAG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(4).ENTITY_TRANSLATION
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(4).SEPARATOR
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(4).RADIUS
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_SNIPPET_CLOB_QUERY(4).MAX_LENGTH
+  ordinalPosition: 12
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_STEMS(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_STEMS(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_STEMS(1).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_STEMS(1).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_STEMS(1).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_STEMS(1).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_STEMS(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_STEMS(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_STEMS(2).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_STEMS(2).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_STEMS(2).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_STEMS(2).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(1).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_THEMES(1).FULL_THEMES
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_THEMES(1).NUM_THEMES
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_THEMES(1).LANGUAGE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(1).FORMAT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(1).CHARSET
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_THEMES(2).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_THEMES(2).FULL_THEMES
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_THEMES(2).NUM_THEMES
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_THEMES(2).LANGUAGE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(2).FORMAT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(2).CHARSET
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(3).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(3).DOCUMENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: POLICY_THEMES(3).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_THEMES(3).FULL_THEMES
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_THEMES(3).NUM_THEMES
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_THEMES(3).LANGUAGE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(3).FORMAT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(3).CHARSET
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(4).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(4).DOCUMENT
+  ordinalPosition: 2
+  dataType: BFILE
+  parameterMode: IN
+- name: POLICY_THEMES(4).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_THEMES(4).FULL_THEMES
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: POLICY_THEMES(4).NUM_THEMES
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: POLICY_THEMES(4).LANGUAGE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(4).FORMAT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_THEMES(4).CHARSET
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(1).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(1).DOCUMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(1).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_TOKENS(1).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(1).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(1).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(2).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(2).DOCUMENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POLICY_TOKENS(2).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_TOKENS(2).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(2).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(2).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(3).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(3).DOCUMENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: POLICY_TOKENS(3).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_TOKENS(3).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(3).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(3).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(4).POLICY_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(4).DOCUMENT
+  ordinalPosition: 2
+  dataType: BFILE
+  parameterMode: IN
+- name: POLICY_TOKENS(4).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: POLICY_TOKENS(4).LANGUAGE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(4).FORMAT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POLICY_TOKENS(4).CHARSET
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_KEY_TYPE.KEY_TYPE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SNIPPET.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SNIPPET.TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SNIPPET.TEXT_QUERY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SNIPPET.STARTTAG
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SNIPPET.ENDTAG
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SNIPPET.ENTITY_TRANSLATION
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SNIPPET.SEPARATOR
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SNIPPET.RADIUS
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: SNIPPET.MAX_LENGTH
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: SNIPPET.USE_SAVED_COPY
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: SNIPPET_CLOB_QUERY.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SNIPPET_CLOB_QUERY.TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SNIPPET_CLOB_QUERY.TEXT_QUERY
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: IN
+- name: SNIPPET_CLOB_QUERY.STARTTAG
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SNIPPET_CLOB_QUERY.ENDTAG
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SNIPPET_CLOB_QUERY.ENTITY_TRANSLATION
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SNIPPET_CLOB_QUERY.SEPARATOR
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SNIPPET_CLOB_QUERY.RADIUS
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: SNIPPET_CLOB_QUERY.MAX_LENGTH
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: SNIPPET_CLOB_QUERY.USE_SAVED_COPY
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: THEMES(1).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: THEMES(1).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: THEMES(1).RESTAB
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: THEMES(1).QUERY_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: THEMES(1).FULL_THEMES
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: THEMES(1).NUM_THEMES
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: THEMES(1).USE_SAVED_COPY
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: THEMES(2).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: THEMES(2).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: THEMES(2).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: THEMES(2).FULL_THEMES
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: THEMES(2).NUM_THEMES
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: THEMES(2).USE_SAVED_COPY
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: TOKENS(1).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TOKENS(1).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TOKENS(1).RESTAB
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TOKENS(1).QUERY_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: TOKENS(1).USE_SAVED_COPY
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: TOKENS(2).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TOKENS(2).TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TOKENS(2).RESTAB
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: TOKENS(2).USE_SAVED_COPY
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: "PACKAGE ctx_doc AUTHID current_user AS -- constants\n-- SAVE_COPY\
+  \ Constants\nSAVE_COPY_FALLBACK constant number: = 0;\n/* Fallback to datastore\
+  \ if document\n\n                                            doesn't exist in $D*/\n\
+  SAVE_COPY_ERROR constant number: = 1;\n/* Only use $D table for document\n\n   \
+  \                                         fetching */\nSAVE_COPY_IGNORE constant\
+  \ number: = 2;\n/* Ignore $D table and always fetch\n\n                        \
+  \                    from datastore */\nTYPE_ROWID constant varchar2(20): = 'ROWID';\n\
+  TYPE_PRIMARY_KEY constant varchar2(20): = 'PRIMARY_KEY';\nUNLIMITED_THEMES constant\
+  \ number: = NULL;\n/* Beehive: delimiter used in stemming */\nSTEM_DELIMITER constant\
+  \ varchar2(2): = '!?';\n-- package variables\npv_ctx_doc_key_type varchar2(500):\
+  \ = null;\n-- type declaration\ntype theme_rec is record (theme varchar2(2000),\
+  \ weight number);\ntype theme_tab is table of theme_rec index by binary_integer;\n\
+  type token_rec is record (\n  token varchar2(64),\n  offset number,\n  length number\n\
+  );\ntype token_tab is table of token_rec index by binary_integer;\ntype highlight_rec\
+  \ is record (offset number, length number);\ntype highlight_tab is table of highlight_rec\
+  \ index by binary_integer;\n/* Beehive: Add record/table needed to return stems\
+  \ */\ntype stem_rec is record (\n  stem varchar2(1000),\n  is_in_lexicon boolean\n\
+  );\ntype stem_tab is table of stem_rec index by binary_integer;\ntype stem_group_rec\
+  \ is record (\n  /* We made the size of word to be larger than the size used for\
+  \ tokens\n  \n     * as this might be a multi-word token\n  \n     */\n  word varchar2(1000),\n\
+  \  stems stem_tab,\n  offset number,\n  length number\n);\ntype stem_group_tab is\
+  \ table of stem_group_rec index by binary_integer;\n/* Beehive: Add record/table\
+  \ needed to return noun phrases */\ntype noun_phrase_rec is record (\n  term varchar2(64),\n\
+  \  pos_tag varchar2(64),\n  /* TBD: Confirm with Inxight and reduce size */\n  offset\
+  \ number,\n  length number,\n  is_phrase_start boolean,\n  is_in_lexicon boolean\n\
+  );\ntype noun_phrase_tab is table of noun_phrase_rec index by binary_integer;\n\
+  /* Beehive: Add record/table needed to return languages */\ntype language_rec is\
+  \ record (\n  language varchar2(64),\n  score number\n);\ntype language_tab is table\
+  \ of language_rec index by binary_integer;\n/* Beehive: Add record/table needed\
+  \ to return parts of speech */\ntype pos_tag_tab is table of varchar2(64) index\
+  \ by binary_integer;\ntype part_of_speech_rec is record (\n  word varchar2(64),\n\
+  \  pos_tags pos_tag_tab,\n  offset number,\n  length number,\n  is_in_lexicon boolean\n\
+  );\ntype part_of_speech_tab is table of part_of_speech_rec index by binary_integer;\n\
+  /*---------------------------- set_key_type -----------------------------*/\n/*\n\
+  \n   NAME\n\n     set_key_type - toggles CTX_DOC_KEY_TYPE\n\n\n\n   DESCRIPTION\n\
+  \n     toggles system parameter CTX_DOC_KEY_TYPE between ROWID and\n\n     PRIMARY_KEY\n\
+  \n\n\n   ARGUMENT\n\n     key_type    -  value of CTX_DOC_KEY_TYPE\n\n*/\nPROCEDURE\
+  \ set_key_type(key_type in varchar2);\nPRAGMA SUPPLEMENTAL_LOG_DATA(set_key_type,\
+  \ AUTO);\n/*---------------------------- get_key_type -----------------------------*/\n\
+  /*\n\n   NAME\n\n     get_key_type - returns CTX_DOC_KEY_TYPE\n\n\n\n*/\nFUNCTION\
+  \ get_key_type return varchar2;\n/*------------------------------- themes --------------------------------*/\n\
+  /*\n\n   NAME\n\n     themes - request the themes for a document\n\n\n\n   DESCRIPTION\n\
+  \n     This procedure will generate the themes for a given document.\n\n     The\
+  \ themes will be written to the theme table specified.\n\n     The theme table must\
+  \ have the following columns:\n\n\n\n       query_id        number         (the\
+  \ query_id)\n\n       theme           varchar2(2000) (the theme)\n\n       weight\
+  \          number         (the theme weight)\n\n\n\n   ARGUMENTS\n\n     index_name\
+  \               - the name of the text index\n\n     textkey                  -\
+  \ the primary key of the document\n\n     restab                   - the name of\
+  \ the theme table\n\n     query_id                 - a query id\n\n     full_themes\
+  \              - should the full themes be displayed?\n\n     num_themes       \
+  \        - maximum number of themes to return\n\n     use_saved_copy           -\
+  \ Can be set to any of these values:\n\n                                SAVE_COPY_FALLBACK\
+  \ / SAVE_COPY_ERROR /\n\n                                SAVE_COPY_IGNORE\n\n*/\n\
+  PROCEDURE themes (\n  index_name in varchar2,\n  textkey in varchar2,\n  restab\
+  \ in varchar2,\n  query_id in number default 0,\n  full_themes in boolean default\
+  \ false,\n  num_themes in number default 50,\n  use_saved_copy in number default\
+  \ ctx_doc.save_copy_fallback\n);\n/*------------------------------- themes --------------------------------*/\n\
+  /*\n\n   NAME\n\n     themes - request the themes for a document\n\n\n\n   DESCRIPTION\n\
+  \n     This version of themes returns the results into a PL/SQL table\n\n     instead\
+  \ of a result table\n\n\n\n   NOTES\n\n     Existing contents of restab will be\
+  \ destroyed\n\n*/\nPROCEDURE themes (\n  index_name in varchar2,\n  textkey in varchar2,\n\
+  \  restab in out nocopy theme_tab,\n  full_themes in boolean default false,\n  num_themes\
+  \ in number default 50,\n  use_saved_copy in number default ctx_doc.save_copy_fallback\n\
+  );\n/*------------------------------ policy_themes ------------------------------*/\n\
+  /*\n\n   NAME\n\n     policy_themes - request the themes for a document on demand\n\
+  \n\n\n   DESCRIPTION\n\n     This version of themes accepts a policy name and a\
+  \ single VARCHAR2\n\n     document.  Returns the results into a PL/SQL table.\n\n\
+  \n\n   NOTES\n\n     Existing contents of restab will be destroyed\n\n*/\nPROCEDURE\
+  \ policy_themes (\n  policy_name in varchar2,\n  document in varchar2,\n  restab\
+  \ in out nocopy theme_tab,\n  full_themes in boolean default false,\n  num_themes\
+  \ in number default 50,\n  language in varchar2 default NULL,\n  format in varchar2\
+  \ default NULL,\n  charset in varchar2 default NULL\n);\n/*------------------------------\
+  \ policy_themes ------------------------------*/\n/*\n\n   NAME\n\n     policy_themes\
+  \ - request the themes for a document on demand\n\n\n\n   DESCRIPTION\n\n     This\
+  \ version of themes accepts a policy name and a single CLOB\n\n     document. Returns\
+  \ the results into a PL/SQL table.\n\n\n\n   NOTES\n\n     Existing contents of\
+  \ restab will be destroyed\n\n*/\nPROCEDURE policy_themes (\n  policy_name in varchar2,\n\
+  \  document in clob,\n  restab in out nocopy theme_tab,\n  full_themes in boolean\
+  \ default false,\n  num_themes in number default 50,\n  language in varchar2 default\
+  \ NULL,\n  format in varchar2 default NULL,\n  charset in varchar2 default NULL\n\
+  );\n/*------------------------------ policy_themes ------------------------------*/\n\
+  /*\n\n   NAME\n\n     policy_themes - request the themes for a document on demand\n\
+  \n\n\n   DESCRIPTION\n\n     This version of themes accepts a policy name and a\
+  \ single BLOB\n\n     document.  Returns the results into a PL/SQL table.\n\n\n\n\
+  \   NOTES\n\n     Existing contents of restab will be destroyed\n\n*/\nPROCEDURE\
+  \ policy_themes (\n  policy_name in varchar2,\n  document in blob,\n  restab in\
+  \ out nocopy theme_tab,\n  full_themes in boolean default false,\n  num_themes in\
+  \ number default 50,\n  language in varchar2 default NULL,\n  format in varchar2\
+  \ default NULL,\n  charset in varchar2 default NULL\n);\n/*------------------------------\
+  \ policy_themes ------------------------------*/\n/*\n\n   NAME\n\n     policy_themes\
+  \ - request the themes for a document on demand\n\n\n\n   DESCRIPTION\n\n     This\
+  \ version of themes accepts a policy name and a single BFILE\n\n     document. Returns\
+  \ the results into a PL/SQL table.\n\n\n\n   NOTES\n\n     Existing contents of\
+  \ restab will be destroyed\n\n*/\nPROCEDURE policy_themes (\n  policy_name in varchar2,\n\
+  \  document in bfile,\n  restab in out nocopy theme_tab,\n  full_themes in boolean\
+  \ default false,\n  num_themes in number default 50,\n  language in varchar2 default\
+  \ NULL,\n  format in varchar2 default NULL,\n  charset in varchar2 default NULL\n\
+  );\n/*------------------------------- tokens --------------------------------*/\n\
+  /*\n\n   NAME\n\n     tokens - request the text tokens for a document\n\n\n\n  \
+  \ DESCRIPTION\n\n     This procedure will generate the tokens for a given document.\n\
+  \n     The tokens will be written to the token table specified.\n\n     The token\
+  \ table must have the following columns:\n\n\n\n       query_id        number  \
+  \       (the query_id)\n\n       token           varchar2(64)   (the token)\n\n\
+  \       offset          number         (the token's character offset)\n\n      \
+  \ length          number         (the token's length)\n\n\n\n   ARGUMENTS\n\n  \
+  \   index_name               - the name of the text index\n\n     textkey      \
+  \            - the primary key of the document\n\n     restab                  \
+  \ - the name of the theme table\n\n     query_id                 - a query id\n\n\
+  \     use_saved_copy           - Can be set to any of these values:\n\n        \
+  \                        SAVE_COPY_FALLBACK / SAVE_COPY_ERROR /\n\n            \
+  \                    SAVE_COPY_IGNORE\n\n*/\nPROCEDURE tokens (\n  index_name in\
+  \ varchar2,\n  textkey in varchar2,\n  restab in varchar2,\n  query_id in number\
+  \ default 0,\n  use_saved_copy in number default ctx_doc.save_copy_fallback\n);\n\
+  /*------------------------------- tokens --------------------------------*/\n/*\n\
+  \n   NAME\n\n     tokens - request the text tokens for a document\n\n\n\n   DESCRIPTION\n\
+  \n     This version of tokens returns the results into a PL/SQL table\n\n     instead\
+  \ of a result table\n\n\n\n   NOTES\n\n     Existing contents of restab will be\
+  \ destroyed\n\n*/\nPROCEDURE tokens (\n  index_name in varchar2,\n  textkey in varchar2,\n\
+  \  restab in out nocopy token_tab,\n  use_saved_copy in number default ctx_doc.save_copy_fallback\n\
+  );\n/*------------------------------ policy_tokens ------------------------------*/\n\
+  /*\n\n   NAME\n\n     policy_tokens - request the text tokens for a document on\
+  \ demand\n\n\n\n   DESCRIPTION\n\n     This version of tokens accepts a policy name\
+  \ and a single VARCHAR2\n\n     document.  Returns the results into a PL/SQL table.\n\
+  \n\n\n   NOTES\n\n     Existing contents of restab will be destroyed\n\n*/\nPROCEDURE\
+  \ policy_tokens (\n  policy_name in varchar2,\n  document in varchar2,\n  restab\
+  \ in out nocopy token_tab,\n  language in varchar2 default NULL,\n  format in varchar2\
+  \ default NULL,\n  charset in varchar2 default NULL\n);\n/*------------------------------\
+  \ policy_tokens -------------------------------*/\n/*\n\n   NAME\n\n     policy_tokens\
+  \ - request the text tokens for a document on demand\n\n\n\n   DESCRIPTION\n\n \
+  \    This version of tokens accepts a policy name and a single CLOB\n\n     document.\
+  \  Returns the results into a PL/SQL table\n\n\n\n   NOTES\n\n     Existing contents\
+  \ of restab will be destroyed\n\n*/\nPROCEDURE policy_tokens (\n  policy_name in\
+  \ varchar2,\n  document in clob,\n  restab in out nocopy token_tab,\n  language\
+  \ in varchar2 default NULL,\n  format in varchar2 default NULL,\n  charset in varchar2\
+  \ default NULL\n);\n/*------------------------------ policy_tokens ------------------------------*/\n\
+  /*\n\n   NAME\n\n     policy_tokens - request the text tokens for a document on\
+  \ demand\n\n\n\n   DESCRIPTION\n\n     This version of tokens accepts a policy name\
+  \ and a single BLOB\n\n     document.  Returns the results into a PL/SQL table\n\
+  \n\n\n   NOTES\n\n     Existing contents of restab will be destroyed\n\n*/\nPROCEDURE\
+  \ policy_tokens (\n  policy_name in varchar2,\n  document in blob,\n  restab in\
+  \ out nocopy token_tab,\n  language in varchar2 default NULL,\n  format in varchar2\
+  \ default NULL,\n  charset in varchar2 default NULL\n);\n/*------------------------------\
+  \ policy_tokens -----------------------------*/\n/*\n\n   NAME\n\n     policy_tokens\
+  \ - request the text tokens for a document on demand\n\n\n\n   DESCRIPTION\n\n \
+  \    This version of tokens accepts a policy name and a single BFILE\n\n     document.\
+  \  Returns the results into a PL/SQL table\n\n\n\n   NOTES\n\n     Existing contents\
+  \ of restab will be destroyed\n\n*/\nPROCEDURE policy_tokens (\n  policy_name in\
+  \ varchar2,\n  document in bfile,\n  restab in out nocopy token_tab,\n  language\
+  \ in varchar2 default NULL,\n  format in varchar2 default NULL,\n  charset in varchar2\
+  \ default NULL\n);\n/* Beehive */\n/*----------------------- policy_stems (inmem)\
+  \  ----------------------------*/\n/*\n\n   NAME\n\n     policy_stems - request\
+  \ the text stems for a document on demand\n\n\n\n   DESCRIPTION\n\n     This version\
+  \ of stems accepts a policy name and a single varchar2\n\n     document.  Returns\
+  \ the results into a PL/SQL table.\n\n     The returned values in the PL/SQL table\
+  \ will have 1 cell for each\n\n     word (can be a multi-word as determined by the\
+  \ Lexer) in the input\n\n     string document. For each word, all the stems are\
+  \ returned. For each\n\n     stem, the offset and length (in the input string) of\
+  \ the word for\n\n     which this is a stem is returned. Additioanlly, for each\
+  \ stem, a boolean\n\n     value is returned that indicates if the stem was found\
+  \ in the lexicon.\n\n\n\n   NOTES\n\n     Existing contents of restab will be destroyed\n\
+  \n*/\nPROCEDURE policy_stems (\n  policy_name in varchar2,\n  document in varchar2,\n\
+  \  restab in out nocopy stem_group_tab,\n  language in varchar2 default NULL,\n\
+  \  format in varchar2 default NULL,\n  charset in varchar2 default NULL\n);\nPROCEDURE\
+  \ policy_stems (\n  policy_name in varchar2,\n  document in clob,\n  restab in out\
+  \ nocopy stem_group_tab,\n  language in varchar2 default NULL,\n  format in varchar2\
+  \ default NULL,\n  charset in varchar2 default NULL\n);\n/*-----------------------\
+  \ policy_noun_phrases (inmem)  --------------------*/\n/*\n\n   NAME\n\n     policy_noun_phrases\
+  \ - request the noun phrases for a document\n\n\n\n   DESCRIPTION\n\n     This version\
+  \ of stems accepts a policy name and a single varchar2\n\n     document.  Returns\
+  \ the results into a PL/SQL table.\n\n     The returned values in the PL/SQL table\
+  \ will have 1 cell for each\n\n     noun phrase extracted from the input document.\
+  \ For each noun phrase,\n\n     the part of speech tags are also returned.\n\n\n\
+  \n   NOTES\n\n     Existing contents of restab will be destroyed\n\n*/\nPROCEDURE\
+  \ policy_noun_phrases (\n  policy_name in varchar2,\n  document in varchar2,\n \
+  \ restab in out nocopy noun_phrase_tab,\n  language in varchar2 default NULL,\n\
+  \  format in varchar2 default NULL,\n  charset in varchar2 default NULL\n);\nPROCEDURE\
+  \ policy_noun_phrases (\n  policy_name in varchar2,\n  document in clob,\n  restab\
+  \ in out nocopy noun_phrase_tab,\n  language in varchar2 default NULL,\n  format\
+  \ in varchar2 default NULL,\n  charset in varchar2 default NULL\n);\n/*-----------------------\
+  \ policy_languages (inmem)  ----------------------------*/\n/*\n\n   NAME\n\n  \
+  \   policy_languages - request the languages for a document\n\n\n\n   DESCRIPTION\n\
+  \n     This version of languages accepts a policy name and a single varchar2\n\n\
+  \     document.  Returns the results into a PL/SQL table.\n\n     The returned values\
+  \ in the PL/SQL table will have 1 cell for each\n\n     detected language. It will\
+  \ also have a score which indicates the\n\n     stength of the detected language\
+  \ in this document - the score ranges\n\n     from 0 to 100 with the highest score\
+  \ referring to the most likely\n\n     language for the document.\n\n\n\n\n\n  \
+  \ NOTES\n\n     Existing contents of restab will be destroyed\n\n*/\nPROCEDURE policy_languages\
+  \ (\n  policy_name in varchar2,\n  document in varchar2,\n  restab in out nocopy\
+  \ language_tab,\n  format in varchar2 default NULL,\n  charset in varchar2 default\
+  \ NULL\n);\nPROCEDURE policy_languages (\n  policy_name in varchar2,\n  document\
+  \ in clob,\n  restab in out nocopy language_tab,\n  format in varchar2 default NULL,\n\
+  \  charset in varchar2 default NULL\n);\n/*----------------------- policy_part_of_speech\
+  \ (inmem) --------------------------*/\n/*\n\n   NAME\n\n     policy_part_of_speech\
+  \ - request the part_of_speech tags for a document\n\n\n\n   DESCRIPTION\n\n   \
+  \  This version of part_of_speech accepts a policy name and a single varchar2\n\n\
+  \     document.  Returns the results into a PL/SQL table.\n\n     The returned values\
+  \ in the PL/SQL table will have 1 cell for each\n\n     word in the input string\
+  \ document. For each word, the part_of_speech tags\n\n     are returned.\n\n\n\n\
+  \     If the input parameter disambiguate_tags is set to true, only\n\n     1 part_of_speech\
+  \ will be returned for each word - this tag is determined\n\n     by the Lexer by\
+  \ automatically performing disambiguation to identify the most\n\n     likely tag,\
+  \ given the surrounding context, for a token with more than one\n\n     possible\
+  \ tag.\n\n     If the input parameter disambiguate_tags is set to false, all possible\
+  \ tags\n\n     will be returned for each word.\n\n\n\n     Additionally, for each\
+  \ word, the offset and length (in the input string) of\n\n     the word for and\
+  \  a boolean value indicating if the word was found in the\n\n     lexicon are also\
+  \ returned.\n\n\n\n\n\n   NOTES\n\n     Existing contents of restab will be destroyed\n\
+  \n*/\nPROCEDURE policy_part_of_speech (\n  policy_name in varchar2,\n  document\
+  \ in varchar2,\n  restab in out nocopy part_of_speech_tab,\n  language in varchar2\
+  \ default NULL,\n  format in varchar2 default NULL,\n  charset in varchar2 default\
+  \ NULL,\n  disambiguate_tags in boolean default true\n);\nPROCEDURE policy_part_of_speech\
+  \ (\n  policy_name in varchar2,\n  document in clob,\n  restab in out nocopy part_of_speech_tab,\n\
+  \  language in varchar2 default NULL,\n  format in varchar2 default NULL,\n  charset\
+  \ in varchar2 default NULL,\n  disambiguate_tags in boolean default true\n);\n/*-------------------------------\
+  \ gist ----------------------------------*/\n/*\n\n   NAME\n\n     gist - request\
+  \ the gist for a document\n\n\n\n   DESCRIPTION\n\n\n\n     This procedure will\
+  \ generate gist(s) of a given document.\n\n     The gist(s) will be written to the\
+  \ gist table specified.\n\n     The gist table must have the following columns:\n\
+  \n\n\n       query_id   number       (the query id)\n\n       pov        varchar2(80)\
+  \ (gist point-of-view)\n\n       gist       clob         (gist)\n\n\n\n   ARGUMENTS\n\
+  \n     index_name               - the name of the text index\n\n     textkey   \
+  \               - the primary key of the document\n\n     restab               \
+  \    - the name of the gist table\n\n     query_id                 - the query id\n\
+  \n     glevel                   - P or S\n\n     pov                      - point-of-view\
+  \ limit\n\n     numparagraphs            - total number of paragraphs in gist(>=0)\n\
+  \n     maxpercent               - maximum percent of document in gist(>=0,<=100)\n\
+  \n     num_themes               - maximum number of themes to return\n\n     use_saved_copy\
+  \           - Can be set to any of these values:\n\n                           \
+  \     SAVE_COPY_FALLBACK / SAVE_COPY_ERROR /\n\n                               \
+  \ SAVE_COPY_IGNORE\n\n*/\nPROCEDURE gist (\n  index_name in varchar2,\n  textkey\
+  \ in varchar2,\n  restab in varchar2,\n  query_id in number default 0,\n  glevel\
+  \ in varchar2 default 'P',\n  pov in varchar2 default null,\n  numParagraphs in\
+  \ number default null,\n  maxPercent in number default null,\n  num_themes in number\
+  \ default 50,\n  use_saved_copy in number default ctx_doc.save_copy_fallback\n);\n\
+  /*------------------------------- gist ----------------------------------*/\n/*\n\
+  \n   NAME\n\n     gist - request the gist for a document\n\n\n\n   DESCRIPTION\n\
+  \n     This version of gist returns the result into a CLOB locator\n\n     instead\
+  \ of a result table.\n\n\n\n   NOTES\n\n     Unlike result table gist, this version\
+  \ of gist returns only one\n\n     gist.  If pov is not supplied, the GENERIC gist\
+  \ is returned.\n\n\n\n     If result is NULL on entry, a temporary lob is allocated\
+  \ and returned.\n\n     it is up to the calling procedure to deallocate this lob.\n\
+  \n\n\n     Any existing contents of the lob locator passed in are cleared.\n\n*/\n\
+  PROCEDURE gist (\n  index_name in varchar2,\n  textkey in varchar2,\n  restab in\
+  \ out nocopy clob,\n  glevel in varchar2 default 'P',\n  pov in varchar2 default\
+  \ 'GENERIC',\n  numParagraphs in number default null,\n  maxPercent in number default\
+  \ null,\n  num_themes in number default 50,\n  use_saved_copy in number default\
+  \ ctx_doc.save_copy_fallback\n);\n/*------------------------------ policy_gist --------------------------------*/\n\
+  /*\n\n   NAME\n\n     policy_gist - request the gist for a document on demand\n\n\
+  \n\n   DESCRIPTION\n\n     This version of tokens accepts a policy name and a single\
+  \ VARCHAR2\n\n     document. Returns the result into a CLOB locator.\n\n\n\n   NOTES\n\
+  \n     Unlike result table gist, this version of gist returns only one\n\n     gist.\
+  \  If pov is not supplied, the GENERIC gist is returned.\n\n\n\n     If result is\
+  \ NULL on entry, a temporary lob is allocated and returned.\n\n     it is up to\
+  \ the calling procedure to deallocate this lob.\n\n\n\n     Any existing contents\
+  \ of the lob locator passed in are cleared.\n\n*/\nPROCEDURE policy_gist (\n  policy_name\
+  \ in varchar2,\n  document in varchar2,\n  restab in out nocopy clob,\n  glevel\
+  \ in varchar2 default 'P',\n  pov in varchar2 default 'GENERIC',\n  numParagraphs\
+  \ in number default null,\n  maxPercent in number default null,\n  num_themes in\
+  \ number default 50,\n  language in varchar2 default NULL,\n  format in varchar2\
+  \ default NULL,\n  charset in varchar2 default NULL\n);\n/*------------------------------\
+  \ policy_gist --------------------------------*/\n/*\n\n   NAME\n\n     policy_gist\
+  \ - request the gist for a document on demand\n\n\n\n   DESCRIPTION\n\n     This\
+  \ version of tokens accepts a policy name and a single CLOB\n\n     document. Returns\
+  \ the result into a CLOB locator.\n\n\n\n   NOTES\n\n     Unlike result table gist,\
+  \ this version of gist returns only one\n\n     gist.  If pov is not supplied, the\
+  \ GENERIC gist is returned.\n\n\n\n     If result is NULL on entry, a temporary\
+  \ lob is allocated and returned.\n\n     it is up to the calling procedure to deallocate\
+  \ this lob.\n\n\n\n     Any existing contents of the lob locator passed in are cleared.\n\
+  \n*/\nPROCEDURE policy_gist (\n  policy_name in varchar2,\n  document in clob,\n\
+  \  restab in out nocopy clob,\n  glevel in varchar2 default 'P',\n  pov in varchar2\
+  \ default 'GENERIC',\n  numParagraphs in number default null,\n  maxPercent in number\
+  \ default null,\n  num_themes in number default 50,\n  language in varchar2 default\
+  \ NULL,\n  format in varchar2 default NULL,\n  charset in varchar2 default NULL\n\
+  );\n/*------------------------------ policy_gist --------------------------------*/\n\
+  /*\n\n   NAME\n\n     policy_gist - request the gist for a document on demand\n\n\
+  \n\n   DESCRIPTION\n\n     This version of tokens accepts a policy name and a single\
+  \ BLOB\n\n     document. Returns the result into a CLOB locator.\n\n\n\n   NOTES\n\
+  \n     Unlike result table gist, this version of gist returns only one\n\n     gist.\
+  \  If pov is not supplied, the GENERIC gist is returned.\n\n\n\n     If result is\
+  \ NULL on entry, a temporary lob is allocated and returned.\n\n     it is up to\
+  \ the calling procedure to deallocate this lob.\n\n\n\n     Any existing contents\
+  \ of the lob locator passed in are cleared.\n\n*/\nPROCEDURE policy_gist (\n  policy_name\
+  \ in varchar2,\n  document in blob,\n  restab in out nocopy clob,\n  glevel in varchar2\
+  \ default 'P',\n  pov in varchar2 default 'GENERIC',\n  numParagraphs in number\
+  \ default null,\n  maxPercent in number default null,\n  num_themes in number default\
+  \ 50,\n  language in varchar2 default NULL,\n  format in varchar2 default NULL,\n\
+  \  charset in varchar2 default NULL\n);\n/*------------------------------ policy_gist\
+  \ --------------------------------*/\n/*\n\n   NAME\n\n     policy_gist - request\
+  \ the gist for a document on demand\n\n\n\n   DESCRIPTION\n\n     This version of\
+  \ tokens accepts a policy name and a single BFILE\n\n     document. Returns the\
+  \ result into a CLOB locator.\n\n\n\n   NOTES\n\n     Unlike result table gist,\
+  \ this version of gist returns only one\n\n     gist.  If pov is not supplied, the\
+  \ GENERIC gist is returned.\n\n\n\n     If result is NULL on entry, a temporary\
+  \ lob is allocated and returned.\n\n     it is up to the calling procedure to deallocate\
+  \ this lob.\n\n\n\n     Any existing contents of the lob locator passed in are cleared.\n\
+  \n*/\nPROCEDURE policy_gist (\n  policy_name in varchar2,\n  document in bfile,\n\
+  \  restab in out nocopy clob,\n  glevel in varchar2 default 'P',\n  pov in varchar2\
+  \ default 'GENERIC',\n  numParagraphs in number default null,\n  maxPercent in number\
+  \ default null,\n  num_themes in number default 50,\n  language in varchar2 default\
+  \ NULL,\n  format in varchar2 default NULL,\n  charset in varchar2 default NULL\n\
+  );\n/*------------------------------- filter -------------------------------*/\n\
+  /*\n\n  NAME\n\n    filter - return filtered text\n\n\n\n  DESCRIPTION\n\n    Filter\
+  \ takes a document reference and returns a plaintext version\n\n    The filter result\
+  \ table should have the following columns:\n\n\n\n      query_id  number    (the\
+  \ query id)\n\n      document  clob      (plaintext document)\n\n\n\n  ARGUMENTS\n\
+  \n    index_name  -- name of the index\n\n    textkey     -- the document for which\
+  \ to produce highlights\n\n    restab      -- the filter result table\n\n    query_id\
+  \    -- the query id\n\n    plaintext   -- set to TRUE if plaintext is desired\n\
+  \n    use_saved_copy -- Can be set to any of these values:\n\n                 \
+  \     SAVE_COPY_FALLBACK / SAVE_COPY_ERROR / SAVE_COPY_IGNORE\n\n*/\nPROCEDURE filter\
+  \ (\n  index_name in varchar2,\n  textkey in varchar2,\n  restab in varchar2,\n\
+  \  query_id in number default 0,\n  plaintext in boolean default FALSE,\n  use_saved_copy\
+  \ in number default ctx_doc.save_copy_fallback\n);\n/*-------------------------------\
+  \ filter -------------------------------*/\n/*\n\n  NAME\n\n    filter - return\
+  \ filtered text\n\n\n\n  DESCRIPTION\n\n    This version of filter returns the result\
+  \ into a CLOB locator\n\n    instead of a result table.\n\n\n\n   NOTES\n\n    \
+  \ If result is NULL on entry, a temporary lob is allocated and returned.\n\n   \
+  \  it is up to the calling procedure to deallocate this lob.\n\n\n\n     Any existing\
+  \ contents of the lob locator passed in are cleared.\n\n*/\nPROCEDURE filter (\n\
+  \  index_name in varchar2,\n  textkey in varchar2,\n  restab in out nocopy clob,\n\
+  \  plaintext in boolean default FALSE,\n  use_saved_copy in number default ctx_doc.save_copy_fallback\n\
+  );\n/*----------------------------- policy_filter ------------------------------*/\n\
+  /*\n\n  NAME\n\n    policy_filter - return filtered text on demand\n\n\n\n  DESCRIPTION\n\
+  \n    This version of filter accepts a policy name and a single VARCHAR2\n\n   \
+  \ document.  Returns the result into a CLOB locator.\n\n\n\n  NOTES\n\n    If result\
+  \ is NULL on entry, a temporary lob is allocated and returned.\n\n    it is up to\
+  \ the calling procedure to deallocate this lob.\n\n\n\n    Any existing contents\
+  \ of the lob locator passed in are cleared.\n\n*/\nPROCEDURE policy_filter (\n \
+  \ policy_name in varchar2,\n  document in clob,\n  restab in out nocopy clob,\n\
+  \  plaintext in boolean default FALSE,\n  language in varchar2 default NULL,\n \
+  \ format in varchar2 default NULL,\n  charset in varchar2 default NULL\n);\n/*-----------------------------\
+  \ policy_filter ------------------------------*/\n/*\n\n  NAME\n\n    policy_filter\
+  \ - return filtered text on demand\n\n\n\n  DESCRIPTION\n\n    This version of filter\
+  \ accepts a policy name and a single CLOB\n\n    document.  Returns the result into\
+  \ a CLOB locator.\n\n\n\n  NOTES\n\n    If result is NULL on entry, a temporary\
+  \ lob is allocated and returned.\n\n    it is up to the calling procedure to deallocate\
+  \ this lob.\n\n\n\n    Any existing contents of the lob locator passed in are cleared.\n\
+  \n*/\nPROCEDURE policy_filter (\n  policy_name in varchar2,\n  document in blob,\n\
+  \  restab in out nocopy clob,\n  plaintext in boolean default FALSE,\n  language\
+  \ in varchar2 default NULL,\n  format in varchar2 default NULL,\n  charset in varchar2\
+  \ default NULL\n);\n/*----------------------------- policy_filter ------------------------------*/\n\
+  /*\n\n  NAME\n\n    policy_filter - return filtered text on demand\n\n\n\n  DESCRIPTION\n\
+  \n    This version of filter accepts a policy name and a single BLOB\n\n    document.\
+  \  Returns the result into a CLOB locator.\n\n\n\n  NOTES\n\n    If result is NULL\
+  \ on entry, a temporary lob is allocated and returned.\n\n    it is up to the calling\
+  \ procedure to deallocate this lob.\n\n\n\n    Any existing contents of the lob\
+  \ locator passed in are cleared.\n\n*/\nPROCEDURE policy_filter (\n  policy_name\
+  \ in varchar2,\n  document in bfile,\n  restab in out nocopy clob,\n  plaintext\
+  \ in boolean default FALSE,\n  language in varchar2 default NULL,\n  format in varchar2\
+  \ default NULL,\n  charset in varchar2 default NULL\n);\n/*-----------------------------\
+  \ policy_filter ------------------------------*/\n/*\n\n  NAME\n\n    policy_filter\
+  \ - return filtered text on demand\n\n\n\n  DESCRIPTION\n\n    This version of filter\
+  \ accepts a policy name and a single BFILE\n\n    document. Returns the result into\
+  \ a CLOB locator.\n\n\n\n  NOTES\n\n    If result is NULL on entry, a temporary\
+  \ lob is allocated and returned.\n\n    it is up to the calling procedure to deallocate\
+  \ this lob.\n\n\n\n    Any existing contents of the lob locator passed in are cleared.\n\
+  \n*/\nPROCEDURE policy_filter (\n  policy_name in varchar2,\n  document in varchar2,\n\
+  \  restab in out nocopy clob,\n  plaintext in boolean default FALSE,\n  language\
+  \ in varchar2 default NULL,\n  format in varchar2 default NULL,\n  charset in varchar2\
+  \ default NULL\n);\n/*------------------------------- highlight ----------------------------*/\n\
+  /*\n\n  NAME\n\n    highlight - return highlight information\n\n\n\n  DESCRIPTION\n\
+  \n    Highlight takes a query and a document, and returns highlight information\n\
+  \n    The result table should have the following columns:\n\n\n\n      query_id\
+  \  number     (the query id)\n\n      offset    number     (character offset to\
+  \ highlight start)\n\n      length    number     (character length of highlight)\n\
+  \n\n\n  ARGUMENTS\n\n    index_name  -- name of the index\n\n    textkey     --\
+  \ the document for which to produce highlights\n\n    text_query  -- the query\n\
+  \n    restab      -- the highlight result table\n\n    query_id    -- a query id\n\
+  \n    plaintext   -- set to TRUE if plaintext offsets are desired\n\n    use_saved_copy\
+  \ -- Can be set to any of these values:\n\n                      SAVE_COPY_FALLBACK\
+  \ / SAVE_COPY_ERROR / SAVE_COPY_IGNORE\n\n*/\nPROCEDURE highlight (\n  index_name\
+  \ in varchar2,\n  textkey in varchar2,\n  text_query in varchar2,\n  restab in varchar2,\n\
+  \  query_id in number default 0,\n  plaintext in boolean default FALSE,\n  use_saved_copy\
+  \ in number default ctx_doc.save_copy_fallback\n);\nPROCEDURE highlight_clob_query\
+  \ (\n  index_name in varchar2,\n  textkey in varchar2,\n  text_query in clob,\n\
+  \  restab in varchar2,\n  query_id in number default 0,\n  plaintext in boolean\
+  \ default FALSE,\n  use_saved_copy in number default ctx_doc.save_copy_fallback\n\
+  );\n/*------------------------------- highlight ----------------------------*/\n\
+  /*\n\n  NAME\n\n    highlight - return highlight information\n\n\n\n  DESCRIPTION\n\
+  \n    This version of filter returns the results into a PL/SQL table\n\n    instead\
+  \ of a result table.\n\n\n\n  NOTES\n\n     Existing contents of the table are destroyed\n\
+  \n*/\nPROCEDURE highlight (\n  index_name in varchar2,\n  textkey in varchar2,\n\
+  \  text_query in varchar2,\n  restab in out nocopy highlight_tab,\n  plaintext in\
+  \ boolean default FALSE,\n  use_saved_copy in number default ctx_doc.save_copy_fallback\n\
+  );\nPROCEDURE highlight_clob_query (\n  index_name in varchar2,\n  textkey in varchar2,\n\
+  \  text_query in clob,\n  restab in out nocopy highlight_tab,\n  plaintext in boolean\
+  \ default FALSE,\n  use_saved_copy in number default ctx_doc.save_copy_fallback\n\
+  );\n/*------------------------------ policy_highlight --------------------------*/\n\
+  /*\n\n  NAME\n\n    policy_highlight - return highlight information\n\n\n\n  DESCRIPTION\n\
+  \n    This version of highlight accepts a policy name and a single VARCHAR2\n\n\
+  \    document.  Returns the restuls into a PL/SQL table.\n\n\n\n  NOTES\n\n    Existing\
+  \ contents of the table are destroyed\n\n\n\n*/\nPROCEDURE policy_highlight (\n\
+  \  policy_name in varchar2,\n  document in varchar2,\n  text_query in varchar2,\n\
+  \  restab in out nocopy highlight_tab,\n  plaintext in boolean default FALSE,\n\
+  \  language in varchar2 default NULL,\n  format in varchar2 default NULL,\n  charset\
+  \ in varchar2 default NULL\n);\nPROCEDURE policy_highlight_clob_query (\n  policy_name\
+  \ in varchar2,\n  document in varchar2,\n  text_query in clob,\n  restab in out\
+  \ nocopy highlight_tab,\n  plaintext in boolean default FALSE,\n  language in varchar2\
+  \ default NULL,\n  format in varchar2 default NULL,\n  charset in varchar2 default\
+  \ NULL\n);\n/*------------------------------ policy_highlight --------------------------*/\n\
+  /*\n\n  NAME\n\n    policy_highlight - return highlight information\n\n\n\n  DESCRIPTION\n\
+  \n    This version of highlight accepts a policy name and a single CLOB\n\n    document.\
+  \  Returns the results into a PL/SQL table.\n\n\n\n  NOTES\n\n    Existing contents\
+  \ of the table are destroyed\n\n*/\nPROCEDURE policy_highlight (\n  policy_name\
+  \ in varchar2,\n  document in clob,\n  text_query in varchar2,\n  restab in out\
+  \ nocopy highlight_tab,\n  plaintext in boolean default FALSE,\n  language in varchar2\
+  \ default NULL,\n  format in varchar2 default NULL,\n  charset in varchar2 default\
+  \ NULL\n);\nPROCEDURE policy_highlight_clob_query (\n  policy_name in varchar2,\n\
+  \  document in clob,\n  text_query in clob,\n  restab in out nocopy highlight_tab,\n\
+  \  plaintext in boolean default FALSE,\n  language in varchar2 default NULL,\n \
+  \ format in varchar2 default NULL,\n  charset in varchar2 default NULL\n);\n/*------------------------------\
+  \ policy_highlight --------------------------*/\n/*\n\n  NAME\n\n    policy_highlight\
+  \ - return highlight information\n\n\n\n  DESCRIPTION\n\n    This version of highlight\
+  \ accepts a policy name and a single BLOB\n\n    document.  Returns the restuls\
+  \ into a PL/SQL table.\n\n\n\n  NOTES\n\n    Existing contents of the table are\
+  \ destroyed\n\n*/\nPROCEDURE policy_highlight (\n  policy_name in varchar2,\n  document\
+  \ in blob,\n  text_query in varchar2,\n  restab in out nocopy highlight_tab,\n \
+  \ plaintext in boolean default FALSE,\n  language in varchar2 default NULL,\n  format\
+  \ in varchar2 default NULL,\n  charset in varchar2 default NULL\n);\nPROCEDURE policy_highlight_clob_query\
+  \ (\n  policy_name in varchar2,\n  document in blob,\n  text_query in clob,\n  restab\
+  \ in out nocopy highlight_tab,\n  plaintext in boolean default FALSE,\n  language\
+  \ in varchar2 default NULL,\n  format in varchar2 default NULL,\n  charset in varchar2\
+  \ default NULL\n);\n/*------------------------------ policy_highlight --------------------------*/\n\
+  /*\n\n  NAME\n\n    policy_highlight- return highlight information\n\n\n\n  DESCRIPTION\n\
+  \n    This version of highlight accepts a policy name and a single BFILE\n\n   \
+  \ document.  Returns the restuls into a PL/SQL table.\n\n\n\n  NOTES\n\n    Existing\
+  \ contents of the table are destroyed\n\n*/\nPROCEDURE policy_highlight (\n  policy_name\
+  \ in varchar2,\n  document in bfile,\n  text_query in varchar2,\n  restab in out\
+  \ nocopy highlight_tab,\n  plaintext in boolean default FALSE,\n  language in varchar2\
+  \ default NULL,\n  format in varchar2 default NULL,\n  charset in varchar2 default\
+  \ NULL\n);\nPROCEDURE policy_highlight_clob_query (\n  policy_name in varchar2,\n\
+  \  document in bfile,\n  text_query in clob,\n  restab in out nocopy highlight_tab,\n\
+  \  plaintext in boolean default FALSE,\n  language in varchar2 default NULL,\n \
+  \ format in varchar2 default NULL,\n  charset in varchar2 default NULL\n);\n/*-------------------------------\
+  \ markup -------------------------------*/\n/*\n\n  NAME\n\n    markup - return\
+  \ marked-up document\n\n\n\n  DESCRIPTION\n\n    Markup takes a document reference\
+  \ and a query, and returns a marked-up\n\n    plain text version of the document\n\
+  \n    The result table should have the following columns:\n\n\n\n      query_id\
+  \ number    (the query id)\n\n      document clob      (marked-up document)\n\n\n\
+  \n  ARGUMENTS\n\n    index_name  -- name of the index\n\n    textkey     -- the\
+  \ document for which to produce highlights\n\n    text_query  -- the query\n\n \
+  \   restab      -- the highlight result table\n\n    query_id    -- a query id\n\
+  \n    plaintext   -- set to TRUE if plaintext markup is required\n\n    tagset \
+  \     -- name of tagset\n\n                     TEXT_DEFAULT\n\n               \
+  \      HTML_DEFAULT\n\n                     HTML_NAVIGATE\n\n    starttag    --\
+  \ the start mark-up tag\n\n    endtag      -- the end mark-up tag\n\n    prevtag\
+  \     -- the navigate to previous highlight mark-up tag\n\n    nexttag     -- the\
+  \ navigate to next highlight mark-up tag\n\n    use_saved_copy -- Can be set to\
+  \ any of these values:\n\n                      SAVE_COPY_FALLBACK / SAVE_COPY_ERROR\
+  \ / SAVE_COPY_IGNORE\n\n*/\nPROCEDURE markup (\n  index_name in varchar2,\n  textkey\
+  \ in varchar2,\n  text_query in varchar2,\n  restab in varchar2,\n  query_id in\
+  \ number default 0,\n  plaintext in boolean default FALSE,\n  tagset in varchar2\
+  \ default 'TEXT_DEFAULT',\n  starttag in varchar2 default null,\n  endtag in varchar2\
+  \ default null,\n  prevtag in varchar2 default null,\n  nexttag in varchar2 default\
+  \ null,\n  use_saved_copy in number default ctx_doc.save_copy_fallback\n);\nPROCEDURE\
+  \ markup_clob_query (\n  index_name in varchar2,\n  textkey in varchar2,\n  text_query\
+  \ in clob,\n  restab in varchar2,\n  query_id in number default 0,\n  plaintext\
+  \ in boolean default FALSE,\n  tagset in varchar2 default 'TEXT_DEFAULT',\n  starttag\
+  \ in varchar2 default null,\n  endtag in varchar2 default null,\n  prevtag in varchar2\
+  \ default null,\n  nexttag in varchar2 default null,\n  use_saved_copy in number\
+  \ default ctx_doc.save_copy_fallback\n);\n/*------------------------------- markup\
+  \ -------------------------------*/\n/*\n\n  NAME\n\n    markup - return marked-up\
+  \ document\n\n\n\n  DESCRIPTION\n\n    This version of markup returns the result\
+  \ into a CLOB locator\n\n    instead of a result table.\n\n\n\n   NOTES\n\n    \
+  \ If result is NULL on entry, a temporary lob is allocated and returned.\n\n   \
+  \  it is up to the calling procedure to deallocate this lob.\n\n\n\n     Any existing\
+  \ contents of the lob locator passed in are cleared.\n\n*/\nPROCEDURE markup (\n\
+  \  index_name in varchar2,\n  textkey in varchar2,\n  text_query in varchar2,\n\
+  \  restab in out nocopy clob,\n  plaintext in boolean default FALSE,\n  tagset in\
+  \ varchar2 default 'TEXT_DEFAULT',\n  starttag in varchar2 default null,\n  endtag\
+  \ in varchar2 default null,\n  prevtag in varchar2 default null,\n  nexttag in varchar2\
+  \ default null,\n  use_saved_copy in number default ctx_doc.save_copy_fallback\n\
+  );\nPROCEDURE markup_clob_query (\n  index_name in varchar2,\n  textkey in varchar2,\n\
+  \  text_query in clob,\n  restab in out nocopy clob,\n  plaintext in boolean default\
+  \ FALSE,\n  tagset in varchar2 default 'TEXT_DEFAULT',\n  starttag in varchar2 default\
+  \ null,\n  endtag in varchar2 default null,\n  prevtag in varchar2 default null,\n\
+  \  nexttag in varchar2 default null,\n  use_saved_copy in number default ctx_doc.save_copy_fallback\n\
+  );\n/*------------------------------- policy_markup -----------------------------*/\n\
+  /*\n\n  NAME\n\n    policy_markup - return marked-up document on demand\n\n\n\n\
+  \  DESCRIPTION\n\n    This version of markup accepts a policy name and a single\
+  \ VARCHAR2\n\n    document.  Returns the result into a CLOB locator.\n\n\n\n  NOTES\n\
+  \n    If result is NULL on entry, a temporary lob is allocated and returned.\n\n\
+  \    it is up to the calling procedure to deallocate this lob.\n\n\n\n    Any existing\
+  \ contents of the lob locator passed in are cleared.\n\n*/\nPROCEDURE policy_markup\
+  \ (\n  policy_name in varchar2,\n  document in varchar2,\n  text_query in varchar2,\n\
+  \  restab in out nocopy clob,\n  plaintext in boolean default FALSE,\n  tagset in\
+  \ varchar2 default 'TEXT_DEFAULT',\n  starttag in varchar2 default null,\n  endtag\
+  \ in varchar2 default null,\n  prevtag in varchar2 default null,\n  nexttag in varchar2\
+  \ default null,\n  language in varchar2 default NULL,\n  format in varchar2 default\
+  \ NULL,\n  charset in varchar2 default NULL\n);\nPROCEDURE policy_markup_clob_query\
+  \ (\n  policy_name in varchar2,\n  document in varchar2,\n  text_query in clob,\n\
+  \  restab in out nocopy clob,\n  plaintext in boolean default FALSE,\n  tagset in\
+  \ varchar2 default 'TEXT_DEFAULT',\n  starttag in varchar2 default null,\n  endtag\
+  \ in varchar2 default null,\n  prevtag in varchar2 default null,\n  nexttag in varchar2\
+  \ default null,\n  language in varchar2 default NULL,\n  format in varchar2 default\
+  \ NULL,\n  charset in varchar2 default NULL\n);\n/*-------------------------------\
+  \ policy_markup -----------------------------*/\n/*\n\n  NAME\n\n    policy_markup\
+  \ - return marked-up document on demand\n\n\n\n  DESCRIPTION\n\n    This version\
+  \ of markup accepts a policy name and a single CLOB\n\n    document.  Returns the\
+  \ result into a CLOB locator.\n\n\n\n  NOTES\n\n    If result is NULL on entry,\
+  \ a temporary lob is allocated and returned.\n\n    it is up to the calling procedure\
+  \ to deallocate this lob.\n\n\n\n    Any existing contents of the lob locator passed\
+  \ in are cleared.\n\n*/\nPROCEDURE policy_markup (\n  policy_name in varchar2,\n\
+  \  document in clob,\n  text_query in varchar2,\n  restab in out nocopy clob,\n\
+  \  plaintext in boolean default FALSE,\n  tagset in varchar2 default 'TEXT_DEFAULT',\n\
+  \  starttag in varchar2 default null,\n  endtag in varchar2 default null,\n  prevtag\
+  \ in varchar2 default null,\n  nexttag in varchar2 default null,\n  language in\
+  \ varchar2 default NULL,\n  format in varchar2 default NULL,\n  charset in varchar2\
+  \ default NULL\n);\nPROCEDURE policy_markup_clob_query (\n  policy_name in varchar2,\n\
+  \  document in clob,\n  text_query in clob,\n  restab in out nocopy clob,\n  plaintext\
+  \ in boolean default FALSE,\n  tagset in varchar2 default 'TEXT_DEFAULT',\n  starttag\
+  \ in varchar2 default null,\n  endtag in varchar2 default null,\n  prevtag in varchar2\
+  \ default null,\n  nexttag in varchar2 default null,\n  language in varchar2 default\
+  \ NULL,\n  format in varchar2 default NULL,\n  charset in varchar2 default NULL\n\
+  );\n/*------------------------------- policy_markup -----------------------------*/\n\
+  /*\n\n  NAME\n\n    policy_markup - return marked-up document on demand\n\n\n\n\
+  \  DESCRIPTION\n\n    This version of markup accepts a policy name and a single\
+  \ BLOB\n\n    document.  Returns the result into a CLOB locator.\n\n\n\n  NOTES\n\
+  \n    If result is NULL on entry, a temporary lob is allocated and returned.\n\n\
+  \    it is up to the calling procedure to deallocate this lob.\n\n\n\n    Any existing\
+  \ contents of the lob locator passed in are cleared.\n\n*/\nPROCEDURE policy_markup\
+  \ (\n  policy_name in varchar2,\n  document in blob,\n  text_query in varchar2,\n\
+  \  restab in out nocopy clob,\n  plaintext in boolean default FALSE,\n  tagset in\
+  \ varchar2 default 'TEXT_DEFAULT',\n  starttag in varchar2 default null,\n  endtag\
+  \ in varchar2 default null,\n  prevtag in varchar2 default null,\n  nexttag in varchar2\
+  \ default null,\n  language in varchar2 default NULL,\n  format in varchar2 default\
+  \ NULL,\n  charset in varchar2 default NULL\n);\nPROCEDURE policy_markup_clob_query\
+  \ (\n  policy_name in varchar2,\n  document in blob,\n  text_query in clob,\n  restab\
+  \ in out nocopy clob,\n  plaintext in boolean default FALSE,\n  tagset in varchar2\
+  \ default 'TEXT_DEFAULT',\n  starttag in varchar2 default null,\n  endtag in varchar2\
+  \ default null,\n  prevtag in varchar2 default null,\n  nexttag in varchar2 default\
+  \ null,\n  language in varchar2 default NULL,\n  format in varchar2 default NULL,\n\
+  \  charset in varchar2 default NULL\n);\n/*------------------------------- policy_markup\
+  \ ----------------------------*/\n/*\n\n  NAME\n\n    policy_markup - return marked-up\
+  \ document on demand\n\n\n\n  DESCRIPTION\n\n    This version of markup accepts\
+  \ a policy name and a single BFILE\n\n    document.  Returns the result into a CLOB\
+  \ locator.\n\n\n\n  NOTES\n\n    If result is NULL on entry, a temporary lob is\
+  \ allocated and returned.\n\n    it is up to the calling procedure to deallocate\
+  \ this lob.\n\n\n\n    Any existing contents of the lob locator passed in are cleared.\n\
+  \n*/\nPROCEDURE policy_markup (\n  policy_name in varchar2,\n  document in bfile,\n\
+  \  text_query in varchar2,\n  restab in out nocopy clob,\n  plaintext in boolean\
+  \ default FALSE,\n  tagset in varchar2 default 'TEXT_DEFAULT',\n  starttag in varchar2\
+  \ default null,\n  endtag in varchar2 default null,\n  prevtag in varchar2 default\
+  \ null,\n  nexttag in varchar2 default null,\n  language in varchar2 default NULL,\n\
+  \  format in varchar2 default NULL,\n  charset in varchar2 default NULL\n);\nPROCEDURE\
+  \ policy_markup_clob_query (\n  policy_name in varchar2,\n  document in bfile,\n\
+  \  text_query in clob,\n  restab in out nocopy clob,\n  plaintext in boolean default\
+  \ FALSE,\n  tagset in varchar2 default 'TEXT_DEFAULT',\n  starttag in varchar2 default\
+  \ null,\n  endtag in varchar2 default null,\n  prevtag in varchar2 default null,\n\
+  \  nexttag in varchar2 default null,\n  language in varchar2 default NULL,\n  format\
+  \ in varchar2 default NULL,\n  charset in varchar2 default NULL\n);\n/*-----------------------------\
+  \ snippet --------- ----------------------*/\n/* NAME\n\n     snippet - return snippet\
+  \ (or kwic or concordance) for a given document\n\n\n\n  DESCRIPTION\n\n    This\
+  \ version of snippet accepts a index name and a key to specify\n\n    a document.\
+  \  Returns the snippet result.\n\n\n\n  NOTES\n\n*/\nfunction snippet (\n  index_name\
+  \ IN VARCHAR2,\n  textkey IN VARCHAR2,\n  text_query IN VARCHAR2,\n  starttag IN\
+  \ VARCHAR2 default '<b>',\n  endtag IN VARCHAR2 default '</b>',\n  entity_translation\
+  \ IN BOOLEAN default TRUE,\n  separator IN VARCHAR2 default '<b>...</b>',\n  radius\
+  \ IN NUMBER default 25,\n  max_length IN NUMBER default 150,\n  use_saved_copy IN\
+  \ NUMBER default ctx_doc.save_copy_fallback\n) return varchar2;\nfunction snippet_clob_query\
+  \ (\n  index_name IN VARCHAR2,\n  textkey IN VARCHAR2,\n  text_query IN CLOB,\n\
+  \  starttag IN VARCHAR2 default '<b>',\n  endtag IN VARCHAR2 default '</b>',\n \
+  \ entity_translation IN BOOLEAN default TRUE,\n  separator IN VARCHAR2 default '<b>...</b>',\n\
+  \  radius IN NUMBER default 25,\n  max_length IN NUMBER default 150,\n  use_saved_copy\
+  \ IN NUMBER default ctx_doc.save_copy_fallback\n) return varchar2;\n/*-----------------------------\
+  \ policy_snippet ----------------------*/\n/* NAME\n\n     policy_snippet - return\
+  \ snippet (kwic or concordaace) for a given document\n\n\n\n  DESCRIPTION\n\n  \
+  \  This version of snippet accepts a policy name and a single varchar2\n\n    document.\
+  \  Returns the snippet result.\n\n\n\n  NOTES\n\n*/\nfunction policy_snippet (\n\
+  \  policy_name IN VARCHAR2,\n  document IN VARCHAR2,\n  text_query IN VARCHAR2,\n\
+  \  language IN VARCHAR2 default NULL,\n  format IN VARCHAR2 default NULL,\n  charset\
+  \ IN VARCHAR2 default NULL,\n  starttag IN VARCHAR2 default '<b>',\n  endtag IN\
+  \ VARCHAR2 default '</b>',\n  entity_translation IN BOOLEAN default TRUE,\n  separator\
+  \ IN VARCHAR2 default '<b>...</b>',\n  radius IN NUMBER default 25,\n  max_length\
+  \ IN NUMBER default 150\n) return varchar2;\nfunction policy_snippet_clob_query\
+  \ (\n  policy_name IN VARCHAR2,\n  document IN VARCHAR2,\n  text_query IN CLOB,\n\
+  \  language IN VARCHAR2 default NULL,\n  format IN VARCHAR2 default NULL,\n  charset\
+  \ IN VARCHAR2 default NULL,\n  starttag IN VARCHAR2 default '<b>',\n  endtag IN\
+  \ VARCHAR2 default '</b>',\n  entity_translation IN BOOLEAN default TRUE,\n  separator\
+  \ IN VARCHAR2 default '<b>...</b>',\n  radius IN NUMBER default 25,\n  max_length\
+  \ IN NUMBER default 150\n) return varchar2;\n/*----------------------------- policy_snippet\
+  \ ----------------------*/\n/* NAME\n\n     policy_snippet - return snippet (kwic\
+  \ or concordaace) for a given document\n\n\n\n  DESCRIPTION\n\n    This version\
+  \ of snippet accepts a policy name and a single clob\n\n    document.  Returns the\
+  \ snippet result.\n\n\n\n  NOTES\n\n*/\nfunction policy_snippet (\n  policy_name\
+  \ IN VARCHAR2,\n  document IN CLOB,\n  text_query IN VARCHAR2,\n  language IN VARCHAR2\
+  \ default NULL,\n  format IN VARCHAR2 default NULL,\n  charset IN VARCHAR2 default\
+  \ NULL,\n  starttag IN VARCHAR2 default '<b>',\n  endtag IN VARCHAR2 default '</b>',\n\
+  \  entity_translation IN BOOLEAN default TRUE,\n  separator IN VARCHAR2 default\
+  \ '<b>...</b>',\n  radius IN NUMBER default 25,\n  max_length IN NUMBER default\
+  \ 150\n) return varchar2;\nfunction policy_snippet_clob_query (\n  policy_name IN\
+  \ VARCHAR2,\n  document IN CLOB,\n  text_query IN CLOB,\n  language IN VARCHAR2\
+  \ default NULL,\n  format IN VARCHAR2 default NULL,\n  charset IN VARCHAR2 default\
+  \ NULL,\n  starttag IN VARCHAR2 default '<b>',\n  endtag IN VARCHAR2 default '</b>',\n\
+  \  entity_translation IN BOOLEAN default TRUE,\n  separator IN VARCHAR2 default\
+  \ '<b>...</b>',\n  radius IN NUMBER default 25,\n  max_length IN NUMBER default\
+  \ 150\n) return varchar2;\n/*----------------------------- policy_snippet ----------------------*/\n\
+  /* NAME\n\n     policy_snippet - return snippet (kwic or concordaace) for a given\
+  \ document\n\n\n\n  DESCRIPTION\n\n    This version of snippet accepts a policy\
+  \ name and a single BLOB\n\n    document.  Returns the snippet result.\n\n\n\n \
+  \ NOTES\n\n*/\nfunction policy_snippet (\n  policy_name IN VARCHAR2,\n  document\
+  \ IN BLOB,\n  text_query IN VARCHAR2,\n  language IN VARCHAR2 default NULL,\n  format\
+  \ IN VARCHAR2 default NULL,\n  charset IN VARCHAR2 default NULL,\n  starttag IN\
+  \ VARCHAR2 default '<b>',\n  endtag IN VARCHAR2 default '</b>',\n  entity_translation\
+  \ IN BOOLEAN default TRUE,\n  separator IN VARCHAR2 default '<b>...</b>',\n  radius\
+  \ IN NUMBER default 25,\n  max_length IN NUMBER default 150\n) return varchar2;\n\
+  function policy_snippet_clob_query (\n  policy_name IN VARCHAR2,\n  document IN\
+  \ BLOB,\n  text_query IN CLOB,\n  language IN VARCHAR2 default NULL,\n  format IN\
+  \ VARCHAR2 default NULL,\n  charset IN VARCHAR2 default NULL,\n  starttag IN VARCHAR2\
+  \ default '<b>',\n  endtag IN VARCHAR2 default '</b>',\n  entity_translation IN\
+  \ BOOLEAN default TRUE,\n  separator IN VARCHAR2 default '<b>...</b>',\n  radius\
+  \ IN NUMBER default 25,\n  max_length IN NUMBER default 150\n) return varchar2;\n\
+  /*----------------------------- policy_snippet ----------------------*/\n/* NAME\n\
+  \n     policy_snippet - return snippet (kwic or concordaace) for a given document\n\
+  \n\n\n  DESCRIPTION\n\n    This version of snippet accepts a policy name and a single\
+  \ BLOB\n\n    document.  Returns the snippet result.\n\n\n\n  NOTES\n\n*/\nfunction\
+  \ policy_snippet (\n  policy_name IN VARCHAR2,\n  document IN BFILE,\n  text_query\
+  \ IN VARCHAR2,\n  language IN VARCHAR2 default NULL,\n  format IN VARCHAR2 default\
+  \ NULL,\n  charset IN VARCHAR2 default NULL,\n  starttag IN VARCHAR2 default '<b>',\n\
+  \  endtag IN VARCHAR2 default '</b>',\n  entity_translation IN BOOLEAN default TRUE,\n\
+  \  separator IN VARCHAR2 default '<b>...</b>',\n  radius IN NUMBER default 25,\n\
+  \  max_length IN NUMBER default 150\n) return varchar2;\nfunction policy_snippet_clob_query\
+  \ (\n  policy_name IN VARCHAR2,\n  document IN BFILE,\n  text_query IN CLOB,\n \
+  \ language IN VARCHAR2 default NULL,\n  format IN VARCHAR2 default NULL,\n  charset\
+  \ IN VARCHAR2 default NULL,\n  starttag IN VARCHAR2 default '<b>',\n  endtag IN\
+  \ VARCHAR2 default '</b>',\n  entity_translation IN BOOLEAN default TRUE,\n  separator\
+  \ IN VARCHAR2 default '<b>...</b>',\n  radius IN NUMBER default 25,\n  max_length\
+  \ IN NUMBER default 150\n) return varchar2;\n/*----------------------------- pkencode\
+  \ --------------------------------*/\n/*\n\n  NAME\n\n    PKENCODE(pk1,pk2,pk3,pk4,pk5,pk6,pk7,pk8,pk9,pk10,pk11,pk12,pk13,\n\
+  \n             pk14,pk15,pk16)\n\n  DESCRIPTION\n\n    encoding a list of pk strings\
+  \ into one; the resulting string\n\n    has the ',' and '\\' escapped by an extra\
+  \ '\\'.\n\n    comma ',' is used as delimiter between pk's.\n\n    it is used in\
+  \ composite textkeys\n\n    e.g., ('p,1','p\\2','p3') => 'p\\,1,p\\\\2,p3'\n\n\n\
+  \n  ARGUMENTS\n\n    pk1-pk16  - textkey list\n\n\n\n  RETURN\n\n    encoded pkstring\n\
+  \n*/\nFUNCTION pkencode(\n  pk1 IN varchar2,\n  pk2 IN varchar2 default NULL,\n\
+  \  pk3 IN varchar2 default NULL,\n  pk4 IN varchar2 default NULL,\n  pk5 IN varchar2\
+  \ default NULL,\n  pk6 IN varchar2 default NULL,\n  pk7 IN varchar2 default NULL,\n\
+  \  pk8 IN varchar2 default NULL,\n  pk9 IN varchar2 default NULL,\n  pk10 IN varchar2\
+  \ default NULL,\n  pk11 IN varchar2 default NULL,\n  pk12 IN varchar2 default NULL,\n\
+  \  pk13 IN varchar2 default NULL,\n  pk14 IN varchar2 default NULL,\n  pk15 IN varchar2\
+  \ default NULL,\n  pk16 IN varchar2 default NULL\n) return varchar2;\nPRAGMA RESTRICT_REFERENCES(pkencode,\
+  \ WNDS, WNPS, RNDS, RNPS);\n/*----------------------------- ifilter ----------------------------------*/\n\
+  /*\n\n  NAME\n\n    ifilter\n\n\n\n  DESCRIPTION\n\n    Takes binary data(BLOB),\
+  \ filters the data through INSO and writes the\n\n    text version to a CLOB\n\n\
+  \n\n  ARGUMENTS\n\n    data    (IN)     BLOB\n\n    TEXT    (IN OUT) CLOB\n\n\n\n\
+  \  NOTES\n\n    text is APPENDed to the CLOB -- so existing contents are not\n\n\
+  \    disturbed.  It is the client's responsibility to ensure that\n\n    the CLOB\
+  \ is trucated before the ifilter call if the existing\n\n    content is not needed.\n\
+  \n\n\n  RETURN\n\n*/\nPROCEDURE ifilter(\n  data IN blob,\n  text IN OUT nocopy\
+  \ clob\n);\nEND ctx_doc;"

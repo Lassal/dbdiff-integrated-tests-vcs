@@ -1,0 +1,52 @@
+schema: SYS
+name: KU$_ASSOC_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    a .obj#,
+    value(so),
+    a .property,
+    (
+      select
+        c .name
+      from
+        sys.col$ c
+      where
+        c .obj# = a .obj#
+        and c .intcol# = a .intcol#
+    ),
+    (
+      select
+        value(ss)
+      from
+        ku$_schemaobj_view ss
+      where
+        ss.obj_num = a .statstype#
+    ),
+    NVL(a .default_selectivity, 0),
+    NVL(a .default_cpu_cost, 0),
+    NVL(a .default_io_cost, 0),
+    NVL(a .default_net_cost, 0),
+    a .interface_version#,
+    a .spare2
+  from
+    sys.ku$_schemaobj_view so,
+    sys.association$ a
+  where
+    a .obj# = so.obj_num
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      or EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

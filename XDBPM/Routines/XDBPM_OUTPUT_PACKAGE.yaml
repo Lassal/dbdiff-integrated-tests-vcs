@@ -1,0 +1,182 @@
+schema: XDBPM
+name: XDBPM_OUTPUT
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: CREATEFILE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEFILE.P_OVERWRITE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CREATELOGFILE.P_TRACE_FILE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATELOGFILE.P_OVERWRITE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CREATEOUTPUTFILE.P_FILE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEOUTPUTFILE.P_OVERWRITE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CREATETRACEFILE.P_FILE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATETRACEFILE.P_OVERWRITE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: LOGEXCEPTION.P_FLUSH
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: TRACEEXCEPTION.P_FLUSH
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITELOGFILEENTRY(1).P_CONTENT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITELOGFILEENTRY(1).P_FLUSH
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITELOGFILEENTRY(2).P_CONTENT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: WRITELOGFILEENTRY(2).P_FLUSH
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITELOGFILEENTRY(3).P_CONTENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: WRITELOGFILEENTRY(3).P_PRETTY_PRINT
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITELOGFILEENTRY(3).P_FLUSH
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITEOUTPUTFILEENTRY(1).P_CONTENT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITEOUTPUTFILEENTRY(1).P_FLUSH
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITEOUTPUTFILEENTRY(2).P_CONTENT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: WRITEOUTPUTFILEENTRY(2).P_FLUSH
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITEOUTPUTFILEENTRY(3).P_CONTENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: WRITEOUTPUTFILEENTRY(3).P_PRETTY_PRINT
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITEOUTPUTFILEENTRY(3).P_FLUSH
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITETOFILE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETOFILE.P_CONTENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: WRITETRACEFILEENTRY(1).P_CONTENT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITETRACEFILEENTRY(1).P_FLUSH
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITETRACEFILEENTRY(2).P_CONTENT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: WRITETRACEFILEENTRY(2).P_FLUSH
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITETRACEFILEENTRY(3).P_CONTENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: WRITETRACEFILEENTRY(3).P_PRETTY_PRINT
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: WRITETRACEFILEENTRY(3).P_FLUSH
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_OUTPUT authid CURRENT_USER as procedure writeOutputFileEntry(P_CONTENT VARCHAR2, P_FLUSH BOOLEAN DEFAULT FALSE);
+  procedure writeOutputFileEntry(P_CONTENT CLOB, P_FLUSH BOOLEAN DEFAULT FALSE);
+  procedure writeOutputFileEntry(
+    P_CONTENT XMLTYPE,
+    P_PRETTY_PRINT BOOLEAN DEFAULT TRUE,
+    P_FLUSH BOOLEAN DEFAULT FALSE
+  );
+  procedure createOutputFile(
+    P_FILE_PATH VARCHAR2 DEFAULT NULL,
+    P_OVERWRITE BOOLEAN DEFAULT FALSE
+  );
+  procedure flushOutputFile;
+  procedure writeTraceFileEntry(P_CONTENT VARCHAR2, P_FLUSH BOOLEAN DEFAULT FALSE);
+  procedure writeTraceFileEntry(P_CONTENT CLOB, P_FLUSH BOOLEAN DEFAULT FALSE);
+  procedure writeTraceFileEntry(
+    P_CONTENT XMLTYPE,
+    P_PRETTY_PRINT BOOLEAN DEFAULT TRUE,
+    P_FLUSH BOOLEAN DEFAULT FALSE
+  );
+  procedure traceException(P_FLUSH BOOLEAN DEFAULT TRUE);
+  procedure createTraceFile(
+    P_FILE_PATH VARCHAR2 DEFAULT NULL,
+    P_OVERWRITE BOOLEAN DEFAULT FALSE
+  );
+  procedure flushTraceFile;
+  procedure writeLogFileEntry(P_CONTENT VARCHAR2, P_FLUSH BOOLEAN DEFAULT FALSE);
+  procedure writeLogFileEntry(P_CONTENT CLOB, P_FLUSH BOOLEAN DEFAULT FALSE);
+  procedure writeLogFileEntry(
+    P_CONTENT XMLTYPE,
+    P_PRETTY_PRINT BOOLEAN DEFAULT TRUE,
+    P_FLUSH BOOLEAN DEFAULT FALSE
+  );
+  procedure logException(P_FLUSH BOOLEAN DEFAULT TRUE);
+  procedure createLogFile(
+    P_TRACE_FILE_PATH VARCHAR2 DEFAULT NULL,
+    P_OVERWRITE BOOLEAN DEFAULT FALSE
+  );
+  procedure flushLogFile;
+  procedure createFile(
+    P_RESOURCE_PATH VARCHAR2 DEFAULT NULL,
+    P_OVERWRITE BOOLEAN DEFAULT FALSE
+  );
+  procedure writeToFile(P_RESOURCE_PATH VARCHAR2, P_CONTENT IN OUT CLOB);
+  end;

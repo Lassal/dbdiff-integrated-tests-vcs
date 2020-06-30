@@ -1,0 +1,27 @@
+schema: LBACSYS
+name: ALL_SA_AUDIT_OPTIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    a .policy_name,
+    a .user_name,
+    APY,
+    REM,
+    SET_,
+    PRV
+  FROM
+    LBACSYS.sa$pol p,
+    LBACSYS.dba_ols_audit_options a
+  WHERE
+    p.pol_name = a .policy_name
+    AND p.pol# in (
+      select
+        pol#
+      from
+        LBACSYS.sa$admin
+      where
+        usr_name = user
+    )
+columns: []
+referencedTables: []

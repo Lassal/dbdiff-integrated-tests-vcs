@@ -1,0 +1,51 @@
+schema: SYS
+name: UTL_MATCH
+routineType: PACKAGE
+returnParamater:
+  name: JARO_WINKLER_SIMILARITY.(--return--)
+  ordinalPosition: 0
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+parameters:
+- name: EDIT_DISTANCE.S1
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EDIT_DISTANCE.S2
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EDIT_DISTANCE_SIMILARITY.S1
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EDIT_DISTANCE_SIMILARITY.S2
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: JARO_WINKLER.S1
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: JARO_WINKLER.S2
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: JARO_WINKLER_SIMILARITY.S1
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: JARO_WINKLER_SIMILARITY.S2
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE utl_match IS FUNCTION edit_distance(s1 IN VARCHAR2, s2 IN VARCHAR2) RETURN pls_integer;
+  PRAGMA interface(c, edit_distance);
+  FUNCTION jaro_winkler(s1 IN VARCHAR2, s2 IN VARCHAR2) RETURN binary_double;
+  PRAGMA interface(c, jaro_winkler);
+  FUNCTION edit_distance_similarity(s1 IN VARCHAR2, s2 IN VARCHAR2) RETURN pls_integer;
+  PRAGMA interface(c, edit_distance_similarity);
+  FUNCTION jaro_winkler_similarity(s1 IN VARCHAR2, s2 IN VARCHAR2) RETURN pls_integer;
+  PRAGMA interface(c, jaro_winkler_similarity);
+  END utl_match;

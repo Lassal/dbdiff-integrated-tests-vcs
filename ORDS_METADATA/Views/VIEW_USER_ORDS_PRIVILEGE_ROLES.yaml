@@ -1,0 +1,19 @@
+schema: ORDS_METADATA
+name: USER_ORDS_PRIVILEGE_ROLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    sec_privilege_roles.privilege_id,
+    USER_ORDS_PRIVILEGES.name AS privilege_name,
+    sec_privilege_roles.role_id,
+    USER_ORDS_ROLES.name AS role_name
+  FROM
+    sec_privilege_roles,
+    USER_ORDS_ROLES,
+    USER_ORDS_PRIVILEGES
+  WHERE
+    sec_privilege_roles.role_id = USER_ORDS_ROLES.id
+    AND sec_privilege_roles.privilege_id = USER_ORDS_PRIVILEGES.id
+columns: []
+referencedTables: []

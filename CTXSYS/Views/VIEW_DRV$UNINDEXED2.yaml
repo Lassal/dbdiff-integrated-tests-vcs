@@ -1,0 +1,15 @@
+schema: CTXSYS
+name: DRV$UNINDEXED2
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "UNX_IDX_ID",
+    "UNX_IXP_ID",
+    "UNX_ROWID"
+  from
+    dr$unindexed
+  where
+    unx_idx_id = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
+columns: []
+referencedTables: []

@@ -1,0 +1,79 @@
+name: SDO_COORD_AXES
+schema: MDSYS
+columns:
+- name: COORD_AXIS_ABBREVIATION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 24
+  nullable: true
+  dataTypeLength: 24
+- name: COORD_AXIS_NAME_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: COORD_AXIS_ORIENTATION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 24
+  nullable: true
+  dataTypeLength: 24
+- name: COORD_SYS_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: ORDER
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 5,0
+- name: UOM_ID
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+constraints:
+- !<unique-constraint>
+  name: COORD_AXIS_PRIM
+  type: PRIMARY_KEY
+  columns:
+  - name: COORD_SYS_ID
+    ordinalPosition: 1
+  - name: ORDER
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: COORD_AXIS_FOREIGN_AXIS
+  type: FOREIGN_KEY
+  columns:
+  - name: COORD_AXIS_NAME_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_COORD_AXIS_NAMES
+    referencedTableColumnName: COORD_AXIS_NAME_ID
+- !<fk-constraint>
+  name: COORD_AXIS_FOREIGN_CS
+  type: FOREIGN_KEY
+  columns:
+  - name: COORD_SYS_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_COORD_SYS
+    referencedTableColumnName: COORD_SYS_ID
+- !<fk-constraint>
+  name: COORD_AXIS_FOREIGN_UOM
+  type: FOREIGN_KEY
+  columns:
+  - name: UOM_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_UNITS_OF_MEASURE
+    referencedTableColumnName: UOM_ID

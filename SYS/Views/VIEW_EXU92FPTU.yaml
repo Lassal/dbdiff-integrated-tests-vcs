@@ -1,0 +1,164 @@
+schema: SYS
+name: EXU92FPTU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    u.name,
+    o.owner#,
+    t.toid,
+    TO_CHAR(o.mtime, 'YYYY-MM-DD:HH24:MI:SS'),
+    o.obj#,
+    d.d_obj#,
+    tm.audit$,
+    sv.sql_version,
+    t.properties,
+    o.status,
+    t.version#,
+    t.hashcode,
+    d.order#,
+    t.typeid,
+    NVL(t.roottoid, HEXTORAW('00')),
+    0
+  FROM
+    sys.obj$ o,
+    sys.user$ u,
+    sys.type$ t,
+    sys.dependency$ d,
+    sys.type_misc$ tm,
+    sys.exu816sqv sv
+  WHERE
+    o.obj# = d.p_obj#
+    AND o.type# = 13
+    AND o.oid$ = t.toid
+    AND o.owner# = u.user#
+    AND o.obj# = tm.obj#
+    AND BITAND(t.properties, 2128) = 0
+    AND
+    /* skip system gen'd types*/
+    (
+      o.owner# = userenv('SCHEMAID')
+      OR
+      /* owned by current user */
+      /* current user or public role have execute access to type */
+      o.obj# IN (
+        SELECT
+          oa.obj#
+        FROM
+          sys.objauth$ oa
+        WHERE
+          oa.obj# = o.obj#
+          AND oa.privilege# = 12
+          AND
+          /* execute */
+          oa.grantee# IN (userenv('SCHEMAID'), 1)
+      )
+      OR EXISTS (
+        /* current user or public role can execute any type */
+        SELECT
+          NULL
+        FROM
+          sys.sysauth$ sa
+        WHERE
+          sa.grantee# IN (userenv('SCHEMAID'), 1)
+          AND sa.privilege# = -184
+      )
+    )
+    AND o.spare1 = sv.version# (+)
+    AND t.toid = t.tvoid
+    /* Only the latest type */
+  UNION
+    /* Subtypes */
+  SELECT
+    sto.name,
+    u.name,
+    sto.owner#,
+    t.toid,
+    TO_CHAR(sto.mtime, 'YYYY-MM-DD:HH24:MI:SS'),
+    sto.obj#,
+    d.p_obj#,
+    tm.audit$,
+    sv.sql_version,
+    t.properties,
+    sto.status,
+    t.version#,
+    t.hashcode,
+    d.order#,
+    t.typeid,
+    NVL(t.roottoid, HEXTORAW('00')),
+    tabobj.obj#
+  FROM
+    sys.obj$ o,
+    sys.user$ u,
+    sys.type$ t,
+    sys.obj$ sto,
+    /*   o.obj$ is for the type is question */
+    /* sto.obj$ is for the Sub Types of o.obj$ */
+    sys.type_misc$ tm,
+    sys.exu816sqv sv,
+    sys.dependency$ d,
+    sys.obj$ tabobj,
+    sys.dependency$ d2,
+    dependency$ d3
+  WHERE
+    o.obj# = d.p_obj#
+    AND o.type# = 13
+    AND sto.type# = 13
+    AND sto.oid$ = t.toid
+    AND sto.owner# = u.user#
+    AND sto.obj# = tm.obj#
+    AND BITAND(t.properties, 2128) = 0
+    AND
+    /* skip system gen'd types*/
+    (
+      sto.owner# = userenv('SCHEMAID')
+      OR
+      /* owned by current user */
+      /* current user or public role have execute access to type */
+      sto.obj# IN (
+        SELECT
+          oa.obj#
+        FROM
+          sys.objauth$ oa
+        WHERE
+          oa.obj# = sto.obj#
+          AND oa.privilege# = 12
+          AND
+          /* execute */
+          (
+            oa.grantee# = userenv('SCHEMAID')
+            OR oa.grantee# = 1
+          )
+      )
+      OR
+      /* current user or public role can execute any type */
+      EXISTS (
+        SELECT
+          NULL
+        FROM
+          sys.sysauth$ sa
+        WHERE
+          (
+            sa.grantee# = userenv('SCHEMAID')
+            OR sa.grantee# = 1
+          )
+          AND sa.privilege# = -184
+      )
+    )
+    AND sto.spare1 = sv.version# (+)
+    AND t.toid = t.tvoid
+    AND
+    /* Only the latest type */
+    sto.obj# = d.d_obj#
+    AND d.p_obj# = d2.p_obj#
+    AND
+    /*dependent type related to a table*/
+    d2.d_obj# = tabobj.obj#
+    AND tabobj.type# = 2
+    AND sto.obj# = d3.p_obj#
+    AND
+    /* subtype related to same table */
+    d3.d_obj# = tabobj.obj#
+columns: []
+referencedTables: []

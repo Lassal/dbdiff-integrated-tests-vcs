@@ -1,0 +1,14 @@
+schema: SYS
+name: EXU8CPO
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    parameter,
+    DECODE(value, 'TRUE', 1, 'FALSE', 0, 2)
+  FROM
+    sys.v$option
+  WHERE
+    parameter IN ('procedural', 'replication')
+columns: []
+referencedTables: []

@@ -1,0 +1,15 @@
+schema: CTXSYS
+name: DRV$TREE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "IDXID",
+    "SECID",
+    "NODE_SEQ"
+  from
+    ctxsys.dr$tree
+  where
+    idxid = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
+columns: []
+referencedTables: []

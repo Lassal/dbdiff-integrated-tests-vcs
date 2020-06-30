@@ -1,0 +1,16 @@
+schema: SYS
+name: DBA_DBFS_HS_FIXED_PROPERTIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    STORE_NAME,
+    STORE_OWNER,
+    PROP_NAME,
+    PROP_VALUE
+  FROM
+    SYS.DBFS_HS$_PROPERTY
+  WHERE
+    PROP_TYPE LIKE 'IPROP_USER_VISIBLE'
+columns: []
+referencedTables: []

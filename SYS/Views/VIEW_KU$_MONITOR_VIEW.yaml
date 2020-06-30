@@ -1,0 +1,30 @@
+schema: SYS
+name: KU$_MONITOR_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    o.obj_num,
+    value(o),
+    decode(bitand(nvl(t.flags, 0), 2097152), 2097152, 1, 0)
+  from
+    ku$_schemaobj_view o,
+    sys.tab$ t
+  where
+    t.obj# = o.obj_num
+    and bitand(nvl(t.flags, 0), 2097152) != 0
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

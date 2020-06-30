@@ -1,0 +1,20 @@
+schema: XDBPM
+name: DATABASE_SUMMARY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    d.NAME,
+    p.VALUE "SERVICE_NAME",
+    i.HOST_NAME,
+    n.VALUE "DB_CHARACTERSET"
+  from
+    v$system_parameter p,
+    v$database d,
+    v$instance i,
+    nls_database_parameters n
+  where
+    p.name = 'service_names'
+    and n.parameter = 'NLS_CHARACTERSET'
+columns: []
+referencedTables: []

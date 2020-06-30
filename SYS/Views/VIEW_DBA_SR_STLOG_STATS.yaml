@@ -1,0 +1,44 @@
+schema: SYS
+name: DBA_SR_STLOG_STATS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u1.name owner,
+    o1.name table_name,
+    o2.name staging_log_name,
+    sts.num_inserts,
+    sts.num_deletes,
+    sts.num_updates,
+    decode(
+      sts.psl_mode,
+      7,
+      'TRUSTED',
+      6,
+      'DELETE_TRUSTED and UPDATE_TRUSTED',
+      5,
+      'UPDATE_TRUSTED and INSERT_TRUSTED',
+      4,
+      'UPDATE_TRUSTED',
+      3,
+      'INSERT_TRUSTED and DELETE_TRUSTED',
+      2,
+      'DELETE_TRUSTED',
+      1,
+      'INSERT_TRUSTED',
+      0,
+      'ENFORCED'
+    ) as psl_mode
+  from
+    sys.obj$ o1,
+    sys.user$ u1,
+    sys.obj$ o2,
+    sys.syncref$_table_info t1,
+    sys.syncref$_stlog_stats sts
+  where
+    t1.table_obj# = o1.obj#
+    and o1.owner# = u1.user#
+    and t1.staging_log_obj# = o2.obj#
+    and t1.table_obj# = sts.table_obj#
+columns: []
+referencedTables: []

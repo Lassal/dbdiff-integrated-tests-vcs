@@ -1,0 +1,178 @@
+schema: SYS
+name: UTL_ENCODE
+routineType: PACKAGE
+returnParamater:
+  name: UUENCODE.(--return--)
+  ordinalPosition: 0
+  dataType: RAW
+  parameterMode: OUT
+parameters:
+- name: BASE64_DECODE.R
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: BASE64_ENCODE.R
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: MIMEHEADER_DECODE.BUF
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MIMEHEADER_ENCODE.BUF
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MIMEHEADER_ENCODE.ENCODE_CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MIMEHEADER_ENCODE.ENCODING
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: QUOTED_PRINTABLE_DECODE.R
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: QUOTED_PRINTABLE_ENCODE.R
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: TEXT_DECODE.BUF
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TEXT_DECODE.ENCODE_CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TEXT_DECODE.ENCODING
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: TEXT_ENCODE.BUF
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TEXT_ENCODE.ENCODE_CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TEXT_ENCODE.ENCODING
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: UUDECODE.R
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: UUENCODE.R
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: UUENCODE.TYPE
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: UUENCODE.FILENAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UUENCODE.PERMISSION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE utl_encode IS -------------
+  --  CONSTANTS
+  --
+  -- Define constants for use by uuencode's 2nd file type parameter
+  complete CONSTANT PLS_INTEGER: = 1;
+  -- includes header and footer
+  header_piece CONSTANT PLS_INTEGER: = 2;
+  -- includes header text
+  middle_piece CONSTANT PLS_INTEGER: = 3;
+  -- body text only
+  end_piece CONSTANT PLS_INTEGER: = 4;
+  -- includes footer text
+  -- Define constants for use by text_encode/decode and mimeheader_encode
+  -- in the 'encoding' parameter
+  base64 CONSTANT PLS_INTEGER: = 1;
+  quoted_printable CONSTANT PLS_INTEGER: = 2;
+  /*----------------------------------------------------------------*/
+  /* BASE64_ENCODE                                                  */
+  /*----------------------------------------------------------------*/
+  function base64_encode(r in raw) return raw;
+  /*----------------------------------------------------------------*/
+  /* BASE64_DECODE                                                  */
+  /*----------------------------------------------------------------*/
+  function base64_decode(r in raw) return raw;
+  /*----------------------------------------------------------------*/
+  /* UUENCODE                                                       */
+  /*----------------------------------------------------------------*/
+  function uuencode(
+    r in raw,
+    type in pls_integer default complete,
+    filename in varchar2 default 'uuencode.txt',
+    permission in varchar2 default '0'
+  ) return raw;
+  /*----------------------------------------------------------------*/
+  /* UUDECODE                                                       */
+  /*----------------------------------------------------------------*/
+  function uudecode(r in raw) return raw;
+  /*----------------------------------------------------------------*/
+  /* QUOTED_PRINTABLE_ENCODE                                        */
+  /*----------------------------------------------------------------*/
+  function quoted_printable_encode(r in raw) return raw;
+  /*----------------------------------------------------------------*/
+  /* QUOTED_PRINTABLE_DECODE                                        */
+  /*----------------------------------------------------------------*/
+  function quoted_printable_decode(r in raw) return raw;
+  /*----------------------------------------------------------------*/
+  /* TEXT_ENCODE                                                    */
+  /*----------------------------------------------------------------*/
+  function text_encode(
+    buf in varchar2 character
+    set
+      any_cs,
+      encode_charset in varchar2 default null,
+      encoding in pls_integer default null
+  ) return varchar2 character
+  set
+    buf % charset;
+    /*----------------------------------------------------------------*/
+    /* TEXT_DECODE                                                    */
+    /*----------------------------------------------------------------*/
+    function text_decode(
+      buf in varchar2 character
+      set
+        any_cs,
+        encode_charset in varchar2 default null,
+        encoding in pls_integer default null
+    ) return varchar2 character
+  set
+    buf % charset;
+    /*----------------------------------------------------------------*/
+    /* MIMEHEADER_ENCODE                                              */
+    /*----------------------------------------------------------------*/
+    function mimeheader_encode(
+      buf in varchar2 character
+      set
+        any_cs,
+        encode_charset in varchar2 default null,
+        encoding in pls_integer default null
+    ) return varchar2 character
+  set
+    buf % charset;
+    /*----------------------------------------------------------------*/
+    /* MIMEHEADER_DECODE                                              */
+    /*----------------------------------------------------------------*/
+    function mimeheader_decode(
+      buf in varchar2 character
+      set
+        any_cs
+    ) return varchar2 character
+  set
+    buf % charset;
+  END UTL_ENCODE;

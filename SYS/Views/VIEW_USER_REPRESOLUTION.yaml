@@ -1,0 +1,31 @@
+schema: SYS
+name: USER_REPRESOLUTION
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.oname,
+    decode(
+      r.conflict_type_id,
+      1,
+      'UPDATE',
+      2,
+      'UNIQUENESS',
+      3,
+      'DELETE',
+      'UNDEFINED'
+    ),
+    r.reference_name,
+    r.sequence_no,
+    r.method_name,
+    r.function_name,
+    r.priority_group,
+    r.resolution_comment
+  from
+    system.repcat$_resolution r,
+    sys.user$ u
+  where
+    r.sname = u.name
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

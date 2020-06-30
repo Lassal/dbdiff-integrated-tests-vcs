@@ -1,0 +1,80 @@
+schema: SYS
+name: EXU9IND
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "IOBJID",
+    "IDOBJID",
+    "INAME",
+    "IOWNER",
+    "IOWNERID",
+    "ISPACE",
+    "ITSNO",
+    "IFILENO",
+    "IBLOCKNO",
+    "BTNAME",
+    "BTOBJID",
+    "BTOWNER",
+    "BTOWNERID",
+    "BTPROPERTY",
+    "BTCLUSTERFLAG",
+    "PROPERTY",
+    "CLUSTER$",
+    "PCTFREE$",
+    "INITRANS",
+    "MAXTRANS",
+    "BLEVEL",
+    "BITMAP",
+    "DEFLOG",
+    "TSDEFLOG",
+    "DEGREE",
+    "INSTANCES",
+    "TYPE",
+    "ROWCNT",
+    "LEAFCNT",
+    "DISTKEY",
+    "LBLKKEY",
+    "DBLKKEY",
+    "CLUFAC",
+    "PRECCNT",
+    "IFLAGS",
+    "SYSGENCONST"
+  FROM
+    sys.exu9ind_base
+  WHERE
+    NOT EXISTS (
+      SELECT
+        *
+      FROM
+        sys.con$ c $,
+        sys.cdef$ cd$
+      WHERE
+        c $.name = iname
+        AND
+        /* same name as constraint */
+        c $.owner# = iownerid
+        AND c $.con# = cd$.con#
+        AND NVL(cd$.enabled, 0) = iobjid
+        AND
+        /* cons enable */
+        (
+          cd$.intcols = 1
+          AND
+          /* single column */
+          EXISTS (
+            SELECT
+              *
+            FROM
+              sys.ccol$ cc$,
+              sys.col$ co$
+            WHERE
+              cc$.con# = c $.con#
+              AND co$.obj# = cc$.obj#
+              AND co$.intcol# = cc$.intcol#
+              AND BITAND(co$.property, 2) = 2
+          )
+        )
+    )
+columns: []
+referencedTables: []

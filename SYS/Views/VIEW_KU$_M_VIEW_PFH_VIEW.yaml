@@ -1,0 +1,50 @@
+schema: SYS
+name: KU$_M_VIEW_PFH_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '2',
+    '1',
+    mvv.sowner,
+    mvv.vname,
+    value(mvv),
+    value(pfhtv),
+    cast(
+      multiset(
+        select
+          value(iv)
+        from
+          sys.ku$_all_index_view iv,
+          sys.ind$ i
+        where
+          i.bo# = ot.obj#
+          and bitand(i.property, 8192) = 8192
+          and iv.obj_num = i.obj#
+      ) as ku$_index_list_t
+    )
+  from
+    sys.obj$ ot,
+    sys.user$ u,
+    sys.ku$_pfhtable_view pfhtv,
+    sys.ku$_m_view_view mvv
+  where
+    ot.name = mvv.tname
+    and ot.owner# = u.user#
+    and u.name = mvv.sowner
+    and ot.type# = 2
+    and pfhtv.obj_num = ot.obj#
+    and BITAND(mvv.flag, 33554432) != 33554432
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (ot.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

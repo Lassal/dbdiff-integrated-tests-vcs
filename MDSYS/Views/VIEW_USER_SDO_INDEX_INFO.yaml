@@ -1,0 +1,20 @@
+schema: MDSYS
+name: USER_SDO_INDEX_INFO
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    SDO_INDEX_NAME index_name,
+    table_owner,
+    table_name,
+    REPLACE(sdo_column_name, '"') column_name,
+    SDO_INDEX_TYPE,
+    SDO_INDEX_TABLE,
+    SDO_INDEX_STATUS
+  from
+    user_sdo_index_metadata,
+    user_indexes
+  where
+    index_name = sdo_index_name
+columns: []
+referencedTables: []

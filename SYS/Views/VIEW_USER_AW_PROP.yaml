@@ -1,0 +1,39 @@
+schema: SYS
+name: USER_AW_PROP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    a .awseq#,
+    a .awname,
+    p.oid,
+    p.objname,
+    p.propname,
+    dbms_aw.olap_type(nvl(p.proptype, 0)),
+    dbms_aw.prop_val(p.rowid),
+    dbms_aw.prop_clob(p.rowid),
+    dbms_aw.prop_len(p.rowid)
+  FROM
+    aw$ a,
+    aw_prop$ p,
+    (
+      select
+        max(rowid) keep (
+          dense_rank last
+          order by
+            gen#
+        ) rid
+      from
+        aw_prop$
+      group by
+        awseq#,
+        oid,
+        propname
+    )
+  WHERE
+    a .owner# = USERENV('SCHEMAID')
+    and a .awseq# = p.awseq#
+    and p.rowid = rid
+    and p.propval IS NOT NULL
+columns: []
+referencedTables: []

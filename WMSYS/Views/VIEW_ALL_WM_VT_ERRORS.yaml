@@ -1,0 +1,36 @@
+schema: WMSYS
+name: ALL_WM_VT_ERRORS
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    distinct vt.owner,
+    vt.table_name,
+    vt.state,
+    vt.sql_str,
+    et.status,
+    et.error_msg
+  from
+    (
+      select
+        t1.owner,
+        t1.table_name,
+        t1.disabling_ver state,
+        nt.index_type,
+        nt.index_field,
+        dbms_lob.substr(nt.sql_str, 4000, 1) sql_str
+      from
+        wmsys.wm$versioned_tables t1,
+        table(t1.undo_code) nt
+    ) vt,
+    wmsys.wm$vt_errors_table et,
+    all_tables at
+  where
+    vt.owner = et.owner
+    and vt.table_name = et.table_name
+    and vt.index_type = et.index_type
+    and vt.index_field = et.index_field
+    and vt.owner = at .owner
+    and at .table_name in (vt.table_name, vt.table_name || '_LT') WITH READ ONLY
+columns: []
+referencedTables: []

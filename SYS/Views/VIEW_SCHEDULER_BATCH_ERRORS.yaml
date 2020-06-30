@@ -1,0 +1,17 @@
+schema: SYS
+name: SCHEDULER_BATCH_ERRORS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    array_index,
+    object_type,
+    object_name,
+    attr_name,
+    error_code,
+    error_message,
+    additional_info
+  FROM
+    TABLE(SYS.SCHEDULER$_BATCHERR_PIPE)
+columns: []
+referencedTables: []

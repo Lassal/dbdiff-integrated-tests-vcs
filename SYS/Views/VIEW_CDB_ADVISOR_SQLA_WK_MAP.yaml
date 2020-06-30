@@ -1,0 +1,17 @@
+schema: SYS
+name: CDB_ADVISOR_SQLA_WK_MAP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OWNER",
+    "TASK_ID",
+    "TASK_NAME",
+    "WORKLOAD_ID",
+    "WORKLOAD_NAME",
+    "IS_STS",
+    "CON_ID"
+  FROM
+    CONTAINERS("SYS"."DBA_ADVISOR_SQLA_WK_MAP")
+columns: []
+referencedTables: []

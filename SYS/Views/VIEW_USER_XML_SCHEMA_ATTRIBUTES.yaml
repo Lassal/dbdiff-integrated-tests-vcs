@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_XML_SCHEMA_ATTRIBUTES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    SCHEMA_URL,
+    TARGET_NAMESPACE,
+    ATTRIBUTE_NAME,
+    IS_REF,
+    TYPE_NAME,
+    GLOBAL,
+    ATTRIBUTE,
+    ELEMENT_ID,
+    SQL_TYPE,
+    SQL_NAME
+  from
+    DBA_XML_SCHEMA_ATTRIBUTES
+  where
+    OWNER = USER
+columns: []
+referencedTables: []

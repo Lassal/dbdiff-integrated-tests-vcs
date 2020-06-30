@@ -1,0 +1,101 @@
+schema: XFILES
+name: XFILES_DOCUMENT_UPLOAD
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: SINGLE_DOC_UPLOAD.TARGET_FOLDER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SINGLE_DOC_UPLOAD.ON_SUCCESS_REDIRECT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SINGLE_DOC_UPLOAD.ON_FAILURE_REDIRECT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SINGLE_DOC_UPLOAD.DUPLICATE_POLICY
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SINGLE_DOC_UPLOAD.FILE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SINGLE_DOC_UPLOAD.RESOURCE_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SINGLE_DOC_UPLOAD.DESCRIPTION
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SINGLE_DOC_UPLOAD.LANGUAGE
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SINGLE_DOC_UPLOAD.CHARACTER_SET
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOAD.TARGET_FOLDER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOAD.ON_SUCCESS_REDIRECT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOAD.ON_FAILURE_REDIRECT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOAD.DUPLICATE_POLICY
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: UPLOAD.FILE
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: UPLOAD.RESOURCE_NAME
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: UPLOAD.DESCRIPTION
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: UPLOAD.LANGUAGE
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOAD.CHARACTER_SET
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package XFILES_DOCUMENT_UPLOAD AUTHID CURRENT_USER as procedure UPLOAD(
+    TARGET_FOLDER VARCHAR2,
+    ON_SUCCESS_REDIRECT VARCHAR2,
+    ON_FAILURE_REDIRECT VARCHAR2,
+    DUPLICATE_POLICY OWA.VC_ARR,
+    FILE OWA.VC_ARR,
+    RESOURCE_NAME OWA.VC_ARR,
+    DESCRIPTION OWA.VC_ARR,
+    LANGUAGE VARCHAR2,
+    CHARACTER_SET VARCHAR2
+  );
+  procedure SINGLE_DOC_UPLOAD(
+    TARGET_FOLDER VARCHAR2,
+    ON_SUCCESS_REDIRECT VARCHAR2,
+    ON_FAILURE_REDIRECT VARCHAR2,
+    DUPLICATE_POLICY VARCHAR2,
+    FILE VARCHAR2,
+    RESOURCE_NAME VARCHAR2,
+    DESCRIPTION VARCHAR2,
+    LANGUAGE VARCHAR2,
+    CHARACTER_SET VARCHAR2
+  );
+  end;

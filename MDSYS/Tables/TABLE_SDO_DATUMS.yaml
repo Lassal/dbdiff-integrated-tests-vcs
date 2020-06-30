@@ -1,0 +1,146 @@
+name: SDO_DATUMS
+schema: MDSYS
+columns:
+- name: DATA_SOURCE
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  dataTypeLength: 40
+- name: DATUM_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: DATUM_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: false
+  dataTypeLength: 80
+- name: DATUM_TYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 24
+  nullable: true
+  dataTypeLength: 24
+- name: ELLIPSOID_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: INFORMATION_SOURCE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 254
+  nullable: true
+  dataTypeLength: 254
+- name: IS_LEGACY
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: false
+  dataTypeLength: 5
+- name: LEGACY_CODE
+  ordinalPosition: 16
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: PRIME_MERIDIAN_ID
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: ROTATE_X
+  ordinalPosition: 11
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: ROTATE_Y
+  ordinalPosition: 12
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: ROTATE_Z
+  ordinalPosition: 13
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: SCALE_ADJUST
+  ordinalPosition: 14
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: SHIFT_X
+  ordinalPosition: 8
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: SHIFT_Y
+  ordinalPosition: 9
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: SHIFT_Z
+  ordinalPosition: 10
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: DATUM_PRIM
+  type: PRIMARY_KEY
+  columns:
+  - name: DATUM_ID
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: DATUM_FOREIGN_ELLIPSOID
+  type: FOREIGN_KEY
+  columns:
+  - name: ELLIPSOID_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_ELLIPSOIDS
+    referencedTableColumnName: ELLIPSOID_ID
+- !<fk-constraint>
+  name: DATUM_FOREIGN_LEGACY
+  type: FOREIGN_KEY
+  columns:
+  - name: LEGACY_CODE
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_DATUMS
+    referencedTableColumnName: DATUM_ID
+- !<fk-constraint>
+  name: DATUM_FOREIGN_MERIDIAN
+  type: FOREIGN_KEY
+  columns:
+  - name: PRIME_MERIDIAN_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_PRIME_MERIDIANS
+    referencedTableColumnName: PRIME_MERIDIAN_ID
+- !<check-constraint>
+  name: DATUM_ID_MUST_BE_POS
+  type: CHECK
+  checkClause: DATUM_ID > 0
+- !<check-constraint>
+  name: SYS_C005794
+  type: CHECK
+  checkClause: '"DATUM_ID" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005795
+  type: CHECK
+  checkClause: '"DATUM_NAME" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005796
+  type: CHECK
+  checkClause: '"IS_LEGACY" IS NOT NULL'

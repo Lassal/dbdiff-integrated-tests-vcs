@@ -1,0 +1,96 @@
+schema: CTXSYS
+name: CTX_INDEX_SECTIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    idx_name as isc_idx_name,
+    idx_owner as isc_idx_owner,
+    max(sec_type) as isc_sec_type,
+    max(nvl(decode(oatid, 240102, sec_name), '')) isc_sec_name,
+    max(nvl(decode(oatid, 240103, sec_name), '')) isc_sec_tag,
+    max(
+      nvl(
+        decode(
+          oatid,
+          240105,
+          decode(sec_name, 0, 'N', 1, 'Y')
+        ),
+        ''
+      )
+    ) isc_sec_visible,
+    max(
+      nvl(
+        decode(
+          oatid,
+          240107,
+          decode(
+            sec_name,
+            2,
+            'NUMBER',
+            5,
+            'VARCHAR2',
+            12,
+            'DATE',
+            23,
+            'RAW',
+            96,
+            'CHAR',
+            null
+          )
+        ),
+        ''
+      )
+    ) isc_sec_datatype
+  from(
+      select
+        c .idx_name idx_name,
+        u.name idx_owner,
+        a .ixv_value sec_name,
+        a .ixv_sub_group subg,
+        a .ixv_sub_oat_id oatid,
+        decode(
+          mod(b.ixv_oat_id, 100),
+          1,
+          'ZONE',
+          2,
+          'FIELD',
+          3,
+          'SPECIAL',
+          4,
+          'STOP',
+          5,
+          'ATTR',
+          7,
+          'MDATA',
+          8,
+          'COLUMN SDATA',
+          9,
+          'COLUMN MDATA',
+          10,
+          'SDATA',
+          11,
+          'NDATA',
+          null
+        ) sec_type
+      from
+        dr$index_value a,
+        dr$index_value b,
+        dr$index c,
+        sys.user$ u
+      where
+        b.ixv_idx_id = c .idx_id
+        and b.ixv_value = to_char(a .ixv_sub_group)
+        and b.ixv_sub_oat_id = 0
+        and b.ixv_sub_group = 0
+        and c .idx_owner# = u.user#
+    )
+  group by
+    subg,
+    idx_name,
+    idx_owner
+  order by
+    isc_idx_name,
+    isc_sec_type
+columns: []
+referencedTables: []

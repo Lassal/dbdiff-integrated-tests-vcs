@@ -1,0 +1,32 @@
+schema: SYS
+name: USER_ZONEMAPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    z. "OWNER",
+    z. "ZONEMAP_NAME",
+    z. "FACT_OWNER",
+    z. "FACT_TABLE",
+    z. "SCALE",
+    z. "HIERARCHICAL",
+    z. "WITH_CLUSTERING",
+    z. "QUERY",
+    z. "QUERY_LEN",
+    z. "PRUNING",
+    z. "REFRESH_MODE",
+    z. "REFRESH_METHOD",
+    z. "LAST_REFRESH_METHOD",
+    z. "LAST_REFRESH_TIME",
+    z. "INVALID",
+    z. "STALE",
+    z. "UNUSABLE",
+    z. "COMPILE_STATE"
+  from
+    dba_zonemaps z,
+    sys.user$ u
+  where
+    u.user# = userenv('SCHEMAID')
+    and z.owner = u.name
+columns: []
+referencedTables: []

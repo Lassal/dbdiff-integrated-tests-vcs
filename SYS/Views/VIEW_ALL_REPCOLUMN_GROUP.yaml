@@ -1,0 +1,19 @@
+schema: SYS
+name: ALL_REPCOLUMN_GROUP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    c .sname,
+    c .oname,
+    c .group_name,
+    c .group_comment
+  from
+    system.repcat$_column_group c,
+    all_repobject o
+  where
+    c .sname = o.sname
+    and c .oname = o.oname
+    and o.type in ('TABLE', 'SNAPSHOT')
+columns: []
+referencedTables: []

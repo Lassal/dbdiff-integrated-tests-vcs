@@ -1,0 +1,280 @@
+schema: SYS
+name: DBMS_STANDARD
+routineType: PACKAGE
+returnParamater:
+  name: WITH_GRANT_OPTION.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: COMMIT_CM.VC
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES_ENCRYPTED_PASSWORD.USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DICTIONARY_OBJ_NAME_LIST.OBJECT_LIST
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: OUT
+- name: DICTIONARY_OBJ_OWNER_LIST.OWNER_LIST
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: OUT
+- name: GRANTEE.USER_LIST
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: OUT
+- name: IS_ALTER_COLUMN.COLUMN_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IS_DROP_COLUMN.COLUMN_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IS_SERVERERROR.ERRNO
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ORIGINAL_SQL_TXT.SQL_TEXT
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: OUT
+- name: PRIVILEGE_LIST.PRIV_LIST
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: OUT
+- name: RAISE_APPLICATION_ERROR.NUM
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: RAISE_APPLICATION_ERROR.MSG
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RAISE_APPLICATION_ERROR.KEEPERRORSTACK
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REVOKEE.USER_LIST
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: OUT
+- name: ROLLBACK_SV.SAVE_POINT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SAVEPOINT.SAVE_POINT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SERVER_ERROR.POSITION
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SERVER_ERROR_MSG.POSITION
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SERVER_ERROR_NUM_PARAMS.POSITION
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SERVER_ERROR_PARAM.POSITION
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SERVER_ERROR_PARAM.PARAM
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_TRANSACTION_USE.VC
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SQL_TXT.SQL_TEXT
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: OUT
+- name: UPDATING(2).COLNAM
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package dbms_standard is -- types
+  type ora_name_list_t is table of varchar2(64);
+  -- DBMS_ID and DBMS_QUOTED_ID define the length of identifiers
+  -- in objects for SQL, PL/SQL and users.
+  subtype dbms_id is varchar2(30);
+  subtype dbms_quoted_id is varchar2(32);
+  subtype dbms_id_30 is varchar2(30);
+  subtype dbms_quoted_id_30 is varchar2(32);
+  subtype dbms_id_128 is varchar2(128);
+  subtype dbms_quoted_id_128 is varchar2(130);
+  -- Trigger Operations
+  procedure raise_application_error(
+    num binary_integer,
+    msg varchar2,
+    keeperrorstack boolean default FALSE
+  );
+  pragma interface (C, raise_application_error);
+  -- 1 (see psdicd.c)
+  pragma restrict_references (raise_application_error, WNPS, RNPS, WNDS, RNDS);
+  function inserting return boolean;
+  pragma interface (C, inserting);
+  -- 2
+  pragma restrict_references (inserting, WNPS, RNPS, WNDS);
+  function deleting return boolean;
+  pragma interface (C, deleting);
+  -- 3
+  pragma restrict_references (deleting, WNPS, RNPS, WNDS);
+  function updating return boolean;
+  pragma interface (C, updating);
+  -- 4
+  pragma restrict_references (updating, WNPS, RNPS, WNDS);
+  function updating (colnam varchar2) return boolean;
+  pragma interface (C, updating);
+  -- 5
+  pragma restrict_references (updating, WNPS, RNPS, WNDS);
+  -- Transaction Commands
+  procedure commit;
+  pragma interface (C, commit);
+  -- 6
+  procedure commit_cm(vc varchar2);
+  pragma interface (C, commit_cm);
+  -- 7
+  procedure rollback_nr;
+  pragma interface (C, rollback_nr);
+  -- 8
+  procedure rollback_sv(save_point varchar2);
+  pragma interface (C, rollback_sv);
+  -- 9
+  procedure savepoint(save_point varchar2);
+  pragma interface (C, savepoint);
+  -- 10
+  procedure set_transaction_use(vc varchar2);
+  pragma interface (C, set_transaction_use);
+  -- 11
+  -- Functions supported for system events
+  -- Null or zero will be returned if called in inappropriate occasions
+  -- error functions only search for the top 5 errors in the error stack
+  function sysevent return varchar2;
+  -- 12
+  pragma interface (C, sysevent);
+  pragma restrict_references (sysevent, WNPS, RNPS, WNDS);
+  function dictionary_obj_type return varchar2;
+  -- 13
+  pragma interface (C, dictionary_obj_type);
+  pragma restrict_references (dictionary_obj_type, WNPS, RNPS, WNDS);
+  function dictionary_obj_owner return varchar2;
+  -- 14
+  pragma interface (C, dictionary_obj_owner);
+  pragma restrict_references (dictionary_obj_owner, WNPS, RNPS, WNDS);
+  function dictionary_obj_name return varchar2;
+  -- 15
+  pragma interface (C, dictionary_obj_name);
+  pragma restrict_references (dictionary_obj_name, WNPS, RNPS, WNDS);
+  function database_name return varchar2;
+  -- 16
+  pragma interface (C, database_name);
+  pragma restrict_references (database_name, WNPS, RNPS, WNDS);
+  function instance_num return binary_integer;
+  -- 17
+  pragma interface (C, instance_num);
+  pragma restrict_references (instance_num, WNPS, RNPS, WNDS);
+  function login_user return varchar2;
+  -- 18
+  pragma interface (C, login_user);
+  pragma restrict_references (login_user, WNPS, RNPS, WNDS);
+  function is_servererror (errno binary_integer) return boolean;
+  -- 19
+  pragma interface (C, is_servererror);
+  pragma restrict_references (is_servererror, WNPS, RNPS, WNDS);
+  function server_error(position binary_integer) return binary_integer;
+  -- 20
+  pragma interface (C, server_error);
+  pragma restrict_references (server_error, WNPS, RNPS, WNDS);
+  function des_encrypted_password(user varchar2 default null) return varchar2;
+  -- 21
+  pragma interface (C, des_encrypted_password);
+  pragma restrict_references (des_encrypted_password, WNPS, RNPS, WNDS);
+  function is_alter_column (column_name varchar2) return boolean;
+  -- 22
+  pragma interface (C, is_alter_column);
+  pragma restrict_references (is_alter_column, WNPS, RNPS, WNDS);
+  function is_drop_column (column_name varchar2) return boolean;
+  -- 23
+  pragma interface (C, is_drop_column);
+  pragma restrict_references (is_drop_column, WNPS, RNPS, WNDS);
+  function grantee (user_list out ora_name_list_t) return binary_integer;
+  -- 24
+  pragma interface (C, grantee);
+  pragma restrict_references (grantee, WNPS, RNPS, WNDS);
+  function revokee (user_list out ora_name_list_t) return binary_integer;
+  -- 25
+  pragma interface (C, revokee);
+  pragma restrict_references (revokee, WNPS, RNPS, WNDS);
+  function privilege_list (priv_list out ora_name_list_t) return binary_integer;
+  -- 26
+  pragma interface (C, privilege_list);
+  pragma restrict_references (privilege_list, WNPS, RNPS, WNDS);
+  function with_grant_option return boolean;
+  -- 27
+  pragma interface (C, with_grant_option);
+  pragma restrict_references (with_grant_option, WNPS, RNPS, WNDS);
+  function dictionary_obj_owner_list (owner_list out ora_name_list_t) return binary_integer;
+  -- 28
+  pragma interface (C, dictionary_obj_owner_list);
+  pragma restrict_references (dictionary_obj_owner_list, WNPS, RNPS, WNDS);
+  function dictionary_obj_name_list (object_list out ora_name_list_t) return binary_integer;
+  -- 29
+  pragma interface (C, dictionary_obj_name_list);
+  pragma restrict_references (dictionary_obj_name_list, WNPS, RNPS, WNDS);
+  function is_creating_nested_table return boolean;
+  -- 30
+  pragma interface (C, is_creating_nested_table);
+  pragma restrict_references (is_creating_nested_table, WNPS, RNPS, WNDS);
+  function client_ip_address return varchar2;
+  -- 31
+  pragma interface (C, client_ip_address);
+  pragma restrict_references (client_ip_address, WNPS, RNPS, WNDS);
+  function sql_txt (sql_text out ora_name_list_t) return binary_integer;
+  -- 32
+  pragma interface (C, sql_txt);
+  pragma restrict_references (sql_txt, WNPS, RNPS, WNDS);
+  function server_error_msg (position binary_integer) return varchar2;
+  -- 33
+  pragma interface (C, server_error_msg);
+  pragma restrict_references (server_error_msg, WNPS, RNPS, WNDS);
+  function server_error_depth return binary_integer;
+  -- 34
+  pragma interface (C, server_error_depth);
+  pragma restrict_references (server_error_depth, WNPS, RNPS, WNDS);
+  function server_error_num_params (position binary_integer) return binary_integer;
+  -- 35
+  pragma interface (C, server_error_num_params);
+  pragma restrict_references (server_error_num_params, WNPS, RNPS, WNDS);
+  function server_error_param(position binary_integer, param binary_integer) return varchar2;
+  -- 36
+  pragma interface (C, server_error_param);
+  pragma restrict_references (server_error_param, WNPS, RNPS, WNDS);
+  function partition_pos return binary_integer;
+  -- 37
+  pragma interface (C, partition_pos);
+  pragma restrict_references (partition_pos, WNPS, RNPS, WNDS);
+  function sys_GetTriggerState return pls_integer;
+  pragma interface (C, Sys_GetTriggerState);
+  -- 38
+  pragma restrict_references (Sys_GetTriggerState, wnds, RNDS);
+  function applying_crossedition_trigger return boolean;
+  pragma interface (C, applying_crossedition_trigger);
+  -- 39
+  pragma restrict_references (applying_crossedition_trigger, WNPS, RNPS, WNDS);
+  function original_sql_txt (sql_text out ora_name_list_t) return binary_integer;
+  -- 40
+  pragma interface (C, original_sql_txt);
+  pragma restrict_references (original_sql_txt, WNPS, RNPS, WNDS);
+  end;

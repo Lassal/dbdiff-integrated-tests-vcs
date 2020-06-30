@@ -1,0 +1,77 @@
+schema: SYS
+name: ALL_REPGENOBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.sname,
+    r.oname,
+    r.type,
+    r.base_sname,
+    r.base_oname,
+    r.base_type,
+    r.package_prefix,
+    r.procedure_prefix,
+    r.distributed,
+    r.reason
+  from
+    repcat_generated r,
+    all_users u,
+    all_objects o
+  where
+    r.base_sname = u.username
+    and r.base_sname = o.owner
+    and r.base_oname = o.object_name
+    and (
+      r.base_type = o.object_type
+      or (
+        r.base_type = 'SNAPSHOT'
+        and o.object_type IN ('VIEW', 'TABLE')
+      )
+    )
+  union
+  select
+    r.sname,
+    r.oname,
+    r.type,
+    r.base_sname,
+    r.base_oname,
+    r.base_type,
+    r.package_prefix,
+    r.procedure_prefix,
+    r.distributed,
+    r.reason
+  from
+    user_repgenobjects r
+  union
+  select
+    r.sname,
+    r.oname,
+    r.type,
+    r.base_sname,
+    r.base_oname,
+    r.base_type,
+    r.package_prefix,
+    r.procedure_prefix,
+    r.distributed,
+    r.reason
+  from
+    repcat_generated r,
+    all_users u,
+    repcat_repobject ro
+  where
+    r.base_sname = u.username
+    and r.base_sname = ro.sname
+    and r.base_oname = ro.oname
+    and r.base_type = ro.type
+    and (ro.gname, ro.gowner) in (
+      select
+        nvl(rp.gname, ro.gname),
+        nvl(rp.owner, ro.gowner)
+      from
+        user_repgroup_privileges rp
+      where
+        rp.proxy_snapadmin = 'Y'
+    )
+columns: []
+referencedTables: []

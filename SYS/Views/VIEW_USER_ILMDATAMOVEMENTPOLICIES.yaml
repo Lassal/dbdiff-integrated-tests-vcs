@@ -1,0 +1,106 @@
+schema: SYS
+name: USER_ILMDATAMOVEMENTPOLICIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .name,
+    decode(b.action, 1, 'COMPRESSION', 2, 'STORAGE'),
+    decode(b.scope, 1, 'SEGMENT', 2, 'GROUP', 3, 'ROW'),
+    decode(
+      b.ctype,
+      2,
+      'ADVANCED',
+      3,
+      (
+        CASE
+          WHEN b.clevel = 1
+          and bitand(b.flag, 32) = 0 THEN 'QUERY LOW'
+          WHEN b.clevel = 2
+          and bitand(b.flag, 32) = 0 THEN 'QUERY HIGH'
+          WHEN b.clevel = 3
+          and bitand(b.flag, 32) = 0 THEN 'ARCHIVE LOW'
+          WHEN b.clevel = 4
+          and bitand (b.flag, 32) = 0 THEN 'ARCHIVE HIGH'
+          WHEN b.clevel = 1
+          and bitand(b.flag, 32) = 32 THEN 'QUERY LOW ROW LEVEL LOCKING'
+          WHEN b.clevel = 2
+          and bitand(b.flag, 32) = 32 THEN 'QUERY HIGH ROW LEVEL LOCKING'
+          WHEN b.clevel = 3
+          and bitand(b.flag, 32) = 32 THEN 'ARCHIVE LOW ROW LEVEL LOCKING'
+          WHEN b.clevel = 4
+          and bitand (b.flag, 32) = 32 THEN 'ARCHIVE HIGH ROW LEVEL LOCKING'
+        END
+      )
+    ),
+    b.tier_tbs,
+    decode(b.flag, 1, 'READ ONLY'),
+    CASE
+      WHEN bitand(b.flag, 8) = 8 THEN 'USER DEFINED'
+      WHEN b.action = 2
+      and bitand(b.flag, 1) <> 1 THEN null
+      ELSE decode(
+        b.condition,
+        0,
+        'LAST ACCESS TIME',
+        1,
+        'LOW ACCESS',
+        2,
+        'LAST MODIFICATION TIME',
+        3,
+        'CREATION TIME',
+        5,
+        'VALID TIME END'
+      )
+    END,
+    b.days,
+    b.custfunc
+  from
+    sys.ilm$ a,
+    sys.ilmpolicy$ b,
+    (
+      select
+        a .policy#
+      from
+        sys.ilm$ a
+      where
+        bitand(a .flag, 8) = 0
+        and a .owner# = userenv('SCHEMAID')
+      union
+      select
+        a .policy#
+      from
+        sys.ilm$ a,
+        sys.ts$ b,
+        sys.tsq$ c
+      where
+        bitand(a .flag, 8) = 8
+        and a .ts# = b.ts#
+        and b.ts# = c .ts#
+        and c .user# = userenv('SCHEMAID')
+        and (
+          c .blocks > 0
+          or c .maxblocks != 0
+        )
+      union
+      select
+        a .policy#
+      from
+        sys.ilm$ a
+      where
+        bitand(a .flag, 8) = 8
+        and exists (
+          select
+            null
+          from
+            sys.v$enabledprivs
+          where
+            priv_number = -15
+            /* UNLIMITED TABLESPACE */
+        )
+    ) c
+  where
+    a .policy# = b.policy#
+    and a .policy# = c .policy#
+columns: []
+referencedTables: []

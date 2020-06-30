@@ -1,0 +1,26 @@
+schema: SYS
+name: ODCISTATSOPTIONSDUMP
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: SO
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE ODCIStatsOptionsDump(so ODCIStatsOptions) IS
+  BEGIN
+    if so is null then dbms_output.put_line('ODCIStatsOptions is null');
+  return;
+  end if;
+  dbms_output.put_line('ODCIStatsOptions');
+  IF (so.Flags = ODCIConst.ComputeStats) THEN dbms_output.put_line('     Compute Stats');
+  END IF;
+  IF (so.Flags = ODCIConst.EstimateStats) THEN dbms_output.put_line('     Estimate Stats');
+  IF (so.Options = ODCIConst.PercentOption) THEN dbms_output.put_line('     Sample ' || so.Sample || ' Percent');
+  ELSE dbms_output.put_line('     Sample ' || so.Sample || ' Rows');
+  END IF;
+  END IF;
+  IF (so.Flags = ODCIConst.Validate) THEN dbms_output.put_line('     Validate');
+  END IF;
+  END;

@@ -1,0 +1,11 @@
+targetObjectSchema: MDSYS
+targetObjectName: SDO_PREFERRED_OPS_SYSTEM
+targetObjectType: TABLE
+name: SDO_PREFERRED_OPS_SYSTEM_TRIG
+eventTiming: BEFORE EACH ROW
+event: INSERT OR UPDATE OR DELETE
+eventActionBody: |-
+  BEGIN
+    MDSYS.sdo_cs.sdo_cs_context_invalidate;
+  END;
+executionOrder: 1

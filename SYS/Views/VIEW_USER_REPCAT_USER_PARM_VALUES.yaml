@@ -1,0 +1,50 @@
+schema: SYS
+name: USER_REPCAT_USER_PARM_VALUES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    rt.refresh_template_name,
+    rt.owner,
+    rt.refresh_group_name,
+    rt.template_comment,
+    nvl(rt.public_template, 'N'),
+    tp.parameter_name,
+    tp.default_parm_value,
+    tp.prompt_string,
+    sp.parm_value,
+    u.username
+  from
+    system.repcat$_refresh_templates rt,
+    system.repcat$_template_parms tp,
+    system.repcat$_user_parm_values sp,
+    dba_users u,
+    system.repcat$_template_types tt
+  where
+    tp.refresh_template_id = rt.refresh_template_id
+    and tp.template_parameter_id = sp.template_parameter_id
+    and rt.template_type_id = tt.template_type_id
+    and bitand(rawtohex(tt.flags), 1) = 1
+    and sp.user_id = u.user_id
+    and rt.refresh_template_id in (
+      select
+        rt.refresh_template_id
+      from
+        system.repcat$_refresh_templates rt
+      where
+        public_template = 'Y'
+      union
+      select
+        rt.refresh_template_id
+      from
+        system.repcat$_refresh_templates rt,
+        system.repcat$_user_authorizations at,
+        sys.all_users au
+      where
+        at .refresh_template_id = rt.refresh_template_id
+        and au.user_id = at .user_id
+        and nvl(rt.public_template, 'N') = 'N'
+        and au.user_id = userenv('SCHEMAID')
+    )
+columns: []
+referencedTables: []

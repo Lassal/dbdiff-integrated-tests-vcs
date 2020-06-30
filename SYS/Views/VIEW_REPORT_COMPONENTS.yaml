@@ -1,0 +1,23 @@
+schema: SYS
+name: REPORT_COMPONENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    c .id component_id,
+    c .name component_name,
+    c .description component_description,
+    r.id report_id,
+    r.name report_name,
+    r.description report_description,
+    f.name schema_filename,
+    XMLType(f.data) schema_data
+  FROM
+    wri$_rept_components c,
+    wri$_rept_reports r,
+    wri$_emx_files f
+  WHERE
+    c .id = r.component_id
+    AND r.schema_id = f.id (+)
+columns: []
+referencedTables: []

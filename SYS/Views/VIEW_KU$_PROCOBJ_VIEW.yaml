@@ -1,0 +1,62 @@
+schema: SYS
+name: KU$_PROCOBJ_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    o.obj_num,
+    value(o),
+    p.class,
+    p.prepost,
+    o.type_num,
+    p.level#,
+    p.package,
+    p.schema,
+    sys.dbms_metadata.get_procobj (
+      p.package,
+      p.schema,
+      'CREATE_EXP',
+      o.obj_num,
+      (
+        select
+          1
+        from
+          dual
+        where
+          (
+            SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+            OR EXISTS (
+              SELECT
+                *
+              FROM
+                sys.session_roles
+              WHERE
+                role = 'SELECT_CATALOG_ROLE'
+            )
+          )
+      )
+    )
+  from
+    sys.ku$_schemaobj_view o,
+    sys.exppkgobj$ p
+  where
+    p.type# = o.type_num
+    and (
+      p.class = 1
+      or p.class = 2
+    )
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,19 @@
+schema: MDSYS
+name: GEODETIC_SRIDS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    srid
+  from
+    MDSYS.CS_SRS
+  where
+    WKTEXT like 'GEOGCS%' minus
+  select
+    srid
+  from
+    MDSYS.SDO_COORD_REF_SYS
+  where
+    coord_ref_sys_kind = 'GEOCENTRIC'
+columns: []
+referencedTables: []

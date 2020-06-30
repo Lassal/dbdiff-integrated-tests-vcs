@@ -1,0 +1,13 @@
+schema: SYS
+name: INDEX_HISTOGRAM
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    hist.indx * power(2, stats.kdxstscl -4) repeat_count,
+    hist.kdxhsval keys_with_repeat_count
+  from
+    x$kdxst stats,
+    x$kdxhs hist
+columns: []
+referencedTables: []

@@ -1,0 +1,22 @@
+schema: SYS
+name: ALL_APPLY_PROGRESS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ap.apply_name,
+    ap.source_database,
+    ap.applied_message_number,
+    ap.oldest_message_number,
+    ap.apply_time,
+    ap.applied_message_create_time,
+    ap.oldest_transaction_id,
+    ap.spill_message_number,
+    ap.source_root_name
+  from
+    dba_apply_progress ap,
+    all_apply a
+  where
+    ap.apply_name = a .apply_name
+columns: []
+referencedTables: []

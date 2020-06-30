@@ -1,0 +1,25 @@
+schema: SYS
+name: USER_XDS_ACL_REFRESH
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s.schema_name,
+    s.table_name,
+    s.acl_mview_name,
+    s.refresh_mode,
+    s.refresh_ability,
+    s.acl_status,
+    s.user_supplied_mv,
+    s.start_date,
+    s.repeat_interval,
+    s.refresh_count,
+    s.comments
+  from
+    dba_xds_acl_refresh s,
+    sys.user$ u
+  where
+    s.schema_name = u.name
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,19 @@
+schema: ORDS_METADATA
+name: ALL_ORDS_PRIVILEGE_MODULES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    sec_privilege_modules.module_id,
+    ALL_ORDS_MODULES.name AS module_name,
+    sec_privilege_modules.privilege_id,
+    ALL_ORDS_PRIVILEGES.name AS privilege_name
+  FROM
+    ALL_ORDS_PRIVILEGES,
+    ALL_ORDS_MODULES,
+    sec_privilege_modules
+  WHERE
+    sec_privilege_modules.module_id = ALL_ORDS_MODULES.id
+    AND sec_privilege_modules.privilege_id = ALL_ORDS_PRIVILEGES.id
+columns: []
+referencedTables: []

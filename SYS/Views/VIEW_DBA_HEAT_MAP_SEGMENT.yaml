@@ -1,0 +1,30 @@
+schema: SYS
+name: DBA_HEAT_MAP_SEGMENT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    o.subname,
+    max (
+      decode (hm.segment_write, 'YES', track_time, null)
+    ) SEGMENT_WRITE_TIME,
+    max (
+      decode (hm.segment_read, 'YES', track_time, null)
+    ) SEGMENT_READ_TIME,
+    max (decode (hm.full_scan, 'YES', track_time, null)) FULL_SCAN,
+    max (decode (hm.lookup_scan, 'YES', track_time, null)) LOOKUP_SCAN
+  from
+    obj$ o,
+    user $ u,
+    sys. "_SYS_HEAT_MAP_SEG_HISTOGRAM" hm
+  where
+    o.obj# = hm.obj#
+    and o.owner# = u.user#
+  group by
+    u.name,
+    o.name,
+    o.subname
+columns: []
+referencedTables: []

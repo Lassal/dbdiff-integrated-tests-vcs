@@ -1,0 +1,42 @@
+schema: SYS
+name: USER_DIM_LEVELS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    dl.levelname,
+    temp.num_col,
+    u1.name,
+    o1.name,
+    decode (dl.flags, 1, 'Y', 'N')
+  from
+    (
+      select
+        dlk.dimobj#,
+        dlk.levelid#,
+        dlk.detailobj#,
+        COUNT(*) as num_col
+      from
+        sys.dimlevelkey$ dlk
+      group by
+        dlk.dimobj#,
+        dlk.levelid#,
+        dlk.detailobj#
+    ) temp,
+    sys.dimlevel$ dl,
+    sys.obj$ o,
+    sys.user$ u,
+    sys.obj$ o1,
+    sys.user$ u1
+  where
+    dl.dimobj# = o.obj#
+    and o.owner# = u.user#
+    and dl.dimobj# = temp.dimobj#
+    and dl.levelid# = temp.levelid#
+    and temp.detailobj# = o1.obj#
+    and o1.owner# = u1.user#
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

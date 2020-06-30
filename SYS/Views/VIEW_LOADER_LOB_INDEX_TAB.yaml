@@ -1,0 +1,64 @@
+schema: SYS
+name: LOADER_LOB_INDEX_TAB
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u1.name as table_owner,
+    o1.name as table_name,
+    u2.name as VIEW_OWNER,
+    o2.name as VIEW_NAME
+  from
+    sys.obj$ o1,
+    sys.obj$ o2,
+    sys.user$ u1,
+    sys.user$ u2,
+    sys.dependency$ d
+  where
+    o1.owner# = u1.user#
+    and o2.owner# = u2.user#
+    and o1.type# = 2
+    and o2.type# = 4
+    and d.p_obj# = o1.obj#
+    and d.d_obj# = o2.obj#
+    and (
+      o1.owner# = userenv('schemaid')
+      or o1.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK   ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

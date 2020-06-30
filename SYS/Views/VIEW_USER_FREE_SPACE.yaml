@@ -1,0 +1,166 @@
+schema: SYS
+name: USER_FREE_SPACE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ts.name,
+    fi.file#,
+    f.block#,
+    f.length * ts.blocksize,
+    f.length,
+    f.file#
+  from
+    sys.fet$ f,
+    sys.ts$ ts,
+    sys.file$ fi
+  where
+    f.ts# = ts.ts#
+    and f.ts# = fi.ts#
+    and f.file# = fi.relfile#
+    and ts.bitmapped = 0
+    and (
+      ts.ts# in (
+        select
+          tsq.ts#
+        from
+          sys.tsq$ tsq
+        where
+          tsq.user# = userenv('SCHEMAID')
+          and tsq.maxblocks != 0
+      )
+      or exists (
+        select
+          null
+        from
+          sys.v$enabledprivs
+        where
+          priv_number = -15
+          /* UNLIMITED TABLESPACE */
+      )
+    )
+  union all
+  select
+    ts.name,
+    fi.file#,
+    f.ktfbfebno,
+    f.ktfbfeblks * ts.blocksize,
+    f.ktfbfeblks,
+    f.ktfbfefno
+  from
+    sys.ts$ ts,
+    sys.x$ktfbfe f,
+    sys.file$ fi
+  where
+    ts.ts# = f.ktfbfetsn
+    and f.ktfbfetsn = fi.ts#
+    and f.ktfbfefno = fi.relfile#
+    and ts.bitmapped <> 0
+    and ts.online$ in (1, 4)
+    and ts.contents$ = 0
+    and (
+      ts.ts# in (
+        select
+          tsq.ts#
+        from
+          sys.tsq$ tsq
+        where
+          tsq.user# = userenv('SCHEMAID')
+          and tsq.maxblocks != 0
+      )
+      or exists (
+        select
+          null
+        from
+          sys.v$enabledprivs
+        where
+          priv_number = -15
+          /* UNLIMITED TABLESPACE */
+      )
+    )
+  union all
+  select
+    ts.name,
+    fi.file#,
+    u.ktfbuebno,
+    u.ktfbueblks * ts.blocksize,
+    u.ktfbueblks,
+    u.ktfbuefno
+  from
+    sys.recyclebin$ rb,
+    sys.ts$ ts,
+    sys.x$ktfbue u,
+    sys.file$ fi
+  where
+    ts.ts# = rb.ts#
+    and rb.ts# = fi.ts#
+    and rb.file# = fi.relfile#
+    and u.ktfbuesegtsn = rb.ts#
+    and u.ktfbuesegfno = rb.file#
+    and u.ktfbuesegbno = rb.block#
+    and ts.bitmapped <> 0
+    and ts.online$ in (1, 4)
+    and ts.contents$ = 0
+    and (
+      ts.ts# in (
+        select
+          tsq.ts#
+        from
+          sys.tsq$ tsq
+        where
+          tsq.user# = userenv('SCHEMAID')
+          and tsq.maxblocks != 0
+      )
+      or exists (
+        select
+          null
+        from
+          sys.v$enabledprivs
+        where
+          priv_number = -15
+          /* UNLIMITED TABLESPACE */
+      )
+    )
+  union all
+  select
+    ts.name,
+    fi.file#,
+    u.block#,
+    u.length * ts.blocksize,
+    u.length,
+    u.file#
+  from
+    sys.ts$ ts,
+    sys.uet$ u,
+    sys.file$ fi,
+    sys.recyclebin$ rb
+  where
+    ts.ts# = u.ts#
+    and u.ts# = fi.ts#
+    and u.segfile# = fi.relfile#
+    and u.ts# = rb.ts#
+    and u.segfile# = rb.file#
+    and u.segblock# = rb.block#
+    and ts.bitmapped = 0
+    and (
+      ts.ts# in (
+        select
+          tsq.ts#
+        from
+          sys.tsq$ tsq
+        where
+          tsq.user# = userenv('SCHEMAID')
+          and tsq.maxblocks != 0
+      )
+      or exists (
+        select
+          null
+        from
+          sys.v$enabledprivs
+        where
+          priv_number = -15
+          /* UNLIMITED TABLESPACE */
+      )
+    )
+columns: []
+referencedTables: []

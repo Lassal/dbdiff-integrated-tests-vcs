@@ -1,0 +1,41 @@
+schema: SYS
+name: KU$_FIND_HIDDEN_CONS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    cd.con#,
+    cn.name,
+    u.name,
+    o.name,
+    cc.intcol#
+  from
+    sys.obj$ o,
+    sys.user$ u,
+    sys.con$ cn,
+    sys.ccol$ cc,
+    sys.cdef$ cd,
+    sys.col$ c
+  where
+    cd.type# = 3
+    and cd.intcols = 1
+    and cn.con# = cd.con#
+    and cc.con# = cd.con#
+    and c .obj# = cd.obj#
+    and c .intcol# = cc.intcol#
+    and BITAND(c .property, 1026) != 0
+    and o.obj# = cd.obj#
+    and u.user# = cn.owner#
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (u.user#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

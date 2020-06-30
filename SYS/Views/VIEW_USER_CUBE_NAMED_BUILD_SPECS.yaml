@@ -1,0 +1,20 @@
+schema: SYS
+name: USER_CUBE_NAMED_BUILD_SPECS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name CUBE_NAME,
+    syn.syntax_clob NAMED_BUILD_SPEC
+  FROM
+    olap_cubes$ c,
+    obj$ o,
+    olap_syntax$ syn
+  WHERE
+    o.obj# = c .obj#
+    AND o.owner# = USERENV('SCHEMAID')
+    AND syn.owner_id(+) = c .obj#
+    AND syn.owner_type(+) = 1
+    AND syn.ref_role = 18 -- named build spec
+columns: []
+referencedTables: []

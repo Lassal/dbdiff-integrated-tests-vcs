@@ -1,0 +1,18 @@
+schema: SYS
+name: EXU9NLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    name,
+    value $
+  FROM
+    sys.props$
+  WHERE
+    name IN (
+      'NLS_CHARACTERSET',
+      'NLS_NCHAR_CHARACTERSET',
+      'NLS_LENGTH_SEMANTICS'
+    )
+columns: []
+referencedTables: []

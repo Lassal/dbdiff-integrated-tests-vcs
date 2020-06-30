@@ -1,0 +1,14 @@
+schema: DVF
+name: F$ENTERPRISE_IDENTITY
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  FUNCTION "F$ENTERPRISE_IDENTITY" RETURN VARCHAR2 AS
+  BEGIN
+    RETURN DVSYS.get_factor(p_factor = > 'Enterprise_Identity');
+  END;

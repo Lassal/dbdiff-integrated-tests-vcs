@@ -1,0 +1,17 @@
+schema: SYS
+name: USER_SYNONYMS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    SYNONYM_NAME,
+    TABLE_OWNER,
+    TABLE_NAME,
+    DB_LINK,
+    ORIGIN_CON_ID
+  from
+    NO_ROOT_SW_FOR_LOCAL(INT $DBA_SYNONYMS)
+  where
+    OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

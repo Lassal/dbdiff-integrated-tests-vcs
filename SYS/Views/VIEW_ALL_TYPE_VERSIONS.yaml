@@ -1,0 +1,64 @@
+schema: SYS
+name: ALL_TYPE_VERSIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    t.version#,
+    decode(
+      t.typecode,
+      108,
+      'OBJECT',
+      122,
+      'COLLECTION',
+      o.name
+    ),
+    decode(o.status, 0, 'N/A', 1, 'VALID', 'INVALID'),
+    s.line,
+    s.source,
+    t.hashcode
+  from
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.source$ s,
+    sys.type$ t,
+    user $ u
+  where
+    o.obj# = s.obj#
+    and o.oid$ = t.tvoid
+    and o.type# = 13
+    and o.owner# = u.user#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -184
+            /* EXECUTE ANY TYPE */,
+            -181
+            /* CREATE ANY TYPE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

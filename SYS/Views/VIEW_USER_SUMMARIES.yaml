@@ -1,0 +1,81 @@
+schema: SYS
+name: USER_SUMMARIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    u.name,
+    s.containernam,
+    s.lastrefreshscn,
+    s.lastrefreshdate,
+    decode (
+      s.refreshmode,
+      0,
+      'NONE',
+      1,
+      'ANY',
+      2,
+      'INCREMENTAL',
+      3,
+      'FULL'
+    ),
+    decode(bitand(s.pflags, 25165824), 25165824, 'N', 'Y'),
+    s.fullrefreshtim,
+    s.increfreshtim,
+    decode(bitand(s.pflags, 48), 0, 'N', 'Y'),
+    decode(bitand(s.mflags, 64), 0, 'N', 'Y'),
+    /* QSMQSUM_UNUSABLE */
+    decode(bitand(s.pflags, 1294319), 0, 'Y', 'N'),
+    decode(
+      bitand(
+        (
+          select
+            n.flag2
+          from
+            sys.snap$ n
+          where
+            n.vname = s.containernam
+            and n.sowner = u.name
+        ),
+        67108864
+      ),
+      67108864,
+      /* primary CUBE mv? */
+      decode(
+        bitand(
+          (
+            select
+              n2.flag
+            from
+              sys.snap$ n2
+            where
+              n2.parent_sowner = u.name
+              and n2.parent_vname = s.containernam
+          ),
+          256
+        ),
+        256,
+        'N',
+        'Y'
+      ),
+      /* Its child mv's properties determin INC_REFRESHABLE */
+      decode(bitand(s.pflags, 236617599), 0, 'Y', 'N')
+    ),
+    decode(bitand(s.mflags, 1), 0, 'N', 'Y'),
+    /* QSMQSUM_KNOWNSTL */
+    s.sumtextlen,
+    s.sumtext
+  from
+    sys.user$ u,
+    sys.sum$ s,
+    sys.obj$ o
+  where
+    o.owner# = u.user#
+    and o.obj# = s.obj#
+    and bitand(s.xpflags, 8388608) = 0
+    /* NOT REWRITE EQUIVALENCE SUMMARY */
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

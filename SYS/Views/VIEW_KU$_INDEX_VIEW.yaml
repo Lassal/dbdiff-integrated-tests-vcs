@@ -1,0 +1,13 @@
+schema: SYS
+name: KU$_INDEX_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    *
+  from
+    ku$_all_index_view i
+  where
+    BITAND(i.property, 4096) != 4096
+columns: []
+referencedTables: []

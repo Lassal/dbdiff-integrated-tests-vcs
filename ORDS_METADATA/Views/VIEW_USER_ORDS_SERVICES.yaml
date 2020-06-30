@@ -1,0 +1,133 @@
+schema: ORDS_METADATA
+name: USER_ORDS_SERVICES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    ALL_ORDS_SERVICES.method,
+    ALL_ORDS_SERVICES.base_path,
+    ALL_ORDS_SERVICES.pattern,
+    ALL_ORDS_SERVICES.priority,
+    ALL_ORDS_SERVICES.name,
+    ALL_ORDS_SERVICES.status,
+    ALL_ORDS_SERVICES.privilege_name,
+    ALL_ORDS_SERVICES.items_per_page,
+    ALL_ORDS_SERVICES.module_id,
+    ALL_ORDS_SERVICES.template_id,
+    ALL_ORDS_SERVICES.handler_id,
+    ALL_ORDS_SERVICES.source_type,
+    ALL_ORDS_SERVICES.source
+  FROM
+    ALL_ORDS_SERVICES
+  WHERE
+    ALL_ORDS_SERVICES.owner = sys_context('USERENV', 'CURRENT_USER')
+  UNION ALL
+  SELECT
+    "METHOD",
+    "BASE_PATH",
+    "PATTERN",
+    "PRIORITY",
+    "NAME",
+    "STATUS",
+    "PRIVILEGE_NAME",
+    "ITEMS_PER_PAGE",
+    "MODULE_ID",
+    "TEMPLATE_ID",
+    "HANDLER_ID",
+    "SOURCE_TYPE",
+    "SOURCE"
+  FROM
+    (
+      WITH operations AS (
+        SELECT
+          'COLLECTION' op
+        FROM
+          dual
+        UNION ALL
+        SELECT
+          'ITEM'
+        FROM
+          dual
+        UNION ALL
+        SELECT
+          'CREATE'
+        FROM
+          dual
+        UNION ALL
+        SELECT
+          'UPDATE'
+        FROM
+          dual
+        UNION ALL
+        SELECT
+          'DELETE'
+        FROM
+          dual
+        UNION ALL
+        SELECT
+          'DELFILTER'
+        FROM
+          dual
+        UNION ALL
+        SELECT
+          'BATCHLOAD'
+        FROM
+          dual
+      )
+      SELECT
+        CASE
+          WHEN op.op = 'CREATE' THEN 'POST'
+          WHEN op.op = 'UPDATE' THEN 'PUT'
+          WHEN op.op = 'DELETE' THEN 'DELETE'
+          WHEN op.op = 'DELFILTER' THEN 'DELETE'
+          WHEN op.op = 'BATCHLOAD' THEN 'POST'
+          ELSE 'GET'
+        END method,
+        '/' || o.OBJECT_ALIAS || '/' base_path,
+        CASE
+          WHEN op.op = 'COLLECTION' THEN '.'
+          WHEN op.op = 'CREATE' THEN '.'
+          WHEN op.op = 'DELFILTER' THEN '.'
+          WHEN op.op = 'BATCHLOAD' THEN 'batchload'
+          ELSE ':id'
+        END pattern,
+        0 priority,
+        o.PARSING_OBJECT name,
+        CASE
+          WHEN o.STATUS = 'DISABLED' THEN 'NOT_PUBLISHED'
+          ELSE 'PUBLISHED'
+        END status,
+        NULL privilege_name,
+        CASE
+          WHEN op.op = 'COLLECTION' THEN 25
+          ELSE 0
+        END items_per_page,
+        o.ID module_id,
+        CASE
+          WHEN op.op = 'COLLECTION' THEN 0
+          WHEN op.op = 'CREATE' THEN 0
+          WHEN op.op = 'DELFILTER' THEN 0
+          WHEN op.op = 'BATCHLOAD' THEN 1
+          ELSE 2
+        END template_id,
+        o.ID handler_id,
+        CASE
+          WHEN op.op = 'COLLECTION' THEN 'object/collection'
+          WHEN op.op = 'ITEM' THEN 'object/item'
+          WHEN op.op = 'CREATE' THEN 'object/action;type=create'
+          WHEN op.op = 'UPDATE' THEN 'object/action;type=update'
+          WHEN op.op = 'DELETE' THEN 'object/action;type=delete'
+          WHEN op.op = 'DELFILTER' THEN 'object/action;type=delete_filter'
+          WHEN op.op = 'BATCHLOAD' THEN 'object/action;type=batch'
+        END source_type,
+        to_clob(o.PARSING_OBJECT) source
+      FROM
+        ords_objects o,
+        operations op
+    )
+  ORDER BY
+    module_id,
+    template_id,
+    handler_id
+columns: []
+referencedTables: []

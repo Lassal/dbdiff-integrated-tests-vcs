@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_CUBE_VIEWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    co.name CUBE_NAME,
+    vo.name VIEW_NAME
+  FROM
+    olap_aw_views$ av,
+    obj$ co,
+    obj$ vo
+  WHERE
+    av.olap_object_type = 1 -- CUBE
+    AND av.olap_object_id = co.obj#
+    AND av.view_type = 1 -- ET
+    AND co.owner# = USERENV('SCHEMAID')
+    AND av.view_obj# = vo.obj#
+    AND vo.type# != 10 -- not NON-EXISTENT
+    AND vo.owner# = co.owner#
+columns: []
+referencedTables: []

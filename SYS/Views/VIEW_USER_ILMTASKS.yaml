@@ -1,0 +1,26 @@
+schema: SYS
+name: USER_ILMTASKS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    a .execution_id,
+    DECODE(
+      a .execution_state,
+      1,
+      'INACTIVE',
+      2,
+      'ACTIVE',
+      3,
+      'COMPLETED',
+      'UNKNOWN'
+    ),
+    a .creation_time,
+    a .start_time,
+    a .completion_time
+  FROM
+    sys.ilm_execution$ a
+  WHERE
+    a .owner = userenv('SCHEMAID')
+columns: []
+referencedTables: []

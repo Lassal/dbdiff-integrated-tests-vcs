@@ -1,0 +1,51 @@
+schema: SYS
+name: KU$_USER_PREF_STATS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    o.obj#,
+    (
+      select
+        value(sov)
+      from
+        ku$_schemaobj_view sov
+      where
+        sov.obj_num = o.obj#
+    ),
+    cast(
+      multiset(
+        select
+          value(usv)
+        from
+          ku$_up_stats_view usv
+        where
+          usv.obj_num = o.obj#
+      ) as ku$_up_stats_list_t
+    )
+  from
+    sys.obj$ o
+  where
+    exists (
+      select
+        1
+      from
+        sys.optstat_user_prefs$ opt
+      where
+        o.obj# = opt.obj#
+    )
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

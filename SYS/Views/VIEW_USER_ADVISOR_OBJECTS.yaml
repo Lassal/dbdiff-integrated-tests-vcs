@@ -1,0 +1,58 @@
+schema: SYS
+name: USER_ADVISOR_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .id as object_id,
+    c .object_type as type,
+    a .type as type_id,
+    a .task_id as task_id,
+    b.name as task_name,
+    a .exec_name as execution_name,
+    a .attr1 as attr1,
+    a .attr2 as attr2,
+    a .attr3 as attr3,
+    (
+      case
+        when b.advisor_id = 1
+        and a .type = 7
+        and length(attr4) = 1
+        and
+        /* attr4 has ' ' as default val */
+        a .attr1 is not null then (
+          select
+            nvl(sql_text, ' ')
+            /* backwards compat w/ tests */
+          from
+            wrh$_sqltext s,
+            wri$_adv_addm_tasks t
+          where
+            t.task_id = a .task_id
+            and s.dbid(+) = t.dbid
+            and s.sql_id(+) = a .attr1
+        )
+        else a .attr4
+      end
+    ) as attr4,
+    a .attr5 as attr5,
+    a .attr6 as attr6,
+    a .attr7 as attr7,
+    a .attr8 as attr8,
+    a .attr9 as attr9,
+    a .attr10 as attr10,
+    a .attr11 as attr11,
+    a .attr16 as attr16,
+    a .attr17 as attr17,
+    a .attr18 as attr18,
+    a .other as other
+  from
+    wri$_adv_objects a,
+    wri$_adv_tasks b,
+    x$keaobjt c
+  where
+    a .task_id = b.id
+    and b.owner# = userenv('SCHEMAID')
+    and c .indx = a .type
+columns: []
+referencedTables: []

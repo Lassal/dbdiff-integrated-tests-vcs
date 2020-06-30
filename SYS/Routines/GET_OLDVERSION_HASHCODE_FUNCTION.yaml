@@ -1,0 +1,38 @@
+schema: SYS
+name: GET_OLDVERSION_HASHCODE
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: RAW
+  parameterMode: OUT
+parameters:
+- name: SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SLEN
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: TYPENAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TLEN
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION get_oldversion_hashcode (
+    schema varchar2,
+    slen pls_integer,
+    typename varchar2,
+    tlen pls_integer
+  ) return raw is LANGUAGE C NAME "GET_OLDVSN_HASHCODE" LIBRARY UTL_OBJECTS_LIB parameters(
+    schema String,
+    slen ub2,
+    typename String,
+    tlen ub2,
+    return OCIRaw
+  );

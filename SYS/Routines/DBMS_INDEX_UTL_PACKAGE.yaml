@@ -1,0 +1,860 @@
+schema: SYS
+name: DBMS_INDEX_UTL
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: BUILD_INDEX_COMPONENTS(1).LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(1).JUST_UNUSABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(1).LOCALITY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(1).CONCURRENT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(1).CONT_AFTER_ERR
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(1).MAX_SLAVES
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(1).FORCED_DEGREE
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(1).RETRY_ONLINE
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(1).NUM_ERRORS
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: BUILD_INDEX_COMPONENTS(2).LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(2).JUST_UNUSABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(2).LOCALITY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(2).CONCURRENT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(2).CONT_AFTER_ERR
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(2).MAX_SLAVES
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(2).FORCED_DEGREE
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_INDEX_COMPONENTS(2).RETRY_ONLINE
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEXES(1).LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_INDEXES(1).JUST_UNUSABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEXES(1).LOCALITY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_INDEXES(1).CONCURRENT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEXES(1).CONT_AFTER_ERR
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEXES(1).MAX_SLAVES
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_INDEXES(1).FORCED_DEGREE
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_INDEXES(1).RETRY_ONLINE
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEXES(1).NUM_ERRORS
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: BUILD_INDEXES(2).LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_INDEXES(2).JUST_UNUSABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEXES(2).LOCALITY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_INDEXES(2).CONCURRENT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEXES(2).CONT_AFTER_ERR
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_INDEXES(2).MAX_SLAVES
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_INDEXES(2).FORCED_DEGREE
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_INDEXES(2).RETRY_ONLINE
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(1).LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(1).JUST_UNUSABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(1).LOCALITY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(1).CONCURRENT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(1).CONT_AFTER_ERR
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(1).MAX_SLAVES
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(1).FORCED_DEGREE
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(1).RETRY_ONLINE
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(1).NUM_ERRORS
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: BUILD_SCHEMA_INDEXES(2).LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(2).JUST_UNUSABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(2).LOCALITY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(2).CONCURRENT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(2).CONT_AFTER_ERR
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(2).MAX_SLAVES
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(2).FORCED_DEGREE
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_SCHEMA_INDEXES(2).RETRY_ONLINE
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(1).LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(1).JUST_UNUSABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(1).LOCALITY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(1).CONCURRENT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(1).CONT_AFTER_ERR
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(1).MAX_SLAVES
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(1).FORCED_DEGREE
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(1).RETRY_ONLINE
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(1).NUM_ERRORS
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: BUILD_TABLE_COMPONENT_INDEXES(2).LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(2).JUST_UNUSABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(2).LOCALITY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(2).CONCURRENT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(2).CONT_AFTER_ERR
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(2).MAX_SLAVES
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(2).FORCED_DEGREE
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_TABLE_COMPONENT_INDEXES(2).RETRY_ONLINE
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(1).LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(1).JUST_UNUSABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(1).LOCALITY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(1).CONCURRENT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(1).CONT_AFTER_ERR
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(1).MAX_SLAVES
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(1).FORCED_DEGREE
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(1).RETRY_ONLINE
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(1).NUM_ERRORS
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: BUILD_TABLE_INDEXES(2).LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(2).JUST_UNUSABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(2).LOCALITY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(2).CONCURRENT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(2).CONT_AFTER_ERR
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(2).MAX_SLAVES
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(2).FORCED_DEGREE
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: BUILD_TABLE_INDEXES(2).RETRY_ONLINE
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(1).SCHEMA_LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(1).TABLE_LIST
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(1).INDEX_LIST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(1).IDX_COMP_LIST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(1).TAB_COMP_LIST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(1).JUST_UNUSABLE
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(1).LOCALITY
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(1).CONCURRENT
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(1).CONT_AFTER_ERR
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(1).MAX_SLAVES
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(1).FORCED_DEGREE
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(1).RETRY_ONLINE
+  ordinalPosition: 12
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(1).NUM_ERRORS
+  ordinalPosition: 13
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: MULTI_LEVEL_BUILD(2).SCHEMA_LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(2).TABLE_LIST
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(2).INDEX_LIST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(2).IDX_COMP_LIST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(2).TAB_COMP_LIST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(2).JUST_UNUSABLE
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(2).LOCALITY
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(2).CONCURRENT
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(2).CONT_AFTER_ERR
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(2).MAX_SLAVES
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(2).FORCED_DEGREE
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: MULTI_LEVEL_BUILD(2).RETRY_ONLINE
+  ordinalPosition: 12
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_index_utl AUTHID CURRENT_USER AS -- =========================================================================
+  --                         DBMS_INDEX_UTL
+  -- =========================================================================
+  -- Meant for utility functions involving index rebuild.
+  -- =========================================================================
+  -- PROCEDURE: BUILD_SCHEMA_INDEXES
+  -- INPUT: list     -> indexes will be rebuilt for this list of schema names.
+  --                    The list should take the form:
+  --                    <schema> (, <schema>)*
+  --                    If the schema list is NULL, then all indexes
+  --                    visible to the current user will be rebuilt.
+  --   just_unusable -> rebuild only the unusable index components?  If true,
+  --                    then only unusable components will be rebuilt.  If
+  --                    false, all components will be rebuilt.
+  --        locality -> locality of indexes to be rebuilt.  If 'GLOBAL',
+  --                    rebuild only global indexes.  If 'LOCAL', rebuild
+  --                    only local indexes.  If 'ALL', rebuild both global
+  --                    and local.  Otherwise, error.
+  --      concurrent -> if true, use jobs to run rebuilds concurrently,
+  --                    if not, individual jobs may still run in parallel
+  --  cont_after_err -> continue after errors?  If true, then indexes will
+  --                    be rebuilt even after errors.  If false, after the
+  --                    first error, processing will be halted.
+  --      max_slaves -> degree of parallelism.  Maximum number of parallel
+  --                    slaves to allocate during the build (across all
+  --                    jobs).  NULL (default) means the maximum available
+  --                    in the system.
+  --   forced_degree -> degree of parallelism forced at session level
+  --                    for ddl operations.
+  --    retry_online -> if true, retry online rebuild index when offline
+  --                    rebuild fails with ORA-14327.
+  -- OUTPUT: num_errors -> number of failed index rebuilds (details on which
+  --                       indexes failed are contained in the alert.log
+  -- USE:  Implemented to provide an interface for finding and concurrently
+  --       and parallelely rebuilding all the index components (including
+  --       entire indexes, index partitions, and index subpartitions) for a
+  --       given list of schemas.
+  -- =========================================================================
+  PROCEDURE build_schema_indexes (
+    list IN VARCHAR2 DEFAULT NULL,
+    just_unusable IN BOOLEAN DEFAULT TRUE,
+    locality IN VARCHAR2 DEFAULT 'ALL',
+    concurrent IN BOOLEAN DEFAULT TRUE,
+    cont_after_err IN BOOLEAN DEFAULT FALSE,
+    max_slaves IN INT DEFAULT NULL,
+    forced_degree IN INT DEFAULT NULL,
+    retry_online IN BOOLEAN DEFAULT FALSE,
+    num_errors OUT NOCOPY PLS_INTEGER
+  );
+  -- Convenience interface: num_errors is captured and removed internally
+  PROCEDURE build_schema_indexes (
+    list IN VARCHAR2 DEFAULT NULL,
+    just_unusable IN BOOLEAN DEFAULT TRUE,
+    locality IN VARCHAR2 DEFAULT 'ALL',
+    concurrent IN BOOLEAN DEFAULT TRUE,
+    cont_after_err IN BOOLEAN DEFAULT FALSE,
+    max_slaves IN INT DEFAULT NULL,
+    forced_degree IN INT DEFAULT NULL,
+    retry_online IN BOOLEAN DEFAULT FALSE
+  );
+  -- =========================================================================
+  -- PROCEDURE: BUILD_TABLE_INDEXES
+  -- INPUT: list     -> indexes will be rebuilt for this list of tables.  The
+  --                    list should take the form:
+  --                    <owner>.<table> (, <owner>.<table>)*
+  --                    If <owner> is left off, the table is assumed to be in
+  --                    the schema of the current user.
+  --                    If the table list is NULL, then all indexes
+  --                    visible to the current user will be rebuilt.
+  --   just_unusable -> rebuild only the unusable index components?  If true,
+  --                    then only unusable components will be rebuilt.  If
+  --                    false, all components will be rebuilt.
+  --        locality -> locality of indexes to be rebuilt.  If 'GLOBAL',
+  --                    rebuild only global indexes.  If 'LOCAL', rebuild
+  --                    only local indexes.  If 'ALL', rebuild both global
+  --                    and local.  Otherwise, error.
+  --      concurrent -> if true, use jobs to run rebuilds concurrently,
+  --                    if not, individual jobs may still run in parallel
+  --  cont_after_err -> continue after errors?  If true, then indexes will
+  --                    be rebuilt even after errors.  If false, after the
+  --                    first error, processing will be halted.
+  --      max_slaves -> degree of parallelism.  Maximum number of parallel
+  --                    slaves to allocate during the build (across all
+  --                    jobs).  NULL (default) means the maximum available
+  --                    in the system.
+  --   forced_degree -> degree of parallelism forced at session level
+  --                    for ddl operations.
+  --    retry_online -> if true, retry online rebuild index when offline
+  --                    rebuild fails with ORA-14327,
+  -- OUTPUT: num_errors -> number of failed index rebuilds (details on which
+  --                       indexes failed are contained in the alert.log
+  -- USE:  Implemented to provide an interface for finding and concurrently
+  --       and parallelely rebuilding all the index components (including
+  --       entire indexes, index partitions, and index subpartitions) for a
+  --       given list of tables.
+  -- =========================================================================
+  PROCEDURE build_table_indexes (
+    list IN VARCHAR2 DEFAULT NULL,
+    just_unusable IN BOOLEAN DEFAULT TRUE,
+    locality IN VARCHAR2 DEFAULT 'ALL',
+    concurrent IN BOOLEAN DEFAULT TRUE,
+    cont_after_err IN BOOLEAN DEFAULT FALSE,
+    max_slaves IN INT DEFAULT NULL,
+    forced_degree IN INT DEFAULT NULL,
+    retry_online IN BOOLEAN DEFAULT FALSE,
+    num_errors OUT NOCOPY PLS_INTEGER
+  );
+  -- Convenience interface: num_errors is captured and removed internally
+  PROCEDURE build_table_indexes (
+    list IN VARCHAR2 DEFAULT NULL,
+    just_unusable IN BOOLEAN DEFAULT TRUE,
+    locality IN VARCHAR2 DEFAULT 'ALL',
+    concurrent IN BOOLEAN DEFAULT TRUE,
+    cont_after_err IN BOOLEAN DEFAULT FALSE,
+    max_slaves IN INT DEFAULT NULL,
+    forced_degree IN INT DEFAULT NULL,
+    retry_online IN BOOLEAN DEFAULT FALSE
+  );
+  -- =========================================================================
+  -- PROCEDURE: BUILD_INDEXES
+  -- INPUT: list     -> this list of indexes will be rebuilt.  The list should
+  --                    take the form:
+  --                    <owner>.<index> (, <owner>.<index>)*
+  --                    If <owner> is left off, the index is assumed to be in
+  --                    the schema of the current user.
+  --                    If the index list is NULL, then all indexes
+  --                    visible to the current user will be rebuilt.
+  --   just_unusable -> rebuild only the unusable index components?  If true,
+  --                    then only unusable components will be rebuilt.  If
+  --                    false, all components will be rebuilt.
+  --        locality -> locality of indexes to be rebuilt.  If 'GLOBAL',
+  --                    rebuild only global indexes.  If 'LOCAL', rebuild
+  --                    only local indexes.  If 'ALL', rebuild both global
+  --                    and local.  Otherwise, error.
+  --      concurrent -> if true, use jobs to run rebuilds concurrently,
+  --                    if not, individual jobs may still run in parallel
+  --  cont_after_err -> continue after errors?  If true, then indexes will
+  --                    be rebuilt even after errors.  If false, after the
+  --                    first error, processing will be halted.
+  --      max_slaves -> degree of parallelism.  Maximum number of parallel
+  --                    slaves to allocate during the build (across all
+  --                    jobs).  NULL (default) means the maximum available
+  --                    in the system.
+  --   forced_degree -> degree of parallelism forced at session level
+  --                    for ddl operations.
+  --    retry_online -> if true, retry online rebuild index when offline
+  --                    rebuild fails with ORA-14327,
+  -- OUTPUT: num_errors -> number of failed index rebuilds (details on which
+  --                       indexes failed are contained in the alert.log
+  -- USE:  Implemented to provide an interface for finding and concurrently
+  --       and parallelely rebuilding all the index components (including
+  --       entire indexes, index partitions, and index subpartitions) for a
+  --       given list of indexes.
+  -- =========================================================================
+  PROCEDURE build_indexes (
+    list IN VARCHAR2 DEFAULT NULL,
+    just_unusable IN BOOLEAN DEFAULT TRUE,
+    locality IN VARCHAR2 DEFAULT 'ALL',
+    concurrent IN BOOLEAN DEFAULT TRUE,
+    cont_after_err IN BOOLEAN DEFAULT FALSE,
+    max_slaves IN INT DEFAULT NULL,
+    forced_degree IN INT DEFAULT NULL,
+    retry_online IN BOOLEAN DEFAULT FALSE,
+    num_errors OUT NOCOPY PLS_INTEGER
+  );
+  -- Convenience interface: num_errors is captured and removed internally
+  PROCEDURE build_indexes (
+    list IN VARCHAR2 DEFAULT NULL,
+    just_unusable IN BOOLEAN DEFAULT TRUE,
+    locality IN VARCHAR2 DEFAULT 'ALL',
+    concurrent IN BOOLEAN DEFAULT TRUE,
+    cont_after_err IN BOOLEAN DEFAULT FALSE,
+    max_slaves IN INT DEFAULT NULL,
+    forced_degree IN INT DEFAULT NULL,
+    retry_online IN BOOLEAN DEFAULT FALSE
+  );
+  -- =========================================================================
+  -- PROCEDURE: BUILD_INDEX_COMPONENTS
+  -- INPUT: list     -> this list of index components will be rebuilt.
+  --                    The list should take the form:
+  --                    <owner>.<index>.<comp> (, <owner>.<index>.<comp>)*
+  --                    If <owner> is left off, the index is assumed to be in
+  --                    the schema of the current user.  <index> cannot be
+  --                    left off.
+  --                    For subpartitioned indexes, if the component given is
+  --                    a composite partition, all the subpartitions for that
+  --                    partition will be candidates for rebuild
+  --                    If the index component list is NULL, then all indexes
+  --                    visible to the current user will be rebuilt.
+  --   just_unusable -> rebuild only the unusable index components?  If true,
+  --                    then only unusable components will be rebuilt.  If
+  --                    false, all components will be rebuilt.
+  --        locality -> locality of indexes to be rebuilt.  If 'GLOBAL',
+  --                    rebuild only global indexes.  If 'LOCAL', rebuild
+  --                    only local indexes.  If 'ALL', rebuild both global
+  --                    and local.  Otherwise, error.
+  --      concurrent -> if true, use jobs to run rebuilds concurrently,
+  --                    if not, individual jobs may still run in parallel
+  --  cont_after_err -> continue after errors?  If true, then indexes will
+  --                    be rebuilt even after errors.  If false, after the
+  --                    first error, processing will be halted.
+  --      max_slaves -> degree of parallelism.  Maximum number of parallel
+  --                    slaves to allocate during the build (across all
+  --                    jobs).  NULL (default) means the maximum available
+  --                    in the system.
+  --   forced_degree -> degree of parallelism forced at session level
+  --                    for ddl operations.
+  --    retry_online -> if true, retry online rebuild index when offline
+  --                    rebuild fails with ORA-14327,
+  -- OUTPUT: num_errors -> number of failed index rebuilds (details on which
+  --                       indexes failed are contained in the alert.log
+  -- USE:  Implemented to provide an interface for finding and concurrently
+  --       and parallelely rebuilding a given list of index components
+  --       (partitions and subparts).  This will not rebuild entire indexes.
+  -- =========================================================================
+  PROCEDURE build_index_components (
+    list IN VARCHAR2 DEFAULT NULL,
+    just_unusable IN BOOLEAN DEFAULT TRUE,
+    locality IN VARCHAR2 DEFAULT 'ALL',
+    concurrent IN BOOLEAN DEFAULT TRUE,
+    cont_after_err IN BOOLEAN DEFAULT FALSE,
+    max_slaves IN INT DEFAULT NULL,
+    forced_degree IN INT DEFAULT NULL,
+    retry_online IN BOOLEAN DEFAULT FALSE,
+    num_errors OUT NOCOPY PLS_INTEGER
+  );
+  -- Convenience interface: num_errors is captured and removed internally
+  PROCEDURE build_index_components (
+    list IN VARCHAR2 DEFAULT NULL,
+    just_unusable IN BOOLEAN DEFAULT TRUE,
+    locality IN VARCHAR2 DEFAULT 'ALL',
+    concurrent IN BOOLEAN DEFAULT TRUE,
+    cont_after_err IN BOOLEAN DEFAULT FALSE,
+    max_slaves IN INT DEFAULT NULL,
+    forced_degree IN INT DEFAULT NULL,
+    retry_online IN BOOLEAN DEFAULT FALSE
+  );
+  -- =========================================================================
+  -- PROCEDURE: BUILD_TABLE_COMPONENT_INDEXES
+  -- INPUT: list     -> indexes will be rebuilt for this list of table
+  --                    components.  The list should take the form:
+  --                    <owner>.<table>.<comp> (, <owner>.<table>.<comp>)*
+  --                    If <owner> is left off, the table is assumed to be in
+  --                    the schema of the current user.  <table> cannot be
+  --                    left off.
+  --                    For subpartitioned tables, if the component given is
+  --                    a composite partition, all the subpartitions for that
+  --                    partition will be candidates for rebuild
+  --                    If the table component list is NULL, then all indexes
+  --                    visible to the current user will be rebuilt.
+  --   just_unusable -> rebuild only the unusable index components?  If true,
+  --                    then only unusable components will be rebuilt.  If
+  --                    false, all components will be rebuilt.
+  --        locality -> locality of indexes to be rebuilt.  If 'GLOBAL',
+  --                    rebuild only global indexes.  If 'LOCAL', rebuild
+  --                    only local indexes.  If 'ALL', rebuild both global
+  --                    and local.  Otherwise, error.
+  --      concurrent -> if true, use jobs to run rebuilds concurrently,
+  --                    if not, individual jobs may still run in parallel
+  --  cont_after_err -> continue after errors?  If true, then indexes will
+  --                    be rebuilt even after errors.  If false, after the
+  --                    first error, processing will be halted.
+  --      max_slaves -> degree of parallelism.  Maximum number of parallel
+  --                    slaves to allocate during the build (across all
+  --                    jobs).  NULL (default) means the maximum available
+  --                    in the system.
+  --   forced_degree -> degree of parallelism forced at session level
+  --                    for ddl operations.
+  --    retry_online -> if true, retry online rebuild index when offline
+  --                    rebuild fails with ORA-14327,
+  -- OUTPUT: num_errors -> number of failed index rebuilds (details on which
+  --                       indexes failed are contained in the alert.log
+  -- USE:  Implemented to provide an interface for finding and concurrently
+  --       and parallelely rebuilding all the index components (including
+  --       index partitions, and index subpartitions) for a given list of
+  --       table components.
+  -- =========================================================================
+  PROCEDURE build_table_component_indexes (
+    list IN VARCHAR2 DEFAULT NULL,
+    just_unusable IN BOOLEAN DEFAULT TRUE,
+    locality IN VARCHAR2 DEFAULT 'ALL',
+    concurrent IN BOOLEAN DEFAULT TRUE,
+    cont_after_err IN BOOLEAN DEFAULT FALSE,
+    max_slaves IN INT DEFAULT NULL,
+    forced_degree IN INT DEFAULT NULL,
+    retry_online IN BOOLEAN DEFAULT FALSE,
+    num_errors OUT NOCOPY PLS_INTEGER
+  );
+  -- Convenience interface: num_errors is captured and removed internally
+  PROCEDURE build_table_component_indexes (
+    list IN VARCHAR2 DEFAULT NULL,
+    just_unusable IN BOOLEAN DEFAULT TRUE,
+    locality IN VARCHAR2 DEFAULT 'ALL',
+    concurrent IN BOOLEAN DEFAULT TRUE,
+    cont_after_err IN BOOLEAN DEFAULT FALSE,
+    max_slaves IN INT DEFAULT NULL,
+    forced_degree IN INT DEFAULT NULL,
+    retry_online IN BOOLEAN DEFAULT FALSE
+  );
+  -- =========================================================================
+  -- PROCEDURE: MULTI_LEVEL_BUILD
+  -- INPUT:
+  --     schema_list -> indexes will be rebuilt for this list of schema names.
+  --                    The list should take the form:
+  --                    <schema> (, <schema>)*
+  --      table_list -> indexes will be rebuilt for this list of tables.  The
+  --                    list should take the form:
+  --                    <owner>.<table> (, <owner>.<table>)*
+  --                    If <owner> is left off, the table is assumed to be in
+  --                    the schema of the current user.
+  --      index_list -> this list of indexes will be rebuilt.  The list should
+  --                    take the form:
+  --                    <owner>.<index> (, <owner>.<index>)*
+  --                    If <owner> is left off, the index is assumed to be in
+  --                    the schema of the current user.
+  --   idx_comp_list -> this list of index components will be rebuilt.
+  --                    The list should take the form:
+  --                    <owner>.<index>.<comp> (, <owner>.<index>.<comp>)*
+  --                    If <owner> is left off, the index is assumed to be in
+  --                    the schema of the current user.  <index> cannot be
+  --                    left off.
+  --   tab_comp_list -> indexes will be rebuild for this list of table
+  --                    components.  The list should take the form:
+  --                    <owner>.<table>.<comp> (, <owner>.<table>.<comp>)*
+  --                    If <owner> is left off, the table is assumed to be in
+  --                    the schema of the current user.  <table> cannot be
+  --                    left off.
+  -- NOTE: if all lists are NULL, then all indexes visible to the current
+  --       user will be rebuilt.
+  --   just_unusable -> rebuild only the unusable index components?  If true,
+  --                    then only unusable components will be rebuilt.  If
+  --                    false, all components will be rebuilt.
+  --        locality -> locality of indexes to be rebuilt.  If 'GLOBAL',
+  --                    rebuild only global indexes.  If 'LOCAL', rebuild
+  --                    only local indexes.  If 'ALL', rebuild both global
+  --                    and local.  Otherwise, error.
+  --      concurrent -> if true, use jobs to run rebuilds concurrently,
+  --                    if not, individual jobs may still run in parallel
+  --  cont_after_err -> continue after errors?  If true, then indexes will
+  --                    be rebuilt even after errors.  If false, after the
+  --                    first error, processing will be halted.
+  --      max_slaves -> degree of parallelism.  Maximum number of parallel
+  --                    slaves to allocate during the build (across all
+  --                    jobs).  NULL (default) means the maximum available
+  --                    in the system.
+  --   forced_degree -> degree of parallelism forced at session level
+  --                    for ddl operations.
+  --    retry_online -> if true, retry online rebuild index when offline
+  --                    rebuild fails with ORA-14327,
+  -- OUTPUT: num_errors -> number of failed index rebuilds (details on which
+  --                       indexes failed are contained in the alert.log
+  -- USE:  Implemented to provide an interface for finding and concurrently
+  --       and parallelely rebuilding all the index components (including
+  --       index partitions, and index subpartitions) for several lists of
+  --       schema objects.  This function has an advantage over others in
+  --       that it provides the maximum amount of concurrency possible by
+  --       removing serialization forced by making sequential calls to
+  --       different rebuild functions.
+  -- =========================================================================
+  PROCEDURE multi_level_build (
+    schema_list IN VARCHAR2 DEFAULT NULL,
+    table_list IN VARCHAR2 DEFAULT NULL,
+    index_list IN VARCHAR2 DEFAULT NULL,
+    idx_comp_list IN VARCHAR2 DEFAULT NULL,
+    tab_comp_list IN VARCHAR2 DEFAULT NULL,
+    just_unusable IN BOOLEAN DEFAULT TRUE,
+    locality IN VARCHAR2 DEFAULT 'ALL',
+    concurrent IN BOOLEAN DEFAULT TRUE,
+    cont_after_err IN BOOLEAN DEFAULT FALSE,
+    max_slaves IN INT DEFAULT NULL,
+    forced_degree IN INT DEFAULT NULL,
+    retry_online IN BOOLEAN DEFAULT FALSE,
+    num_errors OUT NOCOPY PLS_INTEGER
+  );
+  -- Convenience interface: num_errors is captured and removed internally
+  PROCEDURE multi_level_build (
+    schema_list IN VARCHAR2 DEFAULT NULL,
+    table_list IN VARCHAR2 DEFAULT NULL,
+    index_list IN VARCHAR2 DEFAULT NULL,
+    idx_comp_list IN VARCHAR2 DEFAULT NULL,
+    tab_comp_list IN VARCHAR2 DEFAULT NULL,
+    just_unusable IN BOOLEAN DEFAULT TRUE,
+    locality IN VARCHAR2 DEFAULT 'ALL',
+    concurrent IN BOOLEAN DEFAULT TRUE,
+    cont_after_err IN BOOLEAN DEFAULT FALSE,
+    max_slaves IN INT DEFAULT NULL,
+    forced_degree IN INT DEFAULT NULL,
+    retry_online IN BOOLEAN DEFAULT FALSE
+  );
+  END dbms_index_utl;

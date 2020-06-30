@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_XS_INHERITED_REALMS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    policy,
+    realm_order,
+    parent_object,
+    parent_schema,
+    primary_key,
+    foreign_key,
+    foreign_key_type
+  from
+    sys.dba_xs_inherited_realms
+  where
+    policy_owner = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

@@ -1,0 +1,30 @@
+schema: SYS
+name: USER_REPAUDIT_COLUMN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.oname,
+    r.column_name,
+    r.base_sname,
+    r.base_oname,
+    decode(
+      r.base_conflict_type_id,
+      1,
+      'UPDATE',
+      2,
+      'UNIQUENESS',
+      3,
+      'DELETE',
+      'UNDEFINED'
+    ),
+    r.base_reference_name,
+    r.attribute
+  from
+    system.repcat$_audit_column r,
+    sys.user$ u
+  where
+    r.sname = u.name
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,39 @@
+schema: CTXSYS
+name: CTX_USER_INDEX_SUB_LEXER_VALS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ ORDERED */
+    idx_name isv_index_name,
+    substr(dri_sublxv_lang(iv2.ixv_value), 1, 30) isv_language,
+    obj_name isv_object,
+    oat_name isv_attribute,
+    decode(
+      oat_datatype,
+      'B',
+      decode(iv1.ixv_value, 1, 'YES', 'NO'),
+      nvl(oal_label, iv1.ixv_value)
+    ) isv_value
+  from
+    dr$index,
+    dr$index_value iv1,
+    dr$index_value iv2,
+    dr$object_attribute,
+    dr$object,
+    dr$object_attribute_lov
+  where
+    iv1.ixv_value = nvl(oal_value, iv1.ixv_value)
+    and oat_id = oal_oat_id (+)
+    and oat_system = 'N'
+    and oat_cla_id = obj_cla_id
+    and oat_obj_id = obj_id
+    and iv1.ixv_sub_oat_id = oat_id
+    and iv2.ixv_oat_id = 60601
+    and iv1.ixv_sub_group = iv2.ixv_sub_group
+    and iv1.ixv_idx_id = iv2.ixv_idx_id
+    and iv1.ixv_oat_id = 60602
+    and idx_id = iv1.ixv_idx_id
+    and idx_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,55 @@
+schema: SYS
+name: ALL_OPERATOR_COMMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    c .comment$
+  from
+    sys.obj$ o,
+    sys.operator$ op,
+    sys.com$ c,
+    sys.user$ u
+  where
+    o.obj# = op.obj#
+    and c .obj# = op.obj#
+    and u.user# = o.owner#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -200
+            /* CREATE OPERATOR */,
+            -201
+            /* CREATE ANY OPERATOR */,
+            -202
+            /* ALTER ANY OPERATOR */,
+            -203
+            /* DROP ANY OPERATOR */,
+            -204
+            /* EXECUTE OPERATOR */
+          )
+      )
+    )
+columns: []
+referencedTables: []

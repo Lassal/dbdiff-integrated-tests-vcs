@@ -1,0 +1,505 @@
+schema: SYS
+name: DBMS_OBFUSCATION_TOOLKIT
+routineType: PACKAGE
+returnParamater:
+  name: MD5(4).(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  textMaxLength: 16
+  parameterMode: OUT
+parameters:
+- name: DESDECRYPT(1).INPUT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DESDECRYPT(1).KEY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DESDECRYPT(1).DECRYPTED_DATA
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: DESDECRYPT(2).INPUT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DESDECRYPT(2).KEY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DESDECRYPT(3).INPUT_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DESDECRYPT(3).KEY_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DESDECRYPT(3).DECRYPTED_STRING
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: DESDECRYPT(4).INPUT_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DESDECRYPT(4).KEY_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DESENCRYPT(1).INPUT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DESENCRYPT(1).KEY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DESENCRYPT(1).ENCRYPTED_DATA
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: DESENCRYPT(2).INPUT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DESENCRYPT(2).KEY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DESENCRYPT(3).INPUT_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DESENCRYPT(3).KEY_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DESENCRYPT(3).ENCRYPTED_STRING
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: DESENCRYPT(4).INPUT_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DESENCRYPT(4).KEY_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DESGETKEY(1).SEED
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DESGETKEY(1).KEY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: OUT
+- name: DESGETKEY(2).SEED
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DESGETKEY(3).SEED_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DESGETKEY(3).KEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: DESGETKEY(4).SEED_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3DECRYPT(1).INPUT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DES3DECRYPT(1).KEY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DES3DECRYPT(1).DECRYPTED_DATA
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: DES3DECRYPT(1).WHICH
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DES3DECRYPT(1).IV
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: IN
+- name: DES3DECRYPT(2).INPUT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DES3DECRYPT(2).KEY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DES3DECRYPT(2).WHICH
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DES3DECRYPT(2).IV
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: DES3DECRYPT(3).INPUT_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3DECRYPT(3).KEY_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3DECRYPT(3).DECRYPTED_STRING
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: DES3DECRYPT(3).WHICH
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DES3DECRYPT(3).IV_STRING
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3DECRYPT(4).INPUT_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3DECRYPT(4).KEY_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3DECRYPT(4).WHICH
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DES3DECRYPT(4).IV_STRING
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3ENCRYPT(1).INPUT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DES3ENCRYPT(1).KEY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DES3ENCRYPT(1).ENCRYPTED_DATA
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: DES3ENCRYPT(1).WHICH
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DES3ENCRYPT(1).IV
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: IN
+- name: DES3ENCRYPT(2).INPUT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DES3ENCRYPT(2).KEY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DES3ENCRYPT(2).WHICH
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DES3ENCRYPT(2).IV
+  ordinalPosition: 4
+  dataType: RAW
+  parameterMode: IN
+- name: DES3ENCRYPT(3).INPUT_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3ENCRYPT(3).KEY_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3ENCRYPT(3).ENCRYPTED_STRING
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: DES3ENCRYPT(3).WHICH
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DES3ENCRYPT(3).IV_STRING
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3ENCRYPT(4).INPUT_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3ENCRYPT(4).KEY_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3ENCRYPT(4).WHICH
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DES3ENCRYPT(4).IV_STRING
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3GETKEY(1).WHICH
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DES3GETKEY(1).SEED
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DES3GETKEY(1).KEY
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: DES3GETKEY(2).WHICH
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DES3GETKEY(2).SEED
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: DES3GETKEY(3).WHICH
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DES3GETKEY(3).SEED_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DES3GETKEY(3).KEY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: DES3GETKEY(4).WHICH
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DES3GETKEY(4).SEED_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MD5(1).INPUT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: MD5(1).CHECKSUM
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: OUT
+- name: MD5(2).INPUT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: MD5(3).INPUT_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MD5(3).CHECKSUM_STRING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 16
+  parameterMode: OUT
+- name: MD5(4).INPUT_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_obfuscation_toolkit AS -- Note that the following pragma applies to both functions
+  -- and procedures (see doc bug 3103959).
+  pragma restrict_references (default, RNDS, WNDS, RNPS, WNPS);
+  ------------------------------- TYPES ------------------------------------
+  -- Types used to make it easier for the user to reserve the correct
+  -- amount of memory for a checksum.
+  SUBTYPE varchar2_checksum IS VARCHAR2(16);
+  SUBTYPE raw_checksum IS RAW(16);
+  ----------------------------- CONSTANTS -----------------------------------
+  -- Triple DES modes
+  TwoKeyMode INTEGER: = 0;
+  ThreeKeyMode INTEGER: = 1;
+  ----------------------------- EXCEPTIONS ----------------------------------
+  -- Invalid mode specified for Triple DES.
+  InvalidTripleDESMode
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(InvalidTripleDESMode, -28236);
+  ---------------------- FUNCTIONS AND PROCEDURES ---------------------------
+    ---------------------------- KEY GENERATION ------------------------------
+    -- The following routines generate encryption keys. Each takes a random
+    -- value which it uses in the generation of the key. This value must be
+    -- at least 80 characters long.
+    -- There are two versions of each procedure and function: one for raw data
+    -- and the other for strings.
+    ---------------------------------------------------------------------------
+    PROCEDURE DESGetKey(
+      seed IN RAW,
+      key OUT RAW
+    );
+  pragma restrict_references (DESGetKey, RNDS, WNDS, WNPS);
+  FUNCTION DESGetKey(seed IN RAW) RETURN RAW;
+  pragma restrict_references (DESGetKey, RNDS, WNDS, WNPS);
+  PROCEDURE DESGetKey(
+      seed_string IN VARCHAR2,
+      key OUT VARCHAR2
+    );
+  pragma restrict_references (DESGetKey, RNDS, WNDS, WNPS);
+  FUNCTION DESGetKey(seed_string IN VARCHAR2) RETURN VARCHAR2;
+  pragma restrict_references (DESGetKey, RNDS, WNDS, WNPS);
+  -- For Triple DES, the mode is specified so that the key has the proper
+    -- length is returned.
+    PROCEDURE DES3GetKey(
+      which IN PLS_INTEGER DEFAULT TwoKeyMode,
+      seed IN RAW,
+      key OUT RAW
+    );
+  pragma restrict_references (DES3GetKey, RNDS, WNDS, WNPS);
+  FUNCTION DES3GetKey(
+      which IN PLS_INTEGER DEFAULT TwoKeyMode,
+      seed IN RAW
+    ) RETURN RAW;
+  pragma restrict_references (DES3GetKey, RNDS, WNDS, WNPS);
+  PROCEDURE DES3GetKey(
+      which IN PLS_INTEGER DEFAULT TwoKeyMode,
+      seed_string IN VARCHAR2,
+      key OUT VARCHAR2
+    );
+  pragma restrict_references (DES3GetKey, RNDS, WNDS, WNPS);
+  FUNCTION DES3GetKey(
+      which IN PLS_INTEGER DEFAULT TwoKeyMode,
+      seed_string IN VARCHAR2
+    ) RETURN VARCHAR2;
+  pragma restrict_references (DES3GetKey, RNDS, WNDS, WNPS);
+  ---------------------------- DATA ENCRYPTION ------------------------------
+    -- The following routines encrypt and decrypt data.
+    -- There are two versions of each procedure and function: one for raw data
+    -- and the other for strings.
+    ---------------------------------------------------------------------------
+    -- DES
+    PROCEDURE DESEncrypt(
+      input IN RAW,
+      key IN RAW,
+      encrypted_data OUT RAW
+    );
+  FUNCTION DESEncrypt(
+      input IN RAW,
+      key IN RAW
+    ) RETURN RAW;
+  PROCEDURE DESEncrypt(
+      input_string IN VARCHAR2,
+      key_string IN VARCHAR2,
+      encrypted_string OUT VARCHAR2
+    );
+  FUNCTION DESEncrypt(
+      input_string IN VARCHAR2,
+      key_string IN VARCHAR2
+    ) RETURN VARCHAR2;
+  PROCEDURE DESDecrypt(
+      input IN RAW,
+      key IN RAW,
+      decrypted_data OUT RAW
+    );
+  FUNCTION DESDecrypt(
+      input IN RAW,
+      key IN RAW
+    ) RETURN RAW;
+  PROCEDURE DESDecrypt(
+      input_string IN VARCHAR2,
+      key_string IN VARCHAR2,
+      decrypted_string OUT VARCHAR2
+    );
+  FUNCTION DESDecrypt(
+      input_string IN VARCHAR2,
+      key_string IN VARCHAR2
+    ) RETURN VARCHAR2;
+  -- Triple DES
+    PROCEDURE DES3Encrypt(
+      input IN RAW,
+      key IN RAW,
+      encrypted_data OUT RAW,
+      which IN PLS_INTEGER DEFAULT TwoKeyMode,
+      iv IN RAW DEFAULT NULL
+    );
+  pragma restrict_references (DES3Encrypt, RNDS, WNDS, WNPS);
+  FUNCTION DES3Encrypt(
+      input IN RAW,
+      key IN RAW,
+      which IN PLS_INTEGER DEFAULT TwoKeyMode,
+      iv IN RAW DEFAULT NULL
+    ) RETURN RAW;
+  pragma restrict_references (DES3Encrypt, RNDS, WNDS, WNPS);
+  PROCEDURE DES3Encrypt(
+      input_string IN VARCHAR2,
+      key_string IN VARCHAR2,
+      encrypted_string OUT VARCHAR2,
+      which IN PLS_INTEGER DEFAULT TwoKeyMode,
+      iv_string IN VARCHAR2 DEFAULT NULL
+    );
+  pragma restrict_references (DES3Encrypt, RNDS, WNDS, WNPS);
+  FUNCTION DES3Encrypt(
+      input_string IN VARCHAR2,
+      key_string IN VARCHAR2,
+      which IN PLS_INTEGER DEFAULT TwoKeyMode,
+      iv_string IN VARCHAR2 DEFAULT NULL
+    ) RETURN VARCHAR2;
+  pragma restrict_references (DES3Encrypt, RNDS, WNDS, WNPS);
+  PROCEDURE DES3Decrypt(
+      input IN RAW,
+      key IN RAW,
+      decrypted_data OUT RAW,
+      which IN PLS_INTEGER DEFAULT TwoKeyMode,
+      iv IN RAW DEFAULT NULL
+    );
+  pragma restrict_references (DES3Decrypt, RNDS, WNDS, WNPS);
+  FUNCTION DES3Decrypt(
+      input IN RAW,
+      key IN RAW,
+      which IN PLS_INTEGER DEFAULT TwoKeyMode,
+      iv IN RAW DEFAULT NULL
+    ) RETURN RAW;
+  pragma restrict_references (DES3Decrypt, RNDS, WNDS, WNPS);
+  PROCEDURE DES3Decrypt(
+      input_string IN VARCHAR2,
+      key_string IN VARCHAR2,
+      decrypted_string OUT VARCHAR2,
+      which IN PLS_INTEGER DEFAULT TwoKeyMode,
+      iv_string IN VARCHAR2 DEFAULT NULL
+    );
+  pragma restrict_references (DES3Decrypt, RNDS, WNDS, WNPS);
+  FUNCTION DES3Decrypt(
+      input_string IN VARCHAR2,
+      key_string IN VARCHAR2,
+      which IN PLS_INTEGER DEFAULT TwoKeyMode,
+      iv_string IN VARCHAR2 DEFAULT NULL
+    ) RETURN VARCHAR2;
+  pragma restrict_references (DES3Decrypt, RNDS, WNDS, WNPS);
+  -------------------------------- MD5 --------------------------------------
+    -- The following routines generate MD5 hashes of data.
+    -- There are two versions: one for raw data and the other for strings.
+    ---------------------------------------------------------------------------
+    PROCEDURE MD5(
+      input IN RAW,
+      checksum OUT raw_checksum
+    );
+  FUNCTION MD5(input IN RAW) RETURN raw_checksum;
+  PROCEDURE MD5(
+      input_string IN VARCHAR2,
+      checksum_string OUT varchar2_checksum
+    );
+  FUNCTION MD5(input_string IN VARCHAR2) RETURN varchar2_checksum;
+  END dbms_obfuscation_toolkit;

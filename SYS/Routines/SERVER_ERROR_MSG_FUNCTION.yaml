@@ -1,0 +1,18 @@
+schema: SYS
+name: SERVER_ERROR_MSG
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: POSITION
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  function server_error_msg (position in binary_integer) return varchar2 is
+  begin
+    return dbms_standard.server_error_msg(position);
+  end;

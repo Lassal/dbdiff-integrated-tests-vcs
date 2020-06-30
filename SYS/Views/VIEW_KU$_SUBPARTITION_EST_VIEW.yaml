@@ -1,0 +1,39 @@
+schema: SYS
+name: KU$_SUBPARTITION_EST_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    t.cols,
+    tp.rowcnt,
+    tp.avgrln,
+    u.name,
+    ot.name,
+    op.subname
+  FROM
+    SYS.OBJ$ OT,
+    SYS.OBJ$ OP,
+    SYS.TAB$ T,
+    sys.tabcompart$ tcp,
+    SYS.TABSUBPART$ TP,
+    SYS.USER$ U
+  WHERE
+    tp.obj# = op.obj#
+    AND tcp.bo# = ot.obj#
+    AND ot.type# = 2
+    AND t.obj# = tcp.bo#
+    AND tp.pobj# = tcp.obj#
+    and ot.owner# = u.user#
+    AND (
+      UID IN (0, ot.owner#)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

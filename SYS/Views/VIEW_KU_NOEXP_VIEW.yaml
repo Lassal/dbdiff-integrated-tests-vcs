@@ -1,0 +1,29 @@
+schema: SYS
+name: KU_NOEXP_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    decode(
+      n.obj_type,
+      2,
+      'TABLE',
+      6,
+      'SEQUENCE',
+      110,
+      'XS_ACL',
+      'ERROR'
+    ),
+    n.owner,
+    n.name
+  FROM
+    sys.noexp$ n
+  UNION
+  SELECT
+    k.obj_type,
+    k.schema,
+    k.name
+  FROM
+    sys.ku_noexp_tab k
+columns: []
+referencedTables: []

@@ -1,0 +1,31 @@
+schema: SYS
+name: USER_ASSEMBLIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    a .filespec,
+    decode(
+      a .security_level,
+      0,
+      'SAFE',
+      1,
+      'EXTERNAL_1',
+      2,
+      'EXTERNAL_2',
+      3,
+      'EXTERNAL_3',
+      4,
+      'UNSAFE'
+    ),
+    a .identity,
+    decode(o.status, 0, 'N/A', 1, 'VALID', 'INVALID')
+  from
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.assembly$ a
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.obj# = a .obj#
+columns: []
+referencedTables: []

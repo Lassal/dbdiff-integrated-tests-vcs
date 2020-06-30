@@ -1,0 +1,114 @@
+schema: XFILES
+name: XFILES_LOGGING
+routineType: PACKAGE
+returnParamater:
+  name: CAPTURESTACKTRACE.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: EVENTERRORRECORD.P_PACKAGE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVENTERRORRECORD.P_METHOD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVENTERRORRECORD.P_INIT_TIME
+  ordinalPosition: 3
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: EVENTERRORRECORD.P_APP_INFO
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EVENTERRORRECORD.P_STACK_TRACE
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: LOGPAGEHIT.P_INIT_TIME
+  ordinalPosition: 1
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: LOGPAGEHIT.P_RESOURCE_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: LOGQUERYSERVICE.P_SOAP_REQUEST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: LOGSERVLETMESSAGE.P_MESSAGE
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: WRITEERRORRECORD.P_PACKAGE_URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITEERRORRECORD.P_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITEERRORRECORD.P_INIT_TIME
+  ordinalPosition: 3
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: WRITEERRORRECORD.P_PARAMETERS
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: WRITEERRORRECORD.P_STACK_TRACE
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: WRITELOGRECORD.P_PACKAGE_URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITELOGRECORD.P_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITELOGRECORD.P_INIT_TIME
+  ordinalPosition: 3
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: WRITELOGRECORD.P_PARAMETERS
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  package XFILES_LOGGING as procedure writeLogRecord(
+    P_PACKAGE_URL VARCHAR2,
+    P_NAME VARCHAR2,
+    P_INIT_TIME TIMESTAMP WITH TIME ZONE,
+    P_PARAMETERS XMLType
+  );
+  procedure writeErrorRecord(
+    P_PACKAGE_URL VARCHAR2,
+    P_NAME VARCHAR2,
+    P_INIT_TIME TIMESTAMP WITH TIME ZONE,
+    P_PARAMETERS XMLType,
+    P_STACK_TRACE XMLType
+  );
+  procedure eventErrorRecord(
+    P_PACKAGE VARCHAR2,
+    P_METHOD VARCHAR2,
+    P_INIT_TIME TIMESTAMP WITH TIME ZONE,
+    P_APP_INFO XMLType,
+    P_STACK_TRACE XMLType
+  );
+  procedure logQueryService(P_SOAP_REQUEST XMLType);
+  procedure logServletMessage(P_MESSAGE XMLType);
+  procedure logPageHit(
+    P_INIT_TIME TIMESTAMP WITH TIME ZONE,
+    P_RESOURCE_PATH VARCHAR2
+  );
+  function captureStackTrace return XMLType;
+  end;

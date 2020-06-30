@@ -1,0 +1,106 @@
+schema: SYS
+name: DBMS_SCN
+routineType: PACKAGE
+returnParamater:
+  name: GETSCNPARAMSBYCOMPAT.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: GETCURRENTSCNPARAMS.RSL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETCURRENTSCNPARAMS.HEADROOM_IN_SCN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETCURRENTSCNPARAMS.HEADROOM_IN_SEC
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETCURRENTSCNPARAMS.CUR_SCN_COMPAT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETCURRENTSCNPARAMS.MAX_SCN_COMPAT
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETSCNAUTOROLLOVERPARAMS.EFFECTIVE_AUTO_ROLLOVER_TS
+  ordinalPosition: 1
+  dataType: DATE
+  parameterMode: OUT
+- name: GETSCNAUTOROLLOVERPARAMS.TARGET_COMPAT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETSCNAUTOROLLOVERPARAMS.IS_ENABLED
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: GETSCNPARAMSBYCOMPAT.COMPAT
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETSCNPARAMSBYCOMPAT.RSL
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETSCNPARAMSBYCOMPAT.HEADROOM_IN_SCN
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETSCNPARAMSBYCOMPAT.HEADROOM_IN_SEC
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+routineDefinition: |-
+  PACKAGE DBMS_SCN AUTHID CURRENT_USER IS DBMS_SCN_API_MAJOR_VERSION CONSTANT NUMBER: = 1;
+  DBMS_SCN_API_MINOR_VERSION CONSTANT NUMBER: = 0;
+  PROCEDURE GetCurrentSCNParams(
+    rsl OUT number,
+    headroom_in_scn OUT number,
+    headroom_in_sec OUT number,
+    cur_scn_compat OUT number,
+    max_scn_compat OUT number
+  );
+  --      Currently no exceptions are thrown.
+  --      rsl             - Reasonable SCN Limit as of 'now'
+  --      headroom_in_scn - Difference between current SCN and RSL
+  --      headroom_in_sec - number of seconds it would take to reach RSL
+  --                        assuming a constant SCN consumption rate associated
+  --                        with current SCN compatibility level
+  --      cur_scn_compat  - current value of SCN compatibility
+  --      max_scn_compat  - max value of SCN compatibility this database
+  --                        understands
+  FUNCTION GetSCNParamsByCompat(
+    compat IN number,
+    rsl OUT number,
+    headroom_in_scn OUT number,
+    headroom_in_sec OUT number
+  ) RETURN boolean;
+  --     compat           -- SCN compatibility value
+  --     rsl              -- Reasonable SCN Limit
+  --     headroom_in_scn  -- Difference between current SCN and RSL
+  --     headroom_in_sec  -- number of seconds it would take to reach RSL
+  --                         assuming a constant SCN consumption rate associated
+  --                         with specified database SCN compatibility
+  --
+  --     Returns False if 'compat' parameter value is invalid, and OUT parameters
+  --     are not updated.
+  PROCEDURE GetSCNAutoRolloverParams(
+    effective_auto_rollover_ts OUT DATE,
+    target_compat OUT number,
+    is_enabled OUT boolean
+  );
+  --      effective_auto_rollover_ts  - timestamp at which rollover becomes
+  --                                    effective
+  --      target_compat               - SCN compatibility value this database
+  --                                    will move to, as a result of
+  --                                    auto-rollover
+  --      is_enabled                  - TRUE if auto-rollover feature is
+  --                                    currently enabled
+  PROCEDURE EnableAutoRollover;
+  PROCEDURE DisableAutoRollover;
+  END DBMS_SCN;

@@ -1,0 +1,24 @@
+schema: WMSYS
+name: USER_MP_GRAPH_WORKSPACES
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    mpg.mp_leaf_workspace,
+    mpg.mp_graph_workspace graph_workspace,
+    decode(
+      mpg.mp_graph_flag,
+      'R',
+      'ROOT_WORKSPACE',
+      'I',
+      'INTERMEDIATE_WORKSPACE',
+      'L',
+      'LEAF_WORKSPACE'
+    ) graph_flag
+  from
+    wmsys.wm$mp_graph_workspaces_table mpg,
+    wmsys.user_workspaces uw
+  where
+    mpg.mp_leaf_workspace = uw.workspace WITH READ ONLY
+columns: []
+referencedTables: []

@@ -1,0 +1,37 @@
+name: HELP
+schema: SYSTEM
+columns:
+- name: INFO
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  dataTypeLength: 80
+- name: SEQ
+  ordinalPosition: 2
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: TOPIC
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+constraints:
+- !<unique-constraint>
+  name: HELP_TOPIC_SEQ
+  type: PRIMARY_KEY
+  columns:
+  - name: SEQ
+    ordinalPosition: 2
+  - name: TOPIC
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C005134
+  type: CHECK
+  checkClause: '"TOPIC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005135
+  type: CHECK
+  checkClause: '"SEQ" IS NOT NULL'

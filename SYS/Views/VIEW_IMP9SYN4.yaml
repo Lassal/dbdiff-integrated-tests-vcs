@@ -1,0 +1,51 @@
+schema: SYS
+name: IMP9SYN4
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    u.name,
+    s.name,
+    s.owner
+  FROM
+    sys.obj$ o,
+    sys.user$ u,
+    sys.syn$ s
+  WHERE
+    s.obj# = o.obj#
+    AND u.user# = o.owner#
+    AND
+    /* user is sys, or owner, or synonym is PUBLIC */
+    (
+      userenv('SCHEMAID') IN (o.owner#, 0)
+      OR o.owner# = 1
+      OR EXISTS (
+        /* user has select role */
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+    AND EXISTS (
+      SELECT
+        ot.obj#
+      FROM
+        sys.obj$ ot
+      WHERE
+        ot.name = s.name
+        AND ot.type# = 13
+        AND ot.owner# = (
+          SELECT
+            ut.user#
+          FROM
+            sys.user$ ut
+          WHERE
+            ut.name = s.owner
+        )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,47 @@
+schema: SYS
+name: EXU10R2OBJSWITCH
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    a .obj#,
+    a .value,
+    b.value,
+    c .value,
+    d.value,
+    e.value,
+    f.value
+  FROM
+    sys.settings$ a,
+    sys.settings$ b,
+    sys.settings$ c,
+    sys.settings$ d,
+    sys.settings$ e,
+    sys.settings$ f,
+    sys.obj$ o
+  WHERE
+    o.obj# = a .obj#
+    AND a .obj# = b.obj#
+    AND b.obj# = c .obj#
+    AND c .obj# = d.obj#
+    AND d.obj# = e.obj#
+    AND e.obj# = f.obj#
+    AND a .param = 'nls_length_semantics'
+    AND b.param = 'plsql_optimize_level'
+    AND c .param = 'plsql_code_type'
+    AND d.param = 'plsql_debug'
+    AND e.param = 'plsql_warnings'
+    AND f.param = 'plsql_ccflags'
+    AND (
+      userenv('SCHEMAID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,20 @@
+schema: MDSYS
+name: ALL_SDO_GEOM_METADATA
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    b.SDO_OWNER OWNER,
+    b.SDO_TABLE_NAME TABLE_NAME,
+    b.SDO_COLUMN_NAME COLUMN_NAME,
+    b.SDO_DIMINFO DIMINFO,
+    b.SDO_SRID SRID
+  FROM
+    mdsys.SDO_GEOM_METADATA_TABLE b,
+    all_objects a
+  WHERE
+    b.sdo_table_name = a .object_name
+    AND b.sdo_owner = a .owner
+    AND a .object_type in ('TABLE', 'SYNONYM', 'VIEW')
+columns: []
+referencedTables: []

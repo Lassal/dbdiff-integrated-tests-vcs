@@ -1,0 +1,17 @@
+schema: SYS
+name: USER_REPCOLUMN_GROUP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.oname,
+    r.group_name,
+    r.group_comment
+  from
+    system.repcat$_column_group r,
+    sys.user$ u
+  where
+    r.sname = u.name
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

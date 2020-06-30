@@ -1,0 +1,18 @@
+schema: MDSYS
+name: OGC_CONVEXHULL
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: OBJECT
+  parameterMode: OUT
+parameters:
+- name: G
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_ConvexHull(g ST_Geometry) RETURN ST_Geometry IS
+  BEGIN
+    RETURN g.ST_ConvexHull();
+  END OGC_ConvexHull;

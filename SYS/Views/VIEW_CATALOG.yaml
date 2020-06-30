@@ -1,0 +1,23 @@
+schema: SYS
+name: CATALOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    tname,
+    creator,
+    tabletype,
+    remarks
+  from
+    syscatalog_
+  where
+    creatorid not in (
+      select
+        user #
+      from
+        sys.user$
+      where
+        name in ('SYS', 'SYSTEM')
+    )
+columns: []
+referencedTables: []

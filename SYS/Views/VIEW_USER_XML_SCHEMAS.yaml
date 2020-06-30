@@ -1,0 +1,47 @@
+schema: SYS
+name: USER_XML_SCHEMAS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s.xmldata.schema_url,
+    case
+      when bitand(to_number(s.xmldata.flags, 'xxxxxxxx'), 16) = 16 then 'NO'
+      else 'YES'
+    end,
+    case
+      when bitand(to_number(s.xmldata.flags, 'xxxxxxxx'), 16384) = 16384 then xdb.dbms_csx_int.GetCSXSchema(xmltype(value(s) .getclobval()))
+      else value(s)
+    end,
+    xdb.dbms_xmlschema_int.xdb$Oid2IntName(s.object_id),
+    case
+      when bitand(to_number(s.xmldata.flags, 'xxxxxxxx'), 16) = 16 then s.xmldata.schema_url
+      else 'http://xmlns.oracle.com/xdb/schemas/' || s.xmldata.schema_owner || '/' || case
+        when substr(s.xmldata.schema_url, 1, 7) = 'http://' then substr(s.xmldata.schema_url, 8)
+        else s.xmldata.schema_url
+      end
+    end,
+    case
+      when bitand(to_number(s.xmldata.flags, 'xxxxxxxx'), 128) = 128 then 'NONE'
+      else case
+        when bitand(to_number(s.xmldata.flags, 'xxxxxxxx'), 64) = 64 then 'RESMETADATA'
+        else 'CONTENTS'
+      end
+    end,
+    case
+      when bitand(to_number(s.xmldata.flags, 'xxxxxxxx'), 16384) = 16384 then 'YES'
+      else 'NO'
+    end,
+    s.sys_nc_oid$,
+    case
+      when bitand(to_number(s.xmldata.flags, 'xxxxxxxx'), 32768) = 32768 then 'YES'
+      else 'NO'
+    end
+  from
+    user $ u,
+    xdb.xdb$schema s
+  where
+    u.name = s.xmldata.schema_owner
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

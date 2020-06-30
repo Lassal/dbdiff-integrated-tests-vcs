@@ -1,0 +1,20 @@
+schema: WMSYS
+name: ALL_WM_CONS_COLUMNS
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    /*+ LEADING(t1) */
+    t1.owner,
+    t1.constraint_name,
+    t1.table_name,
+    t1.column_name,
+    t1.position
+  from
+    wmsys.wm$cons_columns t1,
+    all_views t2
+  where
+    t1.owner = t2.owner
+    and t1.table_name = t2.view_name WITH READ ONLY
+columns: []
+referencedTables: []

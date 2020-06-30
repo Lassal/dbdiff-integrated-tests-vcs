@@ -1,0 +1,411 @@
+schema: SYS
+name: DBMS_REFRESH
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: ADD(1).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD(1).LIST
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD(1).LAX
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ADD(1).SITEID
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADD(1).EXPORT_DB
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD(2).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD(2).TAB
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: ADD(2).LAX
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ADD(2).SITEID
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADD(2).EXPORT_DB
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHANGE.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHANGE.NEXT_DATE
+  ordinalPosition: 2
+  dataType: DATE
+  parameterMode: IN
+- name: CHANGE.INTERVAL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHANGE.IMPLICIT_DESTROY
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CHANGE.ROLLBACK_SEG
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHANGE.PUSH_DEFERRED_RPC
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CHANGE.REFRESH_AFTER_ERRORS
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CHANGE.PURGE_OPTION
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CHANGE.PARALLELISM
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CHANGE.HEAP_SIZE
+  ordinalPosition: 10
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DESTROY.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKE(1).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKE(1).LIST
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKE(1).NEXT_DATE
+  ordinalPosition: 3
+  dataType: DATE
+  parameterMode: IN
+- name: MAKE(1).INTERVAL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKE(1).IMPLICIT_DESTROY
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MAKE(1).LAX
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MAKE(1).JOB
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAKE(1).ROLLBACK_SEG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKE(1).PUSH_DEFERRED_RPC
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MAKE(1).REFRESH_AFTER_ERRORS
+  ordinalPosition: 10
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MAKE(1).PURGE_OPTION
+  ordinalPosition: 11
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAKE(1).PARALLELISM
+  ordinalPosition: 12
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAKE(1).HEAP_SIZE
+  ordinalPosition: 13
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAKE(2).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKE(2).TAB
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: MAKE(2).NEXT_DATE
+  ordinalPosition: 3
+  dataType: DATE
+  parameterMode: IN
+- name: MAKE(2).INTERVAL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKE(2).IMPLICIT_DESTROY
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MAKE(2).LAX
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MAKE(2).JOB
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAKE(2).ROLLBACK_SEG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKE(2).PUSH_DEFERRED_RPC
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MAKE(2).REFRESH_AFTER_ERRORS
+  ordinalPosition: 10
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: MAKE(2).PURGE_OPTION
+  ordinalPosition: 11
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAKE(2).PARALLELISM
+  ordinalPosition: 12
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAKE(2).HEAP_SIZE
+  ordinalPosition: 13
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAKE_REPAPI.REFGROUP
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAKE_REPAPI.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKE_REPAPI.SITEID
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAKE_REPAPI.REFRESH_SEQ
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAKE_REPAPI.EXPORT_DB
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKE_REPAPI.FLAG
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REFRESH.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBTRACT(1).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBTRACT(1).LIST
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBTRACT(1).LAX
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SUBTRACT(2).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBTRACT(2).TAB
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SUBTRACT(2).LAX
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: USER_EXPORT.RG#
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: USER_EXPORT.MYCALL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: USER_EXPORT_CHILD.MYOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: USER_EXPORT_CHILD.MYNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: USER_EXPORT_CHILD.MYTYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: USER_EXPORT_CHILD.MYCALL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: USER_EXPORT_CHILD.MYSITE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_refresh IS -- dbms_refresh is the interface for administering refresh groups.
+  -- CONSTANTS
+  --
+  -- constants for rgroup$.flag
+  -- NOTE: if you make any changes here, you must change the
+  --       corresponding constants in prvtsnap.sql
+  --
+  REPAPI_RGROUP CONSTANT NUMBER: = 8;
+  -- ------------------------------------------------------------------------
+  -- MAKE a new refresh group.
+  --
+  -- PARAMETERS:
+  -- NAME is of the form 'foo' or 'user.foo' or '"USER"."FOO"'.
+  --   The logged-in user is used as a default.
+  -- LIST is a comma-separated list of objects to be refreshed, such as
+  --     'foo, scott.bar ,"SCOTT"."BLUE"'.  The default user is the owner
+  --     of the refresh group.
+  -- TAB  is a PL/SQL table of objects to be refreshed, starting with 1
+  --   and filling every number until an entry is NULL, with every entry
+  --   formatted the same way as NAME.  The default user is the owner
+  --   of the refresh group.
+  -- NEXT_DATE is the date for the refresh group to first be refreshed.
+  --   See dbmsjobq.sql .  If there is no current job, the default interval
+  --   will be 'null' and the job will delete itself after refreshing the
+  --   group at NEXT_DATE.
+  -- INTERVAL is used to determine the next NEXT_DATE.  See dbmsjobq.sql .
+  --   If there is no current job, NEXT_DATE will default to null and the
+  --   job will not run until you manually set NEXT_DATE to something else
+  --   or manually refresh the group.
+  -- IMPLICIT_DESTROY means to delete the refresh group when the last item
+  --   is subtracted from it.  The value is stored with the group definition.
+  --   Empty groups can be created with IMPLICIT_DESTROY set.
+  PROCEDURE make(
+    name IN VARCHAR2,
+    list IN VARCHAR2,
+    next_date IN DATE,
+    interval IN VARCHAR2,
+    implicit_destroy IN BOOLEAN: = FALSE,
+    lax IN BOOLEAN: = FALSE,
+    job IN BINARY_INTEGER: = 0,
+    rollback_seg IN VARCHAR2: = NULL,
+    push_deferred_rpc IN BOOLEAN: = TRUE,
+    refresh_after_errors IN BOOLEAN: = FALSE,
+    purge_option IN BINARY_INTEGER: = 1,
+    parallelism IN BINARY_INTEGER: = 0,
+    heap_size IN BINARY_INTEGER: = 0
+  );
+  PROCEDURE make(
+    name IN VARCHAR2,
+    tab IN dbms_utility.uncl_array,
+    next_date IN DATE,
+    interval IN VARCHAR2,
+    implicit_destroy IN BOOLEAN: = FALSE,
+    lax IN BOOLEAN: = FALSE,
+    job IN BINARY_INTEGER: = 0,
+    rollback_seg IN VARCHAR2: = NULL,
+    push_deferred_rpc IN BOOLEAN: = TRUE,
+    refresh_after_errors IN BOOLEAN: = FALSE,
+    purge_option IN BINARY_INTEGER: = 1,
+    parallelism IN BINARY_INTEGER: = 0,
+    heap_size IN BINARY_INTEGER: = 0
+  );
+  PROCEDURE make_repapi(
+    refgroup IN BINARY_INTEGER,
+    name IN VARCHAR2,
+    siteid IN BINARY_INTEGER,
+    refresh_seq IN BINARY_INTEGER,
+    export_db IN VARCHAR2,
+    flag IN BINARY_INTEGER DEFAULT REPAPI_RGROUP
+  );
+  -- ------------------------------------------------------------------------
+  -- ADD some refreshable objects to a refresh group.
+  PROCEDURE
+  add(
+      name IN VARCHAR2,
+      list IN VARCHAR2,
+      lax IN BOOLEAN: = FALSE,
+      siteid IN BINARY_INTEGER: = 0,
+      export_db IN VARCHAR2: = NULL
+    );
+  PROCEDURE
+  add(
+      name IN VARCHAR2,
+      tab IN dbms_utility.uncl_array,
+      lax IN BOOLEAN: = FALSE,
+      siteid IN BINARY_INTEGER: = 0,
+      export_db IN VARCHAR2: = NULL
+    );
+  -- ------------------------------------------------------------------------
+    -- SUBTRACT some refreshable objects from a refresh group.
+    PROCEDURE subtract(
+      name IN VARCHAR2,
+      list IN VARCHAR2,
+      lax IN BOOLEAN: = FALSE
+    );
+  PROCEDURE subtract(
+      name IN VARCHAR2,
+      tab IN dbms_utility.uncl_array,
+      lax IN BOOLEAN: = FALSE
+    );
+  -- ------------------------------------------------------------------------
+    -- DESTROY a refresh group, make it cease to exist.
+    PROCEDURE destroy(name IN VARCHAR2);
+  -- ------------------------------------------------------------------------
+    -- Change any changeable pieces of the job that does the refresh
+    PROCEDURE change(
+      name IN VARCHAR2,
+      next_date IN DATE: = NULL,
+      interval IN VARCHAR2: = NULL,
+      implicit_destroy IN BOOLEAN: = NULL,
+      rollback_seg IN VARCHAR2: = NULL,
+      push_deferred_rpc IN BOOLEAN: = NULL,
+      refresh_after_errors IN BOOLEAN: = NULL,
+      purge_option IN BINARY_INTEGER: = NULL,
+      parallelism IN BINARY_INTEGER: = NULL,
+      heap_size IN BINARY_INTEGER: = NULL
+    );
+  -- ------------------------------------------------------------------------
+    -- Atomically, consistently refresh all objects in a refresh group now.
+    -- Clear the BROKEN flag for the job if the refresh succeeds
+    PROCEDURE refresh(name IN VARCHAR2);
+  -- ------------------------------------------------------------------------
+    -- Produce the text of a call for recreating the given group
+    PROCEDURE user_export(
+      rg# IN BINARY_INTEGER,
+      mycall IN OUT VARCHAR2
+    );
+  -- ------------------------------------------------------------------------
+    -- Produce the text of a call for recreating the given group item
+    PROCEDURE user_export_child(
+      myowner IN VARCHAR2,
+      myname IN VARCHAR2,
+      mytype IN VARCHAR2,
+      mycall IN OUT VARCHAR2,
+      mysite IN BINARY_INTEGER: = 0
+    );
+  END dbms_refresh;

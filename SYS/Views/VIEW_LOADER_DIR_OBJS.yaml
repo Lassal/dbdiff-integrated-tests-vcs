@@ -1,0 +1,79 @@
+schema: SYS
+name: LOADER_DIR_OBJS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    d.os_path,
+    'TRUE',
+    'TRUE',
+    'TRUE'
+  from
+    sys.obj$ o,
+    sys.x$dir d
+  where
+    o.obj# = d.obj#
+    and (
+      o.owner# = UID
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (-177, -178)
+      )
+    )
+  UNION ALL
+  select
+    o.name,
+    d.os_path,
+    decode(
+      sum(decode(oa.privilege#, 17, 1, 0)),
+      0,
+      'FALSE',
+      'TRUE'
+    ),
+    decode(
+      sum(decode(oa.privilege#, 18, 1, 0)),
+      0,
+      'FALSE',
+      'TRUE'
+    ),
+    decode(
+      sum(decode(oa.privilege#, 12, 1, 0)),
+      0,
+      'FALSE',
+      'TRUE'
+    )
+  from
+    sys.obj$ o,
+    sys.x$dir d,
+    sys.objauth$ oa
+  where
+    o.obj# = d.obj#
+    and oa.obj# = o.obj#
+    and oa.privilege# in (12, 17, 18)
+    and oa.grantee# in (
+      select
+        kzsrorol
+      from
+        x$kzsro
+    )
+    and not (
+      o.owner# = UID
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (-177, -178)
+      )
+    )
+  group by
+    o.name,
+    d.os_path
+columns: []
+referencedTables: []

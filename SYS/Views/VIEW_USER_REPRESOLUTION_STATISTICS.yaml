@@ -1,0 +1,38 @@
+schema: SYS
+name: USER_REPRESOLUTION_STATISTICS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.oname,
+    decode(
+      r.conflict_type_id,
+      1,
+      'UPDATE',
+      2,
+      'UNIQUENESS',
+      3,
+      'DELETE',
+      'UNDEFINED'
+    ),
+    r.reference_name,
+    r.method_name,
+    decode(
+      r.method_name,
+      'USER FUNCTION',
+      r.function_name,
+      'USER FLAVOR FUNCTION',
+      r.function_name,
+      NULL
+    ),
+    r.priority_group,
+    r.resolved_date,
+    r.primary_key_value
+  from
+    system.repcat$_resolution_statistics r,
+    sys.user$ u
+  where
+    r.sname = u.name
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

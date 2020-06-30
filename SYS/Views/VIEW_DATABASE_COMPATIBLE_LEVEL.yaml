@@ -1,0 +1,14 @@
+schema: SYS
+name: DATABASE_COMPATIBLE_LEVEL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    value,
+    description
+  from
+    v$parameter
+  where
+    name = 'compatible'
+columns: []
+referencedTables: []

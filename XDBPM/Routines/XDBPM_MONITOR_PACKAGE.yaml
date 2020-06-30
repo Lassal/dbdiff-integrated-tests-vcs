@@ -1,0 +1,44 @@
+schema: XDBPM
+name: XDBPM_MONITOR
+routineType: PACKAGE
+returnParamater:
+  name: GETTIME.(--return--)
+  ordinalPosition: 0
+  dataType: TIMESTAMP
+  numericPrecision: 6
+  parameterMode: OUT
+parameters:
+- name: GETLOBUSAGE.STATS
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: GETTIME.STATS
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_MONITOR authid DEFINER as TYPE SESSION_STATISTICS_T is RECORD (
+    TIME timestamp,
+    ORA_PID number,
+    ORA_SID number,
+    OS_PID number,
+    PGA_MEMORY number,
+    MAX_PGA_MEMORY number,
+    UGA_MEMORY number,
+    MAX_UGA_MEMORY number,
+    PGA_ALLOCATED_MEMORY number,
+    PGA_USED_MEMORY number,
+    PGA_FREEABLE_MEMORY number,
+    CACHE_LOBS number,
+    NO_CACHE_LOBS number,
+    ABSTRACT_LOBS number,
+    TEMP_SPACE_USAGE number
+  );
+  TYPE SESSION_STATISTICS_TABLE is TABLE of SESSION_STATISTICS_T;
+  function getSessionStatistics return SESSION_STATISTICS_TABLE pipelined;
+  function getStatistics return XMLType;
+  function getLOBUsage(stats XMLTYPE) return XMLType;
+  function getTime(stats XMLTYPE) return timestamp;
+  procedure initializeTimer;
+  function getElapsedTime return INTERVAL DAY TO SECOND;
+  end;

@@ -1,0 +1,36 @@
+schema: SYS
+name: KU$_AUDIT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    a .user#,
+    u.name,
+    a .proxy#,
+    m.name,
+    m.property,
+    NVL(a .success, 0),
+    NVL(a .failure, 0),
+    a .option#
+  from
+    sys.audit$ a,
+    sys.stmt_audit_option_map m,
+    sys.user$ u
+  where
+    a .user# = u.user#
+    and a .option# = m.option#
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

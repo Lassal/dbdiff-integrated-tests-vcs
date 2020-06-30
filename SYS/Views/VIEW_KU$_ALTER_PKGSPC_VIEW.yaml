@@ -1,0 +1,38 @@
+schema: SYS
+name: KU$_ALTER_PKGSPC_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    oo.obj#,
+    oo.type#,
+    value(o),
+    (
+      select
+        value (c)
+      from
+        ku$_switch_compiler_view c
+      where
+        c .obj_num = oo.obj#
+    )
+  from
+    sys.ku$_edition_schemaobj_view o,
+    sys.obj$ oo
+  where
+    oo.type# = 9
+    and oo.obj# = o.obj_num
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

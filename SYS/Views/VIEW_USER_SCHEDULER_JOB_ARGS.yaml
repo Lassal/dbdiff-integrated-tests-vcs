@@ -1,0 +1,259 @@
+schema: SYS
+name: USER_SCHEDULER_JOB_ARGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    b.name,
+    t.position,
+    CASE
+      WHEN (b.user_type_num IS NULL) THEN DECODE(
+        b.type_number,
+        0,
+        null,
+        1,
+        decode(b.flags, 512, 'NVARCHAR2', 'VARCHAR2'),
+        2,
+        decode(b.flags, 512, 'FLOAT', 'NUMBER'),
+        3,
+        'NATIVE INTEGER',
+        8,
+        'LONG',
+        9,
+        decode(b.flags, 512, 'NCHAR VARYING', 'VARCHAR'),
+        11,
+        'ROWID',
+        12,
+        'DATE',
+        23,
+        'RAW',
+        24,
+        'LONG RAW',
+        29,
+        'BINARY_INTEGER',
+        69,
+        'ROWID',
+        96,
+        decode(b.flags, 512, 'NCHAR', 'CHAR'),
+        100,
+        'BINARY_FLOAT',
+        101,
+        'BINARY_DOUBLE',
+        102,
+        'REF CURSOR',
+        104,
+        'UROWID',
+        105,
+        'MLSLABEL',
+        106,
+        'MLSLABEL',
+        110,
+        'REF',
+        111,
+        'REF',
+        112,
+        decode(b.flags, 512, 'NCLOB', 'CLOB'),
+        113,
+        'BLOB',
+        114,
+        'BFILE',
+        115,
+        'CFILE',
+        121,
+        'OBJECT',
+        122,
+        'TABLE',
+        123,
+        'VARRAY',
+        178,
+        'TIME',
+        179,
+        'TIME WITH TIME ZONE',
+        180,
+        'TIMESTAMP',
+        181,
+        'TIMESTAMP WITH TIME ZONE',
+        231,
+        'TIMESTAMP WITH LOCAL TIME ZONE',
+        182,
+        'INTERVAL YEAR TO MONTH',
+        183,
+        'INTERVAL DAY TO SECOND',
+        250,
+        'PL/SQL RECORD',
+        251,
+        'PL/SQL TABLE',
+        252,
+        'PL/SQL BOOLEAN',
+        'UNDEFINED'
+      )
+      ELSE t_u.name || '.' || t_o.name
+    END,
+    dbms_scheduler.get_varchar2_value(t.value),
+    t.value,
+    DECODE(BITAND(b.flags, 1), 0, 'FALSE', 1, 'TRUE')
+  FROM
+    sys.scheduler$_program_argument b,
+    obj$ t_o,
+    user $ t_u,
+    (
+      SELECT
+        a .oid job_oid,
+        a .position position,
+        po.obj# program_oid,
+        a .value value
+      FROM
+        sys.scheduler$_job_argument a
+        JOIN sys.scheduler$_job j ON a .oid = j.obj#
+        LEFT OUTER JOIN sys.user$ pu ON pu.name = DECODE(
+          bitand(j.flags, 4194304),
+          4194304,
+          substr(j.program_action, 1, instr(j.program_action, '"') -1),
+          '1'
+        )
+        LEFT OUTER JOIN sys.obj$ po ON pu.user# = po.owner#
+        and po.name = DECODE(
+          bitand(j.flags, 4194304),
+          4194304,
+          substr(
+            j.program_action,
+            instr(j.program_action, '"') + 1,
+            length(j.program_action) - instr(j.program_action, '"')
+          ),
+          '1'
+        )
+    ) t,
+    obj$ o
+  WHERE
+    t.job_oid = o.obj#
+    AND o.owner# = USERENV('SCHEMAID')
+    AND b.user_type_num = t_o.obj#(+)
+    AND t_o.owner# = t_u.user#(+)
+    AND t.program_oid = b.oid(+)
+    AND t.position = b.position(+)
+  UNION ALL
+  SELECT
+    lo.name,
+    lb.name,
+    lt.position,
+    CASE
+      WHEN (lb.user_type_num IS NULL) THEN DECODE(
+        lb.type_number,
+        0,
+        null,
+        1,
+        decode(lb.flags, 512, 'NVARCHAR2', 'VARCHAR2'),
+        2,
+        decode(lb.flags, 512, 'FLOAT', 'NUMBER'),
+        3,
+        'NATIVE INTEGER',
+        8,
+        'LONG',
+        9,
+        decode(lb.flags, 512, 'NCHAR VARYING', 'VARCHAR'),
+        11,
+        'ROWID',
+        12,
+        'DATE',
+        23,
+        'RAW',
+        24,
+        'LONG RAW',
+        29,
+        'BINARY_INTEGER',
+        69,
+        'ROWID',
+        96,
+        decode(lb.flags, 512, 'NCHAR', 'CHAR'),
+        100,
+        'BINARY_FLOAT',
+        101,
+        'BINARY_DOUBLE',
+        102,
+        'REF CURSOR',
+        104,
+        'UROWID',
+        105,
+        'MLSLABEL',
+        106,
+        'MLSLABEL',
+        110,
+        'REF',
+        111,
+        'REF',
+        112,
+        decode(lb.flags, 512, 'NCLOB', 'CLOB'),
+        113,
+        'BLOB',
+        114,
+        'BFILE',
+        115,
+        'CFILE',
+        121,
+        'OBJECT',
+        122,
+        'TABLE',
+        123,
+        'VARRAY',
+        178,
+        'TIME',
+        179,
+        'TIME WITH TIME ZONE',
+        180,
+        'TIMESTAMP',
+        181,
+        'TIMESTAMP WITH TIME ZONE',
+        231,
+        'TIMESTAMP WITH LOCAL TIME ZONE',
+        182,
+        'INTERVAL YEAR TO MONTH',
+        183,
+        'INTERVAL DAY TO SECOND',
+        250,
+        'PL/SQL RECORD',
+        251,
+        'PL/SQL TABLE',
+        252,
+        'PL/SQL BOOLEAN',
+        'UNDEFINED'
+      )
+      ELSE lt_u.name || '.' || lt_o.name
+    END,
+    dbms_scheduler.get_varchar2_value(lt.value),
+    lt.value,
+    DECODE(BITAND(lb.flags, 1), 0, 'FALSE', 1, 'TRUE')
+  FROM
+    sys.scheduler$_program_argument lb,
+    obj$ lt_o,
+    user $ lt_u,
+    (
+      SELECT
+        la.oid job_oid,
+        la.position position,
+        decode(
+          bitand(lj.flags, 8589934592),
+          0,
+          lj.program_oid,
+          ljp.program_oid
+        ) program_oid,
+        la.value value
+      FROM
+        sys.scheduler$_job_argument la,
+        sys.scheduler$_comb_lw_job lj,
+        sys.scheduler$_job ljp
+      WHERE
+        lj.program_oid = ljp.obj#(+)
+        and bitand(lj.flags, 137438953472) = 0
+        and la.oid = lj.obj#
+    ) lt,
+    scheduler$_lwjob_obj lo
+  WHERE
+    lt.job_oid = lo.obj#
+    AND lo.userid = USERENV('SCHEMAID')
+    AND lb.user_type_num = lt_o.obj#(+)
+    AND lt_o.owner# = lt_u.user#(+)
+    AND lt.program_oid = lb.oid(+)
+    AND lt.position = lb.position(+)
+columns: []
+referencedTables: []

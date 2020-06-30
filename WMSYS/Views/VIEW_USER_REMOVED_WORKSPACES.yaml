@@ -1,0 +1,22 @@
+schema: WMSYS
+name: USER_REMOVED_WORKSPACES
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    owner,
+    workspace_name,
+    workspace_id,
+    parent_workspace_name,
+    parent_workspace_id,
+    createtime,
+    retiretime,
+    description,
+    mp_root_id mp_root_workspace_id,
+    decode(rwt.isRefreshed, 1, 'YES', 'NO') continually_refreshed
+  from
+    wmsys.wm$removed_workspaces_table rwt
+  where
+    rwt.owner = sys_context('userenv', 'current_user') WITH READ ONLY
+columns: []
+referencedTables: []

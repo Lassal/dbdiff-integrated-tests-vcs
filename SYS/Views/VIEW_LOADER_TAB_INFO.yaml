@@ -1,0 +1,60 @@
+schema: SYS
+name: LOADER_TAB_INFO
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    t.cols,
+    u.name,
+    t.obj#,
+    t.ts#,
+    decode(bitand(t.property, 32), 32, 'YES', 'NO')
+  from
+    sys.tab$ t,
+    sys.obj$ o,
+    sys.user$ u
+  where
+    t.obj# = o.obj#
+    and o.owner# = u.user#
+    and (
+      o.owner# = userenv('schemaid')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK   ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

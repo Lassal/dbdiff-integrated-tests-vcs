@@ -1,0 +1,1374 @@
+schema: SYS
+name: DBMS_SNAPSHOT_UTL
+routineType: PACKAGE
+returnParamater:
+  name: VECTOR_COMPARE.(--return--)
+  ordinalPosition: 0
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+parameters:
+- name: CHECK_REFERENTIAL_CONSTRAINT.BASE_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECK_REFERENTIAL_CONSTRAINT.BASE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECK_REFERENTIAL_CONSTRAINT.BASE_COLUMNS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECK_REFERENTIAL_CONSTRAINT.COL_COUNT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CHECK_REFERENTIAL_CONSTRAINT.REF_COLUMNS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECK_REFERENTIAL_CONSTRAINT.REF_OWNER
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECK_REFERENTIAL_CONSTRAINT.REF_NAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECK_REFERENTIAL_CONSTRAINT.RESULT
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: OUT
+- name: CLEANUP_SNAPSHOT_IMPORT(1).DUMP_VERSION
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLEANUP_SNAPSHOT_IMPORT(1).SNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEANUP_SNAPSHOT_IMPORT(2).EXPSEAL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEANUP_SNAPSHOT_IMPORT(2).SNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEANUP_SUBSCRIPTION.HDL
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CLEANUP_SUBSCRIPTION.RBSEG
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEANUP_SUBSCRIPTION.STAT
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: DROP_SNAPSHOT.MOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_SNAPSHOT.MASTER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_SNAPSHOT.SNAPID
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DROP_SNAPSHOT.ROLLBACK_SEG
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FULLY_QUALIFIED_NAME.TOBJN_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: GET_FULLY_QUALIFIED_NAME.COLNO_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: GET_FULLY_QUALIFIED_NAME.FQNAME_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: GET_LOB_COLUMNS_INFO.MASOWN
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOB_COLUMNS_INFO.MASNAM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOB_COLUMNS_INFO.SNAPCOLS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOB_COLUMNS_INFO.LOBCNT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GET_LOB_COLUMNS_INFO.LOBCOLS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_LOB_COLUMNS_INFO.LOBPOSITIONS
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_LOB_COLUMNS_INFO.LOBVECMASK
+  ordinalPosition: 7
+  dataType: RAW
+  parameterMode: OUT
+- name: GET_LOG_AGE.LOG_AGE
+  ordinalPosition: 1
+  dataType: DATE
+  parameterMode: INOUT
+- name: GET_LOG_AGE.MOW
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOG_AGE.MAS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOG_AGE.SNAPTYPE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_LOG_NAME(1).MASTER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOG_NAME(1).MOWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOG_NAME(1).LOGNM
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_LOG_NAME(1).CHKFLG
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_LOG_NAME(1).STATUS
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GET_LOG_NAME(1).MASOBJID
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GET_LOG_NAME(2).SNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOG_NAME(2).SOWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOG_NAME(2).LOGNM
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: GET_LOG_NAME(2).CHKPK
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_LOG_NAME(2).STATUS
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GET_LOG_TYPE.MOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOG_TYPE.MASTER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOG_TYPE.MASOBJNUM
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GET_LOG_TYPE.LOG_TYPE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GET_MASK_VECTOR.TABLE_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MASK_VECTOR.TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MASK_VECTOR.COLUMN_LIST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MAX_BYTES_PER_CHAR.NBYTES
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GET_MLOG_FLAG.OUTFLAG
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: GET_MLOG_FLAG.INMOWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MLOG_FLAG.INTABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_OBJECT_NAME.OBJN_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: GET_OBJECT_NAME.OWNER_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: GET_OBJECT_NAME.NAME_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: GET_PK_BY_EOID.EOID_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: GET_PK_BY_EOID.TOBJNUM_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: GET_PK_BY_EOID.TPKCT_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: GET_PK_BY_EOID.TPKINTCOL_COL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: GET_PK_BY_EOID.TPKCOLNAM_COL
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: GET_PK_BY_EOID.TPKFLG_COL
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: GET_PK_CONSTRAINT_INFO.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_PK_CONSTRAINT_INFO.TABLENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_PK_CONSTRAINT_INFO.PK_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_PK_CONSTRAINT_INFO.PK_TYPE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GET_PK_CONSTRAINT_INFO.PK_COLS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_PK_CONSTRAINT_INFO.PK_IDX_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_PK_CONSTRAINT_INFO.IDX_COLS
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_RELATIONAL_COLUMNS.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_RELATIONAL_COLUMNS.TABLENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_RELATIONAL_COLUMNS.COLNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_RELATIONAL_COLUMNS.RCOLS
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: GET_RELATIONAL_COLUMNS.NUMCOLS
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GET_TYPEINFO_BY_TOID.TYPEOID_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: GET_TYPEINFO_BY_TOID.OWNERNAME_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: GET_TYPEINFO_BY_TOID.TYPENAME_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: GET_TYPEINFO_BY_TOID.HASHCODE_COL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: IMPORT_LOG_TRIGGER_STRING.ARG
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_UPD_TRIGGER_STRING.ARG
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MASTER_LOG_TYPE.MOWN_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: MASTER_LOG_TYPE.MAS_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: MASTER_LOG_TYPE.LOGT_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: REGISTER_SNAPSHOT.SNAPOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT.SNAPNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT.SNAPSITE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT.SNAPSHOT_ID
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT.FLAG
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT.QRY_TXT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT.REP_TYPE
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT.ROLLBACK_SEG
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_UP(1).MOWN_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(1).MAS_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(1).ROLLSEG_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(1).FLAG_COL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(1).OUTFLAG_COL
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).SNAPTIME_COL
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).LOADERTIME_COL
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).NUM_SID
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_UP(1).SNAPID_TAB
+  ordinalPosition: 9
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).MAX_TAB_SCN_COL
+  ordinalPosition: 10
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).MAX_DL_SCN_COL
+  ordinalPosition: 11
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).MAX_PMOP_SCN_COL
+  ordinalPosition: 12
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).TRUNC_SCN_COL
+  ordinalPosition: 13
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).MAX_INS_TIM_COL
+  ordinalPosition: 14
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).MAX_UPD_TIM_COL
+  ordinalPosition: 15
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).MAX_DEL_TIM_COL
+  ordinalPosition: 16
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).MAX_INS_SCN_COL
+  ordinalPosition: 17
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).MAX_UPD_SCN_COL
+  ordinalPosition: 18
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).MAX_DEL_SCN_COL
+  ordinalPosition: 19
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(1).HDL_COL
+  ordinalPosition: 20
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(1).HDL_INDX_COL
+  ordinalPosition: 21
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(1).RSCN
+  ordinalPosition: 22
+  dataType: NUMBER
+  parameterMode: OUT
+- name: SET_UP(2).MOWN_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(2).MAS_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(2).MASOBJ_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(2).ROLLSEG_COL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(2).FLAG_COL
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(2).SNAPTIME_COL
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(2).LOADERTIME_COL
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(2).NUM_SID
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_UP(2).SNAPID_TAB
+  ordinalPosition: 9
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(3).MOWN_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(3).MAS_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(3).MASOBJ_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(3).ROLLSEG_COL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(3).FLAG_COL
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SET_UP(3).SNAPTIME_COL
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(3).LOADERTIME_COL
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(3).NUM_SID
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_UP(3).SNAPID_TAB
+  ordinalPosition: 9
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(3).SU_SCN_COL
+  ordinalPosition: 10
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: SET_UP(3).NR_FLAG
+  ordinalPosition: 11
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_UP(4).MOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_UP(4).MASTER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_UP(4).LOG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: SET_UP(4).SNAPID
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: SET_UP(4).SNAPTIME
+  ordinalPosition: 5
+  dataType: DATE
+  parameterMode: INOUT
+- name: SET_UP(4).SNAPTYPE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_UP(4).ROLLBACK_SEG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_UP(5).MOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_UP(5).MASTER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_UP(5).MASOBJNUM
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_UP(5).LOG
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: SET_UP(5).SNAPID
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: SET_UP(5).SNAPTIME
+  ordinalPosition: 6
+  dataType: DATE
+  parameterMode: INOUT
+- name: SET_UP(5).LOADERTIME
+  ordinalPosition: 7
+  dataType: DATE
+  parameterMode: INOUT
+- name: SET_UP(5).SNAPTYPE
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_UP(5).ROLLBACK_SEG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETUP.HDL_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SETUP.IDX_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SETUP.MOWN_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SETUP.MAS_COL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SETUP.RBSEG_COL
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SETUP.INFLAG_COL
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SETUP.RCSCN
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: OUT
+- name: SUBSCRIBE.CSET
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE.MOWN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE.MAS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSCRIBE.MVFLG
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SUBSCRIBE.SCVEC
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: IN
+- name: SUBSCRIBE.ACT
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SUBSCRIBE.LRSCN
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: SUBSCRIBE.HDL
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: SUBSCRIBE.CVNAM
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: SUBSCRIBE.STAT
+  ordinalPosition: 10
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: SYNC_UP_LOG.CANON_SNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SYNC_UP_LOG.CANON_ONAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SYNC_UP_UPD.CANON_SNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SYNC_UP_UPD.CANON_ONAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNREGISTER_SNAPSHOT.SNAPOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNREGISTER_SNAPSHOT.SNAPNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNREGISTER_SNAPSHOT.SNAPSITE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNREGISTER_SNAPSHOT.ROLLBACK_SEG
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_LOG_PLACEHOLDER.MOWN_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: UPDATE_LOG_PLACEHOLDER.MAS_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: UPDATE_LOG_PLACEHOLDER.ROLLSEG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATE_LOG_PLACEHOLDER.SNAPID
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: UPDATE_LOG_PLACEHOLDER.SNAPTYPE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: UPDATE_LOG_PLACEHOLDER.LL_UPDATE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: UPDATE_LOG_PLACEHOLDER.SL_UPDATE
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: UPDATE_LOG_PLACEHOLDER.OPER
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: UPDATE_LOG_PLACEHOLDER.M82_VERSION
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VALIDATE.HDL_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VALIDATE.IDX_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VALIDATE.MOWN_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VALIDATE.MAS_COL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VALIDATE.LRSCN_COL
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VALIDATE.STAT_COL
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VALIDATE_REFRESH.MOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_REFRESH.MASTER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_REFRESH.SNAPTYPE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VALIDATE_REFRESH.CHECK_COLS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_ROLLBACK_SEGMENT.SEGMENT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_ROLLBACK_SEGMENT.SEGMENT_STATUS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: VECTOR_COMPARE.VEC1
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: VECTOR_COMPARE.VEC2
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: VERIFY_FC_AGE.MOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VERIFY_FC_AGE.MASTER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VERIFY_FC_AGE.FC_VEC
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: VERIFY_FC_AGE.SNAPTIME
+  ordinalPosition: 4
+  dataType: DATE
+  parameterMode: IN
+- name: VERIFY_FC_AGE.FLAG
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: VERIFY_LOG(1).MOWN_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(1).MAS_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(1).MASOBJ_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(1).FLAG_COL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(1).OUTFLAG_COL
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(1).LOGNM_COL
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(1).OLDEST_COL
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(1).OLDESTPK_COL
+  ordinalPosition: 8
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(1).OLDLOADER_COL
+  ordinalPosition: 9
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(1).OLDEST_OID_COL
+  ordinalPosition: 10
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(1).OLDESTNEW_COL
+  ordinalPosition: 11
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(1).FCVEC_COL
+  ordinalPosition: 12
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(1).YOUNGEST_FC_COL
+  ordinalPosition: 13
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(1).HDL_COL
+  ordinalPosition: 14
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(1).HDL_INDX_COL
+  ordinalPosition: 15
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(1).LRSCN_COL
+  ordinalPosition: 16
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(1).STAT_COL
+  ordinalPosition: 17
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(1).TYP_OWN_COL
+  ordinalPosition: 18
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(1).TYP_NAM_COL
+  ordinalPosition: 19
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(1).TOID_COL
+  ordinalPosition: 20
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(1).HASHCODE_COL
+  ordinalPosition: 21
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).MOWN_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(2).MAS_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(2).MASOBJ_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).FLAG_COL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(2).OUTFLAG_COL
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).LOGNM_COL
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).OLDEST_COL
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).OLDESTPK_COL
+  ordinalPosition: 8
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).OLDLOADER_COL
+  ordinalPosition: 9
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).OLDEST_OID_COL
+  ordinalPosition: 10
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).OLDESTNEW_COL
+  ordinalPosition: 11
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).FCVEC_COL
+  ordinalPosition: 12
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).YOUNGEST_FC_COL
+  ordinalPosition: 13
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).HDL_COL
+  ordinalPosition: 14
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(2).HDL_INDX_COL
+  ordinalPosition: 15
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(2).LRSCN_COL
+  ordinalPosition: 16
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(2).STAT_COL
+  ordinalPosition: 17
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).TYP_OWN_COL
+  ordinalPosition: 18
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(2).TYP_NAM_COL
+  ordinalPosition: 19
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(2).TOID_COL
+  ordinalPosition: 20
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).HASHCODE_COL
+  ordinalPosition: 21
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(2).OLDESTSEQ_COL
+  ordinalPosition: 22
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).MOWN_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(3).MAS_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(3).MASOBJ_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).FLAG_COL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(3).OUTFLAG_COL
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).LOGNM_COL
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).OLDEST_COL
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).OLDESTPK_COL
+  ordinalPosition: 8
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).OLDLOADER_COL
+  ordinalPosition: 9
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).OLDEST_OID_COL
+  ordinalPosition: 10
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).OLDESTNEW_COL
+  ordinalPosition: 11
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).FCVEC_COL
+  ordinalPosition: 12
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).YOUNGEST_FC_COL
+  ordinalPosition: 13
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).HDL_COL
+  ordinalPosition: 14
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(3).HDL_INDX_COL
+  ordinalPosition: 15
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(3).LRSCN_COL
+  ordinalPosition: 16
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(3).STAT_COL
+  ordinalPosition: 17
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).TYP_OWN_COL
+  ordinalPosition: 18
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(3).TYP_NAM_COL
+  ordinalPosition: 19
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(3).TOID_COL
+  ordinalPosition: 20
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).HASHCODE_COL
+  ordinalPosition: 21
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).OLDESTSEQ_COL
+  ordinalPosition: 22
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(3).NR_FLAG
+  ordinalPosition: 23
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VERIFY_LOG(4).MOWN_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(4).MAS_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(4).MASOBJ_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(4).FLAG_COL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: VERIFY_LOG(4).OUTFLAG_COL
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(4).LOGNM_COL
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(4).OLDEST_COL
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(4).OLDESTPK_COL
+  ordinalPosition: 8
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(4).OLDLOADER_COL
+  ordinalPosition: 9
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(4).FCVEC_COL
+  ordinalPosition: 10
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(4).YOUNGEST_FC_COL
+  ordinalPosition: 11
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(4).MOD_SCN_COL
+  ordinalPosition: 12
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+- name: VERIFY_LOG(4).NR_FLAG
+  ordinalPosition: 13
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VERIFY_LOG(5).MOW
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VERIFY_LOG(5).MAS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VERIFY_LOG(5).STIME
+  ordinalPosition: 3
+  dataType: DATE
+  parameterMode: IN
+- name: VERIFY_LOG(5).STYPE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: VERIFY_LOG(5).FCVEC
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: IN
+- name: VERIFY_LOG(5).EQCVEC
+  ordinalPosition: 6
+  dataType: RAW
+  parameterMode: IN
+- name: VERIFY_LOG(5).IN_VEC
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VERIFY_LOG(5).OUT_VEC
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: WRAP_UP(1).MOWN_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(1).MAS_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(1).MASOBJ_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(1).ROLLSEG_COL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(1).FLAG_COL
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(1).SNAPTIME_COL
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(1).LOADERTIME_COL
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(1).SNAPID_COL
+  ordinalPosition: 8
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(1).SNAPTYPE_COL
+  ordinalPosition: 9
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(1).MASIDX_COL
+  ordinalPosition: 10
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(1).RSCN
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: WRAP_UP(1).MASTYPE_COL
+  ordinalPosition: 12
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(2).SNAPID_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(2).SNAPTYPE_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(2).MASIDX_COL
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(2).MOWN_COL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(2).MAS_COL
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(2).MASOBJ_COL
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(2).ROLLSEG_COL
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(2).FLAG_COL
+  ordinalPosition: 8
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(2).SNAPTIME_COL
+  ordinalPosition: 9
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(2).LOADERTIME_COL
+  ordinalPosition: 10
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAP_UP(3).MOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRAP_UP(3).MASTER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRAP_UP(3).SNAPID
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: WRAP_UP(3).SNAPTIME
+  ordinalPosition: 4
+  dataType: DATE
+  parameterMode: IN
+- name: WRAP_UP(3).REGISTRATION_STATUS
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: WRAP_UP(3).SNAPTYPE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: WRAP_UP(3).ROLLBACK_SEG
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRAP_UP(4).MOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRAP_UP(4).MASTER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRAP_UP(4).MASOBJNUM
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: WRAP_UP(4).SNAPID
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: WRAP_UP(4).SNAPTIME
+  ordinalPosition: 5
+  dataType: DATE
+  parameterMode: IN
+- name: WRAP_UP(4).LOADERTIME
+  ordinalPosition: 6
+  dataType: DATE
+  parameterMode: IN
+- name: WRAP_UP(4).REGISTRATION_STATUS
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: WRAP_UP(4).SNAPTYPE
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: WRAP_UP(4).ROLLBACK_SEG
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRAPUP.HDL_COL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: WRAPUP.RBSEG_COL
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+routineDefinition: PACKAGE dbms_snapshot_utl wrapped a000000 1 abcd abcd abcd abcd
+  abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd 9 55da ef8 ZnBbg / Me + qT4NGoHgiR7SpZKJXIwg81xuiCGRfO59nPV0n3KW
+  + lukQMxqxAObIOzLaI + Go7G ruZtItJreHCutaoX9Wtak9MHgxrNPlY2MRTaLK3 + iIddbgKAn4
+  + vT7XSxLs9 / p21CE + atZvQ D + Wqc5uxyisKyqX4m7Uo + AzJsFfliXC + I / oYykdGxXUWrExWdXrqLRbON9mP
+  / qrn364FDhCm nCwSL3qCUwcStpzCeLZX1hI0 + DzX41NPJlPB18T4O62a1Kb / l / 6l5FPNuDjsSbsU7Wiqsxj7
+  ccknx5 + 8liiucg + 7vHmpk25kaAh / IulYuam8Eri814axxsEHsMbBYo97Wlxux + KLi7ooWRD2
+  BaWflM56HdoZgzmbLEchJc1p + MSv / MTOd9voQCBpRPGwk68KsfHZTjSXeAXfVi8PoT9NwgvG anpHqVr5o9TxgAPImEAtrJVRngMhQ1G41wmEVAm43qhuXw3TCB3mxfviS3LyNXBk1pFm9ESw
+  Pq91YwLX6dSfeplrCjnFkb23nhvwXGlLTBXWfiT1 / lSi5AC0kFvWIJg13R / DDN50ZjHe7UJF UrJRC2EcnmdehFUeLRGElfMf
+  / OBNeBtqHxu7sSi / eDazZiul2TWlZGCPUzmhMfgFY / EqSdC / v93ZoGlVfJZZ7UaTNuRxfYsKXtd9HXrXbcc9WDRzv9qTjN1rGAntLRqZcpPqYaioyI0YcpjC
+  svOT8aSLF76dqYVXwHftmVo / 9YWbMPsxB8uFnJlai + CKKeFmzt4cmzKm + + 4t1lhiah1ah / 56
+  A8ggHVqLQQHHxA0B7klJkQuEJVQ + oEd2XfnTrKdY1nq0yBB9jqpOU6T04Vy5wozaOVmSAG22 gNHEfbeKXdI
+  / t4eRlswGuBC3HHeUQMudxMYXOO64I7ci8ToT2YbNCMdCuFOYLiiCV89zJbje CXCR97Jb0jiOOZFqPYbvFThTSkn6k
+  + XlCU1lT3gz606GapyAiifqC9m9wfFmnJOFjAngOsy0 / 2efOwXrMuyQS6TyDis2Lo3k3iqaH + XsbvIotpQqytVt4pdofvr2qGRkh
+  / KlL5SXMMaxawbp alZ6TI2Q4IiNNUnJMvNJ053Nt4SAfv0wnlEVeByfLxaKXvUEdTeaUPTDa33KLqp46RjeYxyk
+  zYD9AM + 2VjspvRiv3b174BLkE82XBaU4FVgWTuUyqTTjgi08ZS9EfBy + 1vlFQEU2iI3eFlCA zu3uQzQWx4ni9IVg29
+  / U1LRfjL9mY / + eSlexMd016gr3yHjgLa60NcGMiMsB49Fo2CLZSC7c / gQoYoSwLwvQIBaDrxNjJ3h5ZH7q3M09zVHY725RxjxMEzg7du2jTWS3kb5Dp9HLI8FQCQ0D
+  KAcipRXicddFiQRBLilOHZGYT68NdB8TqLtX / ShzzDfKrNVQjfNITHZHWLHje56 + R / GiB08T cYAOrZJuc2ej
+  / QtTsxam / nkYV0OrN6kjUgDyQZFWBiWmR7fWkMVcllN0 + b30LL4YjJ48Jfsu dFT67zI96au9psxrKaGpetfAslL7npMYUHWpIYRWw0SDzQF1PGLxnEJdhBwI2wd2WAgJFsKG
+  F / tBUPtgUmNEHeHgsx + jvzPrMlZ1Vhf / Ru6clm53yIGKfn / V3crtzgEfsX1qce6cxeRllRWi
+  fysqZG / 4jVR + brwhx00Th4WeDSFqPOMLNFKIu3K0cjB7B53WX630DOhs6CweORZOqcuiJ1lG dULewhQG5UtjWJ8THPcs3kgxZqu7FA2kOeowdmC4ixyozvR6xhzERDlFFdbxod2t1ZX7MYMH
+  RQd1T + BU0hbJLDwAnugPGlDBKR / V9XhA6DRl70ekVuMvVoE1EYz + z + 7MtKAVgx126yyBa /
+  8q THHrlSpMcetEf0xX5OkIsWudcbZHKq9xtkcqr8 + jrFii5Kux8o6AU4sbnWjSLIX93m + THjAY
+  I1W5iKLPcpca59 + DzP5j5wgaLSIOS5YroYeJCXS76jGwbPn4hLwizc1QP7qi + f8kaBTm3V9 / B5iiy5ufnQfRSNf
+  / rcFdJ / ueKtxePp6kfk5mDu2TMTrrVV3DG / aLw6vyvAX9zQljZPwrAffk uRUBIOiQ0qppZLFTk454PEJdFdYZZcZr
+  / B0xejioqq / CqMbOzl2KPMVVZk8kGXl2MRhg / HOn / 2MAxA7WFCarAmJ1wK0h2fAKBbKJ4QxPu9V9vo48oMxUhiQfsquJyZ980IspB83UCDRb5xvb
+  ugkAEYtRiYgkN4h6A7Z11913vrzitd0M9z2WmV1ZmyrkRa + Tdln7MRAMn + sqdJzExsf6yz7W teoCX2pR8c9ybB
+  + o6q + DQf6wjxQO6we7rc + cpXPJmF2UG / gG6VXLnnVu + 17dtCK6ln / Hneav DB5LTe4M3d1ZmXnYBpk883rTWqSIUhZawyd
+  / LFSKJzU0r3lYw2pYgJe / x3nJB10BxcML2lZ5 SS1HMKmV1T9tSwQ3owFBVC9mihmva1X6f / dVGrxFOX5BJgQdcWLd5n6svEpz08Y0ozJC13SG
+  q + DklVlRDhsGbmDTY9Zf8WDYKJK9DzC0QKl / mvETEzPTmmoN7BJTwyc9AaoXm + pMSn26gTqV VmM2CLGnJekEbeVJFOw25Ar78N
+  / nhkgHvqiVb8uZVUVVyKU0pQWlBZLVCOb11t6HcavgG160 a7nRg6oqtw2UsAMNQy4U / 1bQZqj1NpO
+  / 5cEg1lSN625sVMxF70lRQjeXSIgXbC3sBlJb5ytG QfIFkUMnTymcPC2Vmn9aKlUyfoTPz4TmiaHCaVUZg0G8rNbq6e3bknT9c0v0kumGqbRRkrv9
+  sWh7A + qt1qMv2G4esnt + U / VuVB051cGbaqauH2b6KH8zaLQQw9e6YG2c5SLZXNkb74M655hW gtlHYC79qkFR02KSNTkNUR61PURm9JynBXnUbdIe40sIjlnhsuvv7aqIiw6hqCQejQ3iaq89
+  j6OZrrvooPEpyJIWJrovs8ru2fMPkROXuYJh3qS / BkyWwboEcD1vTRIKQpTFC / Y3GxMnKn1k Z /
+  JDPJIKD60P2Lw6eEPUp7dAC4Zb6diBW2BWaCO9knJudVlgnLMlxzwagtH45KkkVpOKPO7i xDfPN0tRD
+  + fbjLd72c7ip81V2 / NT9nIplBFt / mali7qbNJpOm8EF0UTJI4rcDhueNT4iUGgk cKUsfL4H0rahhyAoxt5B
+  + jOU34gsy02UzjV2PFmjXIAgHb + qBH7ECgPna5XlvwzmG0uWTT3m 0wr7kYTdcNWYQw0 / BcGEMAL3InXqu5ysMqU8wjuMZdeBf1tfGUibUNxelkYEKEQon84S4lcM
+  hdf / wIfo5AMZdOD8VCrBvR4jEugl + Hsa4958LsgJf9fU9Y1nUQSBVvrcA2UERTv + 7wWM92bJ 9FLJLRl
+  / PaED2Lk47pV / RY7S7wugEwgMxqZXdMzfmO5GpJct8UuxWVZD4calELK / fnSQ6x / Q a1AFB1sdoAuWmDfbxfRbFD3L8nlvgPbkhKpYy4hu7YAXfsZR4GllEEz0pUKIVTIk4jeHWvhv
+  ms7aRE9LuPrQTdHD6 + wo0Rzxjishbb9kE6Mq0SRAlY / TiPNbvWv0a9vHvFYpIOAlWR0WVCHw hzIz1ZFNJ1COFMHJ8Naj76pHqSmNh0o9EuDQpcESKI19ce2nS9ExxnonNhZ0vX1mdaFpkdnu
+  + LE3Ec0XA2Jtjrpx + rcjaujiZzLxTLoAuyUDwCARhmRtKyMle4Po6A5Fjg1al5e4 / GkY7YTc PlPlwNLqcCNi
+  / JpJOUNmRTRVYXPXnfshqN + X

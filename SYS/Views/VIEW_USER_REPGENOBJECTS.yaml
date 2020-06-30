@@ -1,0 +1,23 @@
+schema: SYS
+name: USER_REPGENOBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.sname,
+    r.oname,
+    r.type,
+    r.base_sname,
+    r.base_oname,
+    r.base_type,
+    r.package_prefix,
+    r.procedure_prefix,
+    r.distributed,
+    r.reason
+  from
+    repcat_generated r,
+    user_users u
+  where
+    r.base_sname = u.username
+columns: []
+referencedTables: []

@@ -1,0 +1,87 @@
+schema: SYS
+name: USER_REPPARAMETER_COLUMN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    p.sname,
+    p.oname,
+    decode(
+      p.conflict_type_id,
+      1,
+      'UPDATE',
+      2,
+      'UNIQUENESS',
+      3,
+      'DELETE',
+      'UNDEFINED'
+    ),
+    p.reference_name,
+    p.sequence_no,
+    r.method_name,
+    r.function_name,
+    r.priority_group,
+    p.parameter_table_name,
+    decode(
+      method_name,
+      'USER FUNCTION',
+      NVL(rc.top, rc.lcname),
+      'USER FLAVOR FUNCTION',
+      NVL(rc.top, rc.lcname),
+      rc.lcname
+    ),
+    p.parameter_sequence_no
+  from
+    system.repcat$_parameter_column p,
+    system.repcat$_resolution r,
+    system.repcat$_repcolumn rc,
+    user_tab_columns tc,
+    sys.user$ u
+  where
+    p.sname = r.sname
+    and p.oname = r.oname
+    and p.conflict_type_id = r.conflict_type_id
+    and p.reference_name = r.reference_name
+    and p.sequence_no = r.sequence_no
+    and p.oname = p.parameter_table_name
+    and p.attribute_sequence_no = 1
+    and p.sname = rc.sname
+    and p.oname = rc.oname
+    and p.column_pos = rc.pos
+    and p.sname = u.name
+    and u.user# = userenv('SCHEMAID')
+    and p.oname = tc.table_name
+    and (
+      (
+        rc.top is null
+        and rc.lcname = tc.column_name
+      )
+      or (
+        rc.top is not null
+        and rc.top = tc.column_name
+      )
+    )
+  union
+  select
+    p.sname,
+    p.oname,
+    p.conflict_type,
+    p.reference_name,
+    p.sequence_no,
+    p.method_name,
+    p.function_name,
+    p.priority_group,
+    p.parameter_table_name,
+    p.parameter_column_name,
+    p.parameter_sequence_no
+  from
+    "_USER_REPL_NESTED_TABLE_NAMES" nt,
+    dba_repparameter_column p,
+    sys.user$ u
+  where
+    p.sname = u.name
+    and u.user# = userenv('SCHEMAID')
+    and p.parameter_table_name = nt.table_name
+    and p.oname = p.parameter_table_name
+columns: []
+referencedTables: []

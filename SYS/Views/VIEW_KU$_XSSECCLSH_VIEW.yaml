@@ -1,0 +1,30 @@
+schema: SYS
+name: KU$_XSSECCLSH_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    h.sc#,
+    h.parent_sc#,
+    (
+      select
+        name
+      from
+        xs$obj o
+      where
+        o.id = h.parent_sc#
+    ),
+    (
+      select
+        owner
+      from
+        xs$obj o
+      where
+        o.id = h.parent_sc#
+    )
+  from
+    xs$seccls_h h
+columns: []
+referencedTables: []

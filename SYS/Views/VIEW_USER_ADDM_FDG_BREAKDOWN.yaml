@@ -1,0 +1,24 @@
+schema: SYS
+name: USER_ADDM_FDG_BREAKDOWN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .task_id as task_id,
+    a .finding_id as finding_id,
+    a .instance_number as instance_number,
+    a .impact as database_time,
+    a .impact / greatest(
+      1,
+      (
+        cast(t.end_time as date) - cast(t.begin_time as date)
+      ) * 86400000000
+    ) as active_sessions,
+    a .perc_impact as perc_active_sessions
+  from
+    user_advisor_fdg_breakdown a,
+    wri$_adv_addm_tasks t
+  where
+    a .task_id = t.task_id
+columns: []
+referencedTables: []

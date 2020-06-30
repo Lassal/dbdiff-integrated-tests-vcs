@@ -1,0 +1,16 @@
+schema: SYS
+name: USER_TAB_COMMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    TABLE_NAME,
+    TABLE_TYPE,
+    COMMENTS,
+    ORIGIN_CON_ID
+  from
+    NO_ROOT_SW_FOR_LOCAL(INT $DBA_TAB_COMMENTS)
+  where
+    OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

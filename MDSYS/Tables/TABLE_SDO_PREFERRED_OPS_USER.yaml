@@ -1,0 +1,57 @@
+name: SDO_PREFERRED_OPS_USER
+schema: MDSYS
+columns:
+- name: COORD_OP_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: SOURCE_SRID
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: TARGET_SRID
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: USE_CASE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  dataTypeLength: 32
+constraints:
+- !<unique-constraint>
+  name: PREFERRED_OPS_USE_PRIM
+  type: PRIMARY_KEY
+  columns:
+  - name: SOURCE_SRID
+    ordinalPosition: 2
+  - name: TARGET_SRID
+    ordinalPosition: 3
+  - name: USE_CASE
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C005825
+  type: CHECK
+  checkClause: '"USE_CASE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005826
+  type: CHECK
+  checkClause: '"SOURCE_SRID" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005827
+  type: CHECK
+  checkClause: '"COORD_OP_ID" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005828
+  type: CHECK
+  checkClause: '"TARGET_SRID" IS NOT NULL'

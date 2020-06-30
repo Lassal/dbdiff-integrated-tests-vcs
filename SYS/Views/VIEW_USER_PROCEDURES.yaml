@@ -1,0 +1,27 @@
+schema: SYS
+name: USER_PROCEDURES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    OBJECT_NAME,
+    PROCEDURE_NAME,
+    OBJECT_ID,
+    SUBPROGRAM_ID,
+    OVERLOAD,
+    OBJECT_TYPE,
+    AGGREGATE,
+    PIPELINED,
+    IMPLTYPEOWNER,
+    IMPLTYPENAME,
+    PARALLEL,
+    INTERFACE,
+    DETERMINISTIC,
+    AUTHID,
+    ORIGIN_CON_ID
+  from
+    NO_ROOT_SW_FOR_LOCAL(INT $DBA_PROCEDURES)
+  where
+    OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

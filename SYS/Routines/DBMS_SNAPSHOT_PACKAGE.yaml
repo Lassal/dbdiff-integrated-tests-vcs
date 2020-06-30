@@ -1,0 +1,944 @@
+schema: SYS
+name: DBMS_SNAPSHOT
+routineType: PACKAGE
+returnParamater:
+  name: PMARKER.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: BEGIN_TABLE_REORGANIZATION.TABOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BEGIN_TABLE_REORGANIZATION.TABNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_SNAPSHOT.MOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_SNAPSHOT.MASTER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_SNAPSHOT.SNAPSHOT
+  ordinalPosition: 3
+  dataType: DATE
+  parameterMode: IN
+- name: END_TABLE_REORGANIZATION.TABOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: END_TABLE_REORGANIZATION.TABNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ESTIMATE_MVIEW_SIZE.STMT_ID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ESTIMATE_MVIEW_SIZE.SELECT_CLAUSE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ESTIMATE_MVIEW_SIZE.NUM_ROWS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: ESTIMATE_MVIEW_SIZE.NUM_BYTES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+- name: EXPLAIN_MVIEW(1).MV
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_MVIEW(1).STMT_ID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_MVIEW(2).MV
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: EXPLAIN_MVIEW(2).STMT_ID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_MVIEW(3).MV
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_MVIEW(3).MSG_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: INOUT
+- name: EXPLAIN_MVIEW(4).MV
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: EXPLAIN_MVIEW(4).MSG_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: INOUT
+- name: EXPLAIN_REWRITE(1).QUERY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_REWRITE(1).MV
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_REWRITE(1).STATEMENT_ID
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_REWRITE(2).QUERY
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: EXPLAIN_REWRITE(2).MV
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_REWRITE(2).STATEMENT_ID
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_REWRITE(3).QUERY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_REWRITE(3).MV
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_REWRITE(3).MSG_ARRAY
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: INOUT
+- name: EXPLAIN_REWRITE(4).QUERY
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: EXPLAIN_REWRITE(4).MV
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_REWRITE(4).MSG_ARRAY
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: INOUT
+- name: EXPLAIN_REWRITE_SQLID.QUERY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_REWRITE_SQLID.MV
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_REWRITE_SQLID.STATEMENT_ID
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLAIN_REWRITE_SQLID.SQLID
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOG_AGE.OLDEST
+  ordinalPosition: 1
+  dataType: DATE
+  parameterMode: INOUT
+- name: GET_LOG_AGE.MOW
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOG_AGE.MAS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MV_DEPENDENCIES.LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MV_DEPENDENCIES.DEPLIST
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: PMARKER.RID
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: PURGE_LOG.MASTER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_LOG.NUM
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PURGE_LOG.FLAG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_MVIEW_FROM_LOG(1).MVIEW_ID
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PURGE_MVIEW_FROM_LOG(2).MVIEWOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_MVIEW_FROM_LOG(2).MVIEWNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_MVIEW_FROM_LOG(2).MVIEWSITE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_SNAPSHOT_FROM_LOG(1).SNAPSHOT_ID
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PURGE_SNAPSHOT_FROM_LOG(2).SNAPOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_SNAPSHOT_FROM_LOG(2).SNAPNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PURGE_SNAPSHOT_FROM_LOG(2).SNAPSITE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH(1).LIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH(1).METHOD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH(1).ROLLBACK_SEG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH(1).PUSH_DEFERRED_RPC
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH(1).REFRESH_AFTER_ERRORS
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH(1).PURGE_OPTION
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REFRESH(1).PARALLELISM
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REFRESH(1).HEAP_SIZE
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REFRESH(1).ATOMIC_REFRESH
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH(1).NESTED
+  ordinalPosition: 10
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH(1).OUT_OF_PLACE
+  ordinalPosition: 11
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH(2).TAB
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: REFRESH(2).METHOD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH(2).ROLLBACK_SEG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH(2).PUSH_DEFERRED_RPC
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH(2).REFRESH_AFTER_ERRORS
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH(2).PURGE_OPTION
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REFRESH(2).PARALLELISM
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REFRESH(2).HEAP_SIZE
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REFRESH(2).ATOMIC_REFRESH
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH(2).NESTED
+  ordinalPosition: 10
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH(2).OUT_OF_PLACE
+  ordinalPosition: 11
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH_ALL_MVIEWS.NUMBER_OF_FAILURES
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: REFRESH_ALL_MVIEWS.METHOD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH_ALL_MVIEWS.ROLLBACK_SEG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH_ALL_MVIEWS.REFRESH_AFTER_ERRORS
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH_ALL_MVIEWS.ATOMIC_REFRESH
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH_ALL_MVIEWS.OUT_OF_PLACE
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(1).NUMBER_OF_FAILURES
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: REFRESH_DEPENDENT(1).LIST
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(1).METHOD
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(1).ROLLBACK_SEG
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(1).REFRESH_AFTER_ERRORS
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(1).ATOMIC_REFRESH
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(1).NESTED
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(1).OUT_OF_PLACE
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(2).NUMBER_OF_FAILURES
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: REFRESH_DEPENDENT(2).TAB
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(2).METHOD
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(2).ROLLBACK_SEG
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(2).REFRESH_AFTER_ERRORS
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(2).ATOMIC_REFRESH
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(2).NESTED
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH_DEPENDENT(2).OUT_OF_PLACE
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REFRESH_MV.PIPENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH_MV.MV_INDEX
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REFRESH_MV.OWNER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH_MV.NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH_MV.METHOD
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH_MV.ROLLSEG
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REFRESH_MV.ATOMIC_REFRESH
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REFRESH_MV.OUT_OF_PLACE
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REFRESH_MV.ENV
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REFRESH_MV.RESOURCES
+  ordinalPosition: 10
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_MVIEW(1).MVIEWOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_MVIEW(1).MVIEWNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_MVIEW(1).MVIEWSITE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_MVIEW(1).MVIEW_ID
+  ordinalPosition: 4
+  dataType: DATE
+  parameterMode: IN
+- name: REGISTER_MVIEW(1).FLAG
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_MVIEW(1).QRY_TXT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_MVIEW(1).REP_TYPE
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_MVIEW(2).MVIEWOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_MVIEW(2).MVIEWNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_MVIEW(2).MVIEWSITE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_MVIEW(2).MVIEW_ID
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_MVIEW(2).FLAG
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_MVIEW(2).QRY_TXT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_MVIEW(2).REP_TYPE
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(1).SNAPOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(1).SNAPNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(1).SNAPSITE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(1).SNAPSHOT_ID
+  ordinalPosition: 4
+  dataType: DATE
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(1).FLAG
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(1).QRY_TXT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(1).REP_TYPE
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(2).SNAPOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(2).SNAPNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(2).SNAPSITE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(2).SNAPSHOT_ID
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(2).FLAG
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(2).QRY_TXT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_SNAPSHOT(2).REP_TYPE
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_I_AM_A_REFRESH.VALUE
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_UP.MOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_UP.MASTER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_UP.LOG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: SET_UP.SNAPSHOT
+  ordinalPosition: 4
+  dataType: DATE
+  parameterMode: INOUT
+- name: SET_UP.SNAPTIME
+  ordinalPosition: 5
+  dataType: DATE
+  parameterMode: INOUT
+- name: UNREGISTER_MVIEW.MVIEWOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNREGISTER_MVIEW.MVIEWNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNREGISTER_MVIEW.MVIEWSITE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNREGISTER_SNAPSHOT.SNAPOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNREGISTER_SNAPSHOT.SNAPNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNREGISTER_SNAPSHOT.SNAPSITE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRAP_UP.MOWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRAP_UP.MASTER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRAP_UP.SSHOT
+  ordinalPosition: 3
+  dataType: DATE
+  parameterMode: IN
+- name: WRAP_UP.STIME
+  ordinalPosition: 4
+  dataType: DATE
+  parameterMode: IN
+routineDefinition: "PACKAGE dbms_snapshot IS -- constants for snapshot version\nreg_unknown\
+  \ CONSTANT NUMBER: = 0;\nreg_v7_snapshot CONSTANT NUMBER: = 1;\nreg_v8_snapshot\
+  \ CONSTANT NUMBER: = 2;\nreg_repapi_snapshot CONSTANT NUMBER: = 3;\n-- constants\
+  \ for register_mview(), parameter 'flag'\n-- NOTE: keep these constants in sync\
+  \ with snap$.flag\n--       and dba_registered_mviews\nreg_rowid_mview CONSTANT\
+  \ NUMBER: = 16;\nreg_primary_key_mview CONSTANT NUMBER: = 32;\nreg_object_id_mview\
+  \ CONSTANT NUMBER: = 536870912;\nreg_fast_refreshable_mview CONSTANT NUMBER: = 1;\n\
+  reg_updatable_mview CONSTANT NUMBER: = 2;\n------------\n--  OVERVIEW\n--\n--  These\
+  \ routines allow the user to refresh snapshots and purge logs.\n------------------------------------------------\n\
+  --  SUMMARY OF SERVICES PROVIDED BY THIS PACKAGE\n--\n--  refresh\t\t         -\
+  \ refresh a given snapshot\n--  refresh_all\t         - refresh all snapshots that\
+  \ are due\n--\t\t\t           to be refreshed\n--  refresh_dependent          -\
+  \ refresh all stale snapshots that depend\n--                               on the\
+  \ specified master tables\n--  refresh_all_mviews         - refresh all stale snapshots\n\
+  --  get_mv_dependencies\t - gets the list of snapshots that depend\n--         \
+  \                      on the specified tables/snapshots.\n--  i_am_a_refresh  \
+  \           - return TRUE if local site is in the process\n--                  \
+  \             of refreshing one or more snapshots\n--  set_i_am_a_refresh      \
+  \   - set the refresh indicator\n--  begin_table_reorganization - indicate the start\
+  \ of a table reorganization\n--  end_table_reorganization   - indicate the end of\
+  \ a table reorganization\n--  purge_log\t\t         - purge log of unnecessary rows\n\
+  --  purge_direct_load_log\t - purge direct loader log of unnecessary rows\n--  register_snapshot\
+  \          - register a snapshot with the master site\n--  unregister_snapshot \
+  \       - unregister a snapshot with the master site\n--  purge_snapshot_from_log\
+  \    - purge the snapshot log for a specific\n--                               snapshot\n\
+  --  pmarker\t\t\t - partition marker generator\n--  explain_rewrite            -\
+  \ explain why a query failed to rewrite\n--  explain_mview              - explain\
+  \ an mv or potential mv\n--  estimate_mview_size        - estimate the size of a\
+  \ potential MV\n----------------------------\n--  PROCEDURES AND FUNCTIONS\n--\n\
+  --  -----------------------------------------------------------------------\n--\
+  \  Transaction consistent refresh of an array of snapshots.\n--  The max number\
+  \ of snapshots that can be consistently refreshed is 400.\n--  The snapshots are\
+  \ refreshed atomically and consistently.\n--  Atomically: all snapshots are refreshed\
+  \ or none are.\n--  Consistently: all integrity constraints that hold among master\
+  \ tables\n--                will hold among the snapshot tables.\n--\n--   LIST\n\
+  --     A comma-separated list or PL/SQL table of the snapshots\n--     to be refreshed.\n\
+  --   METHOD\n--     A string that contains a letter for each\n--     of the snapshots\
+  \ in the array according to the following codes:\n--     '?' -- use fast refresh\
+  \ when possible\n--     'F' -- use fast refresh or raise an error if not possible\n\
+  --     'C' -- perform a complete refresh, copying the entire snapshot from\n-- \
+  \           the master\n--     The default method for refreshing a snapshot is the\
+  \ method stored for\n--     that snapshot in the data dictionary.\n--   ROLLBACK_SEG\n\
+  --     The name of the rollback segment to use while\n--     refreshing snapshots.\n\
+  --   PUSH_DEFERRED_RPC\n--     If TRUE then push all changes made to an updatable\
+  \ snapshot to its\n--     associated master before refreshing the snapshot.  Otherwise,\
+  \ these\n--     changes may appear to be temporarily lost.\n--   REFRESH_AFTER_ERRORS\n\
+  --     If TRUE, then allow the refresh to proceed\n--     even if there are outstanding\
+  \ conflicts logged in the DefError\n--     table for the snapshot's master.\n--\
+  \   PURGE_OPTION\n--     How to purge the transaction queue if PUSH_DEFERRED_RPC\
+  \ is true.\n--     0 = don't\n--     1 = cheap but imprecise (optimize for time)\n\
+  --     2 = expensive but precise (optimize for space)\n--   PARALLELISM\n--    \
+  \ Max degree of parallelism for pushing deferred RPCs. This value\n--     is considered\
+  \ only if PUSH_DEFERRED_RPC is true.\n--     0 = (old algorithm) serial propagation\n\
+  --     1 = (new algorithm) parallel propagation with only 1 slave\n--     n = (new\
+  \ algorithm) parallel propagation with n slaves\n--   HEAP_SIZE\n--     The max\
+  \ number of txns to be examined simultaneously for\n--     parallel scheduling computation.\
+  \ This parameter is used only if\n--     the value of the PARALLELISM parameter\
+  \ is greater than 0.\n--   ATOMIC_REFRESH\n--     If TRUE, then perform the refresh\
+  \ operations for the specified\n--     set of snapshots in a single transaction.\
+  \ This guarantees that either\n--     all of the snapshots are successfully refresh\
+  \ or none of the snapshots\n--     are refreshed.\n--   NESTED\n--     If TRUE,\
+  \ then perform nested refresh operations for the specified\n--     set of MVs. Nested\
+  \ refresh operations refresh all the depending MVs\n--     and the specified set\
+  \ of MVs based on a dependency order to ensure\n--     the MVs are truly fresh with\
+  \ respect to the underlying base tables.\n--   OUT_OF_PLACE\n--     If TRUE and\
+  \ if atomic_refresh is FALSE, then perform out-of-place\n--     refresh. Otherwise\
+  \ perform in-place refresh.\nPROCEDURE refresh(\n  list IN VARCHAR2,\n  method IN\
+  \ VARCHAR2: = NULL,\n  rollback_seg IN VARCHAR2: = NULL,\n  push_deferred_rpc IN\
+  \ BOOLEAN: = TRUE,\n  refresh_after_errors IN BOOLEAN: = FALSE,\n  purge_option\
+  \ IN BINARY_INTEGER: = 1,\n  parallelism IN BINARY_INTEGER: = 0,\n  heap_size IN\
+  \ BINARY_INTEGER: = 0,\n  atomic_refresh IN BOOLEAN: = TRUE,\n  nested IN BOOLEAN:\
+  \ = FALSE,\n  out_of_place IN BOOLEAN: = FALSE\n);\nPROCEDURE refresh(\n  tab IN\
+  \ OUT dbms_utility.uncl_array,\n  method IN VARCHAR2: = NULL,\n  rollback_seg IN\
+  \ VARCHAR2: = NULL,\n  push_deferred_rpc IN BOOLEAN: = TRUE,\n  refresh_after_errors\
+  \ IN BOOLEAN: = FALSE,\n  purge_option IN BINARY_INTEGER: = 1,\n  parallelism IN\
+  \ BINARY_INTEGER: = 0,\n  heap_size IN BINARY_INTEGER: = 0,\n  atomic_refresh IN\
+  \ BOOLEAN: = TRUE,\n  nested IN BOOLEAN: = FALSE,\n  out_of_place IN BOOLEAN: =\
+  \ FALSE\n);\n--  -----------------------------------------------------------------------\n\
+  --  Execute all refresh jobs due to be executed\n--  Requires ALTER ANY SNAPSHOT\
+  \ privilege\nPROCEDURE refresh_all;\n--  -----------------------------------------------------------------------\n\
+  --  Refresh all local snapshots based on a specified local master table where\n\
+  --    1) the table has been modified since it was last successfully refreshed\n\
+  --    2) the snapshot is a member of dba_mview_analysis\n--  NOTE:\n--    A snapshot\
+  \ will be considered only if all of its tables are local.\n--\n--   NUMBER_OF_FAILURES\n\
+  --     Returns the number of failures that occurred during processing.\n--   LIST\n\
+  --     A comma-separated list of the master tables to consider.\n--   TAB\n--  \
+  \   A PL/SQL table of the master tables to consider.\n--   METHOD\n--     A string\
+  \ of refresh methods indicating how to refresh the dependent\n--     snapshots.\
+  \  All of the snapshots that depend on a particular table\n--     are refreshed\
+  \ according to the refresh method associated with that\n--     table.  If a table\
+  \ does not have a corresponding refresh method\n--     (that is, more tables are\
+  \ specified than refresh methods), then any\n--     snapshot that depends on that\
+  \ table is refreshed according to its\n--     default refresh method.  The default\
+  \ refresh method for a snapshot\n--     is stored in the data dictionary.\n--  \
+  \   The refresh methods are represented by the following codes:\n--     '?' -- use\
+  \ fast refresh if possible;  otherwise, use complete refresh\n--     'F' -- use\
+  \ fast refresh if possible;  otherwise, raise an error\n--     'C' -- use complete\
+  \ refresh to construct the entire snapshot from\n--            the master tables\n\
+  --   ROLLBACK_SEG\n--     The name of the rollback segment to use while refreshing\
+  \ the snapshots.\n--   REFRESH_AFTER_ERRORS\n--     If TRUE and if ATOMIC_REFRESH\
+  \ is FALSE, then an error will not be\n--     raised if an error is encountered\
+  \ during the refresh.  Otherwise,\n--     any error encountered during refresh will\
+  \ be raised.\n--   ATOMIC_REFRESH\n--     If TRUE, then refresh all of the dependent\
+  \ snapshots in a single\n--     transaction.  This guarantees that either all of\
+  \ the snapshots are\n--     successfully refreshed or none of the snapshots are\
+  \ refreshed.\n--     Otherwise, refresh each dependent snapshot in a separate transaction.\n\
+  --   NESTED\n--     If TRUE, then perform nested refresh operations for the specified\n\
+  --     set of tables. Nested refresh operations refresh all the depending MVs\n\
+  --     of the specified set of tables based on a dependency order to ensure\n--\
+  \     the MVs are truly fresh with respect to the underlying base tables.\n--  \
+  \ OUT_OF_PLACE\n--     If TRUE and if atomic_refresh is FALSE, then perform out-of-place\n\
+  --     refresh. Otherwise perform in-place refresh.\nPROCEDURE refresh_dependent(\n\
+  \  number_of_failures OUT BINARY_INTEGER,\n  list IN VARCHAR2,\n  method IN VARCHAR2:\
+  \ = NULL,\n  rollback_seg IN VARCHAR2: = NULL,\n  refresh_after_errors IN BOOLEAN:\
+  \ = FALSE,\n  atomic_refresh IN BOOLEAN: = TRUE,\n  nested IN BOOLEAN: = FALSE,\n\
+  \  out_of_place IN BOOLEAN: = FALSE\n);\nPROCEDURE refresh_dependent(\n  number_of_failures\
+  \ OUT BINARY_INTEGER,\n  tab IN dbms_utility.uncl_array,\n  method IN VARCHAR2:\
+  \ = NULL,\n  rollback_seg IN VARCHAR2: = NULL,\n  refresh_after_errors IN BOOLEAN:\
+  \ = FALSE,\n  atomic_refresh IN BOOLEAN: = TRUE,\n  nested IN BOOLEAN: = FALSE,\n\
+  \  out_of_place IN BOOLEAN: = FALSE\n);\n--  -----------------------------------------------------------------------\n\
+  --  Refresh all local snapshots based on a local master table where\n--    1) the\
+  \ table has been modified since it was last successfully refreshed\n--    2) the\
+  \ snapshot is a member of dba_mview_analysis\n--  NOTE:\n--    A snapshot will be\
+  \ considered only if all of its tables are local.\n--\n--   NUMBER_OF_FAILURES\n\
+  --     Returns the number of failures that occurred during processing.\n--   METHOD\n\
+  --     A single refresh method indicating how to refresh the dependent\n--     snapshots.\
+  \  If a refresh method is not specified, then any dependent\n--     snapshot is\
+  \ refreshed according to its default refresh method.  The\n--     default refresh\
+  \ method for a snapshot is stored in the data dictionary.\n--     A refresh method\
+  \ is represented by the following codes:\n--     '?' -- use fast refresh if possible;\
+  \  otherwise, use complete refresh\n--     'F' -- use fast refresh if possible;\
+  \  otherwise, raise an error\n--     'C' -- use complete refresh to construct the\
+  \ entire snapshot from\n--            the master tables\n--   ROLLBACK_SEG\n-- \
+  \    The name of the rollback segment to use while refreshing the snapshots.\n--\
+  \   REFRESH_AFTER_ERRORS\n--     If TRUE and if ATOMIC_REFRESH is FALSE, then an\
+  \ error will not be\n--     raised if an error is encountered during the refresh.\
+  \  Otherwise,\n--     any error encountered during refresh will be raised.\n-- \
+  \  ATOMIC_REFRESH\n--     If TRUE, then refresh all of the dependent snapshots in\
+  \ a single\n--     transaction.  This guarantees that either all of the snapshots\
+  \ are\n--     successfully refreshed or none of the snapshots are refreshed.\n--\
+  \     Otherwise, refresh each dependent snapshot in a separate transaction.\n--\
+  \   OUT_OF_PLACE\n--     If TRUE and if atomic_refresh is FALSE, then perform out-of-place\n\
+  --     refresh. Otherwise perform in-place refresh.\nPROCEDURE refresh_all_mviews(\n\
+  \  number_of_failures OUT BINARY_INTEGER,\n  method IN VARCHAR2: = NULL,\n  rollback_seg\
+  \ IN VARCHAR2: = NULL,\n  refresh_after_errors IN BOOLEAN: = FALSE,\n  atomic_refresh\
+  \ IN BOOLEAN: = TRUE,\n  out_of_place IN BOOLEAN: = FALSE\n);\n-- ------------------------------------------------------------------------\n\
+  -- This procedure finds the list of materialized view that are directly\n-- dependent\
+  \ on the list of tables or materialized views that has been\n-- specified.\n--\n\
+  -- LIST :\n--   A comma separated list of the tables/materialized views to consider\n\
+  -- DEPLIST\n--   The list of materialized views that are directly dependent on the\n\
+  --   tables/materialized view that has been specified in \"LIST\".\n--\nPROCEDURE\
+  \ get_mv_dependencies(\n  list IN VARCHAR2,\n  deplist OUT VARCHAR2\n);\n-- ------------------------------------------------------------------------\n\
+  -- This procedure disables or enables snapshot replication trigger at the\n-- local\
+  \ snapshot site.\n-- value = TRUE  -> disable all local replication triggers for\
+  \ snapshots\n-- value = FALSE -> enable all local replication triggers for snapshots\n\
+  PROCEDURE set_i_am_a_refresh(value IN BOOLEAN);\n-- ------------------------------------------------------------------------\n\
+  -- Returns TRUE if the local site is in the process of refreshing one or\n-- more\
+  \ snapshots. Return FALSE otherwise.\nFUNCTION i_am_a_refresh RETURN BOOLEAN;\n\
+  -- ------------------------------------------------------------------------\n--\
+  \ This procedure must be called before a master table is reorganized. It\n-- performs\
+  \ process to preserve snapshot data needed for refresh.\nPROCEDURE begin_table_reorganization(\n\
+  \  tabowner IN VARCHAR2,\n  tabname IN VARCHAR2\n);\n-- ------------------------------------------------------------------------\n\
+  -- This procedure myst be call after a master tanel is reorganized. It\n-- ensures\
+  \ that the snapshot data for the master table is valid and that\n-- the master table\
+  \ is in the proper state.\nPROCEDURE end_table_reorganization(\n  tabowner IN VARCHAR2,\n\
+  \  tabname IN VARCHAR2\n);\n-- ------------------------------------------------------------------------\n\
+  -- Purge the snapshot log for the specified master master of unecessary rows.\n\
+  PROCEDURE purge_log(\n  master IN VARCHAR2,\n  num IN BINARY_INTEGER: = 1,\n  flag\
+  \ IN VARCHAR2: = 'NOP'\n);\n-- ------------------------------------------------------------------------\n\
+  -- Remove entries from the direct loader log after they are no longer\n-- needed\
+  \ for any known snapshot.\nPROCEDURE purge_direct_load_log;\n-- ------------------------------------------------------------------------\n\
+  -- Invoked at the master site by (remote) snapshot site 'snapsite' to\n-- register\
+  \ snapshot 'snapname' at the master site. The invocation\n-- is done using a synchronous\
+  \ RPC.\n-- May also be invoked directly at the master site by the DBA to manually\n\
+  -- register a snapshot.\n--\n-- Input argugments:\n--    snapowner   Owner of the\
+  \ snapshot\n--    snapname    Name of the snapshot\n--    snapsite    Name of the\
+  \ snapshot site (should contain no double qoutes)\n--    snapshot_id V7 snapshot\
+  \ identifier\n--    flag        Attributes of the snapshot\n--    qry_txt     Snapshot\
+  \ definition query\n--    rep_type    Version of snapshot\nPROCEDURE register_mview(\n\
+  \  mviewowner IN VARCHAR2,\n  mviewname IN VARCHAR2,\n  mviewsite IN VARCHAR2,\n\
+  \  mview_id IN DATE,\n  flag IN BINARY_INTEGER,\n  qry_txt IN VARCHAR2,\n  rep_type\
+  \ IN BINARY_integer: = dbms_snapshot.reg_unknown\n);\n-- Input argugments:\n-- \
+  \   snapowner   Owner of the snapshot\n--    snapname    Name of the snapshot\n\
+  --    snapsite    Name of the snapshot site (should contain no double qoutes)\n\
+  --    snapshot_id snapshot identifier\n--    flag        Attributes of the snapshot\n\
+  --    qry_txt     Snapshot definition query\n--    rep_type    Version of snapshot\n\
+  PROCEDURE register_mview(\n  mviewowner IN VARCHAR2,\n  mviewname IN VARCHAR2,\n\
+  \  mviewsite IN VARCHAR2,\n  mview_id IN BINARY_INTEGER,\n  flag IN BINARY_INTEGER,\n\
+  \  qry_txt IN VARCHAR2,\n  rep_type IN BINARY_integer: = dbms_snapshot.reg_unknown\n\
+  );\n-- ------------------------------------------------------------------------\n\
+  -- Invoked at the master site by (remote) snapshot site 'snapsite' to\n-- unregister\
+  \ snapshot 'snapname' at the master site. The invocation\n-- is done using a synchronous\
+  \ RPC.\n-- May also be invoked directly at the master site by the DBA to manually\n\
+  -- register a snapshot.\n--\n-- Input argugments:\n--    snapowner   Owner of the\
+  \ snapshot\n--    snapname    Name of the snapshot\n--    snapsite    Name of the\
+  \ snapshot site (should contain no double qoutes)\nPROCEDURE unregister_mview(\n\
+  \  mviewowner IN VARCHAR2,\n  mviewname IN VARCHAR2,\n  mviewsite IN VARCHAR2\n\
+  );\n-- ------------------------------------------------------------------------\n\
+  -- This procedure is called on the master site to delete the rows in\n-- snapshot\
+  \ refresh related data dictionary tables maintained at the\n-- master site for the\
+  \ specified snapshot identified by its snapshot_id.\n-- If the snapshot specified\
+  \ is the oldest snapshot to have refreshed\n-- from any of the  master tables, then\
+  \ the snapshot log is also purged.\n-- This procedure does not unregister the snapshot.\n\
+  --\n-- In case there is an error while purging one of the snapshot logs, the\n--\
+  \ successful purge operations of the previous snapshot logs are not rolled\n-- back.\
+  \ This is to  minimize the size of the snapshot logs. In case of an\n-- error, this\
+  \ procedure can be invoked again until all the snapshot\n-- logs are purged.\nPROCEDURE\
+  \ purge_mview_from_log(mview_id IN BINARY_INTEGER);\n-- ------------------------------------------------------------------------\n\
+  -- This procedure is called on the master site to delete the rows in\n-- snapshot\
+  \ refresh related data dictionary tables maintained at the\n-- master site for the\
+  \ specified snapshot. If the snapshot specified is\n-- the oldest snapshot to have\
+  \ refreshed  from any of the master tables,\n-- then the snapshot log is also purged.\
+  \ This procedure does not unregister\n-- the snapshot.\n--\n-- In case there is\
+  \ an error while purging one of the snapshot logs, the\n-- successful purge operations\
+  \ of the previous snapshot logs are not rolled\n-- back. This is to  minimize the\
+  \ size of the snapshot logs. In case of an\n-- error, this procedure can be invoked\
+  \ again until all the snapshot\n-- logs are purged.\nPROCEDURE purge_mview_from_log(\n\
+  \  mviewowner IN VARCHAR2,\n  mviewname IN VARCHAR2,\n  mviewsite IN VARCHAR2\n\
+  );\nFUNCTION pmarker (rid IN ROWID) RETURN NUMBER PARALLEL_ENABLE;\n-- ------------------------------------------------------------------------\n\
+  -- Interface for EXPLAIN_MVIEW PROCEDURES\n-- ------------------------------------------------------------------------\n\
+  --\n-- ------------------------------------------------------------------------\n\
+  -- This procedure explains the various capabilities of a potential\n-- materialized\
+  \ view or an existing materialized view and the reasons\n-- why certain capabilities\
+  \ would not be possible for the materialized\n-- view.  Specify a potential materialized\
+  \ view as a SQL SELECT statement.\n-- Alternatively, specify an existing materialized\
+  \ view by giving the name\n-- and the schema in which the materialized view was\
+  \ created ([schema.]mvname)\n-- The output is placed in MV_CAPABILITIES_TABLE. \
+  \ Invoke the admin/utlxmv.sql\n-- script to define MV_CAPABILITIES_TABLE prior to\
+  \ invoking this procedure.\nPROCEDURE explain_mview (\n  mv IN VARCHAR2,\n  stmt_id\
+  \ IN VARCHAR2: = NULL\n);\n-- ------------------------------------------------------------------------\n\
+  -- This procedure explains the various capabilities of a potential\n-- materialized\
+  \ view or an existing materialized view and the reasons\n-- why certain capabilities\
+  \ would not be possible for the materialized\n-- view.  Specify a potential materialized\
+  \ view as a SQL SELECT statement.\n-- Alternatively, specify an existing materialized\
+  \ view by giving the name\n-- and the schema in which the materialized view was\
+  \ created ([schema.]mvname)\n-- It accepts a CLOB instead of VARCHAR, so users can\
+  \ specify SQL string up\n-- to 4G. The output is placed in MV_CAPABILITIES_TABLE.\
+  \  Invoke the\n-- admin/utlxmv.sql script to define MV_CAPABILITIES_TABLE prior\
+  \ to invoking\n-- this procedure.\nPROCEDURE explain_mview (\n  mv IN CLOB,\n  stmt_id\
+  \ IN VARCHAR2: = NULL\n);\n-- ------------------------------------------------------------------------\n\
+  -- This procedure explains the various capabilities of a potential\n-- materialized\
+  \ view or an existing materialized view and the reasons\n-- why certain capabilities\
+  \ would not be possible for the materialized\n-- view.  Specify a potential materialized\
+  \ view as a SQL SELECT statement.\n-- Alternatively, specify an existing materialized\
+  \ view by giving the name\n-- and the schema in which the materialized view was\
+  \ created ([schema.]mvname)\n-- The output is placed into an VARRAY.\nPROCEDURE\
+  \ explain_mview (\n  mv IN VARCHAR2,\n  msg_array IN OUT SYS.ExplainMVArrayType\n\
+  );\n-- ------------------------------------------------------------------------\n\
+  -- This procedure explains the various capabilities of a potential\n-- materialized\
+  \ view or an existing materialized view and the reasons\n-- why certain capabilities\
+  \ would not be possible for the materialized\n-- view.  Specify a potential materialized\
+  \ view as a SQL SELECT statement.\n-- Alternatively, specify an existing materialized\
+  \ view by giving the name\n-- and the schema in which the materialized view was\
+  \ created ([schema.]mvname)\n-- It accepts a CLOB instead of VARCHAR, so users can\
+  \ specify SQL string up to\n-- 4G. The output is placed into an VARRAY.\nPROCEDURE\
+  \ explain_mview (\n  mv IN CLOB,\n  msg_array IN OUT SYS.ExplainMVArrayType\n);\n\
+  -- ------------------------------------------------------------------------\n--\
+  \ End of user interface for EXPLAIN_MVIEW PROCEDURES\n-- ------------------------------------------------------------------------\n\
+  -- ------------------------------------------------------------------------\n--\
+  \ Interface for EXPLAIN_REWRITE PROCEDURES\n-- ------------------------------------------------------------------------\n\
+  --\n-- PROCEDURE EXPLAIN_REWRITE\n--\n-- PURPOSE: Explain Rewrite user interface\
+  \ using a table for output\n--\n-- PARAMETERS\n-- ==========\n--\n-- QUERY     \
+  \  : SQL select statement to be explained\n-- MV          : Fully qualified MV name\
+  \ specified by the user (mv_owner.mv_name)\n-- STATEMENT_ID: a unique id from the\
+  \ user to distinguish output messages\n--\nPROCEDURE Explain_Rewrite (\n  QUERY\
+  \ IN VARCHAR2,\n  MV IN VARCHAR2: = NULL,\n  STATEMENT_ID IN VARCHAR2: = NULL\n\
+  );\n-- PROCEDURE EXPLAIN_REWRITE\n--\n-- PURPOSE: Explain Rewrite user interface\
+  \ using a table for output. This\n--          overloaded function uses CLOB instead\
+  \ of VARCHAR, so users can\n--          specify a SQL query upto 4GB.\n--\n-- PARAMETERS\n\
+  -- ==========\n--\n-- QUERY       : SQL select statement to be explained in CLOB\n\
+  -- MV          : Fully qualified MV name specified by the user (mv_owner.mv_name)\n\
+  -- STATEMENT_ID: a unique id from the user to distinguish output messages\n--\n\
+  PROCEDURE Explain_Rewrite (\n  QUERY IN CLOB,\n  MV IN VARCHAR2: = NULL,\n  STATEMENT_ID\
+  \ IN VARCHAR2: = NULL\n);\n--\n-- PROCEDURE EXPLAIN_REWRITE\n--\n-- PURPOSE: Explain\
+  \ Rewrite user interface using a VARRAY for output\n--\n-- PARAMETERS\n-- ==========\n\
+  --\n-- QUERY       : SQL select statement to be explained\n-- MV          : Fully\
+  \ qualified MV name specified by the user (mv_owner.mv_name)\n-- MSG_ARRAY   : name\
+  \ of the output array\n--\nPROCEDURE Explain_Rewrite (\n  QUERY IN VARCHAR2,\n \
+  \ MV IN VARCHAR2: = NULL,\n  MSG_ARRAY IN OUT SYS.RewriteArrayType\n);\n--\n-- PROCEDURE\
+  \ EXPLAIN_REWRITE\n--\n-- PURPOSE: Explain Rewrite user interface using a VARRAY\
+  \ for output. This\n--          overloaded function uses CLOB instead of VARCHAR,\
+  \ so users can\n--          specify a SQL query upto 4GB.\n--\n-- PARAMETERS\n--\
+  \ ==========\n--\n-- QUERY       : SQL select statement to be explained in CLOB\n\
+  -- MV          : Fully qualified MV name specified by the user (mv_owner.mv_name)\n\
+  -- MSG_ARRAY   : name of the output array\n--\nPROCEDURE Explain_Rewrite (\n  QUERY\
+  \ IN CLOB,\n  MV IN VARCHAR2: = NULL,\n  MSG_ARRAY IN OUT SYS.RewriteArrayType\n\
+  );\n-- PROCEDURE EXPLAIN_REWRITE_SQLID\n--\n-- PURPOSE: Explain Rewrite user interface\
+  \ using a table for output for\n-- using on EM\n--\n-- PARAMETERS\n-- ==========\n\
+  --\n-- QUERY       : SQL select statement to be explained\n-- MV          : Fully\
+  \ qualified MV name specified by the user (mv_owner.mv_name)\n-- STATEMENT_ID: a\
+  \ unique id from the user to distinguish output messages\n-- SQLID       : SQL_ID\
+  \ of the query from EM\n--\nPROCEDURE Explain_Rewrite_SQLID (\n  QUERY IN VARCHAR2,\n\
+  \  MV IN VARCHAR2: = NULL,\n  STATEMENT_ID IN VARCHAR2: = NULL,\n  SQLID IN VARCHAR2:\
+  \ = NULL\n);\n-- ------------------------------------------------------------------------\n\
+  -- End of user interface for EXPLAIN_REWRITE PROCEDURES\n-- ------------------------------------------------------------------------\n\
+  -- ------------------------------------------------------------------------\n--\
+  \ This estimates the size of a materialized view that you might create,\n-- in bytes\
+  \ and number of rows.\n-- PARAMETERS:\n--      stmt_id: NUMBER\n--            User-specified\
+  \ id\n--      select_clause: VARCHAR2\n--            SQL text for the defining query\n\
+  --      num_row: NUMBER\n--            Estimated number of rows\n--      num_col:\
+  \ NUMBER\n--            Estimated number of bytes\n-- COMMENTS:\n--      This procedure\
+  \ requires that 'utlxplan.sql' be executed\nPROCEDURE estimate_mview_size (\n  stmt_id\
+  \ IN VARCHAR2,\n  select_clause IN VARCHAR2,\n  num_rows OUT NUMBER,\n  num_bytes\
+  \ OUT NUMBER\n);\n--- #######################################################################\n\
+  --- INTERNAL PROCEDURES\n---\n--- The following procedure provide internal functionality\
+  \ and should\n--- not be called directly.\n---\n--- #######################################################################\n\
+  ---  These interfaces are obselete in V8 and are present only for\n---  providing\
+  \ backwards compatibility\nPROCEDURE set_up(\n  mowner IN VARCHAR2,\n  master IN\
+  \ VARCHAR2,\n  log IN OUT VARCHAR2,\n  snapshot IN OUT DATE,\n  snaptime IN OUT\
+  \ DATE\n);\nPROCEDURE wrap_up(\n  mowner IN VARCHAR2,\n  master IN VARCHAR2,\n \
+  \ sshot IN DATE,\n  stime IN DATE\n);\nPROCEDURE get_log_age(\n  oldest IN OUT DATE,\n\
+  \  mow IN VARCHAR2,\n  mas IN VARCHAR2\n);\n-- obselete interface, present for backward\
+  \ compatability\nPROCEDURE drop_snapshot(\n  mowner IN VARCHAR2,\n  master IN VARCHAR2,\n\
+  \  snapshot IN DATE\n);\nPROCEDURE testing;\n-- Internal Procedure ONLY. DO NOT\
+  \ USE DIRECTLY\n-- Note: added parameter 'resources' for internal parallel resource\n\
+  -- load balancing\nPROCEDURE refresh_mv (\n  pipename IN VARCHAR2,\n  mv_index IN\
+  \ BINARY_INTEGER,\n  owner IN VARCHAR2,\n  name IN VARCHAR2,\n  method IN VARCHAR2,\n\
+  \  rollseg IN VARCHAR2,\n  atomic_refresh IN BINARY_INTEGER,\n  out_of_place IN\
+  \ BINARY_INTEGER,\n  env IN BINARY_INTEGER,\n  resources IN BINARY_INTEGER DEFAULT\
+  \ 0\n);\n--- #######################################################################\n\
+  --- #######################################################################\n---\
+  \                        DEPRECATED PROCEDURES\n---\n--- The following procedures\
+  \ will soon obsolete due to the materialized\n--- view integration with snapshots.\
+  \ They are kept around for backwards\n--- compatibility purposes.\n---\n--- #######################################################################\n\
+  --- #######################################################################\nPROCEDURE\
+  \ register_snapshot(\n  snapowner IN VARCHAR2,\n  snapname IN VARCHAR2,\n  snapsite\
+  \ IN VARCHAR2,\n  snapshot_id IN DATE,\n  flag IN BINARY_INTEGER,\n  qry_txt IN\
+  \ VARCHAR2,\n  rep_type IN BINARY_INTEGER: = dbms_snapshot.reg_unknown\n);\nPROCEDURE\
+  \ register_snapshot(\n  snapowner IN VARCHAR2,\n  snapname IN VARCHAR2,\n  snapsite\
+  \ IN VARCHAR2,\n  snapshot_id IN BINARY_INTEGER,\n  flag IN BINARY_INTEGER,\n  qry_txt\
+  \ IN VARCHAR2,\n  rep_type IN BINARY_INTEGER: = dbms_snapshot.reg_unknown\n);\n\
+  PROCEDURE unregister_snapshot(\n  snapowner IN VARCHAR2,\n  snapname IN VARCHAR2,\n\
+  \  snapsite IN VARCHAR2\n);\nPROCEDURE purge_snapshot_from_log(snapshot_id IN BINARY_INTEGER);\n\
+  PROCEDURE purge_snapshot_from_log(\n  snapowner IN VARCHAR2,\n  snapname IN VARCHAR2,\n\
+  \  snapsite IN VARCHAR2\n);\nEND dbms_snapshot;"

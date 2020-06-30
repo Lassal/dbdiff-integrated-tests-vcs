@@ -1,0 +1,30 @@
+schema: MDSYS
+name: HHSUBSTR
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: RAW
+  parameterMode: OUT
+parameters:
+- name: HHC
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: SLV
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ELV
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION hhsubstr (
+    hhc IN RAW,
+    slv IN BINARY_INTEGER,
+    elv IN BINARY_INTEGER
+  ) RETURN RAW IS
+  begin
+    return md.hhsubstr(hhc, slv, elv);
+  end;
