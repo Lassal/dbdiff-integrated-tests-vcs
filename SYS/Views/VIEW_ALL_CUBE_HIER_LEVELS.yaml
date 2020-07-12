@@ -1,0 +1,54 @@
+schema: SYS
+name: ALL_CUBE_HIER_LEVELS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name OWNER,
+    o.name DIMENSION_NAME,
+    h.hierarchy_name HIERARCHY_NAME,
+    dl.level_name LEVEL_NAME,
+    hl.hierarchy_level_id HIERARCHY_LEVEL_ID,
+    hl.order_num ORDER_NUM,
+    d.description_value DESCRIPTION
+  FROM
+    olap_hier_levels$ hl,
+    user $ u,
+    obj$ o,
+    olap_hierarchies$ h,
+    olap_dim_levels$ dl,
+    (
+      select
+        d. *
+      from
+        olap_descriptions$ d,
+        nls_session_parameters n
+      where
+        n.parameter = 'NLS_LANGUAGE'
+        and d.description_type = 'Description'
+        and d.owning_object_type = 14 --HIER_LEVEL
+        and (
+          d.language = n.value
+          or d.language like n.value || '\_%' escape '\')) d
+  WHERE
+    hl.hierarchy_id=h.hierarchy_id AND o.owner#=u.user#
+    AND dl.level_id=hl.dim_level_id AND o.obj#=dl.dim_obj#
+    AND d.owning_object_id(+)=hl.hierarchy_level_id
+    AND (o.owner# in (userenv(' SCHEMAID '), 1)   -- public objects
+         or o.obj# in
+              ( select obj#  -- directly granted privileges
+                from sys.objauth$
+                where grantee# in ( select kzsrorol from x$kzsro )
+              )
+         or   -- user has system privileges
+                ( exists (select null from v$enabledprivs
+                          where priv_number in (-302, -- ALTER ANY PRIMARY DIMENSION
+                                                -304, -- DELETE ANY PRIMARY DIMENSION
+                                                -305, -- DROP ANY PRIMARY DIMENSION
+                                                -306, -- INSERT ANY PRIMARY DIMENSION
+                                                -307) -- SELECT ANY PRIMARY DIMENSION
+                          )
+                )
+              )
+columns: []
+referencedTables: []

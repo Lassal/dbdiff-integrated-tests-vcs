@@ -1,0 +1,283 @@
+schema: SYS
+name: DIUTIL
+routineType: PACKAGE
+returnParamater:
+  name: INT_TO_BOOL.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: ATTRIBUTE_USE_STATISTICS.LIBUNIT_NODE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ATTRIBUTE_USE_STATISTICS.ATTRIBUTE_COUNT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: ATTRIBUTE_USE_STATISTICS.ATTRIBUTE_LIMIT
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: BOOL_TO_INT.B
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GET_D.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_D.USR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_D.DBNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_D.DBOWNER
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_D.STATUS
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: GET_D.NOD
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GET_D.LIBUNIT_TYPE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_D.LOAD_SOURCE
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_DIANA.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DIANA.USR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DIANA.DBNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DIANA.DBOWNER
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DIANA.STATUS
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: GET_DIANA.NOD
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: GET_DIANA.LIBUNIT_TYPE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_DIANA.LOAD_SOURCE
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: INT_TO_BOOL.N
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: NODE_USE_STATISTICS.LIBUNIT_NODE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: NODE_USE_STATISTICS.NODE_COUNT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NODE_USE_STATISTICS.NODE_LIMIT
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: SUBPTXT.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPTXT.SUBNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPTXT.USR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPTXT.DBNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPTXT.DBOWNER
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPTXT.TXT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: INOUT
+- name: SUBPTXT.STATUS
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+routineDefinition: |-
+  PACKAGE diutil IS e_subpnotfound
+  EXCEPTION;
+  e_notinpackage
+  EXCEPTION;
+  e_nopriv
+  EXCEPTION;
+  e_stubtoolong
+  EXCEPTION;
+  e_notv6compat
+  EXCEPTION;
+  e_other
+  EXCEPTION;
+  SUBTYPE ptnod IS pidl.ptnod;
+  SUBTYPE ub4 IS pidl.ub4;
+  --   RETURN code FROM diutil functions
+    --
+    s_ok CONSTANT NUMBER: = 0;
+  -- successful
+    s_notinpackage CONSTANT NUMBER: = 6;
+  -- PACKAGE found, proc NOT found
+    s_subpnotfound CONSTANT NUMBER: = 1;
+  -- subprogram NOT found
+    s_stubtoolong CONSTANT NUMBER: = 3;
+  -- text TO be returned IS too long
+    s_logic CONSTANT NUMBER: = 4;
+  -- logic error
+    s_other CONSTANT NUMBER: = 5;
+  -- other error
+    s_defaultval CONSTANT NUMBER: = 8;
+  -- true iff parameters have DEFAULT
+    --   VALUES.  applicable TO pstub
+    s_notv6compat CONSTANT NUMBER: = 7;
+  -- found non v6 TYPE OR construct
+    char_for_varchar2 BOOLEAN;
+  -- SET FROM flags FOR v6 compatibility
+    libunit_type_spec CONSTANT NUMBER: = 1;
+  libunit_type_body CONSTANT NUMBER: = 2;
+  load_source_yes CONSTANT NUMBER: = 1;
+  load_source_no CONSTANT NUMBER: = 2;
+  -- get_d: returns the root OF the diana OF a libunit, given name AND usr.
+    --    name will be first folded TO upper CASE IF NOT IN quotes, ELSE stripped
+    --    OF quotes.
+    --    IN:  name = subprogram name
+    --         usr  = user name
+    --         dbname = database name, NULL FOR CURRENT
+    --         dbowner = NULL FOR CURRENT
+    --         libunit_type = libunit_type_spec FOR spec,
+    --                      = libunit_type_body FOR BODY
+    --    OUT: status = s_ok(0): diana root returned IN nod
+    --                  s_subpnotfound:  nod NULL
+    --                  s_other:   other error, nod NULL
+    --
+    PROCEDURE get_d(
+      name VARCHAR2,
+      usr VARCHAR2,
+      dbname VARCHAR2,
+      dbowner VARCHAR2,
+      status IN OUT ub4,
+      nod OUT ptnod,
+      libunit_type NUMBER: = libunit_type_spec,
+      load_source NUMBER: = load_source_no
+    );
+  -- get_diana: returns the root OF the diana OF a libunit, given name AND usr.
+    --    name will be first folded TO upper CASE IF NOT IN quotes, ELSE stripped
+    --    OF quotes.  will trace synonym links.
+    --    IN:  name = subprogram name
+    --         usr  = user name
+    --         dbname = database name, NULL FOR CURRENT
+    --         dbowner = NULL FOR CURRENT
+    --         libunit_type = libunit_type_spec FOR spec,
+    --                      = libunit_type_body FOR BODY
+    --    OUT: status = s_ok(0): diana root returned IN nod
+    --                  s_subpnotfound:  nod NULL
+    --                  s_other:   other error, nod NULL
+    --
+    PROCEDURE get_diana(
+      name VARCHAR2,
+      usr VARCHAR2,
+      dbname VARCHAR2,
+      dbowner VARCHAR2,
+      status IN OUT ub4,
+      nod IN OUT ptnod,
+      libunit_type NUMBER: = libunit_type_spec,
+      load_source NUMBER: = load_source_no
+    );
+  -- subptxt: returns the text OF a subprogram source (describe).
+    --    IN:  name - PACKAGE OR toplevel proc/func name;
+    --         subname - non-NULL TO specify proc/func IN PACKAGE <name>.
+    --         dbname - database name
+    --         dbowner - dbase owner
+    --    OUT:  status = s_ok (0): text returned IN txt
+    --                   s_subpnotfound: txt empty
+    --                   s_notinpackagte: txt empty
+    --                   s_stubtoolong: txt len too small; txt empty
+    --                   s_logic: logic error; txt empty
+    --                   s_other: other failure; txt empty
+    --
+    PROCEDURE subptxt(
+      name VARCHAR2,
+      subname VARCHAR2,
+      usr VARCHAR2,
+      dbname VARCHAR2,
+      dbowner VARCHAR2,
+      txt IN OUT VARCHAR2,
+      status IN OUT ub4
+    );
+  -- bool_to_int:  translates 3-valued BOOLEAN TO NUMBER FOR USE
+    --               IN sending BOOLEAN parameter / RETURN VALUES
+    --               BETWEEN pls v1 (client) AND pls v2. since sqlnet
+    --               has no BOOLEAN bind variable TYPE, we encode
+    --               booleans AS false = 0, true = 1, NULL = NULL FOR
+    --               network transfer AS NUMBER
+    --
+    FUNCTION bool_to_int(b BOOLEAN) RETURN NUMBER;
+  -- int_to_bool:  translates 3-valued NUMBER encoding TO BOOLEAN FOR USE
+    --               IN sending BOOLEAN parameter / RETURN VALUES
+    --               BETWEEN pls v1 (client) AND pls v2. since sqlnet
+    --               has no BOOLEAN bind variable TYPE, we encode
+    --               booleans AS false = 0, true = 1, NULL = NULL FOR
+    --               network transfer AS NUMBER
+    --
+    function int_to_bool(n NUMBER) return boolean;
+  -- node_use_statistics: reports libunit's node count and limit
+    --
+    -- Parameters:
+    --
+    --   libunit_node : legal ptnod, as returned by get_diana or get_d
+    --   node_count   : how many diana nodes the unit contains
+    --   node_limit   : that many diana nodes allowed to allocate
+    --
+    procedure node_use_statistics (
+      libunit_node IN ptnod,
+      node_count out ub4,
+      node_limit out ub4
+    );
+  -- attribute_use_statistics: reports libunit's attribute count and limit
+    --
+    -- Parameters:
+    --
+    --   libunit_node       : legal ptnod, as returned by get_diana or get_d
+    --   attribute_count   : how many diana attributes the unit contains
+    --   attribute_limit   : that many diana attributes allowed to allocate
+    --
+    procedure attribute_use_statistics (
+      libunit_node IN ptnod,
+      attribute_count out ub4,
+      attribute_limit out ub4
+    );
+  end diutil;

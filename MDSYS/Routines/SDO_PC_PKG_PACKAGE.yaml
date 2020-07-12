@@ -1,0 +1,553 @@
+schema: MDSYS
+name: SDO_PC_PKG
+routineType: PACKAGE
+returnParamater:
+  name: TO_GEOMETRY.(--return--)
+  ordinalPosition: 0
+  dataType: OBJECT
+  parameterMode: OUT
+parameters:
+- name: ADD_TO_PC.INP
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: ADD_TO_PC.INPTABLE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLIP_PC.INP
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_PC.IND_DIM_QRY
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_PC.OTHER_DIM_QRY
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_PC.QRY_MIN_RES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_PC.QRY_MAX_RES
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_PC.BLKNO
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_PC.INCLUDE_CUSTOM_DIMS
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_PC_FLAT.GEOMETRY
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_PC_FLAT.TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLIP_PC_FLAT.TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_PC_FLAT.OTHER_DIM_QRY
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_PC_FLAT.MASK
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLIP_PC_FLAT_STRING.GEOMETRY
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_PC_FLAT_STRING.TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLIP_PC_FLAT_STRING.TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_PC_FLAT_STRING.OTHER_DIM_QRY
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_PC_FLAT_STRING.MASK
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLIP_PC_FLAT_STRING.DOP
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: CLIP_PC_FLAT_STRING.SDO_LEVEL
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_PC_FLAT_STRING.SDO_NTILES
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.PC_INP
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.PC_IND_DIM_QRY
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.PC_OTHER_DIM_QRY
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.PC_QRY_MIN_RES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.PC_QRY_MAX_RES
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.TIN_BASETABLE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.TIN_BASECOL
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.TIN_BLKTABLE
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.TIN_PTN_PARAMS
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.TIN_BREAK_LINES
+  ordinalPosition: 10
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.TIN_STOP_LINES
+  ordinalPosition: 11
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.TIN_VOID_RGNS
+  ordinalPosition: 12
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.TIN_CLSTPCDATATBL
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLIP_PC_INTO_TIN.PC_BLKNO
+  ordinalPosition: 14
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_CONTOUR_GEOMETRIES(1).PC
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CREATE_CONTOUR_GEOMETRIES(1).SAMPLING_RESOLUTION
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_CONTOUR_GEOMETRIES(1).ELEVATIONS
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: CREATE_CONTOUR_GEOMETRIES(1).REGION
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: IN
+- name: CREATE_CONTOUR_GEOMETRIES(2).PC_FLAT_TABLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_CONTOUR_GEOMETRIES(2).SRID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_CONTOUR_GEOMETRIES(2).SAMPLING_RESOLUTION
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_CONTOUR_GEOMETRIES(2).ELEVATIONS
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: CREATE_CONTOUR_GEOMETRIES(2).REGION
+  ordinalPosition: 5
+  dataType: OBJECT
+  parameterMode: IN
+- name: CREATE_LIBLAS_PYRAMID.PC
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CREATE_LIBLAS_PYRAMID.KEEPLEVEL1INTACT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_PC.INP
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CREATE_PC.INPTABLE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_PC.CLSTPCDATATBL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_DEPENDENCIES.BASETABLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_DEPENDENCIES.COL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_BLOCKING_METHOD.INP
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GETNTHHILBERTVALUE.TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNTHHILBERTVALUE.N
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PT_IDS.PTS
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: GET_PT_IDS.NUM_PTS
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PT_IDS.PC_TOT_DIM
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PT_IDS.BLK_DOMAIN
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_TILE_SQL.GEOMETRY
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_TILE_SQL.SQL_INTERIOR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_TILE_SQL.SQL_BOUNDARY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_TILE_SQL.TOLERANCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_TILE_SQL.SDO_LEVEL
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_TILE_SQL.SDO_NTILES
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: HAS_PYRAMID.INP
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: HILBERT_XY2D.N
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: HILBERT_XY2D.X
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: HILBERT_XY2D.Y
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: IMPORT_LAS.SOURCE_LAS_FILE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_LAS.SOURCE_LAS_FILE_ID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_LAS.TARGET_TABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_LAS.ADD_COLUMNS
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: INIT.BASETABLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INIT.BASECOL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INIT.BLKTABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INIT.PTN_PARAMS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INIT.PC_EXTENT
+  ordinalPosition: 5
+  dataType: OBJECT
+  parameterMode: IN
+- name: INIT.PC_TOL
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: INIT.PC_TOT_DIMENSIONS
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: INIT.PC_DOMAIN
+  ordinalPosition: 8
+  dataType: OBJECT
+  parameterMode: IN
+- name: INIT.PC_VAL_ATTR_TABLES
+  ordinalPosition: 9
+  dataType: VARRAY
+  parameterMode: IN
+- name: INIT.PC_OTHER_ATTRS
+  ordinalPosition: 10
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PRESERVES_LEVEL1.INP
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: TIN_TO_PC.TIN
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: TIN_TO_PC.BASETABLE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TIN_TO_PC.BASECOL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TIN_TO_PC.BLKTABLE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TO_GEOMETRY.PTS
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: TO_GEOMETRY.NUM_PTS
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: TO_GEOMETRY.PC_TOT_DIM
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: TO_GEOMETRY.SRID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: TO_GEOMETRY.BLK_DOMAIN
+  ordinalPosition: 5
+  dataType: OBJECT
+  parameterMode: IN
+- name: TO_GEOMETRY.GET_IDS
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE sdo_pc_pkg authid current_user AS -- all tables as "schema.table" for simpler interface.
+  FUNCTION INIT(
+    basetable varchar2,
+    basecol varchar2,
+    blktable VARCHAR2,
+    ptn_params varchar2,
+    pc_extent sdo_geometry default null,
+    pc_tol NUMBER default 0.0000000000005,
+    pc_tot_dimensions NUMBER default 2,
+    pc_domain sdo_orgscl_type default null,
+    pc_val_attr_tables SDO_STRING_ARRAY default null,
+    pc_other_attrs SYS.XMLTYPE default null
+  ) RETURN SDO_PC;
+  procedure create_liblas_pyramid(
+    pc in sdo_pc,
+    keepLevel1Intact in number
+  );
+  PROCEDURE CREATE_PC(
+    inp sdo_pc,
+    inptable varchar2,
+    clstpcdatatbl varchar2 default null
+  );
+  PROCEDURE ADD_TO_PC(inp sdo_pc, inptable varchar2);
+  FUNCTION HAS_PYRAMID(inp sdo_pc) return number;
+  FUNCTION PRESERVES_LEVEL1(inp sdo_pc) return number;
+  -- works as read if qry params are null
+  FUNCTION CLIP_PC(
+    inp sdo_pc,
+    ind_dim_qry sdo_geometry,
+    other_dim_qry sdo_mbr,
+    qry_min_res number,
+    qry_max_res number,
+    blkno number default null,
+    include_custom_dims number default 0
+  ) RETURN MDSYS.SDO_PC_BLK_TYPE PIPELINED;
+  PROCEDURE DROP_DEPENDENCIES(basetable varchar2, col varchar2);
+  FUNCTION TO_GEOMETRY(
+    pts BLOB,
+    num_pts NUMBER,
+    pc_tot_dim NUMBER,
+    srid NUMBER default null,
+    blk_domain sdo_orgscl_type default null,
+    get_ids NUMBER default NULL
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION GET_PT_IDs(
+    pts BLOB,
+    num_pts NUMBER,
+    pc_tot_dim NUMBER,
+    blk_domain sdo_orgscl_type default null
+  ) RETURN SDO_NUMBER_ARRAY DETERMINISTIC;
+  function tin_to_pc(
+    tin sdo_tin,
+    basetable varchar2,
+    basecol varchar2,
+    blktable varchar2
+  ) return sdo_pc deterministic;
+  /*
+
+  PROCEDURE POPULATE_FROM_CLSTPCDATA(inp sdo_pc, clstpcdatatbl varchar2);
+
+
+
+    PROCEDURE WRITE_CLSTPCDATA(inp sdo_pc, clstpcdatatbl varchar2);
+
+  */
+  /*
+
+    -- works as read if qry is null
+
+    FUNCTION CLIP_PCAttrs(inp sdo_pc, qry sdo_geometry, blkno number default null)
+
+      RETURN ANYDATASET;
+
+    FUNCTION CLIP_PC_PtIds(inp sdo_pc, qry sdo_geometry, blkno number default null)
+
+      RETURN ANYDATASET;
+
+  */
+  function clip_pc_into_tin(
+    pc_inp sdo_pc,
+    pc_ind_dim_qry sdo_geometry,
+    pc_other_dim_qry sdo_mbr,
+    pc_qry_min_res number,
+    pc_qry_max_res number,
+    tin_basetable varchar2,
+    tin_basecol varchar2,
+    tin_blktable varchar2,
+    tin_ptn_params varchar2 default null,
+    tin_break_lines sdo_geometry default null,
+    tin_stop_lines sdo_geometry default null,
+    tin_void_rgns sdo_geometry default null,
+    tin_clstpcdatatbl varchar2 default null,
+    pc_blkno number default null
+  ) return mdsys.sdo_tin;
+  function create_contour_geometries(
+    pc sdo_pc,
+    sampling_resolution number,
+    elevations sdo_ordinate_array,
+    region sdo_geometry
+  ) return sdo_geometry_array;
+  function create_contour_geometries(
+    pc_flat_table varchar2,
+    srid number,
+    sampling_resolution number,
+    elevations sdo_ordinate_array,
+    region sdo_geometry
+  ) return sdo_geometry_array;
+  /* This procedure takes a 2D Geometry as input and generates
+
+       two SQL strings which can be appended to a user cursor in the
+
+       where clause. */
+  PROCEDURE get_tile_sql (
+    geometry IN SDO_GEOMETRY,
+    sql_interior OUT VARCHAR2,
+    sql_boundary OUT VARCHAR2,
+    tolerance IN NUMBER DEFAULT 0.0000005,
+    sdo_level in NUMBER DEFAULT 4,
+    sdo_ntiles in NUMBER DEFAULT 100
+  );
+  /* This function returns a REFCURSOR which can be queried by the client
+
+       side code to fetch rows from the base table. The columns are the columns
+
+       of the base table: only numberic and VARCHAR columns allowed.
+
+       Query Geometry is used to clip the points from the base table.
+
+       First two colums should be X and Y. SRID is assumed to be the same
+
+       as the one used in Geometry.  */
+  FUNCTION clip_pc_flat (
+    geometry IN SDO_GEOMETRY,
+    table_name IN VARCHAR2,
+    tolerance IN NUMBER,
+    other_dim_qry IN MDSYS.SDO_MBR DEFAULT NULL,
+    mask IN VARCHAR2 DEFAULT 'ANYINTERACT'
+  ) RETURN SYS_REFCURSOR;
+  /* Same as the above, but return the actual SQL statement instead of the
+
+       cursor. Users can add additional predicates or select list and
+
+       execute it. */
+  FUNCTION clip_pc_flat_string (
+    geometry IN SDO_GEOMETRY,
+    table_name IN VARCHAR2,
+    tolerance IN NUMBER,
+    other_dim_qry IN MDSYS.SDO_MBR DEFAULT NULL,
+    mask IN VARCHAR2 DEFAULT 'ANYINTERACT',
+    dop IN INTEGER DEFAULT NULL,
+    sdo_level in number DEFAULT 4,
+    sdo_ntiles in number DEFAULT 100
+  ) RETURN clob;
+  procedure import_las(
+    source_las_file varchar2,
+    source_las_file_id varchar2,
+    target_table varchar2,
+    add_columns number
+  );
+  function hilbert_xy2d(n number, x number, y number) return number;
+  function get_blocking_method(inp sdo_pc) return varchar2;
+  function getNthHilbertValue(
+    table_name varchar2,
+    n number
+  ) return number;
+  END sdo_pc_pkg;

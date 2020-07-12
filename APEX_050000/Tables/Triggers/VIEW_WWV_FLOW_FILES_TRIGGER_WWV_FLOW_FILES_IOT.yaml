@@ -1,0 +1,93 @@
+targetObjectSchema: APEX_050000
+targetObjectName: WWV_FLOW_FILES
+targetObjectType: VIEW
+name: WWV_FLOW_FILES_IOT
+eventTiming: INSTEAD OF
+event: INSERT OR UPDATE OR DELETE
+eventActionBody: |-
+  declare
+    l_new_doc_size number;
+  begin
+    if deleting then
+  delete
+    wwv_flow_file_objects$
+  where
+    id = :old.id
+    and security_group_id = wwv_flow_security.g_security_group_id;
+    else wwv_flow_api.check_api_use_allowed;
+  if :new.blob_content is not null then l_new_doc_size: = sys.dbms_lob.getlength(:new.blob_content);
+    else l_new_doc_size: = 0;
+  end if;
+  if updating then
+  update
+    wwv_flow_file_objects$
+  set
+    flow_id = :new.flow_id,
+    name = :new.name,
+    filename = :new.filename,
+    title = :new.title,
+    mime_type = :new.mime_type,
+    doc_size = l_new_doc_size,
+    dad_charset = :new.dad_charset,
+    content_type = :new.content_type,
+    blob_content = :new.blob_content,
+    language = :new.language,
+    description = :new.description,
+    file_type = :new.file_type,
+    file_charset = :new.file_charset
+  where
+    id = :old.id
+    and security_group_id = wwv_flow_security.g_security_group_id;
+    else
+  insert into
+    wwv_flow_file_objects$ (
+      id,
+      flow_id,
+      name,
+      filename,
+      title,
+      mime_type,
+      doc_size,
+      dad_charset,
+      created_by,
+      created_on,
+      updated_by,
+      updated_on,
+      last_updated,
+      content_type,
+      blob_content,
+      language,
+      description,
+      file_type,
+      file_charset
+    )
+  values
+    (
+      :new.id,
+      :new.flow_id,
+      :new.name,
+      :new.filename,
+      :new.title,
+      :new.mime_type,
+      l_new_doc_size,
+      :new.dad_charset,
+      :new.created_by,
+      :new.created_on,
+      :new.updated_by,
+      :new.updated_on,
+      :new.last_updated,
+      :new.content_type,
+      :new.blob_content,
+      :new.language,
+      :new.description,
+      :new.file_type,
+      :new.file_charset
+    );
+  end if;
+  if inserting
+  or :old.doc_size is null
+  or :old.doc_size <> l_new_doc_size then wwv_flow_file_api.check_workspace_limits;
+  end if;
+  end if;
+  end;
+executionOrder: 1

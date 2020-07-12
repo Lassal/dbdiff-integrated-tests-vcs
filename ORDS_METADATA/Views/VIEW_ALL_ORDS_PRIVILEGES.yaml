@@ -1,0 +1,36 @@
+schema: ORDS_METADATA
+name: ALL_ORDS_PRIVILEGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  with sr as (
+    select
+      count(1) has_catalog
+    from
+      session_roles
+    where
+      role = 'SELECT_CATALOG_ROLE'
+  )
+  SELECT
+    sec.id,
+    sec.label,
+    sec.name,
+    sec.comments,
+    sec.created_by,
+    sec.description,
+    sec.schema_id,
+    sec.created_on,
+    sec.updated_by,
+    sec.updated_on
+  FROM
+    ords_schemas sch,
+    sec_privileges sec,
+    sr
+  WHERE
+    sec.schema_id IN (sch.id, 10)
+    AND (
+      sch.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+      or sr.has_catalog = 1
+    )
+columns: []
+referencedTables: []

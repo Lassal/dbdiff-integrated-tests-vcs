@@ -1,0 +1,15 @@
+schema: MDSYS
+name: USER_SDO_ANIMATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    NAME,
+    DESCRIPTION,
+    DEFINITION
+  FROM
+    SDO_ANIMATIONS_TABLE
+  WHERE
+    sdo_owner = sys_context('userenv', 'CURRENT_USER')
+columns: []
+referencedTables: []

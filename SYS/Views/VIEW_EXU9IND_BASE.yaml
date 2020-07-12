@@ -1,0 +1,52 @@
+schema: SYS
+name: EXU9IND_BASE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "IOBJID",
+    "IDOBJID",
+    "INAME",
+    "IOWNER",
+    "IOWNERID",
+    "ISPACE",
+    "ITSNO",
+    "IFILENO",
+    "IBLOCKNO",
+    "BTNAME",
+    "BTOBJID",
+    "BTOWNER",
+    "BTOWNERID",
+    "BTPROPERTY",
+    "BTCLUSTERFLAG",
+    "PROPERTY",
+    "CLUSTER$",
+    "PCTFREE$",
+    "INITRANS",
+    "MAXTRANS",
+    "BLEVEL",
+    "BITMAP",
+    "DEFLOG",
+    "TSDEFLOG",
+    "DEGREE",
+    "INSTANCES",
+    "TYPE",
+    "ROWCNT",
+    "LEAFCNT",
+    "DISTKEY",
+    "LBLKKEY",
+    "DBLKKEY",
+    "CLUFAC",
+    "PRECCNT",
+    "IFLAGS",
+    "SYSGENCONST"
+  FROM
+    sys.exu10ind_base
+  WHERE
+    type != 8
+    AND
+    /* skip LOB index */
+    type != 4
+    /* skip IOT top */
+columns: []
+referencedTables: []

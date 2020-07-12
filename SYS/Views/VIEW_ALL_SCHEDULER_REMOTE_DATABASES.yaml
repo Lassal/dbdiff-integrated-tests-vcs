@@ -1,0 +1,13 @@
+schema: SYS
+name: ALL_SCHEDULER_REMOTE_DATABASES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    database_name,
+    decode(reg_status, 0, 'SOURCE', 'DESTINATION'),
+    database_link
+  FROM
+    scheduler$_remote_dbs
+columns: []
+referencedTables: []

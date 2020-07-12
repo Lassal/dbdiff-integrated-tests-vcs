@@ -1,0 +1,49 @@
+schema: SYS
+name: EXU8VEWU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o$.obj#,
+    o$.name,
+    v$.text,
+    u$.name,
+    o$.owner#,
+    v$.audit$,
+    com$.comment$,
+    c $.name,
+    d$.dlevel,
+    v$.property,
+    NVL(cd$.defer, 0),
+    NVL(o$.flags, 0),
+    NVL(vt$.oidtextlength, 0),
+    vt$.oidtext,
+    vt$.typeowner,
+    vt$.typename,
+    v$.textlength,
+    sv$.sql_version,
+    NVL(vt$.undertextlength, 0),
+    vt$.undertext
+  FROM
+    sys.exu81obj o$,
+    sys.view$ v$,
+    sys.user$ u$,
+    sys.cdef$ cd$,
+    sys.con$ c $,
+    sys.com$ com$,
+    sys.exu8ordu d$,
+    sys.typed_view$ vt$,
+    sys.exu816sqv sv$
+  WHERE
+    v$.obj# = o$.obj#
+    AND o$.owner# = u$.user#
+    AND o$.obj# = cd$.obj#(+)
+    AND cd$.con# = c $.con#(+)
+    AND o$.obj# = com$.obj#(+)
+    AND com$.col#(+) IS NULL
+    AND o$.obj# = d$.obj#(+)
+    AND v$.obj# = vt$.obj#(+)
+    AND u$.user# = userenv('SCHEMAID')
+    AND o$.spare1 = sv$.version# (+)
+columns: []
+referencedTables: []

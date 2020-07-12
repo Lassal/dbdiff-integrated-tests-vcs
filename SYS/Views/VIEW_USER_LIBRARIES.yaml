@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_LIBRARIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    LIBRARY_NAME,
+    FILE_SPEC,
+    DYNAMIC,
+    STATUS,
+    AGENT,
+    LEAF_FILENAME,
+    ORIGIN_CON_ID
+  from
+    NO_ROOT_SW_FOR_LOCAL(INT $DBA_LIBRARIES)
+  where
+    OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

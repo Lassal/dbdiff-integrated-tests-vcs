@@ -1,0 +1,86 @@
+schema: SYS
+name: KU$_10_2_STRMTABLE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    (
+      select
+        dbms_metadata_util.get_vers_dpapi
+      from
+        dual
+    ),
+    (
+      select
+        dbms_metadata_util.get_endianness
+      from
+        dual
+    ),
+    (
+      select
+        value
+      from
+        v$nls_parameters
+      where
+        parameter = 'NLS_CHARACTERSET'
+    ),
+    (
+      select
+        value
+      from
+        v$nls_parameters
+      where
+        parameter = 'NLS_NCHAR_CHARACTERSET'
+    ),
+    (
+      select
+        dbtimezone
+      from
+        dual
+    ),
+    (
+      select
+        utl_xml.getfdo
+      from
+        dual
+    ),
+    t.obj#,
+    o.owner_name,
+    o.name,
+    o.subname,
+    t.property,
+    cast(
+      multiset(
+        select
+          *
+        from
+          ku$_10_2_strmcol_view c
+        where
+          c .obj_num = t.obj#
+          and bitand(c .property, 32768) = 0 -- unused column
+          -- 10.2 view does not have base_col_type
+          -- and c.base_col_type<2
+        order by
+          c .segcol_num
+      ) as ku$_10_2_strmcol_list_t
+    )
+  from
+    ku$_schemaobj_view o,
+    tab$ t
+  where
+    t.obj# = o.obj_num
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

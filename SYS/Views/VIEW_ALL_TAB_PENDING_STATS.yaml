@@ -1,0 +1,197 @@
+schema: SYS
+name: ALL_TAB_PENDING_STATS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    null,
+    null,
+    h.rowcnt,
+    h.blkcnt,
+    h.avgrln,
+    h.samplesize,
+    h.analyzetime
+  from
+    sys.user$ u,
+    sys.obj$ o,
+    sys.wri$_optstat_tab_history h
+  where
+    h.obj# = o.obj#
+    and o.type# = 2
+    and o.owner# = u.user#
+    and h.savtime > systimestamp
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+  union all
+    -- partitions
+  select
+    u.name,
+    o.name,
+    o.subname,
+    null,
+    h.rowcnt,
+    h.blkcnt,
+    h.avgrln,
+    h.samplesize,
+    h.analyzetime
+  from
+    sys.user$ u,
+    sys.obj$ o,
+    sys.obj$ ot,
+    sys.wri$_optstat_tab_history h
+  where
+    h.obj# = o.obj#
+    and o.type# = 19
+    and o.owner# = u.user#
+    and ot.name = o.name
+    and ot.type# = 2
+    and ot.owner# = u.user#
+    and h.savtime > systimestamp
+    and (
+      ot.owner# = userenv('SCHEMAID')
+      or ot.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+  union all
+    -- sub partitions
+  select
+    u.name,
+    osp.name,
+    ocp.subname,
+    osp.subname,
+    h.rowcnt,
+    h.blkcnt,
+    h.avgrln,
+    h.samplesize,
+    h.analyzetime
+  from
+    sys.user$ u,
+    sys.obj$ osp,
+    obj$ ocp,
+    sys.obj$ ot,
+    sys.tabsubpart$ tsp,
+    sys.wri$_optstat_tab_history h
+  where
+    h.obj# = osp.obj#
+    and osp.type# = 34
+    and osp.obj# = tsp.obj#
+    and tsp.pobj# = ocp.obj#
+    and osp.owner# = u.user#
+    and ot.name = ocp.name
+    and ot.type# = 2
+    and ot.owner# = u.user#
+    and h.savtime > systimestamp
+    and (
+      ot.owner# = userenv('SCHEMAID')
+      or ot.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

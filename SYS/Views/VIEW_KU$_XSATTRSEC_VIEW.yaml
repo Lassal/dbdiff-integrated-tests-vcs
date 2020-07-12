@@ -1,0 +1,29 @@
+schema: SYS
+name: KU$_XSATTRSEC_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .xdsid#,
+    a .priv#,
+    (
+      select
+        name
+      from
+        xs$obj
+      where
+        id = a .priv#
+    ),
+    (
+      select
+        owner
+      from
+        xs$obj
+      where
+        id = a .priv#
+    ),
+    a .attr_name
+  from
+    xs$attr_sec a
+columns: []
+referencedTables: []

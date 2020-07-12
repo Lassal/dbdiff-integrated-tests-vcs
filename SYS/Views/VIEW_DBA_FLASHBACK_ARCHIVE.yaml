@@ -1,0 +1,20 @@
+schema: SYS
+name: DBA_FLASHBACK_ARCHIVE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    f.OWNERNAME,
+    f.FANAME,
+    f.FA#,
+    f.RETENTION,
+    case
+      when f.CREATESCN < f.PURGESCN then NULL
+      else scn_to_timestamp(f.CREATESCN)
+    end,
+    scn_to_timestamp(f.PURGESCN),
+    decode(bitand(f.flags, 1), 1, 'DEFAULT', NULL)
+  from
+    SYS_FBA_FA f
+columns: []
+referencedTables: []

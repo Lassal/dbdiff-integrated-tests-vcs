@@ -1,0 +1,43 @@
+schema: SYS
+name: USER_CUBE_MAPPINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name CUBE_NAME,
+    m.map_name MAP_NAME,
+    m.map_id MAP_ID,
+    s1.syntax_clob QUERY,
+    s2.syntax_clob WHERE_CLAUSE,
+    s3.syntax_clob FROM_CLAUSE,
+    decode(i1.option_num_value, '1', 'Y', 'N') IS_SOLVED,
+    i2.option_value AGGREGATION_METHOD
+  FROM
+    olap_mappings$ m,
+    obj$ o,
+    olap_syntax$ s1,
+    olap_syntax$ s2,
+    olap_syntax$ s3,
+    olap_impl_options$ i1,
+    olap_impl_options$ i2
+  WHERE
+    m.map_type = 22
+    AND m.mapping_owner_id = o.obj#
+    AND o.owner# = USERENV('SCHEMAID')
+    AND m.map_id = s1.owner_id(+)
+    AND m.map_type = s1.owner_type(+)
+    AND s1.ref_role(+) = 3
+    AND m.map_id = s2.owner_id(+)
+    AND m.map_type = s2.owner_type(+)
+    AND s2.ref_role(+) = 21
+    AND m.map_id = s3.owner_id(+)
+    AND m.map_type = s3.owner_type(+)
+    AND s3.ref_role(+) = 22
+    AND m.map_id = i1.owning_objectid(+)
+    AND m.map_type = i1.object_type(+)
+    AND i1.option_type(+) = 11
+    AND m.map_id = i2.owning_objectid(+)
+    AND m.map_type = i2.object_type(+)
+    AND i2.option_type(+) = 21
+columns: []
+referencedTables: []

@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_OPERATOR_COMMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    c .comment$
+  from
+    sys.obj$ o,
+    sys.operator$ op,
+    sys.com$ c,
+    sys.user$ u
+  where
+    o.obj# = op.obj#
+    and c .obj# = op.obj#
+    and u.user# = o.owner#
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

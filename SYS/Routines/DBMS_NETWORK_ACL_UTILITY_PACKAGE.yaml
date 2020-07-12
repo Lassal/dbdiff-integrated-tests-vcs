@@ -1,0 +1,89 @@
+schema: SYS
+name: DBMS_NETWORK_ACL_UTILITY
+routineType: PACKAGE
+returnParamater:
+  name: EQUALS_HOST.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: CONTAINS_HOST.HOST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONTAINS_HOST.DOMAIN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DOMAIN_LEVEL.HOST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DOMAINS.HOST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EQUALS_HOST.HOST1
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EQUALS_HOST.HOST2
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: "package dbms_network_acl_utility is\n/*\n\n   * DBMS_NETWORK_ACL_UTILITY\
+  \ is the PL/SQL package that provides the utility\n\n   * functions to facilitate\
+  \ the evaluation of ACL assignments governing\n\n   * TCP connections to network\
+  \ hosts.\n\n   */\n-----------\n-- Types --\n-----------\ntype domain_table is table\
+  \ of varchar2(1000);\n----------------\n-- Exceptions --\n----------------\naccess_denied\n\
+  EXCEPTION;\nPRAGMA EXCEPTION_INIT(access_denied, -24247);\naccess_denied_num constant\
+  \ PLS_INTEGER: = -24247;\n  /*\n  \n     * For a given host, return the domains\
+  \ whose ACL assigned will be used to\n  \n     * determine if a user has the privilege\
+  \ to access the given host or not.\n  \n     * When the IP address of the host is\
+  \ given, return the subnets instead.\n  \n     *\n  \n     * PARAMETERS\n  \n  \
+  \   *   host       the network host.\n  \n     * RETURN\n  \n     *   The domains\
+  \ or subnets for the given host.\n  \n     * EXCEPTIONS\n  \n     *\n  \n     *\
+  \ NOTES\n  \n     *   This function cannot handle IPv6 addresses. Nor can it generate\n\
+  \  \n     *   subnets of arbitrary number of prefix bits for an IPv4 address.\n\
+  \  \n     */\n  function domains(host in varchar2) return domain_table pipelined;\n\
+  \  /*\n  \n     * Return the domain level of the given host name, domain, or subnet.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   host       the network host, domain,\
+  \ or subnet.\n  \n     * RETURN\n  \n     *   The domain level of the given host,\
+  \ domain, or subnet.\n  \n     * EXCEPTIONS\n  \n     *\n  \n     * NOTES\n  \n\
+  \     *   This function cannot handle IPv6 addresses and subnets, and subnets\n\
+  \  \n     *   in Classless Inter-Domain Routing (CIDR) notation.\n  \n     */\n\
+  \  function domain_level(host in varchar2) return number deterministic;\n  /*\n\
+  \  \n     * Determines if the two given hosts, domains, or subnets are equal. For\n\
+  \  \n     * IP addresses and subnets, this function can handle different\n  \n \
+  \    * representations of the same address or subnet. For example, an IPv6\n  \n\
+  \     * representation of an IPv4 address versus its IPv4 representation.\n  \n\
+  \     *\n  \n     * PARAMETERS\n  \n     *   host1      the network host, domain,\
+  \ or subnet to compare.\n  \n     *   host2      the network host, domain, or subnet\
+  \ to compare.\n  \n     * RETURN\n  \n     *   1 if the two hosts, domains, or subnets\
+  \ are equal. 0 when not equal.\n  \n     *   NULL when either of the hosts is NULL.\n\
+  \  \n     * EXCEPTIONS\n  \n     *\n  \n     * NOTES\n  \n     *   This function\
+  \ does not perform domain name resolution when comparing\n  \n     * any host or\
+  \ domain for equality.\n  \n     */\n  function equals_host(host1 in varchar2, host2\
+  \ in varchar2) return number deterministic;\npragma interface(C, equals_host);\n\
+  \  /*\n  \n     * Determines if the given host is equal to or contained in the given\
+  \ host,\n  \n     * domain, or subnet. For IP addresses and subnets, this function\
+  \ can handle\n  \n     * different representations of the same address or subnet.\
+  \ For example, an\n  \n     * IPv6 representation of an IPv4 address versus its\
+  \ IPv4 representation.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   host   \
+  \    the network host.\n  \n     *   domain     the host, domain, or subnet.\n \
+  \ \n     * RETURN\n  \n     *   A non-NULL value will be returned if the given host\
+  \ is equal to or\n  \n     *   contained in the given host, domain, or subnet:\n\
+  \  \n     *     - if domain is a hostname, the level of its domain + 1 will be\n\
+  \  \n     *       returned;\n  \n     *     - if domain is a domain name, the domain\
+  \ level will be returned;\n  \n     *     - if domain is an IP address or subnet,\
+  \ the number of significant\n  \n     *       address bits of the IP address or\
+  \ subnet will be returned;\n  \n     *     - if domain is the wildcard \"*\", 0\
+  \ will be returned.\n  \n     *   The non-NULL value returned indicates the precedence\
+  \ of the domain or\n  \n     *   subnet for ACL assignment. The higher the value,\
+  \ the higher is the\n  \n     *   precedence. NULL will be returned if the host\
+  \ is not equal to or\n  \n     *   contained in the given host, domain or subnet.\
+  \ NULL will also be\n  \n     *   returned if either the host or domain is NULL.\n\
+  \  \n     * EXCEPTIONS\n  \n     *\n  \n     * NOTES\n  \n     *   This function\
+  \ does not perform domain name resolution when evaluating\n  \n     * any host or\
+  \ domain.\n  \n     */\n  function contains_host(host in varchar2, domain in varchar2)\
+  \ return number deterministic;\npragma interface(C, contains_host);\nend;"

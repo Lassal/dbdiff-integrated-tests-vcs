@@ -1,0 +1,25 @@
+schema: SYS
+name: USER_SCHEDULER_DB_DESTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    d.connect_info,
+    ao.name,
+    decode(bitand(d.flags, 1), 1, 'TRUE', 'FALSE'),
+    decode(bitand(ad.flags, 1), 1, 'TRUE', 'FALSE'),
+    d.comments
+  FROM
+    obj$ o,
+    scheduler$_destinations d,
+    obj$ ao,
+    scheduler$_destinations ad
+  WHERE
+    o.owner# = userenv('SCHEMAID')
+    AND o.obj# = d.obj#
+    AND d.agtdestoid = ao.obj#(+)
+    AND bitand(d.flags, 4 + 8) = 4
+    AND d.agtdestoid = ad.obj#(+)
+columns: []
+referencedTables: []

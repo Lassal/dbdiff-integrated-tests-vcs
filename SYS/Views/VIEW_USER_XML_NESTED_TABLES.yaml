@@ -1,0 +1,14 @@
+schema: SYS
+name: USER_XML_NESTED_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    TABLE_NAME,
+    NESTED_TABLE_NAME
+  from
+    DBA_XML_NESTED_TABLES
+  where
+    OWNER = USER
+columns: []
+referencedTables: []

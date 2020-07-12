@@ -1,0 +1,17 @@
+targetObjectSchema: MDSYS
+targetObjectName: SDO_COORD_OP_PARAM_VALS
+targetObjectType: TABLE
+name: SDO_COORD_OP_PARAM_VAL_TRIGG2
+eventTiming: AFTER STATEMENT
+event: INSERT OR UPDATE OR DELETE
+eventActionBody: |-
+  BEGIN
+  update
+    sdo_cs_srs
+  set
+    wktext = MDSYS.sdo_cs.internal_det_srid_wkt(srid),
+    wktext3d = mdsys.sdo_cs.get_3d_wkt(srid)
+  where
+    wktext = 'Getting updated';
+  end;
+executionOrder: 1

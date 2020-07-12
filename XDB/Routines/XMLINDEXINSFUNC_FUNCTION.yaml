@@ -1,0 +1,11 @@
+schema: XDB
+name: XMLINDEXINSFUNC
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: TABLE
+  parameterMode: OUT
+parameters: []
+routineDefinition: function XMLIndexInsFunc return XDB.XMLIndexTab_t authid current_user
+  pipelined using XDB.XMLIndexLoad_Imp_t;

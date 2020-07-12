@@ -1,0 +1,30 @@
+schema: SYS
+name: KU$_VIEWPROP_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.obj#,
+    o.name,
+    u.name,
+    v.property
+  from
+    obj$ o,
+    user $ u,
+    view $ v
+  where
+    o.owner# = u.user#
+    and o.obj# = v.obj#
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

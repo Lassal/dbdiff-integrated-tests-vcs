@@ -1,0 +1,11 @@
+targetObjectSchema: MDSYS
+targetObjectName: SDO_CS_SRS
+targetObjectType: TABLE
+name: SDO_CS_SRS_SRID_INSERT
+eventTiming: BEFORE EACH ROW
+event: INSERT
+eventActionBody: |-
+  BEGIN
+    mdsys.mdprvt_srid.sdo_invalidate_srid_metadata(:new.srid);
+  END;
+executionOrder: 1

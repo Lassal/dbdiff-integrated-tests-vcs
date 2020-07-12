@@ -1,0 +1,548 @@
+schema: SYS
+name: UTL_FILE
+routineType: PACKAGE
+returnParamater:
+  name: IS_OPEN.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: FCLOSE.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: FCOPY.SRC_LOCATION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FCOPY.SRC_FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FCOPY.DEST_LOCATION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FCOPY.DEST_FILENAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FCOPY.START_LINE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: FCOPY.END_LINE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: FFLUSH.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: FGETATTR.LOCATION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FGETATTR.FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FGETATTR.FEXISTS
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: FGETATTR.FILE_LENGTH
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+- name: FGETATTR.BLOCK_SIZE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: FGETPOS.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: FOPEN.LOCATION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FOPEN.FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FOPEN.OPEN_MODE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FOPEN.MAX_LINESIZE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: FOPEN_NCHAR.LOCATION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FOPEN_NCHAR.FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FOPEN_NCHAR.OPEN_MODE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FOPEN_NCHAR.MAX_LINESIZE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: FREMOVE.LOCATION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FREMOVE.FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FRENAME.SRC_LOCATION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FRENAME.SRC_FILENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FRENAME.DEST_LOCATION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FRENAME.DEST_FILENAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FRENAME.OVERWRITE
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: FSEEK.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: FSEEK.ABSOLUTE_OFFSET
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: FSEEK.RELATIVE_OFFSET
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_LINE.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GET_LINE.BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_LINE.LEN
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_LINE_NCHAR.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GET_LINE_NCHAR.BUFFER
+  ordinalPosition: 2
+  dataType: NVARCHAR2
+  parameterMode: OUT
+- name: GET_LINE_NCHAR.LEN
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_RAW.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: GET_RAW.BUFFER
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: OUT
+- name: GET_RAW.LEN
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: IS_OPEN.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: NEW_LINE.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: NEW_LINE.LINES
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PUT.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PUT.BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUTF.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PUTF.FORMAT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUTF.ARG1
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUTF.ARG2
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUTF.ARG3
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUTF.ARG4
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUTF.ARG5
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUTF_NCHAR.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PUTF_NCHAR.FORMAT
+  ordinalPosition: 2
+  dataType: NVARCHAR2
+  parameterMode: IN
+- name: PUTF_NCHAR.ARG1
+  ordinalPosition: 3
+  dataType: NVARCHAR2
+  parameterMode: IN
+- name: PUTF_NCHAR.ARG2
+  ordinalPosition: 4
+  dataType: NVARCHAR2
+  parameterMode: IN
+- name: PUTF_NCHAR.ARG3
+  ordinalPosition: 5
+  dataType: NVARCHAR2
+  parameterMode: IN
+- name: PUTF_NCHAR.ARG4
+  ordinalPosition: 6
+  dataType: NVARCHAR2
+  parameterMode: IN
+- name: PUTF_NCHAR.ARG5
+  ordinalPosition: 7
+  dataType: NVARCHAR2
+  parameterMode: IN
+- name: PUT_LINE.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PUT_LINE.BUFFER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PUT_LINE.AUTOFLUSH
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: PUT_LINE_NCHAR.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PUT_LINE_NCHAR.BUFFER
+  ordinalPosition: 2
+  dataType: NVARCHAR2
+  parameterMode: IN
+- name: PUT_NCHAR.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PUT_NCHAR.BUFFER
+  ordinalPosition: 2
+  dataType: NVARCHAR2
+  parameterMode: IN
+- name: PUT_RAW.FILE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: PUT_RAW.BUFFER
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: PUT_RAW.AUTOFLUSH
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: "PACKAGE utl_file AUTHID CURRENT_USER AS\n/*\n\n  ** FILE_TYPE\
+  \ - File handle\n\n  */\nTYPE file_type IS RECORD (\n  id BINARY_INTEGER,\n  datatype\
+  \ BINARY_INTEGER,\n  byte_mode BOOLEAN\n);\n/*\n\n  ** Exceptions\n\n  */\nfile_open\n\
+  EXCEPTION;\ncharsetmismatch\nEXCEPTION;\ninvalid_path\nEXCEPTION;\ninvalid_mode\n\
+  EXCEPTION;\ninvalid_filehandle\nEXCEPTION;\ninvalid_operation\nEXCEPTION;\nread_error\n\
+  EXCEPTION;\nwrite_error\nEXCEPTION;\ninternal_error\nEXCEPTION;\ninvalid_maxlinesize\n\
+  EXCEPTION;\ninvalid_filename\nEXCEPTION;\naccess_denied\nEXCEPTION;\ninvalid_offset\n\
+  EXCEPTION;\ndelete_failed\nEXCEPTION;\nrename_failed\nEXCEPTION;\ncharsetmismatch_errcode\
+  \ CONSTANT PLS_INTEGER: = -29298;\ninvalid_path_errcode CONSTANT PLS_INTEGER: =\
+  \ -29280;\ninvalid_mode_errcode CONSTANT PLS_INTEGER: = -29281;\ninvalid_filehandle_errcode\
+  \ CONSTANT PLS_INTEGER: = -29282;\ninvalid_operation_errcode CONSTANT PLS_INTEGER:\
+  \ = -29283;\nread_error_errcode CONSTANT PLS_INTEGER: = -29284;\nwrite_error_errcode\
+  \ CONSTANT PLS_INTEGER: = -29285;\ninternal_error_errcode CONSTANT PLS_INTEGER:\
+  \ = -29286;\ninvalid_maxlinesize_errcode CONSTANT PLS_INTEGER: = -29287;\ninvalid_filename_errcode\
+  \ CONSTANT PLS_INTEGER: = -29288;\naccess_denied_errcode CONSTANT PLS_INTEGER: =\
+  \ -29289;\ninvalid_offset_errcode CONSTANT PLS_INTEGER: = -29290;\ndelete_failed_errcode\
+  \ CONSTANT PLS_INTEGER: = -29291;\nrename_failed_errcode CONSTANT PLS_INTEGER: =\
+  \ -29292;\nPRAGMA EXCEPTION_INIT(charsetmismatch, -29298);\nPRAGMA EXCEPTION_INIT(invalid_path,\
+  \ -29280);\nPRAGMA EXCEPTION_INIT(invalid_mode, -29281);\nPRAGMA EXCEPTION_INIT(invalid_filehandle,\
+  \ -29282);\nPRAGMA EXCEPTION_INIT(invalid_operation, -29283);\nPRAGMA EXCEPTION_INIT(read_error,\
+  \ -29284);\nPRAGMA EXCEPTION_INIT(write_error, -29285);\nPRAGMA EXCEPTION_INIT(internal_error,\
+  \ -29286);\nPRAGMA EXCEPTION_INIT(invalid_maxlinesize, -29287);\nPRAGMA EXCEPTION_INIT(invalid_filename,\
+  \ -29288);\nPRAGMA EXCEPTION_INIT(access_denied, -29289);\nPRAGMA EXCEPTION_INIT(invalid_offset,\
+  \ -29290);\nPRAGMA EXCEPTION_INIT(delete_failed, -29291);\nPRAGMA EXCEPTION_INIT(rename_failed,\
+  \ -29292);\n  /*\n  \n    ** FOPEN - open file\n  \n    **\n  \n    ** As of 8.0.6,\
+  \ you can have a maximum of 50 files open simultaneously.\n  \n    **\n  \n    **\
+  \ As of 9.0.2, UTL_FILE allows file system access for directories\n  \n    ** created\
+  \ as database objects.  See the CREATE DIRECTORY command.\n  \n    ** Directory\
+  \ object names are case sensitive and must match exactly\n  \n    ** the NAME string\
+  \ in ALL_DIRECTORIES.  The LOCATION parameter may be\n  \n    ** either a directory\
+  \ string from the UTL_FILE_DIR init.ora parameter\n  \n    ** or a directory object\
+  \ name.\n  \n    **\n  \n    ** IN\n  \n    **   location     - directory location\
+  \ of file\n  \n    **   filename     - file name (including extention)\n  \n   \
+  \ **   open_mode    - open mode ('r', 'w', 'a' 'rb', 'wb', 'ab')\n  \n    **   max_linesize\
+  \ - maximum number of characters per line, including the\n  \n    **           \
+  \       newline character, for this file.\n  \n    **                  Valid values\
+  \ are 1 through 32767 and NULL.  A NULL\n  \n    **                  value for max_linesize\
+  \ indicates that UTL_FILE should\n  \n    **                  calculate an operating\
+  \ system specific value at runtime.\n  \n    ** RETURN\n  \n    **   file_type handle\
+  \ to open file\n  \n    ** EXCEPTIONS\n  \n    **   invalid_path        - file location\
+  \ or name was invalid\n  \n    **   invalid_mode        - the open_mode string was\
+  \ invalid\n  \n    **   invalid_operation   - file could not be opened as requested\n\
+  \  \n    **   invalid_maxlinesize - specified max_linesize is too large or too small\n\
+  \  \n    **   access_denied       - access to the directory object is denied\n \
+  \ \n    */\n  FUNCTION fopen(\n    location IN VARCHAR2,\n    filename IN VARCHAR2,\n\
+  \    open_mode IN VARCHAR2,\n    max_linesize IN BINARY_INTEGER DEFAULT NULL\n \
+  \ ) RETURN file_type;\nPRAGMA RESTRICT_REFERENCES(fopen, WNDS, RNDS, TRUST);\n \
+  \ /*\n  \n    ** FOPEN_NCHAR - open file\n  \n    **\n  \n    ** Note: since NCHAR\
+  \ contains mutibyte character, it is highly recommended\n  \n    **       that the\
+  \ max_linesize is less than 6400.\n  \n    */\n  FUNCTION fopen_nchar(\n    location\
+  \ IN VARCHAR2,\n    filename IN VARCHAR2,\n    open_mode IN VARCHAR2,\n    max_linesize\
+  \ IN BINARY_INTEGER DEFAULT NULL\n  ) RETURN file_type;\nPRAGMA RESTRICT_REFERENCES(fopen_nchar,\
+  \ WNDS, RNDS, TRUST);\n  /*\n  \n    ** IS_OPEN - Test if file handle is open\n\
+  \  \n    **\n  \n    ** IN\n  \n    **   file - File handle\n  \n    **\n  \n  \
+  \  ** RETURN\n  \n    **   BOOLEAN - Is file handle open/valid?\n  \n    */\n  FUNCTION\
+  \ is_open(file IN file_type) RETURN BOOLEAN;\nPRAGMA RESTRICT_REFERENCES(is_open,\
+  \ WNDS, RNDS, WNPS, RNPS, TRUST);\n  /*\n  \n    ** FCLOSE - close an open file\n\
+  \  \n    **\n  \n    ** IN\n  \n    **   file - File handle (open)\n  \n    ** EXCEPTIONS\n\
+  \  \n    **   invalid_filehandle - not a valid file handle\n  \n    **   write_error\
+  \        - OS error occured during write operation\n  \n    */\n  PROCEDURE fclose(file\
+  \ IN OUT file_type);\nPRAGMA RESTRICT_REFERENCES(fclose, WNDS, RNDS, TRUST);\n \
+  \ /*\n  \n    ** FCLOSE_ALL - close all open files for this session\n  \n    **\n\
+  \  \n    ** For Emergency/Cleanup use only.  FILE_TYPE handles will not be\n  \n\
+  \    ** cleared (IS_OPEN will still indicate they are valid)\n  \n    **\n  \n \
+  \   ** IN\n  \n    **   file - File handle (open)\n  \n    ** EXCEPTIONS\n  \n \
+  \   **   write_error        - OS error occured during write operation\n  \n    */\n\
+  \  PROCEDURE fclose_all;\nPRAGMA RESTRICT_REFERENCES(fclose_all, WNDS, RNDS, TRUST);\n\
+  \  /*\n  \n    ** GET_LINE - Get (read) a line of text from the file\n  \n    **\n\
+  \  \n    ** IN\n  \n    **   file - File handle (open in read mode)\n  \n    **\
+  \   len  - input buffer length, default is null, max is 32767\n  \n    ** OUT\n\
+  \  \n    **   buffer - next line of text in file\n  \n    ** EXCEPTIONS\n  \n  \
+  \  **   no_data_found      - reached the end of file\n  \n    **   value_error \
+  \       - line to long to store in buffer\n  \n    **   invalid_filehandle - not\
+  \ a valid file handle\n  \n    **   invalid_operation  - file is not open for reading\n\
+  \  \n    **                      - file is open for byte mode access\n  \n    **\
+  \   read_error         - OS error occurred during read\n  \n    **   charsetmismatch\
+  \    - if the file is open for nchar data.\n  \n    */\n  PROCEDURE get_line(\n\
+  \    file IN file_type,\n    buffer OUT VARCHAR2,\n    len IN BINARY_INTEGER DEFAULT\
+  \ NULL\n  );\nPRAGMA RESTRICT_REFERENCES(get_line, WNDS, RNDS, WNPS, RNPS, TRUST);\n\
+  \  /* GET_LINE_NCHAR - Get (read a line of nchar data from the file.\n  \n    **\n\
+  \  \n    ** IN\n  \n    **   file - File handle (open in read mode)\n  \n    **\
+  \   len  - input buffer length, default is null, max is 32767\n  \n    ** OUT\n\
+  \  \n    **   buffer - next line of text in file\n  \n    **            the data\
+  \ might be convert from UTF8 to current charset.\n  \n    ** EXCEPTIONS\n  \n  \
+  \  **   no_data_found      - reached the end of file\n  \n    **   value_error \
+  \       - line to long to store in buffer\n  \n    **   invalid_filehandle - not\
+  \ a valid file handle\n  \n    **   invalid_operation  - file is not open for reading\n\
+  \  \n    **                      - file is open for byte mode access\n  \n    **\
+  \   read_error         - OS error occurred during read\n  \n    **   charsetmismatch\
+  \    - if the file is open for char data.\n  \n    */\n  PROCEDURE get_line_nchar(\n\
+  \    file IN file_type,\n    buffer OUT NVARCHAR2,\n    len IN BINARY_INTEGER DEFAULT\
+  \ NULL\n  );\nPRAGMA RESTRICT_REFERENCES(get_line_nchar, WNDS, RNDS, WNPS, TRUST);\n\
+  \  /*\n  \n    ** PUT - Put (write) text to file\n  \n    **\n  \n    ** IN\n  \n\
+  \    **   file   - File handle (open in write/append mode)\n  \n    **   buffer\
+  \ - Text to write\n  \n    ** EXCEPTIONS\n  \n    **   invalid_filehandle - not\
+  \ a valid file handle\n  \n    **   invalid_operation  - file is not open for writing/appending\n\
+  \  \n    **                      - file is open for byte mode access\n  \n    **\
+  \   write_error        - OS error occured during write operation\n  \n    **   charsetmismatch\
+  \    - if the file is open for nchar data.\n  \n    */\n  PROCEDURE put(\n    file\
+  \ IN file_type,\n    buffer IN VARCHAR2\n  );\nPRAGMA RESTRICT_REFERENCES(put, WNDS,\
+  \ RNDS, TRUST);\n  /*\n  \n    ** PUT_NCHAR - Put (write) nchar data to file\n \
+  \ \n    ** IN\n  \n    **   file   - File handle (open in write/append mode)\n \
+  \ \n    **   buffer - Text to write. the data will convert to UTF8 if needed.\n\
+  \  \n    ** EXCEPTIONS\n  \n    **   invalid_filehandle - not a valid file handle\n\
+  \  \n    **   invalid_operation  - file is not open for writing/appending\n  \n\
+  \    **                      - file is open for byte mode access\n  \n    **   write_error\
+  \        - OS error occured during write operation\n  \n    **   charsetmismatch\
+  \    - if the file is open for char data.\n  \n    */\n  PROCEDURE put_nchar(\n\
+  \    file IN file_type,\n    buffer IN NVARCHAR2\n  );\nPRAGMA RESTRICT_REFERENCES(put_nchar,\
+  \ WNDS, RNDS, TRUST);\n  /*\n  \n    ** NEW_LINE - Write line terminators to file\n\
+  \  \n    **\n  \n    ** IN\n  \n    **   file - File handle (open in write/append\
+  \ mode)\n  \n    **   lines - Number of newlines to write (default 1)\n  \n    **\
+  \ EXCEPTIONS\n  \n    **   invalid_filehandle - not a valid file handle\n  \n  \
+  \  **   invalid_operation  - file is not open for writing/appending\n  \n    **\
+  \                      - file is open for byte mode access\n  \n    **   write_error\
+  \        - OS error occured during write operation\n  \n    */\n  PROCEDURE new_line(\n\
+  \    file IN file_type,\n    lines IN NATURAL: = 1\n  );\nPRAGMA RESTRICT_REFERENCES(new_line,\
+  \ WNDS, RNDS, TRUST);\n  /*\n  \n    ** PUT_LINE - Put (write) line to file\n  \n\
+  \    **\n  \n    ** IN\n  \n    **   file      - File handle (open in write/append\
+  \ mode)\n  \n    **   buffer    - Text to write.\n  \n    **   autoflush - Flush\
+  \ following write, default=no flush\n  \n    ** EXCEPTIONS\n  \n    **   invalid_filehandle\
+  \ - not a valid file handle\n  \n    **   invalid_operation  - file is not open\
+  \ for writing/appending\n  \n    **                      - file is open for byte\
+  \ mode access\n  \n    **   write_error        - OS error occured during write operation\n\
+  \  \n    **   charsetmismatch    - if the file is open for nchar data.\n  \n   \
+  \ */\n  PROCEDURE put_line(\n    file IN file_type,\n    buffer IN VARCHAR2,\n \
+  \   autoflush IN BOOLEAN DEFAULT FALSE\n  );\nPRAGMA RESTRICT_REFERENCES(put_line,\
+  \ WNDS, RNDS, TRUST);\n  /*\n  \n    ** PUT_LINE_NCHAR - Put (write) line of nchar\
+  \ data to file\n  \n    ** IN\n  \n    **   file   - File handle (open in write/append\
+  \ mode)\n  \n    **   buffer - Text to write. The data might convert to UTF8 if\
+  \ needed.\n  \n    ** EXCEPTIONS\n  \n    **   invalid_filehandle - not a valid\
+  \ file handle\n  \n    **   invalid_operation  - file is not open for writing/appending\n\
+  \  \n    **                      - file is open for byte mode access\n  \n    **\
+  \   write_error        - OS error occured during write operation\n  \n    **   charsetmismatch\
+  \    - if the file is open for char data.\n  \n    */\n  PROCEDURE put_line_nchar(\n\
+  \    file IN file_type,\n    buffer IN NVARCHAR2\n  );\nPRAGMA RESTRICT_REFERENCES(put_line_nchar,\
+  \ WNDS, RNDS, TRUST);\n  /*\n  \n    ** PUTF - Put (write) formatted text to file\n\
+  \  \n    **\n  \n    ** Format string special characters\n  \n    **     '%s' -\
+  \ substitute with next argument\n  \n    **     '\\n' - newline (line terminator)\n\
+  \  \n    **\n  \n    ** IN\n  \n    **   file - File handle (open in write/append\
+  \ mode)\n  \n    **   format - Formatting string\n  \n    **   arg1 - Substitution\
+  \ argument #1\n  \n    **   ...\n  \n    ** EXCEPTIONS\n  \n    **   invalid_filehandle\
+  \ - not a valid file handle\n  \n    **   invalid_operation  - file is not open\
+  \ for writing/appending\n  \n    **                      - file is open for byte\
+  \ mode access\n  \n    **   write_error        - OS error occured during write operation\n\
+  \  \n    **   charsetmismatch    - if the file is open for nchar data.\n  \n   \
+  \ */\n  procedure putf(\n    file IN file_type,\n    format IN VARCHAR2,\n    arg1\
+  \ IN VARCHAR2 DEFAULT NULL,\n    arg2 IN VARCHAR2 DEFAULT NULL,\n    arg3 IN VARCHAR2\
+  \ DEFAULT NULL,\n    arg4 IN VARCHAR2 DEFAULT NULL,\n    arg5 IN VARCHAR2 DEFAULT\
+  \ NULL\n  );\nPRAGMA RESTRICT_REFERENCES(putf, WNDS, RNDS, TRUST);\n  /*\n  \n \
+  \   ** PUTF_NCHAR - Put (write) formatted text to file\n  \n    **\n  \n    ** Format\
+  \ string special characters\n  \n    **     N'%s' - substitute with next argument\n\
+  \  \n    **     N'\\n' - newline (line terminator)\n  \n    **\n  \n    ** IN\n\
+  \  \n    **   file - File handle (open in write/append mode)\n  \n    **   format\
+  \ - Formatting string\n  \n    **   arg1 - Substitution argument #1\n  \n    **\
+  \   ...\n  \n    ** EXCEPTIONS\n  \n    **   invalid_filehandle - not a valid file\
+  \ handle\n  \n    **   invalid_operation  - file is not open for writing/appending\n\
+  \  \n    **                      - file is open for byte mode access\n  \n    **\
+  \   write_error        - OS error occured during write operation\n  \n    **   charsetmismatch\
+  \    - if the file is open for char data.\n  \n  \n  \n    */\n  procedure putf_nchar(\n\
+  \    file IN file_type,\n    format IN NVARCHAR2,\n    arg1 IN NVARCHAR2 DEFAULT\
+  \ NULL,\n    arg2 IN NVARCHAR2 DEFAULT NULL,\n    arg3 IN NVARCHAR2 DEFAULT NULL,\n\
+  \    arg4 IN NVARCHAR2 DEFAULT NULL,\n    arg5 IN NVARCHAR2 DEFAULT NULL\n  );\n\
+  PRAGMA RESTRICT_REFERENCES(putf_nchar, WNDS, RNDS, TRUST);\n  /*\n  \n    ** FFLUSH\
+  \ - Force physical write of buffered output\n  \n    **\n  \n    ** IN\n  \n   \
+  \ **   file - File handle (open in write/append mode)\n  \n    ** EXCEPTIONS\n \
+  \ \n    **   invalid_filehandle - not a valid file handle\n  \n    **   invalid_operation\
+  \  - file is not open for writing/appending\n  \n    **   write_error        - OS\
+  \ error occured during write operation\n  \n    */\n  PROCEDURE fflush(file IN file_type);\n\
+  PRAGMA RESTRICT_REFERENCES(fflush, WNDS, RNDS, TRUST);\n  /*\n  \n    ** PUT_RAW\
+  \ - Write a raw value to file.\n  \n    **\n  \n    ** IN  file      - File handle\
+  \ (open in write/append mode)\n  \n    ** IN  buffer    - Raw data\n  \n    ** IN\
+  \  autoflush - Flush following write, default=no flush\n  \n    ** EXCEPTIONS\n\
+  \  \n    **   invalid_filehandle - not a valid file handle\n  \n    **   invalid_operation\
+  \  - file is not open for writing/appending\n  \n    **   write_error        - OS\
+  \ error occured during write operation\n  \n    */\n  PROCEDURE put_raw(\n    file\
+  \ IN file_type,\n    buffer IN RAW,\n    autoflush IN BOOLEAN DEFAULT FALSE\n  );\n\
+  PRAGMA RESTRICT_REFERENCES(put_raw, WNDS, RNDS, TRUST);\n  /*\n  \n    ** GET_RAW\
+  \ - Read a raw value from file.\n  \n    **\n  \n    ** The GET_RAW() will read\
+  \ until it sees a line termination character\n  \n    ** or until the number of\
+  \ bytes specified in the LEN parameter has been read.\n  \n    **\n  \n    ** IN\
+  \  file      - File handle (open in write/append mode)\n  \n    ** OUT buffer  \
+  \  - Raw data\n  \n    ** IN  len       - Nubmer of bytes to be read\n  \n    **\
+  \ EXCEPTIONS\n  \n    **   invalid_filehandle - not a valid file handle\n  \n  \
+  \  **   invalid_operation  - file is not open for writing/appending\n  \n    **\
+  \   read_error         - OS error occured during read operation\n  \n    */\n  PROCEDURE\
+  \ get_raw(\n    file IN file_type,\n    buffer OUT NOCOPY RAW,\n    len IN BINARY_INTEGER\
+  \ DEFAULT NULL\n  );\nPRAGMA RESTRICT_REFERENCES(get_raw, WNDS, RNDS, TRUST);\n\
+  \  /*\n  \n    ** FSEEK - Move the file pointer to a specified position within the\
+  \ file.\n  \n    **\n  \n    ** IN  file            - File handle (open in write/append\
+  \ mode)\n  \n    ** IN  absolute_offset - Absolute offset to which to seek.\n  \n\
+  \    ** IN  relative_offset - Relative offset, forward or backwards, to which\n\
+  \  \n    **                       to seek.\n  \n    **\n  \n    ** The file must\
+  \ be open in read mode in order to use fseek().\n  \n    **\n  \n    ** If both\
+  \ absolute_offset and relative_offset are not NULL, absolute_offset\n  \n    **\
+  \ takes precedence.  A negative relative_offset will cause fseek to\n  \n    **\
+  \ close and reopen the file and seek in a forward direction.\n  \n    **\n  \n \
+  \   ** EXCEPTIONS\n  \n    **   invalid_filehandle - not a valid file handle\n \
+  \ \n    **   invalid_offset     - file is not open for writing/appending\n  \n \
+  \   **   invalid_operation  - file is opened for byte mode access\n  \n    */\n\
+  \  PROCEDURE fseek(\n    file IN OUT file_type,\n    absolute_offset IN BINARY_INTEGER\
+  \ DEFAULT NULL,\n    relative_offset IN BINARY_INTEGER DEFAULT NULL\n  );\nPRAGMA\
+  \ RESTRICT_REFERENCES(fseek, WNDS, RNDS, TRUST);\n  /*\n  \n    ** FREMOVE - Delete\
+  \ the specified file from disk.\n  \n    **\n  \n    ** IN  location     - directory\
+  \ location of file\n  \n    ** IN  filename     - file name (including extention)\n\
+  \  \n    ** EXCEPTIONS\n  \n    **   invalid_path      - not a valid file handle\n\
+  \  \n    **   invalid_filename  - file not found or file name NULL\n  \n    ** \
+  \  file_open         - file is not open for writing/appending\n  \n    **   access_denied\
+  \     - access to the directory object is denied\n  \n    **   remove_failed   \
+  \  - failed to delete file\n  \n    */\n  PROCEDURE fremove(\n    location IN VARCHAR2,\n\
+  \    filename IN VARCHAR2\n  );\nPRAGMA RESTRICT_REFERENCES(fremove, WNDS, RNDS,\
+  \ TRUST);\n  /*\n  \n    ** FCOPY - Copy all or part of a file to a new file.\n\
+  \  \n    **\n  \n    ** IN  location     - source directory of file\n  \n    **\
+  \ IN  filename     - source file name (including extention)\n  \n    ** IN  dest_dir\
+  \     - destination directory of file\n  \n    ** IN  dest_file    - destination\
+  \ file name (including extention)\n  \n    ** IN  start_line   - line number from\
+  \ which to begin copying, default is\n  \n    **                         1 referring\
+  \ to the first line in the file\n  \n    ** IN  end_line     - line number from\
+  \ which to end copying, default is NULL\n  \n    **                         referring\
+  \ to end-of-file\n  \n    ** EXCEPTIONS\n  \n    **   invalid_path      - not a\
+  \ valid file handle\n  \n    **   invalid_filename  - file not found or file name\
+  \ is NULL\n  \n    **   invalid_lineno    - bad start_line or end_line value\n \
+  \ \n    */\n  PROCEDURE fcopy(\n    src_location IN VARCHAR2,\n    src_filename\
+  \ IN VARCHAR2,\n    dest_location IN VARCHAR2,\n    dest_filename IN VARCHAR2,\n\
+  \    start_line IN BINARY_INTEGER DEFAULT 1,\n    end_line IN BINARY_INTEGER DEFAULT\
+  \ NULL\n  );\nPRAGMA RESTRICT_REFERENCES(fcopy, WNDS, RNDS, TRUST);\n  /*\n  \n\
+  \    ** FGETATTR - Get file attributes\n  \n    **\n  \n    ** IN  location    \
+  \ - directory location of file\n  \n    ** IN  filename     - file name (including\
+  \ extention)\n  \n    ** OUT fexists      - true or false, for exists or doesn't\
+  \ exist.  Note:\n  \n    **                      the following parameters have no\
+  \ meaning if the file\n  \n    **                      doesn't exist, in which case,\
+  \ they return NULL.\n  \n    ** OUT file_length  - length of the file in bytes.\n\
+  \  \n    ** OUT block_size   - filesystem block size in bytes.\n  \n    ** EXCEPTIONS\n\
+  \  \n    **   invalid_path      - not a valid file handle\n  \n    **   invalid_filename\
+  \  - file not found or file name NULL\n  \n    **   file_open         - file is\
+  \ not open for writing/appending\n  \n    **   access_denied     - access to the\
+  \ directory object is denied\n  \n    */\n  PROCEDURE fgetattr(\n    location IN\
+  \ VARCHAR2,\n    filename IN VARCHAR2,\n    fexists OUT BOOLEAN,\n    file_length\
+  \ OUT NUMBER,\n    block_size OUT BINARY_INTEGER\n  );\nPRAGMA RESTRICT_REFERENCES(fgetattr,\
+  \ WNDS, RNDS, TRUST);\n  /*\n  \n    ** FGETPOS - Return the current position in\
+  \ the file in bytes.\n  \n    **\n  \n    ** IN  file      - File handle (open in\
+  \ write/append mode)\n  \n    ** EXCEPTIONS\n  \n    **   invalid_filehandle - not\
+  \ a valid file handle\n  \n    **   invalid_operation  - file is not open for writing/appending\n\
+  \  \n    **   invalid_operation  - file is open for byte mode access\n  \n    */\n\
+  \  FUNCTION fgetpos(file IN file_type) RETURN BINARY_INTEGER;\nPRAGMA RESTRICT_REFERENCES(fgetpos,\
+  \ WNDS, RNDS, TRUST);\n  /*\n  \n    ** FRENAME - Rename a file to a new name.\n\
+  \  \n    **\n  \n    ** IN  location     - source directory of file\n  \n    **\
+  \ IN  filename     - source file name (including extention)\n  \n    ** IN  dest_dir\
+  \     - destination directory of file\n  \n    ** IN  dest_file    - destination\
+  \ file name (including extention)\n  \n    ** IN  overwrite    - boolean signifying\
+  \ whether to overwrite an existing\n  \n    **                      in the event\
+  \ that one exists, default  no overwrite\n  \n    ** EXCEPTIONS\n  \n    **   invalid_path\
+  \      - not a valid file handle\n  \n    **   invalid_filename  - file not found\
+  \ or file name NULL\n  \n    **   rename_failed     - rename of the file failed\n\
+  \  \n    **   access_denied     - access to the directory object is denied\n  \n\
+  \    */\n  PROCEDURE frename(\n    src_location IN VARCHAR2,\n    src_filename IN\
+  \ VARCHAR2,\n    dest_location IN VARCHAR2,\n    dest_filename IN VARCHAR2,\n  \
+  \  overwrite IN BOOLEAN DEFAULT FALSE\n  );\nPRAGMA RESTRICT_REFERENCES(frename,\
+  \ WNDS, RNDS, TRUST);\nEND utl_file;"

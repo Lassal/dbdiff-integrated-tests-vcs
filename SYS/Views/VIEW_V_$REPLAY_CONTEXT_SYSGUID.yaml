@@ -1,0 +1,14 @@
+schema: SYS
+name: V_$REPLAY_CONTEXT_SYSGUID
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "CONTEXT_ID",
+    "SYSGUID_VALUE",
+    "REPLAYED",
+    "CON_ID"
+  from
+    v$replay_context_sysguid
+columns: []
+referencedTables: []

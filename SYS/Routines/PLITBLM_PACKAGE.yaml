@@ -1,0 +1,420 @@
+schema: SYS
+name: PLITBLM
+routineType: PACKAGE
+returnParamater:
+  name: PRIOR(2).(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: COUNT(1).COLLECTION
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: IN
+- name: COUNT(2).COLLECTION
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: DELETE(1).COLLECTION
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: INOUT
+- name: DELETE(2).COLLECTION
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: DELETE(2).I
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DELETE(3).COLLECTION
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: INOUT
+- name: DELETE(3).I
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DELETE(4).COLLECTION
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: DELETE(4).I
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DELETE(4).J
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DELETE(5).COLLECTION
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: INOUT
+- name: DELETE(5).I
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DELETE(5).J
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DELETE(6).COLLECTION
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: DELETE(7).COLLECTION
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: DELETE(7).I
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE(8).COLLECTION
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: DELETE(8).I1
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE(8).I2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXISTS(1).COLLECTION
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: IN
+- name: EXISTS(1).I
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EXISTS(2).COLLECTION
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: EXISTS(2).I
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTEND(1).COLLECTION
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: INOUT
+- name: EXTEND(1).N
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EXTEND(2).COLLECTION
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: INOUT
+- name: EXTEND(2).N
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EXTEND(3).COLLECTION
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: INOUT
+- name: EXTEND(3).N
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EXTEND(3).I
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EXTEND(4).COLLECTION
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: INOUT
+- name: EXTEND(4).N
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EXTEND(4).I
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: FIRST(1).COLLECTION
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: IN
+- name: FIRST(2).COLLECTION
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: LAST(1).COLLECTION
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: IN
+- name: LAST(2).COLLECTION
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: LIMIT.COLLECTION
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: IN
+- name: NEXT(1).COLLECTION
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: IN
+- name: NEXT(1).I
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: NEXT(2).COLLECTION
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: NEXT(2).I
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PRIOR(1).COLLECTION
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: IN
+- name: PRIOR(1).I
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PRIOR(2).COLLECTION
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: PRIOR(2).I
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRIM(1).COLLECTION
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: INOUT
+- name: TRIM(1).N
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: TRIM(2).COLLECTION
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: INOUT
+- name: TRIM(2).N
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  package plitblm is subtype key_type is binary_integer;
+  subtype element_count IS binary_integer;
+  /* natural is too inefficient */
+  function count (collection IN "<COLLECTION_1>") return key_type;
+  pragma interface(c, count);
+  pragma restrict_references(count, rnds, wnds, rnps, wnps);
+  function first (collection IN "<COLLECTION_1>") return key_type;
+  pragma interface(c, first);
+  pragma restrict_references(first, rnds, wnds, rnps, wnps);
+  function last (collection IN "<COLLECTION_1>") return key_type;
+  pragma interface(c, last);
+  pragma restrict_references(last, rnds, wnds, rnps, wnps);
+  function exists (collection IN "<COLLECTION_1>", i key_type) return boolean;
+  pragma interface(c, exists);
+  pragma restrict_references(exists, rnds, wnds, rnps, wnps);
+  function prior (collection IN "<COLLECTION_1>", i key_type) return key_type;
+  pragma interface(c, prior);
+  pragma restrict_references(prior, rnds, wnds, rnps, wnps);
+  function next (collection IN "<COLLECTION_1>", i key_type) return key_type;
+  pragma interface(c, next);
+  pragma restrict_references(next, rnds, wnds, rnps, wnps);
+  procedure
+  delete(collection IN OUT "<COLLECTION_1>");
+  pragma interface(
+      c,
+      delete
+    );
+  pragma restrict_references(
+      delete,
+        rnds,
+        wnds,
+        rnps,
+        wnps
+    );
+  procedure
+  delete
+    (collection IN OUT "<V2_TABLE_1>", i key_type);
+  pragma interface(
+      c,
+      delete
+    );
+  pragma restrict_references(
+      delete,
+        rnds,
+        wnds,
+        rnps,
+        wnps
+    );
+  procedure
+  delete
+    (collection IN OUT "<TABLE_1>", i key_type);
+  pragma interface(
+      c,
+      delete
+    );
+  pragma restrict_references(
+      delete,
+        rnds,
+        wnds,
+        rnps,
+        wnps
+    );
+  procedure
+  delete
+    (
+      collection IN OUT "<V2_TABLE_1>",
+      i key_type,
+      j key_type
+    );
+  pragma interface(
+      c,
+      delete
+    );
+  pragma restrict_references(
+      delete,
+        rnds,
+        wnds,
+        rnps,
+        wnps
+    );
+  procedure
+  delete
+    (
+      collection IN OUT "<TABLE_1>",
+      i key_type,
+      j key_type
+    );
+  pragma interface(
+      c,
+      delete
+    );
+  pragma restrict_references(
+      delete,
+        rnds,
+        wnds,
+        rnps,
+        wnps
+    );
+  function
+  limit
+    (collection IN "<COLLECTION_1>") return key_type;
+  pragma interface(
+      c,
+      limit
+    );
+  pragma restrict_references(
+      limit, rnds, wnds, rnps, wnps
+    );
+  procedure trim (
+      collection IN OUT "<VARRAY_1>",
+      n element_count: = 1
+    );
+  pragma interface(c, trim);
+  pragma restrict_references(trim, rnds, wnds, rnps, wnps);
+  procedure trim (
+      collection IN OUT "<TABLE_1>",
+      n element_count: = 1
+    );
+  pragma interface(c, trim);
+  pragma restrict_references(trim, rnds, wnds, rnps, wnps);
+  procedure extend (
+      collection IN OUT "<VARRAY_1>",
+      n element_count: = 1
+    );
+  pragma interface(c, extend);
+  pragma restrict_references(extend, rnds, wnds, rnps, wnps);
+  procedure extend (
+      collection IN OUT "<TABLE_1>",
+      n element_count: = 1
+    );
+  pragma interface(c, extend);
+  pragma restrict_references(extend, rnds, wnds, rnps, wnps);
+  procedure extend (
+      collection IN OUT "<VARRAY_1>",
+      n element_count,
+      i key_type
+    );
+  pragma interface(c, extend);
+  pragma restrict_references(extend, rnds, wnds, rnps, wnps);
+  procedure extend (
+      collection IN OUT "<TABLE_1>",
+      n element_count,
+      i key_type
+    );
+  pragma interface(c, extend);
+  pragma restrict_references(extend, rnds, wnds, rnps, wnps);
+  function count (collection IN "<ASSOC_ARRAY_1>") return element_count;
+  pragma interface(c, count);
+  pragma restrict_references(count, rnds, wnds, rnps, wnps);
+  function first (collection IN "<ASSOC_ARRAY_1>") return varchar2;
+  pragma interface(c, first);
+  pragma restrict_references(first, rnds, wnds, rnps, wnps);
+  function last (collection IN "<ASSOC_ARRAY_1>") return varchar2;
+  pragma interface(c, last);
+  pragma restrict_references(last, rnds, wnds, rnps, wnps);
+  function exists (collection IN "<ASSOC_ARRAY_1>", i varchar2) return boolean;
+  pragma interface(c, exists);
+  pragma restrict_references(exists, rnds, wnds, rnps, wnps);
+  function prior (collection IN "<ASSOC_ARRAY_1>", i varchar2) return varchar2;
+  pragma interface(c, prior);
+  pragma restrict_references(prior, rnds, wnds, rnps, wnps);
+  function next (collection IN "<ASSOC_ARRAY_1>", i varchar2) return varchar2;
+  pragma interface(c, next);
+  pragma restrict_references(next, rnds, wnds, rnps, wnps);
+  procedure
+  delete(collection IN OUT "<ASSOC_ARRAY_1>");
+  pragma interface(
+      c,
+      delete
+    );
+  pragma restrict_references(
+      delete,
+        rnds,
+        wnds,
+        rnps,
+        wnps
+    );
+  procedure
+  delete
+    (collection IN OUT "<ASSOC_ARRAY_1>", i varchar2);
+  pragma interface(
+      c,
+      delete
+    );
+  pragma restrict_references(
+      delete,
+        rnds,
+        wnds,
+        rnps,
+        wnps
+    );
+  procedure
+  delete
+    (
+      collection IN OUT "<ASSOC_ARRAY_1>",
+      i1 varchar2,
+      i2 varchar2
+    );
+  pragma interface(
+      c,
+      delete
+    );
+  pragma restrict_references(
+      delete,
+        rnds,
+        wnds,
+        rnps,
+        wnps
+    );
+  end plitblm;

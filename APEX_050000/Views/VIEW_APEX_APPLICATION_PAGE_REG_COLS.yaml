@@ -1,0 +1,108 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_REG_COLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    c .id as region_column_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    c .page_id,
+    p.name as page_name,
+    c .region_id,
+    r.plug_name as region_name,
+    c .name,
+    c .data_type,
+    case
+      c .is_visible
+      when 'Y' then 'Yes'
+      else 'No'
+    end as is_visible,
+    c .display_sequence,
+    c .heading,
+    c .heading_alignment,
+    c .value_alignment,
+    c .value_css_classes,
+    c .value_attributes,
+    c .format_mask,
+    c .attribute_01,
+    c .attribute_02,
+    c .attribute_03,
+    c .attribute_04,
+    c .attribute_05,
+    c .attribute_06,
+    c .attribute_07,
+    c .attribute_08,
+    c .attribute_09,
+    c .attribute_10,
+    c .attribute_11,
+    c .attribute_12,
+    c .attribute_13,
+    c .attribute_14,
+    c .attribute_15,
+    c .attribute_16,
+    c .attribute_17,
+    c .attribute_18,
+    c .attribute_19,
+    c .attribute_20,
+    c .attribute_21,
+    c .attribute_22,
+    c .attribute_23,
+    c .attribute_24,
+    c .attribute_25,
+    case
+      c .escape_on_http_output
+      when 'Y' then 'Yes'
+      when 'N' then 'No'
+      else c .escape_on_http_output
+    end as escape_on_http_output,
+    coalesce (
+      (
+        select
+          r
+        from
+          apex_standard_conditions
+        where
+          c .display_condition_type is not null
+          and d = c .display_condition_type
+      ),
+      c .display_condition_type
+    ) as condition_type,
+    c .display_condition_type as condition_type_code,
+    c .display_condition as condition_expression1,
+    c .display_condition2 as condition_expression2,
+    case
+      when substr(c .security_scheme, 1, 1) = '!' then 'Not '
+    end || coalesce (
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(c .security_scheme, '!')
+          and flow_id = c .flow_id
+      ),
+      c .security_scheme
+    ) as authorization_scheme,
+    c .security_scheme as authorization_scheme_id,
+    c .column_comment as component_comment,
+    c .last_updated_by,
+    c .last_updated_on
+  from
+    wwv_flow_authorized f,
+    wwv_flow_region_columns c,
+    wwv_flow_page_plugs r,
+    wwv_flow_steps p
+  where
+    c .flow_id = f.application_id
+    and c .security_group_id = f.workspace_id
+    and r.id = c .region_id
+    and r.security_group_id = c .security_group_id
+    and p.flow_id = c .flow_id
+    and p.id = c .page_id
+    and p.security_group_id = c .security_group_id
+columns: []
+referencedTables: []

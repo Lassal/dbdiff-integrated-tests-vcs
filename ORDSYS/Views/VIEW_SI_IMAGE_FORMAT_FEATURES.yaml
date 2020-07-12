@@ -1,0 +1,15 @@
+schema: ORDSYS
+name: SI_IMAGE_FORMAT_FEATURES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    a .si_format,
+    b.si_feature_name
+  from
+    ORDSYS.si_image_formats_tab a,
+    ORDSYS.si_features_tab b
+  where
+    a .read_flg = 'Y'
+columns: []
+referencedTables: []

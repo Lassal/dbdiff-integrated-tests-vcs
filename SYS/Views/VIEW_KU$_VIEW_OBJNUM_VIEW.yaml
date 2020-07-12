@@ -1,0 +1,34 @@
+schema: SYS
+name: KU$_VIEW_OBJNUM_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    value(o)
+  from
+    ku$_edition_schemaobj_view o,
+    sys.view$ v
+  where
+    o.obj_num = v.obj#
+    and not exists (
+      SELECT
+        1
+      FROM
+        SYS.OLAP_AW_VIEWS$ V
+      WHERE
+        O.OBJ_NUM = V.VIEW_OBJ#
+        AND V.VIEW_TYPE = 1
+    )
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

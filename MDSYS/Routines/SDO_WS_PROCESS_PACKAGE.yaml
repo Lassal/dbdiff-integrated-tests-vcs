@@ -1,0 +1,209 @@
+schema: MDSYS
+name: SDO_WS_PROCESS
+routineType: PACKAGE
+returnParamater:
+  name: EVALUATETSEXPR.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: CHECKLENGTH.VAL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECKLENGTH.MAXLENGTH
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERTDURATIONEXPR.OPERAND
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEDURATIONEXPR.OP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEDURATIONEXPR.OPERAND1
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEDURATIONEXPR.OPERAND2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEEXPR.OPERANDTYPE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEEXPR.OP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEEXPR.OPERAND1
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEEXPR.OPERAND2
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGDAYEXPR.OP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGDAYEXPR.OPERAND1
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGDAYEXPR.OPERAND2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGMONTHDAYEXPR.OP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGMONTHDAYEXPR.OPERAND1
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGMONTHDAYEXPR.OPERAND2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGMONTHEXPR.OP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGMONTHEXPR.OPERAND1
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGMONTHEXPR.OPERAND2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGYEAREXPR.OP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGYEAREXPR.OPERAND1
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGYEAREXPR.OPERAND2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGYEARMONTHEXPR.OP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGYEARMONTHEXPR.OPERAND1
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATEGYEARMONTHEXPR.OPERAND2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATENONTSEXPR.OP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATENONTSEXPR.P1
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATENONTSEXPR.P2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATENONTSNUMEXPR.OP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATENONTSNUMEXPR.P1
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: EVALUATENONTSNUMEXPR.P2
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: EVALUATETIMEEXPR.OP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATETIMEEXPR.OPERAND1
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATETIMEEXPR.OPERAND2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATETSEXPR.OP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATETSEXPR.L_OPERAND1
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATETSEXPR.L_OPERAND2
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE SDO_WS_PROCESS AUTHID current_user AS function evaluateExpr(
+    operandType varchar2,
+    op varchar2,
+    operand1 varchar2,
+    operand2 varchar2
+  ) return number;
+  function evaluateNonTSExpr(op IN VARCHAR2, p1 IN VARCHAR2, p2 IN VARCHAR2) RETURN NUMBER;
+  function evaluateNonTSNumExpr(op IN VARCHAR2, p1 IN NUMBER, p2 IN NUMBER) RETURN NUMBER;
+  function evaluateTimeExpr(
+    op varchar2,
+    operand1 varchar2,
+    operand2 varchar2
+  ) return number;
+  function evaluateTSExpr(
+    op varchar2,
+    l_operand1 varchar2,
+    l_operand2 varchar2
+  ) return number;
+  function evaluateGYearMonthExpr(
+    op varchar2,
+    operand1 varchar2,
+    operand2 varchar2
+  ) return number;
+  function evaluateGMonthDayExpr(
+    op varchar2,
+    operand1 varchar2,
+    operand2 varchar2
+  ) return number;
+  function evaluateGYearExpr(
+    op varchar2,
+    operand1 varchar2,
+    operand2 varchar2
+  ) return number;
+  function evaluateGMonthExpr(
+    op varchar2,
+    operand1 varchar2,
+    operand2 varchar2
+  ) return number;
+  function evaluateGDayExpr(
+    op varchar2,
+    operand1 varchar2,
+    operand2 varchar2
+  ) return number;
+  function evaluateDurationExpr(
+    op varchar2,
+    operand1 varchar2,
+    operand2 varchar2
+  ) return number;
+  function convertDurationExpr(operand varchar2) return number;
+  function checkLength(val varchar2, maxLength number) return number;
+  end;

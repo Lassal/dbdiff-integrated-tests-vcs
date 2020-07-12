@@ -1,0 +1,26 @@
+schema: SYS
+name: USER_QUEUE_PUBLISHERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    q.name QUEUE_NAME,
+    p.p_name PUBLISHER_NAME,
+    p.p_address PUBLISHER_ADDRESS,
+    p.p_protocol PUBLISHER_PROTOCOL,
+    p.p_rule PUBLISHER_RULE,
+    p.p_rule_name PUBLISHER_RULE_NAME,
+    p.p_ruleset PUBLISHER_RULESET,
+    p.p_transformation PUBLISHER_TRANSFORMATION
+  from
+    system.aq$_queue_tables t,
+    system.aq$_queues q,
+    sys.aq$_publisher p,
+    sys.user$ u
+  where
+    u.user# = USERENV('SCHEMAID')
+    and u.name = t.schema
+    and q.table_objno = t.objno
+    and q.eventid = p.queue_id
+columns: []
+referencedTables: []

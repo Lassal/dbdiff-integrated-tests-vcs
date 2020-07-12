@@ -1,0 +1,22 @@
+schema: XDBPM
+name: XDBPM_IMPORT_HELPER
+routineType: PACKAGE
+returnParamater:
+  name: DECODEXMLREFERENCE.(--return--)
+  ordinalPosition: 0
+  dataType: TABLE
+  parameterMode: OUT
+parameters:
+- name: DECODEXMLREFERENCE.P_XMLREF
+  ordinalPosition: 1
+  dataType: REF
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_IMPORT_HELPER AUTHID DEFINER as TYPE DECODED_REFERENCE_ROW_T IS RECORD (
+    OWNER VARCHAR2(32),
+    TABLE_NAME VARCHAR2(32),
+    OBJECT_ID RAW(16)
+  );
+  TYPE DECODED_REFERENCE_TABLE_T IS TABLE OF DECODED_REFERENCE_ROW_T;
+  function decodeXMLReference(P_XMLREF REF XMLTYPE) return DECODED_REFERENCE_TABLE_T pipelined;
+  end;

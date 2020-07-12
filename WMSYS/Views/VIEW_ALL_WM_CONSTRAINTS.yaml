@@ -1,0 +1,24 @@
+schema: WMSYS
+name: ALL_WM_CONSTRAINTS
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    /*+ LEADING(ct) */
+    ct.owner,
+    constraint_name,
+    constraint_type,
+    table_name,
+    search_condition,
+    status,
+    index_owner,
+    index_name,
+    index_type
+  from
+    wmsys.wm$constraints_table ct,
+    all_views av
+  where
+    ct.owner = av.owner
+    and ct.table_name = av.view_name WITH READ ONLY
+columns: []
+referencedTables: []

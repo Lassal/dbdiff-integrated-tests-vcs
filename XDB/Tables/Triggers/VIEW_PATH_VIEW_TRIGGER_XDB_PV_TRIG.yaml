@@ -1,0 +1,25 @@
+targetObjectSchema: XDB
+targetObjectName: PATH_VIEW
+targetObjectType: VIEW
+name: XDB_PV_TRIG
+eventTiming: INSTEAD OF
+event: INSERT OR UPDATE OR DELETE
+eventActionBody: |-
+  begin
+    if inserting then xdb.xdb_pvtrig_pkg.pvtrig_ins(:new.res, :new.link, :new.path);
+    /* check that either the REF or the BLOB columns are filled, not both */
+  end if;
+  if deleting then xdb.xdb_pvtrig_pkg.pvtrig_del(:old.res, :old.link, :old.path);
+  /* check if we get the correct values from two tables in a view */
+  end if;
+  if updating then xdb.xdb_pvtrig_pkg.pvtrig_upd(
+    :old.res,
+    :new.res,
+    :old.link,
+    :new.link,
+    :old.path,
+    :new.path
+  );
+  end if;
+  end;
+executionOrder: 1

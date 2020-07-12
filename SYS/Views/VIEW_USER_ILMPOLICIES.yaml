@@ -1,0 +1,66 @@
+schema: SYS
+name: USER_ILMPOLICIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .name,
+    decode(a .ptype, 1, 'DATA MOVEMENT'),
+    null,
+    decode(bitand(a .FLAG, 1), 1, 'NO     ', 0, 'YES    '),
+    decode(bitand(a .FLAG, 64), 0, 'NO     ', 64, 'YES    ')
+  from
+    sys.ilm$ a
+  where
+    a .owner# = userenv('SCHEMAID')
+    and bitand(a .flag, 8) = 0
+  union
+    /* Select tablespace level policies in tablespaces where the user has some
+     * quota
+     */
+  select
+    a .name,
+    decode(a .ptype, 1, 'DATA MOVEMENT'),
+    b.name,
+    decode(bitand(a .FLAG, 1), 1, 'NO     ', 0, 'YES    '),
+    decode(bitand(a .FLAG, 64), 0, 'NO     ', 64, 'YES    ')
+  from
+    sys.ilm$ a,
+    sys.ts$ b,
+    sys.tsq$ c
+  where
+    bitand(a .flag, 8) = 8
+    and a .ts# = b.ts#
+    and b.ts# = c .ts#
+    and c .user# = userenv('SCHEMAID')
+    and (
+      c .blocks > 0
+      or c .maxblocks != 0
+    )
+  union
+    /* Select tablespace level policies in case the use has unlimited
+     * tablespace privileges
+     */
+  select
+    a .name,
+    decode(a .ptype, 1, 'DATA MOVEMENT'),
+    b.name,
+    decode(bitand(a .FLAG, 1), 1, 'NO     ', 0, 'YES    '),
+    decode(bitand(a .FLAG, 64), 0, 'NO     ', 64, 'YES    ')
+  from
+    sys.ilm$ a,
+    sys.ts$ b
+  where
+    bitand(a .flag, 8) = 8
+    and a .ts# = b.ts#
+    and exists (
+      select
+        null
+      from
+        sys.v$enabledprivs
+      where
+        priv_number = -15
+        /* UNLIMITED TABLESPACE */
+    )
+columns: []
+referencedTables: []

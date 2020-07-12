@@ -1,0 +1,50 @@
+schema: SYS
+name: ODCIINDEXINFOFLAGSDUMP
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: OP
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE ODCIIndexInfoFlagsDump(op NUMBER) IS
+  BEGIN
+    IF (bitand(op, ODCIConst.Local) = ODCIConst.Local) THEN IF (
+      bitand(op, ODCIConst.RangePartn) = ODCIConst.RangePartn
+    ) THEN dbms_output.put_line('IndexInfoFlags : Local Range Partitioned');
+  END IF;
+  IF (
+    bitand(op, ODCIConst.HashPartn) = ODCIConst.HashPartn
+  ) THEN dbms_output.put_line('IndexInfoFlags : Local Hash Partitioned');
+  END IF;
+  IF (
+    bitand(op, ODCIConst.ListPartn) = ODCIConst.ListPartn
+  ) THEN dbms_output.put_line('IndexInfoFlags : Local List Partitioned');
+  END IF;
+  IF (
+    bitand(op, ODCIConst.UpdateGlobalIndexes) = ODCIConst.UpdateGlobalIndexes
+  ) THEN dbms_output.put_line('IndexInfoFlags : Update Global Indexes');
+  END IF;
+  END IF;
+  IF (
+    bitand(op, ODCIConst.IndexOnIOT) = ODCIConst.IndexOnIOT
+  ) THEN dbms_output.put_line(
+    'IndexInfoFlags : Index on Index-organized Table'
+  );
+  END IF;
+  IF (
+    bitand(op, ODCIConst.Unusable) = ODCIConst.Unusable
+  ) THEN dbms_output.put_line('IndexInfoFlags : Unusable');
+  END IF;
+  IF (
+    bitand(op, ODCIConst.FunctionIdx) = ODCIConst.FunctionIdx
+  ) THEN dbms_output.put_line('IndexInfoFlags : Function based domain index');
+  END IF;
+  IF (bitand(op, ODCIConst.Online) = ODCIConst.Online) THEN dbms_output.put_line('IndexInfoFlags : Online Index Creation');
+  END IF;
+  IF (
+    bitand(op, ODCIConst.Parallel) = ODCIConst.Parallel
+  ) THEN dbms_output.put_line('IndexInfoFlags : Parallel Index Creation');
+  END IF;
+  END;

@@ -1,0 +1,82 @@
+schema: SYS
+name: ALL_AW_OBJ
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name,
+    a .awseq#,
+    a .awname,
+    p.oid,
+    p.objname,
+    p.objtype,
+    p.partname
+  FROM
+    aw$ a,
+    aw_obj$ p,
+    sys.obj$ o,
+    sys.user$ u,
+    (
+      select
+        max(rowid) keep (
+          dense_rank last
+          order by
+            gen#
+        ) rid
+      from
+        aw_obj$
+      group by
+        awseq#,
+        oid
+    )
+  WHERE
+    a .owner# = u.user#
+    and o.name = 'AW$' || a .awname
+    and o.type# = 2
+    /* type for table */
+    and a .awseq# = p.awseq#
+    and (
+      a .owner# in (userenv('SCHEMAID'), 1)
+      /* public objects */
+      or o.obj# in (
+        select
+          obj#
+          /* directly granted privileges */
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privilages */
+      (
+        exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -45
+              /* LOCK ANY TABLE */,
+              -47
+              /* SELECT ANY TABLE */,
+              -48
+              /* INSERT ANY TABLE */,
+              -49
+              /* UPDATE ANY TABLE */,
+              -50
+              /* DELETE ANY TABLE */
+            )
+        )
+      )
+    )
+    and p.rowid = rid
+    and p.objtype IS NOT NULL
+columns: []
+referencedTables: []

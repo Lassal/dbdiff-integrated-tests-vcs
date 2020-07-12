@@ -1,0 +1,37 @@
+schema: OLAPSYS
+name: ALL$OLAP2_AW_CUBE_MEASURES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    AW.AWOWNER as AW_OWNER,
+    AW.AWNAME as AW_NAME,
+    AW.AWOBJECT as AW_CUBE_NAME,
+    AW.COL1 as AW_MEASURE_NAME,
+    AW.COL6 as AW_PHYSICAL_OBJECT,
+    AW.COL2 as MEASURE_SOURCE_NAME,
+    AW.COL3 as DISPLAY_NAME,
+    AW.COL4 as DESCRIPTION,
+    AW.COL7 as IS_AGGREGATEABLE
+  FROM
+    TABLE(
+      CAST (
+        OLAP_TABLE(
+          'SYS.AWMD duration query',
+          'olapsys.ALL_OLAP2_AW_METADATA_T',
+          'ACTIVE_CATALOG ''ALL_CUBE_MEASURES'' ''ALL''',
+          'MEASURE AWOWNER FROM SYS.AWMD!CM_OWNER
+                          MEASURE AWNAME FROM SYS.AWMD!CM_AWNAME
+                          MEASURE AWOBJECT FROM SYS.AWMD!CM_CUBE_NAME
+                          MEASURE COL1 FROM SYS.AWMD!CM_MEASURE_NAME
+                          MEASURE COL2 FROM SYS.AWMD!CM_SOURCE_NAME
+                          MEASURE COL3 FROM SYS.AWMD!CM_DISPLAY_NAME
+                          MEASURE COL4 FROM SYS.AWMD!CM_DESCRIPTION
+                          MEASURE COL6 FROM SYS.AWMD!CM_AW_PHYSICAL_OBJECT
+                          MEASURE COL7 FROM SYS.AWMD!CM_ISAGGREGATEABLE
+                          DIMENSION AWMDKEY FROM SYS.AWMD!AWMDKEY_CM'
+        ) AS olapsys.ALL_OLAP2_AW_METADATA_T
+      )
+    ) AW
+columns: []
+referencedTables: []

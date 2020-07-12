@@ -1,0 +1,14 @@
+targetObjectSchema: MDSYS
+targetObjectName: SDO_COORD_REF_SYS
+targetObjectType: TABLE
+name: SDO_COORD_REF_SRID_INSERT
+eventTiming: BEFORE EACH ROW
+event: INSERT
+eventActionBody: |-
+  BEGIN
+    mdsys.mdprvt_srid.sdo_invalidate_srid_metadata(
+      :new.srid,
+      :new.coord_ref_sys_kind
+    );
+  END;
+executionOrder: 1

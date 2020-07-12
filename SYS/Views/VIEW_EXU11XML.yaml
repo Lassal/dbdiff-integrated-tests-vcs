@@ -1,0 +1,32 @@
+schema: SYS
+name: EXU11XML
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.obj#,
+    opq.flags
+  FROM
+    sys.opqtype$ opq,
+    sys.obj$ o
+  WHERE
+    (
+      o.obj# = opq.obj#
+      OR opq.obj# IN (
+        SELECT
+          nt.ntab#
+        FROM
+          sys.ntab$ nt
+        START WITH
+          nt.obj# = o.obj#
+        CONNECT BY
+          PRIOR nt.ntab# = nt.obj#
+      )
+    )
+    AND opq.type = 1
+    AND
+    /* XML Type */
+    BITAND(opq.flags, 4) = 4
+    /* BINARY XML */
+columns: []
+referencedTables: []

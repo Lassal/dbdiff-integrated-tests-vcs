@@ -1,0 +1,17 @@
+schema: SYS
+name: USER_SR_OBJ_ALL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    NAME,
+    TYPE,
+    GROUP_ID,
+    CURRENT_GROUP,
+    STAGING_LOG_NAME
+  from
+    dba_sr_obj_all
+  where
+    owner = SYS_CONTEXT ('USERENV', 'SESSION_USER')
+columns: []
+referencedTables: []

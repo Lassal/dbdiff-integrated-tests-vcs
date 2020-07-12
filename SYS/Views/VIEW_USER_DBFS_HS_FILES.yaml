@@ -1,0 +1,27 @@
+schema: SYS
+name: USER_DBFS_HS_FILES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    APT.path,
+    SF.SequenceNumber,
+    SF.StartOffset,
+    SF.EndOffset,
+    SF.TarballId,
+    BF.BackupFileName,
+    BF.TarStartOffset,
+    BF.TarEndOffset
+  FROM
+    DBFS_HS$_SFLocatorTable SF,
+    DBFS_HS$_ContentFnMapTbl MP,
+    DBFS_HS$_StoreId2PolicyCtx PC,
+    DBFS_HS$_BackupFileTable BF,
+    TABLE(dbms_dbfs_hs.listcontentfilename) APT
+  WHERE
+    MP.ArchiveRefId = SF.ArchiveRefId
+    AND PC.StoreId = BF.StoreId
+    AND BF.TarballId = SF.TarballId
+    AND APT.contentfilename = MP.ContentFilename
+columns: []
+referencedTables: []

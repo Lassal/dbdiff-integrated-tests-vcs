@@ -1,0 +1,30 @@
+schema: SYS
+name: LOGMNR$SCHEMA_ALLKEY_SUPLOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    name schema_name,
+    (
+      case
+        when bitand(spare1, 64) = 64 then 'YES'
+        else 'NO'
+      end
+    ) ALLKEY_SUPLOG,
+    (
+      case
+        when bitand(spare1, 1024) = 1024 then 'YES'
+        else 'NO'
+      end
+    ) ALLOW_NOVALIDATE_PK
+  from
+    user $
+  where
+    name in (
+      select
+        username
+      from
+        all_users
+    )
+columns: []
+referencedTables: []

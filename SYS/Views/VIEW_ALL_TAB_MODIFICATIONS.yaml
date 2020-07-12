@@ -1,0 +1,193 @@
+schema: SYS
+name: ALL_TAB_MODIFICATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    null,
+    null,
+    m.inserts,
+    m.updates,
+    m.deletes,
+    m.timestamp,
+    decode(bitand(m.flags, 1), 1, 'YES', 'NO'),
+    m.drop_segments
+  from
+    sys.mon_mods_all$ m,
+    sys.obj$ o,
+    sys.tab$ t,
+    sys.user$ u
+  where
+    o.obj# = m.obj#
+    and o.obj# = t.obj#
+    and o.owner# = u.user#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */,
+            -165
+            /* ANALYZE ANY */
+          )
+      )
+    )
+  union all
+  select
+    u.name,
+    o.name,
+    o.subname,
+    null,
+    m.inserts,
+    m.updates,
+    m.deletes,
+    m.timestamp,
+    decode(bitand(m.flags, 1), 1, 'YES', 'NO'),
+    m.drop_segments
+  from
+    sys.mon_mods_all$ m,
+    sys.obj$ o,
+    sys.user$ u
+  where
+    o.owner# = u.user#
+    and o.obj# = m.obj#
+    and o.type# = 19
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */,
+            -165
+            /* ANALYZE ANY */
+          )
+      )
+    )
+  union all
+  select
+    u.name,
+    o.name,
+    o2.subname,
+    o.subname,
+    m.inserts,
+    m.updates,
+    m.deletes,
+    m.timestamp,
+    decode(bitand(m.flags, 1), 1, 'YES', 'NO'),
+    m.drop_segments
+  from
+    sys.mon_mods_all$ m,
+    sys.obj$ o,
+    sys.tabsubpart$ tsp,
+    sys.obj$ o2,
+    sys.user$ u
+  where
+    o.obj# = m.obj#
+    and o.owner# = u.user#
+    and o.obj# = tsp.obj#
+    and o2.obj# = tsp.pobj#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */,
+            -165
+            /* ANALYZE ANY */
+          )
+      )
+    )
+columns: []
+referencedTables: []

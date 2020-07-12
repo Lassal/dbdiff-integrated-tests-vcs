@@ -1,0 +1,19 @@
+schema: SYS
+name: EXU81SPOKU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OBJID",
+    "OWNERID",
+    "POSNO",
+    "NAME",
+    "PROPERTY",
+    "FUNCTION",
+    "FUNCLEN"
+  FROM
+    sys.exu81spok
+  WHERE
+    ownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

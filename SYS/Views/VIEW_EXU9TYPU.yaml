@@ -1,0 +1,26 @@
+schema: SYS
+name: EXU9TYPU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "TNAME",
+    "TOWNER",
+    "OWNERID",
+    "TOID",
+    "MTIME",
+    "OBJNO",
+    "AUDIT$",
+    "SECONDARYOBJ",
+    "SQLVER",
+    "TYPOBJSTATUS",
+    "TVERSION",
+    "THASHCODE",
+    "TYPEID",
+    "ROOTTOID"
+  FROM
+    sys.exu9typ
+  WHERE
+    ownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

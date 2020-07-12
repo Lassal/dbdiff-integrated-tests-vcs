@@ -1,0 +1,17 @@
+schema: SYS
+name: USER_EVALUATION_CONTEXT_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    ect.tab_alias,
+    ect.tab_name
+  FROM
+    rec_tab$ ect,
+    obj$ o
+  WHERE
+    ect.ec_obj# = o.obj#
+    and o.owner# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

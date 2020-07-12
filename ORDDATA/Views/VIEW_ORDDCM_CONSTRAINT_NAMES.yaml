@@ -1,0 +1,15 @@
+schema: ORDDATA
+name: ORDDCM_CONSTRAINT_NAMES
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  SELECT
+    NAME
+  FROM
+    ORDDATA.ORDDCM_CT_PRED_SET_TMP
+  WHERE
+    PSTYPE = 1
+    AND SUPER IS NULL
+    AND STATUS = 1 WITH READ ONLY
+columns: []
+referencedTables: []

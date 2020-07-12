@@ -1,0 +1,17 @@
+schema: SYS
+name: RESOURCE_COST
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    m.name,
+    c .cost
+  from
+    sys.resource_cost$ c,
+    sys.resource_map m
+  where
+    c .resource# = m.resource#
+    and m.type# = 0
+    and c .resource# in (2, 4, 7, 8)
+columns: []
+referencedTables: []

@@ -1,0 +1,27 @@
+schema: SYS
+name: USER_SQL_TRANSLATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    s.sqltext,
+    s.txltext,
+    s.sqlid,
+    s.sqlhash,
+    decode(bitand(s.flags, 1), 1, 'TRUE', 0, 'FALSE'),
+    s.rtime,
+    s.cinfo,
+    s.module,
+    s.action,
+    s.puser#,
+    s.pschema#,
+    s.comment$
+  from
+    sys.sqltxl_sql$ s,
+    sys. "_CURRENT_EDITION_OBJ" o
+  where
+    s.obj# = o.obj#
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

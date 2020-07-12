@@ -1,0 +1,68 @@
+schema: SYS
+name: USER_ILMEVALUATIONDETAILS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    b.execution_id,
+    a .name,
+    e.name,
+    c .name,
+    c .subname,
+    DECODE(
+      c .type#,
+      19,
+      'TABLE PARTITION',
+      2,
+      'TABLE',
+      34,
+      'TABLE SUBPARTITION'
+    ),
+    DECODE(
+      b.jobscheduled,
+      0,
+      'SELECTED FOR EXECUTION',
+      1,
+      'POLICY DISABLED',
+      2,
+      'SELECTED FOR EXECUTION',
+      3,
+      'SELECTED FOR EXECUTION',
+      4,
+      'POLICY OVERRULED',
+      5,
+      'INHERITED POLICY OVERRULED',
+      6,
+      'PRECONDITION NOT SATISFIED',
+      7,
+      'JOB ALREADY EXISTS',
+      8,
+      'POLICY SUCCESSFUL PREVIOUSLY',
+      9,
+      'NO OPERATION SINCE LAST ILM ACTION',
+      10,
+      'TARGET COMPRESSION NOT HIGHER THAN CURRENT',
+      11,
+      'ILM ONLY RECENTLY EVALUATED ON OBJECT',
+      12,
+      'STATISTICS NOT AVAILABLE',
+      13,
+      'TABLE HAS MATERIALIZED VIEW',
+      'NO'
+    ),
+    b.jobname,
+    b.comments
+  FROM
+    sys.ilm$ a,
+    sys.ilm_executiondetails$ b,
+    sys.obj$ c,
+    sys.ilm_execution$ d,
+    sys.user$ e
+  WHERE
+    a .policy# = b.policy#
+    AND b.obj# = c .obj#
+    AND b.execution_id = d.execution_id
+    AND d.owner = userenv('SCHEMAID')
+    AND c .owner# = e.user#
+columns: []
+referencedTables: []

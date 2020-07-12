@@ -1,0 +1,33 @@
+schema: OLAPSYS
+name: ALL$OLAP2_AW_CUBE_DIM_USES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    AW.AWOWNER as AW_OWNER,
+    AW.AWNAME as AW_NAME,
+    AW.AWOBJECT as AW_LOGICAL_NAME,
+    AW.COL1 as DIMENSION_AW_OWNER,
+    AW.COL2 as DIMENSION_AW_NAME,
+    AW.COL3 as DIMENSION_SOURCE_OWNER,
+    AW.COL4 as DIMENSION_SOURCE_NAME
+  FROM
+    TABLE(
+      CAST (
+        OLAP_TABLE(
+          'SYS.AWMD duration query',
+          'olapsys.ALL_OLAP2_AW_METADATA_T',
+          'ACTIVE_CATALOG ''ALL_CUBE_DIM_USES'' ''ALL''',
+          'MEASURE AWOWNER FROM SYS.AWMD!CDU_OWNER
+                          MEASURE AWNAME FROM SYS.AWMD!CDU_AWNAME
+                          MEASURE AWOBJECT FROM SYS.AWMD!CDU_CUBE_NAME
+                          MEASURE COL1 FROM SYS.AWMD!CDU_DIMENSION_OWNER
+                          MEASURE COL2 FROM SYS.AWMD!CDU_DIMENSION_NAME
+                          MEASURE COL3 FROM SYS.AWMD!CDU_DIMENSION_SOURCE_OWNER
+                          MEASURE COL4 FROM SYS.AWMD!CDU_DIMENSION_SOURCE_NAME
+                          DIMENSION AWMDKEY FROM SYS.AWMD!AWMDKEY_CDU'
+        ) AS olapsys.ALL_OLAP2_AW_METADATA_T
+      )
+    ) AW
+columns: []
+referencedTables: []

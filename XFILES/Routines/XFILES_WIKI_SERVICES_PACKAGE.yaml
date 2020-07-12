@@ -1,0 +1,41 @@
+schema: XFILES
+name: XFILES_WIKI_SERVICES
+routineType: PACKAGE
+returnParamater:
+  name: SCHEMAURL_XFILES_WIKI.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: CREATEWIKIPAGE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEWIKIPAGE.P_COMMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEWIKIPAGE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEWIKIPAGE.P_CONTENTS
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  package XFILES_WIKI_SERVICES AUTHID CURRENT_USER as C_NAMESPACE_XFILES_WIKI constant VARCHAR2(128): = XFILES_CONSTANTS.NAMESPACE_XFILES || '/wiki';
+  C_NSPREFIX_XFILES_WIKI_WIKI constant VARCHAR2(128): = 'xmlns:wiki="' || C_NAMESPACE_XFILES_WIKI || '"';
+  C_SCHEMAURL_XFILES_WIKI constant VARCHAR2(128): = XFILES_CONSTANTS.NAMESPACE_XFILES || '/XFilesWiki.xsd';
+  C_NAMESPACE_XHTML constant VARCHAR2(128): = 'http://www.w3.org/1999/xhtml';
+  C_NSPREFIX_XHMTL_DEFAULT constant VARCHAR2(128): = 'xmlns="' || C_NAMESPACE_XHTML || '"';
+  C_ELEMENT_WIKI constant VARCHAR2(256): = 'XFilesWikiPage';
+  function NAMESPACE_XFILES_WIKI return VARCHAR2 deterministic;
+  function NSPREFIX_XFILES_WIKI_WIKI return VARCHAR2 deterministic;
+  function SCHEMAURL_XFILES_WIKI return VARCHAR2 deterministic;
+  function NAMESPACE_XHTML return VARCHAR2 deterministic;
+  function NSPREFIX_XHTML_DEFAULT return VARCHAR2 deterministic;
+  function ELEMENT_WIKI return VARCHAR2 deterministic;
+  procedure CREATEWIKIPAGE(P_RESOURCE_PATH VARCHAR, P_COMMENT VARCHAR2);
+  procedure UPDATEWIKIPAGE(P_RESOURCE_PATH VARCHAR, P_CONTENTS XMLTYPE);
+  end;

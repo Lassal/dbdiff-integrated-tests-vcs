@@ -1,0 +1,102 @@
+schema: APEX_050000
+name: APEX_APPLICATION_LISTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    l.NAME list_name,
+    decode(
+      l.list_type,
+      null,
+      'Static',
+      'STATIC',
+      'Static',
+      'SQL_QUERY',
+      'SQL Query',
+      'FUNCTION_RETURNING_SQL_QUERY',
+      'Function Returning SQL Query'
+    ) list_type,
+    decode(l.list_type, null, 'STATIC', l.list_type) list_type_code,
+    l.list_query list_query,
+    --l.LIST_STATUS                    list_status,
+    --l.LIST_DISPLAYED,
+    (
+      select
+        case
+          when l.required_patch > 0 then PATCH_NAME
+          else '{Not ' || PATCH_NAME || '}'
+        end PATCH_NAME
+      from
+        wwv_flow_patches
+      where
+        id = abs(l.REQUIRED_PATCH)
+    ) build_option,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_list_items
+      where
+        list_id = l.id
+    ) list_entries,
+    --
+    l.LAST_UPDATED_BY last_updated_by,
+    l.LAST_UPDATED_ON last_updated_on,
+    l.LIST_COMMENT component_comment,
+    l.ID list_id,
+    --
+    l.NAME || ' s=' || l.LIST_STATUS || ' bo='(
+      select
+        PATCH_NAME
+      from
+        wwv_flow_patches
+      where
+        id = abs(l.REQUIRED_PATCH)
+    ) component_signature,
+    --
+    -- For compatibility with SQL Developer
+    cast(null as varchar2(255)) template
+  from
+    wwv_flow_lists l,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.id = l.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

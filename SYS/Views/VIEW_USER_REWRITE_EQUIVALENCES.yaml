@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_REWRITE_EQUIVALENCES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    m. "OWNER",
+    m. "NAME",
+    m. "SOURCE_STMT",
+    m. "DESTINATION_STMT",
+    m. "REWRITE_MODE"
+  from
+    dba_rewrite_equivalences m,
+    sys.user$ u
+  where
+    u.name = m.owner
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,65 @@
+schema: SYS
+name: USER_AUDIT_TRAIL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    d. "OS_USERNAME",
+    d. "USERNAME",
+    d. "USERHOST",
+    d. "TERMINAL",
+    d. "TIMESTAMP",
+    d. "OWNER",
+    d. "OBJ_NAME",
+    d. "ACTION",
+    d. "ACTION_NAME",
+    d. "NEW_OWNER",
+    d. "NEW_NAME",
+    d. "OBJ_PRIVILEGE",
+    d. "SYS_PRIVILEGE",
+    d. "ADMIN_OPTION",
+    d. "GRANTEE",
+    d. "AUDIT_OPTION",
+    d. "SES_ACTIONS",
+    d. "LOGOFF_TIME",
+    d. "LOGOFF_LREAD",
+    d. "LOGOFF_PREAD",
+    d. "LOGOFF_LWRITE",
+    d. "LOGOFF_DLOCK",
+    d. "COMMENT_TEXT",
+    d. "SESSIONID",
+    d. "ENTRYID",
+    d. "STATEMENTID",
+    d. "RETURNCODE",
+    d. "PRIV_USED",
+    d. "CLIENT_ID",
+    d. "ECONTEXT_ID",
+    d. "SESSION_CPU",
+    d. "EXTENDED_TIMESTAMP",
+    d. "PROXY_SESSIONID",
+    d. "GLOBAL_UID",
+    d. "INSTANCE_NUMBER",
+    d. "OS_PROCESS",
+    d. "TRANSACTIONID",
+    d. "SCN",
+    d. "SQL_BIND",
+    d. "SQL_TEXT",
+    d. "OBJ_EDITION_NAME",
+    d. "DBID"
+  from
+    dba_audit_trail d,
+    sys.user$ u
+  where
+    (
+      (
+        d.owner = u.name
+        and u.user# = USERENV('SCHEMAID')
+      )
+      or (
+        d.owner is null
+        and d.username = u.name
+        and u.user# = USERENV('SCHEMAID')
+      )
+    )
+columns: []
+referencedTables: []

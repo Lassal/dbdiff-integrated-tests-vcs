@@ -1,0 +1,15 @@
+targetObjectSchema: APEX_050000
+targetObjectName: WWV_FLOW_USER_MAIL_QUEUE
+targetObjectType: VIEW
+name: WWV_FLOW_USER_MAIL_QUEUE_IOT
+eventTiming: INSTEAD OF
+event: DELETE
+eventActionBody: |-
+  begin
+  delete from
+    wwv_flow_mail_queue
+  where
+    id = :old.id
+    and security_group_id = wwv_flow_security.g_security_group_id;
+  end wwv_flow_user_mail_queue_iot;
+executionOrder: 1

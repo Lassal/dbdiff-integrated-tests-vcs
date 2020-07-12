@@ -1,0 +1,18 @@
+schema: SYS
+name: ALL_BASE_TABLE_MVIEWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s. "OWNER",
+    s. "MASTER",
+    s. "MVIEW_LAST_REFRESH_TIME",
+    s. "MVIEW_ID"
+  from
+    dba_base_table_mviews s,
+    all_mview_logs a
+  where
+    a .log_owner = s.owner
+    and a .master = s.master
+columns: []
+referencedTables: []

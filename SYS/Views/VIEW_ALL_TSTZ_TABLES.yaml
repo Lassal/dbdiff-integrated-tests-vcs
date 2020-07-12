@@ -1,0 +1,33 @@
+schema: SYS
+name: ALL_TSTZ_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ leading(actt, o, u, t) */
+    attc.owner,
+    attc.table_name,
+    decode(
+      bitand(t.property, 137438953472),
+      137438953472,
+      'YES',
+      'NO'
+    )
+  from
+    (
+      select
+        distinct owner,
+        table_name
+      from
+        all_tstz_tab_cols
+    ) attc,
+    sys.obj$ o,
+    sys.user$ u,
+    sys.tab$ t
+  where
+    attc.table_name = o.name
+    and attc.owner = u.name
+    and o.owner# = u.user#
+    and o.obj# = t.obj#
+columns: []
+referencedTables: []

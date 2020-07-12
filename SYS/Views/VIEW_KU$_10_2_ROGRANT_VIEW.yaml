@@ -1,0 +1,20 @@
+schema: SYS
+name: KU$_10_2_ROGRANT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    *
+  from
+    ku$_11_2_rogrant_view r
+  where
+    r.role NOT IN (
+      'DATAPUMP_EXP_FULL_DATABASE',
+      'DATAPUMP_IMP_FULL_DATABASE'
+    )
+    and r.grantee NOT IN (
+      'DATAPUMP_EXP_FULL_DATABASE',
+      'DATAPUMP_IMP_FULL_DATABASE'
+    )
+columns: []
+referencedTables: []

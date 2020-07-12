@@ -1,0 +1,31 @@
+schema: CTXSYS
+name: CTX_STOPWORDS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name spw_owner,
+    spl_name spw_stoplist,
+    decode(
+      spw_type,
+      1,
+      'STOP_CLASS',
+      2,
+      'STOP_WORD',
+      3,
+      'STOP_THEME',
+      null
+    ) spw_type,
+    spw_word spw_word,
+    decode(spw_language, 'ALL', null, spw_language) spw_language,
+    spw_lang_dependent spw_lang_dependent,
+    spw_pattern spw_pattern
+  from
+    dr$stoplist,
+    dr$stopword,
+    sys.user$ u
+  where
+    spl_id = spw_spl_id
+    and spl_owner# = u.user#
+columns: []
+referencedTables: []

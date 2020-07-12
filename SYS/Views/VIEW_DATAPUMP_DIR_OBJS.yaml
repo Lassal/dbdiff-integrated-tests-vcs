@@ -1,0 +1,62 @@
+schema: SYS
+name: DATAPUMP_DIR_OBJS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    d.os_path,
+    'TRUE',
+    'TRUE'
+  FROM
+    SYS.OBJ$ o,
+    SYS.X$DIR d
+  WHERE
+    o.obj# = d.obj#
+    AND (
+      o.owner# = UID
+      OR EXISTS (
+        SELECT
+          NULL
+        FROM
+          v$enabledprivs
+        WHERE
+          priv_number IN (-177, -178)
+      )
+    )
+  UNION ALL
+  SELECT
+    o.name,
+    d.os_path,
+    DECODE(SUM(DECODE(privilege#, 17, 1, 0)), 0, 'FALSE', 'TRUE'),
+    DECODE(SUM(DECODE(privilege#, 18, 1, 0)), 0, 'FALSE', 'TRUE')
+  FROM
+    SYS.OBJ$ o,
+    SYS.X$DIR d,
+    SYS.OBJAUTH$ oa
+  WHERE
+    o.obj# = d.obj#
+    AND oa.obj# = o.obj#
+    AND oa.privilege# IN (17, 18)
+    AND oa.grantee# IN (
+      SELECT
+        kzsrorol
+      FROM
+        x$kzsro
+    )
+    AND NOT (
+      o.owner# = UID
+      OR EXISTS (
+        SELECT
+          NULL
+        FROM
+          v$enabledprivs
+        WHERE
+          priv_number IN (-177, -178)
+      )
+    )
+  GROUP BY
+    o.name,
+    d.os_path
+columns: []
+referencedTables: []

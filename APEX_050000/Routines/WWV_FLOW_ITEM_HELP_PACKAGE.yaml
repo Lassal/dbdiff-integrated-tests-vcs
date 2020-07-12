@@ -1,0 +1,132 @@
+schema: APEX_050000
+name: WWV_FLOW_ITEM_HELP
+routineType: PACKAGE
+returnParamater:
+  name: GET_HELP_TEXT.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: GET_HELP_TEXT.P_ITEM_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SHOW_HELP.P_ITEM_ID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW_HELP.P_SESSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW_HELP.P_CLOSE_BUTTON_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW_HELP.P_TITLE_BGCOLOR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW_HELP.P_PAGE_BGCOLOR
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW_HELP.P_OUTPUT_FORMAT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW_PLUGIN_ATTRIBUTE_HELP.P_APPLICATION_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SHOW_PLUGIN_ATTRIBUTE_HELP.P_BUILDER_PAGE_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SHOW_PLUGIN_ATTRIBUTE_HELP.P_SESSION_ID
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW_PLUGIN_ATTRIBUTE_HELP.P_PLUGIN_TYPE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW_PLUGIN_ATTRIBUTE_HELP.P_PLUGIN_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW_PLUGIN_ATTRIBUTE_HELP.P_ATTRIBUTE_SCOPE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW_PLUGIN_ATTRIBUTE_HELP.P_ATTRIBUTE_SEQUENCE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: SHOW_PLUGIN_ATTRIBUTE_HELP.P_OUTPUT_FORMAT
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package wwv_flow_item_help as --------------------------------------------------------------------------------
+  --
+  --  Copyright (c) Oracle Corporation 2002 - 2013. All Rights Reserved.
+  --
+  --    NAME
+  --      wwv_flow_item_help.sql
+  --
+  --    DESCRIPTION
+  --
+  --    INTERNATIONALIZATION
+  --      unknown
+  --
+  --    MULTI-CUSTOMER
+  --      unknown
+  --
+  --    SCRIPT ARGUMENTS
+  --      none
+  --
+  --    RUNTIME DEPLOYMENT: YES
+  --
+  --    MODIFIED   (MM/DD/YYYY)
+  --    rmattama    02/26/2002 - Created
+  --    sspadafo    07/04/2002 - Completed session id parameter passing from page to get_help_text function
+  --    mhichwa     12/10/2002 - Changed default color
+  --    sspadafo    08/17/2003 - Add p_session to get_label (Bug 3099500)
+  --    sspadafo    03/08/2006 - Removed get_help_text and get_label functions from spec (Bug 4922130)
+  --    pawolf      09/17/2009 - Added show_plugin_attribute_help
+  --    pawolf      06/02/2010 - Bug# 9707750: Add output options JSON and HTML to show_help
+  --    pawolf      07/19/2010 - Bug# 9840005: Add output options JSON and HTML to show_plugin_attribute_help
+  --    pawolf      04/27/2011 - Made get_help_text a public function (feature 679)
+  --
+  --------------------------------------------------------------------------------
+  --==============================================================================
+  -- Shows the defined help text of an page item.
+  --==============================================================================
+  procedure show_help (
+    p_item_id in varchar2 default null,
+    p_session in varchar2 default null,
+    p_close_button_name in varchar2 default 'Close',
+    p_title_bgcolor in varchar2 default '#cccccc;',
+    p_page_bgcolor in varchar2 default '#FFFFFF',
+    p_output_format in varchar2 default 'HTML'
+  );
+  --==============================================================================
+  -- Shows the defined help text of a plug-in attribute.
+  --==============================================================================
+  procedure show_plugin_attribute_help (
+    p_application_id in number,
+    p_builder_page_id in number,
+    p_session_id in varchar2,
+    p_plugin_type in varchar2,
+    p_plugin_name in varchar2,
+    p_attribute_scope in varchar2,
+    p_attribute_sequence in number,
+    p_output_format in varchar2 default 'JSON'
+  );
+  --==============================================================================
+  -- Returns the help text of a page item.
+  -- Note: p_item_id has to be the language specific id of the page item.
+  --==============================================================================
+  function get_help_text (p_item_id in number) return varchar2;
+  end wwv_flow_item_help;

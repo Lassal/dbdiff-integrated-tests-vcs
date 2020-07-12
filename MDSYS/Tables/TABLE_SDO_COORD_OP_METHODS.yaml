@@ -1,0 +1,95 @@
+name: SDO_COORD_OP_METHODS
+schema: MDSYS
+columns:
+- name: COORD_OP_METHOD_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: COORD_OP_METHOD_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: DATA_SOURCE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  dataTypeLength: 40
+- name: INFORMATION_SOURCE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 254
+  nullable: true
+  dataTypeLength: 254
+- name: IS_IMPLEMENTED_FORWARD
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: IS_IMPLEMENTED_REVERSE
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: LEGACY_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  defaultValue: NULL
+  dataTypeLength: 50
+- name: REVERSE_OP
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+constraints:
+- !<unique-constraint>
+  name: COORD_OP_METHOD_PRIM
+  type: PRIMARY_KEY
+  columns:
+  - name: COORD_OP_METHOD_ID
+    ordinalPosition: 1
+- !<check-constraint>
+  name: COORD_OP_METHOD_ID_MUST_BE_POS
+  type: CHECK
+  checkClause: COORD_OP_METHOD_ID > 0
+- !<check-constraint>
+  name: IS_IMPL_FW_1_OR_0
+  type: CHECK
+  checkClause: IS_IMPLEMENTED_FORWARD IN (0, 1)
+- !<check-constraint>
+  name: IS_IMPL_RV_1_OR_0
+  type: CHECK
+  checkClause: IS_IMPLEMENTED_REVERSE IN (0, 1)
+- !<check-constraint>
+  name: REVERSE_OP_1_OR_0
+  type: CHECK
+  checkClause: REVERSE_OP IN (0, 1)
+- !<check-constraint>
+  name: SYS_C005809
+  type: CHECK
+  checkClause: '"COORD_OP_METHOD_ID" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005810
+  type: CHECK
+  checkClause: '"REVERSE_OP" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005811
+  type: CHECK
+  checkClause: '"IS_IMPLEMENTED_FORWARD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005812
+  type: CHECK
+  checkClause: '"IS_IMPLEMENTED_REVERSE" IS NOT NULL'

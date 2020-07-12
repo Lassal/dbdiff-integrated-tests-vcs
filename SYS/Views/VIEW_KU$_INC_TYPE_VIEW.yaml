@@ -1,0 +1,40 @@
+schema: SYS
+name: KU$_INC_TYPE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    value (oo)
+  from
+    sys.ku$_edition_schemaobj_view oo,
+    sys.obj$ o,
+    sys.obj$ do,
+    sys.dependency$ d,
+    sys.type$ ty
+  where
+    o.oid$ = ty.toid
+    and oo.obj_num = o.obj#
+    and o.owner# != 0
+    /* not owned by SYS */
+    and bitand(o.flags, 16) != 16
+    /* not secondary object */
+    and o.obj# = d.p_obj#
+    and do .obj# = d.d_obj#
+    and bitand(d.property, 2) = 2
+    /* only REF dependency */
+    and do .type# = 13
+    and bitand(ty.properties, 8388608) = 0
+    /* exclude transient types */
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

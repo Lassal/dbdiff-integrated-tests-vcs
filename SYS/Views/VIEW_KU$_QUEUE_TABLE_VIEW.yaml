@@ -1,0 +1,56 @@
+schema: SYS
+name: KU$_QUEUE_TABLE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    t.objno,
+    (
+      select
+        value(qo)
+      from
+        sys.ku$_schemaobj_view qo
+      where
+        qo.obj_num = t.objno
+    ),
+    (
+      select
+        value(s)
+      from
+        sys.ku$_qtab_storage_view s
+      where
+        s.obj_num = t.objno
+    ),
+    t.udata_type,
+    (
+      select
+        u.name || '.' || o.name
+      from
+        sys.ku$_schemaobj_view o,
+        sys.user$ u,
+        sys.col$ c,
+        sys.coltype$ ct
+      where
+        c .intcol# = ct.intcol#
+        and c .obj# = ct.obj#
+        and c .name = 'USER_DATA'
+        and t.objno = c .obj#
+        and o.oid = ct.toid
+        and o.type_num = 13
+        and o.owner_num = u.user#
+    ),
+    t.sort_cols,
+    t.flags,
+    t.table_comment,
+    aft.primary_instance,
+    aft.secondary_instance,
+    aft.owner_instance
+  from
+    system.aq$_queue_tables t,
+    sys.aq$_queue_table_affinities aft
+  where
+    t.objno = aft.table_objno
+columns: []
+referencedTables: []

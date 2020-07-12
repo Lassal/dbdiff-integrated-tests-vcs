@@ -1,0 +1,19 @@
+schema: SYS
+name: ALL_APPLY_ENQUEUE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    e. "RULE_OWNER",
+    e. "RULE_NAME",
+    e. "DESTINATION_QUEUE_NAME"
+  from
+    dba_apply_enqueue e,
+    ALL_RULES r,
+    ALL_QUEUES aq
+  where
+    e.rule_owner = r.rule_owner
+    and e.rule_name = r.rule_name
+    and e.destination_queue_name = '"' || aq.owner || '"' || '.' || '"' || aq.name || '"'
+columns: []
+referencedTables: []

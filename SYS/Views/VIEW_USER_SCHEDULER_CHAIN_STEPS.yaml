@@ -1,0 +1,75 @@
+schema: SYS
+name: USER_SCHEDULER_CHAIN_STEPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    cs.var_name,
+    DECODE(
+      BITAND(cs.flags, 4),
+      4,
+      substr(cs.object_name, 1, instr(cs.object_name, '"') -1),
+      NULL
+    ),
+    DECODE(
+      BITAND(cs.flags, 4),
+      4,
+      substr(
+        cs.object_name,
+        instr(cs.object_name, '"') + 1,
+        length(cs.object_name) - instr(cs.object_name, '"')
+      ),
+      NULL
+    ),
+    DECODE(
+      BITAND(cs.flags, 8),
+      8,
+      substr(cs.object_name, 1, instr(cs.object_name, '"') -1),
+      NULL
+    ),
+    DECODE(
+      BITAND(cs.flags, 8),
+      8,
+      substr(
+        cs.object_name,
+        instr(cs.object_name, '"') + 1,
+        length(cs.object_name) - instr(cs.object_name, '"')
+      ),
+      NULL
+    ),
+    cs.queue_owner,
+    cs.queue_name,
+    cs.queue_agent,
+    cs.condition,
+    cs.credential_owner,
+    cs.credential_name,
+    cs.destination,
+    DECODE(BITAND(cs.flags, 1), 0, 'FALSE', 1, 'TRUE'),
+    DECODE(BITAND(cs.flags, 2), 0, 'FALSE', 2, 'TRUE'),
+    DECODE(BITAND(cs.flags, 512), 0, 'FALSE', 512, 'TRUE'),
+    DECODE(BITAND(cs.flags, 64), 0, 'FALSE', 64, 'TRUE'),
+    DECODE(BITAND(cs.flags, 128), 0, 'FALSE', 128, 'TRUE'),
+    DECODE(
+      BITAND(cs.flags, 8 + 16 + 32 + 1024 + 2048),
+      8,
+      'EVENT_SCHEDULE',
+      16,
+      'INLINE_EVENT',
+      32,
+      'SUBCHAIN',
+      1040,
+      'INLINE_FILE_WATCHER',
+      2056,
+      'FILE_WATCHER_SCHEDULE',
+      'PROGRAM'
+    ),
+    cs.timeout
+  FROM
+    obj$ o,
+    sys.scheduler$_step cs
+  WHERE
+    cs.oid = o.obj#
+    AND o.owner# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

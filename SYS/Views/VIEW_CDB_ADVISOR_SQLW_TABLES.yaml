@@ -1,0 +1,17 @@
+schema: SYS
+name: CDB_ADVISOR_SQLW_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OWNER",
+    "WORKLOAD_ID",
+    "WORKLOAD_NAME",
+    "SQL_ID",
+    "TABLE_OWNER",
+    "TABLE_NAME",
+    "CON_ID"
+  FROM
+    CONTAINERS("SYS"."DBA_ADVISOR_SQLW_TABLES")
+columns: []
+referencedTables: []

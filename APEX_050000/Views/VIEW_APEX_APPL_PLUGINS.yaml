@@ -1,0 +1,99 @@
+schema: APEX_050000
+name: APEX_APPL_PLUGINS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    p.id as plugin_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    case
+      p.plugin_type
+      when 'ITEM TYPE' then 'Item Type'
+      when 'DYNAMIC ACTION' then 'Dynamic Action'
+      when 'REGION TYPE' then 'Region Type'
+      when 'REPORT COLUMN TYPE' then 'Report Column Type'
+      when 'VALIDATION TYPE' then 'Validation Type'
+      when 'PROCESS TYPE' then 'Process Type'
+      when 'AUTHENTICATION TYPE' then 'Authentication Type'
+      when 'AUTHORIZATION TYPE' then 'Authorization Type'
+      else p.plugin_type
+    end as plugin_type,
+    p.name,
+    p.display_name,
+    p.category,
+    p.supported_ui_types,
+    p.image_prefix as file_prefix,
+    p.javascript_file_urls,
+    p.css_file_urls,
+    p.plsql_code,
+    p.render_function,
+    p.ajax_function,
+    p.validation_function,
+    p.execution_function,
+    p.session_sentry_function,
+    p.invalid_session_function,
+    p.authentication_function,
+    p.post_logout_function,
+    p.builder_validation_function,
+    p.migration_function,
+    p.standard_attributes,
+    p.sql_min_column_count,
+    p.sql_max_column_count,
+    p.sql_examples,
+    p.substitute_attributes,
+    nvl2(p.reference_id, 'Yes', 'No') as is_subscribed,
+    (
+      select
+        s.flow_id || '. ' || s.display_name
+      from
+        wwv_flow_plugins s
+      where
+        s.id = p.reference_id
+    ) as subscribed_from,
+    p.reference_id as subscribed_from_id,
+    case
+      p.subscribe_plugin_settings
+      when 'Y' then 'Yes'
+      else 'No'
+    end as subscribe_plugin_settings,
+    p.help_text,
+    p.version_identifier,
+    p.about_url,
+    p.plugin_comment as component_comment,
+    p.files_version,
+    p.created_by,
+    p.created_on,
+    p.last_updated_by,
+    p.last_updated_on,
+    p.name || ' ' || substr(p.display_name, 1, 30) || length(p.display_name) || ' t=' || p.plugin_type || ' c=' || p.category || ' v=' || p.version_identifier || ' u=' || substr(p.about_url, 1, 30) || length(p.about_url) as component_signature,
+    -- For compatibility with existing applications (bug# 14545162)
+    -- Obsolete columns because they are accessible with view apex_appl_plugin_settings
+    s.attribute_01,
+    s.attribute_02,
+    s.attribute_03,
+    s.attribute_04,
+    s.attribute_05,
+    s.attribute_06,
+    s.attribute_07,
+    s.attribute_08,
+    s.attribute_09,
+    s.attribute_10,
+    s.attribute_11,
+    s.attribute_12,
+    s.attribute_13,
+    s.attribute_14,
+    s.attribute_15
+  from
+    wwv_flow_authorized_and_4411 f,
+    wwv_flow_plugins p,
+    wwv_flow_plugin_settings s
+  where
+    p.flow_id = f.application_id
+    and s.flow_id (+) = p.flow_id
+    and s.plugin_type (+) = p.plugin_type
+    and s.plugin (+) = 'PLUGIN_' || p.name
+columns: []
+referencedTables: []

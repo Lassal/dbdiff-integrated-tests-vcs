@@ -1,0 +1,31 @@
+schema: MDSYS
+name: OGC_RELATE
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: OUT
+parameters:
+- name: G1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: G2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: PATTERNMATRIX
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_Relate(
+    g1 ST_Geometry,
+    g2 ST_Geometry,
+    PatternMatrix VARCHAR2
+  ) RETURN Integer DETERMINISTIC IS
+  BEGIN
+    RETURN g1.ST_Relate(g2, PatternMatrix);
+  END OGC_Relate;

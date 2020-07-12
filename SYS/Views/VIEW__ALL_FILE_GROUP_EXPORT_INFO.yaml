@@ -1,0 +1,25 @@
+schema: SYS
+name: _ALL_FILE_GROUP_EXPORT_INFO
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    g.file_group_owner,
+    g.file_group_name,
+    v.version_name,
+    v.version_id,
+    v.version_guid,
+    i.export_version,
+    i.export_platform,
+    i.export_time,
+    i.export_scn,
+    i.source_db_name
+  from
+    "_ALL_FILE_GROUPS" g,
+    sys.fgr$_file_group_export_info i,
+    sys.fgr$_file_group_versions v
+  where
+    i.version_guid = v.version_guid
+    and v.file_group_id = g.file_group_id
+columns: []
+referencedTables: []

@@ -1,0 +1,73 @@
+schema: SYS
+name: USER_AUDIT_STATEMENT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    OS_USERNAME,
+    USERNAME,
+    USERHOST,
+    TERMINAL,
+    TIMESTAMP,
+    OWNER,
+    OBJ_NAME,
+    ACTION_NAME,
+    NEW_NAME,
+    OBJ_PRIVILEGE,
+    SYS_PRIVILEGE,
+    ADMIN_OPTION,
+    GRANTEE,
+    AUDIT_OPTION,
+    SES_ACTIONS,
+    COMMENT_TEXT,
+    SESSIONID,
+    ENTRYID,
+    STATEMENTID,
+    RETURNCODE,
+    PRIV_USED,
+    CLIENT_ID,
+    ECONTEXT_ID,
+    SESSION_CPU,
+    EXTENDED_TIMESTAMP,
+    PROXY_SESSIONID,
+    GLOBAL_UID,
+    INSTANCE_NUMBER,
+    OS_PROCESS,
+    TRANSACTIONID,
+    SCN,
+    SQL_BIND,
+    SQL_TEXT,
+    OBJ_EDITION_NAME
+  from
+    user_audit_trail
+  where
+    action in (
+      17
+      /* GRANT OBJECT  */,
+      18
+      /* REVOKE OBJECT */,
+      30
+      /* AUDIT OBJECT */,
+      31
+      /* NOAUDIT OBJECT */,
+      49
+      /* ALTER SYSTEM */,
+      104
+      /* SYSTEM AUDIT */,
+      105
+      /* SYSTEM NOAUDIT */,
+      106
+      /* AUDIT DEFAULT */,
+      107
+      /* NOAUDIT DEFAULT */,
+      108
+      /* SYSTEM GRANT*/,
+      109
+      /* SYSTEM REVOKE */,
+      114
+      /* GRANT ROLE */,
+      115
+      /* REVOKE ROLE */
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,17 @@
+schema: SYS
+name: ALL_XML_SCHEMA_NAMESPACES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s.xmldata.schema_owner OWNER,
+    s.xmldata.target_namespace TARGET_NAMESPACE,
+    s.xmldata.schema_url SCHEMA_URL
+  from
+    xdb.xdb$schema s,
+    all_xml_schemas a
+  where
+    s.xmldata.schema_owner = a .owner
+    and s.xmldata.schema_url = a .schema_url
+columns: []
+referencedTables: []

@@ -1,0 +1,451 @@
+schema: XDB
+name: DBMS_XMLSCHEMA_INT
+routineType: PACKAGE
+returnParamater:
+  name: XDB$OID2INTNAME.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: ADDDOCID.TABSCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDDOCID.TABNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHECKUSERDEPENDENTS.SCHREF
+  ordinalPosition: 1
+  dataType: REF
+  parameterMode: IN
+- name: CHECKUSERDEPENDENTS.OBJNUM
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: COMPILESCHEMA.SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COPYEVOLVE.SCHEMAURLS
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: COPYEVOLVE.NEWSCHEMAS
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: COPYEVOLVE.TRANSFORMS
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: COPYEVOLVE.PRESERVEOLDDOCS
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: COPYEVOLVE.MAPTABNAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COPYEVOLVE.GENERATETABLES
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: COPYEVOLVE.FORCE
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: COPYEVOLVE.SCHEMAOWNERS
+  ordinalPosition: 8
+  dataType: VARRAY
+  parameterMode: IN
+- name: COPYEVOLVE.PARALLELDEGREE
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: COPYEVOLVE.OPTIONS
+  ordinalPosition: 10
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CREATENSBXML.CL
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: DELETESCHEMA.SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETESCHEMA.DELETE_OPTION
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GENERATEBEAN.SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATESCHEMA.SCHEMANAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATESCHEMA.TYPENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATESCHEMA.ELEMENTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATESCHEMA.RECURSE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GENERATESCHEMA.ANNOTATE
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GENERATESCHEMA.EMBEDCOLL
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GENERATESCHEMAS.SCHEMANAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATESCHEMAS.TYPENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATESCHEMAS.ELEMENTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATESCHEMAS.SCHEMAURL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATESCHEMAS.ANNOTATE
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GENERATESCHEMAS.EMBEDCOLL
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: HASDOCID.TABSCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HASDOCID.TABNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INPLACEEVOLVE.SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INPLACEEVOLVE.DIFFXML
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: INPLACEEVOLVE.FLAGS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA(1).SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(1).SCHEMADOC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(1).LOCAL
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(1).GENTYPES
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(1).GENBEAN
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(1).GENTABLES
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(1).FORCE
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(1).OWNER
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(1).ENABLEHIERARCHY
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(1).OPTIONS
+  ordinalPosition: 10
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(2).SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(2).SCHEMADOC
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: REGISTERSCHEMA(2).LOCAL
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(2).GENTYPES
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(2).GENBEAN
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(2).GENTABLES
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(2).FORCE
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(2).OWNER
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(2).ENABLEHIERARCHY
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(2).OPTIONS
+  ordinalPosition: 10
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(3).SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(3).SCHEMADOC
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: REGISTERSCHEMA(3).LOCAL
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(3).GENTYPES
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(3).GENBEAN
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(3).GENTABLES
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(3).FORCE
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(3).OWNER
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(3).CSID
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: REGISTERSCHEMA(3).ENABLEHIERARCHY
+  ordinalPosition: 10
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(3).OPTIONS
+  ordinalPosition: 11
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(4).SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(4).SCHEMADOC
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: REGISTERSCHEMA(4).LOCAL
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(4).GENTYPES
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(4).GENBEAN
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(4).GENTABLES
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(4).FORCE
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(4).OWNER
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(4).ENABLEHIERARCHY
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(4).OPTIONS
+  ordinalPosition: 10
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).SCHEMADOC
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).LOCAL
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).GENTYPES
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).GENBEAN
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).GENTABLES
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).FORCE
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).OWNER
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).ENABLEHIERARCHY
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).OPTIONS
+  ordinalPosition: 10
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).SCHEMAOID
+  ordinalPosition: 11
+  dataType: RAW
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).ELNAME
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).ELNUM
+  ordinalPosition: 13
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(5).IMPORT_OPTIONS
+  ordinalPosition: 14
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(6).SCHEMAURL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(6).SCHEMADOC
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: REGISTERSCHEMA(6).LOCAL
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(6).GENTYPES
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(6).GENBEAN
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(6).GENTABLES
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(6).FORCE
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REGISTERSCHEMA(6).OWNER
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(6).ENABLEHIERARCHY
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(6).OPTIONS
+  ordinalPosition: 10
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REGISTERSCHEMA(6).SCHEMAOID
+  ordinalPosition: 11
+  dataType: RAW
+  parameterMode: IN
+- name: REGISTERSCHEMA(6).ELNAME
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERSCHEMA(6).ELNUM
+  ordinalPosition: 13
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: XDB$OID2INTNAME.SCHEMAOID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+routineDefinition: package dbms_xmlschema_int wrapped a000000 1 abcd abcd abcd abcd
+  abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd 9 2791 686 U7tZsAfGkxc0PaRAEW0PQkXVMVwwg82jDCCG3y
+  + 5k52s5yNL + 4xnH + 1DoswLE0zsw6E + 9K7m D2eZIe1 + KHM6pBiJ6bPTYhLN128t98pvKoTLwfiLqMVsASwpOYUgnTQ
+  / J / kQcx7rZKrk + ZLH TsGatS + j6rqHLyv2ssInJx3suLcBRomjfxYnsqJqQBOeoDi6tLMC +
+  F72NVMUrsMDYj0sK01 / OlKrAuADKkbgoJAk6vKmjaHusqO8lq9Gm11G5krmwYXqIR9qlAme9mOIR5QrciV7EOgXZ6MM
+  YXagjRm67Ql1QNme3w7rmY2U6iWixQwKFbLzw0gn2dNgFFX7Qme0 / QdxC8VzcJU2clIxAEIx vapbgIWCZGFGPm65Y8IJbD1XN2xHFdDiWq6rlchZ7NnXxY
+  / pfHXwf2v / nQ + BV7 / qYuMzZhMV Co31EaAPkGTWPXvBH26z8t7gmyxKWeNMh7pY / 1gwLc +
+  gnnh0iBvDQcl9AIe85TAtqVV6cLiy mdrCn4Ezf8c / hWh8h5sSNBSGbN50grQoDqDYvzr0pkK3tJea32Gj
+  / g5Gv3KY0CoDeJqo4Z + G / sj4LI0W24rozKCrUBQ1mv4cZ / 6LudUYbohLPuocKhDcExuDyBPttjdEQ3YLzuLDRSfRrqZT
+  0BJt7OOSPWl6EwYVBLasmKH94a37wNbRLIJ3fz60kO8MEFar9wZBmLm + HvDA6kfa0npIoOGZ sVcepxSNoGm1paapXnpXEotD4jEx1d
+  / sJkz692L0VFhhg9USCp1fr0Tnw / LUYZwIrWZgecB4 h9W0R40e1FDYhIujsfEN76Q3bsKTzpNK4
+  / J + Oa1tvIUPtDjgV0H85IpaTYnl5oJbPr2lzC1w 8kb0uIjcjGvlge6Tl92uKlo5n0k7dwTKkCR6FNTzfhud6Mz0DNfd2fTyPJgAacsOWiZA
+  + SzD vi + ndzb0YNs3nAkiyjyf0wDDzWNbGwDWHxXnGmJcs + O5 + IlWGLTp8XadZpVJiOI3PYNH4rix
+  cP6t2D9yGrkO3kJ1Zik2lVG / qz7xkhPGQ2RoarfTrlCx0 + v + 7PE0jjrESAvj4ybsJ / F600EQ
+  Qat9KMdVGp9jJiG0GM3RJdEqBFCuDqI3eQoIg7B9vIxsYRhi3K / sSYw770sgghfRi4NHONWq o9n +
+  9WEeIZyp4B1g5y9EfiFnsCSwjIqrUGvtxxxnYrCrDOXVxNPoDCbWLdIS7amJW0NwVjt2 uJsOdl9jjQvyYcykfEiSMhHKjmLzf5Y
+  / ov / TaPRxwYCufjhaQV4XyXGnrGXj6 / qI9wJPrGSx hffIx + 4Ix + bHYn3UdDH8y6VJ9PyyvETqwfU
+  + LZhzPOpbLKIGSNZzEvR + frUdkE3 + cKvIeiVd Vzqs9LkpP63M7YALBd6q6BN149xKJWPVEw /
+  kp9DbSDrCT0GXoEs12W1EYOwFBXT5MzUFJHv / eMGp0zEJx5CVA9Zkz1gtHl9rGNXfzfFvsZNLSmuDE
+  / 1hCYAp0dodR1YTu3i6jpSWIriaI2IG TsjdLJBt6HYGwd6KPR2tmj4U3L0PXY5 / MZTLy47R0HSg1hCgteYrpjOFRDO
+  + 1Hujauy0mq8K 5o21V8AnIe6bnwY5F3NZqizay82j8EpBpb54qoovYZiUF7rBltLZhni1 + + hqT4g
+  =

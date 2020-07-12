@@ -1,0 +1,47 @@
+schema: SYS
+name: EXPEXEMPT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    COUNT(*)
+  FROM
+    sys.sysauth$
+  WHERE
+    (
+      privilege# = (
+        SELECT
+          privilege
+        FROM
+          sys.system_privilege_map
+        WHERE
+          name = 'EXEMPT ACCESS POLICY'
+      )
+    )
+    AND grantee# = userenv('SCHEMAID')
+    /* user directly has priv */
+    OR (
+      grantee# = userenv('SCHEMAID')
+      /* user has role with priv */
+      AND privilege# > 0
+      AND privilege# IN (
+        SELECT
+          u1.privilege#
+        FROM
+          sys.sysauth$ u1,
+          sys.sysauth$ u2
+        WHERE
+          u1.grantee# = userenv('SCHEMAID')
+          AND u1.privilege# = u2.grantee#
+          AND u2.privilege# = (
+            SELECT
+              privilege
+            FROM
+              sys.system_privilege_map
+            WHERE
+              name = 'EXEMPT ACCESS POLICY'
+          )
+      )
+    )
+columns: []
+referencedTables: []

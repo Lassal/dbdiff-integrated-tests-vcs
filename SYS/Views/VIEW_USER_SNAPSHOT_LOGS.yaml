@@ -1,0 +1,26 @@
+schema: SYS
+name: USER_SNAPSHOT_LOGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    log_owner,
+    master,
+    log_table,
+    log_trigger,
+    rowids,
+    primary_key,
+    object_id,
+    filter_columns,
+    sequence,
+    include_new_values,
+    current_snapshots,
+    snapshot_id
+  from
+    dba_snapshot_logs s,
+    sys.user$ u
+  where
+    s.log_owner = u.name
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

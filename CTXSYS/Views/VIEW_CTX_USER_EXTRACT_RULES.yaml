@@ -1,0 +1,30 @@
+schema: CTXSYS
+name: CTX_USER_EXTRACT_RULES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    i.idx_name erl_policy_name,
+    e.erl_rule_id erl_rule_id,
+    e.erl_language erl_language,
+    e.erl_rule erl_rule,
+    e.erl_modifier erl_modifier,
+    e.erl_type erl_type,
+    decode(
+      e.erl_status,
+      0,
+      'not compiled',
+      1,
+      'to be deleted',
+      2,
+      'compiled'
+    ) erl_status,
+    e.erl_comments erl_comments
+  from
+    dr$user_extract_rule e,
+    dr$index i
+  where
+    i.idx_owner# = userenv('SCHEMAID')
+    and e.erl_pol_id = i.idx_id
+columns: []
+referencedTables: []

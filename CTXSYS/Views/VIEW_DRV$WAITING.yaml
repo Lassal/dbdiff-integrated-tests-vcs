@@ -1,0 +1,15 @@
+schema: CTXSYS
+name: DRV$WAITING
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "WTG_CID",
+    "WTG_ROWID",
+    "WTG_PID"
+  from
+    dr$waiting
+  where
+    wtg_cid = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
+columns: []
+referencedTables: []

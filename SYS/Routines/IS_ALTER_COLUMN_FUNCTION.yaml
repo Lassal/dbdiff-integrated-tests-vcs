@@ -1,0 +1,18 @@
+schema: SYS
+name: IS_ALTER_COLUMN
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: COLUMN_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  function is_alter_column (column_name varchar2) return boolean is
+  begin
+    return dbms_standard.is_alter_column(column_name);
+  end;

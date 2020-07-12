@@ -1,0 +1,21 @@
+schema: SYS
+name: ALL_XML_SCHEMA_SIMPLE_TYPES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s.xmldata.schema_owner OWNER,
+    s.xmldata.schema_url SCHEMA_URL,
+    s.xmldata.target_namespace TARGET_NAMESPACE,
+    st.xmldata.name SIMPLE_TYPE_NAME,
+    value(st) SIMPLE_TYPE
+  from
+    xdb.xdb$schema s,
+    xdb.xdb$simple_type st,
+    all_xml_schemas a
+  where
+    sys_op_r2o(st.xmldata.parent_schema) = s.sys_nc_oid$
+    and s.xmldata.schema_owner = a .owner
+    and s.xmldata.schema_url = a .schema_url
+columns: []
+referencedTables: []

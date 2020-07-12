@@ -1,0 +1,82 @@
+schema: SYS
+name: USER_REPCOLUMN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.sname,
+    r.oname,
+    r.type,
+    r.cname,
+    r.id,
+    r.pos,
+    r.compare_old_on_delete,
+    r.compare_old_on_update,
+    r.send_old_on_delete,
+    r.send_old_on_update,
+    r.ctype,
+    r.ctype_toid,
+    r.ctype_owner,
+    r.ctype_hashcode,
+    r.ctype_mod,
+    r.data_length,
+    r.data_precision,
+    r.data_scale,
+    r.nullable,
+    r.character_set_name,
+    r.top,
+    r.char_length,
+    r.char_used
+  from
+    user_tab_columns tc,
+    sys.dba_repcolumn r,
+    sys.user$ u
+  where
+    r.sname = u.name
+    and u.user# = userenv('SCHEMAID')
+    and r.oname = tc.table_name
+    and (
+      (
+        r.top IS NOT NULL
+        AND r.top = tc.column_name
+      )
+      OR (
+        r.top IS NULL
+        AND r.cname = tc.column_name
+      )
+    )
+  union
+  select
+    r.sname,
+    r.oname,
+    r.type,
+    r.cname,
+    r.id,
+    r.pos,
+    r.compare_old_on_delete,
+    r.compare_old_on_update,
+    r.send_old_on_delete,
+    r.send_old_on_update,
+    r.ctype,
+    r.ctype_toid,
+    r.ctype_owner,
+    r.ctype_hashcode,
+    r.ctype_mod,
+    r.data_length,
+    r.data_precision,
+    r.data_scale,
+    r.nullable,
+    r.character_set_name,
+    r.top,
+    r.char_length,
+    r.char_used
+  from
+    "_USER_REPL_NESTED_TABLE_NAMES" nt,
+    sys.dba_repcolumn r,
+    sys.user$ u
+  where
+    r.sname = u.name
+    and u.user# = userenv('SCHEMAID')
+    and r.oname = nt.table_name
+columns: []
+referencedTables: []

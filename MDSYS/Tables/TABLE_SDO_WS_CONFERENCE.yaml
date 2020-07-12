@@ -1,0 +1,25 @@
+name: SDO_WS_CONFERENCE
+schema: MDSYS
+columns:
+- name: CONFERENCE_ID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  dataTypeLength: 128
+- name: REQUEST
+  ordinalPosition: 2
+  dataType: XMLTYPE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: SDO_WS_CONF_PK
+  type: PRIMARY_KEY
+  columns:
+  - name: CONFERENCE_ID
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C006373
+  type: CHECK
+  checkClause: '"CONFERENCE_ID" IS NOT NULL'

@@ -1,0 +1,35 @@
+schema: SYS
+name: USER_ADDM_FINDINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    f. "TASK_ID",
+    f. "TASK_NAME",
+    f. "EXECUTION_NAME",
+    f. "FINDING_ID",
+    f. "FINDING_NAME",
+    f. "TYPE",
+    f. "TYPE_ID",
+    f. "PARENT",
+    f. "OBJECT_ID",
+    f. "IMPACT_TYPE",
+    f. "IMPACT",
+    f. "MESSAGE",
+    f. "MORE_INFO",
+    f. "FILTERED",
+    f. "FLAGS",
+    a .database_time as database_time,
+    a .active_sessions as active_sessions,
+    a .perc_active_sess as perc_active_sess,
+    a .is_aggregate as is_aggregate,
+    a .meter_level as meter_level,
+    a .query_is_approx as query_is_approx
+  from
+    wri$_adv_addm_fdg a,
+    user_advisor_findings f
+  where
+    f.task_id = a .task_id
+    and f.finding_id = a .finding_id
+columns: []
+referencedTables: []

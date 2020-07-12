@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_PLSQL_OBJECT_SETTINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    NAME,
+    TYPE,
+    PLSQL_OPTIMIZE_LEVEL,
+    PLSQL_CODE_TYPE,
+    PLSQL_DEBUG,
+    PLSQL_WARNINGS,
+    NLS_LENGTH_SEMANTICS,
+    PLSQL_CCFLAGS,
+    PLSCOPE_SETTINGS,
+    ORIGIN_CON_ID
+  from
+    NO_ROOT_SW_FOR_LOCAL(INT $DBA_PLSQL_OBJECT_SETTINGS)
+  where
+    OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

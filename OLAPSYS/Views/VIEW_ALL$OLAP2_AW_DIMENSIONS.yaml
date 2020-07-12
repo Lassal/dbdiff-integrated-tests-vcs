@@ -1,0 +1,31 @@
+schema: OLAPSYS
+name: ALL$OLAP2_AW_DIMENSIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    AW.AWOWNER as AW_OWNER,
+    AW.AWNAME as AW_NAME,
+    AW.AWOBJECT as AW_LOGICAL_NAME,
+    AW.COL3 as AW_PHYSICAL_OBJECT,
+    AW.COL1 as SOURCE_OWNER,
+    AW.COL2 as SOURCE_NAME
+  FROM
+    TABLE(
+      CAST (
+        OLAP_TABLE(
+          'SYS.AWMD duration query',
+          'olapsys.ALL_OLAP2_AW_METADATA_T',
+          'ACTIVE_CATALOG ''ALL_DIMENSIONS'' ''ALL''',
+          'MEASURE AWOWNER FROM SYS.AWMD!DIM_OWNER
+                          MEASURE AWNAME FROM SYS.AWMD!DIM_AWNAME
+                          MEASURE AWOBJECT FROM SYS.AWMD!DIM_DIMENSION_NAME
+                          MEASURE COL1 FROM SYS.AWMD!DIM_SOURCE_OWNER
+                          MEASURE COL2 FROM SYS.AWMD!DIM_SOURCE_NAME
+                          MEASURE COL3 from SYS.AWMD!DIM_AW_PHYSICAL_OBJECT
+                          DIMENSION AWMDKEY FROM SYS.AWMD!AWMDKEY_DIM'
+        ) AS olapsys.ALL_OLAP2_AW_METADATA_T
+      )
+    ) AW
+columns: []
+referencedTables: []

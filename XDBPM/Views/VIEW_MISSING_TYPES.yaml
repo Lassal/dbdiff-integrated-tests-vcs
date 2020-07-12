@@ -1,0 +1,35 @@
+schema: XDBPM
+name: MISSING_TYPES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "OWNER",
+    "TYPE_NAME",
+    "TYPE_OID",
+    "TYPECODE",
+    "ATTRIBUTES",
+    "METHODS",
+    "PREDEFINED",
+    "INCOMPLETE",
+    "FINAL",
+    "INSTANTIABLE",
+    "SUPERTYPE_OWNER",
+    "SUPERTYPE_NAME",
+    "LOCAL_ATTRIBUTES",
+    "LOCAL_METHODS",
+    "TYPEID"
+  from
+    XDBPM.XDBPM_ALL_TYPES at
+  where
+    not exists (
+      select
+        1
+      from
+        TYPE_SUMMARY ts
+      where
+        nvl(ts.OWNER, 'SYS') = nvl(at .OWNER, 'SYS')
+        and ts.TYPE_NAME = at .TYPE_NAME
+    )
+columns: []
+referencedTables: []

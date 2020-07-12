@@ -1,0 +1,40 @@
+schema: SYS
+name: KU$_TEMP_SUBPARTDATA_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    p.obj#,
+    sp.ts_num,
+    dsp.ts#,
+    p.defts#,
+    tpo.defts#,
+    u.datats#,
+    sp.bhiboundval,
+    dsp.bhiboundval
+  FROM
+    sys.tabcompart$ p,
+    sys.partobj$ tpo,
+    ku$_temp_subpart_view sp,
+    sys.defsubpart$ dsp,
+    sys.obj$ po,
+    sys.obj$ spo,
+    sys.user$ u
+  WHERE
+    p.bo# = tpo.obj#
+    AND p.subpartcnt = MOD(TRUNC(tpo.spare2 / 65536), 65536)
+    AND sp.pobj_num = p.obj#
+    AND po.obj# = p.obj#
+    AND spo.obj# = sp.obj_num
+    AND sp.subpartno = dsp.spart_position
+    AND dsp.bo# = p.bo#
+    AND u.user# = po.owner#
+    AND (
+      spo.subname = (po.subname || '_' || dsp.spart_name)
+      OR (
+        po.subname LIKE 'SYS_P%'
+        AND spo.subname LIKE 'SYS_SUBP%'
+      )
+    )
+columns: []
+referencedTables: []

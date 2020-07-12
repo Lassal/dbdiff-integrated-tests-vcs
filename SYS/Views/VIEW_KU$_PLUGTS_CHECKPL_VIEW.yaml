@@ -1,0 +1,43 @@
+schema: SYS
+name: KU$_PLUGTS_CHECKPL_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    null,
+    null,
+    null,
+    'DBMS_PLUGTS',
+    'SYS',
+    0,
+    102,
+    0,
+    null,
+    null,
+    p1.prepost,
+    p2.prepost,
+    p3.prepost,
+    p4.prepost,
+    p5.prepost
+  from
+    ku$_prepost_view p1,
+    ku$_prepost_view p2,
+    ku$_prepost_view p3,
+    ku$_prepost_view p4,
+    ku$_prepost_view p5
+  where
+    (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

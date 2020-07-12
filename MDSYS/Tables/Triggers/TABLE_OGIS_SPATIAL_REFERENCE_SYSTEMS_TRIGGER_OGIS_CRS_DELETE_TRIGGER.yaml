@@ -1,0 +1,14 @@
+targetObjectSchema: MDSYS
+targetObjectName: OGIS_SPATIAL_REFERENCE_SYSTEMS
+targetObjectType: TABLE
+name: OGIS_CRS_DELETE_TRIGGER
+eventTiming: BEFORE EACH ROW
+event: DELETE
+eventActionBody: |-
+  BEGIN
+  DELETE FROM
+    MDSYS.sdo_coord_ref_system
+  WHERE
+    SRID = :old.srid;
+  END;
+executionOrder: 1

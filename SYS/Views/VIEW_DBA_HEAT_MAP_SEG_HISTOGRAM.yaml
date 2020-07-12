@@ -1,0 +1,24 @@
+schema: SYS
+name: DBA_HEAT_MAP_SEG_HISTOGRAM
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    o.subname,
+    s.track_time,
+    s.segment_write,
+    s.full_scan,
+    s.lookup_scan
+  from
+    obj$ o,
+    sys. "_SYS_HEAT_MAP_SEG_HISTOGRAM" s,
+    user $ u
+  where
+    s.obj# = o.obj#
+    and o.owner# = u.user#
+  order by
+    o.obj#
+columns: []
+referencedTables: []

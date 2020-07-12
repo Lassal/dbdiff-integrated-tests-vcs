@@ -1,0 +1,38 @@
+schema: SYS
+name: EXU8ORD
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    /*+ no_filtering */
+    MAX(level),
+    d1.d_obj#,
+    d1.owner#
+  FROM
+    (
+      SELECT
+        /*+ no_merge */
+        d.d_obj#,
+        d.p_obj#,
+        v.owner#
+      FROM
+        sys.dependency$ d,
+        (
+          select
+            obj#,
+            owner#
+          from
+            sys.obj$
+          where
+            type # = 4
+        ) v
+      WHERE
+        v.obj# = d.d_obj#
+    ) d1
+  CONNECT BY
+    NOCYCLE PRIOR d1.d_obj# = d1.p_obj#
+  GROUP BY
+    d1.d_obj#,
+    d1.owner#
+columns: []
+referencedTables: []

@@ -1,0 +1,14 @@
+schema: SYS
+name: SYSEVENT
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  function sysevent return varchar2 is
+  begin
+    return dbms_standard.sysevent;
+  end;

@@ -1,0 +1,151 @@
+schema: SYS
+name: ALL_CUBE_DIMENSIONALITY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    cu.name OWNER,
+    co.name CUBE_NAME,
+    do .name DIMENSION_NAME,
+    io_diml.option_value DIMENSIONALITY_NAME,
+    diml.dimensionality_id DIMENSIONALITY_ID,
+    diml.order_num ORDER_NUM,
+    (
+      case
+        when io.option_num_value is null then 0
+        else io.option_num_value
+      end
+    ) IS_SPARSE,
+    io_eap.option_value ET_ATTR_PREFIX
+  FROM
+    olap_cubes$ c,
+    user $ cu,
+    obj$ co,
+    olap_dimensionality$ diml,
+    obj$ do,
+    olap_impl_options$ io,
+    olap_impl_options$ io_eap,
+    olap_impl_options$ io_diml,
+    (
+      SELECT
+        obj#,
+        MIN(have_dim_access) have_all_dim_access
+      FROM
+        (
+          SELECT
+            c .obj# obj#,
+            (
+              CASE
+                WHEN (
+                  do .owner# in (userenv('SCHEMAID'), 1) -- public objects
+                  or do .obj# in (
+                    select
+                      obj# -- directly granted privileges
+                    from
+                      sys.objauth$
+                    where
+                      grantee# in (
+                        select
+                          kzsrorol
+                        from
+                          x$kzsro
+                      )
+                  )
+                  or -- user has system privileges
+                  (
+                    exists (
+                      select
+                        null
+                      from
+                        v$enabledprivs
+                      where
+                        priv_number in (
+                          -302,
+                          -- ALTER ANY PRIMARY DIMENSION
+                          -304,
+                          -- DELETE ANY PRIMARY DIMENSION
+                          -305,
+                          -- DROP ANY PRIMARY DIMENSION
+                          -306,
+                          -- INSERT ANY PRIMARY DIMENSION
+                          -307
+                        ) -- SELECT ANY PRIMARY DIMENSION
+                    )
+                  )
+                ) THEN 1
+                ELSE 0
+              END
+            ) have_dim_access
+          FROM
+            olap_cubes$ c,
+            olap_dimensionality$ diml,
+            olap_cube_dimensions$ dim,
+            obj$ do
+          WHERE
+            do .obj# = dim.obj#
+            AND diml.dimensioned_object_type = 1 --CUBE
+            AND diml.dimensioned_object_id = c .obj#
+            AND diml.dimension_type = 11 --DIMENSION
+            AND diml.dimension_id = do .obj#
+        )
+      GROUP BY
+        obj#
+    ) da
+  WHERE
+    co.obj# = c .obj#
+    AND c .obj# = da.obj#(+)
+    AND co.owner# = cu.user#
+    AND diml.dimensioned_object_type = 1 --CUBE
+    AND diml.dimensioned_object_id = c .obj#
+    AND diml.dimension_type = 11 --DIMENSION
+    AND diml.dimension_id = do .obj#
+    AND io.object_type(+) = 16 -- DIMENSIONALITY
+    AND io.owning_objectid(+) = diml.dimensionality_id
+    AND io.option_type(+) = 10 -- IS_SPARSE_DIM
+    AND io_eap.object_type(+) = 16 -- DIMENSIONALITY
+    AND io_eap.owning_objectid(+) = diml.dimensionality_id
+    AND io_eap.option_type(+) = 36 -- ET_ATTR_PREFIX
+    AND io_diml.object_type(+) = 16 -- DIMENSIONALITY
+    AND io_diml.owning_objectid(+) = diml.dimensionality_id
+    AND io_diml.option_type(+) = 33 -- DIMENSIONALITY NAME
+    AND (
+      co.owner# in (userenv('SCHEMAID'), 1) -- public objects
+      or co.obj# in (
+        select
+          obj# -- directly granted privileges
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or -- user has system privileges
+      (
+        exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -309,
+              -- ALTER ANY CUBE
+              -311,
+              -- DROP ANY CUBE
+              -312,
+              -- SELECT ANY CUBE
+              -313
+            ) -- UPDATE ANY CUBE
+        )
+      )
+    )
+    AND (
+      (have_all_dim_access = 1)
+      OR (have_all_dim_access is NULL)
+    )
+columns: []
+referencedTables: []

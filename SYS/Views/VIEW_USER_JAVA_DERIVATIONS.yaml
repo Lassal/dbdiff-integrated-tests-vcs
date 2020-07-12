@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_JAVA_DERIVATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    nvl(j.longdbcs, o.name),
+    t.joxftderivedclassnumber,
+    nvl(j2.longdbcs, t.joxftderivedclassname)
+  from
+    sys.javasnm$ j,
+    sys.javasnm$ j2,
+    sys.obj$ o,
+    sys.x$joxdrc t
+  where
+    o.obj# = t.joxftobn
+    and o.type# = 28
+    and j.short(+) = o.name
+    and j2.short(+) = t.joxftderivedclassname
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

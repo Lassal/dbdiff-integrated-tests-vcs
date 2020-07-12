@@ -1,0 +1,35 @@
+schema: SYS
+name: KU$_DIMENSION_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    d.obj#,
+    value(o),
+    d.dimtextlen,
+    sys.dbms_metadata_util.long2clob(
+      d.dimtextlen,
+      'SYS.DIM$',
+      'DIMTEXT',
+      d.rowid
+    )
+  from
+    sys.ku$_schemaobj_view o,
+    sys.dim$ d
+  where
+    d.obj# = o.obj_num
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

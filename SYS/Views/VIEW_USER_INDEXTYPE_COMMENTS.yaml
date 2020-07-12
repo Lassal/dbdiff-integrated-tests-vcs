@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_INDEXTYPE_COMMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    c .comment$
+  from
+    sys.obj$ o,
+    sys.user$ u,
+    sys.indtypes$ i,
+    sys.com$ c
+  where
+    o.obj# = i.obj#
+    and u.user# = o.owner#
+    and c .obj# = i.obj#
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

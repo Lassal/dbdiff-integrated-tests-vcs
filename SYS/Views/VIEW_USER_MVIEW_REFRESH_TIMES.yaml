@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_MVIEW_REFRESH_TIMES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s. "OWNER",
+    s. "NAME",
+    s. "MASTER_OWNER",
+    s. "MASTER",
+    s. "LAST_REFRESH"
+  from
+    dba_mview_refresh_times s,
+    sys.user$ u
+  where
+    u.user# = userenv('SCHEMAID')
+    and s.owner = u.name
+columns: []
+referencedTables: []

@@ -1,0 +1,438 @@
+schema: CTXSYS
+name: DRVIMR
+routineType: PACKAGE
+returnParamater:
+  name: NEXT_DID.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: ADD_BRW.P_WORD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_BRW.P_COUNT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADD_CLUSTER.CLUSTERID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_CLUSTER.DESCRIPT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_CLUSTER.LABEL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_CLUSTER.SZE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_CLUSTER.QUALITY_SCORE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_CLUSTER.PARENT
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_DOCCLS.DOCID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_DOCCLS.CLUSTERID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_DOCCLS.SCORE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_EXPLAIN.P_ID
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADD_EXPLAIN.P_PARENT_ID
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADD_EXPLAIN.P_OPERATION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_EXPLAIN.P_OPTIONS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_EXPLAIN.P_OBJECT_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_EXPLAIN.P_POSITION
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADD_FEATURE.ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_FEATURE.WEIGHT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_GIST.P_POV
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_GIST_TXT.P_TEXT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_HIGHLIGHT.P_OFFSET
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_HIGHLIGHT.P_LENGTH
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_HQF.P_ID
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADD_HQF.P_PARENT_ID
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADD_HQF.P_OPERATION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_HQF.P_OPTIONS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_HQF.P_OBJECT_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_HQF.P_POSITION
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADD_HQF.P_BT
+  ordinalPosition: 7
+  dataType: TABLE
+  parameterMode: IN
+- name: ADD_HQF.P_RT
+  ordinalPosition: 8
+  dataType: TABLE
+  parameterMode: IN
+- name: ADD_HQF.P_NT
+  ordinalPosition: 9
+  dataType: TABLE
+  parameterMode: IN
+- name: ADD_LANGUAGE.P_LANGUAGE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_LANGUAGE.P_SCORE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_NOUN_PHRASE.P_NP_TERM
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_NOUN_PHRASE.P_TERM_POS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_NOUN_PHRASE.P_OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_NOUN_PHRASE.P_LENGTH
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_NOUN_PHRASE.P_IS_GRP_START
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_NOUN_PHRASE.P_IS_IN_LEXICON
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_POS.P_WORD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_POS.P_POS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_POS.P_OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_POS.P_LENGTH
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_POS.P_IS_NEW_WORD
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_POS.P_IS_IN_LEXICON
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_QUERY.P_QUERY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_QUERY.P_TIMES
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_STEM.P_STEM
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_STEM.P_OFFSET
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_STEM.P_LENGTH
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_STEM.P_IS_IN_LEXICON
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_STEM.P_ORIG
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_THEME.P_THEME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_THEME.P_WEIGHT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_TOKEN.P_TOKEN
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_TOKEN.P_OFFSET
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_TOKEN.P_LENGTH
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_TOKEN.P_TTYPE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: DIRECT_SET.P_MODE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DIRECT_SET.P_LANG
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DIRECT_SET.P_FORMAT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DIRECT_SET.P_CSET
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DIRECT_SET.P_VCHR2
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DIRECT_SET.P_BFILE
+  ordinalPosition: 6
+  dataType: BFILE
+  parameterMode: IN
+- name: DIRECT_SET.P_CLOB
+  ordinalPosition: 7
+  dataType: CLOB
+  parameterMode: IN
+- name: DIRECT_SET.P_BLOB
+  ordinalPosition: 8
+  dataType: BLOB
+  parameterMode: IN
+- name: ENDREPORT.REPORT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: INOUT
+- name: GET_FEATURE.IDX
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_FEATURE.ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GET_FEATURE.WEIGHT
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: NEXT_DID.DID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: OUT
+- name: NEXT_DID.ROW
+  ordinalPosition: 2
+  dataType: ROWID
+  parameterMode: OUT
+- name: SET_KWIC.KWIC
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TITLE.TITLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TITLE.TITLE2
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TITLE.SEP
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: W.LLINE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WL.LLINE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: "package drvimr authid current_user as\n/*=========================================================================*/\n\
+  /*======================  CTX_QUERY FUNCTIONS =============================*/\n\
+  /*=========================================================================*/\n\
+  /*---------------------------- explain ------------------------------------*/\n\
+  type exprec is record (\n  id binary_integer,\n  parent_id binary_integer,\n  operation\
+  \ varchar2(30),\n  options varchar2(30),\n  object_name varchar2(80),\n  position\
+  \ binary_integer\n);\ntype exptab is table of exprec index by binary_integer;\n\
+  r_exp exptab;\nprocedure add_explain(\n  p_id in binary_integer,\n  p_parent_id\
+  \ in binary_integer,\n  p_operation in varchar2,\n  p_options in varchar2,\n  p_object_name\
+  \ in varchar2,\n  p_position in binary_integer\n);\n/*----------------------------\
+  \ hqfeedback ---------------------------------*/\ntype hqfrec is record (\n  id\
+  \ binary_integer,\n  parent_id binary_integer,\n  operation varchar2(30),\n  options\
+  \ varchar2(30),\n  object_name varchar2(80),\n  position binary_integer,\n  bt ctx_feedback_type,\n\
+  \  rt ctx_feedback_type,\n  nt ctx_feedback_type\n);\ntype hqftab is table of hqfrec\
+  \ index by binary_integer;\nr_hqf hqftab;\nprocedure add_hqf(\n  p_id in binary_integer,\n\
+  \  p_parent_id in binary_integer,\n  p_operation in varchar2,\n  p_options in varchar2,\n\
+  \  p_object_name in varchar2,\n  p_position in binary_integer,\n  p_bt in ctx_feedback_type,\n\
+  \  p_rt in ctx_feedback_type,\n  p_nt in ctx_feedback_type\n);\n/*----------------------------\
+  \ browse_words --------------------------------*/\ntype brwrec is record (\n  word\
+  \ varchar2(256),\n  doc_count binary_integer\n);\ntype brwtab is table of brwrec\
+  \ index by binary_integer;\nr_brw brwtab;\nprocedure add_brw(\n  p_word in varchar2,\n\
+  \  p_count in binary_integer\n);\n/*=========================================================================*/\n\
+  /*========================  CTX_DOC FUNCTIONS =============================*/\n\
+  /*=========================================================================*/\n\
+  TTYPE_NORMAL constant number: = 0;\nTTYPE_THEME constant number: = 1;\nTTYPE_STEM\
+  \ constant number: = 2;\nMODE_CLOB constant number: = 1;\nMODE_BLOB constant number:\
+  \ = 2;\nMODE_BFILE constant number: = 3;\nMODE_VCHR2 constant number: = 4;\ndirect_mode\
+  \ number;\ndirect_clob clob;\ndirect_blob blob;\ndirect_if_blob blob;\ndirect_bfile\
+  \ bfile;\ndirect_vchr2 varchar2(32767);\ndirect_lang varchar2(256);\ndirect_format\
+  \ varchar2(256);\ndirect_cset varchar2(256);\nPROCEDURE direct_set (\n  p_mode in\
+  \ binary_integer default NULL,\n  p_lang in varchar2 default NULL,\n  p_format in\
+  \ varchar2 default NULL,\n  p_cset in varchar2 default NULL,\n  p_vchr2 in varchar2\
+  \ default NULL,\n  p_bfile in bfile default NULL,\n  p_clob in clob default NULL,\n\
+  \  p_blob in blob default NULL\n);\n/*---------------------------- themes --------------------------------------*/\n\
+  type thmrec is record (theme varchar2(2000), weight number);\ntype thmtab is table\
+  \ of thmrec index by binary_integer;\nr_thm thmtab;\nPROCEDURE add_theme(\n  p_theme\
+  \ in varchar2,\n  p_weight in number\n);\n/*------------------------------ gist\
+  \ --------------------------------------*/\ntype gsttab is table of varchar2(31000)\
+  \ index by binary_integer;\nr_gst thmtab;\nr_gsttxt gsttab;\nPROCEDURE add_gist(p_pov\
+  \ in varchar2);\nPROCEDURE add_gist_txt(p_text in varchar2);\n/*------------------------------\
+  \ tokens ------------------------------------*/\ntype tokrec is record (\n  token\
+  \ varchar2(64),\n  offset number,\n  length number,\n  ttype number\n);\ntype toktab\
+  \ is table of tokrec index by binary_integer;\nr_tok toktab;\nPROCEDURE add_token(\n\
+  \  p_token in varchar2,\n  p_offset in number,\n  p_length in number,\n  p_ttype\
+  \ in number\n);\n/*------------------------------ stems ------------------------------------*/\n\
+  /* Beehive */\ntype stemrec is record (\n  /* We made the size of stem to be larger\
+  \ than the size used for tokens\n  \n     * as this might be a multi-word stem\n\
+  \  \n     */\n  stem varchar2(1000),\n  offset number,\n  length number,\n  is_in_lexicon\
+  \ boolean,\n  orig varchar2(64)\n);\ntype stemtab is table of stemrec index by binary_integer;\n\
+  r_stems stemtab;\nPROCEDURE add_stem(\n  p_stem in varchar2,\n  p_offset in number,\n\
+  \  p_length in number,\n  p_is_in_lexicon in number,\n  p_orig in varchar2\n);\n\
+  /*------------------------------ noun phrases ------------------------------------*/\n\
+  /* Beehive */\ntype nprec is record (\n  term varchar2(64),\n  pos varchar2(64),\n\
+  \  /* TBD: Confirm with Inxight and reduce size */\n  offset number,\n  length number,\n\
+  \  is_grp_start boolean,\n  is_in_lexicon boolean\n);\ntype nptab is table of nprec\
+  \ index by binary_integer;\nr_noun_phrases nptab;\nPROCEDURE add_noun_phrase(\n\
+  \  p_np_term in varchar2,\n  p_term_pos in varchar2,\n  p_offset in number,\n  p_length\
+  \ in number,\n  p_is_grp_start in number,\n  p_is_in_lexicon in number\n);\n/*------------------------------\
+  \ languages ------------------------------------*/\n/* Beehive */\ntype languagerec\
+  \ is record (\n  language varchar2(64),\n  score number\n);\ntype languagetab is\
+  \ table of languagerec index by binary_integer;\nr_languages languagetab;\nPROCEDURE\
+  \ add_language(\n  p_language in varchar2,\n  p_score in number\n);\n/*------------------------------\
+  \ part of speech ---------------------------------*/\n/* Beehive */\ntype posrec\
+  \ is record (\n  word varchar2(64),\n  pos varchar2(64),\n  /* TBD: Confirm with\
+  \ Inxight and reduce size */\n  offset number,\n  length number,\n  is_new_word\
+  \ boolean,\n  is_in_lexicon boolean\n);\ntype postab is table of posrec index by\
+  \ binary_integer;\nr_pos postab;\nPROCEDURE add_pos(\n  p_word in varchar2,\n  p_pos\
+  \ in varchar2,\n  p_offset in number,\n  p_length in number,\n  p_is_new_word in\
+  \ number,\n  p_is_in_lexicon in number\n);\n/*------------------------------ highlight\
+  \ ---------------------------------*/\ntype hilrec is record (offset number, length\
+  \ number);\ntype hiltab is table of hilrec index by binary_integer;\nr_hil hiltab;\n\
+  PROCEDURE add_highlight(p_offset in number, p_length in number);\n/*========================================================================*/\n\
+  /*=================== DOCUMENT FEATURE FUNCTIONS =========================*/\n/*========================================================================*/\n\
+  /* reset the document feature buffer */\nPROCEDURE reset_feature;\n/* add one feature\
+  \ */\nPROCEDURE add_feature(id number, weight number);\n/* get feature number */\n\
+  FUNCTION feature_count RETURN NUMBER;\n/* get feature by index */\nPROCEDURE get_feature(\n\
+  \  idx BINARY_INTEGER,\n  id OUT NUMBER,\n  weight OUT NUMBER\n);\n/*========================================================================*/\n\
+  /*=================== DOCUMENT CLUSTERING FUNCTIONS ======================*/\n/*========================================================================*/\n\
+  /* in-memory table for document assignment */\nTYPE doc_rec IS RECORD (\n  docid\
+  \ number,\n  -- document ID to identify the document\n  clusterid number,\n  --\
+  \ the ID of the cluster the document is assigned to\n  score number -- the similarity\
+  \ score between document and cluster\n);\nTYPE doc_tab is TABLE OF doc_rec INDEX\
+  \ BY BINARY_INTEGER;\n/* in-memory table for cluster information */\nTYPE cluster_rec\
+  \ IS RECORD (\n  clusterid number,\n  -- cluster ID to identify a cluster\n  descript\
+  \ varchar2(4000),\n  -- a string to describe the cluster\n  label varchar2(200),\n\
+  \  -- a suggested label for the cluster\n  sze number,\n  -- number of documents\
+  \ assigned to the cluster\n  quality_score number,\n  -- the quality score of the\
+  \ cluster\n  parent number -- parent cluster id. negative means no parent\n);\n\
+  TYPE cls_tab IS TABLE OF cluster_rec INDEX BY BINARY_INTEGER;\n/* document items\
+  \ record */\nTYPE did_rec IS RECORD (\n  did number,\n  -- document id\n  row rowid\
+  \ -- rowid of the document\n);\nTYPE did_tab IS TABLE OF did_rec INDEX BY BINARY_INTEGER;\n\
+  pv_doctab doc_tab;\npv_clstab cls_tab;\npv_didtab did_tab;\npv_didcur integer: =\
+  \ 1;\n/* add one item to the document cluster assignment table */\nPROCEDURE add_doccls(\n\
+  \  docid number,\n  clusterid number,\n  score number\n);\n/* add one item to the\
+  \ cluster table */\nPROCEDURE add_cluster (\n  clusterid number,\n  descript varchar2,\n\
+  \  label varchar2,\n  sze number,\n  quality_score number,\n  parent number\n);\n\
+  /* start item id scan */\nPROCEDURE start_didscan;\n/* next item id */\nFUNCTION\
+  \ next_did (\n  did out number,\n  row out rowid\n) return number;\n/*=========================================================================*/\n\
+  /*======================  CTX_REPORT FUNCTIONS ============================*/\n\
+  /*=========================================================================*/\n\
+  s1 constant varchar2(10): = ' ';\ns75 constant varchar2(75): = '               \
+  \                                                            ';\ne75 constant varchar2(75):\
+  \ = '===========================================================================';\n\
+  h75 constant varchar2(75): = '---------------------------------------------------------------------------';\n\
+  procedure initreport;\nprocedure title(\n  title in varchar2 default null,\n  title2\
+  \ in varchar2 default null,\n  sep in varchar2 default null\n);\nprocedure wl(lline\
+  \ in varchar2);\nprocedure w(lline in varchar2);\nprocedure blankln;\nprocedure\
+  \ endreport(report in out nocopy clob);\n/*--------------------------query_log_summary\
+  \ -------------------------------*/\ntype queryrec is record (query varchar2(4000),\
+  \ times number);\ntype querytab is table of queryrec index by binary_integer;\n\
+  r_query querytab;\nPROCEDURE add_query(\n  p_query in varchar2,\n  p_times in number\n\
+  );\npv_kwic varchar2(32767);\nfunction get_kwic return varchar2;\nprocedure set_kwic(kwic\
+  \ in varchar2);\nend drvimr;"

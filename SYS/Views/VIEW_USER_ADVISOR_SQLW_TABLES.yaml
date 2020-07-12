@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_ADVISOR_SQLW_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    b.workload_id as workload_id,
+    c .name as workload_name,
+    b.sql_id as sql_id,
+    b.table_owner as table_owner,
+    b.table_name as table_name
+  from
+    wri$_adv_sqlw_tables b,
+    wri$_adv_tasks c
+  where
+    c .id = b.workload_id
+    and c .owner# = userenv('SCHEMAID')
+    and bitand(c .property, 2) = 0
+    and c .advisor_id = 6
+columns: []
+referencedTables: []

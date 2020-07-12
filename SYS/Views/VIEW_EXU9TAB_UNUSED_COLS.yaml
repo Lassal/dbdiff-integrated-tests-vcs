@@ -1,0 +1,56 @@
+schema: SYS
+name: EXU9TAB_UNUSED_COLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.obj#
+  FROM
+    sys.user$ u,
+    sys.obj$ o,
+    sys.col$ c
+  WHERE
+    o.owner# = u.user#
+    AND o.obj# = c .obj#
+    AND BITAND(c .property, 32768) = 32768 -- is unused column
+    AND BITAND(c .property, 1) != 1 -- not ADT attribute col
+    AND BITAND(c .property, 1024) != 1024 -- not NTAB's setid col
+    AND (
+      o.owner# = userenv('SCHEMAID')
+      OR o.obj# IN (
+        SELECT
+          oa.obj#
+        FROM
+          sys.objauth$ oa
+        WHERE
+          grantee# IN (
+            select
+              kzsrorol
+            FROM
+              x$kzsro
+          )
+      )
+      OR EXISTS (
+        SELECT
+          NULL
+        FROM
+          v$enabledprivs
+        WHERE
+          priv_number IN (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

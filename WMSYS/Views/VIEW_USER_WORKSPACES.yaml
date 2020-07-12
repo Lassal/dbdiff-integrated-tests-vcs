@@ -1,0 +1,128 @@
+schema: WMSYS
+name: USER_WORKSPACES
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    st.workspace,
+    st.workspace_lock_id workspace_id,
+    st.parent_workspace,
+    ssp.savepoint parent_savepoint,
+    st.owner,
+    st.createTime,
+    st.description,
+    decode(
+      st.freeze_status,
+      'LOCKED',
+      'FROZEN',
+      'UNLOCKED',
+      'UNFROZEN'
+    ) freeze_status,
+    decode(st.oper_status, null, st.freeze_mode, 'INTERNAL') freeze_mode,
+    decode(
+      st.freeze_mode,
+      '1WRITER_SESSION',
+      s.username,
+      st.freeze_writer
+    ) freeze_writer,
+    decode(
+      rst.workspace,
+      null,
+      decode(
+        st.session_duration,
+        0,
+        st.freeze_owner,
+        s.username
+      ),
+      null
+    ) freeze_owner,
+    decode(
+      st.freeze_status,
+      'UNLOCKED',
+      null,
+      decode(st.session_duration, 1, 'YES', 'NO')
+    ) session_duration,
+    decode(
+      st.session_duration,
+      1,
+      decode(
+        (
+          select
+            1
+          from
+            sys.dual
+          where
+            s.sid = sys_context('lt_ctx', 'cid')
+            and s.serial# = sys_context('lt_ctx', 'serial#')
+            and s.inst_id = dbms_utility.current_instance
+        ),
+        1,
+        'YES',
+        'NO'
+      ),
+      null
+    ) current_session,
+    decode(rst.workspace, null, 'INACTIVE', 'ACTIVE') resolve_status,
+    rst.resolve_user,
+    decode(st.isRefreshed, 1, 'YES', 'NO') continually_refreshed,
+    decode(
+      substr(st.wm_lockmode, 1, instr(st.wm_lockmode, ',') -1),
+      'C',
+      'CARRY',
+      'D',
+      'DISREGARD',
+      'E',
+      'EXCLUSIVE',
+      'S',
+      'SHARED',
+      'VE',
+      'VERSION EXCLUSIVE',
+      'WE',
+      'WORKSPACE EXCLUSIVE',
+      null
+    ) workspace_lockmode,
+    decode(
+      substr(st.wm_lockmode, instr(st.wm_lockmode, ',') + 1, 1),
+      'Y',
+      'YES',
+      'N',
+      'NO',
+      NULL
+    ) workspace_lockmode_override,
+    mp_root mp_root_workspace
+  from
+    wmsys.wm$workspaces_table st,
+    wmsys.wm$workspace_savepoints_table ssp,
+    wmsys.wm$resolve_workspaces_table rst,
+    gv$session s
+  where
+    st.owner = sys_context('userenv', 'current_user')
+    and (
+      ssp.position is null
+      or ssp.position = (
+        select
+          min(position)
+        from
+          wmsys.wm$workspace_savepoints_table
+        where
+          version = ssp.version
+      )
+    )
+    and st.parent_version = ssp.version (+)
+    and st.workspace = rst.workspace (+)
+    and to_char(s.sid(+)) = substr(
+      st.freeze_owner,
+      1,
+      instr(st.freeze_owner, ',') -1
+    )
+    and to_char(s.serial#(+)) = substr(
+      st.freeze_owner,
+      instr(st.freeze_owner, ',') + 1,
+      instr(st.freeze_owner, ',', 1, 2) - instr(st.freeze_owner, ',') -1
+    )
+    and to_char(s.inst_id(+)) = substr(
+      st.freeze_owner,
+      instr(st.freeze_owner, ',', 1, 2) + 1
+    ) WITH READ ONLY
+columns: []
+referencedTables: []

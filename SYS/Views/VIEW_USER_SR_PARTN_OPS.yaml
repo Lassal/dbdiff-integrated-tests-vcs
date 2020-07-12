@@ -1,0 +1,17 @@
+schema: SYS
+name: USER_SR_PARTN_OPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    TABLE_NAME,
+    PARTITION_OP,
+    PARTITION_NAME,
+    OUTSIDE_TABLE_SCHEMA,
+    OUTSIDE_TABLE_NAME
+  from
+    DBA_SR_PARTN_OPS
+  where
+    owner = SYS_CONTEXT ('USERENV', 'SESSION_USER')
+columns: []
+referencedTables: []

@@ -1,0 +1,18 @@
+schema: SYS
+name: USER_TRANSFORMATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    t.transformation_id,
+    t.name,
+    t.from_schema || '.' || t.from_type,
+    t.to_schema || '.' || t.to_type
+  FROM
+    transformations$ t,
+    sys.user$ u
+  WHERE
+    u.user# = USERENV('SCHEMAID')
+    and u.name = t.owner
+columns: []
+referencedTables: []

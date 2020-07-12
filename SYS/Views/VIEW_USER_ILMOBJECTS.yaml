@@ -1,0 +1,195 @@
+schema: SYS
+name: USER_ILMOBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .name,
+    d.name,
+    c .name,
+    c .subname,
+    DECODE(
+      c .type#,
+      19,
+      'TABLE PARTITION',
+      2,
+      'TABLE',
+      34,
+      'TABLE SUBPARTITION'
+    ),
+    (
+      CASE
+        WHEN bitand(a .FLAG, 8) = 8 THEN 'TABLESPACE'
+        WHEN (
+          b.obj_typ <> b.obj_typ_orig
+          AND b.obj_typ_orig = 2
+        ) THEN 'TABLE'
+        WHEN (
+          b.obj_typ <> b.obj_typ_orig
+          AND b.obj_typ_orig = 19
+        ) THEN 'TABLE PARTITION'
+        ELSE 'POLICY NOT INHERITED'
+      END
+    ),
+    (
+      CASE
+        WHEN (bitand(b.FLAG, 1) = 1) THEN 'NO'
+        ELSE 'YES'
+      END
+    ),
+    (
+      CASE
+        WHEN (bitand(b.FLAG, 64) = 0) THEN 'NO'
+        ELSE 'YES'
+      END
+    )
+  from
+    sys.ilm$ a,
+    sys.ilmobj$ b,
+    sys.obj$ c,
+    sys.user$ d,
+    (
+      select
+        a .policy#
+      from
+        sys.ilm$ a
+      where
+        bitand(a .flag, 8) = 0
+        and a .owner# = userenv('SCHEMAID')
+      union
+      select
+        a .policy#
+      from
+        sys.ilm$ a,
+        sys.ts$ b,
+        sys.tsq$ c
+      where
+        bitand(a .flag, 8) = 8
+        and a .ts# = b.ts#
+        and b.ts# = c .ts#
+        and c .user# = userenv('SCHEMAID')
+        and (
+          c .blocks > 0
+          or c .maxblocks != 0
+        )
+      union
+      select
+        a .policy#
+      from
+        sys.ilm$ a
+      where
+        bitand(a .flag, 8) = 8
+        and exists (
+          select
+            null
+          from
+            sys.v$enabledprivs
+          where
+            priv_number = -15
+            /* UNLIMITED TABLESPACE */
+        )
+    ) e
+  where
+    a .policy# = b.policy#
+    AND b.obj# = c .obj#
+    AND c .owner# = d.user#
+    AND a .policy# = e.policy#
+    AND c .name not like 'REDEF$%'
+    AND c .name not like 'MLOG$%' minus
+  select
+    a .name,
+    d.name,
+    c .name,
+    c .subname,
+    DECODE(
+      c .type#,
+      19,
+      'TABLE PARTITION',
+      2,
+      'TABLE',
+      34,
+      'TABLE SUBPARTITION'
+    ),
+    (
+      CASE
+        WHEN bitand(a .FLAG, 8) = 8 THEN 'TABLESPACE'
+        WHEN (
+          b.obj_typ <> b.obj_typ_orig
+          AND b.obj_typ_orig = 2
+        ) THEN 'TABLE'
+        WHEN (
+          b.obj_typ <> b.obj_typ_orig
+          AND b.obj_typ_orig = 19
+        ) THEN 'TABLE PARTITION'
+        ELSE 'POLICY NOT INHERITED'
+      END
+    ),
+    (
+      CASE
+        WHEN (bitand(b.FLAG, 1) = 1) THEN 'NO'
+        ELSE 'YES'
+      END
+    ),
+    (
+      CASE
+        WHEN (bitand(b.FLAG, 64) = 0) THEN 'NO'
+        ELSE 'YES'
+      END
+    )
+  from
+    sys.ilm$ a,
+    sys.ilmobj$ b,
+    sys.obj$ c,
+    sys.user$ d,
+    (
+      select
+        a .policy#
+      from
+        sys.ilm$ a
+      where
+        bitand(a .flag, 8) = 0
+        and a .owner# = userenv('SCHEMAID')
+      union
+      select
+        a .policy#
+      from
+        sys.ilm$ a,
+        sys.ts$ b,
+        sys.tsq$ c
+      where
+        bitand(a .flag, 8) = 8
+        and a .ts# = b.ts#
+        and b.ts# = c .ts#
+        and c .user# = userenv('SCHEMAID')
+        and (
+          c .blocks > 0
+          or c .maxblocks != 0
+        )
+      union
+      select
+        a .policy#
+      from
+        sys.ilm$ a
+      where
+        bitand(a .flag, 8) = 8
+        and exists (
+          select
+            null
+          from
+            sys.v$enabledprivs
+          where
+            priv_number = -15
+            /* UNLIMITED TABLESPACE */
+        )
+    ) e,
+    sys.redef_object$ f
+  where
+    a .policy# = b.policy#
+    AND b.obj# = c .obj#
+    AND c .owner# = d.user#
+    AND a .policy# = e.policy#
+    AND f.obj_type = 1
+    AND f.int_obj_owner = d.name
+    AND f.int_obj_name = c .name
+columns: []
+referencedTables: []

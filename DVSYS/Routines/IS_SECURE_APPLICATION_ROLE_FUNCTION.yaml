@@ -1,0 +1,18 @@
+schema: DVSYS
+name: IS_SECURE_APPLICATION_ROLE
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: P_ROLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION is_secure_application_role(p_role VARCHAR2) RETURN BOOLEAN IS
+  BEGIN
+    RETURN dvsys.dbms_macsec.is_secure_application_role(p_role = > p_role);
+  END;

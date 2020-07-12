@@ -1,0 +1,41 @@
+schema: SYS
+name: KU$_FULL_PKG_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    oo.obj#,
+    value(o),
+    value(p),
+    (
+      select
+        value(pb)
+      from
+        ku$_pkgbdy_view pb
+      where
+        oo.name = pb.schema_obj.name
+        and o.owner_name = pb.schema_obj.owner_name
+    )
+  from
+    sys.ku$_edition_obj_view oo,
+    ku$_edition_schemaobj_view o,
+    ku$_pkg_view p
+  where
+    oo.type# = 9
+    and oo.obj# = o.obj_num
+    and oo.obj# = p.schema_obj.obj_num
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

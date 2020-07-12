@@ -1,0 +1,35 @@
+schema: SYS
+name: KU$_MV_DEPTBL_OBJNUM_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    tlo.obj_num
+  from
+    sys.ku$_schemaobj_view mo,
+    sys.ku$_schemaobj_view tlo,
+    sys.mlog$ ml
+  where
+    mo.owner_name = ml.mowner
+    and mo.name = ml.master
+    and mo.owner_num = tlo.owner_num
+    and tlo.name = ml.temp_log
+    and mo.obj_num in (
+      SELECT
+        *
+      FROM
+        TABLE(DBMS_METADATA.FETCH_OBJNUMS)
+    )
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (mo.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

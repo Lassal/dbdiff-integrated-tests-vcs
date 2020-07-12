@@ -1,0 +1,24 @@
+schema: SYS
+name: USER_REPGROUP_PRIVILEGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.username,
+    rp.gname,
+    rp.created,
+    decode(bitand(rp.privilege, 1), 1, 'Y', 'N'),
+    decode(bitand(rp.privilege, 2), 2, 'Y', 'N'),
+    rp.gowner
+  from
+    system.repcat$_repgroup_privs rp,
+    all_users u
+  where
+    rp.username = u.username
+    and u.user_id = userenv('SCHEMAID')
+    and (
+      rp.userid > 0
+      OR rp.userid IS NULL
+    )
+columns: []
+referencedTables: []

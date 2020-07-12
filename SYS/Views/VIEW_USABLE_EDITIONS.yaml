@@ -1,0 +1,44 @@
+schema: SYS
+name: USABLE_EDITIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    po.name
+  from
+    sys.obj$ o,
+    sys.edition$ e,
+    sys.obj$ po
+  where
+    o.obj# = e.obj#
+    and po.obj# (+) = e.p_obj#
+    and bitand(e.flags, 1) = 0
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          obj#
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* All users have implicit USE priv on the db default edition */
+      o.name = (
+        select
+          property_value
+        from
+          database_properties
+        where
+          property_name = 'DEFAULT_EDITION'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,113 @@
+schema: SYS
+name: KU$_XSPOLICY_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    p.xdsid#,
+    p.ctime,
+    p.mtime,
+    p.description,
+    (
+      select
+        value(xo)
+      from
+        ku$_xsobj_view xo
+      where
+        p.xdsid# = xo.id
+    ),
+    (
+      cast(
+        multiset(
+          select
+            value(ia)
+          from
+            ku$_xsinstset_view ia
+          where
+            ia.xdsid = p.xdsid#
+        ) as ku$_xsinstset_list_t
+      )
+    ),
+    (
+      cast(
+        multiset(
+          select
+            value(a)
+          from
+            ku$_xsattrsec_view a
+          where
+            a .xdsid = p.xdsid#
+          order by
+            a .priv_num
+        ) as ku$_xsattrsec_list_t
+      )
+    ),
+    (
+      select
+        value(o)
+      from
+        ku$_xsolap_policy_view o
+      where
+        o.name = (
+          select
+            name
+          from
+            xs$obj o
+          where
+            p.xdsid# = o.id
+        )
+        AND o.owner_name = (
+          select
+            owner
+          from
+            xs$obj o
+          where
+            p.xdsid# = o.id
+        )
+    ),
+    (
+      select
+        value(r)
+      from
+        ku$_xsrls_policy_view r
+      where
+        r.pfschma = (
+          select
+            xo.owner
+          from
+            ku$_xsobj_view xo
+          where
+            xo.id = p.xdsid#
+        )
+        and r.name = (
+          select
+            xo.name
+          from
+            ku$_xsobj_view xo
+          where
+            xo.id = p.xdsid#
+        )
+    )
+  from
+    xs$dsec p,
+    xs$obj xo
+  where
+    xo.type = 5
+    AND p.xdsid# = xo.id
+    AND bitand(xo.flags, 1) = 0
+    /* not Oracle supplied */
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USER') IN (xo.owner, 'SYS')
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

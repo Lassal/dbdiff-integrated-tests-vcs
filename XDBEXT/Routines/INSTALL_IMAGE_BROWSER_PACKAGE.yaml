@@ -1,0 +1,12 @@
+schema: XDBEXT
+name: INSTALL_IMAGE_BROWSER
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: HANDLEPOSTLINKTO.P_EVENT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+routineDefinition: |-
+  package INSTALL_IMAGE_BROWSER authid CURRENT_USER as procedure handlePostLinkTo(P_EVENT dbms_xevent.XDBRepositoryEvent);
+  end;

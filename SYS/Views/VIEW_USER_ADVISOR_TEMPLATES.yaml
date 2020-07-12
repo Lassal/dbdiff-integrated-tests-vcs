@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_ADVISOR_TEMPLATES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .id as task_id,
+    a .name as task_name,
+    a .description as description,
+    a .advisor_name as advisor_name,
+    a .ctime as created,
+    a .mtime as last_modified,
+    a .source as source,
+    decode(bitand(a .property, 1), 1, 'TRUE', 'FALSE') as read_only
+  from
+    wri$_adv_tasks a
+  where
+    a .owner# = userenv('SCHEMAID')
+    and bitand(a .property, 6) = 6
+columns: []
+referencedTables: []

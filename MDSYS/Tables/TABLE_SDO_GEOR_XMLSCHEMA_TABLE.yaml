@@ -1,0 +1,26 @@
+name: SDO_GEOR_XMLSCHEMA_TABLE
+schema: MDSYS
+columns:
+- name: GEORASTERFORMAT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 1024
+  nullable: true
+  dataTypeLength: 1024
+- name: ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: XMLSCHEMA
+  ordinalPosition: 3
+  dataType: CLOB
+  nullable: true
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: SYS_C006276
+  type: PRIMARY_KEY
+  columns:
+  - name: GEORASTERFORMAT
+    ordinalPosition: 1

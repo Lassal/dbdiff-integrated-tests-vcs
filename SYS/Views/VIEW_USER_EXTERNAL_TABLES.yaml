@@ -1,0 +1,45 @@
+schema: SYS
+name: USER_EXTERNAL_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    'SYS',
+    xt.type$,
+    'SYS',
+    xt.default_dir,
+    decode(
+      xt.reject_limit,
+      2147483647,
+      'UNLIMITED',
+      xt.reject_limit
+    ),
+    decode(
+      xt.par_type,
+      1,
+      'BLOB',
+      2,
+      'CLOB',
+      'UNKNOWN'
+    ),
+    case
+      when xt.par_type = 2 then xt.param_clob
+      else NULL
+    end,
+    decode(
+      xt.property,
+      2,
+      'REFERENCED',
+      1,
+      'ALL',
+      'UNKNOWN'
+    )
+  from
+    sys.external_tab$ xt,
+    sys.obj$ o
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.obj# = xt.obj#
+columns: []
+referencedTables: []

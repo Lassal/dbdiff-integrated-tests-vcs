@@ -1,0 +1,28 @@
+schema: ORDS_METADATA
+name: USER_ORDS_PENDING_APPROVALS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    p.id pending_id,
+    p.client_state state,
+    p.created_by pending_created_by,
+    c .id client_id,
+    c .name client_name,
+    c .redirect_uri redirect_uri,
+    c .response_type response_type,
+    a .id approval_id,
+    a .user_name approval_user,
+    a .created_by approval_created_by
+  FROM
+    oauth_pending_approvals p,
+    oauth_approvals a,
+    oauth_clients c,
+    ords_schemas s
+  WHERE
+    p.approval_id = a .id
+    AND a .schema_id = s.id
+    AND a .client_id = c .id
+    AND s.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

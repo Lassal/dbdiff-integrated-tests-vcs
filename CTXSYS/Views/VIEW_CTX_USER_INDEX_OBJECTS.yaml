@@ -1,0 +1,23 @@
+schema: CTXSYS
+name: CTX_USER_INDEX_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    idx_name ixo_index_name,
+    cla_name ixo_class,
+    obj_name ixo_object
+  from
+    dr$index,
+    dr$class,
+    dr$object,
+    dr$index_object
+  where
+    cla_system = 'N'
+    and ixo_cla_id = cla_id
+    and ixo_cla_id = obj_cla_id
+    and ixo_obj_id = obj_id
+    and ixo_idx_id = idx_id
+    and idx_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

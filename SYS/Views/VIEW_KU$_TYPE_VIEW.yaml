@@ -1,0 +1,96 @@
+schema: SYS
+name: KU$_TYPE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '2',
+    oo.obj#,
+    value(o),
+    oo.oid$,
+    t.typeid,
+    t.version#,
+    sys.dbms_metadata.get_hashcode(o.owner_name, o.name),
+    t.typecode,
+    t.properties,
+    t.attributes,
+    t.methods,
+    t.hiddenMethods,
+    t.externtype,
+    t.externname,
+    sys.dbms_metadata_util.get_source_lines(oo.name, oo.obj#, oo.type#),
+    (
+      select
+        value(c)
+      from
+        ku$_switch_compiler_view c
+      where
+        c .obj_num = oo.obj#
+    ),
+    (
+      select
+        value(stso)
+      from
+        ku$_schemaobj_view stso
+      where
+        stso.oid = t.supertoid
+    ),
+    (
+      select
+        value(c)
+      from
+        ku$_collection_view c
+      where
+        oo.oid$ = c .toid
+    ),
+    cast(
+      multiset(
+        select
+          value(a)
+        from
+          sys.ku$_type_attr_view a
+        where
+          a .toid = oo.oid$
+      ) as ku$_type_attr_list_t
+    ),
+    cast(
+      multiset(
+        select
+          value(m)
+        from
+          sys.ku$_method_view m
+        where
+          m.toid = oo.oid$
+          and m.xflags = 0
+          and m.obj_num = oo.obj#
+      ) as ku$_method_list_t
+    )
+  from
+    sys.obj$ oo,
+    sys.ku$_edition_schemaobj_view o,
+    type $ t
+  where
+    oo.type# = 13
+    and oo.obj# = o.obj_num
+    and oo.subname is null
+    /* latest type version */
+    and oo.oid$ = t.toid
+    /* type$ properties bits:
+               262144=0     - latest type version
+               other bits=0 - not system-generated type
+            */
+    and bitand(t.properties, 262144 + 2048 + 64 + 16) = 0
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

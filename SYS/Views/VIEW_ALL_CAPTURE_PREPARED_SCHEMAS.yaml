@@ -1,0 +1,19 @@
+schema: SYS
+name: ALL_CAPTURE_PREPARED_SCHEMAS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s.schema_name,
+    s.timestamp,
+    s.supplemental_log_data_pk,
+    s.supplemental_log_data_ui,
+    s.supplemental_log_data_fk,
+    s.supplemental_log_data_all
+  from
+    dba_capture_prepared_schemas s,
+    all_users u
+  where
+    s.schema_name = u.username
+columns: []
+referencedTables: []

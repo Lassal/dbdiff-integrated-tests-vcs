@@ -1,0 +1,156 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_IR_RPT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.id application_id,
+    f.name application_name,
+    r.page_id page_id,
+    ws.region_id region_id,
+    r.worksheet_id interactive_report_id,
+    r.id report_id,
+    r.application_user application_user,
+    r.name report_name,
+    r.report_alias,
+    r.session_id,
+    r.base_report_id,
+    r.description report_description,
+    r.report_seq display_sequence,
+    (
+      case
+        when r.view_mode is null
+        or r.view_mode = 'REPORT' then r.report_type
+        else r.view_mode
+      end
+    ) report_view_mode,
+    r.status,
+    r.category_id,
+    (
+      case
+        when r.is_default = 'Y'
+        and r.application_user = 'APXWS_DEFAULT' then 'PRIMARY_DEFAULT'
+        when r.is_default = 'Y'
+        and r.application_user = 'APXWS_ALTERNATIVE' then 'ALTERNATIVE_DEFAULT'
+        when r.session_id is null
+        and r.status = 'PUBLIC' then 'PUBLIC'
+        when r.session_id is null
+        and r.status = 'PRIVATE' then 'PRIVATE'
+        else 'SESSION'
+      end
+    ) report_type,
+    (
+      case
+        when r.report_alias is not null then 'f?p=' || chr(38) || 'APP_ID.:' || r.page_id || ':' || chr(38) || 'APP_SESSION.:IR' || case
+          when p.region_name is not null then '[' || p.region_name || ']'
+        end || '_' || r.report_alias
+      end
+    ) report_link_example,
+    r.display_rows,
+    r.report_columns,
+    --
+    r.sort_column_1,
+    r.sort_direction_1,
+    r.sort_column_2,
+    r.sort_direction_2,
+    r.sort_column_3,
+    r.sort_direction_3,
+    r.sort_column_4,
+    r.sort_direction_4,
+    r.sort_column_5,
+    r.sort_direction_5,
+    r.sort_column_6,
+    r.sort_direction_6,
+    --
+    r.break_on,
+    r.break_enabled_on,
+    --
+    r.sum_columns_on_break,
+    r.avg_columns_on_break,
+    r.max_columns_on_break,
+    r.min_columns_on_break,
+    r.median_columns_on_break,
+    r.count_columns_on_break,
+    r.count_distnt_col_on_break,
+    --
+    r.flashback_mins_ago flashback_minutes,
+    decode(
+      r.flashback_enabled,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      r.flashback_enabled
+    ) flashback_enabled,
+    --
+    r.chart_type,
+    r.chart_label_column,
+    r.chart_label_title,
+    r.chart_value_column,
+    r.chart_aggregate,
+    r.chart_value_title,
+    decode(
+      r.chart_sorting,
+      'DEFAULT',
+      'Default',
+      'VALUE_DESC',
+      'Value - Descending',
+      'VALUE_ASC',
+      'Value - Ascending',
+      'LABEL_DESC',
+      'Label - Descending',
+      'LAVEL_ASC',
+      'Label - Ascending',
+      r.chart_sorting
+    ) chart_sort_order,
+    --
+    r.created_on,
+    r.created_by,
+    r.updated_on last_updated_on,
+    r.updated_by last_updated_by --
+  from
+    wwv_flow_worksheet_rpts r,
+    wwv_flow_worksheets ws,
+    wwv_flow_page_plugs p,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.security_group_id = r.security_group_id
+    and f.id = ws.flow_id
+    and ws.id = r.worksheet_id
+    and ws.region_id = p.id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

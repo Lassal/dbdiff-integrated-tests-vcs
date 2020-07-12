@@ -1,0 +1,93 @@
+schema: APEX_050000
+name: APEX_REST_RESOURCE_PARAMETERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.provisioning_company_id workspace_id,
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    (
+      select
+        method
+      from
+        wwv_flow_rt$handlers
+      where
+        id = p.handler_id
+        and security_group_id = p.security_group_id
+    ) handler_name,
+    p.handler_id handler_id,
+    p.id parameter_id,
+    p.name parameter_name,
+    p.bind_variable_name bind_variable_name,
+    decode(
+      p.source_type,
+      'URI',
+      'URI',
+      'HEADER',
+      'HTTP Header',
+      'RESPONSE',
+      'Response Body'
+    ) source_type,
+    decode(
+      p.access_method,
+      'IN',
+      'IN',
+      'OUT',
+      'OUT',
+      'INOUT',
+      'IN/OUT'
+    ) access_method,
+    decode(
+      p.param_type,
+      'STRING',
+      'String',
+      'INT',
+      'Int',
+      'DOUBLE',
+      'Double',
+      'BOOLEAN',
+      'Boolean',
+      'LONG',
+      'Long',
+      'TIMESTAMP',
+      'Timestamp'
+    ) param_type,
+    p.row_version_number row_version_number,
+    p.comments comments,
+    p.created_by,
+    p.created_on,
+    p.UPDATED_BY last_updated_by,
+    p.UPDATED_ON last_updated_on
+  from
+    wwv_flow_rt$parameters p,
+    wwv_flow_company_schemas s,
+    wwv_flow_companies w,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and p.security_group_id = w.provisioning_company_id
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

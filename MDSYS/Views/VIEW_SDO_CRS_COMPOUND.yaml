@@ -1,0 +1,18 @@
+schema: MDSYS
+name: SDO_CRS_COMPOUND
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    SRID,
+    COORD_REF_SYS_NAME,
+    CMPD_HORIZ_SRID,
+    CMPD_VERT_SRID,
+    INFORMATION_SOURCE,
+    DATA_SOURCE
+  FROM
+    MDSYS.SDO_COORD_REF_SYS
+  WHERE
+    COORD_REF_SYS_KIND = 'COMPOUND'
+columns: []
+referencedTables: []

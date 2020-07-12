@@ -1,0 +1,31 @@
+schema: SYS
+name: KU$_XSAGGPRIV_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    ap.sc#,
+    ap.aggr_priv#,
+    ap.implied_priv#,
+    (
+      select
+        name
+      from
+        xs$obj o
+      where
+        o.id = ap.implied_priv#
+    ),
+    (
+      select
+        owner
+      from
+        xs$obj o
+      where
+        o.id = ap.implied_priv#
+    )
+  from
+    xs$aggr_priv ap
+columns: []
+referencedTables: []

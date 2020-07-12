@@ -1,0 +1,31 @@
+schema: SYS
+name: ALL_DEF_AUDIT_OPTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    substr(t.audit$, 1, 1) || '/' || substr(t.audit$, 2, 1),
+    substr(t.audit$, 3, 1) || '/' || substr(t.audit$, 4, 1),
+    substr(t.audit$, 5, 1) || '/' || substr(t.audit$, 6, 1),
+    substr(t.audit$, 7, 1) || '/' || substr(t.audit$, 8, 1),
+    substr(t.audit$, 9, 1) || '/' || substr(t.audit$, 10, 1),
+    substr(t.audit$, 11, 1) || '/' || substr(t.audit$, 12, 1),
+    substr(t.audit$, 13, 1) || '/' || substr(t.audit$, 14, 1),
+    substr(t.audit$, 15, 1) || '/' || substr(t.audit$, 16, 1),
+    substr(t.audit$, 17, 1) || '/' || substr(t.audit$, 18, 1),
+    substr(t.audit$, 19, 1) || '/' || substr(t.audit$, 20, 1),
+    substr(t.audit$, 21, 1) || '/' || substr(t.audit$, 22, 1),
+    '-/-',
+    /* dummy REF column */
+    substr(t.audit$, 25, 1) || '/' || substr(t.audit$, 26, 1),
+    substr(t.audit$, 23, 1) || '/' || substr(t.audit$, 24, 1),
+    substr(t.audit$, 29, 1) || '/' || substr(t.audit$, 30, 1)
+  from
+    sys.obj$ o,
+    sys.tab$ t
+  where
+    o.obj# = t.obj#
+    and o.owner# = 0
+    and o.name = '_default_auditing_options_'
+columns: []
+referencedTables: []

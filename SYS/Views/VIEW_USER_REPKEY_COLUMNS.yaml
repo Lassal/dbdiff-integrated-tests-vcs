@@ -1,0 +1,16 @@
+schema: SYS
+name: USER_REPKEY_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.sname,
+    r.oname,
+    r.col
+  from
+    sys.dba_repkey_columns r,
+    user_users u
+  where
+    r.sname = u.username
+columns: []
+referencedTables: []

@@ -1,0 +1,43 @@
+schema: CTXSYS
+name: CTX_USER_EXTRACT_POLICY_VALUES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ ORDERED */
+    idx_name epv_policy_name,
+    cla_name epv_class,
+    obj_name epv_object,
+    oat_name epv_attribute,
+    decode(
+      oat_datatype,
+      'B',
+      decode(ixv_value, 1, 'YES', 'NO'),
+      nvl(oal_label, ixv_value)
+    ) epv_value
+  from
+    dr$index,
+    dr$index_value,
+    dr$object_attribute,
+    dr$object,
+    dr$class,
+    dr$object_attribute_lov
+  where
+    ixv_sub_group = 0
+    and ixv_value = nvl(oal_value, ixv_value)
+    and oat_id = oal_oat_id (+)
+    and oat_system = 'N'
+    and oat_cla_id = obj_cla_id
+    and oat_obj_id = obj_id
+    and (
+      cla_name = 'STORAGE'
+      or cla_name = 'LEXER'
+    )
+    and cla_system = 'N'
+    and oat_cla_id = cla_id
+    and ixv_oat_id = oat_id
+    and idx_id = ixv_idx_id
+    and idx_owner# = userenv('SCHEMAID')
+    and INSTR(idx_option, 'E') > 0
+columns: []
+referencedTables: []

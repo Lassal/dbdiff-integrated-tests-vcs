@@ -1,0 +1,12 @@
+schema: CTXSYS
+name: CTX_TRACE_VALUES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    trc.trc_id,
+    trc.trc_value
+  from
+    TABLE(ctxsys.drvparx.TraceGetTrace) trc
+columns: []
+referencedTables: []

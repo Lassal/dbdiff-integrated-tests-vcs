@@ -1,0 +1,77 @@
+schema: SYS
+name: KU$_OBJGRANT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '2',
+    g.obj#,
+    value(o),
+    (
+      select
+        j.longdbcs
+      from
+        sys.javasnm$ j
+      where
+        j.short = o.name
+    ),
+    u1.name,
+    u2.name,
+    p.name,
+    g.sequence#,
+    NVL(g.option$, 0),
+    (
+      select
+        c .name
+      from
+        sys.col$ c
+      where
+        g.obj# = c .obj#
+        and g.col# = c .col#
+        and bitand(c .property, 1) = 0 -- exclude ADT attribute column
+        and bitand(c .property, 1024) = 0 -- exclude Nested table column
+        and bitand(c .property, 416) = 0
+    )
+    /* exclude system generated,
+                                                   hidden and stored in lob cols */
+  from
+    sys.ku$_edition_schemaobj_view o,
+    sys.objauth$ g,
+    sys.user$ u1,
+    sys.user$ u2,
+    sys.table_privilege_map p
+  where
+    g.obj# = o.obj_num
+    and g.grantor# = u1.user#
+    and g.grantee# = u2.user#
+    and g.privilege# = p.privilege
+    and (
+      o.type_num != 2
+      or
+      /* not a table or...  */
+      exists (
+        select
+          1
+        from
+          tab$ t
+          /* not a nested table */
+        where
+          t.obj# = o.obj_num
+          and bitand(t.property, 8192) != 8192
+      )
+    )
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (g.grantor#, g.grantee#, o.owner_num, 0)
+      OR g.grantee# = 1
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

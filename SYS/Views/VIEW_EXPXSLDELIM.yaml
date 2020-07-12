@@ -1,0 +1,15 @@
+schema: SYS
+name: EXPXSLDELIM
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    SUBSTR(DEFAULT_VAL, 2, 4)
+  FROM
+    SYS.METAXSLPARAM$
+  WHERE
+    MODEL = 'ORACLE'
+    AND TRANSFORM = 'PARSE'
+    AND PARAM = 'PRS_DELIM'
+columns: []
+referencedTables: []

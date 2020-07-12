@@ -1,0 +1,37 @@
+schema: SYS
+name: KU$_PARTITION_EST_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    t.cols,
+    tp.rowcnt,
+    tp.avgrln,
+    u.name,
+    ot.name,
+    op.subname
+  FROM
+    SYS.OBJ$ OT,
+    SYS.OBJ$ OP,
+    SYS.TAB$ T,
+    SYS.TABPART$ TP,
+    SYS.USER$ U
+  WHERE
+    tp.obj# = op.obj#
+    AND tp.bo# = ot.obj#
+    AND ot.type# = 2
+    AND t.obj# = tp.bo#
+    AND ot.owner# = u.user#
+    AND (
+      UID IN (0, ot.owner#)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

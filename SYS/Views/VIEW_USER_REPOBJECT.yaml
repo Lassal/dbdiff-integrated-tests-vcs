@@ -1,0 +1,27 @@
+schema: SYS
+name: USER_REPOBJECT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.sname,
+    r.oname,
+    r.type,
+    r.status,
+    r.generation_status,
+    r.id,
+    r.object_comment,
+    r.gname,
+    r.min_communication,
+    r.trigflag,
+    r.internal_package_exists,
+    r.gowner,
+    r.nested_table
+  from
+    repcat_repobject r,
+    user_users u
+  where
+    r.sname = u.username
+    and r.type != 'INTERNAL PACKAGE'
+columns: []
+referencedTables: []

@@ -1,0 +1,36 @@
+schema: SYS
+name: EXU9XTB
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    et$.obj#,
+    et$.default_dir,
+    et$.type$,
+    et$.nr_locations,
+    et$.reject_limit,
+    et$.par_type,
+    et$.param_clob,
+    el$.position,
+    el$.dir,
+    el$.name
+  FROM
+    sys.external_location$ el$,
+    sys.external_tab$ et$,
+    sys.obj$ o$
+  WHERE
+    el$.obj# = et$.obj#
+    AND el$.obj# = o$.obj#
+    AND (
+      userenv('SCHEMAID') IN (o$.owner#, 0)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

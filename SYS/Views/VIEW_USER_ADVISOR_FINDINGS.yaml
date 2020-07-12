@@ -1,0 +1,42 @@
+schema: SYS
+name: USER_ADVISOR_FINDINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .task_id as task_id,
+    b.name as task_name,
+    a .exec_name as execution_name,
+    a .id as finding_id,
+    dbms_advisor.format_message(a .name_msg_code) as finding_name,
+    decode (
+      a .type,
+      1,
+      'PROBLEM',
+      2,
+      'SYMPTOM',
+      3,
+      'ERROR',
+      4,
+      'INFORMATION',
+      5,
+      'WARNING'
+    ) as type,
+    a .type as type_id,
+    a .parent as parent,
+    a .obj_id as object_id,
+    dbms_advisor.format_message_group(a .impact_msg_id) as impact_type,
+    a .impact_val as impact,
+    dbms_advisor.format_message_group(a .msg_id, a .type) as message,
+    dbms_advisor.format_message_group(a .more_info_id) as more_info,
+    nvl(a .filtered, 'N') as filtered,
+    a .flags as flags
+  from
+    wri$_adv_findings a,
+    wri$_adv_tasks b
+  where
+    a .task_id = b.id
+    and b.owner# = userenv('SCHEMAID')
+    and bitand(b.property, 6) = 4
+columns: []
+referencedTables: []

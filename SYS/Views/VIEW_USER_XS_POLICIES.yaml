@@ -1,0 +1,16 @@
+schema: SYS
+name: USER_XS_POLICIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    name,
+    create_time,
+    modify_time,
+    description
+  from
+    sys.dba_xs_policies
+  where
+    owner = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

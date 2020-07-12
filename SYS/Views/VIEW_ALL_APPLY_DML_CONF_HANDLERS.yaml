@@ -1,0 +1,27 @@
+schema: SYS
+name: ALL_APPLY_DML_CONF_HANDLERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    h. "APPLY_NAME",
+    h. "OBJECT_OWNER",
+    h. "OBJECT_NAME",
+    h. "SOURCE_OBJECT_OWNER",
+    h. "SOURCE_OBJECT_NAME",
+    h. "COMMAND_TYPE",
+    h. "CONFLICT_TYPE",
+    h. "METHOD_NAME",
+    h. "CONFLICT_HANDLER_NAME",
+    h. "RESOLUTION_COLUMN",
+    h. "SET_BY"
+  from
+    all_tables o,
+    all_apply a,
+    DBA_APPLY_DML_CONF_HANDLERS h
+  where
+    h.object_owner = o.owner
+    and h.object_name = o.table_name
+    and a .apply_name = h.apply_name
+columns: []
+referencedTables: []

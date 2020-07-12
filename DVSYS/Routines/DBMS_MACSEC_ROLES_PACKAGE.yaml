@@ -1,0 +1,52 @@
+schema: DVSYS
+name: DBMS_MACSEC_ROLES
+routineType: PACKAGE
+returnParamater:
+  name: CAN_SET_ROLE.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: CAN_SET_ROLE.P_ROLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_ROLE.P_ROLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_macsec_roles AUTHID CURRENT_USER AS
+  /**
+
+    * Checks whether the user invoking the method is authorized to use
+
+    * the specified DV Secure Application Role.  The authorization is
+
+    * determined by checking the Rule Set associted with the role.
+
+    *
+
+    * @param p_role Secure Application Role name
+
+    * @return TRUE if user is allowed to set the role
+
+    */
+  FUNCTION can_set_role(p_role IN VARCHAR2) RETURN BOOLEAN;
+  /**
+
+    * Issues the SET ROLE command for a DV Secure Application Role.  Before
+
+    * the SET ROLE is issued, the can_set_role method is called to check
+
+    * the Rule Set associated with the role.
+
+    *
+
+    * @param p_role Secure Application Role name
+
+    * @throws Exception if user is not authorized
+
+    */
+  PROCEDURE set_role(p_role IN VARCHAR2);
+  END;

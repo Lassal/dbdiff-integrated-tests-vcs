@@ -1,0 +1,70 @@
+schema: SYS
+name: ALL_REPRESOL_STATS_CONTROL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    c .sname,
+    c .oname,
+    c .created,
+    decode(
+      c .status,
+      1,
+      'ACTIVE',
+      2,
+      'CANCELLED',
+      'UNDEFINED'
+    ),
+    c .status_update_date,
+    c .purged_date,
+    c .last_purge_start_date,
+    c .last_purge_end_date
+  from
+    system.repcat$_resol_stats_control c,
+    sys.user$ u,
+    sys.obj$ o
+  where
+    c .sname = u.name
+    and c .oname = o.name
+    and o.owner# = u.user#
+    and o.type# = 2
+    /* tables */
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          obj#
+        from
+          objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

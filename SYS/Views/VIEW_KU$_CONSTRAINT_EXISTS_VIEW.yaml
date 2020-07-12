@@ -1,0 +1,35 @@
+schema: SYS
+name: KU$_CONSTRAINT_EXISTS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.obj#,
+    u.name
+  from
+    obj$ o,
+    user $ u,
+    con$ c,
+    cdef$ cd
+  where
+    o.owner# = u.user#
+    and cd.obj# = o.obj#
+    and c .con# = cd.con#
+    and cd.type# in (1, 2, 3, 12, 14, 15, 16, 17) -- table check (condition-no keys) (1),
+    -- primary key (2),
+    -- unique key (3),
+    -- supplemental log groups (w/ keys) (12),
+    -- supplemental log data (no keys) (14,15,16,17)
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

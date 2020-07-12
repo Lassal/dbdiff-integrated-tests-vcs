@@ -1,0 +1,40 @@
+schema: SYS
+name: KU$_ARGUMENT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    obj#,
+    procedure $,
+    overload#,
+    procedure #,
+    position#,
+    sequence #,
+    level #,
+    argument,
+    type #,
+    charsetid,
+    charsetform,
+    default #,
+    in_out,
+    properties,
+    length,
+    precision #,
+    scale,
+    radix,
+    deflength,
+    sys.dbms_metadata_util.long2varchar(
+      deflength,
+      'SYS.ARGUMENT$',
+      'DEFAULT$',
+      rowid
+    ),
+    type_owner,
+    type_name,
+    type_subname,
+    type_linkname,
+    pls_type
+  from
+    sys.argument$
+columns: []
+referencedTables: []

@@ -1,0 +1,23 @@
+schema: SYS
+name: USER_CUBE_CALCULATED_MEMBERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name DIMENSION_NAME,
+    cm.member_name MEMBER_NAME,
+    DECODE(cm.is_customaggregate, 1, 'YES', 0, 'NO') IS_CUSTOM_AGGREGATE,
+    DECODE(cm.storage_type, 1, 'DYNAMIC', 2, 'PRECOMPUTE') STORAGE_TYPE,
+    syn.syntax_clob EXPRESSION
+  FROM
+    olap_calculated_members$ cm,
+    obj$ o,
+    olap_syntax$ syn
+  WHERE
+    cm.dim_obj# = o.obj#
+    AND o.owner# = USERENV('SCHEMAID')
+    AND cm.member_id = syn.owner_id(+)
+    AND syn.owner_type = 6 --CALC_MEMBER
+    AND syn.ref_role = 19 -- MEMBER_EXPRESSION_ROLE
+columns: []
+referencedTables: []

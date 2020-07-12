@@ -1,0 +1,18 @@
+schema: MDSYS
+name: OGC_ASBINARY
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: BLOB
+  parameterMode: OUT
+parameters:
+- name: G
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_AsBinary(g ST_Geometry) RETURN BLOB IS
+  BEGIN
+    RETURN g.GET_WKB();
+  END OGC_AsBinary;

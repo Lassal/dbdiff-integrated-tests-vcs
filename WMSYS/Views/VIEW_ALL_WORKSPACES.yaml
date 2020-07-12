@@ -1,0 +1,140 @@
+schema: WMSYS
+name: ALL_WORKSPACES
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    asp.workspace,
+    asp.workspace_lock_id workspace_id,
+    asp.parent_workspace,
+    ssp.savepoint parent_savepoint,
+    asp.owner,
+    asp.createTime,
+    asp.description,
+    decode(
+      asp.freeze_status,
+      'LOCKED',
+      'FROZEN',
+      'UNLOCKED',
+      'UNFROZEN'
+    ) freeze_status,
+    decode(
+      asp.oper_status,
+      null,
+      asp.freeze_mode,
+      'INTERNAL'
+    ) freeze_mode,
+    decode(
+      asp.freeze_mode,
+      '1WRITER_SESSION',
+      s.username,
+      asp.freeze_writer
+    ) freeze_writer,
+    decode(
+      rst.workspace,
+      null,
+      decode(
+        asp.session_duration,
+        0,
+        asp.freeze_owner,
+        s.username
+      ),
+      null
+    ) freeze_owner,
+    decode(
+      asp.freeze_status,
+      'UNLOCKED',
+      null,
+      decode(asp.session_duration, 1, 'YES', 'NO')
+    ) session_duration,
+    decode(
+      asp.session_duration,
+      1,
+      decode(
+        (
+          select
+            1
+          from
+            sys.dual
+          where
+            s.sid = sys_context('lt_ctx', 'cid')
+            and s.serial# = sys_context('lt_ctx', 'serial#')
+            and s.inst_id = dbms_utility.current_instance
+        ),
+        1,
+        'YES',
+        'NO'
+      ),
+      null
+    ) current_session,
+    decode(rst.workspace, null, 'INACTIVE', 'ACTIVE') resolve_status,
+    rst.resolve_user,
+    decode(asp.isRefreshed, 1, 'YES', 'NO') continually_refreshed,
+    decode(
+      substr(
+        asp.wm_lockmode,
+        1,
+        instr(asp.wm_lockmode, ',') -1
+      ),
+      'C',
+      'CARRY',
+      'D',
+      'DISREGARD',
+      'E',
+      'EXCLUSIVE',
+      'S',
+      'SHARED',
+      'VE',
+      'VERSION EXCLUSIVE',
+      'WE',
+      'WORKSPACE EXCLUSIVE',
+      null
+    ) workspace_lockmode,
+    decode(
+      substr(
+        asp.wm_lockmode,
+        instr(asp.wm_lockmode, ',') + 1,
+        1
+      ),
+      'Y',
+      'YES',
+      'N',
+      'NO',
+      NULL
+    ) workspace_lockmode_override,
+    mp_root mp_root_workspace
+  from
+    wmsys.all_workspaces_internal asp,
+    wmsys.wm$workspace_savepoints_table ssp,
+    wmsys.wm$resolve_workspaces_table rst,
+    gv$session s
+  where
+    (
+      ssp.position is null
+      or ssp.position = (
+        select
+          min(position)
+        from
+          wmsys.wm$workspace_savepoints_table
+        where
+          version = ssp.version
+      )
+    )
+    and asp.parent_version = ssp.version (+)
+    and asp.workspace = rst.workspace (+)
+    and to_char(s.sid(+)) = substr(
+      asp.freeze_owner,
+      1,
+      instr(asp.freeze_owner, ',') -1
+    )
+    and to_char(s.serial#(+)) = substr(
+      asp.freeze_owner,
+      instr(asp.freeze_owner, ',') + 1,
+      instr(asp.freeze_owner, ',', 1, 2) - instr(asp.freeze_owner, ',') -1
+    )
+    and to_char(s.inst_id(+)) = substr(
+      asp.freeze_owner,
+      instr(asp.freeze_owner, ',', 1, 2) + 1
+    ) WITH READ ONLY
+columns: []
+referencedTables: []

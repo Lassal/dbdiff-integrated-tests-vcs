@@ -1,0 +1,61 @@
+schema: SYS
+name: LOADER_FULL_ATTR_NAME
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .name as full_attr_name,
+    c .name as intcol_name,
+    u.name as table_owner,
+    o.name as table_name
+  from
+    sys.col$ c,
+    sys.obj$ o,
+    sys.user$ u,
+    sys.attrcol$ a
+  where
+    o.obj# = c .obj#
+    and o.owner# = u.user#
+    and c .obj# = a .obj#
+    and c .intcol# = a .intcol#
+    and (
+      o.owner# = userenv('schemaid')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK   ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

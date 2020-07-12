@@ -1,0 +1,50 @@
+schema: XDBPM
+name: XDBPM_ORDER_XMLSCHEMAS
+routineType: PACKAGE
+returnParamater:
+  name: ORDERSCHEMAS.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: ORDERSCHEMAS.P_XMLSCHEMA_FOLDER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ORDERSCHEMAS.P_XMLSCHEMA_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ORDERSCHEMAS.P_SCHEMA_LOCATION_PREFIX
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SCHEMAORDERINGSCRIPT.P_OUTPUT_FOLDER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SCHEMAORDERINGSCRIPT.P_XMLSCHEMA_FOLDER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SCHEMAORDERINGSCRIPT.P_SCHEMA_LOCATION_PREFIX
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SCHEMAORDERINGSCRIPT.P_XMLSCHEMA_PATH
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_ORDER_XMLSCHEMAS authid CURRENT_USER as procedure schemaOrderingScript(
+    P_OUTPUT_FOLDER VARCHAR2,
+    P_XMLSCHEMA_FOLDER VARCHAR2,
+    P_SCHEMA_LOCATION_PREFIX VARCHAR2,
+    P_XMLSCHEMA_PATH VARCHAR2 DEFAULT NULL
+  );
+  function orderSchemas(
+    P_XMLSCHEMA_FOLDER VARCHAR2,
+    P_XMLSCHEMA_PATH VARCHAR2,
+    P_SCHEMA_LOCATION_PREFIX VARCHAR2
+  ) return XMLType;
+  end XDBPM_ORDER_XMLSCHEMAS;

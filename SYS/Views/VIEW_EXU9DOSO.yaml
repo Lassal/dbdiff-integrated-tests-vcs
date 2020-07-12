@@ -1,0 +1,45 @@
+schema: SYS
+name: EXU9DOSO
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    pi_obj.obj#,
+    c_obj.name,
+    c_obj.owner#
+  FROM
+    sys.obj$ pi_obj,
+    sys.obj$ c_obj,
+    sys.user$ us2,
+    sys.secobj$ secobj
+  WHERE
+    pi_obj.obj# = secobj.obj#
+    AND
+    /* has secondary objects */
+    c_obj.obj# = secobj.secobj#
+    AND
+    /*object is secondary object */
+    c_obj.owner# = us2.user#
+    AND
+    /* secondary obj is same owner */
+    c_obj.type# = 2
+    AND
+    /* Secondary Object is TABLE */
+    BITAND(c_obj.flags, 128) != 128
+    AND (
+      userenv('SCHEMAID') = 0
+      OR (
+        userenv('SCHEMAID') = pi_obj.owner#
+        AND userenv('SCHEMAID') = us2.user#
+      )
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

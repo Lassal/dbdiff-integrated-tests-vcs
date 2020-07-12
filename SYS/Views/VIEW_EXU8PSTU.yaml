@@ -1,0 +1,21 @@
+schema: SYS
+name: EXU8PSTU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OWNER",
+    "OWNERID",
+    "TNAME",
+    "TOBJID",
+    "CALLORDER",
+    "CALLARG",
+    "OBJTYPE",
+    "USRARG",
+    "PROPERTY"
+  FROM
+    sys.exu8pst
+  WHERE
+    ownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

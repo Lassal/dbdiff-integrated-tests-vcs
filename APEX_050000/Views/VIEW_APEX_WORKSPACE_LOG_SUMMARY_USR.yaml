@@ -1,0 +1,383 @@
+schema: APEX_050000
+name: APEX_WORKSPACE_LOG_SUMMARY_USR
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    nvl(l.userid, 'PUBLIC') apex_user,
+    count(distinct l.flow_id) applications,
+    count(*) page_views,
+    count(distinct l.flow_id || '.' || l.step_id) distinct_pages,
+    sum(l.elap) total_elapsed_time,
+    avg(l.elap) average_elapsed_time,
+    min(l.elap) minimum_elapsed_time,
+    max(l.elap) maximum_elapsed_time,
+    sum(l.num_rows) total_rows_queried,
+    count(distinct l.ip_address) distinct_ip_addresses,
+    count(distinct l.USER_AGENT) distinct_agents,
+    count(distinct l.session_id) distinct_apex_sessions,
+    sum(decode(l.sqlerrm, null, 0, 1)) page_views_with_errors,
+    sum(decode(l.page_mode, 'D', 1, 'C', 1, 0)) dynamic_page_views,
+    sum(decode(l.page_mode, 'R', 1, 0)) cached_page_views,
+    min(l.time_stamp) first_view,
+    max(l.time_stamp) last_view,
+    max(l.time_stamp) - min(l.time_stamp) period_in_days,
+    --
+    sum(
+      decode(
+        greatest(s.the_date - (1 / 1440), l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) last_1_minute,
+    sum(
+      decode(
+        greatest(s.the_date - (5 / 1440), l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) last_5_minutes,
+    sum(
+      decode(
+        greatest(s.the_date - (10 / 1440), l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) last_10_minutes,
+    sum(
+      decode(
+        greatest(s.the_date - (15 / 1440), l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) last_15_minutes,
+    sum(
+      decode(
+        greatest(s.the_date - (30 / 1440), l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) last_30_minutes,
+    sum(
+      decode(
+        greatest(s.the_date - (1 / 24), l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) last_1_hour,
+    sum(
+      decode(
+        greatest(s.the_date - (2 / 24), l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) last_2_hours,
+    sum(
+      decode(
+        greatest(s.the_date - (6 / 24), l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) last_6_hours,
+    sum(
+      decode(
+        greatest(s.the_date - (2 / 24), l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) last_12_hours,
+    sum(
+      decode(
+        greatest(s.the_date - 1, l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) last_24_hours,
+    sum(
+      decode(
+        greatest(s.the_date - 2, l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) last_48_hours,
+    sum(
+      decode(
+        greatest(s.the_date - 7, l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) last_7_days,
+    sum(
+      decode(
+        greatest(s.the_date - 14, l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) last_14_days,
+    --
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '01', 1, 0),
+        0
+      )
+    ) today_HH01,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '02', 1, 0),
+        0
+      )
+    ) today_HH02,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '03', 1, 0),
+        0
+      )
+    ) today_HH03,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '04', 1, 0),
+        0
+      )
+    ) today_HH04,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '05', 1, 0),
+        0
+      )
+    ) today_HH05,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '06', 1, 0),
+        0
+      )
+    ) today_HH06,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '07', 1, 0),
+        0
+      )
+    ) today_HH07,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '08', 1, 0),
+        0
+      )
+    ) today_HH08,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '09', 1, 0),
+        0
+      )
+    ) today_HH09,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '10', 1, 0),
+        0
+      )
+    ) today_HH10,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '11', 1, 0),
+        0
+      )
+    ) today_HH11,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '12', 1, 0),
+        0
+      )
+    ) today_HH12,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '13', 1, 0),
+        0
+      )
+    ) today_HH13,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '14', 1, 0),
+        0
+      )
+    ) today_HH14,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '15', 1, 0),
+        0
+      )
+    ) today_HH15,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '16', 1, 0),
+        0
+      )
+    ) today_HH16,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '17', 1, 0),
+        0
+      )
+    ) today_HH17,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '18', 1, 0),
+        0
+      )
+    ) today_HH18,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '19', 1, 0),
+        0
+      )
+    ) today_HH19,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '20', 1, 0),
+        0
+      )
+    ) today_HH20,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '21', 1, 0),
+        0
+      )
+    ) today_HH21,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '22', 1, 0),
+        0
+      )
+    ) today_HH22,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '23', 1, 0),
+        0
+      )
+    ) today_HH23,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        decode(to_char(l.time_stamp, 'HH24'), '24', 1, 0),
+        0
+      )
+    ) today_HH24,
+    sum(
+      decode(
+        greatest(trunc(s.the_date), l.time_stamp),
+        l.time_stamp,
+        1,
+        0
+      )
+    ) today
+  from
+    wwv_flow_activity_log l,
+    wwv_flows f,
+    wwv_flow_companies w,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d,
+    (
+      select
+        sysdate the_date
+      from
+        sys.dual
+    ) s
+  where
+    (
+      l.security_group_id in (
+        select
+          security_group_id
+        from
+          wwv_flow_company_schemas
+        where
+          schema = cu
+      )
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = l.security_group_id
+    )
+    and --
+    l.security_group_id = w.PROVISIONING_COMPANY_ID
+    and l.flow_id = f.id(+)
+    and l.time_stamp > sysdate - 14
+    and w.PROVISIONING_COMPANY_ID != 0
+  group by
+    w.short_name,
+    w.display_name,
+    nvl(l.userid, 'PUBLIC')
+columns: []
+referencedTables: []

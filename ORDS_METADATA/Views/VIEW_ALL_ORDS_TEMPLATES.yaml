@@ -1,0 +1,38 @@
+schema: ORDS_METADATA
+name: ALL_ORDS_TEMPLATES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  with sr as (
+    select
+      count(1) has_catalog
+    from
+      session_roles
+    where
+      role = 'SELECT_CATALOG_ROLE'
+  )
+  SELECT
+    ords_templates. "ID",
+    ords_templates. "MODULE_ID",
+    ords_templates. "URI_TEMPLATE",
+    ords_templates. "PRIORITY",
+    ords_templates. "ETAG_TYPE",
+    ords_templates. "ETAG_QUERY",
+    ords_templates. "COMMENTS",
+    ords_templates. "SCHEMA_ID",
+    ords_templates. "CREATED_BY",
+    ords_templates. "CREATED_ON",
+    ords_templates. "UPDATED_BY",
+    ords_templates. "UPDATED_ON"
+  FROM
+    ords_templates,
+    ords_schemas,
+    sr
+  WHERE
+    ords_schemas.id = ords_templates.schema_id
+    AND (
+      ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+      or sr.has_catalog = 1
+    )
+columns: []
+referencedTables: []

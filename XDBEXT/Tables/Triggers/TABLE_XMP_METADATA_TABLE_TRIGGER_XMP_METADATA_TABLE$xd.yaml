@@ -1,0 +1,28 @@
+targetObjectSchema: XDBEXT
+targetObjectName: XMP_METADATA_TABLE
+targetObjectType: TABLE
+name: XMP_METADATA_TABLE$xd
+eventTiming: AFTER EACH ROW
+event: UPDATE OR DELETE
+eventActionBody: |-
+  BEGIN
+    IF (deleting) THEN xdb.xdb_pitrig_pkg.pitrig_delmetadata(
+      'XDBEXT',
+      'XMP_METADATA_TABLE',
+      :old.sys_nc_oid$,
+      'FF769BEC6D160FBAE045000000000001',
+      :old.resid,
+      user
+    );
+  END IF;
+  IF (updating) THEN xdb.xdb_pitrig_pkg.pitrig_updmetadata(
+    'XDBEXT',
+    'XMP_METADATA_TABLE',
+    :old.sys_nc_oid$,
+    'FF769BEC6D160FBAE045000000000001',
+    :old.resid,
+    user
+  );
+  END IF;
+  END;
+executionOrder: 1

@@ -1,0 +1,273 @@
+schema: APEX_050000
+name: APEX_DICTIONARY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    apex_view_name,
+    column_id,
+    column_name,
+    comments,
+    comment_type,
+    parent_view
+  from
+    (
+      select
+        t.table_name apex_view_name,
+        t.column_id column_id,
+        t.column_name column_name,
+        c .comments comments,
+        'Column' comment_type,
+        case
+          when t.table_name = 'APEX_APPLICATIONS' then 'APEX_WORKSPACES'
+          when t.table_name = 'APEX_APPLICATION_LOV_ENTRIES' then 'APEX_APPLICATION_LOVS'
+          when t.table_name = 'APEX_APPLICATION_PAGE_ITEMS' then 'APEX_APPLICATION_PAGE_REGIONS'
+          when t.table_name = 'APEX_APPLICATION_PAGE_BUTTONS' then 'APEX_APPLICATION_PAGE_REGIONS'
+          when t.table_name = 'APEX_APPL_PLUGIN_ATTRIBUTES' then 'APEX_APPL_PLUGINS'
+          when t.table_name = 'APEX_APPL_PLUGIN_ATTR_VALUES' then 'APEX_APPL_PLUGIN_ATTRIBUTES'
+          when t.table_name = 'APEX_APPL_PLUGIN_FILES' then 'APEX_APPL_PLUGINS'
+          when t.table_name = 'APEX_APPL_PLUGIN_EVENTS' then 'APEX_APPL_PLUGINS'
+          when t.table_name = 'APEX_APPLICATION_LIST_ENTRIES' then 'APEX_APPLICATION_LISTS'
+          when t.table_name = 'APEX_APPLICATION_TEMPLATES' then 'APEX_APPLICATION_THEMES'
+          when t.table_name = 'APEX_APPLICATION_THEME_STYLES' then 'APEX_APPLICATION_THEMES'
+          when t.table_name = 'APEX_APPLICATION_THEME_FILES' then 'APEX_APPLICATION_THEMES'
+          when t.table_name = 'APEX_APPL_THEME_DISPLAY_POINTS' then 'APEX_APPLICATION_THEMES'
+          when t.table_name = 'APEX_APPL_TEMPLATE_OPTIONS' then 'APEX_APPLICATION_THEMES'
+          when t.table_name = 'APEX_APPL_TEMPLATE_OPT_GROUPS' then 'APEX_APPLICATION_THEMES'
+          when t.table_name = 'APEX_APPL_TEMP_PAGE_DP' then 'APEX_APPLICATION_TEMP_PAGE'
+          when t.table_name = 'APEX_APPL_TEMP_REGION_DP' then 'APEX_APPLICATION_TEMP_REGION'
+          when substr(t.table_name, 1, 26) = 'APEX_APPLICATION_SUPP_OBJ_' then 'APEX_APPLICATION_SUPP_OBJECTS'
+          when substr(t.table_name, 1, 18) = 'APEX_WORKSPACE_LOG' then 'APEX_WORKSPACE_ACTIVITY_LOG'
+          when substr(t.table_name, 1, 21) = 'APEX_APPLICATION_TEMP' then 'APEX_APPLICATION_THEMES'
+          when substr(t.table_name, 1, 30) = 'APEX_APPLICATION_PAGE_RPT_COLS' then 'APEX_APPLICATION_PAGE_RPT'
+          when substr(t.table_name, 1, 25) = 'APEX_APPLICATION_PAGE_RPT' then 'APEX_APPLICATION_PAGE_REGIONS'
+          when t.table_name = 'APEX_APPLICATION_PAGE_REG_COLS' then 'APEX_APPLICATION_PAGE_REGIONS'
+          when substr(t.table_name, 1, 30) = 'APEX_APPLICATION_PAGE_FLASH5_S' then 'APEX_APPLICATION_PAGE_FLASH5'
+          when substr(t.table_name, 1, 27) = 'APEX_APPLICATION_PAGE_TREES' then 'APEX_APPLICATION_PAGE_TREES'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_COMP' then 'APEX_APPLICATION_PAGE_IR_RPT'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_COND' then 'APEX_APPLICATION_PAGE_IR_RPT'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_SUB' then 'APEX_APPLICATION_PAGE_IR_RPT'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_GRPBY' then 'APEX_APPLICATION_PAGE_IR_RPT'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_PIVOT' then 'APEX_APPLICATION_PAGE_IR_RPT'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_PVAGG' then 'APEX_APPLICATION_PAGE_IR_RPT'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_PVSRT' then 'APEX_APPLICATION_PAGE_IR_RPT'
+          when substr(t.table_name, 1, 25) = 'APEX_APPLICATION_PAGE_IR_' then 'APEX_APPLICATION_PAGE_IR'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR' then 'APEX_APPLICATION_PAGE_REGIONS'
+          when substr(t.table_name, 1, 28) = 'APEX_APPLICATION_PAGE_FLASH5' then 'APEX_APPLICATION_PAGE_REGIONS'
+          when substr(t.table_name, 1, 27) = 'APEX_APPLICATION_PAGE_FLASH' then 'APEX_APPLICATION_PAGE_REGIONS'
+          when t.table_name = 'APEX_APPLICATION_PAGE_DA_ACTS' then 'APEX_APPLICATION_PAGE_DA'
+          when substr(t.table_name, 1, 22) = 'APEX_APPLICATION_PAGE_' then 'APEX_APPLICATION_PAGES'
+          when substr(t.table_name, 1, 15) = 'APEX_WORKSPACE_' then 'APEX_WORKSPACES'
+          when substr(t.table_name, 1, 15) = 'APEX_APPL_PAGE_' then 'APEX_APPLICATION_PAGES' --#14833918
+          when substr(t.table_name, 1, 17) = 'APEX_APPLICATION_'
+          or substr(t.table_name, 1, 10) = 'APEX_APPL_' then 'APEX_APPLICATIONS'
+          when t.table_name = 'APEX_TEAM_FEEDBACK_FOLLOWUP' then 'APEX_TEAM_FEEDBACK'
+          when substr(t.table_name, 1, 10) = 'APEX_TEAM_' then 'APEX_WORKSPACES'
+          when t.table_name = 'APEX_WS_APPLICATIONS' then 'APEX_WORKSPACES'
+          when t.table_name = 'APEX_WS_APP_PAGES' then 'APEX_WS_APPLICATIONS'
+          when t.table_name = 'APEX_WS_DATA_GRID' then 'APEX_WS_APPLICATIONS'
+          when t.table_name = 'APEX_WS_DATA_GRID_COL' then 'APEX_WS_DATA_GRID'
+          when t.table_name = 'APEX_APPL_LOAD_TABLE_LOOKUPS' then 'APEX_APPL_LOAD_TABLES'
+          when t.table_name = 'APEX_APPL_LOAD_TABLE_RULES' then 'APEX_APPL_LOAD_TABLES'
+          when t.table_name = 'APEX_APPL_CONCATENATED_FILES' then 'APEX_APPL_USER_INTERFACES'
+        end parent_view,
+        case
+          when t.table_name = 'APEX_WORKSPACES' then null
+          when t.table_name = 'APEX_APPLICATIONS' then 'APEX_WORKSPACES/'
+          when t.table_name = 'APEX_APPLICATION_LOV_ENTRIES' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_LOVS/'
+          when t.table_name = 'APEX_APPLICATION_PAGE_ITEMS' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGE_REGIONS/'
+          when t.table_name = 'APEX_APPLICATION_PAGE_BUTTONS' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGE_REGIONS/'
+          when t.table_name = 'APEX_APPL_PLUGIN_ATTRIBUTES' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPL_PLUGINS/'
+          when t.table_name = 'APEX_APPL_PLUGIN_ATTR_VALUES' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPL_PLUGINS/APEX_APPL_PLUGIN_ATTRIBUTES/'
+          when t.table_name = 'APEX_APPL_PLUGIN_FILES' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPL_PLUGINS/'
+          when t.table_name = 'APEX_APPL_PLUGIN_EVENTS' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPL_PLUGINS/'
+          when t.table_name = 'APEX_APPLICATION_LIST_ENTRIES' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_LISTS/'
+          when t.table_name = 'APEX_APPLICATION_TEMPLATES' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_THEMES/'
+          when t.table_name = 'APEX_APPLICATION_THEME_STYLES' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_THEMES/'
+          when t.table_name = 'APEX_APPLICATION_THEME_FILES' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_THEMES/'
+          when t.table_name = 'APEX_APPL_THEME_DISPLAY_POINTS' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_THEMES/'
+          when t.table_name = 'APEX_APPL_TEMPLATE_OPTIONS' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_THEMES/'
+          when t.table_name = 'APEX_APPL_TEMPLATE_OPT_GROUPS' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_THEMES/'
+          when t.table_name = 'APEX_APPL_TEMP_PAGE_DP' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_THEMES/APEX_APPLICATION_TEMP_PAGE/'
+          when t.table_name = 'APEX_APPL_TEMP_REGION_DP' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_THEMES/APEX_APPLICATION_TEMP_REGION/'
+          when substr(t.table_name, 1, 18) = 'APEX_WORKSPACE_LOG' then 'APEX_WORKSPACES/APEX_WORKSPACE_ACTIVITY_LOG/'
+          when substr(t.table_name, 1, 26) = 'APEX_APPLICATION_SUPP_OBJ_' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_SUPP_OBJECTS/'
+          when substr(t.table_name, 1, 21) = 'APEX_APPLICATION_TEMP' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_THEMES/'
+          when substr(t.table_name, 1, 30) = 'APEX_APPLICATION_PAGE_RPT_COLS' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/APEX_APPLICATION_PAGE_RPT/'
+          when substr(t.table_name, 1, 25) = 'APEX_APPLICATION_PAGE_RPT' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/'
+          when t.table_name = 'APEX_APPLICATION_PAGE_REG_COLS' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/'
+          when substr(t.table_name, 1, 30) = 'APEX_APPLICATION_PAGE_FLASH5_S' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/APEX_APPLICATION_PAGE_FLASH5/'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_COMP' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/APEX_APPLICATION_PAGE_IR/APEX_APPLICATION_PAGE_IR_RPT'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_COND' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/APEX_APPLICATION_PAGE_IR/APEX_APPLICATION_PAGE_IR_RPT'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_SUB' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/APEX_APPLICATION_PAGE_IR/APEX_APPLICATION_PAGE_IR_RPT'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_GRPBY' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/APEX_APPLICATION_PAGE_IR/APEX_APPLICATION_PAGE_IR_RPT'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_PIVOT' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/APEX_APPLICATION_PAGE_IR/APEX_APPLICATION_PAGE_IR_RPT'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_PVAGG' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/APEX_APPLICATION_PAGE_IR/APEX_APPLICATION_PAGE_IR_RPT'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR_PVSRT' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/APEX_APPLICATION_PAGE_IR/APEX_APPLICATION_PAGE_IR_RPT'
+          when substr(t.table_name, 1, 25) = 'APEX_APPLICATION_PAGE_IR_' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/APEX_APPLICATION_PAGE_IR/'
+          when t.table_name = 'APEX_APPLICATION_PAGE_IR' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/'
+          when substr(t.table_name, 1, 28) = 'APEX_APPLICATION_PAGE_FLASH5' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/'
+          when substr(t.table_name, 1, 27) = 'APEX_APPLICATION_PAGE_FLASH' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/'
+          when substr(t.table_name, 1, 27) = 'APEX_APPLICATION_PAGE_TREES' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_REGIONS/'
+          when t.table_name = 'APEX_APPLICATION_PAGE_DA_ACTS' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/APEX_APPLICATION_PAGE_DA/'
+          when substr(t.table_name, 1, 22) = 'APEX_APPLICATION_PAGE_' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/'
+          when substr(t.table_name, 1, 15) = 'APEX_APPL_PAGE_' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPLICATION_PAGES/' --#14833918
+          when substr(t.table_name, 1, 15) = 'APEX_WORKSPACE_' then 'APEX_WORKSPACES/'
+          when substr(t.table_name, 1, 17) = 'APEX_APPLICATION_' then 'APEX_WORKSPACES/APEX_APPLICATIONS/'
+          when t.table_name = 'APEX_TEAM_FEEDBACK_FOLLOWUP' then 'APEX_WORKSPACES/APEX_TEAM_FEEDBACK/'
+          when substr(t.table_name, 1, 10) = 'APEX_TEAM_' then 'APEX_WORKSPACES/'
+          when t.table_name = 'APEX_WS_APPLICATIONS' then 'APEX_WORKSPACES/'
+          when t.table_name = 'APEX_WS_APP_PAGES' then 'APEX_WORKSPACES/APEX_WS_APPLICATIONS/'
+          when t.table_name = 'APEX_WS_DATA_GRID' then 'APEX_WORKSPACES/APEX_WS_APPLICATIONS/'
+          when t.table_name = 'APEX_WS_DATA_GRID_COL' then 'APEX_WORKSPACES/APEX_WS_APPLICATIONS/APEX_WS_DATA_GRID/'
+          when t.table_name = 'APEX_APPL_LOAD_TABLE_LOOKUPS' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPL_LOAD_TABLES/'
+          when t.table_name = 'APEX_APPL_LOAD_TABLE_RULES' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPL_LOAD_TABLES/'
+          when t.table_name = 'APEX_APPL_CONCATENATED_FILES' then 'APEX_WORKSPACES/APEX_APPLICATIONS/APEX_APPL_USER_INTERFACES/'
+          when substr(t.table_name, 1, 10) = 'APEX_APPL_' then 'APEX_WORKSPACES/APEX_APPLICATIONS/'
+        end || t.table_name path
+      from
+        sys.all_tab_columns t,
+        sys.all_col_comments c
+      where
+        t.owner = 'APEX_050000'
+        and t.owner = c .owner
+        and t.table_name = c .table_name
+        and t.column_Name = c .column_name
+        and (
+          t.table_name like 'APEX\_APPL\_%' escape '\'
+        or t.table_name like ' APEX_APPLICATION % '
+        or t.table_name like ' APEX_TEAM % '
+        or t.table_name like ' APEX_WORKSPACE % '
+        or t.table_name = ' APEX_THEMES '
+        or t.table_name like ' APEX_UI_DEFAULTS % '
+        or t.table_name like ' APEX_WS % ') and
+        t.table_name != ' apex_dictionary '
+  union all
+  select t.view_name   apex_view_name,
+         0             column_id,
+         null          column_name,
+         c.comments    apex_view_comments,
+         ' View '        comment_type,
+         case
+           when        t.view_name      =' APEX_APPLICATIONS '              then ' APEX_WORKSPACES '
+           when        t.view_name      =' APEX_APPLICATION_LOV_ENTRIES '   then ' APEX_APPLICATION_LOVS '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_ITEMS '    then ' APEX_APPLICATION_PAGE_REGIONS '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_BUTTONS '  then ' APEX_APPLICATION_PAGE_REGIONS '
+           when        t.view_name      =' APEX_APPL_PLUGIN_ATTRIBUTES '    then ' APEX_APPL_PLUGINS '
+           when        t.view_name      =' APEX_APPL_PLUGIN_ATTR_VALUES '   then ' APEX_APPL_PLUGIN_ATTRIBUTES '
+           when        t.view_name      =' APEX_APPL_PLUGIN_FILES '         then ' APEX_APPL_PLUGINS '
+           when        t.view_name      =' APEX_APPL_PLUGIN_EVENTS '        then ' APEX_APPL_PLUGINS '
+           when        t.view_name      =' APEX_APPLICATION_LIST_ENTRIES '  then ' APEX_APPLICATION_LISTS '
+           when        t.view_name      =' APEX_APPLICATION_TEMPLATES '     then ' APEX_APPLICATION_THEMES '
+           when        t.view_name      =' APEX_APPLICATION_THEME_STYLES '  then ' APEX_APPLICATION_THEMES '
+           when        t.view_name      =' APEX_APPLICATION_THEME_FILES '   then ' APEX_APPLICATION_THEMES '
+           when        t.view_name      =' APEX_APPL_THEME_DISPLAY_POINTS ' then ' APEX_APPLICATION_THEMES '
+           when        t.view_name      =' APEX_APPL_TEMPLATE_OPTIONS '     then ' APEX_APPLICATION_THEMES '
+           when        t.view_name      =' APEX_APPL_TEMPLATE_OPT_GROUPS '  then ' APEX_APPLICATION_THEMES '
+           when        t.view_name      =' APEX_APPL_TEMP_PAGE_DP '         then ' APEX_APPLICATION_TEMP_PAGE '
+           when        t.view_name      =' APEX_APPL_TEMP_REGION_DP '       then ' APEX_APPLICATION_TEMP_REGION '
+           when substr(t.view_name,1,26)=' APEX_APPLICATION_SUPP_OBJ_ '     then ' APEX_APPLICATION_SUPP_OBJECTS '
+           when substr(t.view_name,1,18)=' APEX_WORKSPACE_LOG '             then ' APEX_WORKSPACE_ACTIVITY_LOG '
+           when substr(t.view_name,1,21)=' APEX_APPLICATION_TEMP '          then ' APEX_APPLICATION_THEMES '
+           when substr(t.view_name,1,30)=' APEX_APPLICATION_PAGE_RPT_COLS ' then ' APEX_APPLICATION_PAGE_RPT '
+           when substr(t.view_name,1,25)=' APEX_APPLICATION_PAGE_RPT '      then ' APEX_APPLICATION_PAGE_REGIONS '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_REG_COLS ' then ' APEX_APPLICATION_PAGE_REGIONS '
+           when substr(t.view_name,1,30)=' APEX_APPLICATION_PAGE_FLASH5_S ' then ' APEX_APPLICATION_PAGE_FLASH5 '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_COMP '  then ' APEX_APPLICATION_PAGE_IR_RPT '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_COND '  then ' APEX_APPLICATION_PAGE_IR_RPT '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_SUB '   then ' APEX_APPLICATION_PAGE_IR_RPT '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_GRPBY ' then ' APEX_APPLICATION_PAGE_IR_RPT '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_PIVOT ' then ' APEX_APPLICATION_PAGE_IR_RPT '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_PVAGG ' then ' APEX_APPLICATION_PAGE_IR_RPT '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_PVSRT ' then ' APEX_APPLICATION_PAGE_IR_RPT '
+           when substr(t.view_name,1,25)=' APEX_APPLICATION_PAGE_IR_ '      then ' APEX_APPLICATION_PAGE_IR '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR '       then ' APEX_APPLICATION_PAGE_REGIONS '
+           when substr(t.view_name,1,28)=' APEX_APPLICATION_PAGE_FLASH5 '   then ' APEX_APPLICATION_PAGE_REGIONS '
+           when substr(t.view_name,1,27)=' APEX_APPLICATION_PAGE_FLASH '    then ' APEX_APPLICATION_PAGE_REGIONS '
+           when substr(t.view_name,1,27)=' APEX_APPLICATION_PAGE_TREES '    then ' APEX_APPLICATION_PAGE_REGIONS '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_DA_ACTS '  then ' APEX_APPLICATION_PAGE_DA '
+           when substr(t.view_name,1,22)=' APEX_APPLICATION_PAGE_ '         then ' APEX_APPLICATION_PAGES '
+           when substr(t.view_name,1,15)=' APEX_WORKSPACE_ '                then ' APEX_WORKSPACES '
+           when substr(t.view_name,1,15)=' APEX_APPL_PAGE_ '                then ' APEX_APPLICATION_PAGES '       --#14833918
+           when substr(t.view_name,1,17)=' APEX_APPLICATION_ ' or
+                substr(t.view_name,1,10)=' APEX_APPL_ '                     then ' APEX_APPLICATIONS '
+           when        t.view_name      =' APEX_TEAM_FEEDBACK_FOLLOWUP '    then ' APEX_TEAM_FEEDBACK '
+           when substr(t.view_name,1,10)=' APEX_TEAM_ '                     then ' APEX_WORKSPACES '
+           when        t.view_name      =' APEX_WS_APPLICATIONS '           then ' APEX_WORKSPACES '
+           when        t.view_name      =' APEX_WS_APP_PAGES '              then ' APEX_WS_APPLICATIONS '
+           when        t.view_name      =' APEX_WS_DATA_GRID '              then ' APEX_WS_APPLICATIONS '
+           when        t.view_name      =' APEX_WS_DATA_GRID_COL '          then ' APEX_WS_DATA_GRID '
+           when        t.view_name      =' APEX_APPL_LOAD_TABLE_LOOKUPS '   then ' APEX_APPL_LOAD_TABLES '
+           when        t.view_name      =' APEX_APPL_LOAD_TABLE_RULES '     then ' APEX_APPL_LOAD_TABLES '
+           when        t.view_name      =' APEX_APPL_CONCATENATED_FILES '   then ' APEX_APPL_USER_INTERFACES '
+           end         parent_view,
+         case
+           when        t.view_name      =' APEX_WORKSPACES '                then null
+           when        t.view_name      =' APEX_APPLICATIONS '              then ' APEX_WORKSPACES / '
+           when        t.view_name      =' APEX_APPLICATION_LOV_ENTRIES '   then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_LOVS / '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_ITEMS '    then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGE_REGIONS / '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_BUTTONS '  then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGE_REGIONS / '
+           when        t.view_name      =' APEX_APPL_PLUGIN_ATTRIBUTES '    then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPL_PLUGINS / '
+           when        t.view_name      =' APEX_APPL_PLUGIN_ATTR_VALUES '   then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPL_PLUGINS / APEX_APPL_PLUGIN_ATTRIBUTES / '
+           when        t.view_name      =' APEX_APPL_PLUGIN_FILES '         then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPL_PLUGINS / '
+           when        t.view_name      =' APEX_APPL_PLUGIN_EVENTS '        then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPL_PLUGINS / '
+           when        t.view_name      =' APEX_APPLICATION_LIST_ENTRIES '  then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_LISTS / '
+           when        t.view_name      =' APEX_APPLICATION_TEMPLATES '     then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_THEMES / '
+           when        t.view_name      =' APEX_APPLICATION_THEME_STYLES '  then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_THEMES / '
+           when        t.view_name      =' APEX_APPLICATION_THEME_FILESS '  then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_THEMES / '
+           when        t.view_name      =' APEX_APPL_THEME_DISPLAY_POINTS ' then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_THEMES / '
+           when        t.view_name      =' APEX_APPL_TEMPLATE_OPTIONS '     then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_THEMES / '
+           when        t.view_name      =' APEX_APPL_TEMPLATE_OPT_GROUPS '  then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_THEMES / '
+           when        t.view_name      =' APEX_APPL_TEMP_PAGE_DP '         then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_THEMES / APEX_APPLICATION_TEMP_PAGE / '
+           when        t.view_name      =' APEX_APPL_TEMP_REGION_DP '       then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_THEMES / APEX_APPLICATION_TEMP_REGION / '
+           when substr(t.view_name,1,18)=' APEX_WORKSPACE_LOG '             then ' APEX_WORKSPACES / APEX_WORKSPACE_ACTIVITY_LOG / '
+           when substr(t.view_name,1,26)=' APEX_APPLICATION_SUPP_OBJ_ '     then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_SUPP_OBJECTS / '
+           when substr(t.view_name,1,21)=' APEX_APPLICATION_TEMP '          then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_THEMES / '
+           when substr(t.view_name,1,30)=' APEX_APPLICATION_PAGE_RPT_COLS ' then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / APEX_APPLICATION_PAGE_RPT / '
+           when substr(t.view_name,1,25)=' APEX_APPLICATION_PAGE_RPT '      then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_REG_COLS ' then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / '
+           when substr(t.view_name,1,30)=' APEX_APPLICATION_PAGE_FLASH5_S ' then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / APEX_APPLICATION_PAGE_FLASH5 / '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_COMP '  then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / APEX_APPLICATION_PAGE_IR / APEX_APPLICATION_PAGE_IR_RPT '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_COND '  then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / APEX_APPLICATION_PAGE_IR / APEX_APPLICATION_PAGE_IR_RPT '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_SUB '   then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / APEX_APPLICATION_PAGE_IR / APEX_APPLICATION_PAGE_IR_RPT '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_GRPBY ' then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / APEX_APPLICATION_PAGE_IR / APEX_APPLICATION_PAGE_IR_RPT '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_PIVOT ' then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / APEX_APPLICATION_PAGE_IR / APEX_APPLICATION_PAGE_IR_RPT '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_PVAGG ' then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / APEX_APPLICATION_PAGE_IR / APEX_APPLICATION_PAGE_IR_RPT '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR_PVSRT ' then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / APEX_APPLICATION_PAGE_IR / APEX_APPLICATION_PAGE_IR_RPT '
+           when substr(t.view_name,1,25)=' APEX_APPLICATION_PAGE_IR_ '      then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / APEX_APPLICATION_PAGE_IR / '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_IR '       then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / '
+           when substr(t.view_name,1,28)=' APEX_APPLICATION_PAGE_FLASH5 '   then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / '
+           when substr(t.view_name,1,27)=' APEX_APPLICATION_PAGE_FLASH '    then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / '
+           when substr(t.view_name,1,27)=' APEX_APPLICATION_PAGE_TREES '    then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_REGIONS / '
+           when        t.view_name      =' APEX_APPLICATION_PAGE_DA_ACTS '  then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / APEX_APPLICATION_PAGE_DA / '
+           when substr(t.view_name,1,22)=' APEX_APPLICATION_PAGE_ '         then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / '
+           when substr(t.view_name,1,15)=' APEX_WORKSPACE_ '                then ' APEX_WORKSPACES / '
+           when substr(t.view_name,1,17)=' APEX_APPLICATION_ '              then ' APEX_WORKSPACES / APEX_APPLICATIONS / '
+           when substr(t.view_name,1,15)=' APEX_APPL_PAGE_ '                then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPLICATION_PAGES / '     --#14833918
+           when substr(t.view_name,1,10)=' APEX_APPL_ '                     then ' APEX_WORKSPACES / APEX_APPLICATIONS / '
+           when        t.view_name      =' APEX_TEAM_FEEDBACK_FOLLOWUP '    then ' APEX_WORKSPACES / APEX_TEAM_FEEDBACK / '
+           when substr(t.view_name,1,10)=' APEX_TEAM_ '                     then ' APEX_WORKSPACES / '
+           when        t.view_name      =' APEX_WS_APPLICATIONS '           then ' APEX_WORKSPACES / '
+           when        t.view_name      =' APEX_WS_APP_PAGES '              then ' APEX_WORKSPACES / APEX_WS_APPLICATIONS / '
+           when        t.view_name      =' APEX_WS_DATA_GRID '              then ' APEX_WORKSPACES / APEX_WS_APPLICATIONS / '
+           when        t.view_name      =' APEX_WS_DATA_GRID_COL '          then ' APEX_WORKSPACES / APEX_WS_APPLICATIONS / APEX_WS_DATA_GRID / '
+           when        t.view_name      =' APEX_APPL_LOAD_TABLE_LOOKUPS '   then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPL_LOAD_TABLES / '
+           when        t.view_name      =' APEX_APPL_LOAD_TABLE_RULES '     then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPL_LOAD_TABLES / '
+           when        t.view_name      =' APEX_APPL_CONCATENATED_FILES '   then ' APEX_WORKSPACES / APEX_APPLICATIONS / APEX_APPL_USER_INTERFACES / '
+           when substr(t.view_name,1,10)=' APEX_APPL_ '                     then ' APEX_WORKSPACES / APEX_APPLICATIONS / '
+           end ||t.view_name        path
+  from  sys.all_views t, sys.all_tab_comments c
+  where t.owner = ' APEX_050000 ' and
+        t.owner = c.owner and
+        t.view_name = c.table_name and
+        (t.view_name like ' APEX \ _APPL \ _ % ' escape ' \ '
+        or t.view_name like ' APEX_APPLICATION % '
+        or t.view_name like ' APEX_WORKSPACE % '
+        or t.view_name like ' APEX_TEAM % '
+        or t.view_name = ' APEX_THEMES '
+        or t.view_name like ' APEX_UI_DEFAULTS % '
+        or t.view_name like ' APEX_WS % ')
+  order by 7,2
+  ) x
+columns: []
+referencedTables: []

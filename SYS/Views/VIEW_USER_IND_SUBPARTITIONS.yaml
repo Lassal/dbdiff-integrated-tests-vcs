@@ -1,0 +1,221 @@
+schema: SYS
+name: USER_IND_SUBPARTITIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    po.name,
+    po.subname,
+    so.subname,
+    isp.hiboundval,
+    isp.hiboundlen,
+    row_number() over (
+      partition by po.name,
+      po.subname
+      order by
+        isp.subpart#
+    ),
+    decode(bitand(isp.flags, 1), 1, 'UNUSABLE', 'USABLE'),
+    ts.name,
+    isp.pctfree$,
+    isp.initrans,
+    isp.maxtrans,
+    decode(
+      bitand(isp.flags, 65536),
+      65536,
+      ds.initial_stg * ts.blocksize,
+      s.iniexts * ts.blocksize
+    ),
+    decode(
+      bitand(isp.flags, 65536),
+      65536,
+      ds.next_stg * ts.blocksize,
+      s.extsize * ts.blocksize
+    ),
+    decode(
+      bitand(isp.flags, 65536),
+      65536,
+      ds.minext_stg,
+      s.minexts
+    ),
+    decode(
+      bitand(isp.flags, 65536),
+      65536,
+      ds.maxext_stg,
+      s.maxexts
+    ),
+    decode(
+      bitand(isp.flags, 65536),
+      65536,
+      ds.maxsiz_stg * ts.blocksize,
+      decode(
+        bitand(s.spare1, 4194304),
+        4194304,
+        bitmapranges,
+        NULL
+      )
+    ),
+    decode(
+      bitand(ts.flags, 3),
+      1,
+      to_number(NULL),
+      decode(
+        bitand(isp.flags, 65536),
+        65536,
+        ds.pctinc_stg,
+        s.extpct
+      )
+    ),
+    decode(
+      bitand(ts.flags, 32),
+      32,
+      to_number(NULL),
+      decode(
+        bitand(isp.flags, 65536),
+        65536,
+        decode(ds.frlins_stg, 0, 1, ds.frlins_stg),
+        decode(s.lists, 0, 1, s.lists)
+      )
+    ),
+    decode(
+      bitand(ts.flags, 32),
+      32,
+      to_number(NULL),
+      decode(
+        bitand(isp.flags, 65536),
+        65536,
+        decode(ds.maxins_stg, 0, 1, ds.maxins_stg),
+        decode(s.groups, 0, 1, s.groups)
+      )
+    ),
+    decode(mod(trunc(isp.flags / 4), 2), 0, 'YES', 'NO'),
+    case
+      when bitand(isp.flags, 1024) = 1024 then 'ENABLED'
+      else case
+        when (bitand(isp.flags, 65536) = 65536) then decode(
+          bitand(ds.flags_stg, 4),
+          4,
+          decode(
+            bitand(ds.cmpflag_stg, 6),
+            4,
+            'ADVANCED LOW',
+            2,
+            'ADVANCED HIGH',
+            NULL
+          ),
+          'DISABLED'
+        )
+        else decode(
+          bitand(s.spare1, 2048),
+          2048,
+          decode(
+            bitand(s.spare1, 16777216 + 1048576),
+            16777216,
+            'ADVANCED HIGH',
+            1048576,
+            'ADVANCED LOW',
+            NULL
+          ),
+          'DISABLED'
+        )
+      end
+    end,
+    isp.blevel,
+    isp.leafcnt,
+    isp.distkey,
+    isp.lblkkey,
+    isp.dblkkey,
+    isp.clufac,
+    isp.rowcnt,
+    isp.samplesize,
+    isp.analyzetime,
+    decode(
+      bitand(
+        decode(
+          bitand(isp.flags, 65536),
+          65536,
+          ds.bfp_stg,
+          s.cachehint
+        ),
+        3
+      ),
+      1,
+      'KEEP',
+      2,
+      'RECYCLE',
+      'DEFAULT'
+    ),
+    decode(
+      bitand(
+        decode(
+          bitand(isp.flags, 65536),
+          65536,
+          ds.bfp_stg,
+          s.cachehint
+        ),
+        12
+      ) / 4,
+      1,
+      'KEEP',
+      2,
+      'NONE',
+      'DEFAULT'
+    ),
+    decode(
+      bitand(
+        decode(
+          bitand(isp.flags, 65536),
+          65536,
+          ds.bfp_stg,
+          s.cachehint
+        ),
+        48
+      ) / 16,
+      1,
+      'KEEP',
+      2,
+      'NONE',
+      'DEFAULT'
+    ),
+    decode(bitand(isp.flags, 8), 0, 'NO', 'YES'),
+    decode(bitand(isp.flags, 16), 0, 'NO', 'YES'),
+    decode(bitand(isp.flags, 32768), 32768, 'YES', 'NO'),
+    decode(bitand(isp.flags, 65536), 65536, 'NO', 'YES')
+  from
+    sys.obj$ so,
+    sys.obj$ po,
+    sys.indsubpart$ isp,
+    sys.indcompart$ icp,
+    sys.ts$ ts,
+    sys.seg$ s,
+    sys.ind$ i,
+    sys.tab$ t,
+    sys.deferred_stg$ ds
+  where
+    so.obj# = isp.obj#
+    and po.obj# = icp.obj#
+    and icp.obj# = isp.pobj#
+    and isp.ts# = ts.ts#
+    and isp.file# = s.file#(+)
+    and isp.block# = s.block#(+)
+    and isp.ts# = s.ts#(+)
+    and isp.obj# = ds.obj#(+)
+    and bitand(icp.flags, 8388608) = 0
+    and
+    /* filter out hidden partitions */
+    bitand(isp.flags, 8388608) = 0
+    and
+    /* filter out hidden partitions */
+    po.owner# = userenv('SCHEMAID')
+    and so.owner# = userenv('SCHEMAID')
+    and i.obj# = icp.bo#
+    and i.bo# = t.obj#
+    and bitand(t.trigflag, 1073741824) != 1073741824
+    and po.namespace = 4
+    and po.remoteowner IS NULL
+    and po.linkname IS NULL
+    and so.namespace = 4
+    and so.remoteowner IS NULL
+    and so.linkname IS NULL
+columns: []
+referencedTables: []

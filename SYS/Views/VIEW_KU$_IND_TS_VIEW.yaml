@@ -1,0 +1,25 @@
+schema: SYS
+name: KU$_IND_TS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    i.owner_num,
+    i.obj_num,
+    i.ts_name
+  from
+    sys.ku$_tts_ind_view i
+  where
+    (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (i.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

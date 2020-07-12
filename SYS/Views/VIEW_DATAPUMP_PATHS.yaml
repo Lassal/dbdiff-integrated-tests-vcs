@@ -1,0 +1,16 @@
+schema: SYS
+name: DATAPUMP_PATHS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    m.het_type,
+    m.object_path,
+    m.seq_num,
+    m.full_path
+  from
+    datapump_paths_version m
+  where
+    m.version < '1200000000'
+columns: []
+referencedTables: []

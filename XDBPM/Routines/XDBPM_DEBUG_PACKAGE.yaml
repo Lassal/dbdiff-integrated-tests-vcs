@@ -1,0 +1,48 @@
+schema: XDBPM
+name: XDBPM_DEBUG
+routineType: PACKAGE
+returnParamater:
+  name: TRACE_FOLDER.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: STARTREWRITETRACE.P_COMMENT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITEDEBUG(1).P_LOG_MESSAGE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITEDEBUG(2).P_LOG_MESSAGE
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: WRITEDEBUG(3).P_XML
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_DEBUG authid CURRENT_USER as C_WRITE_TO_TRACE_FILE constant binary_integer: = 1;
+  C_OPEN_QUERY_REWRITE CONSTANT VARCHAR2(4000): = '<xdbpm:XQUERY_REWRITE xmlns:xdbpm="http://xmlns.oracle.com/xdbpm" timestamp="%TIMESTAMP%">';
+  C_CLOSE_QUERY_REWRITE CONSTANT VARCHAR2(4000): = '</xdbpm:XQUERY_REWRITE>';
+  C_BEGIN_XQUERY_DIAGNOSTIC CONSTANT VARCHAR2(128): = 'XML Performance Diagnosis:';
+  C_END_XQUERY_DIAGNOSTIC CONSTANT VARCHAR2(128): = '===============================================================================';
+  C_TRACE_FOLDER VARCHAR2(128): = XDB_CONSTANTS.FOLDER_USER_DEBUG || '/traceFiles';
+  function getTraceFileContents return CLOB;
+  procedure startXQueryTrace;
+  function getXQueryTrace return CLOB;
+  function getXQueryOptimizationTrace return CLOB;
+  procedure startRewriteTrace(P_COMMENT VARCHAR2);
+  function getRewriteTrace return XMLType;
+  function TRACE_FOLDER return VARCHAR2 deterministic;
+  function DEBUG_FILE return VARCHAR2;
+  procedure saveTraceFile;
+  procedure createDebugFile;
+  procedure switchDebugOutputFile;
+  procedure writeDebug(P_LOG_MESSAGE VARCHAR2);
+  procedure writeDebug(P_LOG_MESSAGE CLOB);
+  procedure writeDebug(P_XML XMLType);
+  function getDebugOutput return CLOB;
+  end;

@@ -1,0 +1,16 @@
+schema: SYS
+name: GV_$TEMPORARY_LOBS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "INST_ID",
+    "SID",
+    "CACHE_LOBS",
+    "NOCACHE_LOBS",
+    "ABSTRACT_LOBS",
+    "CON_ID"
+  from
+    gv$temporary_lobs
+columns: []
+referencedTables: []

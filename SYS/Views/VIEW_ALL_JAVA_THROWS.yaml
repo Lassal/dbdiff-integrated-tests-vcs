@@ -1,0 +1,76 @@
+schema: SYS
+name: ALL_JAVA_THROWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ no_cartesian(mmd) no_cartesian(mex)  ordered use_nl(o mmd) */
+    u.name,
+    mmd.kln,
+    mmd.mix,
+    mmd.mnm,
+    mex.xix,
+    mex.xln
+  from
+    sys.x$joxmex mex,
+    sys.x$joxmmd mmd,
+    sys.user$ u
+  where
+    mmd.own = u.user#
+    and mmd.mix != -1
+    and mmd.mix = mex.mix
+    and mmd.obn = mex.obn
+    and (
+      u.user# in (
+        userenv('SCHEMAID'),
+        1
+        /* PUBLIC */
+      )
+      or (
+        (
+          (
+            mmd.obn in (
+              select
+                obj#
+              from
+                sys.objauth$
+              where
+                grantee# in (
+                  select
+                    kzsrorol
+                  from
+                    x$kzsro
+                )
+                and privilege# = 12
+                /* EXECUTE */
+            )
+          )
+          or exists (
+            select
+              null
+            from
+              sys.sysauth$
+            where
+              grantee# in (
+                select
+                  kzsrorol
+                from
+                  x$kzsro
+              )
+              and (
+                (
+                  /* procedure */
+                  (
+                    privilege# = -144
+                    /* EXECUTE ANY PROCEDURE */
+                    or privilege# = -141
+                    /* CREATE ANY PROCEDURE */
+                  )
+                )
+              )
+          )
+        )
+      )
+    )
+columns: []
+referencedTables: []

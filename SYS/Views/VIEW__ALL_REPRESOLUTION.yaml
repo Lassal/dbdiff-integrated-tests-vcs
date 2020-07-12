@@ -1,0 +1,61 @@
+schema: SYS
+name: _ALL_REPRESOLUTION
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    sname,
+    oname,
+    conflict_type,
+    reference_name,
+    sequence_no,
+    method_name,
+    function_name,
+    priority_group,
+    resolution_comment,
+    decode(
+      conflict_type,
+      'UPDATE',
+      1,
+      'UNIQUENESS',
+      2,
+      'DELETE',
+      3,
+      -1
+    )
+  from
+    all_represolution
+  where
+    conflict_type in ('UNIQUENESS', 'DELETE', 'UNDEFINED')
+  union
+  select
+    /*+ ALL_ROWS */
+    resol.sname,
+    resol.oname,
+    resol.conflict_type,
+    resol.reference_name,
+    resol.sequence_no,
+    resol.method_name,
+    resol.function_name,
+    resol.priority_group,
+    resol.resolution_comment,
+    decode(
+      resol.conflict_type,
+      'UPDATE',
+      1,
+      'UNIQUENESS',
+      2,
+      'DELETE',
+      3,
+      -1
+    )
+  from
+    all_represolution resol,
+    "_ALL_REPCOLUMN_GROUP" rg
+  where
+    conflict_type = 'UPDATE'
+    and resol.reference_name = rg.group_name
+    and resol.sname = rg.sname
+    and resol.oname = rg.oname
+columns: []
+referencedTables: []

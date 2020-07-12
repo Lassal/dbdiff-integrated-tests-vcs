@@ -1,0 +1,24 @@
+schema: SYS
+name: EXU10LNKU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OWNER",
+    "OWNERID",
+    "NAME",
+    "USER$",
+    "PASSWD",
+    "HOST",
+    "PUBLIC$",
+    "AUTH_USER",
+    "AUTH_PASSWD",
+    "FLAG",
+    "PASSWDX",
+    "AUTH_PASSWDX"
+  FROM
+    sys.exu10lnk
+  WHERE
+    ownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

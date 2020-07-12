@@ -1,0 +1,21 @@
+schema: SYS
+name: EXU8SYNU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "SYNNAM",
+    "SYNNAM2",
+    "SYNTAB",
+    "TABOWN",
+    "TABNODE",
+    "PUBLIC$",
+    "SYNOWN",
+    "SYNOWNID",
+    "SYNTIME"
+  FROM
+    sys.exu8syn
+  WHERE
+    synownid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

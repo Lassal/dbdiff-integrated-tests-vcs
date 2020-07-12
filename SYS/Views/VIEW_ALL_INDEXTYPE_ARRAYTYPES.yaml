@@ -1,0 +1,153 @@
+schema: SYS
+name: ALL_INDEXTYPE_ARRAYTYPES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    indtypu.name,
+    indtypo.name,
+    decode(
+      i.type,
+      121,
+      (
+        select
+          baseu.name
+        from
+          user $ baseu
+        where
+          baseo.owner# = baseu.user#
+      ),
+      null
+    ),
+    decode(i.type, 121, baseo.name, null),
+    decode(
+      i.type,
+      /* DATA_TYPE */
+      0,
+      null,
+      1,
+      'VARCHAR2',
+      2,
+      'NUMBER',
+      3,
+      'NATIVE INTEGER',
+      8,
+      'LONG',
+      9,
+      'VARCHAR',
+      11,
+      'ROWID',
+      12,
+      'DATE',
+      23,
+      'RAW',
+      24,
+      'LONG RAW',
+      29,
+      'BINARY_INTEGER',
+      69,
+      'ROWID',
+      96,
+      'CHAR',
+      100,
+      'BINARY_FLOAT',
+      101,
+      'BINARY_DOUBLE',
+      102,
+      'REF CURSOR',
+      104,
+      'UROWID',
+      105,
+      'MLSLABEL',
+      106,
+      'MLSLABEL',
+      110,
+      'REF',
+      111,
+      'REF',
+      112,
+      'CLOB',
+      113,
+      'BLOB',
+      114,
+      'BFILE',
+      115,
+      'CFILE',
+      121,
+      'OBJECT',
+      122,
+      'TABLE',
+      123,
+      'VARRAY',
+      178,
+      'TIME',
+      179,
+      'TIME WITH TIME ZONE',
+      180,
+      'TIMESTAMP',
+      181,
+      'TIMESTAMP WITH TIME ZONE',
+      231,
+      'TIMESTAMP WITH LOCAL TIME ZONE',
+      182,
+      'INTERVAL YEAR TO MONTH',
+      183,
+      'INTERVAL DAY TO SECOND',
+      250,
+      'PL/SQL RECORD',
+      251,
+      'PL/SQL TABLE',
+      252,
+      'PL/SQL BOOLEAN',
+      'UNDEFINED'
+    ),
+    arrayu.name,
+    arrayo.name
+  from
+    sys.user$ indtypu,
+    sys.indarraytype$ i,
+    sys.obj$ indtypo,
+    sys.obj$ baseo,
+    sys.obj$ arrayo,
+    sys.user$ arrayu
+  where
+    i.obj# = indtypo.obj#
+    and indtypu.user# = indtypo.owner#
+    and i.basetypeobj# = baseo.obj#(+)
+    and i.arraytypeobj# = arrayo.obj#
+    and arrayu.user# = arrayo.owner#
+    and (
+      indtypo.owner# = userenv ('SCHEMAID')
+      or indtypo.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -205
+            /* CREATE INDEXTYPE */,
+            -206
+            /* CREATE ANY INDEXTYPE */,
+            -207
+            /* ALTER ANY INDEXTYPE */,
+            -208
+            /* DROP ANY INDEXTYPE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,104 @@
+schema: SYS
+name: ALL_METHOD_PARAMS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    m.name,
+    m.method#,
+    p.name,
+    p.parameter#,
+    decode(
+      bitand(p.properties, 768),
+      768,
+      'IN OUT',
+      decode(
+        bitand(p.properties, 256),
+        256,
+        'IN',
+        decode(bitand(p.properties, 512), 512, 'OUT')
+      )
+    ),
+    decode(
+      bitand(p.properties, 32768),
+      32768,
+      'REF',
+      decode(bitand(p.properties, 16384), 16384, 'POINTER')
+    ),
+    decode(bitand(pt.properties, 64), 64, null, pu.name),
+    decode(
+      pt.typecode,
+      9,
+      decode(p.charsetform, 2, 'NVARCHAR2', po.name),
+      96,
+      decode(p.charsetform, 2, 'NCHAR', po.name),
+      112,
+      decode(p.charsetform, 2, 'NCLOB', po.name),
+      po.name
+    ),
+    decode(
+      p.charsetform,
+      1,
+      'CHAR_CS',
+      2,
+      'NCHAR_CS',
+      3,
+      NLS_CHARSET_NAME(p.charsetid),
+      4,
+      'ARG:' || p.charsetid
+    )
+  from
+    sys.user$ u,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.method$ m,
+    sys.parameter$ p,
+    sys. "_CURRENT_EDITION_OBJ" po,
+    sys.user$ pu,
+    sys.type$ pt
+  where
+    o.owner# = u.user#
+    and o.type# <> 10 -- must not be invalid
+    and o.oid$ = m.toid
+    and o.subname IS NULL -- get the latest version only
+    and m.toid = p.toid
+    and m.version# = p.version#
+    and m.method# = p.method#
+    and p.param_toid = po.oid$
+    and po.owner# = pu.user#
+    and p.param_toid = pt.toid
+    and p.param_version# = pt.version#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -184
+            /* EXECUTE ANY TYPE */,
+            -181
+            /* CREATE ANY TYPE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

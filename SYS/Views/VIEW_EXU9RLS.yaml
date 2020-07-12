@@ -1,0 +1,49 @@
+schema: SYS
+name: EXU9RLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name,
+    o.name,
+    r.gname,
+    r.pname,
+    r.pfschma,
+    r.ppname,
+    r.pfname,
+    DECODE(BITAND(r.stmt_type, 1), 0, '', 'SELECT,') || DECODE(BITAND(r.stmt_type, 2), 0, '', 'INSERT,') || DECODE(BITAND(r.stmt_type, 4), 0, '', 'UPDATE,') || DECODE(BITAND(r.stmt_type, 8), 0, '', 'DELETE,') || DECODE(BITAND(r.stmt_type, 2048), 0, '', 'INDEX,'),
+    r.check_opt,
+    r.enable_flag,
+    DECODE(BITAND(r.stmt_type, 16), 0, 0, 1),
+    case
+      bitand(r.stmt_type, 16) + bitand(r.stmt_type, 64) + bitand(r.stmt_type, 128) + bitand(r.stmt_type, 256) + bitand(r.stmt_type, 8192) + bitand(r.stmt_type, 16384) + bitand(r.stmt_type, 32768) + bitand(r.stmt_type, 524288)
+      when 16 then 'DBMS_RLS.STATIC'
+      when 64 then 'DBMS_RLS.SHARED_STATIC'
+      when 128 then 'DBMS_RLS.CONTEXT_SENSITIVE'
+      when 256 then 'DBMS_RLS.SHARED_CONTEXT_SENSITIVE'
+      when 8192 then 'DBMS_RLS.XDS1'
+      when 16384 then 'DBMS_RLS.XDS2'
+      when 32768 then 'DBMS_RLS.XDS3'
+      when 524288 then 'DBMS_RLS.OLS'
+      else 'DBMS_RLS.DYNAMIC'
+    end
+  FROM
+    sys.user$ u,
+    sys.obj$ o,
+    sys.rls$ r
+  WHERE
+    u.user# = o.owner#
+    AND r.obj# = o.obj#
+    AND (
+      userenv('SCHEMAID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,30 @@
+schema: SYS
+name: USER_RULE_SET_RULES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    /*+ all_rows */
+    o.name,
+    ru.name,
+    ro.name,
+    decode(bitand(rm.property, 1), 1, 'DISABLED', 'ENABLED'),
+    eu.name,
+    eo.name,
+    rm.rm_comment
+  FROM
+    rule_map$ rm,
+    obj$ o,
+    obj$ ro,
+    user $ ru,
+    obj$ eo,
+    user $ eu
+  WHERE
+    rm.rs_obj# = o.obj#
+    and o.owner# = USERENV('SCHEMAID')
+    and rm.r_obj# = ro.obj#
+    and ro.owner# = ru.user#
+    and rm.ectx# = eo.obj#(+)
+    and eo.owner# = eu.user#(+)
+columns: []
+referencedTables: []

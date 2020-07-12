@@ -1,0 +1,22 @@
+schema: SYS
+name: ALL_STREAMS_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s. "OWNER",
+    s. "TABLE_NAME",
+    s. "COLUMN_NAME",
+    s. "SYNC_CAPTURE_VERSION",
+    s. "SYNC_CAPTURE_REASON",
+    s. "APPLY_VERSION",
+    s. "APPLY_REASON"
+  from
+    dba_streams_columns s,
+    all_objects a
+  where
+    s.owner = a .owner
+    and s.table_name = a .object_name
+    and a .object_type = 'TABLE'
+columns: []
+referencedTables: []

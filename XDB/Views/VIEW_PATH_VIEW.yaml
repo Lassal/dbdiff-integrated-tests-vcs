@@ -1,0 +1,60 @@
+schema: XDB
+name: PATH_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ ORDERED */
+    t2.path path,
+    t.res res,
+    xmltype.createxml(
+      xdb.xdb_link_type(
+        NULL,
+        r2.xmldata.dispname,
+        t.name,
+        h.name,
+        h.flags,
+        h.parent_oid,
+        h.child_oid,
+        decode(
+          bitand(sys_op_rawtonum(h.flags), 1024),
+          1024,
+          xdb.xdb$enum_t(hextoraw('01')),
+          decode(
+            bitand(sys_op_rawtonum(h.flags), 512),
+            512,
+            xdb.xdb$enum_t(hextoraw('02')),
+            xdb.xdb$enum_t(hextoraw('00'))
+          )
+        )
+      ),
+      'http://xmlns.oracle.com/xdb/XDBStandard.xsd',
+      'LINK'
+    ) link,
+    t.resid
+  from
+    (
+      select
+        xdb.all_path(9999) paths,
+        value(p) res,
+        p.sys_nc_oid$ resid,
+        decode(
+          bitand(sys_op_rawtonum(p.xmldata.flags), 8388608),
+          8388608,
+          utl_raw.cast_to_varchar2(dbms_lob.substr(p.xmldata.xmllob, 4000)),
+          p.xmldata.dispname
+        ) name
+      from
+        xdb.xdb$resource p
+      where
+        xdb.under_path(value(p), '/', 9999) = 1
+    ) t,
+    TABLE(cast (t.paths as xdb.path_array)) t2,
+    xdb.xdb$h_link h,
+    xdb.xdb$resource r2
+  where
+    t2.parent_oid = h.parent_oid
+    and t2.childname = h.name
+    and t2.parent_oid = r2.sys_nc_oid$
+columns: []
+referencedTables: []

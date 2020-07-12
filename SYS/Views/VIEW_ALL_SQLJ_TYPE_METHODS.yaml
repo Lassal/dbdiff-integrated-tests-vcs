@@ -1,0 +1,80 @@
+schema: SYS
+name: ALL_SQLJ_TYPE_METHODS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    m.name,
+    m.externVarName,
+    m.method#,
+    decode(
+      bitand(m.properties, 512),
+      512,
+      'MAP',
+      decode(
+        bitand(m.properties, 2048),
+        2048,
+        'ORDER',
+        'PUBLIC'
+      )
+    ),
+    m.parameters#,
+    m.results,
+    decode(bitand(m.properties, 8), 8, 'NO', 'YES'),
+    decode(bitand(m.properties, 65536), 65536, 'NO', 'YES'),
+    decode(
+      bitand(m.properties, 131072),
+      131072,
+      'YES',
+      'NO'
+    ),
+    decode(bitand(nvl(m.xflags, 0), 1), 1, 'YES', 'NO')
+  from
+    sys.user$ u,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.type$ t,
+    sys.method$ m
+  where
+    o.owner# = u.user#
+    and o.oid$ = m.toid
+    and o.subname IS NULL -- get the latest version only
+    and o.type# <> 10 -- must not be invalid
+    and bitand(t.properties, 2048) = 0 -- not system-generated
+    and t.toid = m.toid
+    and t.version# = m.version#
+    and t.externtype < 5
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -184
+            /* EXECUTE ANY TYPE */,
+            -181
+            /* CREATE ANY TYPE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

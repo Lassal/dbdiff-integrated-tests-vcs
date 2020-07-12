@@ -1,0 +1,23 @@
+schema: SYS
+name: USER_XDS_ACL_REFSTAT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s.schema_name,
+    s.table_name,
+    s.refresh_mode,
+    s.refresh_ability,
+    s.job_start_time,
+    s.job_end_time,
+    s.row_update_count,
+    s.status,
+    s.error_message
+  from
+    dba_xds_acl_refstat s,
+    sys.user$ u
+  where
+    s.schema_name = u.name
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

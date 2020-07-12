@@ -1,0 +1,63 @@
+schema: APEX_050000
+name: APEX_UI_DEFAULTS_ATTR_DICT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    --
+    syn.syn_name column_name,
+    case
+      when c .column_name != syn.syn_name then c .column_name
+    end synonym_of,
+    c .label,
+    c .help_text,
+    c .format_mask,
+    c .default_value,
+    c .form_format_mask,
+    c .form_display_width,
+    c .form_display_height,
+    c .form_data_type,
+    c .report_format_mask,
+    c .report_col_alignment,
+    c .created_by,
+    c .created_on,
+    c .last_updated_by,
+    c .last_updated_on
+  from
+    wwv_flow_hnt_column_dict c,
+    wwv_flow_hnt_col_dict_syn syn,
+    wwv_flow_company_schemas s,
+    wwv_flow_companies w,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and c .security_group_id = w.PROVISIONING_COMPANY_ID
+    and c .column_id = syn.column_id
+    and syn.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and d.sgid != 0
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

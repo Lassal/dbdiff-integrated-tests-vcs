@@ -1,0 +1,22 @@
+schema: MDSYS
+name: OGC_UNION
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: OBJECT
+  parameterMode: OUT
+parameters:
+- name: G1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: G2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_Union(g1 ST_Geometry, g2 ST_Geometry) RETURN ST_Geometry IS
+  BEGIN
+    RETURN g1.ST_Union(g2);
+  END OGC_Union;

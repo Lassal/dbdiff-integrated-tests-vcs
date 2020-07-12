@@ -1,0 +1,16 @@
+schema: SYS
+name: USER_CQ_NOTIFICATION_QUERIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    q.queryid,
+    q.querytext,
+    q.regid
+  from
+    USER_CHANGE_NOTIFICATION_REGS r,
+    DBA_CQ_NOTIFICATION_QUERIES q
+  where
+    r.regid = q.regid
+columns: []
+referencedTables: []

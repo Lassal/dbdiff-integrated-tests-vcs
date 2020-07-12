@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_CLUSTERING_KEYS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    owner,
+    table_name,
+    detail_owner,
+    detail_name,
+    detail_column,
+    position,
+    groupid
+  from
+    DBA_CLUSTERING_KEYS
+  WHERE
+    owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

@@ -1,0 +1,64 @@
+schema: SYS
+name: KU$_XSPRIN_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    p.prin#,
+    p.type,
+    p.guid,
+    p.ext_src,
+    p.start_date,
+    p.end_date,
+    p.schema,
+    p.tablespace,
+    p.profile#,
+    p.credential,
+    p.failedlogins,
+    p.enable,
+    p.duration,
+    p.system,
+    p.scope,
+    p.powner,
+    p.pname,
+    (
+      select
+        pn.name
+      from
+        sys.profname$ pn
+      where
+        pn.profile# = p.profile#
+    ),
+    p.objacl#,
+    p.note,
+    p.status,
+    p.ctime,
+    p.mtime,
+    p.ptime,
+    p.exptime,
+    p.ltime,
+    p.lslogontime,
+    p.astatus,
+    (
+      select
+        verifier
+      from
+        xs$verifiers
+      where
+        user # = p.prin#
+    ),
+    (
+      select
+        type #
+      from
+        xs$verifiers
+      where
+        user # = p.prin#
+    ),
+    p.description
+  from
+    xs$prin p
+columns: []
+referencedTables: []

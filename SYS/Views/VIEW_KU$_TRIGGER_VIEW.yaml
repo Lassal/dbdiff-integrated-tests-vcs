@@ -1,0 +1,141 @@
+schema: SYS
+name: KU$_TRIGGER_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '4',
+    t.obj#,
+    value(o),
+    t.baseobject,
+    (
+      select
+        u.name
+      from
+        user $ u
+      where
+        u.user# = t.baseobject
+        and bitand(t.property, 16) != 0
+    ),
+    (
+      select
+        value(bo)
+      from
+        ku$_schemaobj_view bo
+      where
+        t.baseobject = bo.obj_num
+        and bitand(t.property, 8 + 16) = 0
+    ),
+    (
+      select
+        trunc(tb.property / power(2, 32))
+      from
+        sys.tab$ tb
+      where
+        tb.obj# = t.baseobject
+    ),
+    (
+      SELECT
+        unique 1
+      FROM
+        sys.rls$ r,
+        ku$_schemaobj_view bo
+      WHERE
+        t.baseobject = bo.obj_num
+        and bo.TYPE_NAME = 'TABLE'
+        AND r.obj# = t.baseobject
+        and r.PFSCHMA = 'XDB'
+        AND r.PPNAME = 'DBMS_XDBZ0'
+        AND (
+          o.NAME like '%$xd'
+          or o.NAME like '%$dl'
+        )
+    ),
+    t.type#,
+    t.update$,
+    t.insert$,
+    t.delete$,
+    t.refoldname,
+    t.refnewname,
+    sys.dbms_metadata_util.is_schemaname_exists(t.definition),
+    -- bug 4352110: strip nulls from definition, whenclause
+    replace(t.definition, chr(0)),
+    sys.dbms_metadata_util.parse_trigger_definition(
+      o.owner_name,
+      o.name,
+      replace(t.definition, chr(0))
+    ),
+    replace(t.whenclause, chr(0)),
+    sys.dbms_metadata_util.long2clob(
+      t.actionsize,
+      'SYS.TRIGGER$',
+      'ACTION#',
+      t.rowid
+    ),
+    NULL,
+    t.actionsize,
+    t.enabled,
+    t.property,
+    t.sys_evts,
+    t.nttrigcol,
+    t.nttrigatt,
+    (
+      select
+        ntcol.name
+      from
+        sys.viewtrcol$ ntcol
+      where
+        bitand(t.property, 63) >= 32
+        and t.baseobject = ntcol.obj#
+        and t.nttrigcol = ntcol.intcol#
+        and t.nttrigatt = ntcol.attribute#
+    ),
+    t.refprtname,
+    t.actionlineno,
+    cast(
+      multiset(
+        select
+          *
+        from
+          ku$_triggercol_view tv
+        where
+          tv.obj_num = t.obj#
+      ) as ku$_triggercol_list_t
+    ),
+    cast(
+      multiset(
+        select
+          *
+        from
+          ku$_triggerdep_view td
+        where
+          td.obj_num = t.obj#
+      ) as ku$_triggerdep_list_t
+    ),
+    (
+      select
+        value(c)
+      from
+        ku$_switch_compiler_view c
+      where
+        c .obj_num = o.obj_num
+    )
+  from
+    sys.ku$_edition_schemaobj_view o,
+    sys.trigger$ t
+  where
+    t.obj# = o.obj_num
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

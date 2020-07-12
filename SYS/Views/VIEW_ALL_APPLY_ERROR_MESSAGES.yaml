@@ -1,0 +1,32 @@
+schema: SYS
+name: ALL_APPLY_ERROR_MESSAGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.msg_id,
+    t.local_transaction_id,
+    t.txn_message_number + 1,
+    t.error_number,
+    t.error_message,
+    nvl(t.source_object_owner, t.dest_object_owner),
+    nvl(t.source_object_name, t.dest_object_name),
+    t.dest_object_owner,
+    t.dest_object_name,
+    t.primary_key,
+    t.position,
+    t.operation,
+    dbms_streams_lcr_int.get_lcr_content(
+      dbms_apply_adm.get_error_message(
+        t.txn_message_number + 1,
+        t.local_transaction_id
+      ),
+      '*'
+    )
+  from
+    sys.apply$_error_txn t,
+    all_apply_error e
+  where
+    t.local_transaction_id = e.local_transaction_id
+columns: []
+referencedTables: []

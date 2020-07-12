@@ -1,0 +1,18 @@
+schema: APEX_050000
+name: WWV_FLOW_GROUP_USERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    g.id group_id,
+    g.group_name,
+    ug.user_id
+  from
+    wwv_flow_current_sgid sgid,
+    WWV_FLOW_FND_GROUP_USERS ug,
+    WWV_FLOW_FND_USER_GROUPS g
+  where
+    g.id = ug.group_id
+    and ug.security_group_id = sgid.security_group_id
+columns: []
+referencedTables: []

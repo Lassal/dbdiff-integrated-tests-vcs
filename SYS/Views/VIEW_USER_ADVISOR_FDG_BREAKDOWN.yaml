@@ -1,0 +1,20 @@
+schema: SYS
+name: USER_ADVISOR_FDG_BREAKDOWN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .task_id as task_id,
+    a .finding_id as finding_id,
+    a .instance_number as instance_number,
+    f.impact as impact,
+    a .perc_impact as perc_impact,
+    a .exec_name as execution_name
+  from
+    wri$_adv_inst_fdg a,
+    user_advisor_findings f
+  where
+    a .task_id = f.task_id
+    and a .finding_id = f.finding_id
+columns: []
+referencedTables: []

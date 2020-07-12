@@ -1,0 +1,27 @@
+schema: SYS
+name: DBA_FLASHBACK_ARCHIVE_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.NAME,
+    u.NAME,
+    f.FANAME,
+    'SYS_FBA_HIST_' || o.obj#,
+    case
+      bitand(t.FLAGS, 160)
+      when 128 then 'DISABLED'
+      when 32 then 'DISASSOCIATED'
+      else 'ENABLED'
+    end
+  from
+    OBJ$ o,
+    USER $ u,
+    SYS_FBA_FA f,
+    SYS_FBA_TRACKEDTABLES t
+  where
+    t.FA# = f.FA#
+    and t.OBJ# = o.OBJ#
+    and o.OWNER# = u.USER#
+columns: []
+referencedTables: []

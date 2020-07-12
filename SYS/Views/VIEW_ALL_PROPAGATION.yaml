@@ -1,0 +1,66 @@
+schema: SYS
+name: ALL_PROPAGATION
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    p. "PROPAGATION_NAME",
+    p. "SOURCE_QUEUE_OWNER",
+    p. "SOURCE_QUEUE_NAME",
+    p. "DESTINATION_QUEUE_OWNER",
+    p. "DESTINATION_QUEUE_NAME",
+    p. "DESTINATION_DBLINK",
+    p. "RULE_SET_OWNER",
+    p. "RULE_SET_NAME",
+    p. "NEGATIVE_RULE_SET_OWNER",
+    p. "NEGATIVE_RULE_SET_NAME",
+    p. "QUEUE_TO_QUEUE",
+    p. "STATUS",
+    p. "ERROR_MESSAGE",
+    p. "ERROR_DATE",
+    p. "ORIGINAL_PROPAGATION_NAME",
+    p. "ORIGINAL_SOURCE_QUEUE_OWNER",
+    p. "ORIGINAL_SOURCE_QUEUE_NAME",
+    p. "ACKED_SCN",
+    p. "AUTO_MERGE_THRESHOLD"
+  FROM
+    dba_propagation p,
+    all_queues q
+  WHERE
+    p.source_queue_owner = q.owner
+    AND p.source_queue_name = q.name
+    AND (
+      (
+        p.rule_set_owner IS NULL
+        and p.rule_set_name IS NULL
+      )
+      OR (
+        (p.rule_set_owner, p.rule_set_name) IN (
+          SELECT
+            r.rule_set_owner,
+            r.rule_set_name
+          FROM
+            all_rule_sets r
+        )
+      )
+    )
+    AND (
+      (
+        p.negative_rule_set_owner IS NULL
+        AND p.negative_rule_set_name IS NULL
+      )
+      OR (
+        (
+          p.negative_rule_set_owner,
+          p.negative_rule_set_name
+        ) IN (
+          SELECT
+            r.rule_set_owner,
+            r.rule_set_name
+          FROM
+            all_rule_sets r
+        )
+      )
+    )
+columns: []
+referencedTables: []

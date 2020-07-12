@@ -1,0 +1,24 @@
+schema: WMSYS
+name: USER_WM_RIC_INFO
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    ct_owner,
+    ct_name,
+    pt_owner,
+    pt_name,
+    ric_name,
+    rtrim(ct_cols, ',') ct_cols,
+    rtrim(pt_cols, ',') pt_cols,
+    pt_unique_const_name r_constraint_name,
+    my_mode delete_rule,
+    status
+  from
+    wmsys.wm$ric_table rt,
+    user_views uv
+  where
+    uv.view_name = rt.ct_name
+    and rt.ct_owner = sys_context('userenv', 'current_user') WITH READ ONLY
+columns: []
+referencedTables: []

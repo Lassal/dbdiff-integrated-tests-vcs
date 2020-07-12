@@ -1,0 +1,22 @@
+schema: LBACSYS
+name: USER_SA_SESSION
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    p.pol_name AS policy_name,
+    sa_session.sa_user_name(p.pol_name) AS sa_user_name,
+    sa_session.privs(p.pol_name) AS privs,
+    sa_session.max_read_label(p.pol_name) AS max_read_label,
+    sa_session.max_write_label(p.pol_name) AS max_write_label,
+    sa_session.min_level(p.pol_name) AS min_level,
+    sa_session.label(p.pol_name) AS label,
+    sa_session.comp_write(p.pol_name) AS comp_write,
+    sa_session.group_write(p.pol_name) AS group_write,
+    sa_session.row_label(p.pol_name) AS row_label
+  FROM
+    LBACSYS.ols$pol p
+  WHERE
+    p.package = 'LBAC$SA'
+columns: []
+referencedTables: []

@@ -1,0 +1,18 @@
+schema: SYS
+name: ALL_CLUSTERING_DIMENSIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    d.OWNER,
+    d.TABLE_NAME,
+    d.DIMENSION_OWNER,
+    d.DIMENSION_NAME
+  from
+    DBA_CLUSTERING_DIMENSIONS d,
+    ALL_TABLES t
+  WHERE
+    d.OWNER = t.OWNER
+    AND d.TABLE_NAME = t.TABLE_NAME
+columns: []
+referencedTables: []

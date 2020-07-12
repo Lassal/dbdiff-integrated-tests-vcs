@@ -1,0 +1,111 @@
+schema: APEX_050000
+name: APEX_APPLICATION_TEMP_BUTTON
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    t.THEME_ID theme_number,
+    decode(
+      t.THEME_CLASS_ID,
+      '1',
+      'Button',
+      '2',
+      'Button, Alternative 3',
+      '4',
+      'Button, Alternative 1',
+      '5',
+      'Button, Alternative 2',
+      '6',
+      'Custom 1',
+      '7',
+      'Custom 2',
+      '8',
+      'Custom 3',
+      '9',
+      'Custom 4',
+      '10',
+      'Custom 5',
+      '11',
+      'Custom 6',
+      '12',
+      'Custom 7',
+      '13',
+      'Custom 8',
+      t.THEME_CLASS_ID
+    ) theme_class,
+    t.default_template_options default_template_options,
+    t.preset_template_options preset_template_options,
+    --
+    t.TEMPLATE_NAME template_name,
+    t.TEMPLATE,
+    t.hot_template,
+    --
+    decode(t.REFERENCE_ID, null, 'No', 'Yes') is_subscribed,
+    (
+      select
+        flow_id || '. ' || name
+      from
+        WWV_FLOW_button_TEMPLATES
+      where
+        id = t.REFERENCE_ID
+    ) subscribed_from,
+    --
+    t.LAST_UPDATED_BY last_updated_by,
+    t.LAST_UPDATED_ON last_updated_on,
+    --
+    decode(
+      t.TRANSLATE_THIS_TEMPLATE,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      'Yes'
+    ) translatable,
+    t.TEMPLATE_COMMENT component_comment,
+    t.id button_template_id,
+    --
+    t.template_name || ' t=' || t.THEME_ID || ' c=' || t.THEME_CLASS_ID component_signature
+  from
+    WWV_FLOW_button_TEMPLATES t,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.id = t.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

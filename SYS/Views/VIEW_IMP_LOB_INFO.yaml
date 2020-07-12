@@ -1,0 +1,158 @@
+schema: SYS
+name: IMP_LOB_INFO
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    c .name,
+    l.chunk * ts.blocksize,
+    DECODE(BITAND(l.property, 512), 512, 1, 0)
+  from
+    sys.obj$ o,
+    sys.col$ c,
+    sys.tab$ ta,
+    sys.lob$ l,
+    sys.user$ u,
+    sys.ts$ ts
+  where
+    o.owner# = u.user#
+    and o.obj# = c .obj#
+    and c .obj# = l.obj#
+    and c .intcol# = l.intcol#
+    and l.ts# = ts.ts#(+)
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+    and o.obj# = ta.obj#
+    and bitand(ta.property, 32) != 32
+    /* not partitioned table */
+  union all
+  select
+    u.name,
+    o.name,
+    c .name,
+    plob.defchunk * NVL(
+      ts1.blocksize,
+      NVL(
+        (
+          select
+            ts2.blocksize
+          from
+            sys.ts$ ts2,
+            sys.lobfrag$ lf
+          where
+            l.lobj# = lf.parentobj#
+            and lf.ts# = ts2.ts#
+            and rownum < 2
+        ),
+        (
+          select
+            ts2.blocksize
+          from
+            sys.ts$ ts2,
+            sys.lobcomppart$ lcp,
+            sys.lobfrag$ lf
+          where
+            l.lobj# = lcp.lobj#
+            and lcp.partobj# = lf.parentobj#
+            and lf.ts# = ts2.ts#
+            and rownum < 2
+        )
+      )
+    ),
+    DECODE(BITAND(l.property, 512), 512, 1, 0)
+  from
+    sys.obj$ o,
+    sys.col$ c,
+    sys.partlob$ plob,
+    sys.lob$ l,
+    sys.ts$ ts1,
+    sys.tab$ ta,
+    sys.user$ u
+  where
+    o.owner# = u.user#
+    and o.obj# = c .obj#
+    and c .obj# = l.obj#
+    and c .intcol# = l.intcol#
+    and l.lobj# = plob.lobj#
+    and plob.defts# = ts1.ts# (+)
+    and bitand(c .property, 32768) != 32768
+    /* not unused column */
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+    and o.obj# = ta.obj#
+    and bitand(ta.property, 32) = 32
+    /* partitioned table */
+columns: []
+referencedTables: []

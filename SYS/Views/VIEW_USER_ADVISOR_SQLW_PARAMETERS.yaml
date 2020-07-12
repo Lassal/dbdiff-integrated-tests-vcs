@@ -1,0 +1,35 @@
+schema: SYS
+name: USER_ADVISOR_SQLW_PARAMETERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .task_id as workload_id,
+    b.name as workload_name,
+    a .name as parameter_name,
+    a .value as parameter_value,
+    decode(
+      a .datatype,
+      1,
+      'NUMBER',
+      2,
+      'STRING',
+      3,
+      'STRINGLIST',
+      4,
+      'TABLE',
+      5,
+      'TABLELIST',
+      'UNKNOWN'
+    ) as parameter_type,
+    dbms_advisor.format_message(a .description) as description
+  from
+    wri$_adv_parameters a,
+    wri$_adv_tasks b
+  where
+    a .task_id = b.id
+    and b.owner# = userenv('SCHEMAID')
+    and b.advisor_id = 6
+    and bitand(a .flags, 1) = 0
+columns: []
+referencedTables: []

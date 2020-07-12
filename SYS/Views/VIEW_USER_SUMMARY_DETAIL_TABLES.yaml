@@ -1,0 +1,43 @@
+schema: SYS
+name: USER_SUMMARY_DETAIL_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    du.name,
+    do .name,
+    decode (
+      sd.detailobjtype,
+      1,
+      'TABLE',
+      2,
+      'VIEW',
+      3,
+      'SNAPSHOT',
+      4,
+      'CONTAINER',
+      'UNDEFINED'
+    ),
+    sd.detailalias
+  from
+    sys.user$ u,
+    sys.sumdetail$ sd,
+    sys.obj$ o,
+    sys.obj$ do,
+    sys.user$ du,
+    sys.sum$ s
+  where
+    o.owner# = u.user#
+    and o.obj# = sd.sumobj#
+    and do .obj# = sd.detailobj#
+    and do .owner# = du.user#
+    and o.owner# = userenv('SCHEMAID')
+    and s.obj# = sd.sumobj#
+    and bitand(s.xpflags, 8388608) = 0
+    /* NOT REWRITE EQUIVALENCE SUMMARY */
+    and bitand(sd.detaileut, 2147483648) = 0
+    /* NOT 2nd cube mv pct metadata */
+columns: []
+referencedTables: []

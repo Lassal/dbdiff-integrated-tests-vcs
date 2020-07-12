@@ -1,0 +1,129 @@
+schema: XFILES
+name: XFILES_REST_SUPPORT
+routineType: PACKAGE
+returnParamater:
+  name: HTMLFROMCACHE.(--return--)
+  ordinalPosition: 0
+  dataType: CLOB
+  parameterMode: OUT
+parameters:
+- name: CACHERESULT.P_RESOURCE
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: HANDLEEXCEPTION.P_SERVLET_URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HANDLEEXCEPTION.P_MODULE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HANDLEEXCEPTION.P_INIT_TIME
+  ordinalPosition: 3
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: HANDLEEXCEPTION.P_PARAMETERS
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: HTMLFROMCACHE.P_GUID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: HTMLFROMCACHE.P_XSL_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITEERRORRECORD.P_SERVLET_URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITEERRORRECORD.P_MODULE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITEERRORRECORD.P_INIT_TIME
+  ordinalPosition: 3
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: WRITEERRORRECORD.P_PARAMETERS
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: WRITEERRORRECORD.P_STACK_TRACE
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: WRITELOGRECORD.P_SERVLET_URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITELOGRECORD.P_MODULE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITELOGRECORD.P_INIT_TIME
+  ordinalPosition: 3
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: WRITELOGRECORD.P_PARAMETERS
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: WRITESERVLETOUTPUTSTREAM(1).P_CONTENT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITESERVLETOUTPUTSTREAM(1).P_CONTENT_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITESERVLETOUTPUTSTREAM(2).P_CONTENT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: INOUT
+- name: WRITESERVLETOUTPUTSTREAM(2).P_CONTENT_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITESERVLETOUTPUTSTREAM(3).P_XML
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: WRITESERVLETOUTPUTSTREAM(3).P_CONTENT_TYPE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: |-
+  package XFILES_REST_SUPPORT as procedure writeLogRecord(
+    P_SERVLET_URL VARCHAR2,
+    P_MODULE_NAME VARCHAR2,
+    P_INIT_TIME TIMESTAMP WITH TIME ZONE,
+    P_PARAMETERS XMLType
+  );
+  procedure writeErrorRecord(
+    P_SERVLET_URL VARCHAR2,
+    P_MODULE_NAME VARCHAR2,
+    P_INIT_TIME TIMESTAMP WITH TIME ZONE,
+    P_PARAMETERS XMLType,
+    P_STACK_TRACE XMLType
+  );
+  procedure handleException(
+    P_SERVLET_URL VARCHAR2,
+    P_MODULE_NAME VARCHAR2,
+    P_INIT_TIME TIMESTAMP WITH TIME ZONE,
+    P_PARAMETERS XMLTYPE
+  );
+  procedure cacheResult(P_RESOURCE IN OUT XMLTYPE);
+  function htmlFromCache(P_GUID RAW, P_XSL_PATH VARCHAR2) return CLOB;
+  procedure WRITESERVLETOUTPUTSTREAM(P_CONTENT VARCHAR2, P_CONTENT_TYPE VARCHAR2);
+  procedure WRITESERVLETOUTPUTSTREAM(P_CONTENT IN OUT CLOB, P_CONTENT_TYPE VARCHAR2);
+  procedure WRITESERVLETOUTPUTSTREAM(
+    P_XML XMLTYPE,
+    P_CONTENT_TYPE BOOLEAN DEFAULT TRUE
+  );
+  end;

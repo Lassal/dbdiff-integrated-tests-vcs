@@ -1,0 +1,18 @@
+targetObjectSchema: MDSYS
+targetObjectName: USER_SDO_NETWORK_JAVA_OBJECTS
+targetObjectType: VIEW
+name: SDO_NETWORK_JAVA_DEL_TRIG
+eventTiming: INSTEAD OF
+event: DELETE
+eventActionBody: |-
+  DECLARE
+    user_name VARCHAR2(256);
+  BEGIN
+    EXECUTE IMMEDIATE 'SELECT USER FROM DUAL' INTO user_name;
+  DELETE FROM
+    sdo_network_constraints
+  WHERE
+    NLS_UPPER(SDO_OWNER) = NLS_UPPER(user_name)
+    AND constraint = :o.name;
+  END;
+executionOrder: 1

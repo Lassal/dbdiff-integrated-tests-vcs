@@ -1,0 +1,23 @@
+schema: SYS
+name: DATAPUMP_OBJECT_CONNECT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    unique a .type,
+    decode(
+      bitand(a .properties, 8 + 16),
+      8,
+      'SOFT',
+      16,
+      'HARD',
+      'NONE'
+    ),
+    decode(bitand(a .properties, 64), 64, 1, 0),
+    decode(bitand(a .properties, 128), 128, 1, 0)
+  from
+    sys.metaview$ a
+  where
+    bitand(a .properties, 2 + 4) = 0
+columns: []
+referencedTables: []

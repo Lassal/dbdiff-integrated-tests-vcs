@@ -1,0 +1,464 @@
+schema: MDSYS
+name: SDO_ROUTER_PARTITION
+routineType: PACKAGE
+returnParamater:
+  name: MIN_EIGENVECTOR.(--return--)
+  ordinalPosition: 0
+  dataType: OBJECT
+  parameterMode: OUT
+parameters:
+- name: ADJUST_M.START_M
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADJUST_M.END_M
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADJUST_M.M
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: BUILD_TURN_RESTRICTIONS.LOGDIR
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_TURN_RESTRICTIONS.DRIVINGSIDE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEANUP_ROUTER.ALL_TABLES
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CREATE_ROUTER_NETWORK.LOG_FILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROUTER_NETWORK.NETWORK_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SDO_ROUTER_LOG_DIR.ROUTER_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_SDO_ROUTER_LOG_DIR.NEW_DIR_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TRUCKING_DATA.LOG_FILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TRUCKING_DATA.CLEANUP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CREATE_TURN_RESTRICTION_DATA.LOG_FILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_TURN_RESTRICTION_DATA.CLEANUP
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DELETE_ROUTER_NETWORK.LOG_FILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_ROUTER_NETWORK.NETWORK_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_ROUTER_NETWORK.LOG_DELETE
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DUMP_PARTITIONS.LOG_FILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DUMP_PARTITIONS.START_PID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: DUMP_PARTITIONS.END_PID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: DUMP_PARTITIONS.VERBOSE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DUMP_TRUCKING_DATA.LOG_FILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DUMP_TRUCKING_DATA.START_PID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: DUMP_TRUCKING_DATA.END_PID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: DUMP_TRUCKING_DATA.SKIP_UNSUPPORTED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DUMP_TURN_RESTRICTION_DATA.LOG_FILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DUMP_TURN_RESTRICTION_DATA.START_PID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: DUMP_TURN_RESTRICTION_DATA.END_PID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: DUMP_TURN_RESTRICTION_DATA.DUMP_SOFT_RESTRICTIONS
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ELOCATION_DUMP_PARTITION.LOGFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ELOCATION_DUMP_PARTITION.START_PID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ELOCATION_DUMP_PARTITION.END_PID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ELOCATION_DUMP_PARTITION.VERBOSE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ELOCATION_DUMP_PARTITION.IS10G
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ELOCATION_DUMP_TRUCKING_DATA.LOGFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ELOCATION_DUMP_TRUCKING_DATA.START_PID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ELOCATION_DUMP_TRUCKING_DATA.END_PID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ELOCATION_DUMP_TRUCKING_DATA.SKIP_UNSUPPORTED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ELOCATION_DUMP_TURN_RESTRICT.LOGFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ELOCATION_DUMP_TURN_RESTRICT.START_PID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ELOCATION_DUMP_TURN_RESTRICT.END_PID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ELOCATION_DUMP_TURN_RESTRICT.DUMP_SOFT_RESTRICTIONS
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ELOCATION_PARTITION_ROUTER.LOGFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ELOCATION_PARTITION_ROUTER.BLOB_FORMAT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ELOCATION_TRUCKING_DATA.LOGFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ELOCATION_TURN_RESTRICT_DATA.LOGFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ELOCATION_VALIDATE_LOGFILE.LOGFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ELOCATION_VALIDATE_LOGFILE.SCHEMA_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ELOCATION_VALIDATE_PARTITION.LOGFILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ELOCATION_VALIDATE_PARTITION.START_PID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ELOCATION_VALIDATE_PARTITION.END_PID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ELOCATION_VALIDATE_PARTITION.VERBOSE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ELOCATION_VALIDATE_PARTITION.IS10G
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GATHER_TABLE_STATS.TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_EDGE_INFO.EDGE_IDS
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_EDGE_INFO.TO_EDGE_IDS
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: OUT
+- name: GET_EDGE_INFO.RETS
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: OUT
+- name: GET_EDGE_INFO.ANGLE_SEGMENTS
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: OUT
+- name: GET_GEOMETRY_INFO.EDGE_IDS
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_GEOMETRY_INFO.MERGED_COORDS
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: OUT
+- name: GET_PID.M
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PID.PID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_VERSION.LOG_FILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MIN_EIGENVECTOR.SUM_X2
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: MIN_EIGENVECTOR.SUM_Y2
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: MIN_EIGENVECTOR.SUM_XY
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: PARTITION_ROUTER.LOG_FILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PARTITION_ROUTER.MAX_V_NO
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: PARTITION_ROUTER.DRIVING_SIDE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PARTITION_ROUTER.NETWORK_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PARTITION_ROUTER.MAX_MEMORY
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: PARTITION_ROUTER.CLEANUP
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: PARTITION_ROUTER.USE_SECUREFILES
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: PARTITION_ROUTER.GENERATE_11G_RESTRICTIONS
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: VALIDATE_PARTITIONS.LOG_FILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_PARTITIONS.START_PID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_PARTITIONS.END_PID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_PARTITIONS.VERBOSE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: VALIDATE_SDO_ROUTER_LOG_DIR.LOG_FILE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE SDO_ROUTER_PARTITION AUTHID current_user AS FUNCTION adjust_m(start_m IN NUMBER, end_m IN NUMBER, m IN NUMBER) RETURN NUMBER;
+  FUNCTION get_pid(m IN NUMBER, pid IN NUMBER) RETURN NUMBER;
+  FUNCTION min_eigenvector(
+    sum_x2 IN NUMBER,
+    sum_y2 IN NUMBER,
+    sum_xy IN NUMBER
+  ) RETURN mdsys.vector_2d;
+  PROCEDURE cleanup_router(all_tables IN BOOLEAN DEFAULT TRUE);
+  PROCEDURE create_sdo_router_log_dir(
+    router_schema IN VARCHAR2,
+    new_dir_path IN VARCHAR2 DEFAULT NULL
+  );
+  PROCEDURE partition_router(
+    log_file_name IN VARCHAR2: = 'sdo_router_partition.log',
+    max_v_no IN NUMBER DEFAULT 10000,
+    driving_side IN VARCHAR2: = 'R',
+    network_name IN VARCHAR: = 'ROUTER_NETWORK',
+    max_memory IN NUMBER: = 1.75,
+    cleanup IN BOOLEAN DEFAULT TRUE,
+    use_securefiles IN BOOLEAN DEFAULT TRUE,
+    generate_11g_restrictions IN BOOLEAN DEFAULT TRUE
+  );
+  PROCEDURE validate_sdo_router_log_dir(
+    log_file_name IN VARCHAR2: = 'sdo_router_partition.log'
+  );
+  PROCEDURE create_trucking_data(
+    log_file_name IN VARCHAR2: = 'sdo_router_partition.log',
+    cleanup IN BOOLEAN DEFAULT TRUE
+  );
+  PROCEDURE create_turn_restriction_data(
+    log_file_name IN VARCHAR2: = 'sdo_router_partition.log',
+    cleanup IN BOOLEAN DEFAULT TRUE
+  );
+  PROCEDURE dump_partitions(
+    log_file_name IN VARCHAR2: = 'sdo_router_partition.log',
+    start_pid IN NUMBER DEFAULT 0,
+    end_pid IN NUMBER DEFAULT -1,
+    verbose IN BOOLEAN DEFAULT FALSE
+  );
+  PROCEDURE dump_trucking_data(
+    log_file_name IN VARCHAR2: = 'sdo_router_partition.log',
+    start_pid IN NUMBER DEFAULT 0,
+    end_pid IN NUMBER DEFAULT -1,
+    skip_unsupported IN BOOLEAN DEFAULT TRUE
+  );
+  PROCEDURE dump_turn_restriction_data(
+    log_file_name IN VARCHAR2: = 'sdo_router_partition.log',
+    start_pid IN NUMBER DEFAULT 0,
+    end_pid IN NUMBER DEFAULT -1,
+    dump_soft_restrictions IN BOOLEAN DEFAULT FALSE
+  );
+  PROCEDURE validate_partitions(
+    log_file_name IN VARCHAR2: = 'sdo_router_partition.log',
+    start_pid IN NUMBER DEFAULT 0,
+    end_pid IN NUMBER DEFAULT -1,
+    verbose IN BOOLEAN DEFAULT FALSE
+  );
+  PROCEDURE gather_table_stats(table_name IN VARCHAR2);
+  PROCEDURE get_version(
+    log_file_name IN VARCHAR2: = 'sdo_router_partition.log'
+  );
+  PROCEDURE create_router_network(
+    log_file_name IN VARCHAR2: = 'sdo_router_partition.log',
+    network_name IN VARCHAR2: = 'ROUTER_NETWORK'
+  );
+  PROCEDURE delete_router_network(
+    log_file_name IN VARCHAR2: = 'sdo_router_partition.log',
+    network_name IN VARCHAR2: = 'ROUTER_NETWORK',
+    log_delete IN BOOLEAN: = TRUE
+  );
+  PROCEDURE elocation_partition_router (
+    logfile_name IN VARCHAR2,
+    blob_format IN VARCHAR2
+  ) AS LANGUAGE java NAME 'oracle.spatial.router.partitioning.ElocationPartition.partition_router(
+
+        java.lang.String, java.lang.String)';
+  PROCEDURE elocation_trucking_data (logfile_name IN VARCHAR2) AS LANGUAGE java NAME 'oracle.spatial.router.partitioning.ElocationPartition.create_trucking_data(
+
+        java.lang.String)';
+  PROCEDURE elocation_turn_restrict_data (logfile_name IN VARCHAR2) AS LANGUAGE java NAME 'oracle.spatial.router.partitioning.ElocationPartition.create_turn_restriction_data(
+
+        java.lang.String)';
+  PROCEDURE elocation_dump_partition (
+    logfile_name in VARCHAR2,
+    start_pid in NUMBER,
+    end_pid in NUMBER,
+    verbose in BOOLEAN,
+    is10g in BOOLEAN
+  ) AS LANGUAGE java NAME 'oracle.spatial.router.partitioning.ElocationPartition.dumpPartition(
+
+        java.lang.String, int, int, boolean, boolean)';
+  PROCEDURE elocation_dump_trucking_data (
+    logfile_name IN VARCHAR2,
+    start_pid IN NUMBER,
+    end_pid IN NUMBER,
+    skip_unsupported IN BOOLEAN
+  ) AS LANGUAGE java NAME 'oracle.spatial.router.partitioning.ElocationPartition.dumpTruckingData(
+
+        java.lang.String, int, int, boolean)';
+  -- PLSQL limit, full name elocation_dump_turn_restrict_data
+  PROCEDURE elocation_dump_turn_restrict (
+    logfile_name IN VARCHAR2,
+    start_pid IN NUMBER,
+    end_pid IN NUMBER,
+    dump_soft_restrictions IN BOOLEAN
+  ) AS LANGUAGE java NAME 'oracle.spatial.router.partitioning.ElocationPartition.dumpTurnRestrictionData(
+
+        java.lang.String, int, int, boolean)';
+  PROCEDURE elocation_validate_partition (
+    logfile_name in VARCHAR2,
+    start_pid in NUMBER,
+    end_pid in NUMBER,
+    verbose in BOOLEAN,
+    is10g in BOOLEAN
+  ) AS LANGUAGE java NAME 'oracle.spatial.router.partitioning.ElocationPartition.validatePartition(
+
+        java.lang.String, int, int, boolean, boolean)';
+  PROCEDURE build_turn_restrictions (
+    logdir in VARCHAR2,
+    drivingside in VARCHAR2
+  ) AS LANGUAGE java NAME 'oracle.spatial.router.partitioning.TurnRestriction.buildTurnRestrictions(java.lang.String, java.lang.String)';
+  PROCEDURE elocation_validate_logfile(
+    logfile_name IN VARCHAR2,
+    schema_name IN VARCHAR2
+  ) AS LANGUAGE java NAME 'oracle.spatial.router.partitioning.ElocationPartition.validate_logfile(
+
+        java.lang.String, java.lang.String)';
+  FUNCTION get_edge_info(
+    edge_ids IN sdo_list_type,
+    to_edge_ids OUT sdo_list_type,
+    rets OUT mdsys.string_array,
+    angle_segments OUT sdo_list_type
+  ) RETURN mdsys.string_array;
+  FUNCTION get_geometry_info(
+    edge_ids IN sdo_list_type,
+    merged_coords OUT sdo_list_type
+  ) RETURN NUMBER;
+  END SDO_ROUTER_PARTITION;

@@ -1,0 +1,213 @@
+schema: XDBPM
+name: XDBPM_OPTIMIZE_XMLSCHEMA
+routineType: PACKAGE
+returnParamater:
+  name: DOTYPEANALYSIS.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: DESCRIBEANNOTATIONS.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DESCRIBEANNOTATIONS.P_SCHEMA_LOCATION_HINT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DESCRIBEANNOTATIONS.P_OWNER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DOTYPEANALYSIS.P_OUTPUT_FILE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DOTYPEANALYSIS.P_TARGET_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DOTYPEANALYSIS.P_CONFIGURATION
+  ordinalPosition: 3
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: DOTYPEANALYSIS.P_SCHEMA_LOCATION_HINT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DOTYPEANALYSIS.P_OWNER
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DOTYPEANALYSIS.P_LIMIT
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: PRINTSCHEMAREGISTRATIONSCRIPT.P_SCRIPT_FILE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PRINTSCHEMAREGISTRATIONSCRIPT.P_COMMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PRINTSCHEMAREGISTRATIONSCRIPT.P_SCHEMA_ORDERING
+  ordinalPosition: 3
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PRINTSCHEMAREGISTRATIONSCRIPT.P_XMLSCHEMA_FOLDER
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SCHEMAREGISTRATIONSCRIPT.P_OUTPUT_FOLDER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SCHEMAREGISTRATIONSCRIPT.P_XMLSCHEMA_FOLDER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SCHEMAREGISTRATIONSCRIPT.P_CONFIGURATION
+  ordinalPosition: 3
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: SCHEMAREGISTRATIONSCRIPT.P_SCHEMA_LOCATION_HINT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SCHEMAREGISTRATIONSCRIPT.P_OWNER
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SCHEMAREGISTRATIONSCRIPT.P_LIMIT
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: SETEVENT.P_EVENT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETEVENT.P_LEVEL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETREGISTRATIONSCRIPTOPTIONS.P_ADD_XDB_NAMESPACE
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETREGISTRATIONSCRIPTOPTIONS.P_DISABLE_DOM_FIDELITY
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETREGISTRATIONSCRIPTOPTIONS.P_DISABLE_DEFAULT_TABLES
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETREGISTRATIONSCRIPTOPTIONS.P_REMOVE_APPINFO
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETREGISTRATIONSCRIPTOPTIONS.P_CALL_ANNOTATION_SCRIPT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETSCHEMAREGISTRATIONOPTIONS.P_LOCAL
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETSCHEMAREGISTRATIONOPTIONS.P_GENTYPES
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETSCHEMAREGISTRATIONOPTIONS.P_GENTABLES
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETSCHEMAREGISTRATIONOPTIONS.P_FORCE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETSCHEMAREGISTRATIONOPTIONS.P_OWNER
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSCHEMAREGISTRATIONOPTIONS.P_ENABLE_HIERARCHY
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SETSCHEMAREGISTRATIONOPTIONS.P_OPTIONS
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: TABLECREATIONSCRIPT.P_OUTPUT_FOLDER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TABLECREATIONSCRIPT.P_TARGET_NAMESPACE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_OPTIMIZE_XMLSCHEMA authid CURRENT_USER as C_COLUMN_LIMIT constant NUMBER(3): = 975;
+  function COLUMN_LIMIT return number deterministic;
+  procedure generateTypeSummary;
+  procedure schemaRegistrationScript(
+    P_OUTPUT_FOLDER VARCHAR2,
+    P_XMLSCHEMA_FOLDER VARCHAR2,
+    P_CONFIGURATION XMLType,
+    P_SCHEMA_LOCATION_HINT VARCHAR2 DEFAULT NULL,
+    P_OWNER VARCHAR2 DEFAULT USER,
+    P_LIMIT NUMBER DEFAULT 3
+  );
+  procedure printSchemaRegistrationScript(
+    P_SCRIPT_FILE VARCHAR2,
+    P_COMMENT VARCHAR2,
+    P_SCHEMA_ORDERING XMLTYPE,
+    P_XMLSCHEMA_FOLDER VARCHAR2
+  );
+  procedure describeAnnotations(
+    P_RESOURCE_PATH VARCHAR2,
+    P_SCHEMA_LOCATION_HINT VARCHAR2,
+    P_OWNER VARCHAR2 DEFAULT USER
+  );
+  function doTypeAnalysis(
+    P_OUTPUT_FILE VARCHAR2,
+    P_TARGET_NAME VARCHAR2,
+    P_CONFIGURATION IN OUT XMLTYPE,
+    P_SCHEMA_LOCATION_HINT VARCHAR2 DEFAULT NULL,
+    P_OWNER VARCHAR2 DEFAULT USER,
+    P_LIMIT NUMBER DEFAULT 3
+  ) return VARCHAR2;
+  procedure setEvent(P_EVENT VARCHAR2, P_LEVEL VARCHAR2);
+  procedure tableCreationScript(
+    P_OUTPUT_FOLDER VARCHAR2,
+    P_TARGET_NAMESPACE VARCHAR2
+  );
+  procedure setSchemaRegistrationOptions(
+    P_LOCAL BOOLEAN DEFAULT TRUE,
+    P_GENTYPES BOOLEAN DEFAULT TRUE,
+    P_GENTABLES BOOLEAN DEFAULT TRUE,
+    P_FORCE BOOLEAN DEFAULT FALSE,
+    P_OWNER VARCHAR2 DEFAULT NULL,
+    P_ENABLE_HIERARCHY BINARY_INTEGER DEFAULT DBMS_XMLSCHEMA.ENABLE_HIERARCHY_NONE,
+    P_OPTIONS BINARY_INTEGER DEFAULT NULL
+  );
+  procedure setRegistrationScriptOptions(
+    P_ADD_XDB_NAMESPACE BOOLEAN DEFAULT TRUE,
+    P_DISABLE_DOM_FIDELITY BOOLEAN DEFAULT FALSE,
+    P_DISABLE_DEFAULT_TABLES BOOLEAN DEFAULT FALSE,
+    P_REMOVE_APPINFO BOOLEAN DEFAULT FALSE,
+    P_CALL_ANNOTATION_SCRIPT BOOLEAN DEFAULT FALSE
+  );
+  procedure addXDBNamespace;
+  procedure disableDOMFidelity;
+  procedure disableDefaultTables;
+  procedure removeAppInfo;
+  procedure annotationScript;
+  $IF DBMS_DB_VERSION.VER_LE_10_2 $THEN --
+  -- Depricated in 11.1.x : ALL_XML_SCHEMAS now contains column SCHEMA_ID which can be used to get this value.
+  --
+  function getXMLSchemaRef(P_SCHEMA_LOCATION_HINT VARCHAR2, P_OWNER VARCHAR2) return REF XMLTYPE;
+  --
+  $END --
+  end XDBPM_OPTIMIZE_XMLSCHEMA;

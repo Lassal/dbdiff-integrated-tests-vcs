@@ -1,0 +1,50 @@
+schema: SYS
+name: USER_NETWORK_ACL_PRIVILEGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    host,
+    lower_port,
+    upper_port,
+    decode(
+      privilege,
+      'RESOLVE',
+      'resolve',
+      'CONNECT',
+      'connect',
+      'HTTP',
+      'http',
+      'HTTP_PROXY',
+      'http-proxy',
+      'SMTP',
+      'smtp',
+      privilege
+    ),
+    decode(status, 0, 'DENIED', 1, 'GRANTED', null)
+  from
+    (
+      select
+        h.host,
+        h.lower_port,
+        h.upper_port,
+        xo.name privilege,
+        sys_check_privilege(sys_xsid_to_raw(xo.id), h.acl#, null) status
+      from
+        sys.nacl$_host h,
+        dba_xs_objects xo
+      where
+        xo.owner = 'SYS'
+        and xo.name in (
+          'RESOLVE',
+          'CONNECT',
+          'HTTP',
+          'HTTP_PROXY',
+          'SMTP'
+        )
+        and xo.type = 'PRIVILEGE'
+    )
+  where
+    status in (0, 1)
+columns: []
+referencedTables: []

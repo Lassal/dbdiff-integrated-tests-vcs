@@ -1,0 +1,18 @@
+schema: MDSYS
+name: USER_SDO_NETWORK_USER_DATA
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    network,
+    table_type,
+    data_name,
+    data_type,
+    data_length,
+    category_id
+  FROM
+    sdo_network_user_data
+  WHERE
+    sdo_owner = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

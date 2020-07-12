@@ -1,0 +1,22 @@
+schema: MDSYS
+name: HHMATCH
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+parameters:
+- name: HH1
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: HH2
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION hhmatch (hh1 IN RAW, hh2 IN RAW) RETURN BINARY_INTEGER IS
+  begin
+    return md.hhmatch(hh1, hh2);
+  end;

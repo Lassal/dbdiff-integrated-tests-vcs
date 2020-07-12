@@ -1,0 +1,12 @@
+schema: SYS
+name: REPORT_FILES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    f.name filename,
+    XMLType(f.data) data
+  FROM
+    wri$_emx_files f
+columns: []
+referencedTables: []

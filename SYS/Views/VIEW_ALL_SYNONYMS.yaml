@@ -1,0 +1,82 @@
+schema: SYS
+name: ALL_SYNONYMS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    OWNER,
+    SYNONYM_NAME,
+    TABLE_OWNER,
+    TABLE_NAME,
+    DB_LINK,
+    ORIGIN_CON_ID
+  from
+    INT $DBA_SYNONYMS
+  where
+    (
+      OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+      or OWNER = 'PUBLIC'
+      or
+      /* local object, and user has system privileges */
+      (
+        DB_LINK is null
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -45
+              /* LOCK ANY TABLE */,
+              -47
+              /* SELECT ANY TABLE */,
+              -397
+              /* READ ANY TABLE */,
+              -48
+              /* INSERT ANY TABLE */,
+              -49
+              /* UPDATE ANY TABLE */,
+              -50
+              /* DELETE ANY TABLE */
+            )
+        )
+      )
+      or
+      /* user has any privs on base object in local database */
+      exists (
+        select
+          null
+        from
+          sys.objauth$ ba,
+          sys. "_CURRENT_EDITION_OBJ" bo,
+          sys.user$ bu
+        where
+          DB_LINK is null
+          and bu.name = TABLE_OWNER
+          and bo.name = TABLE_NAME
+          and bu.user# = bo.owner#
+          and ba.obj# = bo.obj#
+          and (
+            ba.grantee# in (
+              select
+                kzsrorol
+              from
+                x$kzsro
+            )
+            or ba.grantor# = USERENV('SCHEMAID')
+          )
+      )
+    )
+  union
+  select
+    st.SYN_OWNER,
+    st.SYN_SYNONYM_NAME,
+    st.SYN_TABLE_OWNER,
+    st.SYN_TABLE_NAME,
+    st.SYN_DB_LINK,
+    st.ORIGIN_CON_ID
+  from
+    sys. "_ALL_SYNONYMS_TREE" st
+columns: []
+referencedTables: []

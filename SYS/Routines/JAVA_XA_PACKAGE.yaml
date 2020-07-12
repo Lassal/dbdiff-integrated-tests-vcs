@@ -1,0 +1,212 @@
+schema: SYS
+name: JAVA_XA
+routineType: PACKAGE
+returnParamater:
+  name: XA_THINTWOPHASE.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: XA_COMMIT.XID_BYTES
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: XA_COMMIT.COMMIT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_COMMIT.STATEOUT
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: XA_COMMIT_NEW.FORMATID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_COMMIT_NEW.GTRID
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: XA_COMMIT_NEW.BQUAL
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: XA_COMMIT_NEW.COMMIT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_DOTWOPHASE.ISFINAL
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_DOTWOPHASE.INBYTES
+  ordinalPosition: 2
+  dataType: LONG RAW
+  parameterMode: IN
+- name: XA_END.XID_BYTES
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: XA_END.FLAG
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_END_NEW.FORMATID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_END_NEW.GTRID
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: XA_END_NEW.BQUAL
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: XA_END_NEW.FLAG
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_FORGET.XID_BYTES
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: XA_FORGET.STATEOUT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: XA_FORGET_NEW.FORMATID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_FORGET_NEW.GTRID
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: XA_FORGET_NEW.BQUAL
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: XA_PREPARE.XID_BYTES
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: XA_PREPARE.STATEOUT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: XA_PREPARE_NEW.FORMATID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_PREPARE_NEW.GTRID
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: XA_PREPARE_NEW.BQUAL
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: XA_ROLLBACK.XID_BYTES
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: XA_ROLLBACK.STATEOUT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: XA_ROLLBACK_NEW.FORMATID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_ROLLBACK_NEW.GTRID
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: XA_ROLLBACK_NEW.BQUAL
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: XA_START.XID_BYTES
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: XA_START.TIMEOUT
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_START.FLAG
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_START.STATUS
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+- name: XA_START_NEW.FORMATID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_START_NEW.GTRID
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: XA_START_NEW.BQUAL
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: XA_START_NEW.TIMEOUT
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_START_NEW.FLAG
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: XA_THINTWOPHASE.INBYTES
+  ordinalPosition: 1
+  dataType: LONG RAW
+  parameterMode: IN
+routineDefinition: |-
+  package JAVA_XA authid current_user as -- create or replace package JAVA_XA as
+  function xa_start (
+    xid_bytes IN RAW,
+    timeout IN NUMBER,
+    flag IN NUMBER,
+    status OUT NUMBER
+  ) return RAW;
+  function xa_start_new (
+    formatId IN NUMBER,
+    gtrid IN RAW,
+    bqual IN RAW,
+    timeout IN NUMBER,
+    flag IN NUMBER
+  ) return number;
+  function xa_end (xid_bytes IN RAW, flag IN NUMBER) return number;
+  function xa_end_new (
+    formatId IN NUMBER,
+    gtrid IN RAW,
+    bqual IN RAW,
+    flag IN NUMBER
+  ) return number;
+  function xa_commit (
+    xid_bytes IN RAW,
+    commit IN NUMBER,
+    stateout OUT NUMBER
+  ) return number;
+  function xa_commit_new (
+    formatId IN NUMBER,
+    gtrid IN RAW,
+    bqual IN RAW,
+    commit IN NUMBER
+  ) return number;
+  function xa_rollback (xid_bytes IN RAW, stateout OUT NUMBER) return number;
+  function xa_rollback_new (formatId IN NUMBER, gtrid IN RAW, bqual IN RAW) return number;
+  function xa_forget (xid_bytes IN RAW, stateout OUT NUMBER) return number;
+  function xa_forget_new (formatId IN NUMBER, gtrid IN RAW, bqual IN RAW) return number;
+  function xa_prepare (xid_bytes IN RAW, stateout OUT NUMBER) return number;
+  function xa_prepare_new (formatId IN NUMBER, gtrid IN RAW, bqual IN RAW) return number;
+  function xa_doTwophase (isFinal IN NUMBER, inBytes IN long RAW) return number;
+  function xa_thinTwophase (inBytes IN long RAW) return number;
+  pragma restrict_references(default, RNPS, WNPS, RNDS, WNDS, trust);
+  end;

@@ -1,0 +1,30 @@
+schema: SYS
+name: USER_ADVISOR_RATIONALE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .task_id as task_id,
+    b.name as task_name,
+    a .exec_name as execution_name,
+    a .rec_id as rec_id,
+    a .id as rationale_id,
+    dbms_advisor.format_message_group(a .impact_msg_id) as impact_type,
+    a .impact_val as impact,
+    dbms_advisor.format_message_group(a .msg_id) as message,
+    a .obj_id as object_id,
+    a .type,
+    a .attr1 as attr1,
+    a .attr2 as attr2,
+    a .attr3 as attr3,
+    a .attr4 as attr4,
+    a .attr5 as attr5
+  from
+    wri$_adv_rationale a,
+    wri$_adv_tasks b
+  where
+    a .task_id = b.id
+    and b.owner# = userenv('SCHEMAID')
+    and bitand(b.property, 6) = 4
+columns: []
+referencedTables: []

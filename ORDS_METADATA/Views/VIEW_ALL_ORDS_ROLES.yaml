@@ -1,0 +1,33 @@
+schema: ORDS_METADATA
+name: ALL_ORDS_ROLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  with sr as (
+    select
+      count(1) has_catalog
+    from
+      session_roles
+    where
+      role = 'SELECT_CATALOG_ROLE'
+  )
+  SELECT
+    sec_roles.id,
+    sec_roles.name,
+    sec_roles.created_by,
+    sec_roles.created_on,
+    sec_roles.updated_by,
+    sec_roles.updated_on,
+    sec_roles.schema_id
+  FROM
+    sec_roles,
+    ords_schemas,
+    sr
+  WHERE
+    sec_roles.schema_id IN (ords_schemas.id, 10)
+    AND (
+      ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+      or sr.has_catalog = 1
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,261 @@
+schema: APEX_050000
+name: APEX_APPLICATION_LIST_ENTRIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    l.NAME list_name,
+    --
+    --e.SUB_ITEM_COUNT                 ,
+    --e.PARENT_LIST_ITEM_ID            ,
+    (
+      select
+        list_item_link_text
+      from
+        wwv_flow_list_items
+      where
+        id = e.PARENT_LIST_ITEM_ID
+        and flow_id = e.flow_id
+    ) parent_entry_text,
+    --e.LIST_ITEM_TYPE                 ,
+    --e.LIST_ITEM_STATUS               ,
+    --e.ITEM_DISPLAYED                 ,
+    e.LIST_ITEM_DISPLAY_SEQUENCE display_sequence,
+    e.LIST_ITEM_LINK_TEXT entry_text,
+    e.LIST_ITEM_LINK_TARGET entry_target,
+    --
+    e.LIST_ITEM_ICON entry_image,
+    e.LIST_ITEM_ICON_ATTRIBUTES entry_image_attributes,
+    e.LIST_ITEM_ICON_ALT_ATTRIBUTE entry_image_alt_attribute,
+    --e.LIST_ITEM_ICON_EXP             ,
+    --e.LIST_ITEM_ICON_EXP_ATTR        ,
+    --e.LIST_ITEM_OWNER                ,
+    --
+    decode(
+      e.LIST_ITEM_CURRENT_TYPE,
+      'ALWAYS',
+      'Always',
+      'COLON_DELIMITED_PAGE_LIST',
+      'Colon Delimited Page List',
+      'EXISTS',
+      'Exists SQL Query',
+      'NEVER',
+      'Never',
+      'NOT_EXISTS',
+      'Not Exists SQL Query',
+      'PLSQL_EXPRESSION',
+      'PL/SQL Expression',
+      'PAGE_RANGE',
+      'Page Range (X-Y)',
+      e.LIST_ITEM_CURRENT_TYPE
+    ) current_for_pages_type,
+    e.list_item_current_type current_for_pages_type_code,
+    e.LIST_ITEM_CURRENT_FOR_PAGES current_for_pages_expression,
+    --
+    nvl(
+      (
+        select
+          r
+        from
+          apex_standard_conditions
+        where
+          d = e.LIST_ITEM_DISP_COND_TYPE
+      ),
+      e.LIST_ITEM_DISP_COND_TYPE
+    ) condition_type,
+    e.list_item_disp_cond_type condition_type_code,
+    e.LIST_ITEM_DISP_CONDITION condition_expression1,
+    --e.LIST_ITEM_DISP_COND_TYPE2      ,
+    e.LIST_ITEM_DISP_CONDITION2 condition_expression2,
+    --
+    decode(
+      e.LIST_COUNTCLICKS_Y_N,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      e.LIST_COUNTCLICKS_Y_N
+    ) count_clicks,
+    e.LIST_COUNTCLICKS_CAT click_count_category,
+    --
+    e.LIST_TEXT_01 entry_attribute_01,
+    e.LIST_TEXT_02 entry_attribute_02,
+    e.LIST_TEXT_03 entry_attribute_03,
+    e.LIST_TEXT_04 entry_attribute_04,
+    e.LIST_TEXT_05 entry_attribute_05,
+    e.LIST_TEXT_06 entry_attribute_06,
+    e.LIST_TEXT_07 entry_attribute_07,
+    e.LIST_TEXT_08 entry_attribute_08,
+    e.LIST_TEXT_09 entry_attribute_09,
+    e.LIST_TEXT_10 entry_attribute_10,
+    e.translate_list_text_y_n translate_attributes,
+    --e.LIST_TEXT_11                   entry_attribute_11,
+    --e.LIST_TEXT_12                   entry_attribute_12,
+    --e.LIST_TEXT_13                   entry_attribute_13,
+    --e.LIST_TEXT_14                   entry_attribute_14,
+    --e.LIST_TEXT_15                   entry_attribute_15,
+    --e.LIST_TEXT_16                   entry_attribute_16,
+    --e.LIST_TEXT_17                   entry_attribute_17,
+    --e.LIST_TEXT_18                   entry_attribute_18,
+    --e.LIST_TEXT_19                   entry_attribute_19,
+    --e.LIST_TEXT_20                   entry_attribute_20,
+    --
+    (
+      select
+        case
+          when e.required_patch > 0 then PATCH_NAME
+          else '{Not ' || PATCH_NAME || '}'
+        end PATCH_NAME
+      from
+        wwv_flow_patches
+      where
+        id = abs(e.REQUIRED_PATCH)
+    ) build_option,
+    --
+    decode(substr(e.SECURITY_SCHEME, 1, 1), '!', 'Not ') || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(e.SECURITY_SCHEME, '!')
+          and flow_id = f.id
+      ),
+      e.SECURITY_SCHEME
+    ) authorization_scheme,
+    e.SECURITY_SCHEME authorization_scheme_id,
+    --
+    -- translation columns
+    nvl(
+      (
+        select
+          PRIMARY_APPLICATION_ID
+        from
+          APEX_APPLICATION_TRANS_MAP
+        where
+          f.id = TRANSLATED_APPLICATION_ID
+      ),
+      f.id
+    ) primary_application_id,
+    lower(
+      substr(
+        nvl(
+          (
+            select
+              TRANSLATED_APP_LANGUAGE
+            from
+              APEX_APPLICATION_TRANS_MAP
+            where
+              f.id = TRANSLATED_APPLICATION_ID
+          ),
+          f.FLOW_LANGUAGE
+        ),
+        1,
+        2
+      )
+    ) TRANSLATED_APP_LANGUAGE,
+    --
+    e.LAST_UPDATED_BY last_updated_by,
+    e.LAST_UPDATED_ON last_updated_on,
+    e.LIST_ITEM_COMMENT component_comment,
+    e.list_id list_id,
+    e.PARENT_LIST_ITEM_ID list_entry_parent_id,
+    e.id list_entry_id,
+    --
+    l.NAME || ' p='(
+      select
+        list_item_link_text
+      from
+        wwv_flow_list_items
+      where
+        id = e.PARENT_LIST_ITEM_ID
+        and flow_id = e.flow_id
+    ) || ' ' || lpad(e.LIST_ITEM_DISPLAY_SEQUENCE, 5, '00000') || ' ' || substr(e.LIST_ITEM_LINK_TEXT, 1, 30) || ' ' || substr(e.LIST_ITEM_LINK_TARGET, 1, 30) || length(e.LIST_ITEM_LINK_TARGET) || ' ' || substr(e.LIST_ITEM_ICON, 1, 30) || ' ' || substr(e.LIST_ITEM_ICON_ATTRIBUTES, 1, 30) || length(e.LIST_ITEM_ICON_ATTRIBUTES) || ' ' || decode(
+      e.LIST_ITEM_CURRENT_TYPE,
+      'ALWAYS',
+      'Always',
+      'COLON_DELIMITED_PAGE_LIST',
+      'Colon Delimited Page List',
+      'EXISTS',
+      'Exists SQL Query',
+      'NEVER',
+      'Never',
+      'NOT_EXISTS',
+      'Not Exists SQL Query',
+      'PLSQL_EXPRESSION',
+      'PL/SQL Expression',
+      e.LIST_ITEM_CURRENT_TYPE
+    ) || ' ' || substr(e.LIST_ITEM_CURRENT_FOR_PAGES, 1, 30) || length(e.LIST_ITEM_CURRENT_FOR_PAGES) || ' c=' || e.LIST_ITEM_DISP_COND_TYPE || substr(e.LIST_ITEM_DISP_CONDITION, 1, 30) || length(e.LIST_ITEM_DISP_CONDITION) || substr(e.LIST_ITEM_DISP_CONDITION2, 1, 30) || length(e.LIST_ITEM_DISP_CONDITION2) || ' c=' || decode(
+      e.LIST_COUNTCLICKS_Y_N,
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      e.LIST_COUNTCLICKS_Y_N
+    ) || ' c=' || e.LIST_COUNTCLICKS_CAT || ' t=' || length(e.LIST_TEXT_01) || length(e.LIST_TEXT_02) || length(e.LIST_TEXT_03) || length(e.LIST_TEXT_04) || length(e.LIST_TEXT_05) || length(e.LIST_TEXT_06) || length(e.LIST_TEXT_07) || length(e.LIST_TEXT_08) || length(e.LIST_TEXT_09) || length(e.LIST_TEXT_10) || translate_list_text_y_n || ' b='(
+      select
+        PATCH_NAME
+      from
+        wwv_flow_patches
+      where
+        id = abs(e.REQUIRED_PATCH)
+    ) || ' s=' || decode(substr(e.SECURITY_SCHEME, 1, 1), '!', 'Not ') || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(e.SECURITY_SCHEME, '!')
+          and flow_id = f.id
+      ),
+      'Not found'
+    ) component_signature
+  from
+    wwv_flow_list_items e,
+    wwv_flow_lists l,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.id = l.flow_id
+    and l.id = e.list_Id
+    and f.id = e.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []
