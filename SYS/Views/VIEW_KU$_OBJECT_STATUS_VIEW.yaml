@@ -1,0 +1,47 @@
+schema: SYS
+name: KU$_OBJECT_STATUS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.status,
+    u.name,
+    o.name,
+    decode(
+      o.type#,
+      4,
+      'VIEW',
+      7,
+      'PROCEDURE',
+      8,
+      'FUNCTION',
+      9,
+      'PACKAGE',
+      11,
+      'PACKAGE_BODY',
+      12,
+      'TRIGGER',
+      13,
+      'TYPE',
+      22,
+      'LIBRARY'
+    )
+  FROM
+    sys.obj$ o,
+    sys.user$ u
+  WHERE
+    o.owner# = u.user#
+    AND o.type# IN (4, 7, 8, 9, 11, 12, 13, 22)
+    AND (
+      UID IN (0, o.owner#)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

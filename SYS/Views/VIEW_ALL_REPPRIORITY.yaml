@@ -1,0 +1,45 @@
+schema: SYS
+name: ALL_REPPRIORITY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    p.sname,
+    p.priority_group,
+    v.priority,
+    decode(
+      p.data_type_id,
+      1,
+      'NUMBER',
+      2,
+      'VARCHAR2',
+      3,
+      'DATE',
+      4,
+      'CHAR',
+      5,
+      'RAW',
+      6,
+      'NVARCHAR2',
+      7,
+      'NCHAR',
+      'UNDEFINED'
+    ),
+    p.fixed_data_length,
+    v.char_value,
+    v.varchar2_value,
+    v.number_value,
+    v.date_value,
+    v.raw_value,
+    p.sname,
+    v.nchar_value,
+    v.nvarchar2_value,
+    v.large_char_value
+  from
+    system.repcat$_priority v,
+    system.repcat$_priority_group p
+  where
+    v.sname = p.sname
+    and v.priority_group = p.priority_group
+columns: []
+referencedTables: []

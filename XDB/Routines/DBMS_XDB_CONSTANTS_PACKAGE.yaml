@@ -1,0 +1,97 @@
+schema: XDB
+name: DBMS_XDB_CONSTANTS
+routineType: PACKAGE
+returnParamater:
+  name: XSD_GROUP.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters: []
+routineDefinition: "PACKAGE DBMS_XDB_CONSTANTS authid CURRENT_USER AS C_UTF8_ENCODING\
+  \ constant VARCHAR2(32): = 'AL32UTF8';\nC_WIN1252_ENCODING constant VARCHAR2(32):\
+  \ = 'WE8MSWIN1252';\nC_ISOLATIN1_ENCODING constant VARCHAR2(32): = 'WE8ISO8859P1';\n\
+  C_DEFAULT_ENCODING constant VARCHAR2(32): = C_UTF8_ENCODING;\nC_ORACLE_NAMESPACE\
+  \ constant VARCHAR2(128): = 'http://xmlns.oracle.com';\nC_ORACLE_XDB_NAMESPACE constant\
+  \ VARCHAR2(128): = C_ORACLE_NAMESPACE || '/xdb';\nC_XDBSCHEMA_NAMESPACE constant\
+  \ VARCHAR2(128): = C_ORACLE_XDB_NAMESPACE || '/XDBSchema.xsd';\nC_RESOURCE_NAMESPACE\
+  \ constant VARCHAR2(128): = C_ORACLE_XDB_NAMESPACE || '/XDBResource.xsd';\nC_ACL_NAMESPACE\
+  \ constant VARCHAR2(128): = C_ORACLE_XDB_NAMESPACE || '/acl.xsd';\nC_XMLSCHEMA_NAMESPACE\
+  \ constant VARCHAR2(128): = 'http://www.w3.org/2001/XMLSchema';\nC_XMLINSTANCE_NAMESPACE\
+  \ constant VARCHAR2(128): = 'http://www.w3.org/2001/XMLSchema-instance';\nC_RESOURCE_PREFIX_R\
+  \ constant VARCHAR2(128): = 'xmlns:r=\"' || C_RESOURCE_NAMESPACE || '\"';\nC_ACL_PREFIX_ACL\
+  \ constant VARCHAR2(128): = 'xmlns:acl=\"' || C_ACL_NAMESPACE || '\"';\nC_XDBSCHEMA_PREFIX_XDB\
+  \ constant VARCHAR2(128): = 'xmlns:xdb=\"' || C_ORACLE_XDB_NAMESPACE || '\"';\n\
+  C_XMLSCHEMA_PREFIX_XSD constant VARCHAR2(128): = 'xmlns:xsd=\"' || C_XMLSCHEMA_NAMESPACE\
+  \ || '\"';\nC_XMLINSTANCE_PREFIX_XSI constant VARCHAR2(128): = 'xmlns:xsi=\"' ||\
+  \ C_XMLINSTANCE_NAMESPACE || '\"';\nC_XDBSCHEMA_LOCATION constant VARCHAR2(128):\
+  \ = C_ORACLE_XDB_NAMESPACE || '/XDBSchema.xsd';\nC_XDBCONFIG_LOCATION constant VARCHAR2(128):\
+  \ = C_ORACLE_XDB_NAMESPACE || '/xdbconfig.xsd';\nC_ACL_LOCATION constant VARCHAR2(128):\
+  \ = C_ORACLE_XDB_NAMESPACE || '/acl.xsd';\nC_RESOURCE_LOCATION constant VARCHAR2(128):\
+  \ = C_ORACLE_XDB_NAMESPACE || '/XDBResource.xsd';\nC_BINARY_CONTENT constant VARCHAR2(128):\
+  \ = C_XDBSCHEMA_LOCATION || '#binary';\nC_TEXT_CONTENT constant VARCHAR2(128): =\
+  \ C_XDBSCHEMA_LOCATION || '#text';\nC_ACL_CONTENT constant VARCHAR2(128): = C_ACL_LOCATION\
+  \ || '#acl';\nC_XDBSCHEMA_PREFIXES constant VARCHAR2(256): = C_XMLSCHEMA_PREFIX_XSD\
+  \ || ' ' || C_XDBSCHEMA_PREFIX_XDB;\nC_EXIF_NAMESPACE constant VARCHAR2(128): =\
+  \ C_ORACLE_NAMESPACE || '/ord/meta/exif';\nC_IPTC_NAMESPACE constant VARCHAR2(128):\
+  \ = C_ORACLE_NAMESPACE || '/ord/meta/iptc';\nC_DICOM_NAMESPACE constant VARCHAR2(128):\
+  \ = C_ORACLE_NAMESPACE || '/ord/meta/dicomImage';\nC_ORDIMAGE_NAMESPACE constant\
+  \ VARCHAR2(128): = C_ORACLE_NAMESPACE || '/ord/meta/ordimage';\nC_XMP_NAMESPACE\
+  \ constant VARCHAR2(128): = C_ORACLE_NAMESPACE || '/ord/meta/xmp';\nC_XDBCONFIG_NAMESPACE\
+  \ constant VARCHAR2(128): = C_ORACLE_XDB_NAMESPACE || '/xdbconfig.xsd';\nC_EXIF_PREFIX_EXIF\
+  \ constant VARCHAR2(128): = 'xmlns:exif=\"' || C_EXIF_NAMESPACE || '\"';\nC_IPTC_PREFIX_IPTC\
+  \ constant VARCHAR2(128): = 'xmlns:iptc=\"' || C_IPTC_NAMESPACE || '\"';\nC_DICOM_PREFIX_DICOM\
+  \ constant VARCHAR2(128): = 'xmlns:dicom=\"' || C_DICOM_NAMESPACE || '\"';\nC_ORDIMAGE_PREFIX_ORD\
+  \ constant VARCHAR2(128): = 'xmlns:ord=\"' || C_ORDIMAGE_NAMESPACE || '\"';\nC_XMP_PREFIX_XMP\
+  \ constant VARCHAR2(128): = 'xmlns:xmp=\"' || C_XMP_NAMESPACE || '\"';\nC_RESOURCE_CONFIG_NAMESPACE\
+  \ constant VARCHAR2(128): = C_ORACLE_XDB_NAMESPACE || '/XDBResConfig.xsd';\nC_XMLDIFF_NAMESPACE\
+  \ constant VARCHAR2(128): = C_ORACLE_XDB_NAMESPACE || '/xdiff.xsd';\nC_RESOURCE_CONFIG_PREFIX_RC\
+  \ constant VARCHAR2(128): = 'xmlns:rc=\"' || C_RESOURCE_CONFIG_NAMESPACE || '\"\
+  ';\nC_XMLDIFF_PREFIX_XD constant VARCHAR2(128): = 'xmlns:xd=\"' || C_XMLDIFF_NAMESPACE\
+  \ || '\"';\nC_NSPREFIX_XDBCONFIG_CFG constant VARCHAR2(128): = 'xmlns:cfg=\"' ||\
+  \ C_XDBCONFIG_NAMESPACE || '\"';\nC_GROUP constant VARCHAR2(32): = 'group';\nC_ELEMENT\
+  \ constant VARCHAR2(32): = 'element';\nC_ATTRIBUTE constant VARCHAR2(32): = 'attribute';\n\
+  C_COMPLEX_TYPE constant VARCHAR2(32): = 'complexType';\nfunction ENCODING_UTF8 return\
+  \ varchar2 deterministic;\n--        returns 'AL32UTF8'\nfunction ENCODING_ISOLATIN1\
+  \ return varchar2 deterministic;\n--        returns 'WE8ISO8859P1'\nfunction ENCODING_WIN1252\
+  \ return varchar2 deterministic;\n--        returns 'WE8MSWIN1252'\nfunction ENCODING_DEFAULT\
+  \ return varchar2 deterministic;\n--        returns 'AL32UTF8'\nfunction NAMESPACE_ORACLE_XDB\
+  \ return varchar2 deterministic;\n--        returns 'http://xmlns.oracle.com/xdb'\n\
+  function NAMESPACE_RESOURCE return varchar2 deterministic;\n--        returns '\
+  \ http://xmlns.oracle.com/xdb/XDBResource.xsd\nfunction NAMESPACE_XDBSCHEMA return\
+  \ varchar2 deterministic;\n--        returns ' http://xmlns.oracle.com/xdb/XDBSchema.xsd\n\
+  function NAMESPACE_ACL return varchar2 deterministic;\n--          returns ' http://xmlns.oracle.com/xdb/acl.xsd'\n\
+  function NAMESPACE_ORACLE return varchar2 deterministic;\n--        returns 'http://xmlns.oracle.com'\n\
+  function NAMESPACE_XMLSCHEMA return varchar2 deterministic;\n--        returns 'http://www.w3.org/2001/XMLSchema'\n\
+  function NAMESPACE_XMLINSTANCE return varchar2 deterministic;\n--        returns\
+  \ 'http://www.w3.org/2001/XMLSchema-instance'\nfunction NAMESPACE_RESOURCE_CONFIG\
+  \ return varchar2 deterministic;\n--           returns 'http://xmlns.oracle.com/xdb/XDBResConfig.xsd'\n\
+  function NAMESPACE_XMLDIFF return varchar2 deterministic;\n--        returns 'http://xmlns.oracle.com/xdb/xdiff.xsd'\n\
+  function NAMESPACE_XDBCONFIG return varchar2 deterministic;\n--        returns 'http://xmlns.oracle.com/xdb/xdbconfig.xsd'\n\
+  function SCHEMAURL_XDBCONFIG return varchar2 deterministic;\n--        returns 'http://xmlns.oracle.com/xdb/xdbconfig.xsd'\n\
+  function NSPREFIX_RESOURCE_R return varchar2 deterministic;\n--        returns 'xmlns:r=\"\
+  http://xmlns.oracle.com/XDBResource.xsd\"'\nfunction NSPREFIX_ACL_ACL return varchar2\
+  \ deterministic;\n--        returns 'xmlns:acl= 'http://xmlns.oracle.com/acl.xsd\"\
+  '\nfunction NSPREFIX_XDB_XDB return varchar2 deterministic;\n--        returns 'xmlns:xdb=\
+  \ \e$B!H\e(Bhttp://xmlns.oracle.com/xdb\" '\nfunction NSPREFIX_XMLSCHEMA_XSD return\
+  \ varchar2 deterministic;\n--        returns 'xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"\
+  '\nfunction NSPREFIX_XMLINSTANCE_XSI return varchar2 deterministic;\n--        returns\
+  \ 'xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" '\nfunction NSPREFIX_RESCONFIG_RC\
+  \ return varchar2 deterministic;\n--        returns 'xmlns:rc=\"' || NAMESPACE_RESOURCE_CONFIG\n\
+  function NSPREFIX_XMLDIFF_XD return varchar2 deterministic;\n--        returns \
+  \ xmlns:xd=\"' || NAMESPACE_XMLDIFF\nfunction NSPREFIX_XDBCONFIG_CFG return varchar2\
+  \ deterministic;\n--        returns xmlns:cfg=\"http://xmlns.oracle.com/xdb/xdbconfig.xsd\"\
+  \nfunction SCHEMAURL_XDBSCHEMA return varchar2 deterministic;\n--        returns\
+  \ 'http://xmlns.oracle.com/xdb/XDBSchema.xsd';\nfunction SCHEMAURL_ACL return varchar2\
+  \ deterministic;\n--        returns 'http://xmlns.oracle.com/xdb/acl.xsd';\nfunction\
+  \ SCHEMAURL_RESOURCE return varchar2 deterministic;\n--        returns 'http://xmlns.oracle.com/xdb/XDBResource.xsd';\n\
+  function SCHEMAELEM_RESCONTENT_BINARY return varchar2 deterministic;\n--       \
+  \ returns SCHEMAURL_XDBSCHEMA || '#binary'\nfunction SCHEMAELEM_RESCONTENT_TEXT\
+  \ return varchar2 deterministic;\n--        returns SCHEMAURL_XDBSCHEMA || '#text'\n\
+  function SCHEMAELEM_RES_ACL return varchar2 deterministic;\n--        returns SCHEMAURL_XDBSCHEMA\
+  \ || '#acl'\nfunction XSD_GROUP return VARCHAR2 deterministic;\n--        returns\
+  \ 'group'\nfunction XSD_ELEMENT return VARCHAR2 deterministic;\n--        returns\
+  \ 'element'\nfunction XSD_ATTRIBUTE return VARCHAR2 deterministic;\n--        returns\
+  \ 'attribute'\nfunction XSD_COMPLEX_TYPE return VARCHAR2 deterministic;\n--    \
+  \    returns 'complexType'\nfunction XDBSCHEMA_PREFIXES return VARCHAR2 deterministic;\n\
+  --        returns  DBMS_XDB_CONSTANTS.PREFIX_DEF_XDB || ' '\n--                \
+  \ DBMS_XDB_CONSTANTS.PREFIX_DEF_XMLSCHEMA\nEND DBMS_XDB_CONSTANTS;"

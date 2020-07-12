@@ -1,0 +1,38 @@
+schema: WMSYS
+name: ALL_WM_POLICIES
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    ap.object_owner,
+    ap.object_name,
+    ap.policy_group,
+    ap.policy_name,
+    ap.pf_owner,
+    ap. package,
+    ap.function,
+    ap.sel,
+    ap.ins,
+    ap.upd,
+    ap.del,
+    ap.idx,
+    ap.chk_option,
+    enable,
+    ap.static_policy,
+    ap.policy_type,
+    ap.long_predicate
+  from
+    wmsys.wm$versioned_tables vt,
+    all_policies ap
+  where
+    ap.object_owner = vt.owner
+    and ap.object_name in (
+      vt.table_name,
+      vt.table_name || '_CONF',
+      vt.table_name || '_DIFF',
+      vt.table_name || '_HIST',
+      vt.table_name || '_LOCK',
+      vt.table_name || '_MW'
+    ) WITH READ ONLY
+columns: []
+referencedTables: []

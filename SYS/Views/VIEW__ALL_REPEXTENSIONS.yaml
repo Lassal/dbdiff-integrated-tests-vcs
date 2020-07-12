@@ -1,0 +1,23 @@
+schema: SYS
+name: _ALL_REPEXTENSIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.extension_id,
+    r.request,
+    r.masterdef,
+    r.export_required,
+    r.repcatlog_id,
+    r.extension_status,
+    r.flashback_scn,
+    r.break_trans_to_masterdef,
+    r.break_trans_to_new_masters,
+    r.percentage_for_catchup_mdef,
+    r.cycle_seconds_mdef,
+    r.percentage_for_catchup_new,
+    r.cycle_seconds_new
+  from
+    dba_repextensions r
+columns: []
+referencedTables: []

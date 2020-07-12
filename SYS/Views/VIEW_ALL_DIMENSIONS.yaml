@@ -1,0 +1,61 @@
+schema: SYS
+name: ALL_DIMENSIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    decode(o.status, 5, 'Y', 'N'),
+    decode(
+      o.status,
+      1,
+      'VALID',
+      5,
+      'NEEDS_COMPILE',
+      'ERROR'
+    ),
+    1
+    /* Metadata revision number */
+  from
+    sys.dim$ d,
+    sys.obj$ o,
+    sys.user$ u
+  where
+    o.owner# = u.user#
+    and o.obj# = d.obj#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -215
+            /* CREATE ANY DIMENSION */,
+            -216
+            /* ALTER ANY DIMENSION */,
+            -217
+            /* DROP ANY DIMENSION */
+          )
+      )
+    )
+columns: []
+referencedTables: []

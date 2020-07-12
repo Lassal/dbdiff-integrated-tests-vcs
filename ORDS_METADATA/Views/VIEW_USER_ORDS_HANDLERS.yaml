@@ -1,0 +1,27 @@
+schema: ORDS_METADATA
+name: USER_ORDS_HANDLERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    ords_handlers. "ID",
+    ords_handlers. "TEMPLATE_ID",
+    ords_handlers. "SOURCE_TYPE",
+    ords_handlers. "METHOD",
+    ords_handlers. "MIMES_ALLOWED",
+    ords_handlers. "ITEMS_PER_PAGE",
+    ords_handlers. "SOURCE",
+    ords_handlers. "COMMENTS",
+    ords_handlers. "SCHEMA_ID",
+    ords_handlers. "CREATED_BY",
+    ords_handlers. "CREATED_ON",
+    ords_handlers. "UPDATED_BY",
+    ords_handlers. "UPDATED_ON"
+  FROM
+    ords_handlers,
+    ords_schemas
+  WHERE
+    ords_schemas.id = ords_handlers.schema_id
+    AND ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

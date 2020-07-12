@@ -1,0 +1,81 @@
+schema: SYS
+name: USER_ADVISOR_EXEC_PARAMETERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    tp.task_id,
+    task_name,
+    execution_name,
+    execution_type,
+    parameter_name,
+    nvl(ep.value, tp.value) as parameter_value,
+    parameter_type,
+    is_default,
+    is_output,
+    is_modifiable_anytime,
+    tp.description,
+    parameter_flags,
+    parameter_type#
+  from
+    (
+      select
+        t.owner_name as owner,
+        t.id as task_id,
+        t.name as task_name,
+        e.name as execution_name,
+        p.name as parameter_name,
+        p.value,
+        decode(
+          d.datatype,
+          1,
+          'NUMBER',
+          2,
+          'STRING',
+          3,
+          'STRINGLIST',
+          4,
+          'TABLE',
+          5,
+          'TABLELIST',
+          'UNKNOWN'
+        ) as parameter_type,
+        d.datatype as parameter_type#,
+        decode(bitand(d.flags, 2), 0, 'Y', 'N') as is_default,
+        decode(bitand(d.flags, 4), 0, 'N', 'Y') as is_output,
+        decode(bitand(d.flags, 8), 0, 'N', 'Y') as is_modifiable_anytime,
+        dbms_advisor.format_message(d.description) as description,
+        d.exec_type as execution_type,
+        d.flags as parameter_flags
+      from
+        wri$_adv_parameters p,
+        wri$_adv_tasks t,
+        wri$_adv_def_parameters d,
+        wri$_adv_executions e
+      where
+        p.task_id = t.id
+        and bitand(t.property, 4) = 4
+        /* task property */
+        and bitand(d.flags, 1) = 0
+        /* invisible parameter */
+        and (
+          bitand(t.property, 32) = 32
+          or
+          /* system task only prm */
+          bitand(d.flags, 16) = 0
+        )
+        and p.name = d.name
+        and (
+          t.advisor_id = d.advisor_id
+          or d.advisor_id = 0
+        )
+        and e.task_id = p.task_id
+        and t.owner# = userenv('SCHEMAID')
+    ) tp,
+    wri$_adv_exec_parameters ep
+  where
+    tp.task_id = ep.task_id (+)
+    and tp.parameter_name = ep.name (+)
+    and tp.execution_name = ep.exec_name (+)
+columns: []
+referencedTables: []

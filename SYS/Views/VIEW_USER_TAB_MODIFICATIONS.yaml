@@ -1,0 +1,64 @@
+schema: SYS
+name: USER_TAB_MODIFICATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    null,
+    null,
+    m.inserts,
+    m.updates,
+    m.deletes,
+    m.timestamp,
+    decode(bitand(m.flags, 1), 1, 'YES', 'NO'),
+    m.drop_segments
+  from
+    sys.mon_mods_all$ m,
+    sys.obj$ o,
+    sys.tab$ t
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.obj# = m.obj#
+    and o.obj# = t.obj#
+  union all
+  select
+    o.name,
+    o.subname,
+    null,
+    m.inserts,
+    m.updates,
+    m.deletes,
+    m.timestamp,
+    decode(bitand(m.flags, 1), 1, 'YES', 'NO'),
+    m.drop_segments
+  from
+    sys.mon_mods_all$ m,
+    sys.obj$ o
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.obj# = m.obj#
+    and o.type# = 19
+  union all
+  select
+    o.name,
+    o2.subname,
+    o.subname,
+    m.inserts,
+    m.updates,
+    m.deletes,
+    m.timestamp,
+    decode(bitand(m.flags, 1), 1, 'YES', 'NO'),
+    m.drop_segments
+  from
+    sys.mon_mods_all$ m,
+    sys.obj$ o,
+    sys.tabsubpart$ tsp,
+    sys.obj$ o2
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.obj# = m.obj#
+    and o.obj# = tsp.obj#
+    and o2.obj# = tsp.pobj#
+columns: []
+referencedTables: []

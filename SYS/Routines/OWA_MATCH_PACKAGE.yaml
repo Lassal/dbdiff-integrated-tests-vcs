@@ -1,0 +1,34 @@
+schema: SYS
+name: OWA_MATCH
+routineType: PACKAGE
+returnParamater:
+  name: MATCH_PATTERN.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: MATCH_PATTERN.P_STRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MATCH_PATTERN.P_SIMPLE_PATTERN
+  ordinalPosition: 2
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: MATCH_PATTERN.P_COMPLEX_PATTERN
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: MATCH_PATTERN.P_USE_SPECIAL_CHARS
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: |-
+  package owa_match as empty_vc_arr owa_util.vc_arr;
+  function match_pattern (
+    p_string in varchar2,
+    p_simple_pattern in owa_util.vc_arr default empty_vc_arr,
+    p_complex_pattern in owa_util.vc_arr default empty_vc_arr,
+    p_use_special_chars in boolean default true
+  ) return boolean;
+  end owa_match;

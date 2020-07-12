@@ -1,0 +1,71 @@
+schema: SYS
+name: EXU92FPTPU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    u.name,
+    o.owner#,
+    t.toid,
+    TO_CHAR(o.mtime, 'YYYY-MM-DD:HH24:MI:SS'),
+    o.obj#,
+    d.d_obj#,
+    tm.audit$,
+    sv.sql_version,
+    t.properties,
+    o.status,
+    t.version#,
+    t.hashcode,
+    d.order#,
+    t.typeid,
+    NVL(t.roottoid, HEXTORAW('00'))
+  FROM
+    sys.obj$ o,
+    sys.user$ u,
+    sys.type$ t,
+    sys.dependency$ d,
+    sys.type_misc$ tm,
+    sys.exu816sqv sv
+  WHERE
+    o.obj# = d.p_obj#
+    AND o.type# = 13
+    AND o.oid$ = t.toid
+    AND o.owner# = u.user#
+    AND o.obj# = tm.obj#
+    AND BITAND(t.properties, 2128) = 0
+    AND
+    /* skip system gen'd types*/
+    (
+      o.owner# = userenv('SCHEMAID')
+      OR
+      /* owned by current user */
+      /* current user or public role have execute access to type */
+      o.obj# IN (
+        SELECT
+          oa.obj#
+        FROM
+          sys.objauth$ oa
+        WHERE
+          oa.obj# = o.obj#
+          AND oa.privilege# = 12
+          AND
+          /* execute */
+          oa.grantee# IN (userenv('SCHEMAID'), 1)
+      )
+      OR EXISTS (
+        /* current user or public role can execute any type */
+        SELECT
+          NULL
+        FROM
+          sys.sysauth$ sa
+        WHERE
+          sa.grantee# IN (userenv('SCHEMAID'), 1)
+          AND sa.privilege# = -184
+      )
+    )
+    AND o.spare1 = sv.version# (+)
+    AND t.toid = t.tvoid
+    /* Only the latest type */
+columns: []
+referencedTables: []

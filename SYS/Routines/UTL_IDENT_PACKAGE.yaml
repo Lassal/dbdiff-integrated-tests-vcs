@@ -1,0 +1,31 @@
+schema: SYS
+name: UTL_IDENT
+routineType: PACKAGE
+returnParamater: null
+parameters: []
+routineDefinition: |-
+  package utl_ident is
+  /* A typical usage of these boolean constants is
+
+
+
+           $if utl_ident.is_oracle_server $then
+
+             code supported for Oracle Database
+
+           $elsif utl_ident.is_timesten $then
+
+             code supported for TimesTen Database
+
+           $end
+
+     */
+  /* an XE database is an Oracle server but an Oracle
+
+       server is not necessarily XE */
+  is_oracle_xe constant boolean: = FALSE;
+  is_oracle_server constant boolean: = TRUE;
+  is_oracle_client constant boolean: = FALSE;
+  is_timesten constant boolean: = FALSE;
+  is_oracle_forms constant boolean: = FALSE;
+  end utl_ident;

@@ -1,0 +1,17 @@
+schema: SYS
+name: USER_APPLICATION_ROLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    schema,
+    package
+  from
+    user $ u,
+    approle$ a
+  where
+    u.user# = a .role#
+    and u.user# = uid
+columns: []
+referencedTables: []

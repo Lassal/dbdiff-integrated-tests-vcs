@@ -1,0 +1,62 @@
+schema: SYS
+name: LOADER_COL_TYPE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name as table_owner,
+    o.name as table_name,
+    c .name as colnam,
+    ct.toid as toid,
+    ct.version# as version
+  from
+    sys.col$ c,
+    sys.obj$ o,
+    sys.coltype$ ct,
+    sys.user$ u
+  where
+    o.obj# = c .obj#
+    and ct.obj# = o.obj#
+    and c .intcol# = ct.intcol#
+    and u.user# = o.owner#
+    and (
+      o.owner# = userenv('schemaid')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK   ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

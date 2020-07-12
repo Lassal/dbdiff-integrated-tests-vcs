@@ -1,0 +1,23 @@
+schema: SYS
+name: HS_PARALLEL_SAMPLE_DATA
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    hs.dblink,
+    hs.remote_table_name,
+    hs.remote_schema_name,
+    hs.low_value,
+    hs.high_value,
+    hs.position,
+    hm.sample_column,
+    hm.sample_column_type
+  from
+    hs$_parallel_sample_data hs,
+    HS$_PARALLEL_METADATA hm
+  where
+    hs.dblink = hm.dblink
+    and hs.remote_table_name = hm.remote_table_name
+    and hs.remote_schema_name = hm.remote_schema_name
+columns: []
+referencedTables: []

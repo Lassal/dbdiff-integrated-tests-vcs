@@ -1,0 +1,41 @@
+schema: SYS
+name: ODCIPREDINFODUMP
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: OP
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE ODCIPredInfoDump(op ODCIPredInfo) IS
+  BEGIN
+    if op is null then dbms_output.put_line('ODCIPredInfo is null');
+  return;
+  end if;
+  dbms_output.put_line('ODCIPredInfo');
+  dbms_output.put_line('Object owner : ' || op.ObjectSchema);
+  dbms_output.put_line('Object name : ' || op.ObjectName);
+  dbms_output.put_line('Method name : ' || op.MethodName);
+  dbms_output.put_line('Predicate bounds flag :');
+  IF (
+    bitand(op.Flags, ODCIConst.PredExactMatch) = ODCIConst.PredExactMatch
+  ) THEN dbms_output.put_line('     Exact Match');
+  END IF;
+  IF (
+    bitand(op.Flags, ODCIConst.PredPrefixMatch) = ODCIConst.PredPrefixMatch
+  ) THEN dbms_output.put_line('     Prefix Match');
+  END IF;
+  IF (
+    bitand(op.Flags, ODCIConst.PredIncludeStart) = ODCIConst.PredIncludeStart
+  ) THEN dbms_output.put_line('     Include Start Key');
+  END IF;
+  IF (
+    bitand(op.Flags, ODCIConst.PredIncludeStop) = ODCIConst.PredIncludeStop
+  ) THEN dbms_output.put_line('     Include Stop Key');
+  END IF;
+  IF (
+    bitand(op.Flags, ODCIConst.PredMultiTable) = ODCIConst.PredMultiTable
+  ) THEN dbms_output.put_line('     Multiple Tables');
+  END IF;
+  END;

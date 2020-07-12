@@ -1,0 +1,46 @@
+schema: SYS
+name: KU$_REF_CONSTRAINT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    c .con#,
+    u.name,
+    c .name,
+    cd.defer,
+    cd.obj#,
+    (
+      select
+        value(sov)
+      from
+        ku$_schemaobj_view sov
+      where
+        sov.obj_num = cd.obj#
+    ),
+    value(con)
+  from
+    obj$ o,
+    con$ c,
+    cdef$ cd,
+    user $ u,
+    ku$_constraint2_view con
+  where
+    cd.obj# = o.obj#
+    and c .con# = cd.con#
+    and u.user# = c .owner#
+    and con.con_num = c .con#
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (u.user#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

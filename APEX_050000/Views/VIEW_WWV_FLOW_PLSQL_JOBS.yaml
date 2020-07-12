@@ -1,0 +1,24 @@
+schema: APEX_050000
+name: WWV_FLOW_PLSQL_JOBS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    id,
+    job,
+    flow_id,
+    owner,
+    enduser,
+    created,
+    modified,
+    status,
+    system_status,
+    system_modified,
+    a .security_group_id
+  from
+    wwv_flow_current_sgid sgid,
+    wwv_flow_jobs a
+  where
+    a .security_group_id = sgid.security_group_id
+columns: []
+referencedTables: []

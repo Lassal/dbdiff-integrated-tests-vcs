@@ -1,0 +1,93 @@
+name: SDO_ELLIPSOIDS
+schema: MDSYS
+columns:
+- name: DATA_SOURCE
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  dataTypeLength: 40
+- name: ELLIPSOID_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: ELLIPSOID_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: false
+  dataTypeLength: 80
+- name: INFORMATION_SOURCE
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 254
+  nullable: true
+  dataTypeLength: 254
+- name: INV_FLATTENING
+  ordinalPosition: 5
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: IS_LEGACY
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: false
+  dataTypeLength: 5
+- name: LEGACY_CODE
+  ordinalPosition: 10
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: SEMI_MAJOR_AXIS
+  ordinalPosition: 3
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: SEMI_MINOR_AXIS
+  ordinalPosition: 6
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: UOM_ID
+  ordinalPosition: 4
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: ELLIPSOID_PRIM
+  type: PRIMARY_KEY
+  columns:
+  - name: ELLIPSOID_ID
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: ELLIPSOID_FOREIGN_UOM
+  type: FOREIGN_KEY
+  columns:
+  - name: UOM_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_UNITS_OF_MEASURE
+    referencedTableColumnName: UOM_ID
+- !<check-constraint>
+  name: ELLIPSOID_ID_MUST_BE_POS
+  type: CHECK
+  checkClause: ELLIPSOID_ID > 0
+- !<check-constraint>
+  name: SEMI_MAJOR_AXIS_MUST_BE_POS
+  type: CHECK
+  checkClause: SEMI_MAJOR_AXIS > 0
+- !<check-constraint>
+  name: SYS_C005789
+  type: CHECK
+  checkClause: '"ELLIPSOID_ID" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005790
+  type: CHECK
+  checkClause: '"ELLIPSOID_NAME" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005791
+  type: CHECK
+  checkClause: '"IS_LEGACY" IS NOT NULL'

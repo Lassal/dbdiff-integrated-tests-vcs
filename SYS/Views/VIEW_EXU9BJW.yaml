@@ -1,0 +1,35 @@
+schema: SYS
+name: EXU9BJW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    ji$.obj#,
+    c1$.name,
+    ji$.tab1obj#,
+    c2$.name,
+    ji$.tab2obj#
+  FROM
+    sys.jijoin$ ji$,
+    sys.col$ c1$,
+    sys.col$ c2$,
+    sys.obj$ io$
+  WHERE
+    ji$.tab1col# = c1$.intcol#
+    AND ji$.tab1obj# = c1$.obj#
+    AND ji$.tab2col# = c2$.intcol#
+    AND ji$.tab2obj# = c2$.obj#
+    AND ji$.obj# = io$.obj#
+    AND (
+      userenv('SCHEMAID') IN (0, io$.owner#)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

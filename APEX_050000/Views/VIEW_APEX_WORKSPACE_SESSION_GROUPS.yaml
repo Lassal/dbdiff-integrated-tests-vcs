@@ -1,0 +1,60 @@
+schema: APEX_050000
+name: APEX_WORKSPACE_SESSION_GROUPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.workspace_id workspace_id,
+    w.workspace_name workspace_name,
+    w.workspace_display_name workspace_display_name,
+    s.id apex_session_id,
+    s.username user_name,
+    sg.group_name group_name
+  from
+    wwv_flow_sessions$ s,
+    wwv_flow_session_groups$ sg,
+    (
+      select
+        w.PROVISIONING_COMPANY_ID workspace_id,
+        w.short_name workspace_name,
+        w.display_name workspace_display_name,
+        w.FIRST_SCHEMA_PROVISIONED first_schema_provisioned
+      from
+        wwv_flow_companies w,
+        wwv_flow_company_schemas s,
+        (
+          select
+            nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+            (
+              select
+                sys_context('USERENV', 'CURRENT_USER')
+              from
+                sys.dual
+            ) cu
+          from
+            sys.dual
+        ) d
+      where
+        (
+          s.schema = cu
+          or (
+            select
+              wwv_flow_security.has_apex_administrator_role_yn(cu)
+            from
+              sys.dual
+          ) = 'Y'
+          or d.sgid = w.PROVISIONING_COMPANY_ID
+        )
+        and s.security_group_id = w.PROVISIONING_COMPANY_ID
+        and w.PROVISIONING_COMPANY_ID != 0
+      group by
+        w.PROVISIONING_COMPANY_ID,
+        w.short_name,
+        w.display_name,
+        w.FIRST_SCHEMA_PROVISIONED
+    ) w
+  where
+    s.SECURITY_GROUP_ID = w.workspace_id
+    and s.id = sg.session_id
+columns: []
+referencedTables: []

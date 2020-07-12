@@ -1,0 +1,51 @@
+schema: SYS
+name: USER_QUEUE_SUBSCRIBERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    q.name QUEUE_NAME,
+    t.name QUEUE_TABLE,
+    s.name CONSUMER_NAME,
+    s.address ADDRESS,
+    s.protocol PROTOCOL,
+    s.trans_name TRANSFORMATION,
+    r.rule_condition RULE,
+    decode(
+      bitand(s.sub_type, 192),
+      64,
+      'PERSISTENT',
+      128,
+      'BUFFERED',
+      192,
+      'PERSISTENT_OR_BUFFERED',
+      'NONE'
+    ) DELIVERY_MODE,
+    decode(bitand(s.sub_type, 32960), 32960, 'YES', 'NO') NONDURABLE,
+    decode(bitand(s.sub_type, 512), 512, 'TRUE', 'FALSE') QUEUE_TO_QUEUE,
+    s.subscriber_id SUBSCRIBER_ID,
+    s.pos_bitmap POS_BITMAP
+  FROM
+    system.aq$_queues q,
+    system.aq$_queue_tables t,
+    sys.user$ cu,
+    sys.user_rules r,
+    TABLE(
+      aq$_get_subscribers(
+        cu.name,
+        q.name,
+        t.name,
+        cu.name,
+        q.eventid,
+        t.flags
+      )
+    ) s
+  where
+    cu.user# = userenv('SCHEMAID')
+    and cu.name = t.schema
+    and q.table_objno = t.objno
+    and bitand(t.flags, 1) = 1
+    and q.usage != 1
+    and s.rule_name = r.rule_name(+)
+columns: []
+referencedTables: []

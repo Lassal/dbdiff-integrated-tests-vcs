@@ -1,0 +1,78 @@
+schema: SYS
+name: ALL_SCHEDULER_FILE_WATCHERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name,
+    o.name,
+    decode(bitand(f.flags, 1), 1, 'TRUE', 'FALSE'),
+    decode(
+      bitand(f.flags, 8),
+      0,
+      NULL,
+      substr(f.destination, 1, instr(f.destination, '"') -1)
+    ),
+    decode(
+      bitand(f.flags, 8),
+      0,
+      f.destination,
+      substr(
+        f.destination,
+        instr(f.destination, '"') + 1,
+        length(f.destination) - instr(f.destination, '"')
+      )
+    ),
+    f.directory_path,
+    f.file_name,
+    cu.name,
+    co.name,
+    f.min_file_size,
+    f.steady_state_duration,
+    f.last_modified_time,
+    f.comments
+  FROM
+    sys.user$ u,
+    sys.obj$ o,
+    sys.scheduler$_file_watcher f,
+    sys.user$ cu,
+    sys.obj$ co
+  WHERE
+    f.obj# = o.obj#
+    AND u.user# = o.owner#
+    AND f.credoid = co.obj#(+)
+    AND cu.user#(+) = co.owner#
+    AND (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      (
+        exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -265
+              /* CREATE ANY JOB */
+            )
+        )
+        and o.owner# != 0
+      )
+    )
+columns: []
+referencedTables: []

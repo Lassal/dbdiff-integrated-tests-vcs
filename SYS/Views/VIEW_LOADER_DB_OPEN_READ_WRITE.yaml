@@ -1,0 +1,13 @@
+schema: SYS
+name: LOADER_DB_OPEN_READ_WRITE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    count(*)
+  from
+    v$database
+  where
+    open_mode = 'READ WRITE'
+columns: []
+referencedTables: []

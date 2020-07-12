@@ -1,0 +1,48 @@
+schema: SYS
+name: KU$_COMMENT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    cm.obj#,
+    value(o),
+    (
+      select
+        t.property
+      from
+        sys.tab$ t
+      where
+        t.obj# = cm.obj#
+    ),
+    cm.col#,
+    (
+      select
+        c .name
+      from
+        sys.col$ c
+      where
+        c .obj# = cm.obj#
+        and c .intcol# = cm.col#
+    ),
+    TO_CLOB(replace(cm.comment$, '''', ''''''))
+  from
+    sys.ku$_edition_schemaobj_view o,
+    sys.com$ cm
+  where
+    o.obj_num = cm.obj#
+    AND cm.comment$ is not null
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

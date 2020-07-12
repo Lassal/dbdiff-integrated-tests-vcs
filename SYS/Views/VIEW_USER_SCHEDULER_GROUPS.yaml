@@ -1,0 +1,41 @@
+schema: SYS
+name: USER_SCHEDULER_GROUPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    decode(
+      bitand(w.flags, 8 + 16),
+      0,
+      'WINDOW',
+      8,
+      'JOB',
+      16,
+      decode(
+        bitand(w.flags, 4096 + 8192),
+        4096,
+        'DB_DEST',
+        8192,
+        'EXTERNAL_DEST',
+        'UNKOWN_DEST'
+      )
+    ),
+    DECODE(BITAND(w.flags, 1), 0, 'FALSE', 1, 'TRUE'),
+    (
+      SELECT
+        COUNT(*)
+      FROM
+        user_scheduler_group_members ugm
+      WHERE
+        ugm.group_name = o.name
+    ),
+    w.comments
+  FROM
+    obj$ o,
+    scheduler$_window_group w
+  WHERE
+    o.obj# = w.obj#
+    AND o.owner# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

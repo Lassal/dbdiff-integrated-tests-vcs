@@ -1,0 +1,30 @@
+schema: SYS
+name: USER_REPSCHEMA
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.sname,
+    r.dblink,
+    r.masterdef,
+    r.snapmaster,
+    r.master_comment,
+    r.sname,
+    r.master,
+    r.gowner
+  from
+    repcat_repschema r,
+    user_users u
+  where
+    (r.sname = u.username)
+    or r.gowner in (
+      select
+        name
+      from
+        user $
+      where
+        user # = userenv('SCHEMAID')
+        and type # = 1
+    )
+columns: []
+referencedTables: []

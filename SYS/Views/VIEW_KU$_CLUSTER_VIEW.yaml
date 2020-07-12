@@ -1,0 +1,103 @@
+schema: SYS
+name: KU$_CLUSTER_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '3',
+    o.obj_num,
+    value(o),
+    cast(
+      multiset(
+        select
+          *
+        from
+          ku$_column_view col
+        where
+          col.obj_num = c .obj#
+        order by
+          col.col_num,
+          col.intcol_num
+      ) as ku$_column_list_t
+    ),
+    ts.name,
+    ts.blocksize,
+    ts.ts#,
+    c .file#,
+    c .block#,
+    c .pctfree$,
+    c .pctused$,
+    c .initrans,
+    c .maxtrans,
+    NVL(c .size$, -1),
+    c .hashfunc,
+    NVL(c .hashkeys, 0),
+    NVL(c .func, 1),
+    c .extind,
+    c .flags,
+    NVL(c .degree, 1),
+    NVL(c .instances, 1),
+    NVL(c .avgchn, -1),
+    (
+      select
+        condlength
+      from
+        sys.cdef$ co
+      where
+        co.obj# = c .obj#
+    ),
+    NULL,
+    /* functxt  */
+    NULL,
+    /* func_vcnt */
+    (
+      select
+        sys.dbms_metadata_util.long2clob(
+          cd.condlength,
+          'SYS.CDEF$',
+          'CONDITION',
+          cd.rowid
+        )
+      from
+        sys.cdef$ cd
+      where
+        cd.obj# = c .obj#
+    ),
+    (
+      select
+        value(s)
+      from
+        ku$_storage_view s
+      where
+        s.file_num = c .file#
+        and s.block_num = c .block#
+        and s.ts_num = c .ts#
+    ),
+    c .spare1,
+    c .spare2,
+    c .spare3,
+    c .spare4,
+    c .spare5,
+    c .spare6,
+    to_char(c .spare7, 'YYYY/MM/DD HH24:MI:SS')
+  from
+    sys.ku$_schemaobj_view o,
+    sys.ts$ ts,
+    sys.clu$ c
+  where
+    o.obj_num = c .obj#
+    AND c .ts# = ts.ts#
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

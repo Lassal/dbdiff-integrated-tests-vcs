@@ -1,0 +1,19 @@
+schema: MDSYS
+name: OGC_SRID
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: OUT
+parameters:
+- name: G
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_SRID(g ST_Geometry) RETURN Integer IS
+  BEGIN
+    RETURN g.ST_SRID();
+  END OGC_SRID;

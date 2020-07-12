@@ -1,0 +1,30 @@
+schema: SYS
+name: ALL_XML_SCHEMA_SUBSTGRP_HEAD
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s.xmldata.schema_owner OWNER,
+    s.xmldata.schema_url SCHEMA_URL,
+    s.xmldata.target_namespace TARGET_NAMESPACE,
+    e.xmldata.property.name ELEMENT_NAME,
+    value(e) ELEMENT
+  from
+    xdb.xdb$schema s,
+    xdb.xdb$element e,
+    all_xml_schemas a
+  where
+    sys_op_r2o(e.xmldata.property.parent_schema) = s.sys_nc_oid$
+    and s.xmldata.schema_owner = a .owner
+    and s.xmldata.schema_url = a .schema_url
+    and e.xmldata.property.global = hexToRaw('01')
+    and e.sys_nc_oid$ in (
+      select
+        distinct sys_op_r2o (se.xmldata.HEAD_ELEM_REF)
+      from
+        xdb.xdb$element se
+      where
+        se.xmldata.HEAD_ELEM_REF is not null
+    )
+columns: []
+referencedTables: []

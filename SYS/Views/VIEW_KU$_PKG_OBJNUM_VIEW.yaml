@@ -1,0 +1,17 @@
+schema: SYS
+name: KU$_PKG_OBJNUM_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.vers_major,
+    t.vers_minor,
+    t.obj_num,
+    t.type_num,
+    t.schema_obj
+  from
+    ku$_base_proc_objnum_view t
+  where
+    t.type_num = 9
+columns: []
+referencedTables: []

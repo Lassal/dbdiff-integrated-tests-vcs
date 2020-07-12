@@ -1,0 +1,33 @@
+schema: SYS
+name: USER_MVIEW_LOGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s. "LOG_OWNER",
+    s. "MASTER",
+    s. "LOG_TABLE",
+    s. "LOG_TRIGGER",
+    s. "ROWIDS",
+    s. "PRIMARY_KEY",
+    s. "OBJECT_ID",
+    s. "FILTER_COLUMNS",
+    s. "SEQUENCE",
+    s. "INCLUDE_NEW_VALUES",
+    s. "PURGE_ASYNCHRONOUS",
+    s. "PURGE_DEFERRED",
+    s. "PURGE_START",
+    s. "PURGE_INTERVAL",
+    s. "LAST_PURGE_DATE",
+    s. "LAST_PURGE_STATUS",
+    s. "NUM_ROWS_PURGED",
+    s. "COMMIT_SCN_BASED",
+    s. "STAGING_LOG"
+  from
+    dba_mview_logs s,
+    sys.user$ u
+  where
+    s.log_owner = u.name
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

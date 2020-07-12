@@ -1,0 +1,18 @@
+schema: SYS
+name: ALL_REPGROUP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.sname,
+    r.master,
+    r.status,
+    r.schema_comment,
+    r.sname,
+    r.fname,
+    r.rpc_processing_disabled,
+    r.gowner
+  from
+    repcat_repcat r
+columns: []
+referencedTables: []

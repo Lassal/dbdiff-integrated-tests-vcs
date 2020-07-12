@@ -1,0 +1,14 @@
+schema: SYS
+name: IMP9USR
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name,
+    u.user#
+  FROM
+    sys.user$ u
+  WHERE
+    u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

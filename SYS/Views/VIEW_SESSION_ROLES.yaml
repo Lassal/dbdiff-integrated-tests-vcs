@@ -1,0 +1,16 @@
+schema: SYS
+name: SESSION_ROLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name
+  from
+    x$kzsro,
+    user $ u
+  where
+    kzsrorol != userenv('SCHEMAID')
+    and kzsrorol != 1
+    and u.user# = kzsrorol
+columns: []
+referencedTables: []

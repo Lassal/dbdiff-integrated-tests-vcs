@@ -1,0 +1,39 @@
+schema: SYS
+name: KU$_SEQUENCE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    s.obj#,
+    value(o),
+    s.increment$,
+    TO_CHAR(s.minvalue),
+    TO_CHAR(s.maxvalue),
+    s.cycle#,
+    s.order$,
+    s.cache,
+    TO_CHAR(s.highwater),
+    replace(s.audit$, chr(0), '-'),
+    s.flags,
+    s.partcount
+  from
+    sys.ku$_schemaobj_view o,
+    sys.seq$ s
+  where
+    s.obj# = o.obj_num
+    AND mod(nvl(s.flags, 0), 64) < 32
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

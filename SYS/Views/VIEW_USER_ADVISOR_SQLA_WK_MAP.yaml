@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_ADVISOR_SQLA_WK_MAP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .task_id as task_id,
+    b.name as task_name,
+    a .workload_id as workload_id,
+    a .name as workload_name,
+    a .is_sts as is_sts
+  from
+    wri$_adv_sqla_map a,
+    wri$_adv_tasks b
+  where
+    a .task_id = b.id
+    and b.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

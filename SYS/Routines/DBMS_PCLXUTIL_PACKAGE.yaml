@@ -1,0 +1,65 @@
+schema: SYS
+name: DBMS_PCLXUTIL
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: BUILD_PART_INDEX.JOBS_PER_BATCH
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: BUILD_PART_INDEX.PROCS_PER_JOB
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: BUILD_PART_INDEX.TAB_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_PART_INDEX.IDX_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BUILD_PART_INDEX.FORCE_OPT
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: |-
+  package dbms_pclxutil as ------------
+  --  OVERVIEW
+  --
+  --  a package that provides intra-partition parallelism for creating
+  --  partition-wise local index.
+  --
+  --  SECURITY
+  --
+  --  The execution privilege is granted to PUBLIC. The procedure
+  --  build_part_index in this package run under the caller security.
+  --
+  ----------------------------
+  ----------------------------
+  type JobList is table of number;
+  procedure build_part_index (
+    jobs_per_batch in number default 1,
+    procs_per_job in number default 1,
+    tab_name in varchar2 default null,
+    idx_name in varchar2 default null,
+    force_opt in boolean default FALSE
+  );
+  --
+  -- jobs_per_batch: #jobs to be created (1 <= job_count <= #partitions)
+  --
+  -- procs_per_job:  #slaves per job (1 <= degree <= max_slaves)
+  --
+  -- tab_name:       name of the partitioned table (an exception is
+  --                 raised if the table does not exist or not
+  --                 partitioned)
+  --
+  -- idx_name:       name given to the local index (an exception is
+  --                 raised if a local index is not created on the
+  --                 table tab_name)
+  --
+  -- force_opt:      if TRUE force rebuild of all partitioned indices;
+  --                 otherwise rebuild only the partitions marked
+  --                 'UNUSABLE'
+  --
+  end dbms_pclxutil;

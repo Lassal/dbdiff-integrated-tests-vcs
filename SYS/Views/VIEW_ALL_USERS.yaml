@@ -1,0 +1,21 @@
+schema: SYS
+name: ALL_USERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    u.user#,
+    u.ctime,
+    decode(bitand(u.spare1, 128), 128, 'YES', 'NO'),
+    decode(bitand(u.spare1, 256), 256, 'Y', 'N')
+  from
+    sys.user$ u,
+    sys.ts$ dts,
+    sys.ts$ tts
+  where
+    u.datats# = dts.ts#
+    and u.tempts# = tts.ts#
+    and u.type# = 1
+columns: []
+referencedTables: []

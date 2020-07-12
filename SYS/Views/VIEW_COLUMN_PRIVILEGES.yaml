@@ -1,0 +1,122 @@
+schema: SYS
+name: COLUMN_PRIVILEGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ue.name,
+    u.name,
+    o.name,
+    c .name,
+    ur.name,
+    decode(
+      substr(
+        lpad(
+          sum(
+            power(10, privilege# * 2) + decode(
+              mod(option $, 2),
+              1,
+              power(10, privilege# * 2 + 1),
+              0
+            )
+          ),
+          26,
+          '0'
+        ),
+        13,
+        2
+      ),
+      '00',
+      'N',
+      '01',
+      'Y',
+      '11',
+      'G',
+      'N'
+    ),
+    decode(
+      substr(
+        lpad(
+          sum(
+            power(10, privilege# * 2) + decode(
+              mod(option $, 2),
+              1,
+              power(10, privilege# * 2 + 1),
+              0
+            )
+          ),
+          26,
+          '0'
+        ),
+        5,
+        2
+      ),
+      '00',
+      'N',
+      '01',
+      'Y',
+      '11',
+      'G',
+      'N'
+    ),
+    decode(
+      substr(
+        lpad(
+          sum(
+            power(10, privilege# * 2) + decode(
+              mod(option $, 2),
+              1,
+              power(10, privilege# * 2 + 1),
+              0
+            )
+          ),
+          26,
+          '0'
+        ),
+        3,
+        2
+      ),
+      '00',
+      'N',
+      '01',
+      'Y',
+      '11',
+      'G',
+      'N'
+    ),
+    min(null)
+  from
+    sys.objauth$ oa,
+    sys.col$ c,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.user$ ue,
+    sys.user$ ur,
+    sys.user$ u
+  where
+    oa.col# is not null
+    and oa.obj# = c .obj#
+    and oa.col# = c .col#
+    and bitand(c .property, 32) = 0
+    /* not hidden column */
+    and oa.obj# = o.obj#
+    and oa.grantor# = ur.user#
+    and oa.grantee# = ue.user#
+    and u.user# = o.owner#
+    and (
+      oa.grantor# = userenv('SCHEMAID')
+      or oa.grantee# in (
+        select
+          kzsrorol
+        from
+          x$kzsro
+      )
+      or o.owner# = userenv('SCHEMAID')
+    )
+  group by
+    u.name,
+    o.name,
+    c .name,
+    ur.name,
+    ue.name
+columns: []
+referencedTables: []

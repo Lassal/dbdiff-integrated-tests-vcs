@@ -1,0 +1,86 @@
+schema: SYS
+name: ALL_MVIEW_AGGREGATES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    sa.sumcolpos#,
+    c .name,
+    decode(
+      sa.aggfunction,
+      15,
+      'AVG',
+      16,
+      'SUM',
+      17,
+      'COUNT',
+      18,
+      'MIN',
+      19,
+      'MAX',
+      97,
+      'VARIANCE',
+      98,
+      'STDDEV',
+      440,
+      'USER'
+    ),
+    decode(sa.flags, 0, 'N', 'Y'),
+    sa.aggtext
+  from
+    sys.sumagg$ sa,
+    sys.obj$ o,
+    sys.user$ u,
+    sys.sum$ s,
+    sys.col$ c
+  where
+    sa.sumobj# = o.obj#
+    AND o.owner# = u.user#
+    AND sa.sumobj# = s.obj#
+    AND c .obj# = s.containerobj#
+    AND c .col# = sa.containercol#
+    AND (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+    AND bitand(s.xpflags, 8388608) = 0
+    /* NOT REWRITE EQUIVALENCE SUMMARY */
+columns: []
+referencedTables: []

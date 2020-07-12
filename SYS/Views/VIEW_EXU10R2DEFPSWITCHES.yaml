@@ -1,0 +1,25 @@
+schema: SYS
+name: EXU10R2DEFPSWITCHES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    a .value,
+    b.value,
+    c .value,
+    d.value,
+    e.value
+  FROM
+    sys.v$parameter a,
+    sys.v$parameter b,
+    sys.v$parameter c,
+    sys.v$parameter d,
+    sys.v$parameter e
+  WHERE
+    a .name = 'nls_length_semantics'
+    AND b.name = 'plsql_optimize_level'
+    AND c .name = 'plsql_code_type'
+    AND d.name = 'plsql_warnings'
+    AND e.name = 'plsql_ccflags'
+columns: []
+referencedTables: []

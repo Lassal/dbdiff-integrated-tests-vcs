@@ -1,0 +1,533 @@
+schema: SYS
+name: DBMS_HEAT_MAP
+routineType: PACKAGE
+returnParamater:
+  name: TABLESPACE_HEAT_MAP.(--return--)
+  ordinalPosition: 0
+  dataType: TABLE
+  parameterMode: OUT
+parameters:
+- name: AUTO_ADVISOR_HEATMAP_JOB.TOPN
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: BLOCK_HEAT_MAP.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BLOCK_HEAT_MAP.SEGMENT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BLOCK_HEAT_MAP.PARTITION_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BLOCK_HEAT_MAP.SORT_COLUMNID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: BLOCK_HEAT_MAP.SORT_ORDER
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTENT_HEAT_MAP.OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTENT_HEAT_MAP.SEGMENT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTENT_HEAT_MAP.PARTITION_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OBJECT_HEAT_MAP.OBJECT_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OBJECT_HEAT_MAP.OBJECT_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SEGMENT_HEAT_MAP.TABLESPACE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEGMENT_HEAT_MAP.HEADER_FILE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEGMENT_HEAT_MAP.HEADER_BLOCK
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEGMENT_HEAT_MAP.SEGMENT_OBJD
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: SEGMENT_HEAT_MAP.MIN_WRITETIME
+  ordinalPosition: 5
+  dataType: DATE
+  parameterMode: OUT
+- name: SEGMENT_HEAT_MAP.MAX_WRITETIME
+  ordinalPosition: 6
+  dataType: DATE
+  parameterMode: OUT
+- name: SEGMENT_HEAT_MAP.AVG_WRITETIME
+  ordinalPosition: 7
+  dataType: DATE
+  parameterMode: OUT
+- name: SEGMENT_HEAT_MAP.MIN_READTIME
+  ordinalPosition: 8
+  dataType: DATE
+  parameterMode: OUT
+- name: SEGMENT_HEAT_MAP.MAX_READTIME
+  ordinalPosition: 9
+  dataType: DATE
+  parameterMode: OUT
+- name: SEGMENT_HEAT_MAP.AVG_READTIME
+  ordinalPosition: 10
+  dataType: DATE
+  parameterMode: OUT
+- name: SEGMENT_HEAT_MAP.MIN_FTSTIME
+  ordinalPosition: 11
+  dataType: DATE
+  parameterMode: OUT
+- name: SEGMENT_HEAT_MAP.MAX_FTSTIME
+  ordinalPosition: 12
+  dataType: DATE
+  parameterMode: OUT
+- name: SEGMENT_HEAT_MAP.AVG_FTSTIME
+  ordinalPosition: 13
+  dataType: DATE
+  parameterMode: OUT
+- name: SEGMENT_HEAT_MAP.MIN_LOOKUPTIME
+  ordinalPosition: 14
+  dataType: DATE
+  parameterMode: OUT
+- name: SEGMENT_HEAT_MAP.MAX_LOOKUPTIME
+  ordinalPosition: 15
+  dataType: DATE
+  parameterMode: OUT
+- name: SEGMENT_HEAT_MAP.AVG_LOOKUPTIME
+  ordinalPosition: 16
+  dataType: DATE
+  parameterMode: OUT
+- name: TABLESPACE_HEAT_MAP.TABLESPACE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package dbms_heat_map AUTHID CURRENT_USER as ------------
+  --  OVERVIEW
+  --
+  --  This package provides heatmap information at block/extent/segment
+  --  object and tablespace levels. It contains the definitions for
+  --  processing heatmap for top N objects and tablespaces.
+  --  SECURITY
+  --
+  --  The execution privilege is granted to PUBLIC. Procedures in this
+  --  package run under the caller security. The user must have ANALYZE
+  --  privilege on the object.
+  type hm_bls_record is record (
+    owner VARCHAR2(128),
+    segment_name VARCHAR2(128),
+    partition_name VARCHAR2(128),
+    tablespace_name VARCHAR2(30),
+    file_id NUMBER,
+    relative_fno NUMBER,
+    block_id NUMBER,
+    writetime date
+  );
+  type hm_bls_row is table of hm_bls_record;
+  /*
+
+     * BLOCK_HEAT_MAP-  Table function returns the block level
+
+     *                  ILM statistics for a table
+
+     *                  segment. It returns no information for segment
+
+     *                  types that are not
+
+     *                  data. The stat returned today is the latest
+
+     *                  modification time of the block.
+
+     * Input Parameters
+
+     * owner           : Owner of the segment
+
+     * segment_name    : Table name of a non partitioned table or
+
+     *                   (sub)partition of partitioned table.
+
+     *                   Returns no rows when table name is specified
+
+     *                   for a partitioned table.
+
+     * partition_name  : Defaults to NULL. For a partitioned table,
+
+     *                   specify the partition or subpartition segment name.
+
+     * sort_columnid   : ID of the column to sort the output on.
+
+     *                   Valid values 1..9. Invalid values are ignored.
+
+     *                   No errors are raised.
+
+     * sort_order      : Defaults to NULL. Possible values: ASC, DESC
+
+     *
+
+     * Output Parameters
+
+     * owner           : owner of the segment
+
+     * segment_name    : segment name of the non partitioned table
+
+     * partition_name  : partition or subpartition name
+
+     * tablespace_name : tablespace containing the segment
+
+     * file_id         : absolute file number of the block in the segment
+
+     * relative_fno    : relative file number of the block in the segment
+
+     * block_id        : block number of the block
+
+     * writetime       : last modification time of the block
+
+     *
+
+     */
+  function BLOCK_HEAT_MAP (
+    owner in varchar2,
+    segment_name in varchar2,
+    partition_name in varchar2 DEFAULT NULL,
+    sort_columnid in number DEFAULT NULL,
+    sort_order in varchar2 DEFAULT NULL
+  ) return hm_bls_row pipelined;
+  type hm_els_record is record (
+    owner VARCHAR2(128),
+    segment_name VARCHAR2(128),
+    partition_name VARCHAR2(128),
+    tablespace_name VARCHAR2(30),
+    file_id NUMBER,
+    relative_fno NUMBER,
+    block_id NUMBER,
+    blocks NUMBER,
+    bytes NUMBER,
+    min_writetime date,
+    max_writetime date,
+    avg_writetime date
+  );
+  type hm_els_row is table of hm_els_record;
+  /*
+
+       * EXTENT_HEAT_MAP -Table function returns the extent level ILM
+
+       *                  statistics for a table segment. It returns no
+
+       *                  information for segment types that are not
+
+       *                  data. Aggregates at extent level including minimum
+
+       *                  modification time and maximum modification time are
+
+       *                  returned
+
+       * Input Parameters
+
+       * owner           : Owner of the segment
+
+       * segment_name    : Table name of a non partitioned table or
+
+       *                   (sub)partition of partitioned table.
+
+       *                   Returns no rows when table name is specified for a
+
+       *                   partitioned table.
+
+       * partition_name  : Defaults to NULL. For a partitioned table,
+
+       *                   specify the partition or subpartition segment name.
+
+       *
+
+       * Output Parameters
+
+       * owner           : owner of the segment
+
+       * segment_name    : segment name of the non partitioned table
+
+       * partition_name  : partition or subpartition name
+
+       * tablespace_name : tablespace containing the segment
+
+       * file_id         : absolute file number of the block in the segment
+
+       * relative_fno    : relative file number of the block in the segment
+
+       * block_id        : start block number of the extent
+
+       * blocks          : number of blocks in the extent
+
+       * bytes           : number of bytes in the extent
+
+       * min_writetime   : minimum of last modification time of the block
+
+       * max_writetime   : maximum of last modification time of the block
+
+       * avg_writetime   : average of last modification time of the block
+
+       *
+
+       */
+  function EXTENT_HEAT_MAP(
+    owner in varchar2,
+    segment_name in varchar2,
+    partition_name in varchar2 DEFAULT NULL
+  ) return hm_els_row pipelined;
+  /*
+
+       * Segment Level Heat Map.
+
+       *
+
+       * Description     :
+
+       * The procedure returns the heatmap attributes
+
+       * for the give segment.
+
+       *
+
+       * Input Parameters:
+
+       * tablespace_id   : tablespace containing the segment
+
+       * header_file     : segment header relative file number
+
+       * header_block    : segment header block number
+
+       * segment_objd    : dataobj of the segment
+
+       *
+
+       * Output Parameters :
+
+       * min_writetime   : Oldest writetime for the segment
+
+       * max_writetime   : Latest writetime for the segment
+
+       * avg_writetime   : Average writetime for the segment
+
+       * avg_readtime    : Average readtime  for the segment
+
+       * min_readtime    : Oldest readtime  for the segment
+
+       * max_readtime    : Latest readtime  for the segment
+
+       * min_ftstime     : Oldest ftstime   for the segment
+
+       * max_ftstime     : Latest ftstime   for the segment
+
+       * avg_ftstime     : Average ftstime   for the segment
+
+       * min_lookuptime  : Oldest lookuptime for the segment
+
+       * max_lookuptime  : Latest lookuptime for the segment
+
+       * avg_lookuptime  : Average lookuptime for the segment
+
+       *
+
+       */
+  PROCEDURE SEGMENT_HEAT_MAP(
+    tablespace_id in number,
+    header_file in number,
+    header_block in number,
+    segment_objd in number,
+    min_writetime out date,
+    max_writetime out date,
+    avg_writetime out date,
+    min_readtime out date,
+    max_readtime out date,
+    avg_readtime out date,
+    min_ftstime out date,
+    max_ftstime out date,
+    avg_ftstime out date,
+    min_lookuptime out date,
+    max_lookuptime out date,
+    avg_lookuptime out date
+  );
+  -- content of one row in object_heat_map table function.
+  type hm_object_row is record (
+    owner varchar2(100),
+    segment_name varchar2(100),
+    partition_name varchar2(100),
+    tablespace_name varchar2(100),
+    segment_type varchar2(20),
+    segment_size number,
+    min_writetime date,
+    max_writetime date,
+    avg_writetime date,
+    min_readtime date,
+    max_readtime date,
+    avg_readtime date,
+    min_ftstime date,
+    max_ftstime date,
+    avg_ftstime date,
+    min_lookuptime date,
+    max_lookuptime date,
+    avg_lookuptime date
+  );
+  type hm_object_table is table of hm_object_row;
+  /*
+
+       * Object Level Heat Map.
+
+       *
+
+       * Description     :
+
+       * The table function returns the minimum, maximum and average access
+
+       * times for all the segments belonging to the object. The object
+
+       * must be a table. The table function raises an error if called on
+
+       * object tables other than table.
+
+       *
+
+       * Input Parameters:
+
+       * object_owner    : object owner
+
+       * object_name     : object name
+
+       *
+
+       * Output Parameters :
+
+       * segment_name    : Name of the top level segment
+
+       * partition_name  : Name of the partition
+
+       * tablespace_name : Name of the tablespace
+
+       * segment_type    : Type of segment as in dba_segments.segment_type
+
+       * segment_size    : Segment size in bytes
+
+       * min_writetime   : Oldest writetime for the segment
+
+       * max_writetime   : Latest writetime for the segment
+
+       * avg_writetime   : Average writetime for the segment
+
+       * avg_readtime    : Average readtime  for the segment
+
+       * min_readtime    : Oldest readtime  for the segment
+
+       * max_readtime    : Latest readtime  for the segment
+
+       * min_ftstime     : Oldest ftstime   for the segment
+
+       * max_ftstime     : Latest ftstime   for the segment
+
+       * avg_ftstime     : Average ftstime   for the segment
+
+       * min_lookuptime  : Oldest lookuptime for the segment
+
+       * max_lookuptime  : Latest lookuptime for the segment
+
+       * avg_lookuptime  : Average lookuptime for the segment
+
+       *
+
+       */
+  function object_heat_map(
+    object_owner in varchar2,
+    object_name in varchar2
+  ) return hm_object_table pipelined;
+  -- content of one row in tablespace_heat_map table function.
+  type hm_tablespace_row is record (
+    tablespace_name varchar2(30),
+    segment_count number,
+    allocated_bytes number,
+    min_writetime date,
+    max_writetime date,
+    avg_writetime date,
+    min_readtime date,
+    max_readtime date,
+    avg_readtime date,
+    min_ftstime date,
+    max_ftstime date,
+    avg_ftstime date,
+    min_lookuptime date,
+    max_lookuptime date,
+    avg_lookuptime date
+  );
+  type hm_tablespace_table is table of hm_tablespace_row;
+  /*
+
+       * Tablespace Level Heat Map.
+
+       *
+
+       * Description     :
+
+       * The table function returns the minimum, maximum and average access
+
+       * times for all the segments in the tablespace.
+
+       *
+
+       * Input Parameters:
+
+       * tablespace_name : Name of the tablespace
+
+       *
+
+       * Output Parameters :
+
+       * segment_count   : Total number of segments in the tablespace
+
+       * allocated_bytes : Space used by the segments in the tablespace
+
+       * min_writetime   : Oldest writetime for the tablespace
+
+       * max_writetime   : Latest writetime for the tablespace
+
+       * avg_writetime   : Average writetime for the tablespace
+
+       * avg_readtime    : Average readtime  for the tablespace
+
+       * min_readtime    : Oldest readtime  for the tablespace
+
+       * max_readtime    : Latest readtime  for the tablespace
+
+       * min_ftstime     : Oldest ftstime   for the tablespace
+
+       * max_ftstime     : Latest ftstime   for the tablespace
+
+       * avg_ftstime     : Average ftstime   for the tablespace
+
+       * min_lookuptime  : Oldest lookuptime for the tablespace
+
+       * max_lookuptime  : Latest lookuptime for the tablespace
+
+       * avg_lookuptime  : Average lookuptime for the tablespace
+
+       *
+
+       */
+  function tablespace_heat_map(tablespace_name in varchar2) return hm_tablespace_table pipelined;
+  -- Auto Advisor job to materialize heat maps
+  procedure auto_advisor_heatmap_job(topn in number default 100);
+  end;

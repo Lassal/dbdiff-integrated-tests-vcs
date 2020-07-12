@@ -1,0 +1,968 @@
+schema: SYS
+name: DBMS_LDAP
+routineType: PACKAGE
+returnParamater:
+  name: UNBIND_S.(--return--)
+  ordinalPosition: 0
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+parameters:
+- name: ADD_S.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: ADD_S.ENTRYDN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_S.MODPTR
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: BER_FREE.BER
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: BER_FREE.FREEBUF
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: BIND_S.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: BIND_S.DN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BIND_S.CRED
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BIND_S.METH
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CHECK_INTERFACE_VERSION.INTERFACE_VERSION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_S.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: COMPARE_S.DN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_S.ATTR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPARE_S.VALUE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COUNT_ENTRIES.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: COUNT_ENTRIES.MSG
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: COUNT_VALUES.VALS
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: COUNT_VALUES_BLOB.VALS
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: COUNT_VALUES_LEN.VALS
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: CREATE_MOD_ARRAY.NUM
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DELETE.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DELETE.ENTRYDN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_S.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DELETE_S.ENTRYDN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ERR2STRING.LDAP_ERR
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EXPLODE_DN.DN
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPLODE_DN.NOTYPES
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: FIRST_ATTRIBUTE.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: FIRST_ATTRIBUTE.LDAPENTRY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: FIRST_ATTRIBUTE.BER_ELEM
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: OUT
+- name: FIRST_ENTRY.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: FIRST_ENTRY.MSG
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: FREE_MOD_ARRAY.MODPTR
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: GET_DN.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: GET_DN.LDAPENTRY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: GET_SESSION_INFO.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: GET_SESSION_INFO.DATA_TYPE
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_SESSION_INFO.DATA
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_VALUES.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: GET_VALUES.LDAPENTRY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: GET_VALUES.ATTR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_VALUES_BLOB.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: GET_VALUES_BLOB.LDAPENTRY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: GET_VALUES_BLOB.ATTR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_VALUES_LEN.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: GET_VALUES_LEN.LDAPENTRY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: GET_VALUES_LEN.ATTR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INIT.HOSTNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INIT.PORTNUM
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MODIFY_S.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: MODIFY_S.ENTRYDN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MODIFY_S.MODPTR
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: MODRDN2_S.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: MODRDN2_S.ENTRYDN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MODRDN2_S.NEWRDN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MODRDN2_S.DELETEOLDRDN
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MSGFREE.LM
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: NEXT_ATTRIBUTE.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: NEXT_ATTRIBUTE.LDAPENTRY
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: NEXT_ATTRIBUTE.BER_ELEM
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: NEXT_ENTRY.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: NEXT_ENTRY.MSG
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: NLS_CONVERT_FROM_UTF8(1).DATA_UTF8
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: NLS_CONVERT_FROM_UTF8(2).DATA_UTF8
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: NLS_CONVERT_TO_UTF8(1).DATA_LOCAL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: NLS_CONVERT_TO_UTF8(2).DATA_LOCAL
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: OPEN_SSL.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: OPEN_SSL.SSLWRL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPEN_SSL.SSLWALLETPASSWD
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPEN_SSL.SSLAUTH
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: POPULATE_MOD_ARRAY(1).MODPTR
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: POPULATE_MOD_ARRAY(1).MOD_OP
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: POPULATE_MOD_ARRAY(1).MOD_TYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POPULATE_MOD_ARRAY(1).MODVAL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: POPULATE_MOD_ARRAY(2).MODPTR
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: POPULATE_MOD_ARRAY(2).MOD_OP
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: POPULATE_MOD_ARRAY(2).MOD_TYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POPULATE_MOD_ARRAY(2).MODBVAL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: POPULATE_MOD_ARRAY(3).MODPTR
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: POPULATE_MOD_ARRAY(3).MOD_OP
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: POPULATE_MOD_ARRAY(3).MOD_TYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POPULATE_MOD_ARRAY(3).MODBVAL
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: RENAME_S.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: RENAME_S.DN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAME_S.NEWRDN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAME_S.NEWPARENT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAME_S.DELETEOLDRDN
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: RENAME_S.SERVERCTRLS
+  ordinalPosition: 6
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: RENAME_S.CLIENTCTRLS
+  ordinalPosition: 7
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SEARCH_S.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: SEARCH_S.BASE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SEARCH_S.SCOPE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SEARCH_S.FILTER
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SEARCH_S.ATTRS
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SEARCH_S.ATTRONLY
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SEARCH_S.RES
+  ordinalPosition: 7
+  dataType: RAW
+  parameterMode: OUT
+- name: SEARCH_ST.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: SEARCH_ST.BASE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SEARCH_ST.SCOPE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SEARCH_ST.FILTER
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SEARCH_ST.ATTRS
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SEARCH_ST.ATTRONLY
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SEARCH_ST.TV
+  ordinalPosition: 7
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: SEARCH_ST.RES
+  ordinalPosition: 8
+  dataType: RAW
+  parameterMode: OUT
+- name: SET_TRACE_LEVEL.NEW_TRACE_LEVEL
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SIMPLE_BIND_S.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: SIMPLE_BIND_S.DN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SIMPLE_BIND_S.PASSWD
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNBIND_S.LD
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: INOUT
+- name: VALUE_FREE_BLOB.VALS
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+routineDefinition: |-
+  PACKAGE DBMS_LDAP AUTHID CURRENT_USER AS VERSION CONSTANT VARCHAR2(256): = '2';
+  INTERFACE_VERSION CONSTANT VARCHAR2(256): = '2';
+  --
+  -- DBMS_LDAP data type definitions
+  --
+  -- We use RAW(32) as a data structure to store external pointers
+  -- It is big enough to store 256 bit pointers!
+  -- this data structure holds a pointer to an LDAP session
+  SUBTYPE SESSION IS RAW(32);
+  -- this data structure holds a pointer to an LDAP message
+  SUBTYPE MESSAGE IS RAW(32);
+  -- this data structure holds a pointer to an LDAP mod array
+  SUBTYPE MOD_ARRAY IS RAW(32);
+  -- this data structure is used to hold binary value
+  SUBTYPE BERVAL IS raw(32000);
+  -- this data structure is used to pass time limit information to
+  -- the LDAP api.
+  TYPE TIMEVAL IS RECORD (
+    seconds PLS_INTEGER,
+    useconds PLS_INTEGER
+  );
+  -- this data structure is used to pass LDAP control to the api.
+  TYPE ldapcontrol IS RECORD (
+    ldctl_oid VARCHAR2(256),
+    ldctl_value BERVAL,
+    ldctl_iscritical VARCHAR2(1)
+  );
+  -- this data structure holds a pointer to the BER Element used
+  -- for decoding the incoming message
+  SUBTYPE BER_ELEMENT is RAW(32);
+  -- this data structure is used to hold a list of values
+  TYPE STRING_COLLECTION is TABLE of VARCHAR2(32767) INDEX BY BINARY_INTEGER;
+  -- this data structure is used to hold a list of binary values
+  TYPE BINVAL_COLLECTION is TABLE of RAW(32767) INDEX BY BINARY_INTEGER;
+  -- this data structure is used to hold a list of berval values
+  TYPE BERVAL_COLLECTION is TABLE of RAW(32767) INDEX BY BINARY_INTEGER;
+  -- this data structure is used to hold a list of berval values
+  TYPE BLOB_COLLECTION is TABLE of BLOB INDEX BY BINARY_INTEGER;
+  --
+  -- DBMS_LDAP function definitions
+  --
+  -- Checks the Support for Interface Version.
+  FUNCTION check_interface_version(interface_version IN VARCHAR2) RETURN PLS_INTEGER;
+  -- Initializes the LDAP library and return a session handler
+  -- for use in subsequent calls.
+  FUNCTION init (
+    hostname IN VARCHAR2,
+    portnum IN PLS_INTEGER
+  ) RETURN SESSION;
+  -- Synchronously authenticates to the directory server using
+  -- a Distinguished Name and password.
+  FUNCTION simple_bind_s (
+    ld IN SESSION,
+    dn IN VARCHAR2,
+    passwd IN VARCHAR2
+  ) RETURN PLS_INTEGER;
+  -- Synchronously authenticates to the directory server using
+  -- a Distinguished Name and some arbitrary credentials.
+  FUNCTION bind_s (
+    ld IN SESSION,
+    dn IN VARCHAR2,
+    cred IN VARCHAR2,
+    meth IN PLS_INTEGER
+  ) RETURN PLS_INTEGER;
+  -- Synchronously disposes of an LDAP session, freeing all
+  -- associated resources.
+  FUNCTION unbind_s (ld IN OUT SESSION) RETURN PLS_INTEGER;
+  -- Compares a value with a attribute value contained in an
+  -- entry.
+  FUNCTION compare_s (
+    ld IN SESSION,
+    dn IN VARCHAR2,
+    attr IN VARCHAR2,
+    value IN VARCHAR2
+  ) RETURN PLS_INTEGER;
+  -- Searches for directory entries.
+  FUNCTION search_s (
+    ld IN SESSION,
+    base IN VARCHAR2,
+    scope IN PLS_INTEGER,
+    filter IN VARCHAR2,
+    attrs IN STRING_COLLECTION,
+    attronly IN PLS_INTEGER,
+    res OUT MESSAGE
+  ) RETURN PLS_INTEGER;
+  -- Searches for directory entries, respecting a local timeout.
+  FUNCTION search_st (
+    ld IN SESSION,
+    base IN VARCHAR2,
+    scope IN PLS_INTEGER,
+    filter IN VARCHAR2,
+    attrs IN STRING_COLLECTION,
+    attronly IN PLS_INTEGER,
+    tv IN TIMEVAL,
+    res OUT MESSAGE
+  ) RETURN PLS_INTEGER;
+  -- Returns the first entry in a chain of results.
+  FUNCTION first_entry (
+    ld IN SESSION,
+    msg IN MESSAGE
+  ) RETURN MESSAGE;
+  -- Returns the next entry in a chain of search results.
+  FUNCTION next_entry (
+    ld IN SESSION,
+    msg IN MESSAGE
+  ) RETURN MESSAGE;
+  -- Determines the number of entries in an LDAP result
+  -- message chain.
+  FUNCTION count_entries (
+    ld IN SESSION,
+    msg IN MESSAGE
+  ) RETURN PLS_INTEGER;
+  -- Returns the first attribute in an entry.
+  FUNCTION first_attribute (
+    ld IN SESSION,
+    ldapentry IN MESSAGE,
+    ber_elem OUT BER_ELEMENT
+  ) RETURN VARCHAR2;
+  -- Returns the next attribute contained in an entry.
+  FUNCTION next_attribute (
+    ld IN SESSION,
+    ldapentry IN MESSAGE,
+    ber_elem IN BER_ELEMENT
+  ) RETURN VARCHAR2;
+  -- Retrieves the Distinguished Name of an entry.
+  FUNCTION get_dn(
+    ld IN SESSION,
+    ldapentry IN MESSAGE
+  ) RETURN VARCHAR2;
+  --  Retrieves values associated with a char  attribute for a given entry
+  FUNCTION get_values(
+    ld IN SESSION,
+    ldapentry IN MESSAGE,
+    attr IN VARCHAR2
+  ) RETURN STRING_COLLECTION;
+  --  Retrieves binary values associated with an attribute for a given entry
+  FUNCTION get_values_len(
+    ld IN SESSION,
+    ldapentry IN MESSAGE,
+    attr IN VARCHAR2
+  ) RETURN BINVAL_COLLECTION;
+  --  Retrieves large binary values(greater than 32kb)
+  --  associated with an attribute for a given entry
+  FUNCTION get_values_blob(
+    ld IN SESSION,
+    ldapentry IN MESSAGE,
+    attr IN VARCHAR2
+  ) RETURN BLOB_COLLECTION;
+  -- Deletes an entry from the LDAP directory. The caller is
+  -- blocked until the deletion is complete.
+  FUNCTION delete_s(
+    ld IN SESSION,
+    entrydn IN VARCHAR2
+  ) RETURN PLS_INTEGER;
+  -- Deletes an entry from the LDAP directory.
+  FUNCTION
+  delete(
+      ld IN SESSION,
+      entrydn IN VARCHAR2
+    ) RETURN PLS_INTEGER;
+  -- Renames the given entry to have the new relative
+    -- distinguished name. The caller is blocked until the
+    -- renaming is complete.
+    FUNCTION modrdn2_s(
+      ld IN SESSION,
+      entrydn IN VARCHAR2,
+      newrdn IN VARCHAR2,
+      deleteoldrdn IN PLS_INTEGER
+    ) RETURN PLS_INTEGER;
+  -- Gets the string representation of an LDAP return code
+    FUNCTION err2string(ldap_err IN PLS_INTEGER) RETURN VARCHAR2;
+  -- Gets the pointer of the ldapmod representation
+    -- which contains size, count, and a pointer to an array
+    -- of ldapmod structure.
+    -- ldapmod structure contains mod_op, mod_type, and an
+    -- array of string/berval.
+    -- If the return value is NULL, then there is an error.
+    FUNCTION create_mod_array(num IN PLS_INTEGER) RETURN MOD_ARRAY;
+  -- Populates the ldapmod structure, string value.
+    -- If the return modptr is NULL, then there is an error.
+    PROCEDURE populate_mod_array(
+      modptr IN MOD_ARRAY,
+      mod_op IN PLS_INTEGER,
+      mod_type IN VARCHAR2,
+      modval IN STRING_COLLECTION
+    );
+  -- Populates the ldapmod structure, binary value.
+    -- If the return modptr is NULL, then there is an error.
+    PROCEDURE populate_mod_array(
+      modptr IN MOD_ARRAY,
+      mod_op IN PLS_INTEGER,
+      mod_type IN VARCHAR2,
+      modbval IN BERVAL_COLLECTION
+    );
+  -- Populates the ldapmod structure, large binary value (greater than 32kb).
+    -- If the return modptr is NULL, then there is an error.
+    PROCEDURE populate_mod_array(
+      modptr IN MOD_ARRAY,
+      mod_op IN PLS_INTEGER,
+      mod_type IN VARCHAR2,
+      modbval IN BLOB_COLLECTION
+    );
+  -- Modifies an existing LDAP directory entry. The caller is
+    -- blocked until the modification is complete.
+    FUNCTION modify_s(
+      ld IN SESSION,
+      entrydn IN VARCHAR2,
+      modptr IN MOD_ARRAY
+    ) RETURN PLS_INTEGER;
+  -- Adds a new entry to the LDAP directory. The caller is
+    -- blocked until the addition is complete.
+    FUNCTION add_s(
+      ld IN SESSION,
+      entrydn IN VARCHAR2,
+      modptr IN MOD_ARRAY
+    ) RETURN PLS_INTEGER;
+  -- Frees up the memory used by the ldapmod representation (array).
+    PROCEDURE free_mod_array(modptr IN MOD_ARRAY);
+  -- Counts the number of values returned by get_values()
+    FUNCTION count_values(vals IN STRING_COLLECTION) RETURN PLS_INTEGER;
+  -- Counts the number of values returned by get_values_len()
+    FUNCTION count_values_len(vals IN BINVAL_COLLECTION) RETURN PLS_INTEGER;
+  -- Counts the number of values returned by get_values_blob()
+    FUNCTION count_values_blob(vals IN BLOB_COLLECTION) RETURN PLS_INTEGER;
+  -- Frees the memory associated with binary attribute values
+    -- that were returned by get_values_blob() function.
+    PROCEDURE value_free_blob(vals IN OUT BLOB_COLLECTION);
+  -- Performs modify dn operation
+    FUNCTION rename_s(
+      ld IN SESSION,
+      dn IN VARCHAR2,
+      newrdn IN VARCHAR2,
+      newparent IN VARCHAR2,
+      deleteoldrdn IN PLS_INTEGER,
+      serverctrls IN LDAPCONTROL DEFAULT NULL,
+      clientctrls IN LDAPCONTROL DEFAULT NULL
+    ) RETURN PLS_INTEGER;
+  -- Breaks a Distinguished Name (DN) up into its components
+    FUNCTION explode_dn(
+      dn IN VARCHAR2,
+      notypes IN PLS_INTEGER
+    ) RETURN STRING_COLLECTION;
+  -- Establishes a SSL connection
+    FUNCTION open_ssl(
+      ld IN SESSION,
+      sslwrl IN VARCHAR2,
+      sslwalletpasswd IN VARCHAR2,
+      sslauth IN PLS_INTEGER
+    ) RETURN PLS_INTEGER;
+  FUNCTION get_session_info(
+      ld IN SESSION,
+      data_type IN PLS_INTEGER,
+      data OUT VARCHAR2
+    ) RETURN PLS_INTEGER;
+  FUNCTION msgfree(lm IN MESSAGE) RETURN PLS_INTEGER;
+  PROCEDURE ber_free(
+      ber IN BER_ELEMENT,
+      freebuf IN PLS_INTEGER
+    );
+  FUNCTION nls_convert_to_utf8 (data_local IN VARCHAR2) RETURN VARCHAR2;
+  FUNCTION nls_convert_to_utf8 (data_local IN STRING_COLLECTION) RETURN STRING_COLLECTION;
+  FUNCTION nls_convert_from_utf8 (data_utf8 IN VARCHAR2) RETURN VARCHAR2;
+  FUNCTION nls_convert_from_utf8 (data_utf8 IN STRING_COLLECTION) RETURN STRING_COLLECTION;
+  FUNCTION nls_get_dbcharset_name RETURN VARCHAR2;
+  -------------------- Tracing functions ----------------
+    ---- To be used by Oracle Support Analysts ONLY -------
+    -------------------------------------------------------
+    PROCEDURE set_trace_level(new_trace_level IN PLS_INTEGER);
+  FUNCTION get_trace_level RETURN PLS_INTEGER;
+  ---------------- End of Trace Functions -----------------
+    -- LDAP Flag definitions
+    -- set use_exception flag to FALSE: not use exception (return error code)
+    -- set use_exception flag to TRUE: use exception.
+    USE_EXCEPTION BOOLEAN DEFAULT TRUE;
+  -- set user_conversion flag to TRUE: All the input string data to the
+    --                                   Package functions would
+    --                                  be converted from database characterset
+    --                                  to UTF8 character set.
+    --                                  All the output string data would be
+    --                                  converted from UTF8 character set to
+    --                                  database character set.
+    -- set user_conversion flag to FALSE: No conversions would be done.
+    UTF8_CONVERSION BOOLEAN DEFAULT TRUE;
+  --
+    -- LDAP constant definitions
+    --
+    PORT CONSTANT NUMBER: = 389;
+  SSL_PORT CONSTANT NUMBER: = 636;
+  -- various options that can be set/unset
+    OPT_DESC CONSTANT NUMBER: = 1;
+  OPT_DEREF CONSTANT NUMBER: = 2;
+  OPT_SIZELIMIT CONSTANT NUMBER: = 3;
+  OPT_TIMELIMIT CONSTANT NUMBER: = 4;
+  OPT_THREAD_FN_PTRS CONSTANT NUMBER: = 5;
+  OPT_REBIND_FN CONSTANT NUMBER: = 6;
+  OPT_REBIND_ARG CONSTANT NUMBER: = 7;
+  OPT_REFERRALS CONSTANT NUMBER: = 8;
+  OPT_RESTART CONSTANT NUMBER: = 9;
+  OPT_SSL CONSTANT NUMBER: = 10;
+  OPT_IO_FN_PTRS CONSTANT NUMBER: = 11;
+  OPT_CACHE_FN_PTRS CONSTANT NUMBER: = 13;
+  OPT_CACHE_STRATEGY CONSTANT NUMBER: = 14;
+  OPT_CACHE_ENABLE CONSTANT NUMBER: = 15;
+  OPT_REFERRAL_HOP_LIMIT CONSTANT NUMBER: = 16;
+  OPT_PROTOCOL_VERSION CONSTANT NUMBER: = 17;
+  OPT_SERVER_CONTROLS CONSTANT NUMBER: = 18;
+  OPT_CLIENT_CONTROLS CONSTANT NUMBER: = 19;
+  OPT_PREFERRED_LANGUAGE CONSTANT NUMBER: = 20;
+  OPT_ERROR_NUMBER CONSTANT NUMBER: = 49;
+  OPT_ERROR_STRING CONSTANT NUMBER: = 50;
+  -- for on/off options
+    OPT_ON CONSTANT NUMBER: = 1;
+  OPT_OFF CONSTANT NUMBER: = 0;
+  -- SSL Authentication modes
+    GSLC_SSL_NO_AUTH CONSTANT NUMBER: = 1;
+  GSLC_SSL_ONEWAY_AUTH CONSTANT NUMBER: = 32;
+  GSLC_SSL_TWOWAY_AUTH CONSTANT NUMBER: = 64;
+  -- search scopes
+    SCOPE_BASE CONSTANT NUMBER: = 0;
+  SCOPE_ONELEVEL CONSTANT NUMBER: = 1;
+  SCOPE_SUBTREE CONSTANT NUMBER: = 2;
+  -- for modifications
+    MOD_ADD CONSTANT NUMBER: = 0;
+  MOD_DELETE CONSTANT NUMBER: = 1;
+  MOD_REPLACE CONSTANT NUMBER: = 2;
+  MOD_BVALUES CONSTANT NUMBER: = 128;
+    /* authentication methods available */
+    AUTH_NONE CONSTANT NUMBER: = 0;
+  AUTH_SIMPLE CONSTANT NUMBER: = 128;
+  -- context specific + primitive
+    AUTH_SASL CONSTANT NUMBER: = 163;
+  -- v3 SASL
+    -- structure for representing an LDAP server connection
+    CONNST_NEEDSOCKET CONSTANT NUMBER: = 1;
+  CONNST_CONNECTING CONSTANT NUMBER: = 2;
+  CONNST_CONNECTED CONSTANT NUMBER: = 3;
+  -- structure used to track outstanding requests
+    REQST_INPROGRESS CONSTANT NUMBER: = 1;
+  REQST_CHASINGREFS CONSTANT NUMBER: = 2;
+  REQST_NOTCONNECTED CONSTANT NUMBER: = 3;
+  REQST_WRITING CONSTANT NUMBER: = 4;
+  -- structure representing an ldap connection
+    DEREF_NEVER CONSTANT NUMBER: = 0;
+  DEREF_SEARCHING CONSTANT NUMBER: = 1;
+  DEREF_FINDING CONSTANT NUMBER: = 2;
+  DEREF_ALWAYS CONSTANT NUMBER: = 3;
+  -- types for ldap URL handling
+    URL_ERR_NOTLDAP CONSTANT NUMBER: = 1;
+  -- URL doesn't begin with "ldap
+    URL_ERR_NODN CONSTANT NUMBER: = 2;
+  -- URL has no DN (required)
+    URL_ERR_BADSCOPE CONSTANT NUMBER: = 3;
+  -- URL scope string is invalid
+    URL_ERR_MEM CONSTANT NUMBER: = 4;
+  -- can't allocate memory space
+    -- types for session info
+    TYPE_ADD_INFO CONSTANT NUMBER: = 1;
+  --
+    -- possible error codes we can return from LDAP server
+    --
+    SUCCESS CONSTANT NUMBER: = 0;
+  OPERATIONS_ERROR CONSTANT NUMBER: = 1;
+  PROTOCOL_ERROR CONSTANT NUMBER: = 2;
+  TIMELIMIT_EXCEEDED CONSTANT NUMBER: = 3;
+  SIZELIMIT_EXCEEDED CONSTANT NUMBER: = 4;
+  COMPARE_FALSE CONSTANT NUMBER: = 5;
+  COMPARE_TRUE CONSTANT NUMBER: = 6;
+  STRONG_AUTH_NOT_SUPPORTED CONSTANT NUMBER: = 7;
+  STRONG_AUTH_REQUIRED CONSTANT NUMBER: = 8;
+  PARTIAL_RESULTS CONSTANT NUMBER: = 9;
+  REFERRAL CONSTANT NUMBER: = 10;
+  ADMINLIMIT_EXCEEDED CONSTANT NUMBER: = 11;
+  UNAVAILABLE_CRITIC CONSTANT NUMBER: = 12;
+  NO_SUCH_ATTRIBUTE CONSTANT NUMBER: = 16;
+  UNDEFINED_TYPE CONSTANT NUMBER: = 17;
+  INAPPROPRIATE_MATCHING CONSTANT NUMBER: = 18;
+  CONSTRAINT_VIOLATION CONSTANT NUMBER: = 19;
+  TYPE_OR_VALUE_EXISTS CONSTANT NUMBER: = 20;
+  INVALID_SYNTAX CONSTANT NUMBER: = 21;
+  NO_SUCH_OBJECT CONSTANT NUMBER: = 32;
+  ALIAS_PROBLEM CONSTANT NUMBER: = 33;
+  INVALID_DN_SYNTAX CONSTANT NUMBER: = 34;
+  IS_LEAF CONSTANT NUMBER: = 35;
+  ALIAS_DEREF_PROBLEM CONSTANT NUMBER: = 36;
+  INAPPROPRIATE_AUTH CONSTANT NUMBER: = 48;
+  INVALID_CREDENTIALS CONSTANT NUMBER: = 49;
+  INSUFFICIENT_ACCESS CONSTANT NUMBER: = 50;
+  BUSY CONSTANT NUMBER: = 51;
+  UNAVAILABLE CONSTANT NUMBER: = 52;
+  UNWILLING_TO_PERFORM CONSTANT NUMBER: = 53;
+  LOOP_DETECT CONSTANT NUMBER: = 54;
+  NAMING_VIOLATION CONSTANT NUMBER: = 64;
+  OBJECT_CLASS_VIOLATION CONSTANT NUMBER: = 65;
+  NOT_ALLOWED_ON_NONLEAF CONSTANT NUMBER: = 66;
+  NOT_ALLOWED_ON_RDN CONSTANT NUMBER: = 67;
+  ALREADY_EXISTS CONSTANT NUMBER: = 68;
+  NO_OBJECT_CLASS_MODS CONSTANT NUMBER: = 69;
+  RESULTS_TOO_LARGE CONSTANT NUMBER: = 70;
+  OTHER CONSTANT NUMBER: = 80;
+  SERVER_DOWN CONSTANT NUMBER: = 81;
+  LOCAL_ERROR CONSTANT NUMBER: = 82;
+  ENCODING_ERROR CONSTANT NUMBER: = 83;
+  DECODING_ERROR CONSTANT NUMBER: = 84;
+  TIMEOUT CONSTANT NUMBER: = 85;
+  AUTH_UNKNOWN CONSTANT NUMBER: = 86;
+  FILTER_ERROR CONSTANT NUMBER: = 87;
+  USER_CANCELLED CONSTANT NUMBER: = 88;
+  PARAM_ERROR CONSTANT NUMBER: = 89;
+  NO_MEMORY CONSTANT NUMBER: = 90;
+  --
+    -- possible error codes we can return from LDAP client
+    --
+    INVALID_LDAP_SESSION CONSTANT NUMBER: = 1024;
+  INVALID_LDAP_AUTH_METHOD CONSTANT NUMBER: = 1025;
+  INVALID_LDAP_SEARCH_SCOPE CONSTANT NUMBER: = 1026;
+  INVALID_LDAP_TIME_VALUE CONSTANT NUMBER: = 1027;
+  INVALID_LDAP_MESSAGE CONSTANT NUMBER: = 1027;
+  INVALID_LDAP_ENTRY_DN CONSTANT NUMBER: = 1028;
+  INVALID_LDAPMOD CONSTANT NUMBER: = 1029;
+  INVALID_LDAP_DN CONSTANT NUMBER: = 1030;
+  INVALID_LDAP_NEWRDN CONSTANT NUMBER: = 1031;
+  INVALID_LDAP_NEWPARENT CONSTANT NUMBER: = 1032;
+  INVALID_LDAP_DELETEOLDRDN CONSTANT NUMBER: = 1033;
+  INVALID_SSLWRL CONSTANT NUMBER: = 1034;
+  INVALID_SSLWALLETPASSWD CONSTANT NUMBER: = 1035;
+  INVALID_SSLAUTH CONSTANT NUMBER: = 1036;
+  --
+    -- LDAP SERVER exception definitions
+    --
+    -- LDAP general error
+    general_error
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(general_error, -31202);
+  -- LDAP Init Failed
+    init_failed
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(init_failed, -31203);
+  -- Invalid LDAP Session
+    invalid_session
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_session, -31204);
+  -- Invalid LDAP Auth method
+    invalid_auth_method
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_auth_method, -31205);
+  -- Invalid LDAP search scope
+    invalid_search_scope
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_search_scope, -31206);
+  -- Invalid LDAP search time value
+    invalid_search_time_val
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_search_time_val, -31207);
+  -- Invalid LDAP Message
+    invalid_message
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_message, -31208);
+  -- LDAP count_entry error
+    count_entry_error
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(count_entry_error, -31209);
+  -- LDAP get_dn error
+    get_dn_error
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(get_dn_error, -31210);
+  -- Invalid LDAP entry dn
+    invalid_entry_dn
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_entry_dn, -31211);
+  -- Invalid LDAP mod_array
+    invalid_mod_array
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_mod_array, -31212);
+  -- Invalid LDAP mod option
+    invalid_mod_option
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_mod_option, -31213);
+  -- Invalid LDAP mod type
+    invalid_mod_type
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_mod_type, -31214);
+  -- Invalid LDAP mod value
+    invalid_mod_value
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_mod_value, -31215);
+  -- Invalid LDAP rdn
+    invalid_rdn
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_rdn, -31216);
+  -- Invalid LDAP newparent
+    invalid_newparent
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_newparent, -31217);
+  -- Invalid LDAP deleteoldrdn
+    invalid_deleteoldrdn
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_deleteoldrdn, -31218);
+  -- Invalid LDAP notypes
+    invalid_notypes
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_notypes, -31219);
+  -- Invalid LDAP SSL wallet location
+    invalid_ssl_wallet_loc
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_ssl_wallet_loc, -31220);
+  -- Invalid LDAP SSL wallet passwd
+    invalid_ssl_wallet_passwd
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_ssl_wallet_passwd, -31221);
+  -- Invalid LDAP SSL authentication mode
+    invalid_ssl_auth_mode
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(invalid_ssl_auth_mode, -31222);
+  -- Not supporting MTS mode
+    mts_mode_not_supported
+  EXCEPTION;
+  PRAGMA EXCEPTION_INIT(mts_mode_not_supported, -31398);
+  END DBMS_LDAP;

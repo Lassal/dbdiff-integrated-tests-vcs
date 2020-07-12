@@ -1,0 +1,29 @@
+schema: SYS
+name: USER_CUBE_MEAS_MAPPINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name CUBE_NAME,
+    owner_map.map_name CUBE_MAP_NAME,
+    m.map_name MAP_NAME,
+    m.map_id MAP_ID,
+    meas.measure_name MEASURE_NAME,
+    s1.syntax_clob MEASURE_EXPRESSION
+  FROM
+    olap_mappings$ m,
+    olap_mappings$ owner_map,
+    obj$ o,
+    olap_measures$ meas,
+    olap_syntax$ s1
+  WHERE
+    m.map_type = 24
+    AND m.mapped_object_id = meas.measure_id
+    AND m.mapping_owner_id = owner_map.map_id
+    AND meas.cube_obj# = o.obj#
+    AND o.owner# = USERENV('SCHEMAID')
+    AND m.map_id = s1.owner_id(+)
+    AND m.map_type = s1.owner_type(+)
+    AND s1.ref_role(+) = 1
+columns: []
+referencedTables: []

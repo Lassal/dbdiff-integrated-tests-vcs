@@ -1,0 +1,46 @@
+schema: SYS
+name: DBA_XMLSCHEMA_LEVEL_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    l.schema_url,
+    l.schema_owner,
+    l.schema_oid,
+    l.lvl
+  from
+    DBA_XMLSCHEMA_LEVEL_VIEW_DUP l
+  where
+    not exists (
+      select
+        1
+      from
+        DBA_XMLSCHEMA_LEVEL_VIEW_DUP
+      where
+        schema_url = l.schema_url
+        and schema_owner = l.schema_owner
+        and schema_oid = l.schema_oid
+        and in_cycle = 1
+    )
+  union
+  select
+    l.schema_url,
+    l.schema_owner,
+    l.schema_oid,
+    0
+  from
+    DBA_XMLSCHEMA_LEVEL_VIEW_DUP l
+  where
+    exists (
+      select
+        1
+      from
+        DBA_XMLSCHEMA_LEVEL_VIEW_DUP
+      where
+        schema_url = l.schema_url
+        and schema_owner = l.schema_owner
+        and schema_oid = l.schema_oid
+        and in_cycle = 1
+    )
+columns: []
+referencedTables: []

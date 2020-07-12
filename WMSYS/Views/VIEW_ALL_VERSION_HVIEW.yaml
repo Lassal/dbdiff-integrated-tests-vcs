@@ -1,0 +1,17 @@
+schema: WMSYS
+name: ALL_VERSION_HVIEW
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    vht.version,
+    vht.parent_version,
+    wt.workspace,
+    vht.workspace# workspace_id
+  from
+    wmsys.wm$version_hierarchy_table$ vht,
+    wmsys.wm$workspaces_table$ wt
+  where
+    vht.workspace# = wt.workspace_lock_id WITH READ ONLY
+columns: []
+referencedTables: []

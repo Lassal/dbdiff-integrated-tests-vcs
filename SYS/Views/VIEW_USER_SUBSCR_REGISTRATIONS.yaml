@@ -1,0 +1,62 @@
+schema: SYS
+name: USER_SUBSCR_REGISTRATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.reg_id,
+    r.subscription_name,
+    r.location_name,
+    r.user#,
+    r.user_context,
+    r.context_size,
+    decode(
+      r.namespace,
+      0,
+      'ANONYMOUS',
+      1,
+      'AQ',
+      2,
+      'DBCHANGE'
+    ) NAMESPACE,
+    decode(r.presentation, 0, 'DEFAULT', 1, 'XML') PRESENTATION,
+    decode(
+      r.version,
+      1,
+      '8.1.6',
+      2,
+      '10.2',
+      3,
+      '11.1',
+      4,
+      '11.2',
+      5,
+      '11.2.0.2',
+      6,
+      '12.1.0.0'
+    ) VERSION,
+    decode(r.status, 0, 'DB REG', 1, 'LDAP REG') STATUS,
+    r.any_context,
+    r.context_type,
+    decode(bitand(r.qosflags, 1), 1, ' RELIABLE') || decode(bitand(r.qosflags, 2), 2, ' PAYLOAD') || decode(bitand(r.qosflags, 8), 8, ' SECURE') || decode(bitand(r.qosflags, 16), 16, ' PURGE_ON_NTFN') || decode(bitand(r.qosflags, 512), 512, ' ASYNC_DEQ') || decode(bitand(r.qosflags, 1024), 1024, ' AUTO_ACK') || decode(bitand(r.qosflags, 2048), 2048, ' TX_ACK') QOSFLAGS,
+    r.payload_callback,
+    r.timeout,
+    r.reg_time,
+    decode(r.ntfn_grouping_class, 1, 'TIME') NTFN_GROUPING_CLASS,
+    r.ntfn_grouping_value,
+    decode(r.ntfn_grouping_type, 1, 'SUMMARY', 2, 'LAST') NTFN_GROUPING_TYPE,
+    r.ntfn_grouping_start_time,
+    decode(
+      r.ntfn_grouping_repeat_count,
+      -1,
+      'FOREVER',
+      r.ntfn_grouping_repeat_count
+    ) NTFN_GROUPING_REPEAT_COUNT
+  from
+    reg$ r,
+    sys.user$ cu
+  where
+    r.user# = cu.user#
+    and cu.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

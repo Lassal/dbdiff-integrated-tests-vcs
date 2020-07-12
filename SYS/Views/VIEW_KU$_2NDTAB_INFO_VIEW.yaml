@@ -1,0 +1,83 @@
+schema: SYS
+name: KU$_2NDTAB_INFO_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    distinct o.obj#,
+    o1.name,
+    u1.name,
+    o2.name,
+    u2.name,
+    ptts.ts_num,
+    it.interface_version#,
+    0
+  from
+    obj$ o,
+    obj$ o1,
+    obj$ o2,
+    ind$ i,
+    user $ u1,
+    user $ u2,
+    indtypes$ it,
+    tab$ t,
+    secobj$ s,
+    ku$_ptable_ts_view ptts
+  where
+    o.obj# = s.secobj#
+    AND o.obj# = t.obj#
+    AND ptts.obj_num = o.obj#
+    AND o1.obj# = s.obj#
+    AND o1.obj# = i.obj#
+    AND i.type# = 9
+    AND o1.owner# = u1.user#
+    AND i.indmethod# = it.obj#
+    AND o2.obj# = it.implobj#
+    AND o2.owner# = u2.user#
+    AND bitand(i.property, 2) != 2
+    /* non-partitioned */
+  UNION ALL
+  select
+    distinct o.obj#,
+    o1.name,
+    u1.name,
+    o2.name,
+    u2.name,
+    ptts.ts_num,
+    it.interface_version#,
+    DECODE(BITAND (i.property, 512), 512, 64, 0) +
+    /*0x200=iot di*/
+    DECODE(BITAND(po.flags, 1), 1, 1, 0) +
+    /* 1 = local */
+    DECODE(po.parttype, 1, 2, 2, 4, 0)
+    /* 1 = range, 2 = hash */
+  from
+    obj$ o,
+    obj$ o1,
+    obj$ o2,
+    ind$ i,
+    user $ u1,
+    user $ u2,
+    partobj$ po,
+    indtypes$ it,
+    tab$ t,
+    secobj$ s,
+    ku$_ptable_ts_view ptts
+  where
+    o.obj# = s.secobj#
+    AND o.obj# = t.obj#
+    AND ptts.obj_num = o.obj#
+    AND o1.obj# = s.obj#
+    AND o1.obj# = i.obj#
+    AND i.type# = 9
+    AND o1.owner# = u1.user#
+    AND i.indmethod# = it.obj#
+    AND o2.obj# = it.implobj#
+    AND o2.owner# = u2.user#
+    AND bitand(po.flags, 8) = 8
+    /* domain index */
+    AND po.obj# = i.obj#
+    AND bitand(i.property, 2) = 2
+    /* partitioned */
+columns: []
+referencedTables: []

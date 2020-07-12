@@ -1,0 +1,61 @@
+schema: SYS
+name: ALL_DIM_JOIN_KEY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    d. "OWNER",
+    d. "DIMENSION_NAME",
+    d. "DIM_KEY_ID",
+    d. "LEVEL_NAME",
+    d. "KEY_POSITION",
+    d. "HIERARCHY_NAME",
+    d. "CHILD_JOIN_OWNER",
+    d. "CHILD_JOIN_TABLE",
+    d. "CHILD_JOIN_COLUMN",
+    d. "CHILD_LEVEL_NAME"
+  from
+    dba_dim_join_key d,
+    sys.obj$ o,
+    sys.user$ u
+  where
+    o.owner# = u.user#
+    and d.dimension_name = o.name
+    and d.owner = u.name
+    and o.type# = 43
+    /* dimension */
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -215
+            /* CREATE ANY DIMENSION */,
+            -216
+            /* ALTER ANY DIMENSION */,
+            -217
+            /* DROP ANY DIMENSION */
+          )
+      )
+    )
+columns: []
+referencedTables: []

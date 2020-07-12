@@ -1,0 +1,122 @@
+schema: SYS
+name: ALL_XML_SCHEMA_COMPLEX_TYPES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s.xmldata.schema_owner OWNER,
+    s.xmldata.schema_url SCHEMA_URL,
+    s.xmldata.target_namespace TARGET_NAMESPACE,
+    ct.xmldata.name COMPLEX_TYPE_NAME,
+    value(ct) COMPLEX_TYPE,
+    (
+      case
+        when ct.xmldata.BASE_TYPE IS NULL then NULL
+        when (
+          select
+            count(1)
+          from
+            xdb.xdb$simple_type st
+          where
+            ct.xmldata.BASE_TYPE = ref(st)
+        ) != 0 then (
+          select
+            st.xmldata.name
+          from
+            xdb.xdb$simple_type st
+          where
+            ct.xmldata.BASE_TYPE = ref(st)
+        )
+        else (
+          select
+            ctb.xmldata.name
+          from
+            xdb.xdb$complex_type ctm,
+            xdb.xdb$complex_type ctb
+          where
+            ref(ct) = ref(ctm)
+            and ctm.xmldata.BASE_TYPE = ref(ctb)
+        )
+      end
+    ) BASE_NAME,
+    (
+      case
+        when ct.xmldata.BASE_TYPE IS NULL then NULL
+        when (
+          select
+            count(1)
+          from
+            xdb.xdb$simple_type st
+          where
+            ct.xmldata.BASE_TYPE = ref(st)
+        ) != 0 then (
+          select
+            s.xmldata.schema_url
+          from
+            xdb.xdb$simple_type st,
+            xdb.xdb$schema s
+          where
+            ct.xmldata.BASE_TYPE = ref(st)
+            and sys_op_r2o(st.xmldata.parent_schema) = s.sys_nc_oid$
+        )
+        else (
+          select
+            s.xmldata.schema_url
+          from
+            xdb.xdb$complex_type ctm,
+            xdb.xdb$complex_type ctb,
+            xdb.xdb$schema s
+          where
+            ref(ct) = ref(ctm)
+            and ctm.xmldata.BASE_TYPE = ref(ctb)
+            and sys_op_r2o(ctb.xmldata.parent_schema) = s.sys_nc_oid$
+        )
+      end
+    ) BASE_SCHEMA_URL,
+    (
+      case
+        when ct.xmldata.BASE_TYPE IS NULL then NULL
+        when (
+          select
+            count(1)
+          from
+            xdb.xdb$simple_type st
+          where
+            ct.xmldata.BASE_TYPE = ref(st)
+        ) != 0 then (
+          select
+            s.xmldata.target_namespace
+          from
+            xdb.xdb$simple_type st,
+            xdb.xdb$schema s
+          where
+            ct.xmldata.BASE_TYPE = ref(st)
+            and sys_op_r2o(st.xmldata.parent_schema) = s.sys_nc_oid$
+        )
+        else (
+          select
+            s.xmldata.target_namespace
+          from
+            xdb.xdb$complex_type ctm,
+            xdb.xdb$complex_type ctb,
+            xdb.xdb$schema s
+          where
+            ref(ct) = ref(ctm)
+            and ctm.xmldata.BASE_TYPE = ref(ctb)
+            and sys_op_r2o(ctb.xmldata.parent_schema) = s.sys_nc_oid$
+        )
+      end
+    ) BASE_TARGET_NAMESPACE,
+    ct.xmldata.maintain_dom MAINTAIN_DOM,
+    ct.xmldata.sqltype SQL_TYPE,
+    ct.xmldata.SQLSCHEMA SQL_SCHEMA
+  from
+    xdb.xdb$schema s,
+    xdb.xdb$complex_type ct,
+    all_xml_schemas a
+  where
+    sys_op_r2o(ct.xmldata.parent_schema) = s.sys_nc_oid$
+    and s.xmldata.schema_owner = a .owner
+    and s.xmldata.schema_url = a .schema_url
+columns: []
+referencedTables: []

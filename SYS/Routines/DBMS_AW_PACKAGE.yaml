@@ -1,0 +1,902 @@
+schema: SYS
+name: DBMS_AW
+routineType: PACKAGE
+returnParamater:
+  name: PROP_VAL.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: ADD_DIMENSION_SOURCE.DIMNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_DIMENSION_SOURCE.COLNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_DIMENSION_SOURCE.SOURCES
+  ordinalPosition: 3
+  dataType: TABLE
+  parameterMode: INOUT
+- name: ADD_DIMENSION_SOURCE.SRCVAL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_DIMENSION_SOURCE.DIMTYPE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_DIMENSION_SOURCE.HIERCOLS
+  ordinalPosition: 6
+  dataType: TABLE
+  parameterMode: IN
+- name: ADD_DIMENSION_SOURCE.PARTBY
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADVISE_CUBE.AGGMAP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_CUBE.PCT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADVISE_CUBE.COMPRESSED
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ADVISE_DIMENSIONALITY(1).CUBENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_DIMENSIONALITY(1).SPARSEDFN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: ADVISE_DIMENSIONALITY(1).SPARSENAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_DIMENSIONALITY(1).PARTNUM
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADVISE_DIMENSIONALITY(1).ADVTABLE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_DIMENSIONALITY(2).OUTPUT
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: OUT
+- name: ADVISE_DIMENSIONALITY(2).CUBENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_DIMENSIONALITY(2).SPARSENAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_DIMENSIONALITY(2).DTYPE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_DIMENSIONALITY(2).ADVTABLE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_PARTITIONING_DIMENSION.CUBENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_PARTITIONING_DIMENSION.DIMSOURCES
+  ordinalPosition: 2
+  dataType: TABLE
+  parameterMode: IN
+- name: ADVISE_PARTITIONING_DIMENSION.ADVTABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_PARTITIONING_LEVEL.CUBENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_PARTITIONING_LEVEL.DIMSOURCES
+  ordinalPosition: 2
+  dataType: TABLE
+  parameterMode: IN
+- name: ADVISE_PARTITIONING_LEVEL.ADVTABLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_REL.RELNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_REL.VALUESET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_REL.PCT
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADVISE_REL.COMPRESSED
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ADVISE_SPARSITY.FACT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_SPARSITY.CUBENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADVISE_SPARSITY.DIMSOURCES
+  ordinalPosition: 3
+  dataType: TABLE
+  parameterMode: IN
+- name: ADVISE_SPARSITY.ADVMODE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADVISE_SPARSITY.PARTBY
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADVISE_SPARSITY.ADVTABLE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_ATTACH(1).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_ATTACH(1).FORWRITE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: AW_ATTACH(1).CREATEAW
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: AW_ATTACH(1).ATTARGS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_ATTACH(1).TBSPACE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_ATTACH(2).SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_ATTACH(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_ATTACH(2).FORWRITE
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: AW_ATTACH(2).CREATEAW
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: AW_ATTACH(2).ATTARGS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_ATTACH(2).TBSPACE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_COPY(1).OLDNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_COPY(1).NEWNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_COPY(1).NEWTABLESPACE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_COPY(1).PARTNUM
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: AW_COPY(2).OLDSCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_COPY(2).OLDNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_COPY(2).NEWNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_COPY(2).NEWTABLESPACE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_COPY(2).PARTNUM
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: AW_CREATE(1).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_CREATE(1).TBSPACE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_CREATE(1).PARTNUM
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: AW_CREATE(2).SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_CREATE(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_CREATE(2).TBSPACE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_CREATE(2).PARTNUM
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: AW_DELETE(1).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_DELETE(2).SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_DELETE(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_DETACH(1).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_DETACH(2).SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_DETACH(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_IS_SYSTEM.SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_IS_SYSTEM.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_RENAME.INNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_RENAME.OUTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_TABLESPACE(1).SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_TABLESPACE(1).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_TABLESPACE(2).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_UPDATE(1).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_UPDATE(2).SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: AW_UPDATE(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEAN_ACCESS_TRACKING.OBJNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT(1).AWNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT(2).OLDNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT(2).NEWNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT(2).NEWTABLESPACE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DISABLE_ACCESS_TRACKING.OBJNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EIF_BLOB_IN(1).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EIF_BLOB_IN(1).IMPLOB
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: EIF_BLOB_IN(1).DATADFNS
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EIF_BLOB_IN(1).OBJLIST
+  ordinalPosition: 4
+  dataType: TABLE
+  parameterMode: IN
+- name: EIF_BLOB_IN(1).API
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EIF_BLOB_IN(2).SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EIF_BLOB_IN(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EIF_BLOB_IN(2).IMPLOB
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: IN
+- name: EIF_BLOB_IN(2).DATADFNS
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EIF_BLOB_IN(2).OBJLIST
+  ordinalPosition: 5
+  dataType: TABLE
+  parameterMode: IN
+- name: EIF_BLOB_IN(2).API
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EIF_BLOB_OUT(1).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EIF_BLOB_OUT(1).OBJLIST
+  ordinalPosition: 2
+  dataType: TABLE
+  parameterMode: IN
+- name: EIF_BLOB_OUT(1).API
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EIF_BLOB_OUT(2).SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EIF_BLOB_OUT(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EIF_BLOB_OUT(2).OBJLIST
+  ordinalPosition: 3
+  dataType: TABLE
+  parameterMode: IN
+- name: EIF_BLOB_OUT(2).API
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EIF_DELETE.EIF
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: INOUT
+- name: EIF_IN(1).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EIF_IN(1).IMPEIF
+  ordinalPosition: 2
+  dataType: TABLE
+  parameterMode: IN
+- name: EIF_IN(1).DATADFNS
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EIF_IN(1).OBJLIST
+  ordinalPosition: 4
+  dataType: TABLE
+  parameterMode: IN
+- name: EIF_IN(1).API
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EIF_IN(2).SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EIF_IN(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EIF_IN(2).IMPEIF
+  ordinalPosition: 3
+  dataType: TABLE
+  parameterMode: IN
+- name: EIF_IN(2).DATADFNS
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EIF_IN(2).OBJLIST
+  ordinalPosition: 5
+  dataType: TABLE
+  parameterMode: IN
+- name: EIF_IN(2).API
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EIF_OUT(1).NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EIF_OUT(1).EXPEIF
+  ordinalPosition: 2
+  dataType: TABLE
+  parameterMode: OUT
+- name: EIF_OUT(1).OBJLIST
+  ordinalPosition: 3
+  dataType: TABLE
+  parameterMode: IN
+- name: EIF_OUT(1).DFNS
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EIF_OUT(1).API
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EIF_OUT(2).SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EIF_OUT(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EIF_OUT(2).EXPEIF
+  ordinalPosition: 3
+  dataType: TABLE
+  parameterMode: OUT
+- name: EIF_OUT(2).OBJLIST
+  ordinalPosition: 4
+  dataType: TABLE
+  parameterMode: IN
+- name: EIF_OUT(2).DFNS
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EIF_OUT(2).API
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ENABLE_ACCESS_TRACKING.OBJNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVAL_NUMBER.CMD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVAL_TEXT.CMD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE.CMD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INFILE.IFILENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INTERP.CMD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INTERPCLOB.CMD_CLOB
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: INTERP_SILENT.CMD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MOVE_AWMETA.DEST_TBS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OLAP_TYPE.OTYPE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: PRINTLOG.LOG_CLOB
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: PROP_CLOB.RID
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: PROP_LEN.RID
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: PROP_VAL.RID
+  ordinalPosition: 1
+  dataType: ROWID
+  parameterMode: IN
+- name: RUN(1).CMD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RUN(1).SILENT
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: RUN(2).CMD
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: RUN(2).SILENT
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: RUN(3).CMD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RUN(3).OUTPUT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: RUN(4).CMD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RUN(4).OUTPUT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: RUN(5).CMD
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: RUN(5).OUTPUT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: RUN(6).CMD
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: RUN(6).OUTPUT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: INOUT
+- name: SHUTDOWN.FORCE
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SPARSITY_ADVICE_TABLE.TBLNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_aw AUTHID CURRENT_USER AS ---------------------
+  --  OVERVIEW
+  --
+  --  This package is the interface to the Express server routines.
+  --    interp     - This function interprets an OLAP DML command and
+  --                 returns the output as a character LOB.
+  --    execute    - This procedure executes an OLAP DML command and uses
+  --                 dbms_output to print the results.
+  --
+  ---------------------
+  --  Visibility
+  --   All users
+  --
+  ---------------------
+  --  PROCEDURES
+  PROCEDURE initdriver;
+  PROCEDURE startup;
+  PROCEDURE shutdown(force IN BOOLEAN DEFAULT FALSE);
+  PROCEDURE toggleDBCreate;
+  FUNCTION interpclob(cmd_clob IN CLOB) RETURN CLOB;
+  FUNCTION getlog return clob;
+  PROCEDURE printlog(log_clob IN CLOB);
+  -- Routines which handle output for the user
+  PROCEDURE run(
+    cmd IN STRING,
+    silent IN BOOLEAN DEFAULT FALSE
+  );
+  PROCEDURE run(
+    cmd IN CLOB,
+    silent IN BOOLEAN DEFAULT FALSE
+  );
+  -- Routines which pass data back
+  PROCEDURE run(cmd IN STRING, output OUT STRING);
+  PROCEDURE run(cmd IN STRING, output IN OUT NOCOPY CLOB);
+  PROCEDURE run(cmd IN CLOB, output OUT STRING);
+  PROCEDURE run(cmd IN CLOB, output IN OUT NOCOPY CLOB);
+  PROCEDURE execute(cmd IN STRING);
+  FUNCTION interp(cmd IN string) RETURN clob;
+  PROCEDURE interp_silent(cmd IN STRING);
+  PROCEDURE infile(ifilename IN STRING);
+  FUNCTION eval_number(cmd IN STRING) RETURN NUMBER;
+  FUNCTION eval_text(cmd IN STRING) RETURN VARCHAR2;
+  FUNCTION olap_on RETURN BOOLEAN;
+  FUNCTION olap_running RETURN BOOLEAN;
+  FUNCTION olap_active RETURN BOOLEAN;
+  PROCEDURE advise_rel(
+    relname IN VARCHAR2,
+    valueset IN VARCHAR2,
+    pct IN BINARY_INTEGER DEFAULT 20,
+    compressed IN BOOLEAN DEFAULT FALSE
+  );
+  PROCEDURE advise_cube(
+    aggmap IN VARCHAR2,
+    pct IN BINARY_INTEGER DEFAULT 20,
+    compressed IN BOOLEAN DEFAULT FALSE
+  );
+  PROCEDURE enable_access_tracking(objname IN VARCHAR2);
+  PROCEDURE disable_access_tracking(objname IN VARCHAR2);
+  PROCEDURE clean_access_tracking(objname IN VARCHAR2);
+  NO_HIER CONSTANT BINARY_INTEGER: = 0;
+  MEASURE CONSTANT BINARY_INTEGER: = 1;
+  HIER_PARENTCHILD CONSTANT BINARY_INTEGER: = 2;
+  HIER_LEVELS CONSTANT BINARY_INTEGER: = 3;
+  HIER_SNOWFLAKE CONSTANT BINARY_INTEGER: = 4;
+  PARTBY_DEFAULT CONSTANT BINARY_INTEGER: = 0;
+  PARTBY_NONE CONSTANT BINARY_INTEGER: = 1;
+  PARTBY_FORCE CONSTANT BINARY_INTEGER: = 2147483647;
+  ADVICE_DEFAULT CONSTANT BINARY_INTEGER: = 0;
+  ADVICE_FAST CONSTANT BINARY_INTEGER: = 1;
+  ADVICE_FULL CONSTANT BINARY_INTEGER: = 2;
+  ADVICE_NOSAMPLE CONSTANT BINARY_INTEGER: = 3;
+  PROCEDURE sparsity_advice_table(tblname IN VARCHAR2 DEFAULT NULL);
+  PROCEDURE add_dimension_source(
+    dimname IN VARCHAR2,
+    colname IN VARCHAR2,
+    sources IN OUT dbms_aw$_dimension_sources_t,
+    srcval IN VARCHAR2 DEFAULT NULL,
+    dimtype IN NUMBER DEFAULT NO_HIER,
+    hiercols IN dbms_aw$_columnlist_t DEFAULT NULL,
+    partby IN NUMBER DEFAULT PARTBY_DEFAULT
+  );
+  PROCEDURE advise_sparsity(
+    fact IN VARCHAR2,
+    cubename IN VARCHAR2,
+    dimsources IN dbms_aw$_dimension_sources_t,
+    advmode IN BINARY_INTEGER DEFAULT ADVICE_DEFAULT,
+    partby IN BINARY_INTEGER DEFAULT PARTBY_DEFAULT,
+    advtable IN VARCHAR2 DEFAULT NULL
+  );
+  FUNCTION advise_dimensionality(
+    cubename IN VARCHAR2,
+    sparsedfn OUT VARCHAR2,
+    sparsename IN VARCHAR2 DEFAULT NULL,
+    partnum IN NUMBER DEFAULT 1,
+    advtable IN VARCHAR2 DEFAULT NULL
+  ) RETURN VARCHAR2;
+  PROCEDURE advise_dimensionality(
+    output OUT NOCOPY CLOB,
+    cubename IN VARCHAR2,
+    sparsename IN VARCHAR2 DEFAULT NULL,
+    dtype IN VARCHAR2 DEFAULT 'NUMBER',
+    advtable IN VARCHAR2 DEFAULT NULL
+  );
+  FUNCTION advise_partitioning_dimension(
+    cubename IN VARCHAR2,
+    dimsources IN dbms_aw$_dimension_sources_t,
+    advtable IN VARCHAR2 DEFAULT NULL
+  ) RETURN VARCHAR2;
+  FUNCTION advise_partitioning_level(
+    cubename IN VARCHAR2,
+    dimsources IN dbms_aw$_dimension_sources_t,
+    advtable IN VARCHAR2 DEFAULT NULL
+  ) RETURN VARCHAR2;
+  PROCEDURE aw_update(name IN VARCHAR2 DEFAULT NULL);
+  PROCEDURE aw_update(
+    schema IN VARCHAR2,
+    name IN VARCHAR2
+  );
+  PROCEDURE aw_attach(
+    name IN VARCHAR2,
+    forwrite IN BOOLEAN DEFAULT FALSE,
+    createaw IN BOOLEAN DEFAULT FALSE,
+    attargs IN VARCHAR2 DEFAULT NULL,
+    tbspace IN VARCHAR2 DEFAULT NULL
+  );
+  PROCEDURE aw_attach(
+    schema IN VARCHAR2,
+    name IN VARCHAR2,
+    forwrite IN BOOLEAN DEFAULT FALSE,
+    createaw IN BOOLEAN DEFAULT FALSE,
+    attargs IN VARCHAR2 DEFAULT NULL,
+    tbspace IN VARCHAR2 DEFAULT NULL
+  );
+  PROCEDURE aw_detach(name IN VARCHAR2);
+  PROCEDURE aw_detach(
+    schema IN VARCHAR2,
+    name IN VARCHAR2
+  );
+  PROCEDURE aw_create(
+    name IN VARCHAR2,
+    tbspace IN VARCHAR2 DEFAULT NULL,
+    partnum IN NUMBER DEFAULT NULL
+  );
+  PROCEDURE aw_create(
+    schema IN VARCHAR2,
+    name IN VARCHAR2,
+    tbspace IN VARCHAR2 DEFAULT NULL,
+    partnum IN NUMBER DEFAULT NULL
+  );
+  PROCEDURE aw_copy(
+    oldname IN VARCHAR2,
+    newname IN VARCHAR2,
+    newtablespace IN VARCHAR2 DEFAULT NULL,
+    partnum IN NUMBER DEFAULT NULL
+  );
+  PROCEDURE aw_copy(
+    oldschema IN VARCHAR2,
+    oldname IN VARCHAR2,
+    newname IN VARCHAR2,
+    newtablespace IN VARCHAR2 DEFAULT NULL,
+    partnum IN NUMBER DEFAULT NULL
+  );
+  PROCEDURE aw_delete(name IN VARCHAR2);
+  PROCEDURE aw_delete(
+    schema IN VARCHAR2,
+    name IN VARCHAR2
+  );
+  PROCEDURE aw_rename(
+    inname IN VARCHAR2,
+    outname IN VARCHAR2
+  );
+  FUNCTION aw_tablespace(
+    schema IN VARCHAR2,
+    name IN VARCHAR2
+  ) RETURN VARCHAR2;
+  FUNCTION aw_tablespace(name IN VARCHAR2) RETURN VARCHAR2;
+  FUNCTION aw_is_system(
+    schema IN VARCHAR2,
+    name IN VARCHAR2
+  ) RETURN BOOLEAN;
+  TYPE eif_t IS TABLE OF BLOB NOT NULL;
+  TYPE eif_objlist_t IS TABLE OF VARCHAR2(100);
+  -- Enumerated Types for the datadfns param to EIF import
+  EIFIMP_DATA CONSTANT BINARY_INTEGER: = 1;
+  EIFIMP_DEFINES CONSTANT BINARY_INTEGER: = 2;
+  EIFIMP_DFNS CONSTANT BINARY_INTEGER: = EIFIMP_DEFINES;
+  EIFIMP_DATADEFINES CONSTANT BINARY_INTEGER: = 3;
+  EIFIMP_DATADFNS CONSTANT BINARY_INTEGER: = EIFIMP_DATADEFINES;
+  AWNAME_IS_NULL
+  EXCEPTION;
+  FUNCTION eif_blob_out(
+      name IN VARCHAR2,
+      objlist IN eif_objlist_t DEFAULT NULL,
+      api IN BOOLEAN DEFAULT TRUE
+    ) RETURN BLOB;
+  FUNCTION eif_blob_out(
+      schema IN VARCHAR2,
+      name IN VARCHAR2,
+      objlist IN eif_objlist_t DEFAULT NULL,
+      api IN BOOLEAN DEFAULT TRUE
+    ) RETURN BLOB;
+  PROCEDURE eif_blob_in(
+      name IN VARCHAR2,
+      implob IN BLOB,
+      datadfns IN BINARY_INTEGER DEFAULT EIFIMP_DATA,
+      objlist IN eif_objlist_t DEFAULT NULL,
+      api IN BOOLEAN DEFAULT TRUE
+    );
+  PROCEDURE eif_blob_in(
+      schema IN VARCHAR2,
+      name IN VARCHAR2,
+      implob IN BLOB,
+      datadfns IN BINARY_INTEGER DEFAULT EIFIMP_DATA,
+      objlist IN eif_objlist_t DEFAULT NULL,
+      api IN BOOLEAN DEFAULT TRUE
+    );
+  PROCEDURE eif_out(
+      name IN VARCHAR2,
+      expeif OUT eif_t,
+      objlist IN eif_objlist_t DEFAULT NULL,
+      dfns IN BOOLEAN DEFAULT FALSE,
+      api IN BOOLEAN DEFAULT TRUE
+    );
+  PROCEDURE eif_out(
+      schema IN VARCHAR2,
+      name IN VARCHAR2,
+      expeif OUT eif_t,
+      objlist IN eif_objlist_t DEFAULT NULL,
+      dfns IN BOOLEAN DEFAULT FALSE,
+      api IN BOOLEAN DEFAULT TRUE
+    );
+  PROCEDURE eif_in(
+      name IN VARCHAR2,
+      impeif IN eif_t,
+      datadfns IN BINARY_INTEGER DEFAULT EIFIMP_DATA,
+      objlist IN eif_objlist_t DEFAULT NULL,
+      api IN BOOLEAN DEFAULT TRUE
+    );
+  PROCEDURE eif_in(
+      schema IN VARCHAR2,
+      name IN VARCHAR2,
+      impeif IN eif_t,
+      datadfns IN BINARY_INTEGER DEFAULT EIFIMP_DATA,
+      objlist IN eif_objlist_t DEFAULT NULL,
+      api IN BOOLEAN DEFAULT TRUE
+    );
+  PROCEDURE eif_delete(eif IN OUT eif_t);
+  FUNCTION get_obj_protect RETURN BOOLEAN;
+  bad_compat_error NUMBER: = -20002;
+  aw_changed_error NUMBER: = -20003;
+  awname_null_error NUMBER: = -20004;
+  has_schema_error NUMBER: = -20005;
+  bad_snowflake_error NUMBER: = -20006;
+  PROCEDURE convert(awname IN VARCHAR2);
+  PROCEDURE convert(
+      oldname IN VARCHAR2,
+      newname IN VARCHAR2,
+      newtablespace IN VARCHAR2 DEFAULT NULL
+    );
+  en_tbs_error NUMBER: = -20001;
+  PROCEDURE move_awmeta(dest_tbs IN VARCHAR2);
+  FUNCTION prop_val(rid IN ROWID) RETURN VARCHAR2;
+  FUNCTION olap_type(otype IN NUMBER) RETURN VARCHAR2;
+  FUNCTION prop_clob(rid IN ROWID) RETURN CLOB;
+  FUNCTION prop_len(rid IN ROWID) RETURN NUMBER;
+  PROCEDURE gather_stats;
+  FUNCTION in_aw_cleanup RETURN BOOLEAN;
+  -- Internal types, not for user consumption
+    TYPE loblineiter_t IS RECORD (
+      mylob CLOB,
+      loc NUMBER,
+      clength NUMBER,
+      cmax NUMBER,
+      linemax NUMBER
+    );
+  END dbms_aw;

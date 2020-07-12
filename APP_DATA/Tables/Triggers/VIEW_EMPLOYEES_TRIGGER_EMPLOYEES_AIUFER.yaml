@@ -1,0 +1,31 @@
+targetObjectSchema: APP_DATA
+targetObjectName: EMPLOYEES
+targetObjectType: VIEW
+name: EMPLOYEES_AIUFER
+eventTiming: AFTER EACH ROW
+event: INSERT OR UPDATE
+eventActionBody: |-
+  DECLARE
+    l_cnt NUMBER;
+  BEGIN
+    LOCK TABLE jobs IN SHARE MODE;
+  -- Ensure that jobs does not change
+    -- during the following query.
+  SELECT
+    COUNT(*) INTO l_cnt
+  FROM
+    jobs j
+  WHERE
+    j.job_id = :NEW.job_id
+    AND :NEW.salary BETWEEN j.min_salary
+    AND j.max_salary;
+  IF (l_cnt <> 1) THEN RAISE_APPLICATION_ERROR(
+      -20002,
+      CASE
+        WHEN :NEW.job_id = :OLD.job_id THEN 'Salary modification invalid'
+        ELSE 'Job reassignment puts salary out of range'
+      END
+    );
+  END IF;
+  END;
+executionOrder: 1

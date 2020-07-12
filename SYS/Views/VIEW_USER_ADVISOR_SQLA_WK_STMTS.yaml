@@ -1,0 +1,52 @@
+schema: SYS
+name: USER_ADVISOR_SQLA_WK_STMTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    aa1.name as task_name,
+    aa1.id as task_id,
+    aa3.workload_id as sqlset_id,
+    aa3.name as sqlset_name,
+    aa3.name as workload_name,
+    s.sql_id as sql_id,
+    s.sql_seq as sql_seq,
+    s.plan_hash_value as plan_hash_value,
+    s.parsing_schema_name as parsing_schema_name,
+    s.parsing_schema_name as username,
+    s.module as module,
+    s.action as action,
+    s.cpu_time as cpu_time,
+    s.buffer_gets as buffer_gets,
+    s.disk_reads as disk_reads,
+    s.elapsed_time as elapsed_time,
+    s.rows_processed as rows_processed,
+    s.executions as executions,
+    to_date(s.first_load_time, 'yyyy-mm-dd/hh24:mi:ss') as first_load_time,
+    to_date(s.first_load_time, 'yyyy-mm-dd/hh24:mi:ss') as last_execution_date,
+    s.priority as priority,
+    s.command_type as command_type,
+    s.stat_period as stat_period,
+    s.active_stat_period as active_stat_period,
+    s.sql_text as sql_text,
+    aa2.pre_cost as precost,
+    aa2.post_cost as postcost,
+    aa2.imp as importance,
+    aa2.rec_id as rec_id,
+    aa2.validated as validated
+  from
+    sys.wri$_adv_tasks aa1,
+    sys.wri$_adv_sqla_stmts aa2,
+    sys.wri$_adv_sqla_map aa3,
+    dba_sqlset_statements s
+  where
+    aa1.id = aa2.task_id
+    and aa1.id = aa3.task_id
+    and aa2.workload_id = aa3.workload_id
+    and s.sqlset_id = aa3.workload_id
+    and s.sql_seq = aa2.stmt_id
+    and aa3.is_sts = 1
+    and aa1.owner# = userenv('SCHEMAID')
+    and aa1.advisor_id = 2
+columns: []
+referencedTables: []

@@ -1,0 +1,86 @@
+schema: SYS
+name: EXU81NOS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    to $.obj#,
+    to $.owner#
+  FROM
+    sys.obj$ to $,
+    sys.obj$ io$,
+    sys.ind$ ind$
+  WHERE
+    ind$.bo# = to $.obj#
+    AND ind$.obj# = io$.obj#
+    AND ind$.blevel != -1
+    AND (
+      BITAND(io$.flags, 4) = 4
+      OR
+      /* system generated */
+      ind$.type# = 8
+    )
+    AND
+    /* LOB index */
+    (
+      userenv('SCHEMAID') IN (to $.owner#, 0)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+  UNION ALL
+    /* Table cannot have associations */
+  SELECT
+    to $.obj#,
+    to $.owner#
+  FROM
+    sys.obj$ to $,
+    sys.association$ a $
+  WHERE
+    to $.obj# = a $.obj#
+    AND to $.type# = 2
+    AND
+    /* Table */
+    (
+      userenv('SCHEMAID') IN (to $.owner#, 0)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+  UNION ALL
+    /* Type used in table cannot have associations */
+  SELECT
+    to $.obj#,
+    to $.owner#
+  FROM
+    sys.obj$ to $,
+    sys.obj$ tt$,
+    sys.coltype$ ct$,
+    sys.association$ a $
+  WHERE
+    to $.obj# = ct$.obj#
+    AND ct$.toid = tt$.oid$
+    AND tt$.obj# = a $.obj#
+    AND (
+      userenv('SCHEMAID') IN (to $.owner#, 0)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

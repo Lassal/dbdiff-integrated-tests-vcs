@@ -1,0 +1,51 @@
+schema: LBACSYS
+name: ALL_SA_GROUP_HIERARCHY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    p.pol_name as policy_name,
+    g.hierarchy_level,
+    g.group_name
+  FROM
+    (
+      SELECT
+        LEVEL AS hierarchy_level,
+        RPAD(' ', 2 * LEVEL, ' ') || code || ' - ' || name AS group_name,
+        pol#
+      FROM
+        LBACSYS.ols$groups
+      CONNECT BY
+        PRIOR pol# = pol#
+        AND PRIOR group # = parent #
+      START WITH
+        (
+          (
+            pol# in (
+              select
+                pol#
+              from
+                LBACSYS.sa$admin
+              where
+                usr_name = user
+            )
+            and parent # IS NULL
+          )
+          or (pol#, group #) in (
+            select
+              pol#,
+              group #
+            from
+              LBACSYS.ols$user_groups
+            where
+              usr_name = sa_session.sa_user_name(
+                lbac_cache.policy_name(pol#)
+              )
+          )
+        )
+    ) g,
+    sa$pol p
+  WHERE
+    g.pol# = p.pol#
+columns: []
+referencedTables: []

@@ -1,0 +1,68 @@
+schema: XFILES
+name: XFILES_SEARCH_SERVICES
+routineType: PACKAGE
+returnParamater:
+  name: GETXMLSCHEMAROOTNODEMAP.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: GETSUBSTITUTIONGROUP.P_HEAD_ELEMENT
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETXMLINDEXCHILDNODEMAP.P_PATHID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETXMLINDEXCHILDNODEMAP.P_PATH_TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETXMLINDEXCHILDNODEMAP.P_PATH_TABLE_OWNER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETXMLINDEXROOTNODEMAP.P_PATH_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETXMLINDEXROOTNODEMAP.P_PATH_TABLE_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETXMLSCHEMACHILDNODEMAP.P_PROPERTY_NUMBER
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETXMLSCHEMAROOTNODEMAP.P_SCHEMA_URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETXMLSCHEMAROOTNODEMAP.P_SCHEMA_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETXMLSCHEMAROOTNODEMAP.P_GLOBAL_ELEMENT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package XFILES_SEARCH_SERVICES AUTHID CURRENT_USER as function getXMLIndexRootNodeMap(
+    P_PATH_TABLE_NAME VARCHAR2,
+    P_PATH_TABLE_OWNER VARCHAR2
+  ) return XMLType;
+  function getXMLIndexChildNodeMap(
+    P_PATHID VARCHAR2,
+    P_PATH_TABLE_NAME VARCHAR2,
+    P_PATH_TABLE_OWNER VARCHAR2
+  ) return XMLType;
+  function getXMLSchemaRootNodeMap(
+    P_SCHEMA_URL varchar2,
+    P_SCHEMA_OWNER varchar2 default USER,
+    P_GLOBAL_ELEMENT varchar2
+  ) return XMLType;
+  function getXMLSchemaChildNodeMap(P_PROPERTY_NUMBER number) return XMLType;
+  function getSubstitutionGroup(P_HEAD_ELEMENT NUMBER) return XMLType;
+  function getRepositoryNodeMap return XMLType;
+  end;

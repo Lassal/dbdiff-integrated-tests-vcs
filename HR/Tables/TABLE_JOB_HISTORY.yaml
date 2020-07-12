@@ -1,0 +1,89 @@
+name: JOB_HISTORY
+schema: HR
+columns:
+- name: DEPARTMENT_ID
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: EMPLOYEE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: END_DATE
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: JOB_ID
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  dataTypeLength: 10
+- name: START_DATE
+  ordinalPosition: 2
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: JHIST_EMP_ID_ST_DATE_PK
+  type: PRIMARY_KEY
+  columns:
+  - name: EMPLOYEE_ID
+    ordinalPosition: 1
+  - name: START_DATE
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: JHIST_DEPT_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: DEPARTMENT_ID
+    ordinalPosition: 1
+    referencedSchemaName: HR
+    referencedTableName: DEPARTMENTS
+    referencedTableColumnName: DEPARTMENT_ID
+- !<fk-constraint>
+  name: JHIST_EMP_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: EMPLOYEE_ID
+    ordinalPosition: 1
+    referencedSchemaName: HR
+    referencedTableName: EMPLOYEES
+    referencedTableColumnName: EMPLOYEE_ID
+- !<fk-constraint>
+  name: JHIST_JOB_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: JOB_ID
+    ordinalPosition: 1
+    referencedSchemaName: HR
+    referencedTableName: JOBS
+    referencedTableColumnName: JOB_ID
+- !<check-constraint>
+  name: JHIST_DATE_INTERVAL
+  type: CHECK
+  checkClause: end_date > start_date
+- !<check-constraint>
+  name: JHIST_EMPLOYEE_NN
+  type: CHECK
+  checkClause: '"EMPLOYEE_ID" IS NOT NULL'
+- !<check-constraint>
+  name: JHIST_END_DATE_NN
+  type: CHECK
+  checkClause: '"END_DATE" IS NOT NULL'
+- !<check-constraint>
+  name: JHIST_JOB_NN
+  type: CHECK
+  checkClause: '"JOB_ID" IS NOT NULL'
+- !<check-constraint>
+  name: JHIST_START_DATE_NN
+  type: CHECK
+  checkClause: '"START_DATE" IS NOT NULL'

@@ -1,0 +1,39 @@
+schema: SYS
+name: KU$_IDENTITY_COLOBJ_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '2',
+    '5',
+    t.obj#,
+    value(o),
+    bitand(t.property, 4294967295),
+    trunc(t.property / power(2, 32)),
+    (
+      select
+        value(i)
+      from
+        ku$_identity_col_view i
+      where
+        i.obj_num = t.obj#
+    )
+  from
+    ku$_schemaobj_view o,
+    tab$ t
+  where
+    t.obj# = o.obj_num
+    AND (bitand(t.property, 288230376151711744) != 0)
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

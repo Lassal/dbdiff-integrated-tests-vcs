@@ -1,0 +1,44 @@
+schema: SYS
+name: EXU8ORFS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o$.obj#,
+    o$.owner#,
+    c $.property,
+    DECODE(BITAND(c $.property, 1), 1, a $.name, c $.name),
+    rf$.reftyp,
+    rf$.stabid,
+    ro$.obj#,
+    ro$.name
+  FROM
+    sys.refcon$ rf$,
+    sys.obj$ o$,
+    sys.col$ c $,
+    sys.attrcol$ a $,
+    sys.obj$ ro$
+  WHERE
+    rf$.obj# = o$.obj#
+    AND rf$.obj# = c $.obj#
+    AND rf$.intcol# = c $.intcol#
+    AND rf$.obj# = a $.obj# (+)
+    AND rf$.intcol# = a $.intcol# (+)
+    AND rf$.reftyp != 0
+    AND BITAND(c $.property, 32768) != 32768
+    AND
+    /* not unused column */
+    rf$.stabid = ro$.oid$
+    AND (
+      userenv('SCHEMAID') IN (o$.owner#, 0)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

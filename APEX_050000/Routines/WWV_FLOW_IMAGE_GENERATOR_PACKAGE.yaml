@@ -1,0 +1,19 @@
+schema: APEX_050000
+name: WWV_FLOW_IMAGE_GENERATOR
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: GET_IMAGE.P_POSITION
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_IMAGE.P_SESSIONID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  package wwv_flow_image_generator as procedure get_image(
+    p_position in number,
+    p_sessionid in number
+  );
+  end wwv_flow_image_generator;

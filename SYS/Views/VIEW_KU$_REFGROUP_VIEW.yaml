@@ -1,0 +1,42 @@
+schema: SYS
+name: KU$_REFGROUP_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    r.name,
+    u.user#,
+    r.owner,
+    r.refgroup,
+    sys.dbms_metadata_util.get_refresh_make_user (r.refgroup),
+    sys.dbms_metadata_util.get_refresh_make_dba (r.refgroup),
+    cast(
+      multiset(
+        select
+          value(s)
+        from
+          ku$_add_snap_view s
+        where
+          s.refgroup = r.refgroup
+      ) as ku$_add_snap_list_t
+    )
+  from
+    sys.user$ u,
+    sys.rgroup$ r
+  where
+    u.name = r.owner
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (r.owner, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

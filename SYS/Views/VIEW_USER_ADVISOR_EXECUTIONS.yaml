@@ -1,0 +1,50 @@
+schema: SYS
+name: USER_ADVISOR_EXECUTIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.id as task_id,
+    t.name as task_name,
+    e.name as execution_name,
+    e.id as execution_id,
+    e.description as description,
+    e.exec_type as execution_type,
+    e.exec_start as execution_start,
+    e.exec_mtime as execution_last_modified,
+    e.exec_end as execution_end,
+    t.advisor_name as advisor_name,
+    e.advisor_id as advisor_id,
+    decode(
+      e.status,
+      2,
+      'EXECUTING',
+      3,
+      'COMPLETED',
+      4,
+      'INTERRUPTED',
+      5,
+      'CANCELLED',
+      6,
+      'FATAL ERROR'
+    ) as status,
+    e.status as status#,
+    nvl2(
+      e.status_msg_id,
+      dbms_advisor.format_message_group(e.status_msg_id),
+      NULL
+    ) as status_message,
+    nvl2(
+      e.error_msg_id,
+      dbms_advisor.format_message_group(e.error_msg_id),
+      NULL
+    ) as error_message
+  from
+    wri$_adv_executions e,
+    wri$_adv_tasks t
+  where
+    e.task_id = t.id
+    and e.advisor_id = t.advisor_id
+    and t.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

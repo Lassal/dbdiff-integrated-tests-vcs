@@ -1,0 +1,35 @@
+schema: SYS
+name: KU$_MVPROP_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.obj#,
+    o.name,
+    u.name,
+    o.flags,
+    t.property,
+    s.flag2
+  from
+    obj$ o,
+    tab$ t,
+    user $ u,
+    snap$ s
+  where
+    o.owner# = u.user#
+    and o.obj# = t.obj#
+    and s.sowner = u.name
+    and s.tname = o.name
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

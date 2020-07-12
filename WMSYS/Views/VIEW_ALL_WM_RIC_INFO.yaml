@@ -1,0 +1,25 @@
+schema: WMSYS
+name: ALL_WM_RIC_INFO
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    /*+ LEADING(rt) */
+    ct_owner,
+    ct_name,
+    pt_owner,
+    pt_name,
+    ric_name,
+    rtrim(ct_cols, ',') ct_cols,
+    rtrim(pt_cols, ',') pt_cols,
+    pt_unique_const_name r_constraint_name,
+    my_mode delete_rule,
+    status
+  from
+    wmsys.wm$ric_table rt,
+    all_views uv
+  where
+    uv.view_name = rt.ct_name
+    and uv.owner = rt.ct_owner WITH READ ONLY
+columns: []
+referencedTables: []

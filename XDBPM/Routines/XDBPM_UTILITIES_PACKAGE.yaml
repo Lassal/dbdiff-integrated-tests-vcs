@@ -1,0 +1,519 @@
+schema: XDBPM
+name: XDBPM_UTILITIES
+routineType: PACKAGE
+returnParamater:
+  name: SERIALIZERESOURCE.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: APPENDCONTENT(1).P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPENDCONTENT(1).P_CONTENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPENDCONTENT(1).P_DB_CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPENDCONTENT(2).P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPENDCONTENT(2).P_CONTENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: APPENDCONTENT(2).P_DB_CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FREEACL.P_TARGET_ACL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FREEACL.P_REPLACEMENT_ACL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FREERESCONFIG.P_RESCONFIG_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETBINARYCONTENT(1).P_FILE
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: GETBINARYCONTENT(2).P_FILENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETBINARYCONTENT(2).P_DIRECTORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETBINARYCONTENT(3).P_FILE
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: GETBINARYCONTENT(3).P_CONTENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: INOUT
+- name: GETBINARYCONTENT(4).P_FILENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETBINARYCONTENT(4).P_DIRECTORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETBINARYCONTENT(4).P_CONTENT
+  ordinalPosition: 3
+  dataType: BLOB
+  parameterMode: INOUT
+- name: GETFILECONTENT(1).P_FILE
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: GETFILECONTENT(1).P_CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETFILECONTENT(2).P_FILENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETFILECONTENT(2).P_DIRECTORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETFILECONTENT(2).P_CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETFILECONTENT(3).P_FILE
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: GETFILECONTENT(3).P_CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETFILECONTENT(3).P_CONTENT
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: INOUT
+- name: GETFILECONTENT(4).P_FILENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETFILECONTENT(4).P_DIRECTORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETFILECONTENT(4).P_CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETFILECONTENT(4).P_CONTENT
+  ordinalPosition: 4
+  dataType: CLOB
+  parameterMode: INOUT
+- name: GETVERSIONSBYPATH.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETVERSIONSBYRESID.RESID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: GETXMLREFERENCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETXMLREFERENCEBYRESID.P_RESOID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: ISCHECKEDOUTBYRESID.P_RESOID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: IS_VERSIONED(1).P_RESOURCE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: IS_VERSIONED(2).P_RESOURCE
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: IS_VERSIONED(3).P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IS_VERSIONED(4).P_RESOURCE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: MIGRATEACL.ACL
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: MIGRATEACLRESOURCE.RESOURCEXML
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: MKDIR(1).P_FOLDER_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MKDIR(1).FORCE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MKDIR(2).P_FOLDER_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MKDIR(2).FORCE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: PRINTXMLTOFILE.P_XML_CONTENT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PRINTXMLTOFILE.P_TARGET_DIRECTORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PRINTXMLTOFILE.P_FILENAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RMDIR(1).P_FOLDER_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RMDIR(1).FORCE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RMDIR(2).P_FOLDER_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RMDIR(2).FORCE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SERIALIZEEVENT.REPOSITORYEVENT
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: SERIALIZERESOURCE.XDBRESOURCE
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: UPDATEBINARYCONTENT.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEBINARYCONTENT.P_CONTENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: UPDATECHARACTERCONTENT(1).P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATECHARACTERCONTENT(1).P_CONTENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATECHARACTERCONTENT(1).P_DB_CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATECHARACTERCONTENT(2).P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATECHARACTERCONTENT(2).P_CONTENT
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: UPDATECHARACTERCONTENT(2).P_DB_CHARSET
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATECONTENT.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATECONTENT.P_CONTENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: UPDATEXMLCONTENT.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEXMLCONTENT.P_CONTENT
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: UPLOADBINARYFILES.P_FILELIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADBINARYFILES.P_DIRECTORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADBINARYFILES.P_TARGET_FOLDER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADBINARYFILES.P_BATCH_SIZE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPLOADFILES.P_FILELIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADFILES.P_DIRECTORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADFILES.P_TARGET_FOLDER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADFILES.P_BATCH_SIZE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPLOADRESOURCE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADRESOURCE.P_CONTENT
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: IN
+- name: UPLOADRESOURCE.P_DUPLICATE_POLICY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADTEXTFILES.P_FILELIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADTEXTFILES.P_DIRECTORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADTEXTFILES.P_TARGET_FOLDER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADTEXTFILES.P_BATCH_SIZE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPLOADTOXMLTABLE.P_FILELIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADTOXMLTABLE.P_DIRECTORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADTOXMLTABLE.TABLE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADTOXMLTABLE.P_BATCH_SIZE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPLOADXMLFILES.P_FILELIST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADXMLFILES.P_DIRECTORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADXMLFILES.P_TARGET_FOLDER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPLOADXMLFILES.P_BATCH_SIZE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_UTILITIES authid CURRENT_USER as DEFAULT_FILENAME constant varchar2(2000): = 'ls.xml';
+  DEFAULT_DIRECTORY constant varchar2(32): = USER;
+  DEFAULT_BATCH_SIZE constant number(10): = 1;
+  /*
+
+  **
+
+  ** Deprecated in XDB_UTILITIES. Moved to XDB_XMLSCHEMA_UTILITIES
+
+  **
+
+  ** procedure renameCollectionTable (XMLTABLE varchar2, XPATH varchar2, COLLECTION_TABLE_PREFIX varchar2);
+
+  ** function printNestedTables(XML_TABLE varchar2) return XMLType;
+
+  ** function getDefaultTableName(P_RESOURCE_PATH VARCHAR2) return VARCHAR2;
+
+  **
+
+  */
+  function getBinaryContent(P_FILE bfile) return BLOB;
+  function getBinaryContent(
+    P_FILENAME varchar2,
+    P_DIRECTORY varchar2 default DEFAULT_DIRECTORY
+  ) return BLOB;
+  function getBinaryContent(P_FILE bfile, P_CONTENT IN OUT BLOB) return BLOB;
+  function getBinaryContent(
+    P_FILENAME varchar2,
+    P_DIRECTORY varchar2 default DEFAULT_DIRECTORY,
+    P_CONTENT IN OUT BLOB
+  ) return BLOB;
+  function getFileContent(
+    P_FILE bfile,
+    P_CHARSET varchar2 default DBMS_XDB_CONSTANTS.ENCODING_DEFAULT
+  ) return CLOB;
+  function getFileContent(
+    P_FILENAME varchar2,
+    P_DIRECTORY varchar2 default DEFAULT_DIRECTORY,
+    P_CHARSET varchar2 default DBMS_XDB_CONSTANTS.ENCODING_DEFAULT
+  ) return CLOB;
+  function getFileContent(
+    P_FILE bfile,
+    P_CHARSET varchar2 default DBMS_XDB_CONSTANTS.ENCODING_DEFAULT,
+    P_CONTENT IN OUT CLOB
+  ) return CLOB;
+  function getFileContent(
+    P_FILENAME varchar2,
+    P_DIRECTORY varchar2 default DEFAULT_DIRECTORY,
+    P_CHARSET varchar2 default DBMS_XDB_CONSTANTS.ENCODING_DEFAULT,
+    P_CONTENT IN OUT CLOB
+  ) return CLOB;
+  procedure mkdir(
+    P_FOLDER_PATH varchar2,
+    force varchar2 default 'FALSE'
+  );
+  procedure mkdir(
+    P_FOLDER_PATH varchar2,
+    force boolean default FALSE
+  );
+  procedure rmdir(
+    P_FOLDER_PATH varchar2,
+    force varchar2 default 'FALSE'
+  );
+  procedure rmdir(
+    P_FOLDER_PATH varchar2,
+    force boolean default FALSE
+  );
+  procedure uploadFiles(
+    P_FILELIST varchar2 default DEFAULT_FILENAME,
+    P_DIRECTORY varchar2 default DEFAULT_DIRECTORY,
+    P_TARGET_FOLDER varchar2 default XDB_CONSTANTS.FOLDER_USER_HOME,
+    P_BATCH_SIZE number default DEFAULT_BATCH_SIZE
+  );
+  procedure uploadBinaryFiles(
+    P_FILELIST varchar2 default DEFAULT_FILENAME,
+    P_DIRECTORY varchar2 default DEFAULT_DIRECTORY,
+    P_TARGET_FOLDER varchar2 default XDB_CONSTANTS.FOLDER_USER_HOME,
+    P_BATCH_SIZE number default DEFAULT_BATCH_SIZE
+  );
+  procedure uploadTextFiles(
+    P_FILELIST varchar2 default DEFAULT_FILENAME,
+    P_DIRECTORY varchar2 default DEFAULT_DIRECTORY,
+    P_TARGET_FOLDER varchar2 default XDB_CONSTANTS.FOLDER_USER_HOME,
+    P_BATCH_SIZE number default DEFAULT_BATCH_SIZE
+  );
+  procedure uploadXMLFiles(
+    P_FILELIST varchar2 default DEFAULT_FILENAME,
+    P_DIRECTORY varchar2 default DEFAULT_DIRECTORY,
+    P_TARGET_FOLDER varchar2 default XDB_CONSTANTS.FOLDER_USER_HOME,
+    P_BATCH_SIZE number default DEFAULT_BATCH_SIZE
+  );
+  procedure uploadToXMLTable(
+    P_FILELIST varchar2 default DEFAULT_FILENAME,
+    P_DIRECTORY varchar2 default DEFAULT_DIRECTORY,
+    TABLE_NAME varchar2,
+    P_BATCH_SIZE number default DEFAULT_BATCH_SIZE
+  );
+  procedure updateXMLContent(P_RESOURCE_PATH VARCHAR2, P_CONTENT XMLType);
+  procedure updateBinaryContent(P_RESOURCE_PATH VARCHAR2, P_CONTENT BLOB);
+  procedure updateCharacterContent(
+    P_RESOURCE_PATH VARCHAR2,
+    P_CONTENT VARCHAR2,
+    P_DB_CHARSET VARCHAR2 default DBMS_XDB_CONSTANTS.ENCODING_DEFAULT
+  );
+  procedure updateCharacterContent(
+    P_RESOURCE_PATH VARCHAR2,
+    P_CONTENT CLOB,
+    P_DB_CHARSET VARCHAR2 default DBMS_XDB_CONSTANTS.ENCODING_DEFAULT
+  );
+  procedure appendContent(
+    P_RESOURCE_PATH VARCHAR2,
+    P_CONTENT VARCHAR2,
+    P_DB_CHARSET VARCHAR2 default DBMS_XDB_CONSTANTS.ENCODING_DEFAULT
+  );
+  procedure appendContent(
+    P_RESOURCE_PATH VARCHAR2,
+    P_CONTENT CLOB,
+    P_DB_CHARSET VARCHAR2 default DBMS_XDB_CONSTANTS.ENCODING_DEFAULT
+  );
+  procedure createHomeFolder;
+  procedure createPublicFolder;
+  procedure setPublicIndexPageContent;
+  function getXMLReference(P_RESOURCE_PATH VARCHAR2) return REF XMLType;
+  function getXMLReferenceByResID(P_RESOID RAW) return REF XMLType;
+  function isCheckedOutByRESID(P_RESOID RAW) return BOOLEAN;
+  function getVersionsByPath(P_RESOURCE_PATH VARCHAR2) return RESOURCE_ID_TABLE pipelined;
+  function getVersionsByResid(RESID RAW) return RESOURCE_ID_TABLE pipelined;
+  function IS_VERSIONED(P_RESOURCE DBMS_XMLDOM.DOMDocument) return BOOLEAN;
+  function IS_VERSIONED(P_RESOURCE XMLTYPE) return BOOLEAN;
+  function IS_VERSIONED(P_RESOURCE_PATH VARCHAR2) return BOOLEAN;
+  procedure UPDATECONTENT(P_RESOURCE_PATH VARCHAR2, P_CONTENT BLOB);
+  procedure UPLOADRESOURCE(
+    P_RESOURCE_PATH VARCHAR2,
+    P_CONTENT BLOB,
+    P_DUPLICATE_POLICY VARCHAR2 DEFAULT XDB_CONSTANTS.RAISE_ERROR
+  );
+  procedure printXMLToFile(
+    P_XML_CONTENT XMLType,
+    P_TARGET_DIRECTORY varchar2,
+    P_FILENAME VARCHAR2
+  );
+  procedure freeAcl(P_TARGET_ACL VARCHAR2, P_REPLACEMENT_ACL VARCHAR2);
+  $IF DBMS_DB_VERSION.VER_LE_10_2 $THEN -- Depricated Post 10.2.x : Provided by DBMS_XDB
+  procedure changeOwner(
+    resourcePath varchar2,
+    owner varchar2,
+    recursive boolean default false
+  );
+  $ELSE -- 11.1.0.1.0
+  function IS_VERSIONED(P_RESOURCE DBMS_XDBRESOURCE.XDBResource) return BOOLEAN;
+  function migrateACL(ACL XMLTYPE) return XMLTYPE;
+  function migrateACLResource(resourceXML XMLTYPE) return XMLTYPE;
+  function serializeResource(xdbResource DBMS_XDBRESOURCE.XDBResource) return xmltype;
+  function serializeEvent(repositoryEvent DBMS_XEVENT.XDBRepositoryEvent) return xmltype;
+  procedure freeResConfig(P_RESCONFIG_PATH VARCHAR2);
+  $END --
+  end XDBPM_UTILITIES;

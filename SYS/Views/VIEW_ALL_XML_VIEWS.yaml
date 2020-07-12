@@ -1,0 +1,144 @@
+schema: SYS
+name: ALL_XML_VIEWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    null,
+    null,
+    null
+  from
+    sys.opqtype$ opq,
+    sys.view$ v,
+    sys.user$ u,
+    sys.obj$ o,
+    sys.coltype$ ac,
+    sys.col$ tc
+  where
+    o.owner# = u.user#
+    and o.obj# = v.obj#
+    and bitand(v.property, 1) = 1
+    and v.obj# = tc.obj#
+    and tc.name = 'SYS_NC_ROWINFO$'
+    and tc.obj# = ac.obj#
+    and tc.intcol# = ac.intcol#
+    and ac.toid = '00000000000000000000000000020100'
+    and tc.intcol# = opq.intcol#
+    and tc.obj# = opq.obj#
+    and bitand(opq.flags, 2) = 0
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+  union all
+  select
+    u.name,
+    o.name,
+    schm.xmldata.schema_url,
+    schm.xmldata.schema_owner,
+    decode(
+      xel.xmldata.property.name,
+      null,
+      xel.xmldata.property.propref_name.name,
+      xel.xmldata.property.name
+    )
+  from
+    xdb.xdb$element xel,
+    xdb.xdb$schema schm,
+    sys.opqtype$ opq,
+    sys.view$ v,
+    sys.user$ u,
+    sys.obj$ o,
+    sys.coltype$ ac,
+    sys.col$ tc
+  where
+    o.owner# = u.user#
+    and o.obj# = v.obj#
+    and bitand(v.property, 1) = 1
+    and v.obj# = tc.obj#
+    and tc.name = 'SYS_NC_ROWINFO$'
+    and tc.obj# = ac.obj#
+    and tc.intcol# = ac.intcol#
+    and ac.toid = '00000000000000000000000000020100'
+    and tc.intcol# = opq.intcol#
+    and tc.obj# = opq.obj#
+    and opq.schemaoid = schm.sys_nc_oid$
+    and opq.elemnum = xel.xmldata.property.prop_number
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

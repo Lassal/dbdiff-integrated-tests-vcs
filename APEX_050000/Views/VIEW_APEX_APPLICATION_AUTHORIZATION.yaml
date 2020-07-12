@@ -1,0 +1,118 @@
+schema: APEX_050000
+name: APEX_APPLICATION_AUTHORIZATION
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    a .NAME authorization_scheme_name,
+    case
+      substr(a .scheme_type, 1, 7)
+      when 'NATIVE_' then (
+        select
+          display_name
+        from
+          wwv_flow_plugins
+        where
+          flow_id = 4411
+          and plugin_type = 'AUTHORIZATION TYPE'
+          and name = substr(a .scheme_type, 8)
+      )
+      when 'PLUGIN_' then (
+        select
+          display_name
+        from
+          wwv_flow_plugins
+        where
+          flow_id = a .flow_id
+          and plugin_type = 'AUTHORIZATION TYPE'
+          and name = substr(a .scheme_type, 8)
+      )
+      else a .scheme_type
+    end scheme_type,
+    a .SCHEME_TYPE scheme_type_code,
+    a .attribute_01,
+    a .attribute_02,
+    a .attribute_03,
+    a .attribute_04,
+    a .attribute_05,
+    a .attribute_06,
+    a .attribute_07,
+    a .attribute_08,
+    a .attribute_09,
+    a .attribute_10,
+    a .attribute_11,
+    a .attribute_12,
+    a .attribute_13,
+    a .attribute_14,
+    a .attribute_15,
+    --
+    a .ERROR_MESSAGE error_message,
+    --
+    decode(
+      a .CACHING,
+      'BY_USER_BY_PAGE_VIEW',
+      'Once per page view',
+      'BY_USER_BY_SESSION',
+      'Once per session',
+      a .CACHING
+    ) caching,
+    decode(a .REFERENCE_ID, null, 'No', 'Yes') is_subscribed,
+    a .LAST_UPDATED_BY last_updated_by,
+    a .LAST_UPDATED_ON last_updated_on,
+    a .COMMENTS component_comment,
+    --
+    a .id authorization_scheme_id,
+    a .REFERENCE_ID referenced_scheme_id,
+    --
+    substr(a .NAME, 1, 30) || length(a .NAME) || ' t=' || substr(a .SCHEME_TYPE, 1, 30) || length(a .SCHEME_TYPE) || ' e=' || substr(a .ERROR_MESSAGE, 1, 30) || length(a .ERROR_MESSAGE) || ' s=' || decode(
+      a .CACHING,
+      'BY_USER_BY_PAGE_VIEW',
+      'Once per page view',
+      'BY_USER_BY_SESSION',
+      'Once per session',
+      substr(a .CACHING, 1, 20)
+    ) || ' r=' || decode(a .REFERENCE_ID, null, 'No', 'Yes') component_signature
+  from
+    WWV_FLOW_SECURITY_SCHEMES a,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.id = a .flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

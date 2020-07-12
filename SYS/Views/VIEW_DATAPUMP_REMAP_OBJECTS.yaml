@@ -1,0 +1,16 @@
+schema: SYS
+name: DATAPUMP_REMAP_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    param,
+    type
+  from
+    sys.metaxslparam$
+  where
+    model = 'ORACLE'
+    and transform = 'MODIFY'
+    and param like 'REMAP_%'
+columns: []
+referencedTables: []

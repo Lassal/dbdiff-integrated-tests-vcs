@@ -1,0 +1,56 @@
+schema: SYS
+name: SYSSEGOBJ
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    obj#,
+    decode(
+      bitand(property, 32 + 64),
+      0,
+      file#,
+      to_number(null)
+    ),
+    decode(
+      bitand(property, 32 + 64),
+      0,
+      block #,
+      to_number(null)
+    ),
+    'TABLE',
+    decode(
+      bitand(property, 32 + 64),
+      0,
+      mod(pctfree $, 100),
+      to_number(null)
+    ),
+    decode(
+      bitand(property, 32 + 64),
+      0,
+      pctused$,
+      to_number(null)
+    )
+  from
+    sys.tab$
+  union all
+  select
+    obj#,
+    file#,
+    block #,
+    'CLUSTER',
+    pctfree $,
+    pctused$
+  from
+    sys.clu$
+  union all
+  select
+    obj#,
+    file#,
+    block #,
+    'INDEX',
+    to_number(null),
+    to_number(null)
+  from
+    sys.ind$
+columns: []
+referencedTables: []

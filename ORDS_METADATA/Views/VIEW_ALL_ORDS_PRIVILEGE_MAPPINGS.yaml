@@ -1,0 +1,21 @@
+schema: ORDS_METADATA
+name: ALL_ORDS_PRIVILEGE_MAPPINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    sec_privilege_mappings.privilege_id,
+    sec_privileges.name,
+    sec_privilege_mappings.pattern,
+    sec_privilege_mappings.schema_id,
+    sec_privilege_mappings.created_by,
+    sec_privilege_mappings.created_on,
+    sec_privilege_mappings.updated_by,
+    sec_privilege_mappings.updated_on
+  FROM
+    sec_privilege_mappings,
+    sec_privileges
+  WHERE
+    sec_privileges.id = sec_privilege_mappings.privilege_id
+columns: []
+referencedTables: []

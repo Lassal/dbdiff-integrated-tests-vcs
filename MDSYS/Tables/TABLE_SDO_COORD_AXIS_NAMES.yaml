@@ -1,0 +1,33 @@
+name: SDO_COORD_AXIS_NAMES
+schema: MDSYS
+columns:
+- name: COORD_AXIS_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: false
+  dataTypeLength: 80
+- name: COORD_AXIS_NAME_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+constraints:
+- !<unique-constraint>
+  name: COORD_AXIS_NAME_PRIM
+  type: PRIMARY_KEY
+  columns:
+  - name: COORD_AXIS_NAME_ID
+    ordinalPosition: 1
+- !<unique-constraint>
+  name: SYS_C005803
+  type: UNIQUE
+  columns:
+  - name: SRID
+    ordinalPosition: 0
+- !<check-constraint>
+  name: SYS_C005802
+  type: CHECK
+  checkClause: '"COORD_AXIS_NAME" IS NOT NULL'

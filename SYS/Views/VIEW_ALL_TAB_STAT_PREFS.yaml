@@ -1,0 +1,59 @@
+schema: SYS
+name: ALL_TAB_STAT_PREFS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    p.pname,
+    p.valchar
+  from
+    sys.optstat_user_prefs$ p,
+    obj$ o,
+    user $ u
+  where
+    p.obj# = o.obj#
+    and u.user# = o.owner#
+    and o.type# = 2
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

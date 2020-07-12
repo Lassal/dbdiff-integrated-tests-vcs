@@ -1,0 +1,187 @@
+schema: XDB
+name: DBMS_RESCONFIG
+routineType: PACKAGE
+returnParamater:
+  name: GETRESCONFIGPATHS.(--return--)
+  ordinalPosition: 0
+  dataType: VARRAY
+  parameterMode: OUT
+parameters:
+- name: ADDREPOSITORYRESCONFIG.RCPATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDREPOSITORYRESCONFIG.POS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ADDRESCONFIG.RESPATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDRESCONFIG.RCPATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDRESCONFIG.POS
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: APPENDRESCONFIG.RESPATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPENDRESCONFIG.RCPATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPENDRESCONFIG.APPENDOPTION
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DELETEREPOSITORYRESCONFIG.POS
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DELETERESCONFIG(1).RESPATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETERESCONFIG(1).POS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DELETERESCONFIG(2).RESPATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETERESCONFIG(2).RCPATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETERESCONFIG(2).DELETEOPTION
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GETLISTENERS.PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETREPOSITORYRESCONFIG.POS
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GETRESCONFIG.RESPATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETRESCONFIG.POS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GETRESCONFIGPATHS.RESPATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: "PACKAGE dbms_resconfig AUTHID CURRENT_USER IS ------------\n--\
+  \ CONSTANTS\n--\n------------\nDELETE_RESOURCE CONSTANT NUMBER: = 1;\nDELETE_RECURSIVE\
+  \ CONSTANT NUMBER: = 2;\nAPPEND_RESOURCE CONSTANT NUMBER: = 1;\nAPPEND_RECURSIVE\
+  \ CONSTANT NUMBER: = 2;\n---------------------------------------------\n-- FUNCTION\
+  \ - getResConfig\n--     Returns the resource configuration at the specified position\
+  \ of the\n--     target resource's configuration list.\n-- PARAMETERS -\n--  respath\n\
+  --     Absolute path in the Hierarchy of the resource\n--  pos\n--     position\
+  \ of element to return. Position must be >= 0 and < the length of\n--     the resource's\
+  \ configuration list.\n-- RETURNS -\n--     Returns contents of resource configuration.\n\
+  ---------------------------------------------\nFUNCTION getResConfig(respath IN\
+  \ VARCHAR2, pos IN PLS_INTEGER) RETURN sys.XMLType;\n---------------------------------------------\n\
+  -- PROCEDURE - addResConfig\n--      Inserts the resource configuration specified\
+  \ by rcpath at the given position in the target resource's configuration list.\n\
+  --\n-- PARAMETERS:\n--     respath\t- absolute path of the target resource.\n--\
+  \     rcpath\t- absolute path of the resource configuration to be inserted. An exception\
+  \ is raised if rcpath already exists in the target's configuration list.\n--   \
+  \  pos \t- index at which the new configuration is to be inserted. If this parameter\
+  \ is not specified then the new configuration is appended to the end of the list.\
+  \ An exception is raised if the index is out of range (i.e., pos < 0 or pos > the\
+  \ size of the target resource's configuration list).\n---------------------------------------------\n\
+  PROCEDURE addResConfig(\n  respath IN VARCHAR2,\n  rcpath IN VARCHAR2,\n  pos IN\
+  \ PLS_INTEGER: = NULL\n);\nPRAGMA SUPPLEMENTAL_LOG_DATA(addResConfig, AUTO);\n---------------------------------------------\n\
+  -- FUNCTION getResConfigPaths\n--    Returns a list of resource configuration paths\
+  \ defined in the target resource's configuration list.\n--\n-- PARAMETERS:\n-- \
+  \   respath\t- absolute path of the target resource.\n---------------------------------------------\n\
+  Function getResConfigPaths(respath IN VARCHAR2) return XDB$STRING_LIST_T;\n---------------------------------------------\n\
+  -- PROCEDURE appendResConfig\n-- Appends the resource configuration specified by\
+  \ rcpath to the target resource's configuration list if it is not already included\
+  \ in the list.\n-- PARAMETERS\n--   respath\t- absolute path of the target resource.\n\
+  --   rcpath\t- absolute path of the resource configuration to be appended at the\
+  \ end of the target's configuration list. If rcpath already exists in the list then\
+  \ nothing is appended.\n--   appendOption - either APPEND_RESOURCE or APPEND_RECURSIVE.\
+  \ If APPEND_RESOURCE is specified then only the target resource is affected. If\
+  \ APPEND_RECURSIVE is specified then the target resource and all its descendents\
+  \ will be affected.\n---------------------------------------------\nProcedure appendResConfig(\n\
+  \  respath IN VARCHAR2,\n  rcpath IN VARCHAR2,\n  appendOption IN PLS_INTEGER\n\
+  );\nPRAGMA SUPPLEMENTAL_LOG_DATA(appendResConfig, AUTO);\n---------------------------------------------\n\
+  -- PROCEDURE deleteResConfig\n-- Removes the configuration at the given position\
+  \ in the target resource's configuration list.\n-- PARAMETERS\n--   respath\t- absolute\
+  \ path of the target resource.\n--   pos \t- the index of the configuration to be\
+  \ removed. An exception is raised if the index is out of range (i.e., pos < 0 or\
+  \ pos >= the size of the target resource's configuration list.\n---------------------------------------------\n\
+  Procedure deleteResConfig(respath IN VARCHAR2, pos IN PLS_INTEGER);\nPRAGMA SUPPLEMENTAL_LOG_DATA(deleteResConfig,\
+  \ AUTO);\n---------------------------------------------\n-- PROCEDURE deleteResConfig\n\
+  -- Removes the configuration specified by rcpath from the target resource's configuration\
+  \ list. Shifts any subsequent elements to the left. Users must have write-config\
+  \ privilege on all affected resources to execute this.\n-- PARAMETERS\n--   respath\t\
+  - absolute path of the target resource.\n--   rcpath\t- absolute path of the resource\
+  \ configuration to be deleted if found in list.\n--   deleteOption - either DELETE_RESOURCE\
+  \ or DELETE_RECURSIVE. If DELETE_RESOURCE is specified then only the configuration\
+  \ list of the target resource is affected. If DELETE_RECURSIVE is specified then\
+  \ the configuration list of the target resource and all its descendents will be\
+  \ affected.\n---------------------------------------------\nProcedure deleteResConfig(\n\
+  \  respath IN VARCHAR2,\n  rcpath IN VARCHAR2,\n  deleteOption IN PLS_INTEGER\n\
+  );\nPRAGMA SUPPLEMENTAL_LOG_DATA(deleteResConfig, AUTO);\n---------------------------------------------\n\
+  -- FUNCTION getListeners\n-- Returns the list of listeners applicable for a given\
+  \ resource. The value returned by this function is an XML document containing the\
+  \ <event-listeners> element of the XDBResconfig.xsd schema. It contains all the\
+  \ listeners applicable to the target resource, including repository-level listeners.\
+  \ From the returned XML document users can use the EXTRACT operator to retrieve\
+  \ the listeners defined for a specific event. Users must have the required access\
+  \ privilege on all resource configurations referenced by the repository and the\
+  \ target resource; otherwise, an error is returned.\n-- PARAMETERS\n-- path - absolute\
+  \ path of the target resource.\n---------------------------------------------\n\
+  function getListeners(path IN VARCHAR2) return SYS.XMLType;\n---------------------------------------------\n\
+  -- FUNCTION getRepositoryResConfig\n-- Description:\n-- Returns the resource configuration\
+  \ at the specified position of the repository's configuration list.  Users must\
+  \ have the required read privilege on the requested resource configuration; otherwise,\
+  \ an error is returned.\n-- Parameters:\n--     pos \t- index of element to return.\
+  \ An exception is raised if the index is out of range (i.e., pos < 0 or pos >= the\
+  \ size of the repository's configuration list).\n---------------------------------------------\n\
+  Function getRepositoryResConfig(pos IN PLS_INTEGER) return SYS.XMLType;\n---------------------------------------------\n\
+  -- FUNCTION getRepositoryResConfigPaths\n--\tDescription:\n--         Returns a\
+  \ list of resource configuration paths defined for the repository. Users must be\
+  \ able to access all the referenced resource configurations; otherwise, an error\
+  \ is returned.\n---------------------------------------------\nFunction getRepositoryResConfigPaths\
+  \ return XDB$STRING_LIST_T;\n---------------------------------------------\n-- PROCEDURE\
+  \ addRepositoryResConfig\n-- Description:\n-- Inserts the resource configuration\
+  \ specified by rcpath at the given position of the repository's configuration list.\
+  \  Shifts the element currently at that position (if any) and any subsequent elements\
+  \ to the right. An error is raised if the document referenced by rcpath is not based\
+  \ on XDBResConfig.xsd schema. Users must have XDBADMIN role and read privilege on\
+  \ the resource configuration to be inserted; otherwise, an error is returned.\n\
+  -- Parameters:\n--     rcpath\t- absolute path of the resource configuration to\
+  \ be inserted. An exception is raised if rcpath already exists in the repository's\
+  \ configuration list.\n--     pos \t- index at which the new configuration is to\
+  \ be inserted. If this parameter is not specified then the new configuration is\
+  \ appended to the end of the list. An exception is raised if the index is out of\
+  \ range (i.e., pos < 0 or pos > the size of the repository's configuration list).\n\
+  ---------------------------------------------\nProcedure addRepositoryResConfig(rcpath\
+  \ IN VARCHAR2, pos IN PLS_INTEGER: = NULL);\nPRAGMA SUPPLEMENTAL_LOG_DATA(addRepositoryResConfig,\
+  \ AUTO_WITH_COMMIT);\n---------------------------------------------\n-- PROCEDURE\
+  \ deleteRepositoryResConfig\n-- \tDescription:\n--        Removes the configuration\
+  \ at the given position in the repository's configuration list. Shifts any subsequent\
+  \ elements to the left.  Users must have XDBADMIN role to execute this.\n--    \
+  \   This statement is treated as if it is a DDL statement. This means the system\
+  \ will implicitly commit before and after this statement.\n-- Parameters:\n--  \
+  \    pos \t- the index of the configuration to be removed. An exception is raised\
+  \ if the index is out of range (i.e., pos < 0 or pos >= the size of the repository's\
+  \ configuration list).\n---------------------------------------------\nProcedure\
+  \ deleteRepositoryResConfig(pos IN PLS_INTEGER);\nPRAGMA SUPPLEMENTAL_LOG_DATA(deleteRepositoryResConfig,\
+  \ AUTO_WITH_COMMIT);\nend dbms_resconfig;"

@@ -1,0 +1,13 @@
+schema: ORDDATA
+name: ORDDCM_DBRELEASE_DOCS
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  SELECT
+    idocs.DOC_NAME,
+    idocs.DOC_TYPE,
+    idocs.LOAD_ORDER
+  FROM
+    ORDDATA.ORDDCM_INSTALL_DOCS idocs WITH READ ONLY
+columns: []
+referencedTables: []

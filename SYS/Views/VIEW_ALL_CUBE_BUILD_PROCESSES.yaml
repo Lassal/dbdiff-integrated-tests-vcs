@@ -1,0 +1,53 @@
+schema: SYS
+name: ALL_CUBE_BUILD_PROCESSES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name OWNER,
+    o.name BUILD_PROCESS_NAME,
+    ia.obj# BUILD_PROCESS_ID,
+    syn.syntax_clob BUILD_PROCESS,
+    d.description_value DESCRIPTION
+  FROM
+    olap_cube_build_processes$ ia,
+    obj$ o,
+    user $ u,
+    olap_syntax$ syn,
+    (
+      select
+        d. *
+      from
+        olap_descriptions$ d,
+        nls_session_parameters n
+      where
+        n.parameter = 'NLS_LANGUAGE'
+        and d.description_type = 'Description'
+        and d.owning_object_type = 8 --BUILD_PROCESS
+        and (
+          d.language = n.value
+          or d.language like n.value || '\_%' escape '\')) d
+  WHERE
+    ia.obj# = o.obj#
+    AND o.owner# = u.user#
+    AND ia.obj# = d.owning_object_id(+)
+    AND syn.owner_id(+)=ia.obj#
+    AND syn.owner_type(+)=8
+    AND syn.ref_role(+)=13 -- build process
+    AND (o.owner# in (userenv(' SCHEMAID '), 1)   -- public objects
+         or o.obj# in
+              ( select obj#  -- directly granted privileges
+                from sys.objauth$
+                where grantee# in ( select kzsrorol from x$kzsro )
+              )
+         or   -- user has system privileges
+                ( exists (select null from v$enabledprivs
+                          where priv_number in (-321, -- DROP ANY BUILD PROCESS
+                                                -322, -- UPDATE ANY BUILD PROCESS
+                                                -395, -- SELECT ANY BUILD PROCESS
+                                                -396) -- ALTER ANY BUILD PROCESS
+                          )
+                )
+              )
+columns: []
+referencedTables: []

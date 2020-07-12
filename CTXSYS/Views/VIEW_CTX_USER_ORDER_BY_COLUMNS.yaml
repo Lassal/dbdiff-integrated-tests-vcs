@@ -1,0 +1,29 @@
+schema: CTXSYS
+name: CTX_USER_ORDER_BY_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    idx_name obc_index_name,
+    u.name obc_table_owner,
+    o.name obc_table_name,
+    cdi_column_name obc_column_name,
+    cdi_column_position obc_column_position,
+    cdi_column_type obc_column_type,
+    cdi_section_name obc_section_name,
+    decode(cdi_section_type, 8, 'SDATA', 9, 'MDATA', 'UNKNOWN') obc_section_type,
+    cdi_section_id obc_section_id,
+    cdi_sort_order obc_sort_order
+  from
+    dr$index_cdi_column,
+    dr$index,
+    sys.obj$ o,
+    sys.user$ u
+  where
+    cdi_idx_id = idx_id
+    and cdi_column_position != 0
+    and idx_table_owner# = u.user#
+    and idx_table# = o.obj#
+    and idx_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

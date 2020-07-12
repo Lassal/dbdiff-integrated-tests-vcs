@@ -1,0 +1,18 @@
+schema: SYS
+name: USER_EVALUATION_CONTEXTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    /*+ all_rows */
+    o.name,
+    ec.eval_func,
+    ec.ec_comment
+  FROM
+    rule_ec$ ec,
+    obj$ o
+  WHERE
+    ec.obj# = o.obj#
+    and o.owner# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

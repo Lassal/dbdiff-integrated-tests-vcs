@@ -1,0 +1,14 @@
+schema: SYS
+name: DEFERRCOUNT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    count(1) errcount,
+    destination
+  FROM
+    deferror
+  GROUP BY
+    destination
+columns: []
+referencedTables: []

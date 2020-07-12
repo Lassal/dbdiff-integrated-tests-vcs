@@ -1,0 +1,17 @@
+schema: SYS
+name: CDB_ADVISOR_FDG_BREAKDOWN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "TASK_ID",
+    "FINDING_ID",
+    "INSTANCE_NUMBER",
+    "IMPACT",
+    "PERC_IMPACT",
+    "EXECUTION_NAME",
+    "CON_ID"
+  FROM
+    CONTAINERS("SYS"."DBA_ADVISOR_FDG_BREAKDOWN")
+columns: []
+referencedTables: []

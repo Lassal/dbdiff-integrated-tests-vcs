@@ -1,0 +1,49 @@
+schema: SYS
+name: DBA_EDITIONING_VIEW_COLS_AE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ev_user.name,
+    ev_obj.name,
+    view_col.col#,
+    view_col.name,
+    tbl_col.col#,
+    tbl_col.name,
+    ev_obj.defining_edition
+  from
+    sys. "_ACTUAL_EDITION_OBJ" ev_obj,
+    sys.obj$ base_tbl_obj,
+    sys.ev$ ev,
+    sys.evcol$ ev_col,
+    sys.col$ view_col,
+    sys.col$ tbl_col,
+    sys.user$ ev_user
+  where
+    /* get all columns of a given EV */
+    ev.ev_obj# = ev_col.ev_obj#
+    /* join EVCOL$ to COL$ on EV id and column id to obtain EV column */
+    /* name */
+    and ev_col.ev_obj# = view_col.obj#
+    and ev_col.ev_col_id = view_col.col#
+    /* join EV$ to OBJ$ on base table owner id and base table name so we */
+    /* can determine base table id */
+    and ev.base_tbl_owner# = base_tbl_obj.owner#
+    and ev.base_tbl_name = base_tbl_obj.name
+    /* exclude [sub]partitions by restricting base_tbl_obj.type# to */
+    /* "table"; since COL$ will not contain rows for [sub]partitions, */
+    /* this restriction is not, strictly speaking, necessary, but it */
+    /* does ensure that the above join will return exactly one row */
+    and base_tbl_obj.type# = 2
+    /* join EVCOL$ row and OBJ$ row describing the EV's base table to */
+    /* COL$ to obtain base table column id */
+    and base_tbl_obj.obj# = tbl_col.obj#
+    and ev_col.base_tbl_col_name = tbl_col.name
+    /* join EV$ to _ACTUAL_EDITION_OBJ on EV id so we can determine */
+    /* name of the EV and id of its owner */
+    and ev_obj.obj# = ev.ev_obj#
+    /* join _ACTUAL_EDITION_OBJ row describing the EV to USER$ to get */
+    /* owner name */
+    and ev_obj.owner# = ev_user.user#
+columns: []
+referencedTables: []

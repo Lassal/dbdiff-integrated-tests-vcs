@@ -1,0 +1,76 @@
+schema: SYS
+name: KU$_COLLECTION_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    toid,
+    /* TOID */
+    version#,
+    /* internal type version number */
+    coll_toid,
+    /* collection TOID (TABLE, VARRAY, etc.) */
+    coll_version#,
+    /* collection type's internal version number */
+    elem_toid,
+    /* element's TOID */
+    elem_version#,
+    /* element's type's internal version number */
+    synobj#,
+    /* obj# of type synonym */
+    properties,
+    /* element's properties: */
+    charsetid,
+    /* character set id */
+    charsetform,
+    /* character set form */
+    length,
+    /* fixed character string length or */
+    /* maximum varying character string length */
+    precision,
+    /* fixed- or floating-point numeric precision */
+    scale,
+    /* fixed-point numeric scale */
+    upper_bound,
+    /* fixed array size or varying array upper bound */
+    spare1,
+    /* fractional seconds precision */
+    spare2,
+    /* interval leading field precision */
+    spare3,
+    (
+      select
+        value(st)
+      from
+        ku$_simple_type_View st
+      where
+        st.toid = c .coll_toid
+        and st.version = (
+          SELECT
+            MAX(ST2.VERSION)
+          FROM
+            ku$_simple_type_View st2
+          WHERE
+            ST2.TOID = c .coll_toid
+        )
+    ),
+    (
+      select
+        value(st)
+      from
+        ku$_simple_type_View st
+      where
+        st.toid = c .elem_toid
+        and st.version = (
+          SELECT
+            MAX(ST2.VERSION)
+          FROM
+            ku$_simple_type_View st2
+          WHERE
+            ST2.TOID = c .elem_toid
+        )
+    )
+  FROM
+    sys.collection$ c
+columns: []
+referencedTables: []

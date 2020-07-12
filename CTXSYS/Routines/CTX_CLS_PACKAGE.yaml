@@ -1,0 +1,231 @@
+schema: CTXSYS
+name: CTX_CLS
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: CLUSTERING(1).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLUSTERING(1).DOCID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLUSTERING(1).DOCTAB_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLUSTERING(1).CLSTAB_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLUSTERING(1).PREF_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLUSTERING(2).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLUSTERING(2).DOCID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLUSTERING(2).DIDS
+  ordinalPosition: 3
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: CLUSTERING(2).DOCTAB_NAME
+  ordinalPosition: 4
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: CLUSTERING(2).CLSTAB_NAME
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: CLUSTERING(2).PREF_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(1).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(1).DOCID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(1).CATTAB
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(1).CATDOCID
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(1).CATID
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(1).RESTAB
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(1).RESCATID
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(1).RESQUERY
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(1).RESCONFID
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(1).PREF_NAME
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(2).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(2).DOCID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(2).CATTAB
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(2).CATDOCID
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(2).CATID
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(2).RESTAB
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRAIN(2).PREF_NAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: "PACKAGE ctx_cls AUTHID current_user AS\n/*-------------------------------\
+  \ TYPE DEFINITIONS ----------------------------*/\n/* in-memory table for document\
+  \ assignment */\nTYPE doc_rec IS RECORD (\n  docid number,\n  -- document ID to\
+  \ identify the document\n  clusterid number,\n  -- the ID of the cluster the document\
+  \ is assigned to\n  score number -- the similarity score between document and cluster\n\
+  );\nTYPE doc_tab is TABLE OF doc_rec INDEX BY BINARY_INTEGER;\n/* in-memory table\
+  \ for cluster information */\nTYPE cluster_rec IS RECORD (\n  clusterid number,\n\
+  \  -- cluster ID to identify a cluster\n  descript varchar2(4000),\n  -- a string\
+  \ to describe the cluster\n  label varchar2(200),\n  -- a suggested label for the\
+  \ cluster\n  sze number,\n  -- number of documents assigned to the cluster\n  quality_score\
+  \ number,\n  -- the quality score of the cluster\n  parent number -- parent cluster\
+  \ id. negative means no parent\n);\nTYPE cluster_tab IS TABLE OF cluster_rec INDEX\
+  \ BY BINARY_INTEGER;\nTYPE docid_tab IS TABLE OF number INDEX BY BINARY_INTEGER;\n\
+  /*------------------------------- train for ctx-rules --------------------------*/\n\
+  /*\n\n   NAME\n\n     train - automatically generate ctx-rules from training examples\n\
+  \n\n\n   DESCRIPTION\n\n     This procedure will generate the ctx-rules for a given\
+  \ set of training\n\n     examples. The training examples are contained in the following\
+  \ two tables\n\n\n\n\ttable1:  doctab must have the following columns:\n\n\t\t docid\t\
+  \tnumber primary key\n\n\t\t text\t\tdoc. column which can be indexed by context\
+  \ index\n\n        table2:  category table must have the following columns:\n\n\t\
+  \t docid\t\tCONSTRAINT fk_id REFERENCES doctab(id)\n\n\t\t category_id\tnumber\n\
+  \n\n\n\tthe foreign key in category table is recommended by not required.\n\n\n\n\
+  \     The rules will be written to the result table specified.\n\n     The query\
+  \ table must have the following columns:\n\n\n\n       category_id\t\tnumber   \
+  \      (the category_id)\n\n       query\t              \tvarchar2(4000) (the rule)\n\
+  \n       confidence               number         (the confidence level\n\n\t\t\t\
+  \t\t\t(percentage) that a document\n\n\t\t\t\t\t\tis relevant if this rule is\n\n\
+  \t\t\t\t\t\tsatisfied )\n\n\n\n     The names of table and column are not necessary\
+  \ the same as above.\n\n\n\n   ARGUMENTS\n\n     index_name               - the\
+  \ name of the text index\n\n     docid                    - the name of docid column\
+  \ in document table\n\n     cattab\t\t      - the name of category table\n\n   \
+  \  catdocid\t\t      - the name of docid column in categroy table\n\n     catid\t\
+  \t      - the name of category ID column in category table\n\n     restab\t\t  \
+  \    - the name of result table\n\n     rescatid                 - the name of category\
+  \ ID column in result table\n\n     resquery                 - the name of query\
+  \ column in result table\n\n     resconfid                - the name of confidence\
+  \ column in result table\n\n     pref_name                - the name of preference\n\
+  \n*/\nPROCEDURE train (\n  index_name in varchar2,\n  docid in varchar2,\n  cattab\
+  \ in varchar2,\n  catdocid in varchar2,\n  catid in varchar2,\n  restab in varchar2,\n\
+  \  rescatid in varchar2,\n  resquery in varchar2,\n  resconfid in varchar2,\n  pref_name\
+  \ in varchar2 DEFAULT NULL\n);\nPRAGMA SUPPLEMENTAL_LOG_DATA(train, AUTO);\n/*-------------------------------\
+  \ generic train API ---------------------------*/\n/*\n\n   NAME\n\n     train -\
+  \ automatically generate predicative model from examples for\n\n             classification\n\
+  \n\n\n   DESCRIPTION\n\n     This procedure will generate the predicative model\
+  \ from a given set of\n\n     training examples. The training examples are contained\
+  \ in the following\n\n     two tables\n\n\n\n\ttable1:  doctab must have the following\
+  \ columns:\n\n\t\t docid\t  \tnumber primary key\n\n\t\t text\t \tdoc. column which\
+  \ can be indexed by context index\n\n        table2:  category table must have the\
+  \ following columns:\n\n\t\t docid\t\tnumber\n\n\t\t category_id\tnumber\n\n\n\n\
+  \     The names of table and column are not necessary the same as above.\n\n\n\n\
+  \     The predicative model (classifier) will be written to the result tables.\n\
+  \n     The result table is either created by users before calling this function\
+  \ or\n\n     created in this program with the specified table name and under the\
+  \ current\n\n     user (if the specified table does not exist).\n\n     If user\
+  \ create the result table (which can support table schema for\n\n     different\
+  \ users), the table should have the following three columns with the\n\n     exact\
+  \ column names:\n\n\t\tcat_id number\n\n\t\ttype number(3) not null\n\n\t\trule\
+  \ clob\n\n\n\n   ARGUMENTS\n\n     index_name               - the name of the text\
+  \ index\n\n     docid                    - the name of docid column in document\
+  \ table\n\n     cattab\t\t      - the name of category table\n\n     catdocid\t\t\
+  \      - the name of docid column in categroy table\n\n     catid\t\t      - the\
+  \ name of category ID column in category table\n\n     restab                  \
+  \ - the name of generated result table\n\n     pref_name                - the name\
+  \ of preference\n\n*/\nPROCEDURE train (\n  index_name in varchar2,\n  docid in\
+  \ varchar2,\n  cattab in varchar2,\n  catdocid in varchar2,\n  catid in varchar2,\n\
+  \  restab in varchar2,\n  pref_name in varchar2\n);\nPRAGMA SUPPLEMENTAL_LOG_DATA(train,\
+  \ AUTO);\n/* ---------- clustering API for permanent table result------------------------*/\n\
+  /*\n\n  NAME\n\n    clustering - clustering a collection\n\n\n\n  DESCRIPTION\n\n\
+  \    This procedure will generate a set of sub-group (clusters) from a provided\n\
+  \n    collection of documents. The collection is given by a table which having a\n\
+  \n    context index built with or without population. The collection table at least\n\
+  \n    has the following two collums, whose name may not be exactly the same.\n\n\
+  \t docid\t  \tnumber primary key\n\n\t text\t \tdoc. column which can be indexed\
+  \ by context index\n\n\n\n    The output of clustering is represented by two tables:\n\
+  \n\n\n\ttable 1: document membership table having the following collums with the\n\
+  \n\t\t exact same names\n\n\t docid     number -- document ID to identify a document\n\
+  \n\t clusterid number -- the ID of the cluster the document is assigned to\n\n\t\
+  \ score     number -- the similarity score between document and cluster\n\n\n\n\t\
+  table 2: cluster description table having the following collums with the\n\n\t\t\
+  \ exact same names\n\n\t clusterid number         -- cluster ID to identify a cluster\n\
+  \n\t descript  varchar2(4000) -- a string to describe the cluster\n\n         label\
+  \     varchar2(200)  -- a suggested label for the cluster\n\n         size     \
+  \ number         -- number of documents assigned to the cluster\n\n\t quality_score\
+  \ number     -- the quality score of the cluster\n\n\t parent    number        \
+  \ -- parent cluster id. negative means no parent\n\n\n\n     The output tables can\
+  \ either be created by users before calling this\n\n     function or created in\
+  \ this program with the specified table name and\n\n     under the current user\
+  \ (if the specified table does not exist).\n\n\n\n   ARGUMENTS:\n\n     index_name\
+  \               - the name of the text index\n\n     docid                    -\
+  \ the name of docid column in document table\n\n     doctab_name              -\
+  \ the name of document membership table\n\n     clstab_name              - the name\
+  \ of cluster description table\n\n     pref_name                - the name of the\
+  \ preference\n\n*/\nPROCEDURE clustering (\n  index_name in varchar2,\n  docid in\
+  \ varchar2,\n  doctab_name in varchar2,\n  clstab_name in varchar2,\n  pref_name\
+  \ in varchar2 DEFAULT NULL\n);\nPRAGMA SUPPLEMENTAL_LOG_DATA(clustering, AUTO);\n\
+  /* ---------- clustering API for in-memory table result------------------------*/\n\
+  /*\n\n  NAME\n\n    clustering - clustering a collection\n\n\n\n  DESCRIPTION\n\n\
+  \    This procedure will generate a set of sub-group (clusters) from a provided\n\
+  \n    collection of documents. The collection is given by a table which having a\n\
+  \n    context index built with or without population. The collection table at least\n\
+  \n    has the following two collums, whose name may not be exactly the same.\n\n\
+  \t docid\t  \tnumber primary key\n\n\t text\t \tdoc. column which can be indexed\
+  \ by context index\n\n\n\n    The output of clustering is represented by two in-memory\
+  \ tables:\n\n\n\n\ttable 1: document membership table ctx_cls.doc_tab\n\n\ttable\
+  \ 2: cluster description table ctx_cls.cluster_tab\n\n\n\n   ARGUMENTS:\n\n    \
+  \ index_name               - the name of the text index\n\n     docid          \
+  \          - the name of docid column in document table\n\n     dids           \
+  \          - docid list to be clustered\n\n     doctab_name              - the name\
+  \ of document membership table\n\n     clstab_name              - the name of cluster\
+  \ description table\n\n     pref_name                - the name of the preference\n\
+  \n*/\nPROCEDURE clustering (\n  index_name in varchar2,\n  docid in varchar2,\n\
+  \  dids in docid_tab,\n  doctab_name in out nocopy doc_tab,\n  clstab_name in out\
+  \ nocopy cluster_tab,\n  pref_name in varchar2 DEFAULT NULL\n);\n--PRAGMA SUPPLEMENTAL_LOG_DATA(clustering,\
+  \ AUTO);\nEND ctx_cls;"

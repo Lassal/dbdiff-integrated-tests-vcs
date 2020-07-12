@@ -1,0 +1,48 @@
+schema: SYS
+name: ALL_POLICY_CONTEXTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    OBJECT_OWNER,
+    OBJECT_NAME,
+    NAMESPACE,
+    ATTRIBUTE
+  FROM
+    DBA_POLICY_CONTEXTS,
+    ALL_TABLES t
+  WHERE
+    (
+      OBJECT_OWNER = t.OWNER
+      AND OBJECT_NAME = t.TABLE_NAME
+    )
+  union all
+  SELECT
+    OBJECT_OWNER,
+    OBJECT_NAME,
+    NAMESPACE,
+    ATTRIBUTE
+  FROM
+    DBA_POLICY_CONTEXTS,
+    ALL_VIEWS v
+  WHERE
+    (
+      OBJECT_OWNER = v.OWNER
+      AND OBJECT_NAME = v.VIEW_NAME
+    )
+  union all
+  SELECT
+    OBJECT_OWNER,
+    OBJECT_NAME,
+    NAMESPACE,
+    ATTRIBUTE
+  FROM
+    DBA_POLICY_CONTEXTS,
+    ALL_SYNONYMS s
+  WHERE
+    (
+      OBJECT_OWNER = s.OWNER
+      AND OBJECT_NAME = s.SYNONYM_NAME
+    )
+columns: []
+referencedTables: []

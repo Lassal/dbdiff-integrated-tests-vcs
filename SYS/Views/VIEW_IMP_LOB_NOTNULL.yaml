@@ -1,0 +1,20 @@
+schema: SYS
+name: IMP_LOB_NOTNULL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    u.name,
+    c .type#,
+    c .null$
+  FROM
+    sys.col$ c,
+    sys.obj$ o,
+    sys.user$ u
+  WHERE
+    c .obj# = o.obj#
+    AND u.user# = o.owner#
+    AND o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

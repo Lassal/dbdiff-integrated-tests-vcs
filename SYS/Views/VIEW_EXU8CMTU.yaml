@@ -1,0 +1,17 @@
+schema: SYS
+name: EXU8CMTU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "USERID",
+    "OBJID",
+    "COLNO",
+    "COLNAME",
+    "CMNT"
+  FROM
+    sys.exu8cmt
+  WHERE
+    userid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

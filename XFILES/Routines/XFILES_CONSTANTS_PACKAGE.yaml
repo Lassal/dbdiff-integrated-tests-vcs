@@ -1,0 +1,68 @@
+schema: XFILES
+name: XFILES_CONSTANTS
+routineType: PACKAGE
+returnParamater:
+  name: RESCONFIG_WHOAMI.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  package XFILES_CONSTANTS authid DEFINER as C_FOLDER_XFILES_ROOT constant VARCHAR2(700): = '/XFILES';
+  C_FOLDER_XFILES_HOME constant VARCHAR2(700): = '/home/XFILES';
+  C_FOLDER_XFILES_APPS_PRIVATE constant VARCHAR2(700): = C_FOLDER_XFILES_HOME || '/Applications';
+  C_FOLDER_XFILES_APPS_PUBLIC constant VARCHAR2(700): = C_FOLDER_XFILES_ROOT || '/Applications';
+  C_NAMESPACE_XFILES constant VARCHAR2(128): = DBMS_XDB_CONSTANTS.NAMESPACE_ORACLE_XDB || '/xfiles';
+  C_NAMESPACE_XFILES_RSS constant VARCHAR2(128): = C_NAMESPACE_XFILES || '/rss';
+  C_NSPREFIX_XFILES_XFILES constant VARCHAR2(128): = 'xmlns:xfiles="' || C_NAMESPACE_XFILES || '"';
+  C_NSPREFIX_XFILES_RSS_RSS constant VARCHAR2(128): = 'xmlns:rss="' || C_NAMESPACE_XFILES_RSS || '"';
+  C_ELEMENT_RSS constant VARCHAR2(256): = 'enableRSS';
+  C_ACL_XFILES_USERS constant VARCHAR2(700): = C_FOLDER_XFILES_HOME || '/src/acls/xfilesUserAcl.xml';
+  C_ACL_DENY_XFILES_USERS constant VARCHAR2(700): = C_FOLDER_XFILES_HOME || '/src/acls/denyXFilesUserAcl.xml';
+  C_DOCUMENT_XMLINDEX_LIST constant VARCHAR2(700): = C_FOLDER_XFILES_HOME || '/configuration/xmlIndexList.xml';
+  C_DOCUMENT_XMLSCHEMA_LIST constant VARCHAR2(700): = C_FOLDER_XFILES_HOME || '/configuration/xmlSchemaList.xml';
+  C_FOLDER_RESCONFIG_INT constant VARCHAR2(700): = C_FOLDER_XFILES_HOME || '/src/resConfig';
+  C_FOLDER_LOGGING constant VARCHAR2(700): = C_FOLDER_XFILES_HOME || '/Logs';
+  C_FOLDER_CURRENT_LOGGING constant VARCHAR2(700): = C_FOLDER_LOGGING || '/Current';
+  C_FOLDER_ERROR_LOGGING constant VARCHAR2(700): = C_FOLDER_LOGGING || '/Errors';
+  C_FOLDER_CURRENT_ERRORS constant VARCHAR2(700): = C_FOLDER_ERROR_LOGGING || '/Current';
+  C_FOLDER_CLIENT_LOGGING constant VARCHAR2(700): = C_FOLDER_LOGGING || '/Client';
+  C_FOLDER_CURRENT_CLIENT constant VARCHAR2(700): = C_FOLDER_CLIENT_LOGGING || '/Current';
+  -- Path to the public location, not the private location.
+  C_DOCUMENT_UNAUTHENTICATED constant VARCHAR2(700): = C_FOLDER_XFILES_ROOT || '/unauthenticated.xml';
+  C_DOCUMENT_WHOAMI constant VARCHAR2(700): = C_FOLDER_XFILES_ROOT || '/whoami.xml';
+  C_DOCUMENT_AUTH_STATUS constant VARCHAR2(700): = C_FOLDER_XFILES_ROOT || '/authenticationStatus.xml';
+  C_FOLDER_RESCONFIG_EXT constant VARCHAR2(700): = C_FOLDER_XFILES_ROOT || '/resConfig';
+  C_RESCONFIG_WHOAMI constant VARCHAR2(700): = C_FOLDER_RESCONFIG_EXT || '/whoamiResConfig.xml';
+  C_RESCONFIG_AUTH_STATUS constant VARCHAR2(700): = C_FOLDER_RESCONFIG_EXT || '/authStatusResConfig.xml';
+  C_RESCONFIG_INDEX_PAGE constant VARCHAR2(700): = C_FOLDER_RESCONFIG_EXT || '/indexPageResConfig.xml';
+  C_RESCONFIG_PAGE_COUNT constant VARCHAR2(700): = C_FOLDER_RESCONFIG_EXT || '/pageHitsResConfig.xml';
+  C_ELEMENT_CUSTOM_VIEWER constant VARCHAR2(700): = 'CustomViewer';
+  function FOLDER_XFILES_ROOT return VARCHAR2 deterministic;
+  function FOLDER_XFILES_HOME return VARCHAR2 deterministic;
+  function FOLDER_XFILES_APPS_PRIVATE return VARCHAR2 deterministic;
+  function FOLDER_XFILES_APPS_PUBLIC return VARCHAR2 deterministic;
+  function NAMESPACE_XFILES return VARCHAR2 deterministic;
+  function NAMESPACE_XFILES_RSS return VARCHAR2 deterministic;
+  function NSPREFIX_XFILES_XFILES return VARCHAR2 deterministic;
+  function NSPREFIX_XFILES_RSS_RSS return VARCHAR2 deterministic;
+  function ELEMENT_RSS return VARCHAR2 deterministic;
+  function ACL_XFILES_USERS return VARCHAR2 deterministic;
+  function ACL_DENY_XFILES_USERS return VARCHAR2 deterministic;
+  function DOCUMENT_WHOAMI return VARCHAR2 deterministic;
+  function DOCUMENT_AUTH_STATUS return VARCHAR2 deterministic;
+  function DOCUMENT_UNAUTHENTICATED return VARCHAR2 deterministic;
+  function RESCONFIG_WHOAMI return VARCHAR2 deterministic;
+  function RESCONFIG_AUTH_STATUS return VARCHAR2 deterministic;
+  function RESCONFIG_INDEX_PAGE return VARCHAR2 deterministic;
+  function RESCONFIG_PAGE_COUNT return VARCHAR2 deterministic;
+  function DOCUMENT_XMLINDEX_LIST return VARCHAR2 deterministic;
+  function DOCUMENT_XMLSCHEMA_LIST return VARCHAR2 deterministic;
+  function FOLDER_LOGGING return VARCHAR2 deterministic;
+  function FOLDER_CURRENT_LOGGING return VARCHAR2 deterministic;
+  function FOLDER_ERROR_LOGGING return VARCHAR2 deterministic;
+  function FOLDER_CURRENT_ERRORS return VARCHAR2 deterministic;
+  function FOLDER_CLIENT_LOGGING return VARCHAR2 deterministic;
+  function FOLDER_CURRENT_CLIENT return VARCHAR2 deterministic;
+  function ELEMENT_CUSTOM_VIEWER return VARCHAR2 deterministic;
+  end;

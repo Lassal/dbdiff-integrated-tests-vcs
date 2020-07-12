@@ -1,0 +1,177 @@
+schema: XDBPM
+name: XDBPM_XMLSCHEMA_SEARCH
+routineType: PACKAGE
+returnParamater:
+  name: MAPGLOBALPREFIX.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: GETCHILDNODEMAP.P_PROPERTY_NUMBER
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETGLOBALATTRIBUTETYPE.P_GLOBAL_ATTRIBUTE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETGLOBALATTRIBUTETYPE.P_GLOBAL_ATTRIBUTE_REFERENCE
+  ordinalPosition: 2
+  dataType: REF
+  parameterMode: IN
+- name: GETGLOBALATTRIBUTETYPE.P_DEFAULT_PREFIX
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETGLOBALATTRIBUTETYPE.P_TARGET_PREFIX
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETGLOBALATTRIBUTETYPE.P_NS_PREFIX_MAPPINGS
+  ordinalPosition: 5
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: GETGLOBALPREFIXFORNAMESPACE.V_NAMESPACE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNODENAMEMAPPING.P_NODE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNODENAMEMAPPING.P_NODE_FORM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNODENAMEMAPPING.P_TARGET_PREFIX
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNODENAMEMAPPING.P_NS_PREFIX_MAPPINGS
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: GETNODEREFMAPPING.P_NODE_REF
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNODEREFMAPPING.P_DEFAULT_PREFIX
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNODEREFMAPPING.P_NS_PREFIX_MAPPINGS
+  ordinalPosition: 3
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: GETNODETYPEMAPPING.P_NODE_TYPE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNODETYPEMAPPING.P_BASE_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNODETYPEMAPPING.P_DEFAULT_PREFIX
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNODETYPEMAPPING.P_NS_PREFIX_MAPPINGS
+  ordinalPosition: 4
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: GETROOTNODEMAP.P_SCHEMA_URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETROOTNODEMAP.P_SCHEMA_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETROOTNODEMAP.P_GLOBAL_ELEMENT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETSCHEMABASETYPE.P_TYPE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETSCHEMABASETYPE.P_TYPE_REFERENCE
+  ordinalPosition: 2
+  dataType: REF
+  parameterMode: IN
+- name: GETSCHEMABASETYPE.P_XML_SCHEMA
+  ordinalPosition: 3
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: GETSCHEMABASETYPE.P_DEFAULT_PREFIX
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETSCHEMABASETYPE.P_TARGET_PREFIX
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETSCHEMABASETYPE.P_NS_PREFIX_MAPPINGS
+  ordinalPosition: 6
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: GETSUBSTITUTIONGROUP.P_HEAD_ELEMENT
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: MAPGLOBALPREFIX.P_QNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAPGLOBALPREFIX.P_LOCAL_MAPPINGS
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_XMLSCHEMA_SEARCH authid CURRENT_USER as C_XDBPM_SCHEMAURL_XMLSCHEMA CONSTANT VARCHAR2(1024): = 'http://xmlns.oracle.com/xdb/xdbpm/XDBSchema.xsd';
+  C_XDBPM_SCHEMAURL_XDBRESOURCE CONSTANT VARCHAR2(1024): = 'http://xmlns.oracle.com/xdb/xdbpm/XDBResource.xsd';
+  C_XDBPM_XMLSCHEMA_NAMESPACE CONSTANT VARCHAR2(1024): = 'http://xmlns.oracle.com/xdb/xdbpm/XMLSchema';
+  C_XMLSCHEMA_TNS_PREFIX CONSTANT VARCHAR2(2): = 'xs';
+  function getRootNodeMap(
+    P_SCHEMA_URL varchar2,
+    P_SCHEMA_OWNER varchar2 default USER,
+    P_GLOBAL_ELEMENT varchar2
+  ) return XMLType;
+  function getChildNodeMap(P_PROPERTY_NUMBER number) return xmlType;
+  function getSubstitutionGroup(P_HEAD_ELEMENT NUMBER) return XMLType;
+  function getGlobalPrefixForNamespace(V_NAMESPACE VARCHAR2) return VARCHAR2;
+  function getGlobalAttributeType(
+    P_GLOBAL_ATTRIBUTE_NAME VARCHAR2,
+    P_GLOBAL_ATTRIBUTE_REFERENCE REF XMLType,
+    P_DEFAULT_PREFIX VARCHAR2,
+    P_TARGET_PREFIX VARCHAR2,
+    P_NS_PREFIX_MAPPINGS XMLType
+  ) return VARCHAR2;
+  function getNodeTypeMapping(
+    P_NODE_TYPE VARCHAR2,
+    P_BASE_TYPE VARCHAR2,
+    P_DEFAULT_PREFIX VARCHAR2,
+    P_NS_PREFIX_MAPPINGS XMLType
+  ) return VARCHAR2;
+  function getNodeNameMapping(
+    P_NODE_NAME VARCHAR2,
+    P_NODE_FORM VARCHAR2,
+    P_TARGET_PREFIX VARCHAR2,
+    P_NS_PREFIX_MAPPINGS XMLType
+  ) return VARCHAR2;
+  function getNodeRefMapping(
+    P_NODE_REF VARCHAR2,
+    P_DEFAULT_PREFIX VARCHAR2,
+    P_NS_PREFIX_MAPPINGS XMLType
+  ) return VARCHAR2;
+  function getSchemaBaseType(
+    P_TYPE_NAME VARCHAR2,
+    P_TYPE_REFERENCE REF XMLType,
+    P_XML_SCHEMA XMLType,
+    P_DEFAULT_PREFIX VARCHAR2,
+    P_TARGET_PREFIX VARCHAR2,
+    P_NS_PREFIX_MAPPINGS XMLType
+  ) return VARCHAR2;
+  function mapGlobalPrefix(P_QNAME VARCHAR2, P_LOCAL_MAPPINGS XMLType) return VARCHAR2;
+  function getXMLSchemaLocation return VARCHAR2;
+  end;

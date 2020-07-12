@@ -1,0 +1,61 @@
+schema: SYS
+name: KU$_10_1_TABLE_DATA_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t. *
+  from
+    ku$_htable_data_view t
+  where
+    refpar_level = 0
+    and bitand(t.trigflag, 65536 + 131072) = 0
+  UNION ALL
+  select
+    t. *
+  from
+    ku$_htpart_data_view t
+  where
+    refpar_level = 0
+    and bitand(t.trigflag, 65536 + 131072) = 0
+  UNION ALL
+  select
+    t. *
+  from
+    ku$_htspart_data_view t
+  where
+    refpar_level = 0
+    and bitand(t.trigflag, 65536 + 131072) = 0
+  UNION ALL
+  select
+    t. *
+  from
+    ku$_ntable_data_view t
+  where
+    refpar_level = 0
+    and bitand(t.trigflag, 65536 + 131072) = 0
+  UNION ALL
+  select
+    t. *
+  from
+    ku$_eqntable_data_view t
+  where
+    bitand(t.trigflag, 65536 + 131072) = 0
+  UNION ALL
+  select
+    t. *
+  from
+    ku$_iotable_data_view t
+  where
+    refpar_level = 0
+    and bitand(t.trigflag, 65536 + 131072) = 0
+  UNION ALL
+  select
+    t. *
+  from
+    ku$_iotpart_data_view t
+  where
+    refpar_level = 0
+    and bitand(t.trigflag, 65536 + 131072) = 0
+columns: []
+referencedTables: []

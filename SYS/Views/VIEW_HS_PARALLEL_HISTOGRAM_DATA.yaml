@@ -1,0 +1,16 @@
+schema: SYS
+name: HS_PARALLEL_HISTOGRAM_DATA
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    dblink,
+    remote_table_name,
+    remote_schema_name,
+    low_value,
+    high_value,
+    bucket_num
+  from
+    hs$_parallel_histogram_data
+columns: []
+referencedTables: []

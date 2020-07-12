@@ -1,0 +1,14 @@
+schema: SYS
+name: SCHEMA_EXPORT_PATHS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    OBJECT_PATH,
+    0
+  from
+    dba_export_paths
+  where
+    het_type = 'SCHEMA_EXPORT'
+columns: []
+referencedTables: []

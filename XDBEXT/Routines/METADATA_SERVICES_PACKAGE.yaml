@@ -1,0 +1,24 @@
+schema: XDBEXT
+name: METADATA_SERVICES
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: UPDATEIMAGEMETADATA.P_RESID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPDATEIMAGEMETADATA.P_TITLE
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: UPDATEIMAGEMETADATA.P_DESCRIPTION
+  ordinalPosition: 3
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  package METADATA_SERVICES AUTHID CURRENT_USER as procedure UPDATEIMAGEMETADATA(
+    P_RESID VARCHAR2,
+    P_TITLE XMLType,
+    P_DESCRIPTION XMLType
+  );
+  end;

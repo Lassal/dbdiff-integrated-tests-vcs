@@ -1,0 +1,50 @@
+name: SDO_WS_CONFERENCE_PARTICIPANTS
+schema: MDSYS
+columns:
+- name: CONFERENCE_ID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  dataTypeLength: 128
+- name: HAS_APPROVED
+  ordinalPosition: 3
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: PARTICIPANT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  dataTypeLength: 128
+constraints:
+- !<unique-constraint>
+  name: SDO_WS_CONF_PART_PK
+  type: PRIMARY_KEY
+  columns:
+  - name: CONFERENCE_ID
+    ordinalPosition: 1
+  - name: PARTICIPANT
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: SDO_WS_CONF_PART_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: CONFERENCE_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_WS_CONFERENCE
+    referencedTableColumnName: CONFERENCE_ID
+- !<check-constraint>
+  name: SYS_C006379
+  type: CHECK
+  checkClause: '"CONFERENCE_ID" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C006380
+  type: CHECK
+  checkClause: '"PARTICIPANT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C006381
+  type: CHECK
+  checkClause: '"HAS_APPROVED" IS NOT NULL'

@@ -1,0 +1,37 @@
+schema: CTXSYS
+name: CTX_USER_INDEX_VALUES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ ORDERED */
+    idx_name ixv_index_name,
+    cla_name ixv_class,
+    obj_name ixv_object,
+    oat_name ixv_attribute,
+    decode(
+      oat_datatype,
+      'B',
+      decode(ixv_value, 1, 'YES', 'NO'),
+      nvl(oal_label, ixv_value)
+    ) ixv_value
+  from
+    dr$index,
+    dr$index_value,
+    dr$object_attribute,
+    dr$object,
+    dr$class,
+    dr$object_attribute_lov
+  where
+    ixv_value = nvl(oal_value, ixv_value)
+    and oat_id = oal_oat_id (+)
+    and oat_system = 'N'
+    and oat_cla_id = obj_cla_id
+    and oat_obj_id = obj_id
+    and cla_system = 'N'
+    and oat_cla_id = cla_id
+    and ixv_oat_id = oat_id
+    and idx_id = ixv_idx_id
+    and idx_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

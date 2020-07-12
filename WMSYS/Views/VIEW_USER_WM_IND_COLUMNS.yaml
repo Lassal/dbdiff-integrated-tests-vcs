@@ -1,0 +1,39 @@
+schema: WMSYS
+name: USER_WM_IND_COLUMNS
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    /*+ LEADING(t1) */
+    t2.index_name,
+    t1.table_name,
+    t2.column_name,
+    t2.column_position,
+    t2.column_length,
+    t2.descend
+  from
+    wmsys.wm$constraints_table t1,
+    user_ind_columns t2
+  where
+    t1.index_owner = sys_context('userenv', 'current_user')
+    and t1.index_name = t2.index_name
+    and t1.constraint_type not in ('P', 'PN', 'PU')
+  union
+  select
+    /*+ LEADING(t1) */
+    t2.index_name,
+    t1.table_name,
+    t2.column_name,
+    t2.column_position -1,
+    t2.column_length,
+    t2.descend
+  from
+    wmsys.wm$constraints_table t1,
+    user_ind_columns t2
+  where
+    t1.index_owner = sys_context('userenv', 'current_user')
+    and t1.index_name = t2.index_name
+    and t1.constraint_type in ('P', 'PN', 'PU')
+    and t2.column_name not in ('WM_VERSION', 'WM_DELSTATUS') WITH READ ONLY
+columns: []
+referencedTables: []

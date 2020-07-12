@@ -1,0 +1,15 @@
+schema: SYS
+name: TRANSPORTABLE_EXPORT_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    OBJECT_PATH,
+    COMMENTS,
+    NAMED
+  from
+    dba_export_objects
+  where
+    het_type = 'TRANSPORTABLE_EXPORT'
+columns: []
+referencedTables: []

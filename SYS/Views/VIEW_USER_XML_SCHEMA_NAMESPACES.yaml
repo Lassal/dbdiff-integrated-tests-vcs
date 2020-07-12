@@ -1,0 +1,14 @@
+schema: SYS
+name: USER_XML_SCHEMA_NAMESPACES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    TARGET_NAMESPACE,
+    SCHEMA_URL
+  from
+    DBA_XML_SCHEMA_NAMESPACES
+  where
+    OWNER = USER
+columns: []
+referencedTables: []

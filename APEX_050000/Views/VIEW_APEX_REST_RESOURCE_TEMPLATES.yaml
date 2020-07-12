@@ -1,0 +1,71 @@
+schema: APEX_050000
+name: APEX_REST_RESOURCE_TEMPLATES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.provisioning_company_id workspace_id,
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    t.id template_id,
+    t.module_id module_id,
+    (
+      select
+        name
+      from
+        wwv_flow_rt$modules
+      where
+        id = t.module_id
+        and security_group_id = t.security_group_id
+    ) module_name,
+    t.uri_template uri_template,
+    t.priority priority,
+    t.etag_type etag_type,
+    t.etag_query etag_query,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_rt$handlers
+      where
+        template_id = t.id
+        and security_group_id = t.security_group_id
+    ) handlers,
+    t.row_version_number row_version_number,
+    t.comments comments,
+    t.created_by,
+    t.created_on,
+    t.UPDATED_BY last_updated_by,
+    t.UPDATED_ON last_updated_on
+  from
+    wwv_flow_rt$templates t,
+    wwv_flow_company_schemas s,
+    wwv_flow_companies w,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and t.security_group_id = w.provisioning_company_id
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

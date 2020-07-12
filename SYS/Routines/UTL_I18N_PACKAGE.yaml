@@ -1,0 +1,480 @@
+schema: SYS
+name: UTL_I18N
+routineType: PACKAGE
+returnParamater:
+  name: VALIDATE_SQLNAME.(--return--)
+  ordinalPosition: 0
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+parameters:
+- name: ENCODE_SQL_XML.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENCODE_SQL_XML.FLAG
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ESCAPE_REFERENCE.STR
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ESCAPE_REFERENCE.PAGE_CS_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DEFAULT_CHARSET.LANGUAGE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DEFAULT_CHARSET.CONTEXT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_DEFAULT_CHARSET.ISWINDOWS
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GET_DEFAULT_ISO_CURRENCY.TERRITORY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DEFAULT_LINGUISTIC_SORT.LANGUAGE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOCAL_LANGUAGES.TERRITORY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOCAL_LINGUISTIC_SORTS.LANGUAGE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOCAL_TERRITORIES.LANGUAGE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_LOCAL_TIME_ZONES.TERRITORY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MAX_CHARACTER_SIZE.CHARSET_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_TRANSLATION.PARAM1
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_TRANSLATION.TRANS_LANGUAGE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_TRANSLATION.FLAG
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAP_CHARSET.CHARSET
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAP_CHARSET.CONTEXT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAP_CHARSET.FLAG
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MAP_FROM_SHORT_LANGUAGE.LANGUAGE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAP_LANGUAGE_FROM_ISO.ISOLOCALE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAP_LOCALE_TO_ISO.ORA_LANGUAGE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAP_LOCALE_TO_ISO.ORA_TERRITORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAP_TERRITORY_FROM_ISO.ISOLOCALE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAP_TO_SHORT_LANGUAGE.LANGUAGE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RAW_TO_CHAR(1).DATA
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: RAW_TO_CHAR(1).SRC_CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RAW_TO_CHAR(2).DATA
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: RAW_TO_CHAR(2).SRC_CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RAW_TO_CHAR(2).SCANNED_LENGTH
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: RAW_TO_CHAR(2).SHIFT_STATUS
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: RAW_TO_NCHAR(1).DATA
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: RAW_TO_NCHAR(1).SRC_CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RAW_TO_NCHAR(2).DATA
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: RAW_TO_NCHAR(2).SRC_CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RAW_TO_NCHAR(2).SCANNED_LENGTH
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: RAW_TO_NCHAR(2).SHIFT_STATUS
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: STRING_TO_RAW.DATA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: STRING_TO_RAW.DST_CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSLITERATE.DATA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: TRANSLITERATE.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNESCAPE_REFERENCE.STR
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_SQLNAME.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: "PACKAGE utl_i18n AS\n/* GDK (Globalization Development Kit) is\
+  \ a set of services that can help\n\n   * monolingual application developers to\
+  \ create similar multilingual\n\n   * application with minimal knowledge about internationalization\
+  \ issues.\n\n   * Oracle globalization services provide developers a set of consistent,\n\
+  \n   * high performance and easy to use tools.\n\n   */\n/* Convert function constant\
+  \ */\nSHIFT_IN CONSTANT PLS_INTEGER: = 0;\nSHIFT_OUT CONSTANT PLS_INTEGER: = 1;\n\
+  /* Miscellaneous flags used by the locale-mapping API */\nORACLE_TO_IANA CONSTANT\
+  \ PLS_INTEGER: = 0;\nIANA_TO_ORACLE CONSTANT PLS_INTEGER: = 1;\nMAIL_GENERIC CONSTANT\
+  \ PLS_INTEGER: = 0;\nMAIL_WINDOWS CONSTANT PLS_INTEGER: = 1;\nGENERIC_CONTEXT CONSTANT\
+  \ PLS_INTEGER: = 0;\nMAIL_CONTEXT CONSTANT PLS_INTEGER: = 1;\n/* ENCODE_SQL_XML\
+  \ function constant */\nXMLTAG_TO_SQLNAME CONSTANT PLS_INTEGER: = 0;\nSQLNAME_TO_XMLTAG\
+  \ CONSTANT PLS_INTEGER: = 1;\n/* for transliteration */\nKANA_FWKATAKANA CONSTANT\
+  \ VARCHAR2(30): = 'kana_fwkatakana';\nKANA_HWKATAKANA CONSTANT VARCHAR2(30): = 'kana_hwkatakana';\n\
+  KANA_HIRAGANA CONSTANT VARCHAR2(30): = 'kana_hiragana';\nFWKATAKANA_HWKATAKANA CONSTANT\
+  \ VARCHAR2(30): = 'fwkatakana_hwkatakana';\nFWKATAKANA_HIRAGANA CONSTANT VARCHAR2(30):\
+  \ = 'fwkatakana_hiragana';\nHWKATAKANA_FWKATAKANA CONSTANT VARCHAR2(30): = 'hwkatakana_fwkatakana';\n\
+  HWKATAKANA_HIRAGANA CONSTANT VARCHAR2(30): = 'hwkatakana_hiragana';\nHIRAGANA_FWKATAKANA\
+  \ CONSTANT VARCHAR2(30): = 'hiragana_fwkatakana';\nHIRAGANA_HWKATAKANA CONSTANT\
+  \ VARCHAR2(30): = 'hiragana_hwkatakana';\n/* pre-defined exceptions */\nUNSUPPORTED_TRANSLITERATION\n\
+  EXCEPTION;\nPRAGMA EXCEPTION_INIT(UNSUPPORTED_TRANSLITERATION, -3001);\n-- translation\
+  \ flag for GET_TRANSLATION --\n  LANGUAGE_TRANS CONSTANT PLS_INTEGER: = 0;\nTERRITORY_TRANS\
+  \ CONSTANT PLS_INTEGER: = 1;\nLANGUAGE_TERRITORY_TRANS CONSTANT PLS_INTEGER: = 2;\n\
+  \  /* List of String data type */\n  TYPE string_array IS TABLE of VARCHAR2(32767)\
+  \ INDEX BY BINARY_INTEGER;\n  /**\n  \n     * Convert a VARCHAR2/NVARCHAR2 string\
+  \ to another charset\n  \n     *  return the result in RAW variable\n  \n     *\n\
+  \  \n     * For example, utl_i18n.string_to_raw('abcde'||chr(170), 'utf8')\n  \n\
+  \     * will return a raw of hex value '616263646566C2AA'.\n  \n     * If user inputs\
+  \ an invalid character set or an empty input string,\n  \n     * an empty string\
+  \ will be returned.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   data      \
+  \  The input VARCHAR2/NVARCHAR to convert.\n  \n     *   dst_charset The destination\
+  \ charset to be converted to.\n  \n     *\n  \n     * RETURN\n  \n     *   The byte\
+  \ string after conversion in raw format\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous\
+  \ runtime exceptions.\n  \n     */\n  FUNCTION string_to_raw(\n    data IN VARCHAR2\
+  \ CHARACTER\n    SET\n      ANY_CS,\n      dst_charset IN VARCHAR2 DEFAULT NULL\n\
+  \  ) RETURN RAW;\n  /**\n  \n     * Convert a raw buffer which is encode in another\
+  \ charset\n  \n     * back to VARCHAR2 string.\n  \n     *\n  \n     * For example,\
+  \ utl_i18n.raw_to_char(hextoraw('616263646566C2AA', 'utf8')\n  \n     * will return\
+  \ a string (encoded in database charset) 'abcde'||chr(170).\n  \n     * If user\
+  \ inputs an invalid character set or an empty raw buffer,\n  \n     * an empty string\
+  \ will be returned.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   data      \
+  \  The input byte arrays in raw.\n  \n     *   src_charset The source charset raw\
+  \ data is converted from.\n  \n     *\n  \n     * RETURN\n  \n     *   The string\
+  \ converted back into database charset encoding.\n  \n     * EXCEPTIONS\n  \n  \
+  \   *   miscellaneous runtime exceptions.\n  \n     */\n  FUNCTION raw_to_char(\n\
+  \    data IN RAW,\n    src_charset IN VARCHAR2 DEFAULT NULL\n  ) RETURN VARCHAR2;\n\
+  \  /**\n  \n     * Convert a raw buffer which is encode in another charset\n  \n\
+  \     * back to NVARCHAR2 string.\n  \n     *\n  \n     * For example, utl_i18n.raw_to_nchar(hextoraw('616263646566C2AA',\
+  \ 'utf8')\n  \n     * will return a string (encoded in nation charset) 'abcde'||chr(170).\n\
+  \  \n     * If user inputs an invalid character set or an empty raw buffer,\n  \n\
+  \     * an empty string will be returned.\n  \n     *\n  \n     * PARAMETERS\n \
+  \ \n     *   data        The input byte arrays in raw.\n  \n     *   src_charset\
+  \ The source charset raw data is converted from.\n  \n     *\n  \n     * RETURN\n\
+  \  \n     *   The string converted back into national charset encoding.\n  \n  \
+  \   * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n  \n     */\n\
+  \  FUNCTION raw_to_nchar(\n    data IN RAW,\n    src_charset IN VARCHAR2 DEFAULT\
+  \ NULL\n  ) RETURN NVARCHAR2;\n  /**\n  \n     * Convert a raw buffer which is encode\
+  \ in another charset\n  \n     * back to NVARCHAR2 string and return the shift status\
+  \ and\n  \n     * scanned length for the input. Those information can be used\n\
+  \  \n     * into piece wise conversion.\n  \n     *\n  \n     * For example, utl_i18n.raw_to_char(hextoraw('616263646566C2AA',\n\
+  \  \n     *  'utf8', shf, slen) will return a string 'abcde'||chr(170) and\n  \n\
+  \     * set shf=8, slen = SHIFT_IN.\n  \n     * If user inputs an invalid character\
+  \ set or an empty raw buffer,\n  \n     * an empty string will be returned.\n  \n\
+  \     *\n  \n     * PARAMETERS\n  \n     *   data           The input byte arrays\
+  \ in raw.\n  \n     *   src_charset    The source charset raw data is converted\
+  \ from.\n  \n     *   scanned_length The scanned byte of input raw data. (OUT)\n\
+  \  \n     *   shift_status   The shift status at the end of this scan. (IN/OUT)\n\
+  \  \n     *                  User must set this variable to be SHIFT_IN the first\n\
+  \  \n     *                  time it is called in piece wise cnversion.\n  \n  \
+  \   * RETURN\n  \n     *   The string converted back into database charset encoding.\n\
+  \  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n  \n   \
+  \  */\n  Function raw_to_char(\n    data IN RAW,\n    src_charset IN VARCHAR2 DEFAULT\
+  \ NULL,\n    scanned_length OUT PLS_INTEGER,\n    shift_status IN OUT PLS_INTEGER\n\
+  \  ) RETURN VARCHAR2;\n  /**\n  \n     * Convert a raw buffer which is encode in\
+  \ another charset\n  \n     * back to VARCHAR2 string and return the shift status\
+  \ and\n  \n     * scanned length for the input. Those information can be used\n\
+  \  \n     * into piece wise conversion.\n  \n     *\n  \n     * For example, utl_i18n.raw_to_nchar(hextoraw('616263646566C2AA',\n\
+  \  \n     *  'utf8', shf, slen) will return a string 'abcde'||chr(170) and\n  \n\
+  \     * set shf=8, slen = SHIFT_IN.\n  \n     * If user inputs an invalid character\
+  \ set or an empty raw buffer,\n  \n     * an empty string will be returned.\n  \n\
+  \     *\n  \n     * PARAMETERS\n  \n     *   data           The input byte arrays\
+  \ in raw.\n  \n     *   src_charset    The source charset raw data is converted\
+  \ from.\n  \n     *   scanned_length The scanned byte of input raw data. (OUT)\n\
+  \  \n     *   shift_status   The shift status at the end of this scan. (IN/OUT)\n\
+  \  \n     *                  User must set this variable to be SHIFT_IN the first\n\
+  \  \n     *                  time it is called in piece wise cnversion.\n  \n  \
+  \   * RETURN\n  \n     *   The string converted back into national charset encoding.\n\
+  \  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n  \n   \
+  \  */\n  Function raw_to_nchar(\n    data IN RAW,\n    src_charset IN VARCHAR2 DEFAULT\
+  \ NULL,\n    scanned_length OUT PLS_INTEGER,\n    shift_status IN OUT PLS_INTEGER\n\
+  \  ) RETURN NVARCHAR2;\n  /**\n  \n     * Escape a VARCHAR2/NVARCHAR2 to a character\
+  \ reference represenation\n  \n     * Two kinds of characters will be converted\n\
+  \  \n     *   (1) The predefined character which has special meaning\n  \n     *\
+  \       For example,  &, <, > etc.\n  \n     *   (2) Multibyte character which can\
+  \ not be converted to\n  \n     *       web page character set\n  \n     *\n  \n\
+  \     * For example, utl_i18n.escape_reference('ab'||chr(170), 'us7ascii')\n  \n\
+  \     *  will return a string 'ab&#xaa;'.\n  \n     * If user inputs an invalid\
+  \ character set or an empty string,\n  \n     * an empty string will be returned.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   str            The input string\
+  \ to escape.\n  \n     *   page_cs_name   The name of webpage encoding character\
+  \ set.\n  \n     * RETURN\n  \n     *   The string escaped to character reference\
+  \ representation.\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n\
+  \  \n     */\n  Function escape_reference(\n    str IN VARCHAR2 CHARACTER\n    SET\n\
+  \      ANY_CS,\n      page_cs_name IN VARCHAR2 DEFAULT NULL\n  ) RETURN VARCHAR2\
+  \ CHARACTER\nSET\n  str % CHARSET;\n  /**\n  \n     * Unescape a VARCHAR2/NVARCHAR2\
+  \ from character reference represenation\n  \n     *\n  \n     * For example, utl_i18n.escape_unreference('ab&#xaa')\n\
+  \  \n     *  will return a string 'ab'||chr(170).\n  \n     * If input is an empty\
+  \ string, an empty string will be returned.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   str            The input string to unescape.\n  \n     * RETURN\n\
+  \  \n     *   The string unescaped from character reference representation.\n  \n\
+  \     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n  \n     */\n\
+  \  Function unescape_reference(\n    str IN VARCHAR2 CHARACTER\n    SET\n      ANY_CS\n\
+  \  ) RETURN VARCHAR2 CHARACTER\nSET\n  str % CHARSET;\n  /**\n  \n     * Map ORACLE\
+  \ character set name to IANA name and vice versa or map\n  \n     * a generic character\
+  \ set to a MAIL character set. For example,\n  \n     * utl_i18n.charset_map('iso-8859-p1',utl_i18n.GENERIC_CONTEXT,\n\
+  \  \n     * utl_i18n.IANA_TO_ORACLE) will return 'WE8ISO8859P1'. If user\n  \n \
+  \    * inputs an invalid character set or invalid flag name, an empty\n  \n    \
+  \ * string will be returned. If user does not specify the flag,\n  \n     * we will\
+  \ use \"ORACLE_TO_IANA\" as the default flag. For example,\n  \n     * if user does\
+  \ not specify the conversion direction, we will always assume\n  \n     * that the\
+  \ current string uses Oracle standard.\n  \n     *\n  \n     * PARAMETERS\n  \n\
+  \     *   charset  The character set name to map. The mapping is\n  \n     *   \
+  \          case-insensitive.\n  \n     *   context   GENERIC_CONTEXT - map bewteen\
+  \ ORACLE and IANA\n  \n     *             MAIL_CONTEXT    - map bewteen generic\
+  \ character set to\n  \n     *                                 MAIL character set\n\
+  \  \n     *   flag      ORACLE_TO_IANA  - map from ORACLE name to IANA name.\n \
+  \ \n     *             IANA_TO_ORACLE  - map from IANA name to ORACLE name.\n  \n\
+  \     * RETURN\n  \n     *   The mapped character set name if a match is found.\
+  \ NULL if no match\n  \n     *   is found or the flag is invalid.\n  \n     * EXCEPTIONS\n\
+  \  \n     *   miscellaneous runtime exceptions.\n  \n     */\n  FUNCTION map_charset(\n\
+  \    charset IN VARCHAR2,\n    context IN PLS_INTEGER DEFAULT GENERIC_CONTEXT,\n\
+  \    flag IN PLS_INTEGER DEFAULT ORACLE_TO_IANA\n  ) RETURN VARCHAR2;\n  /**\n \
+  \ \n     * Get ORACLE langugage name from an isolocale\n  \n     *\n  \n     * For\
+  \ example, utl_i18n.map_language_from_iso('en_US') will return\n  \n     * 'American'.\n\
+  \  \n     * If user inputs an invalid locale string, an empty string will be\n \
+  \ \n     * returned.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   isolocale\
+  \  The iso locale string to map. The mapping is\n  \n     *             case-insensitive.\n\
+  \  \n     *\n  \n     * RETURN\n  \n     *   The mapped language name if found.\
+  \ NULL if locale is invalid\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime\
+  \ exceptions.\n  \n     */\n  Function map_language_from_iso(isolocale IN VARCHAR2)\
+  \ RETURN VARCHAR2;\n  /**\n  \n     * Get ORACLE territory name from an isolocale\n\
+  \  \n     *\n  \n     * For example, utl_i18n.map_territory_from_iso('en_US') will\
+  \ return\n  \n     * 'America'.\n  \n     * If user inputs an invalid locale string,\
+  \ an empty string will be\n  \n     * returned.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   isolocale  The iso locale string to map. The mapping is\n  \n    \
+  \ *             case-insensitive.\n  \n     *\n  \n     * RETURN\n  \n     *   The\
+  \ mapped territory name if found. NULL if locale is invalid\n  \n     * EXCEPTIONS\n\
+  \  \n     *   miscellaneous runtime exceptions.\n  \n     */\n  Function map_territory_from_iso(isolocale\
+  \ IN VARCHAR2) RETURN VARCHAR2;\n  /**\n  \n     * Get ISO locale from an oracle\
+  \ language and an oracle territory\n  \n     *\n  \n     * For example, utl_i18n.map_territory_from_iso('American',\
+  \ 'America')\n  \n     * will return 'en_US'.\n  \n     * If user inputs an invalid\
+  \ string, an empty string will be returned.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   ora_language  The ORACLE language string. It is case-insensitive.\n\
+  \  \n     *   ora_territory The ORACLE territory string. It is case-insensitive.\n\
+  \  \n     *\n  \n     * RETURN\n  \n     *   The mapped iso locale string if success.\
+  \ NULL if language or\n  \n     *   territory is invalid\n  \n     * EXCEPTIONS\n\
+  \  \n     *   miscellaneous runtime exceptions.\n  \n     */\n  Function map_locale_to_iso(\n\
+  \    ora_language IN VARCHAR2,\n    ora_territory IN VARCHAR2\n  ) RETURN VARCHAR2;\n\
+  \  /**\n  \n     * Get default ORACLE character set name from a language for general\n\
+  \  \n     * cases or only for MAIL application.\n  \n     *\n  \n     * For example,\
+  \ utl_i18n.get_default_charset('French',\n  \n     * utl_i18n.GENERIC_CONTEXT, FALSE)\
+  \ will return 'WE8ISO8859P1'.\n  \n     * If user inputs an invalid character set\
+  \ or invalid flag name,\n  \n     * an empty string will be returned.\n  \n    \
+  \ *\n  \n     * PARAMETERS\n  \n     *   language  The language name to map. The\
+  \ mapping is\n  \n     *             case-insensitive.\n  \n     *   context   GENERIC_CONTEXT\
+  \ - get default charset for general cases\n  \n     *             MAIL_CONTEXT \
+  \   - get default charset used in MAIL\n  \n     *                             \
+  \  application\n  \n     *   iswindow  When MAIL_CONTEXT is set, the MAIL charset\
+  \ used is different\n  \n     *             in windows platform and other platform.\n\
+  \  \n     *             If GENERIC_CONTEXT is set, this variable has no effect\n\
+  \  \n     *\n  \n     * RETURN\n  \n     *   The default character set name if a\
+  \ match is found. NULL if no match\n  \n     *   is found or the flag is invalid.\n\
+  \  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n  \n   \
+  \  */\n  Function get_default_charset(\n    language IN VARCHAR2,\n    context IN\
+  \ PLS_INTEGER DEFAULT GENERIC_CONTEXT,\n    iswindows IN BOOLEAN DEFAULT FALSE\n\
+  \  ) RETURN VARCHAR2;\n  /**\n  \n     * validate oracle object name\n  \n     *\n\
+  \  \n     * PARAMETERS\n  \n     *   name  the oracle object name to be validated\n\
+  \  \n     *\n  \n     * RETURN\n  \n     *   the index of first invalid character.\n\
+  \  \n     *   returns 0 if it is a valid SQL name\n  \n     * EXCEPTIONS\n  \n \
+  \    *   none\n  \n     */\n  Function VALIDATE_SQLNAME(\n    name VARCHAR2 CHARACTER\n\
+  \    SET\n      ANY_CS\n  ) RETURN PLS_INTEGER;\n  /**\n  \n     * convert between\
+  \ XML name and SQL identifier.\n  \n     * conversion rules are as following:\n\
+  \  \n     *  SQLNAME_TO_XMLTAG:   SQL identifier -> XML name\n  \n     *\n  \n \
+  \    *                        A character can be escaped into _xHHHH_ or\n  \n \
+  \    *                        _xHHHHHHHH_, where HHHH is the uppercase hexadecimal\n\
+  \  \n     *                        UCS2 representation of the character if it is\
+  \ in\n  \n     *                        the UCS2 range, and HHHHHHHH is the uppercase\n\
+  \  \n     *                        hexadecimal UCS4 representation of the character\n\
+  \  \n     *                        if it is out of UCS2 range but in UCS4 range.\n\
+  \  \n     *\n  \n     *                        The encoding is based on following\
+  \ rules,\n  \n     *                        (XML standard 1.0, Second Edition,\n\
+  \  \n     *                         SQL/XML candidate base document, 09-FEB-2001)\n\
+  \  \n     *\n  \n     *                        (1) If the 1st character of the SQL\
+  \ identifier is\n  \n     *                            not a valid 1st character\
+  \ of XML names, escape\n  \n     *                            it into _xHHHH_ or\
+  \ _xHHHHHHHH_\n  \n     *                        (2) If the leading three characters\
+  \ are x or X,\n  \n     *                            m or M, l or L, add a leading\
+  \ _xFFFF_ before\n  \n     *                            these three characters\n\
+  \  \n     *                        (3) If a character is ':', escape it to _x003A_\n\
+  \  \n     *                        (4) If it is a '_' followed by a 'x', escape\
+  \ the '_'\n  \n     *                            to _x005F_\n  \n     *        \
+  \                (5) If a character is not the 1st character of the\n  \n     *\
+  \                            SQL identifier and it is not a valid XML name\n  \n\
+  \     *                            character, escape it to _xHHHH_ or _xHHHHHHHH_\n\
+  \  \n     *\n  \n     * XMLTAG_TO_SQLNAME:   XML name -> SQL identifier\n  \n  \
+  \   *\n  \n     *                        (1) If the XML name has a leading _xFFFF_,\
+  \ skip it\n  \n     *                        (2) convert those escaped characters,\
+  \ which are in\n  \n     *                            a format of _xHHHH_ or _xHHHHHHHH_,\
+  \ back into\n  \n     *                            its corresponding character encode\
+  \ in the give\n  \n     *                            character set\n  \n     *\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   name    the name to be converted;\n\
+  \  \n     *   flag    which way the conversion goes\n  \n     *           XMLTAG_TO_SQLNAME\
+  \ -- from xml name to sql identifier\n  \n     *           SQLNAME_TO_XMLTAG --\
+  \ from sql identifier to xml name\n  \n     *\n  \n     * RETURN\n  \n     *   the\
+  \ converted name\n  \n     * EXCEPTIONS\n  \n     *   27102 --  out of memory\n\
+  \  \n     *   1722  --  invalid number,\n  \n     *             cause: during XMLTAG_TO_SQLNAME\n\
+  \  \n     *             the escaping format is invalid\n  \n     *             either\
+  \ the number format after _x is not a valid number\n  \n     *             or there\
+  \ is no \"_\" appended after _xHHHH\n  \n     */\n  Function ENCODE_SQL_XML(\n \
+  \   name VARCHAR2 CHARACTER\n    SET\n      ANY_CS,\n      flag PLS_INTEGER default\
+  \ XMLTAG_TO_SQLNAME\n  ) RETURN VARCHAR2 CHARACTER\nSET\n  name % CHARSET;\n  /**\n\
+  \  \n     *  This function is to perform script transliteration.\n  \n     *  In\
+  \ 10GR2, only supports conversions between\n  \n     *  Japanese Hiragana and Katakana\
+  \ characters\n  \n     *\n  \n     * PARAMETERS\n  \n     *  data:  the data to\
+  \ be converted. Either CHAR or NCHAR data type\n  \n     *  name:  the transliteration\
+  \ name\n  \n     *\n  \n     * RETURNS\n  \n     *  The converted string.\n  \n\
+  \     *\n  \n     * EXCEPTIONS\n  \n     *  3001:  unsupported feature,\n  \n  \
+  \   *         means the specified transliteration is not supported\n  \n     * \
+  \ 27102: out of memory\n  \n     */\n  Function TRANSLITERATE (\n    data IN VARCHAR2\
+  \ CHARACTER\n    SET\n      ANY_CS,\n      name IN VARCHAR2\n  ) RETURN VARCHAR2\
+  \ CHARACTER\nSET\n  data % CHARSET;\n  /**\n  \n     * returns the default linguistic\
+  \ sorting name for the specified language\n  \n     *\n  \n     * PARAMETERS\n \
+  \ \n     *   language the Oracle language name. Case-insensitive\n  \n     *\n \
+  \ \n     * RETURN\n  \n     *   the default linguistic sorting name. NULL if the\
+  \ given language\n  \n     *   is invalid.\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *   none\n  \n     */\n  Function GET_DEFAULT_LINGUISTIC_SORT(language\
+  \ IN VARCHAR2) RETURN VARCHAR2;\n  /**\n  \n     * returns the default ISO 4217\
+  \ currency code for the specified territory\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   territory the Oracle territory name. Case-insensitive\n  \n     *\n\
+  \  \n     * RETURN\n  \n     *   the default ISO 4217 currency code. NULL if the\
+  \ given territory\n  \n     *   is invalid.\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *   none\n  \n     */\n  Function GET_DEFAULT_ISO_CURRENCY(territory IN\
+  \ VARCHAR2) RETURN VARCHAR2;\n  /**\n  \n     * returns the local linguistic sorting\
+  \ names for the specified language\n  \n     *\n  \n     * PARAMETERS\n  \n    \
+  \ *   language the Oracle language name. Case-insensitive\n  \n     *\n  \n    \
+  \ * RETURN\n  \n     *   the list of local linguistic sorting names. NULL if the\
+  \ given language\n  \n     *   is invalid.\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *   none\n  \n     */\n  Function GET_LOCAL_LINGUISTIC_SORTS(language\
+  \ IN VARCHAR2) RETURN string_array;\n  /**\n  \n     * returns the local time zone\
+  \ names for the specified territory\n  \n     *\n  \n     * PARAMETERS\n  \n   \
+  \  *   territory the Oracle territory name. Case-insensitive.\n  \n     *\n  \n\
+  \     * RETURN\n  \n     *   the list of local time zone names. NULL if the given\
+  \ territory\n  \n     *   is invalid.\n  \n     *\n  \n     * EXCEPTIONS\n  \n \
+  \    *   none\n  \n     */\n  Function GET_LOCAL_TIME_ZONES(territory IN VARCHAR2)\
+  \ RETURN string_array;\n  /**\n  \n     * returns the common time zone names\n \
+  \ \n     *\n  \n     * RETURN\n  \n     *   the list of common time zone names\n\
+  \  \n     *\n  \n     * EXCEPTIONS\n  \n     *   none\n  \n     */\n  Function GET_COMMON_TIME_ZONES\
+  \ RETURN string_array;\n  /**\n  \n     * returns the local territory names for\
+  \ the specified language\n  \n     *\n  \n     * PARAMETERS\n  \n     *   language\
+  \ the Oracle language name. Case-insensitive\n  \n     *\n  \n     * RETURN\n  \n\
+  \     *   the list of local territory names. NULL if the given language is\n  \n\
+  \     *   invalid.\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *   none\n  \n \
+  \    */\n  Function GET_LOCAL_TERRITORIES(language IN VARCHAR2) RETURN string_array;\n\
+  \  /**\n  \n     * returns the local language names for the specified territory\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   territory the Oracle territory\
+  \ name. Case-insensitive\n  \n     *\n  \n     * RETURN\n  \n     *   the list of\
+  \ local language names. NULL if the given territory is\n  \n     *   invalid.\n\
+  \  \n     *\n  \n     * EXCEPTIONS\n  \n     *   none\n  \n     */\n  Function GET_LOCAL_LANGUAGES(territory\
+  \ IN VARCHAR2) RETURN string_array;\n  /**\n  \n     * maps an Oracle full language\
+  \ name to short language name\n  \n     *\n  \n     * PARAMETERS\n  \n     *   language\
+  \ an Oracle full language name\n  \n     *\n  \n     * RETURN\n  \n     *   the\
+  \ corresponding Oracle short language name\n  \n     */\n  Function MAP_TO_SHORT_LANGUAGE(language\
+  \ IN VARCHAR2) RETURN VARCHAR2;\n  /**\n  \n     * maps an Oracle short language\
+  \ name and full language name\n  \n     *\n  \n     * PARAMETERS\n  \n     *   language\
+  \ the Oracle short language name\n  \n     *\n  \n     * RETURN\n  \n     *   The\
+  \ corresponding Oracle full language name\n  \n     */\n  Function MAP_FROM_SHORT_LANGUAGE(language\
+  \ IN VARCHAR2) RETURN VARCHAR2;\n  /**\n  \n     * returns the translation of the\
+  \ language and territory name in the\n  \n     * translation language\n  \n    \
+  \ *\n  \n     * PARAMETERS\n  \n     *   param1    a valid language name, territory\
+  \ name, or combined string\n  \n     *             in the form of '<language>_<territory>'.\
+  \ Case-insensitive.\n  \n     *   trans_language a translation language name, e.g.,\
+  \ ITALIAN for the\n  \n     *             Italian translation. The default translation\
+  \ is 'AMERICAN'.\n  \n     *   flag      a translation type:\n  \n     *       \
+  \    - LANGUAGE_TRANS  - the language translation\n  \n     *           - TERRITORY_TRANS\
+  \ - the territory translation\n  \n     *           - LANGUAGE_TERRITORY_TRANS -\
+  \ the language and territory\n  \n     *                                       \
+  \ translation\n  \n     *             the default translation type is LANGUAGE_TRANS\n\
+  \  \n     *\n  \n     * RETURN\n  \n     *   The translation\n  \n     */\n  Function\
+  \ GET_TRANSLATION(\n    param1 IN VARCHAR2 CHARACTER\n    SET\n      ANY_CS,\n \
+  \     trans_language IN VARCHAR2 DEFAULT 'AMERICAN',\n      flag IN PLS_INTEGER\
+  \ DEFAULT LANGUAGE_TRANS\n  ) RETURN VARCHAR2 CHARACTER\nSET\n  param1 % CHARSET;\n\
+  \  /**\n  \n     * returns the max character size of a given character set\n  \n\
+  \     *\n  \n     * PARAMETERS\n  \n     *   charset_name  A case-insensitive but\
+  \ valid character set name\n  \n     *\n  \n     * RETURN\n  \n     *   The max\
+  \ character size\n  \n     */\n  FUNCTION get_max_character_size(charset_name IN\
+  \ VARCHAR2) RETURN PLS_INTEGER;\nEND utl_i18n;"

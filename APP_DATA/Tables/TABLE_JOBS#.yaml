@@ -1,0 +1,48 @@
+name: JOBS#
+schema: APP_DATA
+columns:
+- name: JOB_ID
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  dataTypeLength: 10
+- name: JOB_TITLE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 35
+  nullable: false
+  dataTypeLength: 35
+- name: MAX_SALARY
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: MIN_SALARY
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+constraints:
+- !<unique-constraint>
+  name: JOBS_PK
+  type: PRIMARY_KEY
+  columns:
+  - name: JOB_ID
+    ordinalPosition: 1
+- !<check-constraint>
+  name: JOBS_JOB_TITLE_NOT_NULL
+  type: CHECK
+  checkClause: '"JOB_TITLE" IS NOT NULL'
+- !<check-constraint>
+  name: JOBS_MAX_SALARY_NOT_NULL
+  type: CHECK
+  checkClause: '"MAX_SALARY" IS NOT NULL'
+- !<check-constraint>
+  name: JOBS_MIN_SALARY_NOT_NULL
+  type: CHECK
+  checkClause: '"MIN_SALARY" IS NOT NULL'

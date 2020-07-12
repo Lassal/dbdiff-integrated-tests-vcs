@@ -1,0 +1,45 @@
+schema: SYS
+name: KU$_NTABLE_OBJNUM_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    nt.ntab#,
+    decode(dbms_metadata_util.isXml(nt.ntab#), 0, 'N', 'X'),
+    bitand(t.property, 4294967295),
+    trunc(t.property / power(2, 32)),
+    NULL,
+    -- ts# not needed
+    value(o),
+    value(bo)
+  from
+    ku$_schemaobj_view o,
+    ku$_schemaobj_view bo,
+    sys.tab$ t,
+    sys.ntab$ nt
+  where
+    bo.obj_num = dbms_metadata_util.get_anc(nt.ntab#, 0)
+    and o.obj_num = nt.ntab#
+    and t.obj# = nt.ntab#
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+  start with
+    nt.obj# in (
+      select
+        *
+      from
+        table(dbms_metadata.fetch_objnums('T'))
+    )
+  connect by
+    prior nt.ntab# = nt.obj#
+columns: []
+referencedTables: []

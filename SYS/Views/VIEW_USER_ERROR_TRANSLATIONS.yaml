@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_ERROR_TRANSLATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    s.errcode#,
+    s.txlcode#,
+    s.txlsqlstate,
+    decode(bitand(s.flags, 1), 1, 'TRUE', 0, 'FALSE'),
+    s.rtime,
+    s.comment$
+  from
+    sys.sqltxl_err$ s,
+    sys. "_CURRENT_EDITION_OBJ" o
+  where
+    s.obj# = o.obj#
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

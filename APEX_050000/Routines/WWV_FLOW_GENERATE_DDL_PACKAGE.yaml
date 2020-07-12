@@ -1,0 +1,138 @@
+schema: APEX_050000
+name: WWV_FLOW_GENERATE_DDL
+routineType: PACKAGE
+returnParamater:
+  name: GET_DDL_SUPPORTING_OBJECTS.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+parameters:
+- name: EXECUTE_GET_DDL.P_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_GET_DDL.P_OBJECT_TYPES
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_GET_DDL.P_OBJECTS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_GET_DDL.P_OUTPUT_TYPE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_GET_DDL.P_FILTER
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_GET_DDL.P_FILENAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_GET_DDL.P_FILE_TYPE
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_GET_DDL.P_DESCRIPTION
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_GET_TABLE_DDL.P_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXECUTE_GET_TABLE_DDL.P_TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DDL.P_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DDL.P_OBJECT_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DDL.P_OBJECTS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DDL.P_OUTPUT_TYPE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DDL.P_FILTER
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DDL_SUPPORTING_OBJECTS.P_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DDL_SUPPORTING_OBJECTS.P_OBJECT_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_DDL_SUPPORTING_OBJECTS.P_OBJECTS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package wwv_flow_generate_ddl --  Copyright (c) Oracle Corporation 1999 - 2002. All Rights Reserved.
+  --
+  --    NAME
+  --      generate_ddl.sql
+  --
+  --    DESCRIPTION
+  --      Used to generate DDL using dbms_metadata.
+  --
+  --    NOTES
+  --      This package will only compile in 9i and above.
+  --
+  --    SECURITY
+  --      Grant execute to Public.  Synonym is NOT availabe on wwv_flow_generate_ddl.
+  --      This package is invokers right package.
+  --      Flows owner needs SELECT_CATALOG_ROLE granted to run this package.
+  --
+  --    NOTES
+  --
+  --    INTERNATIONALIZATION
+  --      unknown
+  --
+  --    MULTI-CUSTOMER
+  --      unknown
+  --
+  --    CUSTOMER MAY CUSTOMIZE
+  --      NO
+  --
+  --
+  AUTHID CURRENT_USER as empty_vc_arr wwv_flow_global.vc_arr2;
+  function get_ddl_supporting_objects (
+    p_schema in varchar2,
+    p_object_type in varchar2,
+    p_objects in varchar2 default null
+  ) return wwv_flow.clob_arr;
+  procedure get_ddl (
+    p_schema in varchar2,
+    p_object_type in varchar2,
+    p_objects in varchar2 default null,
+    p_output_type in varchar2 default null,
+    p_filter in varchar2 default 'NAME_EXPR'
+  );
+  procedure execute_get_ddl (
+    p_schema in varchar2,
+    p_object_types in varchar2,
+    p_objects in varchar2 default null,
+    p_output_type in varchar2 default null,
+    p_filter in varchar2 default 'NAME_EXPR',
+    p_filename in varchar2 default null,
+    p_file_type in varchar2 default 'sql',
+    p_description in varchar2 default null
+  );
+  procedure execute_get_table_ddl (
+    p_schema in varchar2,
+    p_table_name in varchar2 default null
+  );
+  end wwv_flow_generate_ddl;

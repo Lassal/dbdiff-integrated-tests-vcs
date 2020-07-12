@@ -1,0 +1,60 @@
+schema: SYS
+name: USER_INDEXTYPES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    u1.name,
+    o1.name,
+    i.interface_version#,
+    t.version#,
+    io.opcount,
+    decode(
+      bitand(i.property, 48),
+      0,
+      'NONE',
+      16,
+      'RANGE',
+      32,
+      'LOCAL     '
+    ),
+    decode(bitand(i.property, 2), 0, 'NO', 2, 'YES'),
+    decode(
+      bitand(i.property, 1024),
+      0,
+      'USER_MANAGED',
+      1024,
+      'SYSTEM_MANAGED'
+    )
+  from
+    sys.indtypes$ i,
+    sys.user$ u,
+    sys.obj$ o,
+    sys.user$ u1,
+    (
+      select
+        it.obj#,
+        count(*) opcount
+      from
+        sys.indop$ io1,
+        sys.indtypes$ it
+      where
+        io1.obj# = it.obj#
+        and bitand(io1.property, 4) != 4
+      group by
+        it.obj#
+    ) io,
+    sys.obj$ o1,
+    sys.type$ t
+  where
+    i.obj# = o.obj#
+    and o.owner# = u.user#
+    and u1.user# = o.owner#
+    and io.obj# = i.obj#
+    and o1.obj# = i.implobj#
+    and o1.oid$ = t.toid
+    and o.owner# = userenv ('SCHEMAID')
+columns: []
+referencedTables: []

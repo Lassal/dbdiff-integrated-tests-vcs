@@ -1,0 +1,29 @@
+schema: SYS
+name: USER_CLU_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    oc.name,
+    cc.name,
+    ot.name,
+    decode(bitand(tc.property, 1), 1, ac.name, tc.name)
+  from
+    sys.obj$ oc,
+    sys.col$ cc,
+    sys.obj$ ot,
+    sys.col$ tc,
+    sys.tab$ t,
+    sys.attrcol$ ac
+  where
+    oc.obj# = cc.obj#
+    and t.bobj# = oc.obj#
+    and t.obj# = tc.obj#
+    and tc.segcol# = cc.segcol#
+    and t.obj# = ot.obj#
+    and oc.type# = 3
+    and oc.owner# = userenv('SCHEMAID')
+    and tc.obj# = ac.obj#(+)
+    and tc.intcol# = ac.intcol#(+)
+columns: []
+referencedTables: []

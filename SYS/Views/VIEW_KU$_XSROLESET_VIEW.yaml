@@ -1,0 +1,48 @@
+schema: SYS
+name: KU$_XSROLESET_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    rs.rsid#,
+    rs.ctime,
+    rs.mtime,
+    rs.description,
+    (
+      select
+        value(xo)
+      from
+        ku$_xsobj_view xo
+      where
+        xo.id = rs.rsid#
+    ),
+    (
+      cast(
+        multiset(
+          select
+            value(o)
+          from
+            ku$_xsobj_view o
+          where
+            o.id in (
+              select
+                role#
+              from
+                xs$roleset_roles rsr
+              where
+                rsr.rsid# = rs.rsid#
+            )
+        ) as ku$_xsobj_list_t
+      )
+    )
+  from
+    xs$roleset rs,
+    xs$obj xo
+  where
+    rs.rsid# = xo.id
+    and bitand(xo.flags, 1) = 0
+    /* not Oracle supplied */
+columns: []
+referencedTables: []

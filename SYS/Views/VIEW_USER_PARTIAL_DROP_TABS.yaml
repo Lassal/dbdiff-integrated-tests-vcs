@@ -1,0 +1,16 @@
+schema: SYS
+name: USER_PARTIAL_DROP_TABS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name
+  from
+    sys.tab$ t,
+    sys.obj$ o
+  where
+    o.obj# = t.obj#
+    and o.owner# = userenv('SCHEMAID')
+    and bitand(t.flags, 32768) = 32768
+columns: []
+referencedTables: []

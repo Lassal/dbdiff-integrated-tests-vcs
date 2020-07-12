@@ -1,0 +1,31 @@
+schema: SYS
+name: USER_CUBE_DIM_LEVELS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name DIMENSION_NAME,
+    dl.level_name LEVEL_NAME,
+    dl.level_id LEVEL_ID,
+    d.description_value DESCRIPTION
+  FROM
+    obj$ o,
+    olap_dim_levels$ dl,
+    (
+      select
+        d. *
+      from
+        olap_descriptions$ d,
+        nls_session_parameters n
+      where
+        n.parameter = 'NLS_LANGUAGE'
+        and d.description_type = 'Description'
+        and d.owning_object_type = 12 --DIM_LEVEL
+        and (
+          d.language = n.value
+          or d.language like n.value || '\_%' escape '\')) d
+  WHERE
+    o.obj#=dl.dim_obj# AND o.owner#=USERENV(' SCHEMAID ')
+    AND d.owning_object_id(+)=dl.level_id
+columns: []
+referencedTables: []

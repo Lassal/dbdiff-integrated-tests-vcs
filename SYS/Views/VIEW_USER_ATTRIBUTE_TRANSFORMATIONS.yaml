@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_ATTRIBUTE_TRANSFORMATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    t.transformation_id,
+    t.name,
+    t.from_schema || '.' || t.from_type,
+    t.to_schema || '.' || t.to_type,
+    at .attribute_number,
+    at .sql_expression
+  FROM
+    transformations$ t,
+    attribute_transformations$ at,
+    sys.user$ u
+  WHERE
+    u.user# = USERENV('SCHEMAID')
+    and u.name = t.owner
+    and t.transformation_id = at .transformation_id
+columns: []
+referencedTables: []

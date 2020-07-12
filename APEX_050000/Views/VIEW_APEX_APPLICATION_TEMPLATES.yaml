@@ -1,0 +1,438 @@
+schema: APEX_050000
+name: APEX_APPLICATION_TEMPLATES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    ff.ID application_id,
+    ff.NAME application_name,
+    x.theme_id theme_number,
+    decode(
+      x.template_type,
+      'PAGE',
+      'Page',
+      'REGION',
+      'Region',
+      'LABEL',
+      'Item Label',
+      'LIST',
+      'List',
+      'POPUP_LOV',
+      'Popup List of Values',
+      'CALENDAR',
+      'Calendar',
+      'MENU',
+      'Breadcrumb',
+      'BUTTON',
+      'Button',
+      'REPORT',
+      'Report',
+      'GRID',
+      'Grid',
+      x.template_type
+    ) template_type,
+    x.template_name template_name,
+    x.reference_count reference_count,
+    x.last_updated_on last_updated_on,
+    x.last_updated_by last_updated_by,
+    decode(x.reference_id, null, 'No', 0, 'No', 'Yes') is_subscribed,
+    decode(x.is_default, 0, 'No', 'Yes') is_default,
+    tid template_id
+  from
+    wwv_flows ff,
+    wwv_flow_companies w,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d,
+    (
+      select
+        flow_id,
+        'POPUP_LOV' template_type,
+        'Popup LOV' template_name,
+        1 reference_count,
+        last_updated_on,
+        last_updated_by,
+        null reference_id,
+        1 is_default,
+        0 preview,
+        theme_id,
+        id tid
+      from
+        wwv_flow_popup_lov_template plt
+      union all
+      select
+        flow_id,
+        'CALENDAR' template_type,
+        NAME template_name,
+        (
+          select
+            count(*)
+          from
+            WWV_FLOW_CALS
+          where
+            template_id = c .id
+            and flow_id = c .flow_id
+        ) + (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = c .flow_id
+            and theme_id = c .theme_id
+            and default_calendar_template = c .id
+        ) reference_count,
+        last_updated_on,
+        last_updated_by,
+        reference_id,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = c .flow_id
+            and theme_id = c .theme_id
+            and default_calendar_template = c .id
+        ) is_default,
+        0 preview,
+        theme_id,
+        id tid
+      from
+        wwv_flow_cal_templates c
+      union all
+      select
+        flow_id,
+        'MENU' template_type,
+        NAME template_name,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_page_plugs r
+          where
+            r.flow_id = m.flow_id
+            and r.menu_template_id = m.id
+        ) + (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = m.flow_id
+            and theme_id = m.theme_id
+            and default_menu_template = m.id
+        ) reference_count,
+        last_updated_on,
+        last_updated_by,
+        reference_id,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = m.flow_id
+            and theme_id = m.theme_id
+            and default_menu_template = m.id
+        ) is_default,
+        0 preview,
+        theme_id,
+        id tid
+      from
+        wwv_flow_menu_templates m
+      union all
+      select
+        flow_id,
+        'BUTTON' template_type,
+        TEMPLATE_NAME template_name,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_step_buttons sb
+          where
+            sb.flow_id = b.flow_id
+            and sb.button_template_id = b.id
+        ) + (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = b.flow_id
+            and theme_id = b.theme_id
+            and default_button_template = b.id
+        ) reference_count,
+        last_updated_on,
+        last_updated_by,
+        reference_id,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = b.flow_id
+            and theme_id = b.theme_id
+            and default_button_template = b.id
+        ) is_default,
+        0 preview,
+        theme_id,
+        id tid
+      from
+        wwv_flow_button_templates b
+      union all
+      select
+        flow_id,
+        'LABEL' template_type,
+        TEMPLATE_NAME template_name,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_step_items i
+          where
+            i.flow_id = f.flow_id
+            and i.ITEM_FIELD_TEMPLATE = f.id
+        ) + (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = f.flow_id
+            and theme_id = f.theme_id
+            and default_label_template = f.id
+        ) reference_count,
+        last_updated_on,
+        last_updated_by,
+        reference_id,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = f.flow_id
+            and theme_id = f.theme_id
+            and default_label_template = f.id
+        ) is_default,
+        0 preview,
+        theme_id,
+        id tid
+      from
+        wwv_flow_field_templates f
+      union all
+      select
+        flow_id,
+        'LIST' template_type,
+        l.LIST_TEMPLATE_NAME template_name,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_page_plugs p
+          where
+            p.flow_id = l.flow_id
+            and p.list_template_id = l.id
+        ) + (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = l.flow_id
+            and theme_id = l.theme_id
+            and default_list_template = l.id
+        ) reference_count,
+        last_updated_on,
+        last_updated_by,
+        reference_id,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = l.flow_id
+            and theme_id = l.theme_id
+            and default_list_template = l.id
+        ) is_default,
+        0 preview,
+        theme_id,
+        id tid
+      from
+        wwv_flow_list_templates l
+      union all
+      select
+        flow_id,
+        'REPORT' template_type,
+        ROW_TEMPLATE_NAME template_name,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_page_plugs p
+          where
+            flow_id = ro.flow_id
+            and p.PLUG_QUERY_ROW_TEMPLATE = ro.id
+        ) + (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = ro.flow_id
+            and theme_id = ro.theme_id
+            and default_report_template = ro.id
+        ) reference_count,
+        last_updated_on,
+        last_updated_by,
+        reference_id,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = ro.flow_id
+            and theme_id = ro.theme_id
+            and default_report_template = ro.id
+        ) is_default,
+        ro.id preview,
+        theme_id,
+        id tid
+      from
+        wwv_flow_row_templates ro
+      union all
+      select
+        flow_id,
+        'PAGE' template_type,
+        name template_name,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_steps s
+          where
+            flow_id = p.flow_id
+            and s.step_template = p.id
+        ) + (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = p.flow_id
+            and theme_id = p.theme_id
+            and DEFAULT_PAGE_TEMPLATE = p.id
+        ) + (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = p.flow_id
+            and theme_id = p.theme_id
+            and error_template = p.id
+        ) + (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = p.flow_id
+            and theme_id = p.theme_id
+            and printer_friendly_template = p.id
+        ) reference_count,
+        last_updated_on,
+        last_updated_by,
+        reference_id,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = p.flow_id
+            and theme_id = p.theme_id
+            and DEFAULT_PAGE_TEMPLATE = p.id
+        ) is_default,
+        p.id preview,
+        theme_id,
+        id tid
+      from
+        wwv_flow_templates p
+      union all
+      select
+        flow_id,
+        'REGION' template_type,
+        PAGE_PLUG_TEMPLATE_NAME template_name,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_page_plugs p
+          where
+            flow_id = r.flow_id
+            and p.PLUG_TEMPLATE = r.id
+        ) + (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = r.flow_id
+            and theme_id = r.theme_id
+            and default_region_template = r.id
+        ) reference_count,
+        last_updated_on,
+        last_updated_by,
+        reference_id,
+        (
+          select
+            count(*)
+          from
+            wwv_flow_themes
+          where
+            flow_id = r.flow_id
+            and theme_id = r.theme_id
+            and default_region_template = r.id
+        ) is_default,
+        r.id preview,
+        theme_id,
+        id tid
+      from
+        wwv_flow_page_plug_templates r
+    ) x
+  where
+    (
+      ff.owner = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and ff.security_group_id = w.PROVISIONING_COMPANY_ID
+    and ff.id = x.flow_id
+    and (
+      d.sgid != 0
+      or nvl(ff.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+columns: []
+referencedTables: []

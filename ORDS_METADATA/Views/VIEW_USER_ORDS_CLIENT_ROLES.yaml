@@ -1,0 +1,18 @@
+schema: ORDS_METADATA
+name: USER_ORDS_CLIENT_ROLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    ALL_ORDS_CLIENT_ROLES.client_id,
+    ALL_ORDS_CLIENT_ROLES.client_name,
+    ALL_ORDS_CLIENT_ROLES.role_id,
+    ALL_ORDS_CLIENT_ROLES.role_name
+  FROM
+    ALL_ORDS_CLIENT_ROLES,
+    ords_schemas
+  WHERE
+    ords_schemas.id = ALL_ORDS_CLIENT_ROLES.schema_id
+    AND ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

@@ -1,0 +1,19 @@
+schema: SYS
+name: EXPTABSUBPART
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    tsp.obj# OBJNO,
+    tsp.pobj# POBJNO,
+    row_number() OVER (
+      partition by tsp.pobj#
+      order by
+        tsp.subpart#
+    ) - 1 SUBPARTNO,
+    bhiboundval BHIBOUNDVAL,
+    ts# TSNO
+  FROM
+    sys.tabsubpart$ tsp
+columns: []
+referencedTables: []

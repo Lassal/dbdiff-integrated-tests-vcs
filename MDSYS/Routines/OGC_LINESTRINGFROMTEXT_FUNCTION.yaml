@@ -1,0 +1,26 @@
+schema: MDSYS
+name: OGC_LINESTRINGFROMTEXT
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: OBJECT
+  parameterMode: OUT
+parameters:
+- name: WKT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SRID
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_LineStringFromText(
+    wkt IN VARCHAR2,
+    srid IN INTEGER DEFAULT NULL
+  ) RETURN ST_LineString IS
+  BEGIN
+    RETURN TREAT(ST_GEOMETRY.FROM_WKT(wkt, srid) AS ST_LineString);
+  END OGC_LineStringFromText;

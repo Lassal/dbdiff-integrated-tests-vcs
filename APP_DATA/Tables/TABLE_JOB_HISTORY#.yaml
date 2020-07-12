@@ -1,0 +1,85 @@
+name: JOB_HISTORY#
+schema: APP_DATA
+columns:
+- name: DEPARTMENT_ID
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: EMPLOYEE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: END_DATE
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: JOB_ID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  dataTypeLength: 10
+- name: START_DATE
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: JOB_HISTORY_PK
+  type: PRIMARY_KEY
+  columns:
+  - name: EMPLOYEE_ID
+    ordinalPosition: 1
+  - name: START_DATE
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: JOB_HIST_TO_DEPARTMENTS_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: DEPARTMENT_ID
+    ordinalPosition: 1
+    referencedSchemaName: APP_DATA
+    referencedTableName: DEPARTMENTS#
+    referencedTableColumnName: DEPARTMENT_ID
+- !<fk-constraint>
+  name: JOB_HIST_TO_EMPLOYEES_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: EMPLOYEE_ID
+    ordinalPosition: 1
+    referencedSchemaName: APP_DATA
+    referencedTableName: EMPLOYEES#
+    referencedTableColumnName: EMPLOYEE_ID
+- !<fk-constraint>
+  name: JOB_HIST_TO_JOBS_FK
+  type: FOREIGN_KEY
+  columns:
+  - name: JOB_ID
+    ordinalPosition: 1
+    referencedSchemaName: APP_DATA
+    referencedTableName: JOBS#
+    referencedTableColumnName: JOB_ID
+- !<check-constraint>
+  name: JOB_HISTORY_DATE_CHECK
+  type: CHECK
+  checkClause: start_date < end_date
+- !<check-constraint>
+  name: JOB_HIST_DEPT_ID_NOT_NULL
+  type: CHECK
+  checkClause: '"DEPARTMENT_ID" IS NOT NULL'
+- !<check-constraint>
+  name: JOB_HIST_END_DATE_NOT_NULL
+  type: CHECK
+  checkClause: '"END_DATE" IS NOT NULL'
+- !<check-constraint>
+  name: JOB_HIST_START_DATE_NOT_NULL
+  type: CHECK
+  checkClause: '"START_DATE" IS NOT NULL'

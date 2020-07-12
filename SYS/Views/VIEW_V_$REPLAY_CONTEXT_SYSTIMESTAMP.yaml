@@ -1,0 +1,14 @@
+schema: SYS
+name: V_$REPLAY_CONTEXT_SYSTIMESTAMP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "CONTEXT_ID",
+    "SYSTIMESTAMP_VALUE",
+    "REPLAYED",
+    "CON_ID"
+  from
+    v$replay_context_systimestamp
+columns: []
+referencedTables: []

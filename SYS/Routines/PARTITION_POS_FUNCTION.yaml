@@ -1,0 +1,14 @@
+schema: SYS
+name: PARTITION_POS
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  function partition_pos return binary_integer is
+  begin
+    return dbms_standard.partition_pos;
+  end;

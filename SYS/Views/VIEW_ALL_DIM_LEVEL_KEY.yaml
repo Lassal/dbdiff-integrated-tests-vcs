@@ -1,0 +1,59 @@
+schema: SYS
+name: ALL_DIM_LEVEL_KEY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    dl.levelname,
+    dlk.keypos#,
+    c .name
+  from
+    sys.dimlevelkey$ dlk,
+    sys.obj$ o,
+    sys.user$ u,
+    sys.dimlevel$ dl,
+    sys.col$ c
+  where
+    dlk.dimobj# = o.obj#
+    and o.owner# = u.user#
+    and dlk.dimobj# = dl.dimobj#
+    and dlk.levelid# = dl.levelid#
+    and dlk.detailobj# = c .obj#
+    and dlk.col# = c .intcol#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -215
+            /* CREATE ANY DIMENSION */,
+            -216
+            /* ALTER ANY DIMENSION */,
+            -217
+            /* DROP ANY DIMENSION */
+          )
+      )
+    )
+columns: []
+referencedTables: []

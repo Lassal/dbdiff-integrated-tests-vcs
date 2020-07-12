@@ -1,0 +1,13 @@
+schema: SYS
+name: KU$_11_2_AUDIT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t. *
+  from
+    ku$_audit_view t
+  where
+    t.user_name not in ('DVSYS', 'LBACSYS', 'DVF')
+columns: []
+referencedTables: []

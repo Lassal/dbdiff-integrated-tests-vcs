@@ -1,0 +1,17 @@
+schema: SYS
+name: EXU8SLOGU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "MOWNER",
+    "MOWNERID",
+    "MASTER",
+    "SNAPID",
+    "SNAPTIME"
+  FROM
+    sys.exu8slog
+  WHERE
+    mownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

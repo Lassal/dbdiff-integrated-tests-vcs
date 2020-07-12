@@ -1,0 +1,122 @@
+schema: XDBPM
+name: XDBPM_XMLSCHEMA_UTILITIES
+routineType: PACKAGE
+returnParamater:
+  name: PRINTNESTEDTABLES.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: CLEANUPSCHEMA.P_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPLETEBULKLOAD.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPLETEBULKLOAD.P_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETEORPHANTYPES.P_REGISTRATION_DATE
+  ordinalPosition: 1
+  dataType: TIMESTAMP
+  numericPrecision: 6
+  parameterMode: IN
+- name: DISABLETABLENONROOTELEMENTS.P_XML_SCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: DISABLETABLEREFERENCEDELEMENTS.P_XML_SCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: DISABLETABLESUBGROUPMEMBERS.P_XML_SCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: GENERATECREATETABLESTATEMENT.XML_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATECREATETABLESTATEMENT.NEW_TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATECYCLEREPORT.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATESCHEMAFROMTABLE.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATESCHEMAFROMTABLE.P_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETDEFAULTTABLENAME.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INDEXXMLREFERENCES.INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPAREBULKLOAD.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPAREBULKLOAD.P_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PRINTNESTEDTABLES.XML_TABLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAMECOLLECTIONTABLE.XMLTABLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAMECOLLECTIONTABLE.XPATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAMECOLLECTIONTABLE.COLLECTION_TABLE_PREFIX
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_XMLSCHEMA_UTILITIES authid CURRENT_USER as procedure scopeXMLReferences;
+  procedure indexXMLReferences(INDEX_NAME VARCHAR2);
+  procedure prepareBulkLoad(
+    P_TABLE_NAME VARCHAR2,
+    P_OWNER VARCHAR2 DEFAULT USER
+  );
+  procedure completeBulkLoad(
+    P_TABLE_NAME VARCHAR2,
+    P_OWNER VARCHAR2 DEFAULT USER
+  );
+  procedure renameCollectionTable (
+    XMLTABLE VARCHAR2,
+    XPATH VARCHAR2,
+    COLLECTION_TABLE_PREFIX VARCHAR2
+  );
+  function printNestedTables(XML_TABLE VARCHAR2) return XMLType;
+  function getDefaultTableName(P_RESOURCE_PATH VARCHAR2) return VARCHAR2;
+  function generateSchemaFromTable(
+    P_TABLE_NAME VARCHAR2,
+    P_OWNER VARCHAR2 default USER
+  ) return XMLTYPE;
+  function generateCreateTableStatement(XML_TABLE_NAME VARCHAR2, NEW_TABLE_NAME VARCHAR2) return CLOB;
+  procedure cleanupSchema(P_OWNER VARCHAR2);
+  procedure generateCycleReport(
+    P_RESOURCE_PATH VARCHAR2 DEFAULT '/public/cycleReport.log'
+  );
+  procedure deleteOrphanTypes(P_REGISTRATION_DATE TIMESTAMP);
+  procedure disableTableReferencedElements(P_XML_SCHEMA IN OUT XMLTYPE);
+  procedure disableTableSubgroupMembers(P_XML_SCHEMA IN OUT XMLTYPE);
+  procedure disableTableNonRootElements(P_XML_SCHEMA IN OUT XMLTYPE);
+  end XDBPM_XMLSCHEMA_UTILITIES;

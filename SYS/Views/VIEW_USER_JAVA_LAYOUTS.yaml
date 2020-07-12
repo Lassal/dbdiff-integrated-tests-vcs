@@ -1,0 +1,26 @@
+schema: SYS
+name: USER_JAVA_LAYOUTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ no_cartesian(m) ordered use_nl(o m) */
+    nvl(j.longdbcs, o.name),
+    m.lic,
+    m.lnc,
+    m.lfc,
+    m.lsf,
+    m.lmc,
+    m.lsm,
+    m.jnc
+  from
+    sys.javasnm$ j,
+    sys.obj$ o,
+    sys.x$joxmob m
+  where
+    o.obj# = m.obn
+    and o.type# = 29
+    and o.owner# = userenv('SCHEMAID')
+    and j.short(+) = o.name
+columns: []
+referencedTables: []

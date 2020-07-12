@@ -1,0 +1,75 @@
+schema: SYS
+name: USER_AUDIT_OBJECT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    OS_USERNAME,
+    USERNAME,
+    USERHOST,
+    TERMINAL,
+    TIMESTAMP,
+    OWNER,
+    OBJ_NAME,
+    ACTION_NAME,
+    NEW_OWNER,
+    NEW_NAME,
+    SES_ACTIONS,
+    COMMENT_TEXT,
+    SESSIONID,
+    ENTRYID,
+    STATEMENTID,
+    RETURNCODE,
+    PRIV_USED,
+    CLIENT_ID,
+    ECONTEXT_ID,
+    SESSION_CPU,
+    EXTENDED_TIMESTAMP,
+    PROXY_SESSIONID,
+    GLOBAL_UID,
+    INSTANCE_NUMBER,
+    OS_PROCESS,
+    TRANSACTIONID,
+    SCN,
+    SQL_BIND,
+    SQL_TEXT,
+    OBJ_EDITION_NAME
+  from
+    user_audit_trail
+  where
+    (
+      action between 1
+      and 16
+    )
+    or (
+      action between 19
+      and 29
+    )
+    or (
+      action between 32
+      and 41
+    )
+    or (action = 43)
+    or (
+      action between 51
+      and 99
+    )
+    or (action = 103)
+    or (
+      action between 110
+      and 113
+    )
+    or (
+      action between 116
+      and 121
+    )
+    or (
+      action between 123
+      and 128
+    )
+    or (
+      action between 160
+      and 162
+    )
+columns: []
+referencedTables: []

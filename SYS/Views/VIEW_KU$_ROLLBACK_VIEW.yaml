@@ -1,0 +1,47 @@
+schema: SYS
+name: KU$_ROLLBACK_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    u.us#,
+    u.name,
+    u.user#,
+    (
+      select
+        r.optsize
+      from
+        v$rollstat r
+      where
+        r.usn = u.us#
+    ),
+    s.iniexts,
+    s.minexts,
+    s.maxexts,
+    s.extsize,
+    value(tsv)
+  from
+    sys.ku$_tablespace_view tsv,
+    sys.seg$ s,
+    sys.undo$ u
+  where
+    u.status$ != 1
+    and u.ts# = tsv.ts_num
+    and u.file# = s.file#
+    and u.block# = s.block#
+    and u.ts# = s.ts#
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

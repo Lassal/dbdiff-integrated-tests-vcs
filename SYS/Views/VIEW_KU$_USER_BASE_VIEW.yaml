@@ -1,0 +1,151 @@
+schema: SYS
+name: KU$_USER_BASE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    u.user#,
+    u.name,
+    u.type#,
+    u.password,
+    ts1.name,
+    ts2.name,
+    to_char(u.ctime, 'YYYY/MM/DD HH24:MI:SS'),
+    to_char(u.ptime, 'YYYY/MM/DD HH24:MI:SS'),
+    to_char(u.exptime, 'YYYY/MM/DD HH24:MI:SS'),
+    to_char(u.ltime, 'YYYY/MM/DD HH24:MI:SS'),
+    u.resource$,
+    p.name,
+    replace(u.audit$, chr(0), '-'),
+    u.defrole,
+    u.defgrp#,
+    u.defgrp_seq#,
+    DECODE(
+      NVL(instr(u.spare4, ';H:'), 0),
+      0,
+      u.astatus,
+      u.astatus - BITAND(u.astatus, 9) + 9
+    ),
+    u.astatus,
+    u.lcount,
+    NVL(
+      (
+        select
+          cgm.consumer_group
+        from
+          sys.resource_group_mapping$ cgm
+        where
+          cgm.attribute = 'ORACLE_USER'
+          and cgm.status = 'ACTIVE'
+          and cgm.value = u.name
+      ),
+      u.defschclass
+    ),
+    u.ext_username,
+    u.spare1,
+    u.spare2,
+    u.spare3,
+    substr(u.spare4, 1, instr(u.spare4, ';H:') - 1),
+    u.spare4,
+    u.spare5,
+    to_char(u.spare6, 'YYYY/MM/DD HH24:MI:SS')
+  from
+    sys.user$ u,
+    sys.ts$ ts1,
+    sys.ts$ ts2,
+    sys.profname$ p
+  where
+    u.datats# = ts1.ts#
+    AND u.tempts# = ts2.ts#
+    AND u.type# = 1
+    AND u.resource$ = p.profile#
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'EXP_FULL_DATABASE'
+      )
+    )
+  UNION
+  select
+    '1',
+    '0',
+    u.user#,
+    u.name,
+    u.type#,
+    NULL,
+    ts1.name,
+    ts2.name,
+    to_char(u.ctime, 'YYYY/MM/DD HH24:MI:SS'),
+    to_char(u.ptime, 'YYYY/MM/DD HH24:MI:SS'),
+    to_char(u.exptime, 'YYYY/MM/DD HH24:MI:SS'),
+    to_char(u.ltime, 'YYYY/MM/DD HH24:MI:SS'),
+    u.resource$,
+    p.name,
+    replace(u.audit$, chr(0), '-'),
+    u.defrole,
+    u.defgrp#,
+    u.defgrp_seq#,
+    u.astatus,
+    u.astatus,
+    u.lcount,
+    NVL(
+      (
+        select
+          cgm.consumer_group
+        from
+          sys.resource_group_mapping$ cgm
+        where
+          cgm.attribute = 'ORACLE_USER'
+          and cgm.status = 'ACTIVE'
+          and cgm.value = u.name
+      ),
+      u.defschclass
+    ),
+    u.ext_username,
+    u.spare1,
+    u.spare2,
+    u.spare3,
+    NULL,
+    NULL,
+    u.spare5,
+    to_char(u.spare6, 'YYYY/MM/DD HH24:MI:SS')
+  from
+    sys.user$ u,
+    sys.ts$ ts1,
+    sys.ts$ ts2,
+    sys.profname$ p
+  where
+    u.datats# = ts1.ts#
+    AND u.tempts# = ts2.ts#
+    AND u.type# = 1
+    AND u.resource$ = p.profile#
+    AND (SYS_CONTEXT('USERENV', 'CURRENT_USERID') != 0)
+    AND NOT (
+      EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'EXP_FULL_DATABASE'
+      )
+    )
+    AND (
+      EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

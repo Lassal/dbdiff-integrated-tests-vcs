@@ -1,0 +1,23 @@
+schema: SYS
+name: ALL_APPLY_DML_HANDLERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    h.object_owner,
+    h.object_name,
+    h.operation_name,
+    h.user_procedure,
+    h.error_handler,
+    h.apply_database_link,
+    h.apply_name,
+    h.assemble_lobs,
+    h.set_by
+  from
+    all_tables o,
+    dba_apply_dml_handlers h
+  where
+    h.object_owner = o.owner
+    and h.object_name = o.table_name
+columns: []
+referencedTables: []

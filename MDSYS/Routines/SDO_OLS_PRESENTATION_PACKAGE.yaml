@@ -1,0 +1,40 @@
+schema: MDSYS
+name: SDO_OLS_PRESENTATION
+routineType: PACKAGE
+returnParamater:
+  name: SPECIFY_THEME_FOR_MAPVIEWER.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: MAKEOPENLS10REQUEST.REQUEST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: SPECIFY_POI_FOR_MAPVIEWER.OPENLS_POI
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: SPECIFY_POI_FOR_MAPVIEWER.OPENLS_VERSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SPECIFY_THEME_FOR_MAPVIEWER.OPENLS_LAYER
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: SPECIFY_THEME_FOR_MAPVIEWER.OPENLS_VERSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE sdo_ols_presentation AUTHID current_user AS FUNCTION makeOpenLS10Request(request XMLTYPE) RETURN XMLTYPE;
+  FUNCTION specify_theme_for_mapviewer(
+    openls_layer XMLTYPE,
+    openls_version VARCHAR2
+  ) RETURN XMLTYPE;
+  FUNCTION specify_poi_for_mapviewer(
+    openls_poi XMLTYPE,
+    openls_version VARCHAR2
+  ) RETURN XMLTYPE;
+  END sdo_ols_presentation;

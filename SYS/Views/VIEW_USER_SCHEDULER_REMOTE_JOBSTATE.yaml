@@ -1,0 +1,47 @@
+schema: SYS
+name: USER_SCHEDULER_REMOTE_JOBSTATE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    j.destination,
+    DECODE(
+      BITAND(j.job_status, 1 + 2 + 4 + 8 + 16 + 32 + 8192),
+      0,
+      'DISABLED',
+      1,
+      (
+        CASE
+          WHEN j.retry_count > 0 THEN 'RETRY SCHEDULED'
+          ELSE 'SCHEDULED'
+        END
+      ),
+      2,
+      'RUNNING',
+      4,
+      'COMPLETED',
+      8,
+      'BROKEN',
+      16,
+      'FAILED',
+      32,
+      'SUCCEEDED',
+      8192,
+      'STOPPED',
+      NULL
+    ),
+    j.next_start_date,
+    j.run_count,
+    j.failure_count,
+    j.retry_count,
+    j.last_start_date,
+    j.last_end_date
+  FROM
+    obj$ o,
+    scheduler$_remote_job_state j
+  WHERE
+    j.joboid = o.obj#
+    and o.owner# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,28 @@
+schema: SYS
+name: USER_REPRESOL_STATS_CONTROL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.oname,
+    r.created,
+    decode(
+      r.status,
+      1,
+      'ACTIVE',
+      2,
+      'CANCELLED',
+      'UNDEFINED'
+    ),
+    r.status_update_date,
+    r.purged_date,
+    r.last_purge_start_date,
+    r.last_purge_end_date
+  from
+    system.repcat$_resol_stats_control r,
+    sys.user$ u
+  where
+    r.sname = u.name
+    and u.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,246 @@
+schema: SYS
+name: UTL_COMPRESS
+routineType: PACKAGE
+returnParamater:
+  name: LZ_UNCOMPRESS_OPEN.(--return--)
+  ordinalPosition: 0
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+parameters:
+- name: ISOPEN.HANDLE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LZ_COMPRESS(1).SRC
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: LZ_COMPRESS(1).QUALITY
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LZ_COMPRESS(2).SRC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: LZ_COMPRESS(2).QUALITY
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LZ_COMPRESS(3).SRC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: LZ_COMPRESS(3).DST
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: INOUT
+- name: LZ_COMPRESS(3).QUALITY
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LZ_COMPRESS(4).SRC
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: LZ_COMPRESS(4).QUALITY
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LZ_COMPRESS(5).SRC
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: LZ_COMPRESS(5).DST
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: INOUT
+- name: LZ_COMPRESS(5).QUALITY
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LZ_COMPRESS_ADD.HANDLE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LZ_COMPRESS_ADD.DST
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: INOUT
+- name: LZ_COMPRESS_ADD.SRC
+  ordinalPosition: 3
+  dataType: RAW
+  parameterMode: IN
+- name: LZ_COMPRESS_CLOSE.HANDLE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LZ_COMPRESS_CLOSE.DST
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: INOUT
+- name: LZ_COMPRESS_OPEN.DST
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: INOUT
+- name: LZ_COMPRESS_OPEN.QUALITY
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LZ_UNCOMPRESS(1).SRC
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: LZ_UNCOMPRESS(2).SRC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: LZ_UNCOMPRESS(3).SRC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: LZ_UNCOMPRESS(3).DST
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: INOUT
+- name: LZ_UNCOMPRESS(4).SRC
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: LZ_UNCOMPRESS(5).SRC
+  ordinalPosition: 1
+  dataType: BFILE
+  parameterMode: IN
+- name: LZ_UNCOMPRESS(5).DST
+  ordinalPosition: 2
+  dataType: BLOB
+  parameterMode: INOUT
+- name: LZ_UNCOMPRESS_CLOSE.HANDLE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LZ_UNCOMPRESS_EXTRACT.HANDLE
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LZ_UNCOMPRESS_EXTRACT.DST
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: OUT
+- name: LZ_UNCOMPRESS_OPEN.SRC
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+routineDefinition: "PACKAGE utl_compress AS\n/* Define max number of handles for piecewise\
+  \ operations */\nUTLCOMP_MAX_HANDLE CONSTANT PLS_INTEGER: = 5;\n/*\n\n  ** Exceptions\n\
+  \n  */\ninvalid_handle\nEXCEPTION;\ninvalid_argument\nEXCEPTION;\nbuffer_too_small\n\
+  EXCEPTION;\ndata_error\nEXCEPTION;\nstream_error\nEXCEPTION;\ninvalid_argument_errcode\
+  \ CONSTANT PLS_INTEGER: = -29261;\nbuffer_too_small_errcode CONSTANT PLS_INTEGER:\
+  \ = -29297;\ndata_error_errcode CONSTANT PLS_INTEGER: = -29294;\nstream_error_errcode\
+  \ CONSTANT PLS_INTEGER: = -29293;\ninvalid_handle_errcode CONSTANT PLS_INTEGER:\
+  \ = -29299;\nPRAGMA EXCEPTION_INIT(invalid_argument, -29261);\nPRAGMA EXCEPTION_INIT(buffer_too_small,\
+  \ -29297);\nPRAGMA EXCEPTION_INIT(data_error, -29294);\nPRAGMA EXCEPTION_INIT(stream_error,\
+  \ -29293);\nPRAGMA EXCEPTION_INIT(invalid_handle, -29299);\n  /*----------------------------------------------------------------*/\n\
+  \  /* LZ_COMPRESS                                                    */\n  /*----------------------------------------------------------------*/\n\
+  \  /* LZ_COMPRESS - compress data\n  \n    **\n  \n    **   This compression utility\
+  \ uses a basic form of the Lempel-Ziv\n  \n    **   compression algorithm.\n  \n\
+  \    **\n  \n    ** PARAMETERS\n  \n    **    src       - the input data to be compressed\n\
+  \  \n    **    quality   - speed versus efficiency of resulting compressed output.\n\
+  \  \n    **                Valid values are the range 1..9, with a default value\
+  \ of 6.\n  \n    **                1=fastest compression, 9=slowest compression\
+  \ and best\n  \n    **                compressed file size.\n  \n    **\n  \n  \
+  \  ** RETURN\n  \n    **    the compressed data\n  \n    **\n  \n    */\n  function\
+  \ lz_compress(\n    src in raw,\n    quality in binary_integer default 6\n  ) return\
+  \ raw;\n  /* This lz_compress overload will return a temporary BLOB for the\n  \n\
+  \     * compressed data.\n  \n     */\n  function lz_compress(\n    src in blob,\n\
+  \    quality in binary_integer default 6\n  ) return blob;\n  /* This lz_compress\
+  \ overload will return the compressed data into the\n  \n     * existing BLOB, dst.\
+  \  Original data will be overwritten.\n  \n     */\n  procedure lz_compress(\n \
+  \   src in blob,\n    dst in out nocopy blob,\n    quality in binary_integer default\
+  \ 6\n  );\n  /* This lz_compress overload will return a temporary BLOB for the\n\
+  \  \n     * compressed data.\n  \n     */\n  function lz_compress(\n    src in bfile,\n\
+  \    quality in binary_integer default 6\n  ) return blob;\n  /* This lz_compress\
+  \ overload will return the compressed data into the\n  \n     * existing BLOB, dst.\
+  \  Original data will be overwritten.\n  \n     */\n  procedure lz_compress(\n \
+  \   src in bfile,\n    dst in out nocopy blob,\n    quality in binary_integer default\
+  \ 6\n  );\n  /*----------------------------------------------------------------*/\n\
+  \  /* LZ_UNCOMPRESS                                                  */\n  /*----------------------------------------------------------------*/\n\
+  \  /* LZ_UNCOMPRESS - uncompress data\n  \n    **\n  \n    **   This compression\
+  \ utility uses a basic form of the Lempel-Ziv\n  \n    **   compression algorithm.\n\
+  \  \n    **\n  \n    ** PARAMETERS\n  \n    **    src         - the input compressed\
+  \ data\n  \n    **\n  \n    ** RETURN\n  \n    **    the uncompressed data\n  \n\
+  \    **\n  \n    */\n  function lz_uncompress(src in raw) return raw;\n  /* This\
+  \ lz_uncompress overload will return a temporary BLOB for the\n  \n     * uncompressed\
+  \ data.\n  \n     */\n  function lz_uncompress(src in blob) return blob;\n  /* This\
+  \ lz_uncompress overload will return the uncompressed data into the\n  \n     *\
+  \ existing BLOB, dst.  Original dst data will be overwritten.\n  \n     */\n  procedure\
+  \ lz_uncompress(src in blob, dst in out nocopy blob);\n  /* This lz_uncompress overload\
+  \ will return a temporary BLOB for the\n  \n     * uncompressed data.\n  \n    \
+  \ */\n  function lz_uncompress(src in bfile) return blob;\n  /* This lz_uncompress\
+  \ overload will return the uncompressed data into the\n  \n     * existing BLOB,\
+  \ dst.  Original dst data will be overwritten.\n  \n     */\n  procedure lz_uncompress(src\
+  \ in bfile, dst in out nocopy blob);\n  /* PIECEWISE COMPRESS */\n  /*\n  \n   \
+  \ ** lz_compress_open - Initialize a piecewise context that maintains the\n  \n\
+  \    **                    compress state and data.\n  \n    **\n  \n    ** PARAMETERS\n\
+  \  \n    **    dst       - user supplied LOB to store compressed data.\n  \n   \
+  \ **    quality   - speed versus efficiency of resulting compressed output.\n  \n\
+  \    **                Valid values are the range 1..9, with a default value of\
+  \ 6.\n  \n    **                1=fastest compression, 9=slowest compression and\
+  \ best\n  \n    **                compressed file size.\n  \n    **\n  \n    **\
+  \ RETURN\n  \n    **    A handle to an initialized piecewise compress context.\n\
+  \  \n    **\n  \n    ** EXCEPTIONS\n  \n    **   invalid_handle     - invalid handle,\
+  \ too many open handles.\n  \n    **   invalid_argument   - NULL dst or invalid\
+  \ quality specified.\n  \n    **\n  \n    ** NOTES\n  \n    **   Make sure to close\
+  \ the opened handle with lz_compress_close once\n  \n    **   the piecewise compress\
+  \ is done and in the event of an exception in\n  \n    **   the middle of process,\
+  \ since lack of doing so will cause these\n  \n    **   handles to leak.\n  \n \
+  \   **\n  \n    */\n  function lz_compress_open(\n    dst in out nocopy blob,\n\
+  \    quality in binary_integer default 6\n  ) return binary_integer;\n  /*\n  \n\
+  \    ** lz_compress_add - add a piece of compressed data.\n  \n    **\n  \n    **\
+  \ PARAMETERS\n  \n    **    handle    - handle to a piecewise compress context.\n\
+  \  \n    **    dst       - opened LOB from lz_compress_open to store compressed\
+  \ data.\n  \n    **    src       - input data to be compressed.\n  \n    **\n  \n\
+  \    ** EXCEPTIONS\n  \n    **   invalid_handle     - out of range invalid or unopened\
+  \ handle\n  \n    **   invalid_argument   - NULL handle, src, dst, or invalid dst.\n\
+  \  \n    **\n  \n    */\n  procedure lz_compress_add(\n    handle in binary_integer,\n\
+  \    dst in out nocopy blob,\n    src in raw\n  );\n  /*\n  \n    ** lz_compress_close\
+  \ - close and finish piecewise compress.\n  \n    **\n  \n    ** PARAMETERS\n  \n\
+  \    **    handle  - handle to a piecewise compress context.\n  \n    **    dst\
+  \     - opened LOB from lz_compress_open to store compressed data.\n  \n    **\n\
+  \  \n    ** EXCEPTIONS\n  \n    **   invalid_handle     - out of range invalid or\
+  \ uninitialized handle.\n  \n    **   invalid_argument   - NULL handle, dst, or\
+  \ invalid dst.\n  \n    **\n  \n    */\n  procedure lz_compress_close(\n    handle\
+  \ in binary_integer,\n    dst in out nocopy blob\n  );\n  /* PIECEWISE Uncompress\
+  \ */\n  /*\n  \n    ** lz_uncompress_open - Initialize a piecewise context that\
+  \ maintains the\n  \n    **                      uncompress state and data.\n  \n\
+  \    **\n  \n    ** PARAMETERS\n  \n    **    src            - input data to be\
+  \ uncompressed.\n  \n    **\n  \n    ** RETURN\n  \n    **    A handle to an initialized\
+  \ piecewise uncompress context.\n  \n    **\n  \n    ** EXCEPTIONS\n  \n    ** \
+  \  invalid_handle     - invalid handle, too many open handles.\n  \n    **   invalid_argument\
+  \   - NULL src.\n  \n    **\n  \n    ** NOTES\n  \n    **   Make sure to close the\
+  \ opened handle with lz_uncompress_close once\n  \n    **   the piecewise uncompress\
+  \ is done and in the event of an exception in\n  \n    **   the middle of process,\
+  \ since lack of doing so will cause these\n  \n    **   handles to leak.\n  \n \
+  \   **\n  \n    */\n  function lz_uncompress_open(src in blob) return binary_integer;\n\
+  \  /*\n  \n    ** lz_uncompress_extract - extract a piece of uncompressed data.\n\
+  \  \n    **\n  \n    ** PARAMETERS\n  \n    **    handle    - handle to a piecewise\
+  \ uncompress context.\n  \n    **    dst       - uncompressed data.\n  \n    **\n\
+  \  \n    ** EXCEPTIONS\n  \n    **   no_data_found      - finished uncompress.\n\
+  \  \n    **   invalid_handle     - out of range invalid or uninitialized handle.\n\
+  \  \n    **   invalid_argument   - NULL handle.\n  \n    */\n  procedure lz_uncompress_extract(\n\
+  \    handle in binary_integer,\n    dst out nocopy raw\n  );\n  /*\n  \n    ** lz_uncompress_close\
+  \ - close and finish piecewise uncompress.\n  \n    **\n  \n    ** PARAMETERS\n\
+  \  \n    **    handle    - handle to a piecewise uncompress context.\n  \n    **\n\
+  \  \n    ** EXCEPTIONS\n  \n    **   invalid_handle     - out of range invalid or\
+  \ uninitialized handle.\n  \n    **   invalid_argument   - NULL handle.\n  \n  \
+  \  **\n  \n    */\n  procedure lz_uncompress_close(handle in binary_integer);\n\
+  \  /*\n  \n    ** isopen - Checks to see if the handle to a piecewise (un)compress\
+  \ context\n  \n    **          was opened or closed.\n  \n    **\n  \n    ** PARAMETERS\n\
+  \  \n    **    handle    - handle to a piecewise (un)compress context.\n  \n   \
+  \ **\n  \n    ** RETURN\n  \n    **    TRUE, if the given piecewise handle is opened,\
+  \ otherwise FALSE.\n  \n    **\n  \n    ** Example\n  \n    **   if (utl_compress.isopen(myhandle)\
+  \ = TRUE) then\n  \n    **     utl_compress.lz_compress_close(myhandle, lob_1);\n\
+  \  \n    **   end if;\n  \n    **\n  \n    ** or\n  \n    **\n  \n    **   if (utl_compress.isopen(myhandle)\
+  \ = TRUE) then\n  \n    **     utl_compress.lz_uncompress_close(myhandle);\n  \n\
+  \    **   end if;\n  \n    **\n  \n    */\n  function isopen(handle in binary_integer)\
+  \ return boolean;\nEND;"

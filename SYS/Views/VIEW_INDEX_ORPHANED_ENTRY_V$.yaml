@@ -1,0 +1,69 @@
+schema: SYS
+name: INDEX_ORPHANED_ENTRY_V$
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    iu.name,
+    iobj.name,
+    iobj.subname,
+    iobj.obj#,
+    tu.name,
+    tobj.name,
+    tobj.subname,
+    tobj.obj#,
+    ioe.hidden
+  from
+    user $ iu,
+    obj$ iobj,
+    index_orphaned_entry$ ioe,
+    user $ tu,
+    obj$ tobj
+  where
+    iu.user# = iobj.owner#
+    and iobj.obj# = ioe.indexobj#
+    and tu.user# = tobj.owner#
+    and (
+      (
+        iobj.type# = 1
+        /* index */
+        and tobj.obj# = (
+          select
+            i.bo#
+          from
+            ind$ i
+          where
+            i.obj# = iobj.obj#
+        )
+      )
+      or (
+        iobj.type# = 20
+        /* index partition */
+        and tobj.obj# = (
+          select
+            i.bo#
+          from
+            ind$ i,
+            indpart$ ip
+          where
+            ip.obj# = iobj.obj#
+            and ip.bo# = i.obj#
+        )
+      )
+    )
+    and (
+      iobj.owner# = userenv('SCHEMAID')
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -72
+            /* ALTER ANY INDEX */
+          )
+      )
+    )
+columns: []
+referencedTables: []

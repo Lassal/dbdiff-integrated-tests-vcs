@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_ADVISOR_SQLA_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    b.task_id as task_id,
+    d.name as task_name,
+    b.sql_id as sql_id,
+    b.stmt_id as stmt_id,
+    b.table_owner as table_owner,
+    b.table_name as table_name
+  from
+    wri$_adv_sqla_tables b,
+    wri$_adv_tasks d
+  where
+    d.id = b.task_id
+    and d.owner# = userenv('SCHEMAID')
+    and d.advisor_id = 2
+columns: []
+referencedTables: []

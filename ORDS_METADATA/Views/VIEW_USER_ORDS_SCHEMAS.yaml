@@ -1,0 +1,21 @@
+schema: ORDS_METADATA
+name: USER_ORDS_SCHEMAS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    ords_schemas.id,
+    ords_schemas.parsing_schema,
+    ords_url_mappings.type,
+    ords_url_mappings.pattern,
+    ords_schemas.status,
+    ords_schemas.auto_rest_auth,
+    ords_schemas.ops_allowed
+  FROM
+    ords_url_mappings,
+    ords_schemas
+  WHERE
+    ords_url_mappings.id = ords_schemas.url_mapping_id
+    AND ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

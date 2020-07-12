@@ -1,0 +1,45 @@
+schema: APEX_050000
+name: APEX_APPLICATION_THEME_STYLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s.id as theme_style_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    s.theme_id as theme_number,
+    s.name,
+    s.css_file_urls,
+    case
+      s.is_current
+      when 'Y' then 'Yes'
+      else 'No'
+    end as is_current,
+    s.theme_roller_input_file_urls,
+    s.theme_roller_config,
+    s.theme_roller_output_file_url,
+    s.theme_roller_read_only,
+    nvl2(s.reference_id, 'Yes', 'No') as is_subscribed,
+    (
+      select
+        s2.flow_id || '. ' || s2.name
+      from
+        wwv_flow_theme_styles s2
+      where
+        s2.id = s.reference_id
+    ) as subscribed_from,
+    s.reference_id as subscribed_from_id,
+    s.component_comment,
+    s.created_by,
+    s.created_on,
+    s.last_updated_by,
+    s.last_updated_on
+  from
+    wwv_flow_authorized f,
+    wwv_flow_theme_styles s
+  where
+    s.flow_id = f.application_id
+columns: []
+referencedTables: []

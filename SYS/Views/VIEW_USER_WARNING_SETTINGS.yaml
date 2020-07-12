@@ -1,0 +1,60 @@
+schema: SYS
+name: USER_WARNING_SETTINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    o.obj#,
+    DECODE(
+      o.type#,
+      7,
+      'PROCEDURE',
+      8,
+      'FUNCTION',
+      9,
+      'PACKAGE',
+      11,
+      'PACKAGE BODY',
+      12,
+      'TRIGGER',
+      13,
+      'TYPE',
+      14,
+      'TYPE BODY',
+      'UNDEFINED'
+    ),
+    DECODE(
+      w.warning,
+      -1,
+      'INFORMATIONAL',
+      -2,
+      'PERFORMANCE',
+      -3,
+      'SEVERE',
+      -4,
+      'ALL',
+      w.warning
+    ),
+    DECODE(
+      w.setting,
+      0,
+      'DISABLE',
+      1,
+      'ENABLE',
+      2,
+      'ERROR',
+      'INVALID'
+    )
+  FROM
+    sys. "_CURRENT_EDITION_OBJ" o,
+    TABLE(
+      dbms_warning_internal.show_warning_settings(o.obj#)
+    ) w
+  WHERE
+    o.linkname IS NULL
+    AND o.obj# = w.obj_no
+    AND o.type# IN (7, 8, 9, 11, 12, 13, 14)
+    AND o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

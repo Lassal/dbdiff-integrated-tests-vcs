@@ -1,0 +1,15 @@
+schema: SYS
+name: TABLESPACE_EXPORT_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    OBJECT_PATH,
+    COMMENTS,
+    NAMED
+  from
+    dba_export_objects
+  where
+    het_type = 'TABLESPACE_EXPORT'
+columns: []
+referencedTables: []

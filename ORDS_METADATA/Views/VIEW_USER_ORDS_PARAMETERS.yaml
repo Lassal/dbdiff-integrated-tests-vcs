@@ -1,0 +1,27 @@
+schema: ORDS_METADATA
+name: USER_ORDS_PARAMETERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    ords_parameters. "ID",
+    ords_parameters. "HANDLER_ID",
+    ords_parameters. "NAME",
+    ords_parameters. "BIND_VARIABLE_NAME",
+    ords_parameters. "SOURCE_TYPE",
+    ords_parameters. "ACCESS_METHOD",
+    ords_parameters. "PARAM_TYPE",
+    ords_parameters. "COMMENTS",
+    ords_parameters. "SCHEMA_ID",
+    ords_parameters. "CREATED_BY",
+    ords_parameters. "CREATED_ON",
+    ords_parameters. "UPDATED_BY",
+    ords_parameters. "UPDATED_ON"
+  FROM
+    ords_schemas,
+    ords_parameters
+  WHERE
+    ords_schemas.id = ords_parameters.schema_id
+    AND ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

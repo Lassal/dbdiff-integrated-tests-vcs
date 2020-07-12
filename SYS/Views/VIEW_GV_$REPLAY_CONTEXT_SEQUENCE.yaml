@@ -1,0 +1,17 @@
+schema: SYS
+name: GV_$REPLAY_CONTEXT_SEQUENCE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "INST_ID",
+    "CONTEXT_ID",
+    "SEQUENCE_HASH",
+    "VALUES_CAPTURED",
+    "VALUES_REPLAYED",
+    "SEQUENCE_START_VALUE",
+    "CON_ID"
+  from
+    gv$replay_context_sequence
+columns: []
+referencedTables: []

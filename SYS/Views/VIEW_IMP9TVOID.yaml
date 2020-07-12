@@ -1,0 +1,62 @@
+schema: SYS
+name: IMP9TVOID
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o$.name,
+    u$.name,
+    t$.hashcode,
+    t$.tvoid,
+    o$.status,
+    t$.typeid,
+    t$.roottoid
+  FROM
+    sys.obj$ o$,
+    sys.user$ u$,
+    sys.type$ t$
+  WHERE
+    o$.type# = 13
+    AND o$.owner# = u$.user#
+    AND t$.toid = o$.oid$
+    AND t$.toid = t$.tvoid
+    AND
+    /* only the latest */
+    (
+      userenv('SCHEMAID') IN (o$.owner#, 0)
+      OR
+      /* System or owner */
+      EXISTS (
+        /* user has select role */
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+      OR (
+        o$.obj# IN
+        /* user has execute priv */
+        (
+          SELECT
+            oa$.obj#
+          FROM
+            sys.objauth$ oa$
+          WHERE
+            o$.obj# = oa$.obj#
+            AND oa$.grantee# IN
+            /* granted to current user/public */
+            (
+              SELECT
+                kzsrorol
+              from
+                x$kzsro
+            )
+            AND privilege# = 12
+        )
+      )
+    )
+    /* Execute priv */
+columns: []
+referencedTables: []

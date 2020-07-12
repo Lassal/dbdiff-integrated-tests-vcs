@@ -1,0 +1,39 @@
+schema: SYS
+name: USER_REPCAT_REFRESH_TEMPLATES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    refresh_template_name,
+    owner,
+    refresh_group_name,
+    template_comment,
+    nvl(public_template, 'N') public_template
+  from
+    system.repcat$_refresh_templates rt,
+    system.repcat$_template_types tt
+  where
+    public_template = 'Y'
+    and rt.template_type_id = tt.template_type_id
+    and bitand(rawtohex(tt.flags), 1) = 1
+  union
+  select
+    refresh_template_name,
+    owner,
+    refresh_group_name,
+    template_comment,
+    nvl(public_template, 'N') public_template
+  from
+    system.repcat$_refresh_templates rt,
+    system.repcat$_user_authorizations at,
+    sys.all_users au,
+    system.repcat$_template_types tt
+  where
+    at .refresh_template_id = rt.refresh_template_id
+    and au.user_id = at .user_id
+    and nvl(rt.public_template, 'N') = 'N'
+    and au.user_id = userenv('SCHEMAID')
+    and rt.template_type_id = tt.template_type_id
+    and bitand(rawtohex(tt.flags), 1) = 1
+columns: []
+referencedTables: []

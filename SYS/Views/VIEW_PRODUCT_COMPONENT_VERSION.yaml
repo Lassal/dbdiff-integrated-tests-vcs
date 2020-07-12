@@ -1,0 +1,43 @@
+schema: SYS
+name: PRODUCT_COMPONENT_VERSION
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  (
+    select
+      substr(banner, 1, instr(banner, 'Version') -1),
+      substr(
+        banner,
+        instr(banner, 'Version') + 8,
+        instr(banner, ' - ') -(instr(banner, 'Version') + 8)
+      ),
+      substr(banner, instr(banner, ' - ') + 3)
+    from
+      v$version
+    where
+      instr(banner, 'Version') > 0
+      and (
+        (
+          instr(banner, 'Version') < instr(banner, 'Release')
+        )
+        or instr(banner, 'Release') = 0
+      )
+  )
+  union
+    (
+      select
+        substr(banner, 1, instr(banner, 'Release') -1),
+        substr(
+          banner,
+          instr(banner, 'Release') + 8,
+          instr(banner, ' - ') -(instr(banner, 'Release') + 8)
+        ),
+        substr(banner, instr(banner, ' - ') + 3)
+      from
+        v$version
+      where
+        instr(banner, 'Release') > 0
+        and instr(banner, 'Release') < instr(banner, ' - ')
+    )
+columns: []
+referencedTables: []

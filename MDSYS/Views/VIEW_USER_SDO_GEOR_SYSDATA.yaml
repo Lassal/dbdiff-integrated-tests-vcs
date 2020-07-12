@@ -1,0 +1,18 @@
+schema: MDSYS
+name: USER_SDO_GEOR_SYSDATA
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    TABLE_NAME,
+    COLUMN_NAME,
+    METADATA_COLUMN_NAME,
+    RDT_TABLE_NAME,
+    RASTER_ID,
+    OTHER_TABLE_NAMES
+  FROM
+    ALL_SDO_GEOR_SYSDATA
+  WHERE
+    owner = sys_context('userenv', 'CURRENT_USER')
+columns: []
+referencedTables: []

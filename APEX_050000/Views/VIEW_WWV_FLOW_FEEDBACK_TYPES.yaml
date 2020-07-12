@@ -1,0 +1,24 @@
+schema: APEX_050000
+name: WWV_FLOW_FEEDBACK_TYPES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    1 id,
+    wwv_flow_lang.system_message('GENERAL_COMMENT') the_name
+  from
+    sys.dual
+  union all
+  select
+    2 id,
+    wwv_flow_lang.system_message('ENHANCEMENT_REQUEST') the_name
+  from
+    sys.dual
+  union all
+  select
+    3 id,
+    wwv_flow_lang.system_message('BUG') the_name
+  from
+    sys.dual
+columns: []
+referencedTables: []

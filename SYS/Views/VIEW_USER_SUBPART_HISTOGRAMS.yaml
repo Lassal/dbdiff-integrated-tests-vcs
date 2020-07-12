@@ -1,0 +1,103 @@
+schema: SYS
+name: USER_SUBPART_HISTOGRAMS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    o.subname,
+    tsp.cname,
+    h.bucket,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then h.endpoint
+      else null
+    end,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then case
+        when h.epvalue is not null then epvalue
+        else dbms_stats.conv_raw(h.epvalue_raw, tsp.type#)
+      end
+      else null
+    end,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then h.epvalue_raw
+      else null
+    end,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then h.ep_repeat_count
+      else null
+    end
+  from
+    sys.obj$ o,
+    sys.histgrm$ h,
+    tsp$ tsp
+  where
+    o.obj# = h.obj#
+    and h.obj# = tsp.obj#
+    and tsp.intcol# = h.intcol#
+    and o.type# = 34
+    /* TABLE SUBPARTITION */
+    and o.owner# = userenv('SCHEMAID')
+    and o.namespace = 1
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+  union
+  select
+    o.name,
+    o.subname,
+    tsp.cname,
+    0,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then h.minimum
+      else null
+    end,
+    null,
+    null,
+    0
+  from
+    sys.obj$ o,
+    sys.hist_head$ h,
+    tsp$ tsp
+  where
+    o.obj# = tsp.obj#
+    and tsp.obj# = h.obj#
+    and tsp.intcol# = h.intcol#
+    and o.type# = 34
+    /* TABLE SUBPARTITION */
+    and h.row_cnt = 0
+    and h.distcnt > 0
+    and o.owner# = userenv('SCHEMAID')
+    and o.namespace = 1
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+  union
+  select
+    o.name,
+    o.subname,
+    tsp.cname,
+    1,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then h.maximum
+      else null
+    end,
+    null,
+    null,
+    0
+  from
+    sys.obj$ o,
+    sys.hist_head$ h,
+    tsp$ tsp
+  where
+    o.obj# = tsp.obj#
+    and tsp.obj# = h.obj#
+    and tsp.intcol# = h.intcol#
+    and o.type# = 34
+    /* TABLE SUBPARTITION */
+    and h.row_cnt = 0
+    and h.distcnt > 0
+    and o.owner# = userenv('SCHEMAID')
+    and o.namespace = 1
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+columns: []
+referencedTables: []

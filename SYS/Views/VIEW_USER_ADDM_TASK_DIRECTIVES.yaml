@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_ADDM_TASK_DIRECTIVES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    i.TASK_ID as TASK_ID,
+    i.TASK_NAME as TASK_NAME,
+    i.INSTANCE_NAME as INSTANCE_NAME,
+    d.DIRECTIVE_NAME as DIRECTIVE_NAME,
+    prvt_hdm.describe_directive(d.DIRECTIVE_NAME, i.data) as DESCRIPTION
+  FROM
+    user_advisor_dir_task_inst i,
+    dba_advisor_dir_definitions d
+  WHERE
+    i.DIRECTIVE_ID = d.ID
+    AND d.ADVISOR_ID = 1
+columns: []
+referencedTables: []

@@ -1,0 +1,79 @@
+schema: SYS
+name: USER_XML_COLUMN_NAMES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    c .name,
+    (
+      select
+        name
+      from
+        sys.col$ c
+      where
+        c .obj# = o.obj#
+        and c .intcol# = p.objcol
+    ),
+    (
+      select
+        name
+      from
+        sys.col$ c
+      where
+        c .obj# = o.obj#
+        and c .intcol# = p.extracol
+    )
+  from
+    sys.opqtype$ p,
+    sys.col$ c,
+    sys.obj$ o,
+    sys.user$ u
+  where
+    u.user# = o.owner#
+    and o.type# = 2
+    and c .obj# = o.obj#
+    and p.intcol# = c .intcol#
+    and p.obj# = o.obj#
+    and (
+      u.user# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

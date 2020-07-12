@@ -1,0 +1,58 @@
+schema: SYS
+name: ALL_CLUSTERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    OWNER,
+    CLUSTER_NAME,
+    TABLESPACE_NAME,
+    PCT_FREE,
+    PCT_USED,
+    KEY_SIZE,
+    INI_TRANS,
+    MAX_TRANS,
+    INITIAL_EXTENT,
+    NEXT_EXTENT,
+    MIN_EXTENTS,
+    MAX_EXTENTS,
+    PCT_INCREASE,
+    FREELISTS,
+    FREELIST_GROUPS,
+    AVG_BLOCKS_PER_KEY,
+    CLUSTER_TYPE,
+    FUNCTION,
+    HASHKEYS,
+    DEGREE,
+    INSTANCES,
+    CACHE,
+    BUFFER_POOL,
+    FLASH_CACHE,
+    CELL_FLASH_CACHE,
+    SINGLE_TABLE,
+    DEPENDENCIES
+  from
+    INT $DBA_CLUSTERS
+  where
+    (
+      OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+      or
+      /* user has system privilages */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -61
+            /* CREATE ANY CLUSTER */,
+            -62
+            /* ALTER ANY CLUSTER */,
+            -63
+            /* DROP ANY CLUSTER */
+          )
+      )
+    )
+columns: []
+referencedTables: []

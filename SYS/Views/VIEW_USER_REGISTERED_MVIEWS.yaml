@@ -1,0 +1,28 @@
+schema: SYS
+name: USER_REGISTERED_MVIEWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "OWNER",
+    "NAME",
+    "MVIEW_SITE",
+    "CAN_USE_LOG",
+    "UPDATABLE",
+    "REFRESH_METHOD",
+    "MVIEW_ID",
+    "VERSION",
+    "QUERY_TXT"
+  from
+    dba_registered_mviews s
+  where
+    exists (
+      select
+        u.mview_id
+      from
+        user_base_table_mviews u
+      where
+        s.mview_id = u.mview_id
+    )
+columns: []
+referencedTables: []

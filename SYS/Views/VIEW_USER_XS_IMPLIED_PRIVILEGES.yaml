@@ -1,0 +1,15 @@
+schema: SYS
+name: USER_XS_IMPLIED_PRIVILEGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    privilege,
+    implied_privilege,
+    security_class
+  from
+    sys.dba_xs_implied_privileges
+  where
+    security_class_owner = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

@@ -1,0 +1,22 @@
+schema: SYS
+name: EXPCOMPRESSEDPART
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    s.spare1,
+    t.obj#
+  FROM
+    sys.tabpart$ t,
+    sys.seg$ s
+  WHERE
+    t.ts# = s.ts#
+    AND t.file# = s.file#
+    AND t.block# = s.block#
+    AND s.type# = 5
+    AND (
+      bitand(s.spare1, 4096) = 4096
+      OR bitand(s.spare1, 2048) = 2048
+    )
+columns: []
+referencedTables: []

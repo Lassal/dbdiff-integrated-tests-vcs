@@ -1,0 +1,37 @@
+name: SDO_TIN_PC_SEQ
+schema: MDSYS
+columns:
+- name: CUR_OBJ_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: SDO_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  dataTypeLength: 32
+- name: TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  dataTypeLength: 32
+constraints:
+- !<unique-constraint>
+  name: SDO_PK_SEQ_TIN_PC
+  type: PRIMARY_KEY
+  columns:
+  - name: SDO_OWNER
+    ordinalPosition: 1
+  - name: TABLE_NAME
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C006408
+  type: CHECK
+  checkClause: '"SDO_OWNER" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C006409
+  type: CHECK
+  checkClause: '"TABLE_NAME" IS NOT NULL'

@@ -1,0 +1,106 @@
+schema: SYS
+name: ALL_DEQUEUE_QUEUES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name OWNER,
+    q.name NAME,
+    t.name QUEUE_TABLE,
+    q.eventid QID,
+    decode(
+      q.usage,
+      1,
+      'EXCEPTION_QUEUE',
+      2,
+      'NON_PERSISTENT_QUEUE',
+      'NORMAL_QUEUE'
+    ) QUEUE_TYPE,
+    q.max_retries MAX_RETRIES,
+    q.retry_delay RETRY_DELAY,
+    decode(
+      bitand(q.enable_flag, 1),
+      1,
+      '  YES  ',
+      '  NO  '
+    ) ENQUEUE_ENABLED,
+    decode(
+      bitand(q.enable_flag, 2),
+      2,
+      '  YES  ',
+      '  NO  '
+    ) DEQUEUE_ENABLED,
+    decode(q.ret_time, -1, ' FOREVER', q.ret_time) RETENTION,
+    substr(q.queue_comment, 1, 50) USER_COMMENT,
+    s.network_name NETWORK_NAME,
+    decode(q.sharded, 1, 'TRUE', 'FALSE') SHARDED
+  from
+    system.aq$_queues q,
+    system.aq$_queue_tables t,
+    sys.user$ u,
+    sys.obj$ ro,
+    dba_services s
+  where
+    u.name = t.schema
+    and q.table_objno = t.objno
+    and ro.owner# = u.user#
+    and ro.obj# = q.eventid
+    and (
+      ro.owner# = userenv('SCHEMAID')
+      or ro.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          oa.privilege# in (21, 41)
+          and grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -218
+            /* MANAGE ANY QUEUE */,
+            -220
+            /* DEQUEUE ANY QUEUE */
+          )
+      )
+      or ro.obj# in (
+        select
+          q.eventid
+        from
+          system.aq$_queues q,
+          system.aq$_queue_tables t
+        where
+          q.table_objno = t.objno
+          and bitand(t.flags, 8) = 0
+          and exists (
+            select
+              null
+            from
+              sys.objauth$ oa,
+              sys.obj$ o
+            where
+              oa.obj# = o.obj#
+              and (
+                o.name = 'DBMS_AQ'
+                or o.name = 'DBMS_AQADM'
+              )
+              and o.owner# = 0
+              and o.type# = 9
+              and oa.grantee# = userenv('SCHEMAID')
+          )
+      )
+    )
+    and q.service_name = s.name (+)
+columns: []
+referencedTables: []

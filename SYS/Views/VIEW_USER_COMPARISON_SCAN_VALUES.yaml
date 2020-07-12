@@ -1,0 +1,18 @@
+schema: SYS
+name: USER_COMPARISON_SCAN_VALUES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    comparison_name,
+    scan_id,
+    column_position,
+    min_value,
+    max_value,
+    last_update_time
+  FROM
+    dba_comparison_scan_values
+  WHERE
+    owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

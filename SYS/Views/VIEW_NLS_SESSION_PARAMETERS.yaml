@@ -1,0 +1,15 @@
+schema: SYS
+name: NLS_SESSION_PARAMETERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    substr(parameter, 1, 30),
+    substr(value, 1, 64)
+  from
+    v$nls_parameters
+  where
+    parameter != 'NLS_CHARACTERSET'
+    and parameter != 'NLS_NCHAR_CHARACTERSET'
+columns: []
+referencedTables: []

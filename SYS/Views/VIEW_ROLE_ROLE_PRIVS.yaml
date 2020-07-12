@@ -1,0 +1,81 @@
+schema: SYS
+name: ROLE_ROLE_PRIVS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u1.name,
+    u2.name,
+    decode(min(mod(option $, 2)), 1, 'YES', 'NO'),
+    'NO'
+  from
+    sys.user$ u1,
+    sys.user$ u2,
+    sys.sysauth$ sa
+  where
+    grantee# in (
+      select
+        distinct(privilege#)
+      from
+        sys.sysauth$ sa
+      where
+        privilege# > 0
+      connect by
+        prior sa.privilege# = sa.grantee#
+      start with
+        grantee# = userenv('SCHEMAID')
+        or grantee# = 1
+        or grantee# in (
+          select
+            kzdosrol
+          from
+            x$kzdos
+        )
+    )
+    and u1.user# = sa.grantee#
+    and u2.user# = sa.privilege#
+    and bitand(nvl(option $, 0), 4) = 0
+    /* Local, and maybe Common, Privs */
+  group by
+    u1.name,
+    u2.name
+  union all
+    /* Commonly-granted Roles */
+  select
+    u1.name,
+    u2.name,
+    decode(min(bitand(option $, 16)), 16, 'YES', 'NO'),
+    'YES'
+  from
+    sys.user$ u1,
+    sys.user$ u2,
+    sys.sysauth$ sa
+  where
+    grantee# in (
+      select
+        distinct(privilege#)
+      from
+        sys.sysauth$ sa
+      where
+        privilege# > 0
+      connect by
+        prior sa.privilege# = sa.grantee#
+      start with
+        grantee# = userenv('SCHEMAID')
+        or grantee# = 1
+        or grantee# in (
+          select
+            kzdosrol
+          from
+            x$kzdos
+        )
+    )
+    and u1.user# = sa.grantee#
+    and u2.user# = sa.privilege#
+    and bitand(option $, 8) = 8
+    /* Common, and maybe Local, priv */
+  group by
+    u1.name,
+    u2.name
+columns: []
+referencedTables: []

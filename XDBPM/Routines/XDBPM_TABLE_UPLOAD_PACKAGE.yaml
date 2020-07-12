@@ -1,0 +1,111 @@
+schema: XDBPM
+name: XDBPM_TABLE_UPLOAD
+routineType: PACKAGE
+returnParamater:
+  name: XML_CONTENT.(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: CONFIGUREUPLOADFOLDER.P_UPLOAD_FOLDER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONFIGUREUPLOADFOLDER.P_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONFIGUREUPLOADFOLDER.P_OBJECT_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONFIGUREUPLOADFOLDER.P_COLUMN_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONFIGUREUPLOADFOLDER.P_CONTENT_TYPE_FILTER
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEXMLINDEXEDTABLE.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEXMLINDEXEDTABLE.P_INDEX_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEXMLINDEXEDTABLE.P_UPLOAD_FOLDER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETUPLOADFOLDERPATH.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETUPLOADFOLDERPATH.P_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_TABLE_UPLOAD authid CURRENT_USER as -- Metadata For Upload Folder : The Metadata identifies which table to load content into when a document is placed in the folder.
+  C_TABLE_UPLOAD_ELEMENT constant varchar2(1024): = 'Target';
+  C_TABLE_UPLOAD_NAMESPACE constant varchar2(1024): = 'http:/xmlns.oracle.com/xdb/pm/tableUpload';
+  C_TABLE_UPLOAD_XPATH constant varchar2(1024): = '/r:Resource/x:' || C_TABLE_UPLOAD_ELEMENT;
+  C_TABLE_UPLOAD_PREFIX_X constant varchar2(1024): = 'xmlns:x="' || C_TABLE_UPLOAD_NAMESPACE || '"';
+  C_RESCONFIG_SKELETON constant varchar2(32000): = '<ResConfig xmlns="http://xmlns.oracle.com/xdb/XDBResConfig.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/xdb/XDBResConfig.xsd http://xmlns.oracle.com/xdb/XDBResConfig.xsd">
+
+     <event-listeners>
+
+       <listener>
+
+         <description>Table Upload</description>
+
+         <schema>XDBPM</schema>
+
+         <source>UPLOAD_FOLDER_EVENTS</source>
+
+         <language>PL/SQL</language>
+
+         <events>
+
+           <Pre-LinkIn/>
+
+           <Post-LinkIn/>
+
+         </events>
+
+       </listener>
+
+     </event-listeners>
+
+     <applicationData/>
+
+  </ResConfig>';
+  C_XML_CONTENT constant varchar2(32): = 'XML';
+  C_BINARY_CONTENT constant varchar2(32): = 'BINARY';
+  C_TEXT_CONTENT constant varchar2(32): = 'TEXT';
+  function XML_CONTENT return varchar2 deterministic;
+  function BINARY_CONTENT return varchar2 deterministic;
+  function TEXT_CONTENT return varchar2 deterministic;
+  function TABLE_UPLOAD_ELEMENT return varchar2 deterministic;
+  function TABLE_UPLOAD_NAMESPACE return varchar2 deterministic;
+  function TABLE_UPLOAD_XPATH return varchar2 deterministic;
+  function TABLE_UPLOAD_PREFIX_X return varchar2 deterministic;
+  function configureUploadFolder(
+    P_UPLOAD_FOLDER VARCHAR2,
+    P_OWNER VARCHAR2,
+    P_OBJECT_NAME VARCHAR2,
+    P_COLUMN_NAME VARCHAR2 DEFAULT 'OBJECT_VALUE',
+    P_CONTENT_TYPE_FILTER VARCHAR2 DEFAULT NULL
+  ) return VARCHAR2;
+  function getUploadFolderPath(
+    P_TABLE_NAME VARCHAR2,
+    P_OWNER VARCHAR2 DEFAULT USER
+  ) return VARCHAR2;
+  procedure createXMLIndexedTable(
+    P_TABLE_NAME VARCHAR2,
+    P_INDEX_NAME VARCHAR2,
+    P_UPLOAD_FOLDER VARCHAR2 DEFAULT NULL
+  );
+  end;

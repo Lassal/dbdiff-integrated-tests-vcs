@@ -1,0 +1,89 @@
+schema: SYS
+name: DBA_JAVA_CLASSES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ no_cartesian(m) ordered use_nl(o m)*/
+    u.name,
+    m.kln,
+    m.maj,
+    m.min,
+    decode(
+      BITAND(m.acc, 512 + 8192 + 16384),
+      0,
+      'CLASS',
+      512,
+      'INTERFACE',
+      8192,
+      'ANNOTATION',
+      16384,
+      'ENUM',
+      '??? OAC = ' || BITAND(m.oac, 512 + 8192 + 16384)
+    ),
+    decode(
+      BITAND(
+        decode(BITAND(m.acc, 131072), 131072, m.oac, m.acc),
+        7
+      ),
+      1,
+      'PUBLIC',
+      2,
+      'PRIVATE',
+      4,
+      'PROTECTED',
+      NULL
+    ),
+    decode(BITAND(m.acc, 131072), 131072, 'YES', 0, 'NO'),
+    decode(BITAND(m.acc, 1024), 1024, 'YES', 0, 'NO'),
+    decode(
+      BITAND(
+        decode(BITAND(m.acc, 131072), 131072, m.oac, m.acc),
+        16
+      ),
+      16,
+      'YES',
+      0,
+      'NO'
+    ),
+    decode(
+      BITAND(
+        decode(BITAND(m.acc, 131072), 131072, m.oac, m.acc),
+        8
+      ),
+      8,
+      'YES',
+      0,
+      'NO'
+    ),
+    decode(
+      BITAND(
+        decode(BITAND(m.acc, 131072), 131072, m.oac, m.acc),
+        2048
+      ),
+      2048,
+      'YES',
+      0,
+      'NO'
+    ),
+    decode(
+      BITAND(
+        decode(BITAND(m.acc, 131072), 131072, m.oac, m.acc),
+        4096
+      ),
+      4096,
+      'YES',
+      0,
+      'NO'
+    ),
+    decode(m.dbg, 1, 'YES', 0, 'NO'),
+    m.src,
+    m.spl,
+    m.oln
+  from
+    sys.x$joxmob m,
+    sys.user$ u
+  where
+    m.own = u.user#
+columns: []
+referencedTables: []

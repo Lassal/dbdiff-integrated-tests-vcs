@@ -1,0 +1,26 @@
+schema: SYS
+name: ODCIPARTINFODUMP
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: PINFO
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE ODCIPartInfoDump(pinfo IN SYS.ODCIPartInfo) IS
+  BEGIN
+    dbms_output.put_line('ODCIPartInfo :');
+  dbms_output.put_line(
+      'Table partition name : ' || pinfo.TablePartition
+    );
+  dbms_output.put_line(
+      'Index partition name : ' || pinfo.IndexPartition
+    );
+  dbms_output.put_line(
+      'Index partition iden : ' || pinfo.IndexPartitionIden
+    );
+  IF (pinfo.PartOp = ODCIConst.AddPartition) THEN dbms_output.put_line('Add Partition');
+  ELSIF (pinfo.PartOp = ODCIConst.DropPartition) THEN dbms_output.put_line('Drop Partition');
+  END IF;
+  END;

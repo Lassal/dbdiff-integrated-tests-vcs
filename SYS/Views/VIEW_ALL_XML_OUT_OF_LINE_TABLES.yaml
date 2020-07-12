@@ -1,0 +1,26 @@
+schema: SYS
+name: ALL_XML_OUT_OF_LINE_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    d.xmlschema as SCHEMA_URL,
+    --schema URL
+    d.schema_owner as SCHEMA_OWNER,
+    --schema owner
+    d.table_name as TABLE_NAME,
+    --out of line table name
+    d.owner as TABLE_OWNER --out of line table owner
+  from
+    ALL_XML_TABLES d,
+    sys.obj$ o,
+    sys.opqtype$ op,
+    sys.user$ u
+  where
+    o.owner# = u.user#
+    and d.table_name = o.name
+    and d.owner = u.name
+    and o.obj# = op.obj#
+    and bitand(op.flags, 32) = 32
+columns: []
+referencedTables: []

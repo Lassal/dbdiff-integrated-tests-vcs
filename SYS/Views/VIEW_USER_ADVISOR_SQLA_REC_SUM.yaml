@@ -1,0 +1,24 @@
+schema: SYS
+name: USER_ADVISOR_SQLA_REC_SUM
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    max(a .task_id) as task_id,
+    max(b.name) as task_name,
+    max(a .rec_id) as rec_id,
+    count(*) as total_stmts,
+    sum(a .pre_cost) as total_precost,
+    sum(a .post_cost) as total_postcost
+  from
+    wri$_adv_sqla_stmts a,
+    wri$_adv_tasks b
+  where
+    a .task_id = b.id
+    and b.owner# = userenv('SCHEMAID')
+    and b.advisor_id = 2
+  group by
+    a .task_id,
+    a .rec_id
+columns: []
+referencedTables: []

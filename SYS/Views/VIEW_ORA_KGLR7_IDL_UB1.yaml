@@ -1,0 +1,102 @@
+schema: SYS
+name: ORA_KGLR7_IDL_UB1
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ index(i i_idl_ub11) +*/
+    o.owner,
+    o.name,
+    o.type,
+    i.part,
+    i.version,
+    i.piece#,
+    i.length,
+    i.piece,
+    o.object_id
+  from
+    sys.ora_kglr7_objects o,
+    sys.idl_ub1$ i
+  where
+    o.object_id = i.obj#
+    and (
+      o.type in (
+        5
+        /* SYNONYM */,
+        2
+        /* TABLE */,
+        4
+        /* VIEW */,
+        9
+        /* PACKAGE */,
+        13
+        /* TYPE */
+      )
+      and (
+        o.owner_id in (
+          userenv('SCHEMAID'),
+          1
+          /* PUBLIC */
+        )
+        or o.object_id in (
+          select
+            obj#
+          from
+            sys.objauth$
+          where
+            grantee# in (
+              select
+                kzsrorol
+              from
+                x$kzsro
+            )
+            and privilege# in (
+              3
+              /* DELETE */,
+              6
+              /* INSERT */,
+              7
+              /* LOCK */,
+              9
+              /* SELECT */,
+              10
+              /* UPDATE */,
+              12
+              /* EXECUTE */,
+              17
+              /* READ */
+            )
+        )
+        or exists (
+          select
+            null
+          from
+            sys.sysauth$
+          where
+            grantee# in (
+              select
+                kzsrorol
+              from
+                x$kzsro
+            )
+            and (
+              o.type in (
+                7
+                /* PROCEDURE */,
+                8
+                /* FUNCTION */,
+                11
+                /* PACKAGE BODY */
+              )
+              and privilege# = -144
+              /* EXECUTE ANY PROCEDURE */
+              or o.type = 6
+              /* SEQUENCE */
+              and privilege# = -109
+              /* SELECT ANY SEQUENCE */
+            )
+        )
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,25 @@
+schema: SYS
+name: USER_CUBE_HIER_VIEWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    do .name DIMENSION_NAME,
+    h.hierarchy_name HIERARCHY_NAME,
+    vo.name VIEW_NAME
+  FROM
+    olap_aw_views$ av,
+    olap_hierarchies$ h,
+    obj$ do,
+    obj$ vo
+  WHERE
+    av.olap_object_type = 13 --HIERACHY
+    AND av.olap_object_id = h.hierarchy_id
+    AND av.view_type = 1 -- ET
+    AND h.dim_obj# = do .obj#
+    AND do .owner# = USERENV('SCHEMAID')
+    AND av.view_obj# = vo.obj#
+    AND vo.type# != 10 -- not NON-EXISTENT
+    AND vo.owner# = do .owner#
+columns: []
+referencedTables: []

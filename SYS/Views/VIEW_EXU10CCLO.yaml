@@ -1,0 +1,22 @@
+schema: SYS
+name: EXU10CCLO
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    a .ownerid,
+    a .cno,
+    a .colname,
+    a .colno,
+    a .property,
+    a .nolog
+  FROM
+    sys.exu10ccl a,
+    sys.con$ b,
+    sys.cdef$ c
+  WHERE
+    b.owner# = userenv('SCHEMAID')
+    AND b.con# = c .con#
+    AND c .rcon# = a .cno
+columns: []
+referencedTables: []

@@ -1,0 +1,22 @@
+schema: SYS
+name: ALL_CLUSTERING_JOINS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    j.OWNER,
+    j.TABLE_NAME,
+    j.TAB1_OWNER,
+    j.TAB1_NAME,
+    j.TAB1_COLUMN,
+    j.TAB2_OWNER,
+    j.TAB2_NAME,
+    j.TAB2_COLUMN
+  from
+    DBA_CLUSTERING_JOINS j,
+    ALL_TABLES t
+  WHERE
+    j.OWNER = t.OWNER
+    AND j.TABLE_NAME = t.TABLE_NAME
+columns: []
+referencedTables: []

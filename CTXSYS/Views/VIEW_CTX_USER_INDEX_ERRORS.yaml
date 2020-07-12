@@ -1,0 +1,18 @@
+schema: CTXSYS
+name: CTX_USER_INDEX_ERRORS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    idx_name err_index_name,
+    err_timestamp,
+    err_textkey,
+    err_text
+  from
+    dr$index_error,
+    dr$index
+  where
+    idx_id = err_idx_id
+    and idx_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

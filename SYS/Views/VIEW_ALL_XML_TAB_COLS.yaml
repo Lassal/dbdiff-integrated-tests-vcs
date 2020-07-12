@@ -1,0 +1,189 @@
+schema: SYS
+name: ALL_XML_TAB_COLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    decode(bitand(tc.property, 1), 1, attr.name, tc.name),
+    null,
+    null,
+    null,
+    case
+      when bitand(opq.flags, 69) = 1 then 'OBJECT-RELATIONAL'
+      when bitand(opq.flags, 69) = 68 then 'BINARY'
+      else 'CLOB'
+    end,
+    case
+      when bitand(opq.flags, 69) = 68 then case
+        when bitand(opq.flags, 128) = 128 then 'YES'
+        else 'NO'
+      end
+      else NULL
+    end,
+    case
+      when bitand(opq.flags, 69) = 68 then case
+        when bitand(opq.flags, 256) = 256 then 'NO'
+        else 'YES'
+      end
+      else NULL
+    end
+  from
+    sys.opqtype$ opq,
+    sys.tab$ t,
+    sys.user$ u,
+    sys.obj$ o,
+    sys.coltype$ ac,
+    sys.col$ tc,
+    sys.attrcol$ attr
+  where
+    o.owner# = u.user#
+    and o.obj# = t.obj#
+    and t.obj# = tc.obj#
+    and tc.obj# = ac.obj#
+    and tc.intcol# = ac.intcol#
+    and ac.toid = '00000000000000000000000000020100'
+    and tc.intcol# = opq.intcol#
+    and tc.obj# = opq.obj#
+    and tc.obj# = attr.obj#(+)
+    and tc.intcol# = attr.intcol#(+)
+    and bitand(opq.flags, 2) = 0
+    and bitand(tc.property, 512) = 0
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+  union all
+  select
+    u.name,
+    o.name,
+    decode(bitand(tc.property, 1), 1, attr.name, tc.name),
+    schm.xmldata.schema_url,
+    schm.xmldata.schema_owner,
+    decode(
+      xel.xmldata.property.name,
+      null,
+      xel.xmldata.property.propref_name.name,
+      xel.xmldata.property.name
+    ),
+    case
+      when bitand(opq.flags, 69) = 1 then 'OBJECT-RELATIONAL'
+      when bitand(opq.flags, 69) = 68 then 'BINARY'
+      else 'CLOB'
+    end,
+    case
+      when bitand(opq.flags, 69) = 68 then case
+        when bitand(opq.flags, 128) = 128 then 'YES'
+        else 'NO'
+      end
+      else NULL
+    end,
+    case
+      when bitand(opq.flags, 69) = 68 then case
+        when bitand(opq.flags, 256) = 256 then 'NO'
+        else 'YES'
+      end
+      else NULL
+    end
+  from
+    xdb.xdb$element xel,
+    xdb.xdb$schema schm,
+    sys.opqtype$ opq,
+    sys.tab$ t,
+    sys.user$ u,
+    sys.obj$ o,
+    sys.coltype$ ac,
+    sys.col$ tc,
+    sys.attrcol$ attr
+  where
+    o.owner# = u.user#
+    and o.obj# = t.obj#
+    and t.obj# = tc.obj#
+    and tc.obj# = ac.obj#
+    and tc.intcol# = ac.intcol#
+    and ac.toid = '00000000000000000000000000020100'
+    and tc.intcol# = opq.intcol#
+    and tc.obj# = opq.obj#
+    and tc.obj# = attr.obj#(+)
+    and tc.intcol# = attr.intcol#(+)
+    and bitand(tc.property, 512) = 0
+    and opq.schemaoid = schm.sys_nc_oid$
+    and opq.elemnum = xel.xmldata.property.prop_number
+    and bitand(opq.flags, 2) = 2
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

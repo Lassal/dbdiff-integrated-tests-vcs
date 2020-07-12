@@ -1,0 +1,17 @@
+schema: SYS
+name: KU$_PROCACT_SCHEMA_PKG_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    p.package pname,
+    p.schema pschema,
+    p.level# plevel
+  FROM
+    sys.exppkgact$ p
+  where
+    p.class = 2
+  order by
+    p.level#
+columns: []
+referencedTables: []

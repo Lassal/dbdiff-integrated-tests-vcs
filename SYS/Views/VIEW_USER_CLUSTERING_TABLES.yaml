@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_CLUSTERING_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    owner,
+    table_name,
+    clustering_type,
+    on_load,
+    on_datamovement,
+    valid,
+    with_zonemap,
+    last_load_clst,
+    last_datamove_clst
+  from
+    DBA_CLUSTERING_TABLES
+  WHERE
+    OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

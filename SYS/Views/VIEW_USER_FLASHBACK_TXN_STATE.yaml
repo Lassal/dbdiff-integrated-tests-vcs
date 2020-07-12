@@ -1,0 +1,26 @@
+schema: SYS
+name: USER_FLASHBACK_TXN_STATE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    COMPENSATING_XID,
+    XID,
+    DEPENDENT_XID,
+    decode(
+      BACKOUT_MODE,
+      1,
+      'NOCASCADE',
+      2,
+      'NOCASCADE_FORCE',
+      3,
+      'NONCONFLICT_ONLY',
+      4,
+      'CASCADE'
+    ) AS BACKOUT_MODE
+  FROM
+    TRANSACTION_BACKOUT_STATE$
+  WHERE
+    USER # = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

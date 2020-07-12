@@ -1,0 +1,68 @@
+schema: XFILES
+name: KML_SUPPORT
+routineType: PACKAGE
+returnParamater:
+  name: CREATEPOI.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: CREATEKMLFROMIMAGE.P_RESOURCE_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEPOI.P_COUNTRY_CODE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEPOI.P_CATEGORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEPOI.P_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEPOI.P_NUMBER
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEPOI.P_STREET
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEPOI.P_CITY
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEPOI.P_POSTCODE
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATEPOI.P_LATITUDE
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATEPOI.P_LONGITUDE
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATEPOI.P_RESOURCE_PATH
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package KML_SUPPORT authid CURRENT_USER as function createPOI(
+    P_COUNTRY_CODE VARCHAR2,
+    P_CATEGORY VARCHAR2,
+    P_NAME VARCHAR2,
+    P_NUMBER VARCHAR2,
+    P_STREET VARCHAR2,
+    P_CITY VARCHAR2,
+    P_POSTCODE VARCHAR2,
+    P_LATITUDE NUMBER,
+    P_LONGITUDE NUMBER,
+    P_RESOURCE_PATH VARCHAR2 DEFAULT NULL
+  ) return XMLType;
+  function createKMLfromImage(P_RESOURCE_PATH VARCHAR2) return XMLType;
+  end;

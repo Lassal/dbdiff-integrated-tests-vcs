@@ -1,0 +1,97 @@
+schema: SYS
+name: ALL_REPOBJECT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r.sname,
+    r.oname,
+    r.type,
+    r.status,
+    r.generation_status,
+    r.id,
+    r.object_comment,
+    r.gname,
+    r.min_communication,
+    r.trigflag replication_trigger_exists,
+    r.internal_package_exists,
+    r.gowner,
+    r.nested_table
+  from
+    repcat_repobject r,
+    all_objects o
+  where
+    (
+      r.sname = 'PUBLIC'
+      or r.sname in (
+        select
+          u.username
+        from
+          all_users u
+      )
+    )
+    and r.sname = o.owner
+    and r.oname = o.object_name
+    and r.type != 'INTERNAL PACKAGE'
+    and (
+      r.type = o.object_type
+      or (
+        r.type = 'SNAPSHOT'
+        and o.object_type IN ('VIEW', 'TABLE')
+      )
+    )
+  union
+  select
+    r.sname,
+    r.oname,
+    r.type,
+    r.status,
+    r.generation_status,
+    r.id,
+    r.object_comment,
+    r.gname,
+    r.min_communication,
+    r.replication_trigger_exists,
+    r.internal_package_exists,
+    r.group_owner,
+    r.nested_table
+  from
+    user_repobject r
+  union
+  select
+    r.sname,
+    r.oname,
+    r.type,
+    r.status,
+    r.generation_status,
+    r.id,
+    r.object_comment,
+    r.gname,
+    r.min_communication,
+    r.trigflag replication_trigger_exists,
+    r.internal_package_exists,
+    r.gowner,
+    r.nested_table
+  from
+    repcat_repobject r
+  where
+    (
+      r.sname = 'PUBLIC'
+      or r.sname in (
+        select
+          u.username
+        from
+          all_users u
+      )
+    )
+    and (r.gname, r.gowner) in (
+      select
+        nvl(rp.gname, r.gname),
+        nvl(rp.owner, r.gowner)
+      from
+        user_repgroup_privileges rp
+      where
+        rp.proxy_snapadmin = 'Y'
+    )
+columns: []
+referencedTables: []

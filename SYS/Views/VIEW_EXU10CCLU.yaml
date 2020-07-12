@@ -1,0 +1,20 @@
+schema: SYS
+name: EXU10CCLU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OWNERID",
+    "OWNERNAME",
+    "CNO",
+    "COLNAME",
+    "COLNO",
+    "INTCOL",
+    "PROPERTY",
+    "NOLOG"
+  FROM
+    sys.exu10ccl
+  WHERE
+    userenv('SCHEMAID') = ownerid
+columns: []
+referencedTables: []

@@ -1,0 +1,35 @@
+schema: SYS
+name: ALL_STREAMS_RULES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    r. "STREAMS_TYPE",
+    r. "STREAMS_NAME",
+    r. "RULE_SET_OWNER",
+    r. "RULE_SET_NAME",
+    r. "RULE_OWNER",
+    r. "RULE_NAME",
+    r. "RULE_CONDITION",
+    r. "RULE_SET_TYPE",
+    r. "STREAMS_RULE_TYPE",
+    r. "SCHEMA_NAME",
+    r. "OBJECT_NAME",
+    r. "SUBSETTING_OPERATION",
+    r. "DML_CONDITION",
+    r. "INCLUDE_TAGGED_LCR",
+    r. "SOURCE_DATABASE",
+    r. "RULE_TYPE",
+    r. "MESSAGE_TYPE_OWNER",
+    r. "MESSAGE_TYPE_NAME",
+    r. "MESSAGE_RULE_VARIABLE",
+    r. "ORIGINAL_RULE_CONDITION",
+    r. "SAME_RULE_CONDITION"
+  from
+    dba_streams_rules r,
+    "_ALL_STREAMS_PROCESSES" p
+  where
+    r.streams_type = p.streams_type
+    and r.streams_name = p.streams_name
+columns: []
+referencedTables: []

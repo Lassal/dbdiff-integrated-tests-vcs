@@ -1,0 +1,183 @@
+schema: SYS
+name: ALL_ASSOCIATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    c .name,
+    decode(
+      a .property,
+      1,
+      'COLUMN',
+      2,
+      'TYPE',
+      3,
+      'PACKAGE',
+      4,
+      'FUNCTION',
+      5,
+      'INDEX',
+      6,
+      'INDEXTYPE',
+      'INVALID'
+    ),
+    u1.name,
+    o1.name,
+    a .default_selectivity,
+    a .default_cpu_cost,
+    a .default_io_cost,
+    a .default_net_cost,
+    a .interface_version#,
+    decode (
+      bitand(a .spare2, 1),
+      1,
+      'SYSTEM_MANAGED',
+      'USER_MANAGED'
+    )
+  from
+    sys.association$ a,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.user$ u,
+    sys. "_CURRENT_EDITION_OBJ" o1,
+    sys.user$ u1,
+    sys.col$ c
+  where
+    a .obj# = o.obj#
+    and o.owner# = u.user#
+    AND a .statstype# = o1.obj# (+)
+    and o1.owner# = u1.user# (+)
+    AND a .obj# = c .obj# (+)
+    and a .intcol# = c .intcol# (+)
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or (
+        o.type# in (2)
+        /* table */
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -45
+              /* LOCK ANY TABLE */,
+              -47
+              /* SELECT ANY TABLE */,
+              -397
+              /* READ ANY TABLE */,
+              -48
+              /* INSERT ANY TABLE */,
+              -49
+              /* UPDATE ANY TABLE */,
+              -50
+              /* DELETE ANY TABLE */,
+              -42
+              /* ALTER ANY TABLE */
+            )
+        )
+      )
+      or (
+        o.type# in (8, 9)
+        /* package or function */
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -140
+              /* CREATE PROCEDURE */,
+              -141
+              /* CREATE ANY PROCEDURE */,
+              -142
+              /* ALTER ANY PROCEDURE */,
+              -143
+              /* DROP ANY PROCEDURE */,
+              -144
+              /* EXECUTE ANY PROCEDURE */
+            )
+        )
+      )
+      or (
+        o.type# in (13)
+        /* type */
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -180
+              /* CREATE TYPE */,
+              -181
+              /* CREATE ANY TYPE */,
+              -182
+              /* ALTER ANY TYPE */,
+              -183
+              /* DROP ANY TYPE */,
+              -184
+              /* EXECUTE ANY TYPE */
+            )
+        )
+      )
+      or (
+        o.type# in (1)
+        /* index */
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -71
+              /* CREATE ANY INDEX */,
+              -72
+              /* ALTER ANY INDEX */,
+              -73
+              /* DROP ANY INDEX */
+            )
+        )
+      )
+      or (
+        o.type# in (32)
+        /* indextype */
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -205
+              /* CREATE INDEXTYPE */,
+              -206
+              /* CREATE ANY INDEXTYPE */,
+              -207
+              /* ALTER ANY INDEXTYPE */,
+              -208
+              /* DROP ANY INDEXTYPE */
+            )
+        )
+      )
+    )
+columns: []
+referencedTables: []

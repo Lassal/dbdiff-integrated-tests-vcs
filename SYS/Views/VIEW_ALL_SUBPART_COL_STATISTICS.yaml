@@ -1,0 +1,142 @@
+schema: SYS
+name: ALL_SUBPART_COL_STATISTICS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    o.subname,
+    tsp.cname,
+    h.distcnt,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then h.lowval
+      else null
+    end,
+    case
+      when SYS_OP_DV_CHECK(o.name, o.owner#) = 1 then h.hival
+      else null
+    end,
+    h.density,
+    h.null_cnt,
+    case
+      when nvl(h.distcnt, 0) = 0 then h.distcnt
+      when h.row_cnt = 0 then 1
+      when exists(
+        select
+          1
+        from
+          sys.histgrm$ hg
+        where
+          tsp.obj# = hg.obj#
+          and tsp.intcol# = hg.intcol#
+          and hg.ep_repeat_count > 0
+          and rownum < 2
+      ) then h.row_cnt
+      when bitand(h.spare2, 64) > 0 then h.row_cnt
+      when (
+        bitand(h.spare2, 32) > 0
+        or h.bucket_cnt > 2049
+        or (
+          h.bucket_cnt >= h.distcnt
+          and h.density * h.bucket_cnt < 1
+        )
+      ) then h.row_cnt
+      else h.bucket_cnt
+    end,
+    h.sample_size,
+    h.timestamp#,
+    decode(bitand(h.spare2, 2), 2, 'YES', 'NO'),
+    decode(bitand(h.spare2, 1), 1, 'YES', 'NO'),
+    decode(bitand(h.spare2, 8), 8, 'INCREMENTAL ', '') || decode(
+      bitand(h.spare2, 128),
+      128,
+      'HIST_FOR_INCREM_STATS ',
+      ''
+    ) || decode(
+      bitand(h.spare2, 256),
+      256,
+      'HISTOGRAM_ONLY ',
+      ''
+    ) || decode(bitand(h.spare2, 512), 512, 'STATS_ON_LOAD ', ''),
+    h.avgcln,
+    case
+      when nvl(h.row_cnt, 0) = 0 then 'NONE'
+      when exists(
+        select
+          1
+        from
+          sys.histgrm$ hg
+        where
+          tsp.obj# = hg.obj#
+          and tsp.intcol# = hg.intcol#
+          and hg.ep_repeat_count > 0
+          and rownum < 2
+      ) then 'HYBRID'
+      when bitand(h.spare2, 64) > 0 then 'TOP-FREQUENCY'
+      when (
+        bitand(h.spare2, 32) > 0
+        or h.bucket_cnt > 2049
+        or (
+          h.bucket_cnt >= h.distcnt
+          and h.density * h.bucket_cnt < 1
+        )
+      ) then 'FREQUENCY'
+      else 'HEIGHT BALANCED'
+    end
+  from
+    sys.obj$ o,
+    sys.hist_head$ h,
+    tsp$ tsp,
+    user $ u
+  where
+    o.obj# = tsp.obj#
+    and tsp.obj# = h.obj#(+)
+    and tsp.intcol# = h.intcol#(+)
+    and o.type# = 34
+    /* TABLE SUBPARTITION */
+    and o.owner# = u.user#
+    and o.namespace = 1
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or tsp.bo# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

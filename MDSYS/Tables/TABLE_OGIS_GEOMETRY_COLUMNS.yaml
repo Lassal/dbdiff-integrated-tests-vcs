@@ -1,0 +1,68 @@
+name: OGIS_GEOMETRY_COLUMNS
+schema: MDSYS
+columns:
+- name: COORD_DIMENSION
+  ordinalPosition: 8
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: F_GEOMETRY_COLUMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  dataTypeLength: 64
+- name: F_TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  dataTypeLength: 64
+- name: F_TABLE_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  dataTypeLength: 64
+- name: GEOMETRY_TYPE
+  ordinalPosition: 7
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: G_TABLE_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  dataTypeLength: 64
+- name: G_TABLE_SCHEMA
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  dataTypeLength: 64
+- name: MAX_PPR
+  ordinalPosition: 9
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: SRID
+  ordinalPosition: 10
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: STORAGE_TYPE
+  ordinalPosition: 6
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+constraints:
+- !<fk-constraint>
+  name: FK_SRID
+  type: FOREIGN_KEY
+  columns:
+  - name: SRID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: OGIS_SPATIAL_REFERENCE_SYSTEMS
+    referencedTableColumnName: SRID

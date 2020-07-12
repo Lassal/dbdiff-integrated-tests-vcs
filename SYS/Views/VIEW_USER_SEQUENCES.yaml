@@ -1,0 +1,25 @@
+schema: SYS
+name: USER_SEQUENCES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    s.minvalue,
+    s.maxvalue,
+    s.increment$,
+    decode (s.cycle#, 0, 'N', 1, 'Y'),
+    decode (s.order$, 0, 'N', 1, 'Y'),
+    s.cache,
+    s.highwater,
+    decode (s.partcount, 0, to_number(NULL), s.partcount),
+    decode(bitand(s.flags, 64), 64, 'Y', 'N'),
+    decode(bitand(s.flags, 512), 512, 'Y', 'N')
+  from
+    sys.seq$ s,
+    sys.obj$ o
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.obj# = s.obj#
+columns: []
+referencedTables: []

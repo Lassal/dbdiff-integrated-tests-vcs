@@ -1,0 +1,28 @@
+schema: SYS
+name: KU$_PROCOBJ_OBJNUM_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    value(o)
+  from
+    sys.ku$_schemaobj_view o,
+    sys.exppkgobj$ p
+  where
+    p.type# = o.type_num
+    and bitand(o.flags, 16) != 16
+    and
+    /* not secondary object */
+    (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

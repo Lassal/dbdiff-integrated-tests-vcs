@@ -1,0 +1,15 @@
+schema: LBACSYS
+name: ALL_SA_USER_PRIVS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    user_name,
+    policy_name,
+    user_privileges
+  FROM
+    LBACSYS.all_sa_users
+  WHERE
+    user_privileges IS NOT NULL
+columns: []
+referencedTables: []

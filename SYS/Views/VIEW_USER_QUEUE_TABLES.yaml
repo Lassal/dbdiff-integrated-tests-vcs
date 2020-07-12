@@ -1,0 +1,141 @@
+schema: SYS
+name: USER_QUEUE_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.name QUEUE_TABLE,
+    decode(
+      t.udata_type,
+      1,
+      'OBJECT',
+      2,
+      'VARIANT',
+      3,
+      'RAW'
+    ) TYPE,
+    tc.name || '.' || o.name OBJECT_TYPE,
+    decode(
+      t.sort_cols,
+      0,
+      'NONE',
+      1,
+      'PRIORITY',
+      2,
+      'ENQUEUE_TIME',
+      3,
+      'PRIORITY, ENQUEUE_TIME',
+      4,
+      'COMMIT_TIME',
+      5,
+      'PRIORITY, COMMIT_TIME',
+      7,
+      'ENQUEUE_TIME, PRIORITY'
+    ) SORT_ORDER,
+    decode(bitand(t.flags, 1), 1, 'MULTIPLE', 0, 'SINGLE') RECIPIENTS,
+    decode(
+      bitand(t.flags, 2),
+      2,
+      'TRANSACTIONAL',
+      0,
+      'NONE'
+    ) MESSAGE_GROUPING,
+    decode(
+      bitand(t.flags, 8192 + 8),
+      8192 + 8,
+      '10.0.0',
+      8,
+      '8.1.3',
+      0,
+      '8.0.3'
+    ) COMPATIBLE,
+    aft.primary_instance PRIMARY_INSTANCE,
+    aft.secondary_instance SECONDARY_INSTANCE,
+    aft.owner_instance OWNER_INSTANCE,
+    substr(t.table_comment, 1, 50) USER_COMMENT,
+    decode(bitand(t.flags, 4096), 4096, 'YES', 0, 'NO') SECURE
+  from
+    system.aq$_queue_tables t,
+    sys.col$ c,
+    sys.coltype$ ct,
+    sys.obj$ o,
+    sys.user$ tc,
+    sys.user$ qc,
+    sys.aq$_queue_table_affinities aft
+  where
+    c .intcol# = ct.intcol#
+    and c .obj# = ct.obj#
+    and c .name = 'USER_DATA'
+    and t.objno = c .obj#
+    and o.oid$ = ct.toid
+    and o.type# = 13
+    and o.owner# = tc.user#
+    and qc.user# = USERENV('SCHEMAID')
+    and qc.name = t.schema
+    and t.objno = aft.table_objno
+  union
+  select
+    t.name QUEUE_TABLE,
+    decode(
+      t.udata_type,
+      1,
+      'OBJECT',
+      2,
+      'VARIANT',
+      3,
+      'RAW'
+    ) TYPE,
+    null OBJECT_TYPE,
+    decode(
+      t.sort_cols,
+      0,
+      'NONE',
+      1,
+      'PRIORITY',
+      2,
+      'ENQUEUE_TIME',
+      3,
+      'PRIORITY, ENQUEUE_TIME',
+      4,
+      'COMMIT_TIME',
+      5,
+      'PRIORITY, COMMIT_TIME',
+      7,
+      'ENQUEUE_TIME, PRIORITY'
+    ) SORT_ORDER,
+    decode(bitand(t.flags, 1), 1, 'MULTIPLE', 0, 'SINGLE') RECIPIENTS,
+    decode(
+      bitand(t.flags, 2),
+      2,
+      'TRANSACTIONAL',
+      0,
+      'NONE'
+    ) MESSAGE_GROUPING,
+    decode(
+      bitand(t.flags, 8192 + 8),
+      8192 + 8,
+      '10.0.0',
+      8,
+      '8.1.3',
+      0,
+      '8.0.3'
+    ) COMPATIBLE,
+    aft.primary_instance PRIMARY_INSTANCE,
+    aft.secondary_instance SECONDARY_INSTANCE,
+    aft.owner_instance OWNER_INSTANCE,
+    substr(t.table_comment, 1, 50) USER_COMMENT,
+    decode(bitand(t.flags, 4096), 4096, 'YES', 0, 'NO') SECURE
+  from
+    system.aq$_queue_tables t,
+    sys.user$ qc,
+    sys.aq$_queue_table_affinities aft
+  where
+    (
+      t.udata_type = 2
+      or t.udata_type = 3
+    )
+    and qc.user# = USERENV('SCHEMAID')
+    and qc.name = t.schema
+    and t.objno = aft.table_objno
+columns: []
+referencedTables: []

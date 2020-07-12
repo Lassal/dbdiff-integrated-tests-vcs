@@ -1,0 +1,35 @@
+schema: SYS
+name: KU$_M_VIEW_LOG_H_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    htv.obj_num,
+    value(mvlv),
+    value(htv)
+  from
+    obj$ o,
+    user $ u,
+    sys.ku$_htable_view htv,
+    ku$_m_view_log_view mvlv
+  where
+    mvlv.mowner = u.name
+    and mvlv.log = o.name
+    and o.owner# = u.user#
+    and o.type# = 2
+    and o.obj# = htv.schema_obj.obj_num
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (u.user#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

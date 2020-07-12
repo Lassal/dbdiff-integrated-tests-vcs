@@ -1,0 +1,57 @@
+schema: SYS
+name: ALL_MVIEW_COMMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    c .comment$
+  from
+    sys.obj$ o,
+    sys.user$ u,
+    sys.com$ c,
+    sys.tab$ t
+  where
+    o.owner# = u.user#
+    AND o.type# = 2
+    and (bitand(t.property, 67108864) = 67108864)
+    /*mv container table */
+    and o.obj# = c .obj#(+)
+    and c .col#(+) is NULL
+    and o.obj# = t.obj#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          obj#
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -173
+            /* CREATE ANY MV */,
+            -174
+            /* ALTER ANY MV */,
+            -175
+            /* DROP ANY MV */
+          )
+      )
+    )
+columns: []
+referencedTables: []

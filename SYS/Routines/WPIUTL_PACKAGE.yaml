@@ -1,0 +1,195 @@
+schema: SYS
+name: WPIUTL
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: SUBPFPARAM.OBJNUM
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SUBPFPARAM.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPFPARAM.SUBNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPFPARAM.PRENAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPFPARAM.PNAMES
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SUBPFPARAM.PTNAMES
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: SUBPFPARAM.PTYPES
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: SUBPFPARAM.STATUS
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: OUT
+- name: SUBPFPARAM.MISDEF
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: SUBPFPARAM.NENAME
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: SUBPPARAM(1).OBJNUM
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SUBPPARAM(1).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPPARAM(1).SUBNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPPARAM(1).PRENAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPPARAM(1).STATUS
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: OUT
+- name: SUBPPARAM(1).MISDEF
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: SUBPPARAM(1).NENAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: SUBPPARAM(2).OBJNUM
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SUBPPARAM(2).NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPPARAM(2).SUBNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPPARAM(2).PRENAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBPPARAM(2).PNAMES
+  ordinalPosition: 5
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: SUBPPARAM(2).PTNAMES
+  ordinalPosition: 6
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: SUBPPARAM(2).PTYPES
+  ordinalPosition: 7
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: SUBPPARAM(2).STATUS
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: OUT
+- name: SUBPPARAM(2).MISDEF
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: SUBPPARAM(2).NENAME
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: OUT
+routineDefinition: |-
+  package wpiutl as TYPE tvarchar IS table of varchar2(512) index by binary_integer;
+  TYPE tvchar3 IS table of VARCHAR2(3) index by binary_integer;
+  SUBTYPE ptnod IS pidl.ptnod;
+  -- Constant for errors
+  s_ok CONSTANT NUMBER: = 0;
+  -- successful
+  s_subpnotfound CONSTANT NUMBER: = 1;
+  -- subprogram NOT found
+  s_notinpackage CONSTANT NUMBER: = 2;
+  -- PACKAGE found, proc NOT found
+  s_notasub CONSTANT NUMBER: = 3;
+  -- found, but not a subprog
+  s_notunique CONSTANT NUMBER: = 4;
+  -- too many matches (overloading error)
+  s_nomatch CONSTANT NUMBER: = 5;
+  -- found, but param names not matched
+  s_typenotmatch CONSTANT NUMBER: = 6;
+  -- name match, type doesn't match
+  -- The following t_ constants can NOT exceed 999
+  t_scalar CONSTANT CHAR(3): = '000';
+  t_v7array CONSTANT CHAR(3): = '001';
+  -- subpparam:
+  --   IN:  name        name of the subprogram, package, or owner
+  --        subname     name of subprogram if not null
+  --        prename     name of owner if not null
+  --        pnames      names of formal parameter
+  --   OUT: ptnames     names of formal parameter types
+  --        ptypes      characteristic of the types: scalar, V7_array, ...
+  --        status      error code = s_ok           : subprogram found
+  --                                 s_subpnotfound : not found in schema
+  --                                 s_notinpackage : not found in package
+  --                                 s_notasub      : found, but not a subprog
+  --                                 s_notunique    : too many matches.
+  --                                 s_nomatch      : found, but no match
+  --
+  -- This function analyzes the following types of names:
+  --    <NAME>
+  --    <NAME>.<SUBNAME>
+  --    <PRENAME>.<NAME>.<SUBNAME>
+  -- It resolves overloading subprograms by parameter names (i.e. PNAMES),
+  -- and returns types of the parameters that are listed in pnames
+  -- <NAME> may not be NULL while prename and subname may.
+  --
+  -- pnames, ptnames, and ptypes are optional.
+  --
+  PROCEDURE subpparam(
+    objnum NUMBER,
+    name VARCHAR2,
+    subname VARCHAR2,
+    prename VARCHAR2,
+    status OUT NUMBER,
+    misdef OUT VARCHAR2,
+    nename OUT VARCHAR2
+  );
+  PROCEDURE subpparam(
+    objnum NUMBER,
+    name VARCHAR2,
+    subname VARCHAR2,
+    prename VARCHAR2,
+    pnames IN OUT tvarchar,
+    ptnames IN OUT tvarchar,
+    ptypes IN OUT tvchar3,
+    status OUT NUMBER,
+    misdef OUT VARCHAR2,
+    nename OUT VARCHAR2
+  );
+  -- This is similar to subpparam but used for flexible parameter
+  -- Note: different from subpparam, pnames and ptypes are INput only
+  PROCEDURE subpfparam(
+    objnum NUMBER,
+    name VARCHAR2,
+    subname VARCHAR2,
+    prename VARCHAR2,
+    pnames IN tvarchar,
+    ptnames IN OUT tvarchar,
+    ptypes IN tvchar3,
+    status OUT NUMBER,
+    misdef OUT VARCHAR2,
+    nename OUT VARCHAR2
+  );
+  end;

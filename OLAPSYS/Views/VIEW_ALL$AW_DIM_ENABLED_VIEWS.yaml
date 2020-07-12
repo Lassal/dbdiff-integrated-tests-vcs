@@ -1,0 +1,31 @@
+schema: OLAPSYS
+name: ALL$AW_DIM_ENABLED_VIEWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    AW.AWOWNER as AW_OWNER,
+    AW.AWNAME as AW_NAME,
+    AW.COL1 as DIMENSION_NAME,
+    AW.COL2 as HIERARCHY_NAME,
+    AW.COL3 as SYSTEM_VIEWNAME,
+    AW.COL4 as USER_VIEWNAME
+  FROM
+    TABLE(
+      CAST(
+        OLAP_TABLE(
+          'SYS.AWMD duration query',
+          'olapsys.ALL_OLAP2_AW_METADATA_T',
+          'ACTIVE_CATALOG ''ALL_AW_DIM_ENABLED_VIEWS'' ''ALL''',
+          'MEASURE AWOWNER FROM SYS.AWMD!AWOWNER
+                             MEASURE AWNAME FROM SYS.AWMD!AWNAME
+                             MEASURE COL1 FROM SYS.AWMD!DIMENSION_NAME
+                             MEASURE COL2 FROM SYS.AWMD!HIERARCHY_NAME
+                             MEASURE COL3 FROM SYS.AWMD!VIEWNAME
+                             MEASURE COL4 FROM SYS.AWMD!USERVIEWNAME
+                             DIMENSION AWMDKEY FROM SYS.AWMD!AWMDKEY'
+        ) AS olapsys.ALL_OLAP2_AW_METADATA_T
+      )
+    ) AW
+columns: []
+referencedTables: []

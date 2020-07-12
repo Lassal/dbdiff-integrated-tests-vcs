@@ -1,0 +1,26 @@
+schema: SYS
+name: TSDP$VALIDATION_CHECK
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  FUNCTION tsdp$validation_check RETURN BOOLEAN AUTHID DEFINER IS role varchar2(20);
+  primary boolean;
+  BEGIN
+  BEGIN
+    primary: = FALSE;
+  select
+    database_role into role
+  from
+    sys.v$database;
+  IF role = 'PRIMARY' THEN primary: = TRUE;
+  END IF;
+  EXCEPTION
+    WHEN OTHERS THEN null;
+  END;
+  RETURN primary;
+  END;

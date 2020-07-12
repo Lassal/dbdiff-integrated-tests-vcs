@@ -1,0 +1,146 @@
+schema: SYS
+name: ALL$OLAP2_AWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    aws11g.owner,
+    aws11g.aw_name,
+    aws11g.aw_number,
+    aws11g.aw_version,
+    '11.1' sf_version
+  from
+    all_aws aws11g,
+    (
+      select
+        /*+ ordered */
+        a .awseq#,
+        r.rid,
+        p.rowid,
+        p.propname
+      from
+        sys.aw$ a,
+        sys.aw_prop$ p,
+        sys.obj$ o,
+        dba_users u,
+        (
+          select
+            max(rowid) keep (
+              dense_rank last
+              order by
+                gen#
+            ) rid
+          from
+            sys.aw_prop$
+          group by
+            awseq#,
+            oid,
+            propname
+        ) r
+      where
+        a .owner# = u.user_id
+        and o.owner# = a .owner#
+        and o.name = 'AW$' || a .awname
+        and o.type# = 2
+        and a .awseq# = p.awseq#
+        and p.objname = '___AW_VERSION'
+        and p.propname = 'AW$VERSION11.1'
+        and p.rowid = r.rid
+        and p.propval is not null
+    ) props11g
+  where
+    props11g.awseq# = aws11g.aw_number
+  union all
+  select
+    max(aws.owner) owner,
+    max(aws.aw_name) aw,
+    props1.awseq#,
+    max(aws.aw_version) aw_version,
+    (
+      case
+        when count(props1.awseq#) = 2 then '10.2'
+        when count(props1.awseq#) = 1 then '10.1.0.3'
+        else null
+      end
+    ) sf_version
+  from
+    all_aws aws,
+    (
+      select
+        /*+ ordered */
+        a .awseq#,
+        r.rid,
+        p.rowid,
+        p.propname
+      from
+        sys.aw$ a,
+        sys.aw_prop$ p,
+        sys.obj$ o,
+        dba_users u,
+        (
+          select
+            max(rowid) keep (
+              dense_rank last
+              order by
+                gen#
+            ) rid
+          from
+            sys.aw_prop$
+          group by
+            awseq#,
+            oid,
+            propname
+        ) r
+      where
+        a .owner# = u.user_id
+        and o.owner# = a .owner#
+        and o.name = 'AW$' || a .awname
+        and o.type# = 2
+        and a .awseq# = p.awseq#
+        and p.propname in ('AW$VERSION10.2', 'AW$VERSION10.1.0.3')
+        and p.objname = '___XML_USER_AW_VERSION'
+        and p.rowid = r.rid
+        and p.propval is not null
+    ) props1
+  where
+    props1.awseq# = aws.aw_number
+    and (
+      props1.awseq# not in (
+        select
+          /*+ ordered */
+          a .awseq#
+        from
+          sys.aw$ a,
+          sys.aw_prop$ p,
+          sys.obj$ o,
+          dba_users u,
+          (
+            select
+              max(rowid) keep (
+                dense_rank last
+                order by
+                  gen#
+              ) rid
+            from
+              sys.aw_prop$
+            group by
+              awseq#,
+              oid,
+              propname
+          ) r
+        where
+          a .owner# = u.user_id
+          and o.owner# = a .owner#
+          and o.name = 'AW$' || a .awname
+          and o.type# = 2
+          and a .awseq# = p.awseq#
+          and p.propname = 'AW$VERSION11.1'
+          and p.objname = '___AW_VERSION'
+          and p.rowid = r.rid
+          and p.propval is not null
+      )
+    )
+  group by
+    awseq#
+columns: []
+referencedTables: []

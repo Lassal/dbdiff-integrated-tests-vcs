@@ -1,0 +1,52 @@
+schema: SYS
+name: KU$_SYNONYM_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    s.obj#,
+    value(o),
+    -- syn_long_name defaults to name
+    nvl(
+      (
+        select
+          j.longdbcs
+        from
+          sys.javasnm$ j
+        where
+          j.short = o.name
+      ),
+      o.name
+    ),
+    s.node,
+    s.owner,
+    s.name,
+    (
+      select
+        j.longdbcs
+      from
+        sys.javasnm$ j
+      where
+        j.short = s.name
+    )
+  from
+    sys.ku$_edition_schemaobj_view o,
+    sys.syn$ s
+  where
+    s.obj# = o.obj_num
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR o.owner_name = 'PUBLIC'
+      or EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,22 @@
+schema: CTXSYS
+name: CTX_STOPLISTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name spl_owner,
+    spl_name spl_name,
+    spl_count spl_count,
+    obj_name spl_type
+  from
+    dr$stoplist,
+    sys.user$ u,
+    dr$object,
+    dr$class
+  where
+    spl_owner# = u.user#
+    and spl_type = obj_id
+    and obj_cla_id = cla_id
+    and cla_name = 'STOPLIST'
+columns: []
+referencedTables: []

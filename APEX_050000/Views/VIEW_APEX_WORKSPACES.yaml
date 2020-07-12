@@ -1,0 +1,235 @@
+schema: APEX_050000
+name: APEX_WORKSPACES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    w.workspace_description workspace_description,
+    w.workspace_service_id workspace_service_id,
+    w.source_identifier source_identifier,
+    w.path_prefix path_prefix,
+    w.team_dev_fs_limit team_dev_fs_limit,
+    --w.FIRST_SCHEMA_PROVISIONED                          first_schema_provisioned,
+    --
+    count(distinct s.schema) schemas,
+    max(w.LAST_LOGIN) last_purged_session,
+    w.builder_notification_message workspace_announcement,
+    w.rm_consumer_group rm_consumer_group,
+    --
+    nvl(w.allow_app_building_yn, 'Y') allow_app_building_yn,
+    nvl(w.allow_packaged_app_ins_yn, 'Y') allow_packaged_app_ins_yn,
+    nvl(w.allow_sql_workshop_yn, 'Y') allow_sql_workshop_yn,
+    nvl(w.allow_websheet_dev_yn, 'Y') allow_websheet_dev_yn,
+    nvl(w.allow_team_development_yn, 'Y') allow_team_development_yn,
+    nvl(w.allow_team_dev_files_yn, 'Y') allow_team_dev_files_yn,
+    nvl(w.allow_to_be_purged_yn, 'Y') allow_to_be_purged_yn,
+    nvl(w.allow_restful_services_yn, 'Y') allow_restful_services_yn,
+    --
+    (
+      select
+        count(*)
+      from
+        wwv_flow_sessions$
+      where
+        security_group_id = w.PROVISIONING_COMPANY_ID
+    ) sessions,
+    --
+    (
+      select
+        count(*)
+      from
+        wwv_flows
+      where
+        security_group_id = w.PROVISIONING_COMPANY_ID
+    ) applications,
+    --
+    (
+      select
+        count(*)
+      from
+        wwv_flow_steps
+      where
+        security_group_id = w.PROVISIONING_COMPANY_ID
+    ) application_pages,
+    --
+    (
+      select
+        count(*)
+      from
+        wwv_flow_fnd_user
+      where
+        security_group_id = w.PROVISIONING_COMPANY_ID
+    ) apex_users,
+    --
+    (
+      select
+        count(*)
+      from
+        wwv_flow_developers d,
+        wwv_flow_fnd_user u
+      where
+        (
+          instr(nvl(d.developer_role, 'x'), 'EDIT') > 0
+          or instr(nvl(d.developer_role, 'x'), 'ADMIN') > 0
+        )
+        and d.security_group_id = w.PROVISIONING_COMPANY_ID
+        and u.security_group_id = w.PROVISIONING_COMPANY_ID
+        and d.userid = u.user_name
+    ) apex_developers,
+    --
+    (
+      select
+        count(*)
+      from
+        wwv_flow_developers d,
+        wwv_flow_fnd_user u
+      where
+        instr(nvl(d.developer_role, 'x'), 'ADMIN') > 0
+        and d.security_group_id = w.PROVISIONING_COMPANY_ID
+        and u.security_group_id = w.PROVISIONING_COMPANY_ID
+        and d.userid = u.user_name
+    ) apex_workspace_administrators,
+    --
+    (
+      select
+        count(*)
+      from
+        wwv_flow_company_filestats
+      where
+        security_group_id = w.PROVISIONING_COMPANY_ID
+    ) files,
+    --
+    (
+      select
+        count(*)
+      from
+        WWV_FLOW_FILE_OBJECTS$
+      where
+        security_group_id = w.PROVISIONING_COMPANY_ID
+        and FILE_TYPE = 'SCRIPT'
+        and to_char(deleted_as_of, 'MM.DD.YYYY') = '01.01.0001'
+    ) sql_scripts,
+    --
+    (
+      select
+        count(*)
+      from
+        WWV_FLOW_MESSAGES$
+      where
+        security_group_id = w.PROVISIONING_COMPANY_ID
+    ) translation_messages,
+    --
+    (
+      select
+        sum(file_bytes)
+      from
+        wwv_flow_company_filestats
+      where
+        security_group_id = w.PROVISIONING_COMPANY_ID
+    ) file_storage,
+    w.max_file_bytes file_storage_max,
+    --
+    nvl(
+      (
+        select
+          max(time_stamp) d
+        from
+          wwv_flow_activity_log l
+        where
+          l.security_group_id = w.PROVISIONING_COMPANY_ID
+          and l.time_stamp > sysdate - 1
+      ),
+      (
+        select
+          max(log_day) d
+        from
+          wwv_flow_log_history h
+        where
+          h.workspace_id = w.PROVISIONING_COMPANY_ID
+      )
+    ) last_logged_page_view,
+    --
+    (
+      select
+        count(*)
+      from
+        wwv_flow_activity_log l
+      where
+        security_group_id = w.PROVISIONING_COMPANY_ID
+        and l.TIME_STAMP > sysdate - 14
+    ) page_views,
+    --
+    w.files_version,
+    w.max_email_messages email_maximum,
+    --
+    max_session_length_sec maximum_session_life_seconds,
+    max_session_idle_sec maximum_session_idle_seconds,
+    qos_max_workspace_requests max_workspace_requests,
+    qos_max_session_requests max_session_requests,
+    qos_max_session_kill_timeout max_session_kill_timeout,
+    --
+    w.PROVISIONING_COMPANY_ID workspace_id,
+    w.created_on created_on,
+    nvl(w.assigned_on, w.created_on) assigned_on
+  from
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and w.PROVISIONING_COMPANY_ID != 0
+  group by
+    w.PROVISIONING_COMPANY_ID,
+    w.short_name,
+    w.source_identifier,
+    w.path_prefix,
+    w.team_dev_fs_limit,
+    w.FIRST_SCHEMA_PROVISIONED,
+    w.ALLOW_APP_BUILDING_YN,
+    w.ALLOW_PACKAGED_APP_INS_YN,
+    w.ALLOW_SQL_WORKSHOP_YN,
+    w.ALLOW_WEBSHEET_DEV_YN,
+    w.ALLOW_TEAM_DEVELOPMENT_YN,
+    w.allow_team_dev_files_yn,
+    w.ALLOW_TO_BE_PURGED_YN,
+    w.ALLOW_RESTFUL_SERVICES_YN,
+    w.builder_notification_message,
+    w.rm_consumer_group,
+    w.display_name,
+    w.workspace_service_id,
+    w.workspace_description,
+    w.files_version,
+    w.max_email_messages,
+    w.max_file_bytes,
+    w.max_session_length_sec,
+    w.max_session_idle_sec,
+    w.qos_max_workspace_requests,
+    w.qos_max_session_requests,
+    w.qos_max_session_kill_timeout,
+    w.created_on,
+    w.assigned_on
+columns: []
+referencedTables: []

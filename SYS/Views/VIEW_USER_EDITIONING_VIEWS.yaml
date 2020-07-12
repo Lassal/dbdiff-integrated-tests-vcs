@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_EDITIONING_VIEWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ev_obj.name,
+    ev.base_tbl_name
+  from
+    sys. "_CURRENT_EDITION_OBJ" ev_obj,
+    sys.ev$ ev
+  where
+    /* join EV$ to _CURRENT_EDITION_OBJ on EV id so we can determine */
+    /* name of the EV */
+    ev_obj.obj# = ev.ev_obj#
+    /* ensure that the EV belongs to the current schema */
+    and ev_obj.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

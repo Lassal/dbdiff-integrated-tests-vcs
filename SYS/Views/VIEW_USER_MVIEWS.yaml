@@ -1,0 +1,50 @@
+schema: SYS
+name: USER_MVIEWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    m. "OWNER",
+    m. "MVIEW_NAME",
+    m. "CONTAINER_NAME",
+    m. "QUERY",
+    m. "QUERY_LEN",
+    m. "UPDATABLE",
+    m. "UPDATE_LOG",
+    m. "MASTER_ROLLBACK_SEG",
+    m. "MASTER_LINK",
+    m. "REWRITE_ENABLED",
+    m. "REWRITE_CAPABILITY",
+    m. "REFRESH_MODE",
+    m. "REFRESH_METHOD",
+    m. "BUILD_MODE",
+    m. "FAST_REFRESHABLE",
+    m. "LAST_REFRESH_TYPE",
+    m. "LAST_REFRESH_DATE",
+    m. "LAST_REFRESH_END_TIME",
+    m. "STALENESS",
+    m. "AFTER_FAST_REFRESH",
+    m. "UNKNOWN_PREBUILT",
+    m. "UNKNOWN_PLSQL_FUNC",
+    m. "UNKNOWN_EXTERNAL_TABLE",
+    m. "UNKNOWN_CONSIDER_FRESH",
+    m. "UNKNOWN_IMPORT",
+    m. "UNKNOWN_TRUSTED_FD",
+    m. "COMPILE_STATE",
+    m. "USE_NO_INDEX",
+    m. "STALE_SINCE",
+    m. "NUM_PCT_TABLES",
+    m. "NUM_FRESH_PCT_REGIONS",
+    m. "NUM_STALE_PCT_REGIONS",
+    m. "SEGMENT_CREATED",
+    m. "EVALUATION_EDITION",
+    m. "UNUSABLE_BEFORE",
+    m. "UNUSABLE_BEGINNING"
+  from
+    dba_mviews m,
+    sys.user$ u
+  where
+    u.user# = userenv('SCHEMAID')
+    and m.owner = u.name
+columns: []
+referencedTables: []

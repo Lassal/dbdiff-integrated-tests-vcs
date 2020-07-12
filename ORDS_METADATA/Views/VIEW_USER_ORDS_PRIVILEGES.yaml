@@ -1,0 +1,24 @@
+schema: ORDS_METADATA
+name: USER_ORDS_PRIVILEGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    sec.id,
+    sec.label,
+    sec.name,
+    sec.comments,
+    sec.created_by,
+    sec.description,
+    sec.schema_id,
+    sec.created_on,
+    sec.updated_by,
+    sec.updated_on
+  FROM
+    ords_schemas sch,
+    sec_privileges sec
+  WHERE
+    sec.schema_id IN (sch.id, 10)
+    AND sch.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

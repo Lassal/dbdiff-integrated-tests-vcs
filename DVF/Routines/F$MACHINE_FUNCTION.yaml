@@ -1,0 +1,14 @@
+schema: DVF
+name: F$MACHINE
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters: []
+routineDefinition: |-
+  FUNCTION "F$MACHINE" RETURN VARCHAR2 AS
+  BEGIN
+    RETURN DVSYS.get_factor(p_factor = > 'Machine');
+  END;

@@ -1,0 +1,17 @@
+schema: CTXSYS
+name: DRV$PENDING
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "PND_CID",
+    "PND_PID",
+    "PND_ROWID",
+    "PND_TIMESTAMP",
+    "PND_LOCK_FAILED"
+  from
+    dr$pending
+  where
+    pnd_cid = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
+columns: []
+referencedTables: []

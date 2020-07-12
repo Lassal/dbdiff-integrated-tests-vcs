@@ -1,0 +1,25 @@
+schema: SYS
+name: USER_SUBSCRIPTIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    s.handle,
+    s.set_name,
+    s.username,
+    s.created,
+    s.status,
+    s.earliest_scn,
+    s.latest_scn,
+    s.description,
+    s.last_purged,
+    s.last_extended,
+    s.subscription_name
+  FROM
+    sys.cdc_subscribers$ s,
+    sys.user$ u
+  WHERE
+    s.username = u.name
+    AND u.user# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

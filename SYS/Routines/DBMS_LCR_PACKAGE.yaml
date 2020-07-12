@@ -1,0 +1,24 @@
+schema: SYS
+name: DBMS_LCR
+routineType: PACKAGE
+returnParamater: null
+parameters: []
+routineDefinition: |-
+  PACKAGE dbms_lcr AS -- Constants for LOBs
+  not_a_lob CONSTANT NUMBER: = 1;
+  null_lob CONSTANT NUMBER: = 2;
+  inline_lob CONSTANT NUMBER: = 3;
+  empty_lob CONSTANT NUMBER: = 4;
+  lob_chunk CONSTANT NUMBER: = 5;
+  last_lob_chunk CONSTANT NUMBER: = 6;
+  -- Constants for LONGs
+  not_a_long CONSTANT NUMBER: = 1;
+  null_long CONSTANT NUMBER: = 2;
+  inline_long CONSTANT NUMBER: = 3;
+  long_chunk CONSTANT NUMBER: = 4;
+  last_long_chunk CONSTANT NUMBER: = 5;
+  -- Constants for XML
+  not_xml CONSTANT NUMBER: = 1;
+  xml_doc CONSTANT NUMBER: = 2;
+  xml_diff CONSTANT NUMBER: = 3;
+  END dbms_lcr;

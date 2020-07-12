@@ -1,0 +1,54 @@
+schema: SYS
+name: EXU9INHCOLCONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    ct$.obj#,
+    ct$.intcol#,
+    DECODE(
+      BITAND(c $.property, 1),
+      0,
+      '"' || c $.name || '"',
+      1,
+      ac$.name
+    ),
+    ct$.flags,
+    NVL(sc$.flags, 0),
+    NVL(so$.owner#, 0),
+    NVL(su$.name, ' '),
+    NVL(so$.name, ' ')
+  FROM
+    sys.coltype$ ct$,
+    sys.col$ c $,
+    sys.attrcol$ ac$,
+    sys.subcoltype$ sc$,
+    sys.obj$ so$,
+    sys.user$ su$,
+    sys.obj$ to $
+  WHERE
+    bitand (ct$.flags, (512 + 1024 + 2048 + 4096)) != 0
+    AND ct$.obj# = c $.obj#
+    AND ct$.intcol# = c $.intcol#
+    AND ct$.obj# = ac$.obj# (+)
+    AND ct$.intcol# = ac$.intcol# (+)
+    AND ct$.obj# = sc$.obj# (+)
+    AND ct$.intcol# = sc$.intcol# (+)
+    AND bitand(NVL(sc$.flags, 1), 1 + 2) != 0
+    AND sc$.toid = so$.oid$ (+)
+    AND so$.owner# = su$.user# (+)
+    AND ct$.obj# = to $.obj#
+    AND (
+      userenv('SCHEMAID') = 0
+      OR (userenv('SCHEMAID') = to $.owner#)
+      OR EXISTS(
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

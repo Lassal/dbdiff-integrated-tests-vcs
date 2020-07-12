@@ -1,0 +1,13 @@
+schema: CTXSYS
+name: CTX_USER_INDEX_SETS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ixs_name
+  from
+    dr$index_set
+  where
+    ixs_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

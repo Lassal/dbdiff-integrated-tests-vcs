@@ -1,0 +1,34 @@
+schema: SYS
+name: KU$_EXTTAB_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    et.obj#,
+    et.default_dir,
+    et.type$,
+    et.nr_locations,
+    et.reject_limit,
+    et.par_type,
+    et.param_clob,
+    et.property,
+    cast(
+      multiset(
+        select
+          el.obj#,
+          el.position,
+          el.dir,
+          el.name
+        from
+          sys.external_location$ el
+        where
+          el.obj# = et.obj#
+        order by
+          el.obj#,
+          el.position
+      ) as ku$_extloc_list_t
+    )
+  from
+    sys.external_tab$ et
+columns: []
+referencedTables: []

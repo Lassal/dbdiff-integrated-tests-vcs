@@ -1,0 +1,241 @@
+schema: CTXSYS
+name: DRVODM
+routineType: PACKAGE
+returnParamater:
+  name: ODMTRAINSET.(--return--)
+  ordinalPosition: 0
+  dataType: TABLE
+  parameterMode: OUT
+parameters:
+- name: FEATURE_EXPLAIN.RESTAB
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP(1).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP(1).DOCID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP(1).CATTAB
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP(1).CATDOCID
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP(1).CATID
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP(1).RESTAB
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP(1).PREFERENCE
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP(2).INDEX_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP(2).DOCID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP(2).RESTAB
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP_NC.IDX_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP_NC.IDX_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP_NC.DOCTAB
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP_NC.DOCID
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP_NC.CATTAB
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP_NC.CATDOCID
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP_NC.CATID
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP_NC.RESTAB
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FEATURE_PREP_NC.PREFID
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: FEATURE_PREP_NC.TEMP_TABLE
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FI2TTAB.FI2TTAB
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: FVSTAB.FVSTAB
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_SUGGESTIONS.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_SUGGESTIONS.DUR
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ODM_DRPMODEL.P_MODNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ODM_GENMODEL.P_FVSTAB
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ODM_GENMODEL.P_SRTAB
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ODM_GENMODEL.P_CLUSTER_NUM
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: ODM_GENMODEL.O_MODNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: ODMKTRAINSET.P_SRT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ODMKTRAINSET.P_CLUSTER_NUM
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ODM_READKMEANMODEL.P_MODNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SVM_TRAIN.IDX_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SVM_TRAIN.IDX_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SVM_TRAIN.DOCTAB
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SVM_TRAIN.DOCID
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SVM_TRAIN.CATTAB
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SVM_TRAIN.CATDOCID
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SVM_TRAIN.CATID
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SVM_TRAIN.RESTAB
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SVM_TRAIN.PREFID
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: "PACKAGE drvodm AUTHID current_user AS TYPE CurType IS REF CURSOR;\n\
+  /* type used for svm interface to odm containing training set */\nTYPE trainsamp\
+  \ IS RECORD (\n  sequence_id NUMBER,\n  -- document id\n  attribute_id NUMBER,\n\
+  \  -- feature id >=0\n  -- or -1 for rows that contain doc. assignment info\n  value\
+  \ NUMBER -- feature weight\n  -- or catid for rows for doc. assignment info\n);\n\
+  TYPE trainsamps IS TABLE OF trainsamp;\n/* type used for feature definition */\n\
+  TYPE feature IS RECORD (\n  text varchar2(160),\n  -- feature text\n  type number(3),\n\
+  \  -- feature type with 0:single token,\n  --\t\t     1:theme\n  --\t\t     9:stem\
+  \ words\n  id number,\n  -- feature id\n  score number -- statistic feature score\
+  \ which can be idf\n  --    if need to calculate idf for feature\n  --    weight\
+  \ in documents or simply document\n  --    frequency.\n);\nTYPE features IS TABLE\
+  \ OF feature;\nTYPE suggestion IS RECORD (\n  docid number,\n  -- document id\n\
+  \  catid number,\n  -- suggested category id\n  scr number -- associate score between\
+  \ doc and category\n);\nTYPE suggestions IS TABLE of suggestion;\nTYPE kmeanmodel_rec\
+  \ IS RECORD (\n  id integer,\n  -- cluster id\n  parent number,\n  -- parent id\n\
+  \  dispersion number,\n  -- coherencen of the cluster\n  attribute_name varchar2(30)\n\
+  );\n-- attribute id\nTYPE kmeanmodel is table of kmeanmodel_rec;\n/* train SVM model\
+  \ */\nPROCEDURE svm_train(\n  idx_owner varchar2,\n  idx_name varchar2,\n  doctab\
+  \ varchar2,\n  docid varchar2,\n  cattab varchar2,\n  catdocid varchar2,\n  catid\
+  \ varchar2,\n  restab varchar2,\n  prefid number\n);\n/* ----table function used\
+  \ for ODM to extract feature from training set ----*/\n/* DESCRIPTION\n\n   The\
+  \ result table is either created by users before calling this function or\n\n  \
+  \ created in this program with the specified table name and under the current\n\n\
+  \   user (if the specified table does not exist).\n\n   If user create the result\
+  \ table (which can support table schema for\n\n   different users),\n\n   the restab\
+  \ should have the following three columns with the exact column\n\n   names:\n\n\
+  \tcat_id number\n\n\ttype number(3) not null\n\n\trule blob\n\n*/\nFUNCTION feature_prep(\n\
+  \  index_name varchar2,\n  -- context index name on training document table.\n \
+  \ docid varchar2,\n  -- document id column name in document table\n  cattab varchar2,\n\
+  \  -- name of category table\n  catdocid varchar2,\n  -- document id column name\
+  \ for category table\n  catid varchar2,\n  -- category id column name for category\
+  \ table\n  restab varchar2,\n  -- result table to write the model\n  preference\
+  \ varchar2 -- preference name\n) RETURN trainsamps PIPELINED;\n/* -- table function\
+  \ used for ODM to get features for test set ----------*/\n/* DESCRIPTION\n\n   This\
+  \ function is used in apply time. The <restab> is the result table\n\n   output\
+  \ from calling feature preparation function based on training set.\n\n*/\nFUNCTION\
+  \ feature_prep(\n  index_name varchar2,\n  -- context index name on training document\
+  \ table.\n  docid varchar2,\n  -- document id column name in document table\n  restab\
+  \ varchar2 -- table storing the feature definition\n) RETURN trainsamps PIPELINED;\n\
+  /* ----------------------- for ODM to explain features ------------------*/\n/*\
+  \ DESCRIPTION\n\n   The <restab> is the result table output from calling feature\
+  \ preparation\n\n   function based on training set.\n\n*/\nFUNCTION feature_explain(\n\
+  \  restab varchar2 -- table storing the feature definition\n) RETURN features PIPELINED;\n\
+  /*--------------------------------------------------------------------------*/\n\
+  /*                                                                          */\n\
+  /*------------The following functions is internal functions  ---------------*/\n\
+  /*                                                                          */\n\
+  /*--------------------------------------------------------------------------*/\n\
+  /* feature preparation table function without checking input parameter */\nFUNCTION\
+  \ feature_prep_nc(\n  idx_owner varchar2,\n  idx_name varchar2,\n  doctab varchar2,\n\
+  \  docid varchar2,\n  cattab varchar2,\n  catdocid varchar2,\n  catid varchar2,\n\
+  \  restab varchar2,\n  prefid number,\n  temp_table varchar2\n) RETURN trainsamps\
+  \ PIPELINED;\n/* start classify a document.Assume: The document feature vector has\
+  \ been\n\n   generated */\nFUNCTION get_suggestions(model_name varchar2, dur number)\
+  \ return suggestions PIPELINED;\n/* type used for ODM setup */\nTYPE settingdbrec_t\
+  \ IS RECORD (\n  id NUMBER,\n  value VARCHAR2(128)\n);\nTYPE setting_t IS TABLE\
+  \ of settingdbrec_t;\nFUNCTION odmtrainset return setting_t PIPELINED;\nFUNCTION\
+  \ get_features RETURN trainsamps PIPELINED;\nPROCEDURE fvstab(fvstab OUT varchar2);\n\
+  PROCEDURE fi2ttab(fi2ttab OUT varchar2);\nFUNCTION odmktrainset(p_srt in varchar2,\
+  \ p_cluster_num in number) return setting_t PIPELINED;\n-- generate model\nPROCEDURE\
+  \ odm_genmodel(\n  p_fvstab in varchar2,\n  p_srtab in varchar2,\n  p_cluster_num\
+  \ in number,\n  o_modname OUT varchar2\n);\nFUNCTION odm_readkmeanmodel(p_modname\
+  \ varchar2) return kmeanmodel PIPELINED;\n-- drop model\nPROCEDURE odm_drpmodel(p_modname\
+  \ IN varchar2);\nEND drvodm;"

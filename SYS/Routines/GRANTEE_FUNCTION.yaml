@@ -1,0 +1,18 @@
+schema: SYS
+name: GRANTEE
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+parameters:
+- name: USER_LIST
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: OUT
+routineDefinition: |-
+  function grantee (user_list out ora_name_list_t) return binary_integer is
+  begin
+    return dbms_standard.grantee(user_list);
+  end;

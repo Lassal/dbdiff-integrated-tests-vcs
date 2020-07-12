@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_XS_USERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    name,
+    status,
+    account_status,
+    lock_date,
+    expiry_date,
+    direct_logon_user,
+    description
+  from
+    dba_xs_users
+  where
+    name = xs_sys_context('XS$SESSION', 'CURRENT_XS_USER')
+columns: []
+referencedTables: []

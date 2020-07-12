@@ -1,0 +1,26 @@
+schema: SYS
+name: KU$_PFHTABPROP_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.obj_num,
+    t.name,
+    t.schema,
+    t.flags,
+    t.property
+  from
+    ku$_tabprop_view t
+  where
+    bitand(t.property, 32 + 64 + 128 + 256 + 512) = 32
+    and not exists(
+      select
+        *
+      from
+        partobj$ po
+      where
+        po.obj# = t.obj_num
+        and po.parttype = 5
+    )
+columns: []
+referencedTables: []

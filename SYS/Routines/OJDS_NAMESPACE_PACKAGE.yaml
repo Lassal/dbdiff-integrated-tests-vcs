@@ -1,0 +1,21 @@
+schema: SYS
+name: OJDS_NAMESPACE
+routineType: PACKAGE
+returnParamater:
+  name: READ.(--return--)
+  ordinalPosition: 0
+  dataType: LONG RAW
+  parameterMode: OUT
+parameters:
+- name: WRITE.BYTES
+  ordinalPosition: 1
+  dataType: LONG RAW
+  parameterMode: IN
+routineDefinition: |-
+  package ojds_namespace authid current_user as -- Write the serialized command
+  procedure write(bytes long raw);
+  -- Execute the command
+  function execute return number;
+  -- Read the serialzed result
+  function read return long raw;
+  end ojds_namespace;

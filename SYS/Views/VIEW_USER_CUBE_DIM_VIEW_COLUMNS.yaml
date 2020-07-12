@@ -1,0 +1,70 @@
+schema: SYS
+name: USER_CUBE_DIM_VIEW_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    do .name DIMENSION_NAME,
+    vo.name VIEW_NAME,
+    col.name COLUMN_NAME,
+    DECODE(
+      avc.column_type,
+      2,
+      'KEY',
+      4,
+      'LEVEL_NAME',
+      7,
+      'DIM_ORDER',
+      9,
+      'MEMBER_TYPE'
+    ) COLUMN_TYPE,
+    NULL OBJECT_NAME -- no object name for these column types
+  FROM
+    olap_aw_view_columns$ avc,
+    olap_aw_views$ av,
+    col$ col,
+    obj$ do,
+    obj$ vo
+  WHERE
+    avc.view_obj# = av.view_obj#
+    AND av.olap_object_type = 11 --DIMENSION
+    AND av.olap_object_id = do .obj#
+    AND av.view_type = 1 -- ET
+    AND avc.column_type IN (2, 4, 6, 7, 9)
+    AND avc.view_obj# = col.obj#
+    AND avc.column_obj# = col.col#
+    AND do .owner# = USERENV('SCHEMAID')
+    AND avc.view_obj# = vo.obj#
+    AND vo.type# != 10 -- not NON-EXISTENT
+    AND vo.owner# = do .owner#
+  UNION ALL
+  SELECT
+    do .name DIMENSION_NAME,
+    vo.name VIEW_NAME,
+    col.name COLUMN_NAME,
+    'ATTRIBUTE' COLUMN_TYPE,
+    a .attribute_name OBJECT_NAME
+  FROM
+    olap_aw_view_columns$ avc,
+    olap_aw_views$ av,
+    olap_attributes$ a,
+    col$ col,
+    obj$ do,
+    obj$ vo
+  WHERE
+    avc.view_obj# = av.view_obj#
+    AND av.olap_object_type = 11 --DIMENSION
+    AND av.olap_object_id = do .obj#
+    AND av.view_type = 1 -- ET
+    AND avc.column_type = 1 -- OBJECT
+    AND avc.referenced_object_type = 15 --ATTRIBUTE
+    AND avc.referenced_object_id = a .attribute_id
+    AND avc.view_obj# = col.obj#
+    AND avc.column_obj# = col.col#
+    AND a .dim_obj# = do .obj#
+    AND do .owner# = USERENV('SCHEMAID')
+    AND avc.view_obj# = vo.obj#
+    AND vo.type# != 10 -- not NON-EXISTENT
+    AND vo.owner# = do .owner#
+columns: []
+referencedTables: []

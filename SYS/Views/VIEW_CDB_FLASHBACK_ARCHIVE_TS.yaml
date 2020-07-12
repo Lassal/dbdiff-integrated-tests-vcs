@@ -1,0 +1,15 @@
+schema: SYS
+name: CDB_FLASHBACK_ARCHIVE_TS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "FLASHBACK_ARCHIVE_NAME",
+    "FLASHBACK_ARCHIVE#",
+    "TABLESPACE_NAME",
+    "QUOTA_IN_MB",
+    "CON_ID"
+  FROM
+    CONTAINERS("SYS"."DBA_FLASHBACK_ARCHIVE_TS")
+columns: []
+referencedTables: []

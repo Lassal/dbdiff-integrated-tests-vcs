@@ -1,0 +1,22 @@
+schema: SYS
+name: EXU8CGRU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OBJID",
+    "GRANTOR",
+    "GRANTORID",
+    "GRANTEE",
+    "CREATORID",
+    "CNAME",
+    "PRIV",
+    "SEQUENCE",
+    "WGO"
+  FROM
+    sys.exu8cgr
+  WHERE
+    grantorid = userenv('SCHEMAID')
+    AND creatorid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

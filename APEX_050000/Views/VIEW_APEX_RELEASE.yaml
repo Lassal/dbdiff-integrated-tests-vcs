@@ -1,0 +1,28 @@
+schema: APEX_050000
+name: APEX_RELEASE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    (
+      select
+        wwv_flows_release
+      from
+        sys.dual
+    ) version_no,
+    (
+      select
+        wwv_flows_version
+      from
+        sys.dual
+    ) api_compatibility,
+    (
+      select
+        wwv_flow_platform.get_preference('APEX_3_0_1_PATCH')
+      from
+        sys.dual
+    ) patch_applied
+  from
+    wwv_flow_current_sgid
+columns: []
+referencedTables: []

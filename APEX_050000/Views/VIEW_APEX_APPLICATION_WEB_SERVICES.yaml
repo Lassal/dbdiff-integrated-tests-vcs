@@ -1,0 +1,89 @@
+schema: APEX_050000
+name: APEX_APPLICATION_WEB_SERVICES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ws.short_name workspace,
+    ws.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    w.NAME web_service_name,
+    w.URL,
+    w.ACTION,
+    w.PROXY_OVERRIDE,
+    w.soap_version,
+    w.SOAP_ENVELOPE,
+    w.FLOW_ITEMS_COMMA_DELIMITED,
+    w.STATIC_PARM_01,
+    w.STATIC_PARM_02,
+    w.STATIC_PARM_03,
+    w.STATIC_PARM_04,
+    w.STATIC_PARM_05,
+    w.STATIC_PARM_06,
+    w.STATIC_PARM_07,
+    w.STATIC_PARM_08,
+    w.STATIC_PARM_09,
+    w.STATIC_PARM_10,
+    w.STYLESHEET,
+    --
+    decode(w.REFERENCE_ID, null, 'No', 'Yes') is_subscribed,
+    (
+      select
+        flow_id || '. ' || name n
+      from
+        wwv_flow_shared_web_services
+      where
+        id = w.id
+    ) subscribed_from,
+    --
+    w.LAST_UPDATED_BY last_updated_by,
+    w.LAST_UPDATED_ON last_updated_on,
+    --
+    w.id web_service_id,
+    --
+    substr(w.name, 1, 30) || length(w.name) || ' u=' || substr(w.url, 1, 30) || length(w.url) || ' a=' || substr(w.action, 1, 30) || ' sv=' || w.soap_version || ' p1=' || substr(w.static_parm_01, 1, 30) || length(w.static_parm_01) || ' p2=' || substr(w.static_parm_02, 1, 30) || length(w.static_parm_02) || ' p3=' || substr(w.static_parm_03, 1, 30) || length(w.static_parm_03) as component_signature
+  from
+    wwv_flow_shared_web_services w,
+    wwv_flows f,
+    wwv_flow_companies ws,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = ws.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = ws.PROVISIONING_COMPANY_ID
+    and s.security_group_id = ws.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.id = w.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and ws.PROVISIONING_COMPANY_ID != 0
+    and (
+      user in ('SYS', 'SYSTEM', 'APEX_050000')
+      or ws.PROVISIONING_COMPANY_ID != 10
+    )
+columns: []
+referencedTables: []

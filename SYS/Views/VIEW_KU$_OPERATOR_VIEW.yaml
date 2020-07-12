@@ -1,0 +1,41 @@
+schema: SYS
+name: KU$_OPERATOR_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    op.obj#,
+    value(o),
+    op.property,
+    cast(
+      multiset(
+        select
+          value(ob)
+        from
+          ku$_opbinding_view ob
+        where
+          ob.obj_num = op.obj#
+        order by
+          ob.bind_num
+      ) as ku$_opbinding_list_t
+    )
+  from
+    ku$_schemaobj_view o,
+    sys.operator$ op
+  where
+    op.obj# = o.obj_num
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

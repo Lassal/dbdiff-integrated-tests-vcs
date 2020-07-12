@@ -1,0 +1,26 @@
+schema: SYS
+name: USER_MEASURE_FOLDER_CONTENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name MEASURE_FOLDER_NAME,
+    cu.name CUBE_OWNER,
+    co.name CUBE_NAME,
+    m.measure_name MEASURE_NAME,
+    mf.order_num ORDER_NUM
+  FROM
+    olap_meas_folder_contents$ mf,
+    obj$ o,
+    olap_measures$ m,
+    obj$ co,
+    user $ cu
+  WHERE
+    mf.measure_folder_obj# = o.obj#
+    AND o.owner# = USERENV('SCHEMAID')
+    AND mf.object_type = 2 -- MEASURE
+    AND mf.object_id = m.measure_id
+    AND m.cube_obj# = co.obj#
+    AND co.owner# = cu.user#
+columns: []
+referencedTables: []

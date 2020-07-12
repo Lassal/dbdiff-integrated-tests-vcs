@@ -1,0 +1,52 @@
+schema: SYS
+name: SPACE_ERROR_INFO
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: ERROR_TYPE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: OBJECT_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: OBJECT_OWNER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: TABLE_SPACE_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: OBJECT_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: SUB_OBJECT_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: OUT
+routineDefinition: |-
+  FUNCTION space_error_info (
+    error_type OUT VARCHAR2,
+    object_type OUT VARCHAR2,
+    object_owner OUT VARCHAR2,
+    table_space_name OUT VARCHAR2,
+    object_name OUT VARCHAR2,
+    sub_object_name OUT VARCHAR2
+  ) RETURN BOOLEAN IS
+  BEGIN
+    RETURN dbms_resumable.space_error_info(
+      error_type,
+      object_type,
+      object_owner,
+      table_space_name,
+      object_name,
+      sub_object_name
+    );
+  END;

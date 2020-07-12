@@ -1,0 +1,46 @@
+schema: APEX_050000
+name: WWV_FLOW_REST
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: GETREPORT.APP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETREPORT.PAGE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETREPORT.REPORTID
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETREPORT.PARMVALUES
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETREPORT.LANG
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETREPORT.OUTPUT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETSERVICEDESCRIPTION.APP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package wwv_flow_rest as g_sql clob;
+  g_result clob;
+  procedure getReport(
+    app in varchar2,
+    page in varchar2,
+    reportid in varchar2,
+    parmvalues in varchar2 default null,
+    lang in varchar2 default 'en',
+    output in varchar2 default 'xml'
+  );
+  procedure getServiceDescription(app in varchar2);
+  end wwv_flow_rest;

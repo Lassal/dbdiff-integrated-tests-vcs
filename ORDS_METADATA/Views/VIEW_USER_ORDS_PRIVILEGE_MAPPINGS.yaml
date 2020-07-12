@@ -1,0 +1,21 @@
+schema: ORDS_METADATA
+name: USER_ORDS_PRIVILEGE_MAPPINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    ALL_ORDS_PRIVILEGE_MAPPINGS.privilege_id,
+    ALL_ORDS_PRIVILEGE_MAPPINGS.name,
+    ALL_ORDS_PRIVILEGE_MAPPINGS.pattern,
+    ALL_ORDS_PRIVILEGE_MAPPINGS.created_by,
+    ALL_ORDS_PRIVILEGE_MAPPINGS.created_on,
+    ALL_ORDS_PRIVILEGE_MAPPINGS.updated_by,
+    ALL_ORDS_PRIVILEGE_MAPPINGS.updated_on
+  FROM
+    ALL_ORDS_PRIVILEGE_MAPPINGS,
+    ords_schemas
+  WHERE
+    ords_schemas.id = ALL_ORDS_PRIVILEGE_MAPPINGS.schema_id
+    AND ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

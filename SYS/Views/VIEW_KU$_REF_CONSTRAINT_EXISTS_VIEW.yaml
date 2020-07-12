@@ -1,0 +1,31 @@
+schema: SYS
+name: KU$_REF_CONSTRAINT_EXISTS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.obj#,
+    u.name
+  from
+    obj$ o,
+    user $ u,
+    con$ c,
+    cdef$ cd
+  where
+    o.owner# = u.user#
+    and cd.obj# = o.obj#
+    and c .con# = cd.con#
+    and cd.type# = 4 -- referential constraint
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

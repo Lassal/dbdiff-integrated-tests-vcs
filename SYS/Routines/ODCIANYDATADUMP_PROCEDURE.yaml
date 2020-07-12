@@ -1,0 +1,33 @@
+schema: SYS
+name: ODCIANYDATADUMP
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: AD
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE ODCIAnyDataDump(ad IN SYS.AnyData) IS
+  BEGIN
+    IF ad IS NOT NULL THEN CASE
+      ad.gettypeName
+      WHEN 'SYS.BINARY_DOUBLE' THEN dbms_output.put_line(ad.AccessBDouble());
+      WHEN 'SYS.BINARY_FLOAT' THEN dbms_output.put_line(ad.AccessBFloat());
+      WHEN 'SYS.CHAR' THEN dbms_output.put_line(ad.AccessChar());
+      WHEN 'SYS.DATE' THEN dbms_output.put_line(ad.AccessDate());
+      WHEN 'SYS.INTERVALYM' THEN dbms_output.put_line(ad.AccessIntervalYM());
+      WHEN 'SYS.INTERVALDS' THEN dbms_output.put_line(ad.AccessIntervalDS());
+      WHEN 'SYS.NCHAR' THEN dbms_output.put_line(ad.AccessNChar());
+      WHEN 'SYS.NUMBER' THEN dbms_output.put_line(ad.AccessNumber());
+      WHEN 'SYS.TIMESTAMP' THEN dbms_output.put_line(ad.AccessTimeStamp());
+      WHEN 'SYS.TIMESTAMPLTZ' THEN dbms_output.put_line(ad.AccessTimeStampLTZ());
+      WHEN 'SYS.TIMESTAMPTZ' THEN dbms_output.put_line(ad.AccessTimeStampTZ());
+      WHEN 'SYS.NVARCHAR2' THEN dbms_output.put_line(ad.AccessNVarchar2());
+      WHEN 'SYS.VARCHAR' THEN dbms_output.put_line(ad.AccessVarchar());
+      WHEN 'SYS.VARCHAR2' THEN dbms_output.put_line(ad.AccessVarchar2());
+      WHEN 'SYS.RAW' THEN dbms_output.put_line('Raw Datatype');
+      ELSE dbms_output.put_line('NOT a Scalar Type in AnyData');
+    END CASE;
+    END IF;
+  END;

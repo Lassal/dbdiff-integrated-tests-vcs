@@ -1,0 +1,17 @@
+schema: CTXSYS
+name: DRV$USER_EXTRACT_STOP_ENTITY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "ESE_POL_ID",
+    "ESE_NAME",
+    "ESE_TYPE",
+    "ESE_STATUS",
+    "ESE_COMMENTS"
+  from
+    dr$user_extract_stop_entity
+  where
+    ese_pol_id = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
+columns: []
+referencedTables: []

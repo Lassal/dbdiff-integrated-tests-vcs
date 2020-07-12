@@ -1,0 +1,36 @@
+schema: SYS
+name: USER_OLDIMAGE_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    decode(
+      c .name,
+      'SYS_NC_ROWINFO$',
+      'OBJECT TABLE',
+      c .name
+    )
+  from
+    sys.user$ u,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.col$ c,
+    sys.coltype$ t
+  where
+    o.type# = 2
+    and
+    /* show only tables */
+    o.owner# = userenv('SCHEMAID')
+    and o.owner# = u.user#
+    and o.obj# = c .obj#
+    and o.obj# = t.obj#
+    and c .intcol# = t.intcol#
+    and
+    /* do not show attribute columns. If the attribute is in 8.0 image, that
+            means the whole column is in 8.0 image. Now, this will still show
+            top level ADT columns in an object table, which is redundant. */
+    bitand(c .property, 1) = 0
+    and bitand(t.flags, 128) <> 0
+columns: []
+referencedTables: []

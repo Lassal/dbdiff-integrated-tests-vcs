@@ -1,0 +1,13 @@
+schema: SYS
+name: ALL_REPL_DBNAME_MAPPING
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    source_root_name,
+    source_database_name,
+    source_container_name
+  from
+    repl$_dbname_mapping
+columns: []
+referencedTables: []

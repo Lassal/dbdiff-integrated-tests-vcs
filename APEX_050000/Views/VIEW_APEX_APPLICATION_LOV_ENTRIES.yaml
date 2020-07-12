@@ -1,0 +1,142 @@
+schema: APEX_050000
+name: APEX_APPLICATION_LOV_ENTRIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    --
+    (
+      select
+        lov_name
+      from
+        wwv_flow_lists_of_values$
+      where
+        id = l.lov_id
+    ) list_of_values_name,
+    l.LOV_DISP_SEQUENCE display_sequence,
+    l.LOV_DISP_VALUE display_value,
+    l.LOV_RETURN_VALUE return_value,
+    --
+    l.LOV_TEMPLATE lov_entry_template,
+    -- conditionality
+    nvl(
+      (
+        select
+          r
+        from
+          apex_standard_conditions
+        where
+          d = l.LOV_DISP_COND_TYPE
+      ),
+      l.LOV_DISP_COND_TYPE
+    ) condition_type,
+    l.lov_disp_cond_type condition_type_code,
+    l.LOV_DISP_COND condition_expression1,
+    l.LOV_DISP_COND2 condition_expression2,
+    (
+      select
+        case
+          when l.required_patch > 0 then PATCH_NAME
+          else '{Not ' || PATCH_NAME || '}'
+        end PATCH_NAME
+      from
+        wwv_flow_patches
+      where
+        id = abs(l.REQUIRED_PATCH)
+    ) build_option,
+    --
+    -- translation columns
+    nvl(
+      (
+        select
+          PRIMARY_APPLICATION_ID
+        from
+          APEX_APPLICATION_TRANS_MAP
+        where
+          f.id = TRANSLATED_APPLICATION_ID
+      ),
+      f.id
+    ) primary_application_id,
+    lower(
+      substr(
+        nvl(
+          (
+            select
+              TRANSLATED_APP_LANGUAGE
+            from
+              APEX_APPLICATION_TRANS_MAP
+            where
+              f.id = TRANSLATED_APPLICATION_ID
+          ),
+          f.FLOW_LANGUAGE
+        ),
+        1,
+        2
+      )
+    ) TRANSLATED_APP_LANGUAGE,
+    --
+    l.LAST_UPDATED_BY last_updated_by,
+    l.LAST_UPDATED_ON last_updated_on,
+    l.LOV_DATA_COMMENT component_comment,
+    --
+    l.LOV_ID lov_id,
+    l.id lov_entry_id,
+    --
+    (
+      select
+        lov_name
+      from
+        wwv_flow_lists_of_values$
+      where
+        id = l.lov_id
+    ) || ' seq=' || lpad(l.LOV_DISP_SEQUENCE, 5, '00000') || ' v=' || substr(l.LOV_DISP_VALUE, 1, 30) || length(l.LOV_DISP_VALUE) || ' r=' || substr(l.LOV_RETURN_VALUE, 1, 30) || length(l.LOV_RETURN_VALUE) || ' t=' || l.LOV_TEMPLATE || ' cond=' || l.LOV_DISP_COND_TYPE || substr(l.LOV_DISP_COND, 1, 30) || length(l.LOV_DISP_COND) || substr(l.LOV_DISP_COND2, 1, 30) || length(l.LOV_DISP_COND2) || ' bo='(
+      select
+        PATCH_NAME
+      from
+        wwv_flow_patches
+      where
+        id = abs(l.REQUIRED_PATCH)
+    ) component_signature
+  from
+    wwv_flow_list_of_values_data l,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.id = l.flow_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []
