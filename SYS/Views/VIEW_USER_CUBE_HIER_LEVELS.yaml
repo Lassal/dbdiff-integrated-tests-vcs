@@ -1,0 +1,36 @@
+schema: SYS
+name: USER_CUBE_HIER_LEVELS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name DIMENSION_NAME,
+    h.hierarchy_name HIERARCHY_NAME,
+    dl.level_name LEVEL_NAME,
+    hl.hierarchy_level_id HIERARCHY_LEVEL_ID,
+    hl.order_num ORDER_NUM,
+    d.description_value DESCRIPTION
+  FROM
+    olap_hier_levels$ hl,
+    obj$ o,
+    olap_hierarchies$ h,
+    olap_dim_levels$ dl,
+    (
+      select
+        d. *
+      from
+        olap_descriptions$ d,
+        nls_session_parameters n
+      where
+        n.parameter = 'NLS_LANGUAGE'
+        and d.description_type = 'Description'
+        and d.owning_object_type = 14 --HIER_LEVEL
+        and (
+          d.language = n.value
+          or d.language like n.value || '\_%' escape '\')) d
+  WHERE
+    hl.hierarchy_id=h.hierarchy_id AND o.owner#=USERENV(' SCHEMAID ')
+    AND dl.level_id=hl.dim_level_id AND o.obj#=dl.dim_obj#
+    AND d.owning_object_id(+)=hl.hierarchy_level_id
+columns: []
+referencedTables: []

@@ -1,0 +1,240 @@
+schema: SYS
+name: DBMS_RULEADM_INTERNAL
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: I_ALTER_RULE.RULE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_ALTER_RULE.CONDITION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_ALTER_RULE.EVALUATION_CONTEXT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_ALTER_RULE.REMOVE_EVALUATION_CONTEXT
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: I_ALTER_RULE.ACTION_CONTEXT
+  ordinalPosition: 5
+  dataType: OBJECT
+  parameterMode: IN
+- name: I_ALTER_RULE.REMOVE_ACTION_CONTEXT
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: I_ALTER_RULE.RULE_COMMENT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_ALTER_RULE.REMOVE_RULE_COMMENT
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: I_ALTER_RULE.INTERNAL_ACTX_CLIENT
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_ALTER_RULE.INTERNAL_ACTION_CONTEXT
+  ordinalPosition: 10
+  dataType: OBJECT
+  parameterMode: IN
+- name: I_ALTER_RULE.REMOVE_INT_ACTX
+  ordinalPosition: 11
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: I_CREATE_EVAL_CTX.EVALUATION_CONTEXT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_CREATE_EVAL_CTX.TABLE_ALIASES
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: I_CREATE_EVAL_CTX.VARIABLE_TYPES
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: I_CREATE_EVAL_CTX.EVALUATION_FUNCTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_CREATE_EVAL_CTX.EVALUATION_CONTEXT_COMMENT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_CREATE_EVAL_CTX.EVAL_CTX_PROPERTIES
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: I_CREATE_RULE.RULE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_CREATE_RULE.CONDITION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_CREATE_RULE.EVALUATION_CONTEXT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_CREATE_RULE.ACTION_CONTEXT
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: IN
+- name: I_CREATE_RULE.RULE_COMMENT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_CREATE_RULE.RULE_PROPERTIES
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: I_CREATE_RULE.INTERNAL_ACTX_CLIENT
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_CREATE_RULE.INTERNAL_ACTION_CONTEXT
+  ordinalPosition: 8
+  dataType: OBJECT
+  parameterMode: IN
+- name: I_CREATE_RULE_SET.RULE_SET_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_CREATE_RULE_SET.EVALUATION_CONTEXT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_CREATE_RULE_SET.RULE_SET_COMMENT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_CREATE_RULE_SET.RULE_SET_PROPERTIES
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: I_CREATE_RULE_SET.RESULT_CACHE
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: I_EVALUATION_CONTEXT_ADD_VAR.EVALUATION_CONTEXT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: I_EVALUATION_CONTEXT_ADD_VAR.VARIABLE_TYPES
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: PATCH_RULE_PRIV.BTAB_SCHEMA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PATCH_RULE_PRIV.BTAB_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PATCH_RULE_PRIV.CONDITION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_INTERNAL_ACTX.CLIENT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_INTERNAL_ACTX.EXPORT_FUNCTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTER_INTERNAL_ACTX.CLIENT_COMMENT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UNREGISTER_INTERNAL_ACTX.CLIENT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_RE_OBJECT.OBJECT_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_RE_OBJECT.OBJECT_NAMESPACE
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_ruleadm_internal AUTHID CURRENT_USER AS -----------------
+  -- constants
+  KGLNRULS CONSTANT BINARY_INTEGER: = 23;
+  KGLNRULE CONSTANT BINARY_INTEGER: = 36;
+  KGLNREVC CONSTANT BINARY_INTEGER: = 38;
+  PROCEDURE i_create_eval_ctx(
+    evaluation_context_name IN varchar2,
+    table_aliases IN sys.re$table_alias_list: = NULL,
+    variable_types IN sys.re$variable_type_list: = NULL,
+    evaluation_function IN varchar2: = NULL,
+    evaluation_context_comment IN varchar2: = NULL,
+    eval_ctx_properties IN number: = NULL
+  );
+  PROCEDURE i_create_rule_set(
+    rule_set_name IN varchar2,
+    evaluation_context IN varchar2: = NULL,
+    rule_set_comment IN varchar2: = NULL,
+    rule_set_properties IN number: = NULL,
+    result_cache IN boolean: = FALSE
+  );
+  PROCEDURE i_create_rule(
+    rule_name IN varchar2,
+    condition IN varchar2,
+    evaluation_context IN varchar2: = NULL,
+    action_context IN sys.re$nv_list: = NULL,
+    rule_comment IN varchar2: = NULL,
+    rule_properties IN number: = NULL,
+    internal_actx_client IN varchar2: = NULL,
+    internal_action_context IN sys.re$nv_list: = NULL
+  );
+  PROCEDURE i_alter_rule(
+    rule_name IN varchar2,
+    condition IN varchar2: = NULL,
+    evaluation_context IN varchar2: = NULL,
+    remove_evaluation_context IN boolean: = FALSE,
+    action_context IN sys.re$nv_list: = NULL,
+    remove_action_context IN boolean: = FALSE,
+    rule_comment IN varchar2: = NULL,
+    remove_rule_comment IN boolean: = FALSE,
+    internal_actx_client IN varchar2: = NULL,
+    internal_action_context IN sys.re$nv_list: = NULL,
+    remove_int_actx IN boolean: = FALSE
+  );
+  PROCEDURE patch_rule_priv(
+    btab_schema IN varchar2,
+    btab_name IN varchar2,
+    condition IN varchar2
+  );
+  PROCEDURE validate_re_object(
+    object_name IN varchar2,
+    object_namespace IN binary_integer
+  );
+  -- The export function signature should be
+  -- FUNCTION  <export_function> (
+  --           rschema                   IN  varchar2,
+  --           rname                     IN  varchar2,
+  --           new_block                 OUT PLS_INTEGER) RETURN VARCHAR2;
+  PROCEDURE register_internal_actx(
+    client_name IN varchar2,
+    export_function IN varchar2 default NULL,
+    client_comment IN varchar2 default NULL
+  );
+  PROCEDURE unregister_internal_actx(
+    client_name IN varchar2
+  );
+  PROCEDURE i_evaluation_context_add_var(
+    evaluation_context_name IN varchar2,
+    variable_types IN sys.re$variable_type_list default NULL
+  );
+  END dbms_ruleadm_internal;

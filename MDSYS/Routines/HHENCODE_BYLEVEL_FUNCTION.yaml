@@ -1,0 +1,112 @@
+schema: MDSYS
+name: HHENCODE_BYLEVEL
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: RAW
+  parameterMode: OUT
+parameters:
+- name: V01
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: L01
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: U01
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: P01
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: V02
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: L02
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: U02
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: P02
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: V03
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: L03
+  ordinalPosition: 10
+  dataType: NUMBER
+  parameterMode: IN
+- name: U03
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: P03
+  ordinalPosition: 12
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: V04
+  ordinalPosition: 13
+  dataType: NUMBER
+  parameterMode: IN
+- name: L04
+  ordinalPosition: 14
+  dataType: NUMBER
+  parameterMode: IN
+- name: U04
+  ordinalPosition: 15
+  dataType: NUMBER
+  parameterMode: IN
+- name: P04
+  ordinalPosition: 16
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION hhencode_bylevel (
+    v01 IN NUMBER,
+    l01 IN NUMBER,
+    u01 IN NUMBER,
+    p01 IN BINARY_INTEGER,
+    v02 IN NUMBER: = NULL,
+    l02 IN NUMBER: = NULL,
+    u02 IN NUMBER: = NULL,
+    p02 IN BINARY_INTEGER: = NULL,
+    v03 IN NUMBER: = NULL,
+    l03 IN NUMBER: = NULL,
+    u03 IN NUMBER: = NULL,
+    p03 IN BINARY_INTEGER: = NULL,
+    v04 IN NUMBER: = NULL,
+    l04 IN NUMBER: = NULL,
+    u04 IN NUMBER: = NULL,
+    p04 IN BINARY_INTEGER: = NULL
+  ) RETURN RAW IS
+  begin
+    return md.hhencode_bylevel(
+      v01,
+      l01,
+      u01,
+      p01,
+      v02,
+      l02,
+      u02,
+      p02,
+      v03,
+      l03,
+      u03,
+      p03,
+      v04,
+      l04,
+      u04,
+      p04
+    );
+  end;

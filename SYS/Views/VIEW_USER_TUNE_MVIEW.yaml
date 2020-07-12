@@ -1,0 +1,56 @@
+schema: SYS
+name: USER_TUNE_MVIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    t.name,
+    a .id,
+    decode(
+      a .command,
+      3,
+      'IMPLEMENTATION',
+      4,
+      'IMPLEMENTATION',
+      18,
+      'UNDO',
+      23,
+      'IMPLEMENTATION',
+      24,
+      'UNDO',
+      25,
+      'IMPLEMENTATION',
+      26,
+      'UNDO',
+      27,
+      'IMPLEMENTATION',
+      'UNKNOWN'
+    ),
+    decode(
+      a .command,
+      3,
+      'CREATE MATERIALIZED VIEW ' || a .attr1 || ' ' || a .attr6 || ' ' || a .attr3 || ' ' || a .attr4 || ' AS ' || a .attr5,
+      4,
+      'CREATE MATERIALIZED VIEW LOG ON ' || a .attr1 || ' WITH ' || a .attr3 || ' ' || a .attr5 || ' ' || a .attr4,
+      18,
+      'DROP MATERIALIZED VIEW ' || a .attr1 || ' ' || a .attr5,
+      23,
+      'CREATE MATERIALIZED VIEW ' || a .attr1 || ' ' || a .attr6 || ' ' || a .attr3 || ' ' || a .attr4 || ' AS ' || a .attr5,
+      24,
+      'DROP MATERIALIZED VIEW ' || a .attr1 || ' ' || a .attr5,
+      25,
+      'DBMS_ADVANCED_REWRITE.BUILD_SAFE_REWRITE_EQUIVALENCE (''' || a .attr1 || ''',''' || a .attr5 || ''',''' || a .attr6 || ''',' || a .attr2 || ')',
+      26,
+      'DBMS_ADVANCED_REWRITE.DROP_REWRITE_EQUIVALENCE(''' || a .attr1 || ''')' || a .attr5,
+      27,
+      'ALTER MATERIALIZED VIEW LOG FORCE ON ' || a .attr1 || ' ADD ' || a .attr3 || ' ' || a .attr5 || ' ' || a .attr4,
+      a .attr5
+    )
+  FROM
+    sys.wri$_adv_actions a,
+    sys.wri$_adv_tasks t
+  WHERE
+    a .task_id = t.id
+    AND t.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

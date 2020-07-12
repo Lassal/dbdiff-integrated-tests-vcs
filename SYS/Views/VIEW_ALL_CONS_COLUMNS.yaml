@@ -1,0 +1,76 @@
+schema: SYS
+name: ALL_CONS_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    c .name,
+    o.name,
+    decode(ac.name, null, col.name, ac.name),
+    cc.pos#
+  from
+    sys.user$ u,
+    sys.con$ c,
+    sys.col$ col,
+    sys.ccol$ cc,
+    sys.cdef$ cd,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.attrcol$ ac
+  where
+    c .owner# = u.user#
+    and c .con# = cd.con#
+    and (
+      cd.type# < 14
+      or cd.type# > 17
+    )
+    /* don't include supplog cons   */
+    and (cd.type# != 12)
+    /* don't include log group cons */
+    and cd.con# = cc.con#
+    and cc.obj# = col.obj#
+    and cc.intcol# = col.intcol#
+    and cc.obj# = o.obj#
+    and (
+      c .owner# = userenv('SCHEMAID')
+      or cd.obj# in (
+        select
+          obj#
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+    and col.obj# = ac.obj#(+)
+    and col.intcol# = ac.intcol#(+)
+columns: []
+referencedTables: []

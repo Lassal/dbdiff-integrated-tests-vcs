@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_MVIEW_COMMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    c .comment$
+  from
+    sys.obj$ o,
+    sys.com$ c,
+    sys.tab$ t
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.type# = 2
+    and (bitand(t.property, 67108864) = 67108864)
+    /*mv container table */
+    and o.obj# = c .obj#(+)
+    and c .col#(+) is NULL
+    and o.obj# = t.obj#
+columns: []
+referencedTables: []

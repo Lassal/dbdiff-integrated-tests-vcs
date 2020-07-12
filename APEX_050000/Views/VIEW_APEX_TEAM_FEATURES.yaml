@@ -1,0 +1,102 @@
+schema: APEX_050000
+name: APEX_TEAM_FEATURES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.PROVISIONING_COMPANY_ID workspace_id,
+    w.short_name workspace_name,
+    --
+    f.id feature_id,
+    f.feature_id feature_friendly_id,
+    f.feature_name,
+    f.feature_owner,
+    f.feature_contributor,
+    f.focus_area,
+    f.release,
+    f.feature_desc feature_description,
+    f.justification,
+    f.feature_tags,
+    f.feature_priority,
+    f.feature_status,
+    f.feature_desirability,
+    f.due_date,
+    f.start_date,
+    f.module,
+    f.estimated_effort_in_hours,
+    --
+    f.publishable_yn,
+    f.publishable_description,
+    --
+    f.globalization_impact,
+    f.globalization_assignee,
+    f.globalization_status,
+    --
+    f.user_interface_impact,
+    f.user_interface_assignee,
+    f.user_interface_status,
+    --
+    f.doc_impact,
+    f.doc_status,
+    f.doc_writer,
+    --
+    f.testing_impact,
+    f.testing_assignee,
+    f.testing_status,
+    --
+    f.security_impact,
+    f.security_assignee,
+    f.security_status,
+    --
+    f.accessibility_impact,
+    f.accessibility_assignee,
+    f.accessibility_status,
+    --
+    f.application_id,
+    f.parent_feature_id,
+    f.event_id milestone_id,
+    --
+    f.created_by,
+    f.created_on,
+    f.updated_by,
+    f.updated_on
+  from
+    wwv_flow_current_sgid sgid,
+    wwv_flow_features f,
+    wwv_flow_companies w
+  where
+    f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and w.PROVISIONING_COMPANY_ID in (
+      select
+        security_group_id
+      from
+        wwv_flow_company_schemas s,
+        (
+          select
+            (
+              select
+                sys_context('USERENV', 'CURRENT_USER')
+              from
+                sys.dual
+            ) cu
+          from
+            sys.dual
+        ) d
+      where
+        (
+          s.schema = cu
+          or (
+            select
+              wwv_flow_security.has_apex_administrator_role_yn(cu)
+            from
+              sys.dual
+          ) = 'Y'
+          or sgid.security_group_id = w.PROVISIONING_COMPANY_ID
+        )
+    )
+    and (
+      user in ('SYS', 'SYSTEM', 'APEX_050000')
+      or w.PROVISIONING_COMPANY_ID != 10
+    )
+columns: []
+referencedTables: []

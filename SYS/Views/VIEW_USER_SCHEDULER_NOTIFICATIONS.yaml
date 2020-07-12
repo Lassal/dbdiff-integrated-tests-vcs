@@ -1,0 +1,45 @@
+schema: SYS
+name: USER_SCHEDULER_NOTIFICATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    sr.job_name,
+    sr.job_subname,
+    sr.recipient,
+    sr.sender,
+    sr.subject,
+    sr.body,
+    sr.filter_condition,
+    DECODE(
+      BITAND(sr.event_flag, 1024 -1),
+      1,
+      'JOB_STARTED',
+      2,
+      'JOB_SUCCEEDED',
+      4,
+      'JOB_FAILED',
+      8,
+      'JOB_BROKEN',
+      16,
+      'JOB_COMPLETED',
+      32,
+      'JOB_STOPPED',
+      64,
+      'JOB_SCH_LIM_REACHED',
+      128,
+      'JOB_DISABLED',
+      256,
+      'JOB_CHAIN_STALLED',
+      512,
+      'JOB_OVER_MAX_DUR',
+      NULL
+    ),
+    sr.event_flag
+  FROM
+    scheduler$_notification sr
+  WHERE
+    sr.owner = sys_context('USERENV', 'CURRENT_USER')
+    AND BITAND(flags, 1) = 0
+columns: []
+referencedTables: []

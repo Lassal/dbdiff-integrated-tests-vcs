@@ -1,0 +1,57 @@
+schema: SYS
+name: USER_SQLJ_TYPES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    t.toid,
+    t.externname,
+    decode(
+      t.externtype,
+      1,
+      'SQLData',
+      2,
+      'CustomDatum',
+      3,
+      'Serializable',
+      4,
+      'Serializable Internal',
+      5,
+      'ORAData',
+      'unknown'
+    ),
+    decode(
+      t.typecode,
+      108,
+      'OBJECT',
+      122,
+      'COLLECTION',
+      o.name
+    ),
+    t.attributes,
+    t.methods,
+    decode(bitand(t.properties, 16), 16, 'YES', 0, 'NO'),
+    decode(bitand(t.properties, 256), 256, 'YES', 0, 'NO'),
+    decode(bitand(t.properties, 8), 8, 'NO', 'YES'),
+    decode(bitand(t.properties, 65536), 65536, 'NO', 'YES'),
+    su.name,
+    so.name,
+    t.local_attrs,
+    t.local_methods
+  from
+    sys.type$ t,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys. "_CURRENT_EDITION_OBJ" so,
+    sys.user$ su
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.oid$ = t.tvoid
+    and o.subname IS NULL -- only latest version
+    and o.type# <> 10 -- must not be invalid
+    and bitand(t.properties, 2048) = 0 -- not system-generated
+    and t.supertoid = so.oid$ (+)
+    and so.owner# = su.user# (+)
+    and t.externtype < 5
+columns: []
+referencedTables: []

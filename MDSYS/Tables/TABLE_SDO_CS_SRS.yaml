@@ -1,0 +1,55 @@
+name: SDO_CS_SRS
+schema: MDSYS
+columns:
+- name: AUTH_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  dataTypeLength: 256
+- name: AUTH_SRID
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  dataTypeLength:
+- name: CS_BOUNDS
+  ordinalPosition: 6
+  dataType: SDO_GEOMETRY
+  nullable: true
+  dataTypeLength:
+- name: CS_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  dataTypeLength: 80
+- name: SRID
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericScale: 0
+  nullable: false
+  dataTypeLength:
+- name: WKTEXT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 2046
+  nullable: true
+  dataTypeLength: 2046
+- name: WKTEXT3D
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  dataTypeLength: 4000
+constraints:
+- !<unique-constraint>
+  name: SYS_C006114
+  type: PRIMARY_KEY
+  columns:
+  - name: NTV2_FILE_ID
+    ordinalPosition: 0
+- !<check-constraint>
+  name: SYS_C006113
+  type: CHECK
+  checkClause: '"SRID" IS NOT NULL'

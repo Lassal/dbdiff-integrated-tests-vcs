@@ -1,0 +1,72 @@
+schema: SYS
+name: EXPTABSUBPARTLOB_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    tp.obj# PONO,
+    lp.defts# LPDEFTS,
+    lf.tsno LFTS,
+    lb.defts# LCDEFTS,
+    dsp.lob_spart_ts# LSPDEFTS,
+    tsp.ts# SPTS
+  FROM
+    sys.tabcompart$ tp,
+    sys.lobcomppart$ lp,
+    sys.partlob$ lb,
+    sys.exptabsubpartlobfrag lf,
+    sys.defsubpartlob$ dsp,
+    sys.obj$ lspo,
+    sys.obj$ tpo,
+    sys.tabsubpart$ tsp
+  WHERE
+    lp.tabpartobj# = tp.obj#
+    AND lp.lobj# = lb.lobj#
+    and lf.parentobjno = lp.partobj#
+    AND dsp.bo# = tp.bo#
+    and dsp.intcol# = lb.intcol#
+    AND lspo.obj# = lf.fragobjno
+    AND tpo.obj# = tp.obj#
+    AND (
+      lspo.subname = tpo.subname || '_' || dsp.lob_spart_name
+      OR (
+        tpo.subname LIKE 'SYS_P%'
+        AND lspo.subname LIKE 'SYS_LOB_SUBP%'
+      )
+    )
+    AND dsp.spart_position = lf.fragno
+    AND tsp.obj# = lf.tabfragobjno
+  UNION ALL
+  SELECT
+    tp.obj# PONO,
+    lp.defts# LPDEFTS,
+    lf.tsno LFTS,
+    lb.defts# LCDEFTS,
+    NULL,
+    tsp.ts# SPTS
+  FROM
+    sys.tabcompart$ tp,
+    sys.lobcomppart$ lp,
+    sys.partlob$ lb,
+    sys.exptabsubpartlobfrag lf,
+    sys.obj$ lspo,
+    sys.obj$ tpo,
+    sys.tabsubpart$ tsp
+  WHERE
+    lp.tabpartobj# = tp.obj#
+    AND lp.lobj# = lb.lobj#
+    AND lf.parentobjno = lp.partobj#
+    AND lb.intcol# NOT IN (
+      SELECT
+        distinct dsp.intcol#
+      FROM
+        sys.defsubpartlob$ dsp
+      WHERE
+        dsp.bo# = tp.bo#
+    )
+    AND lspo.obj# = lf.fragobjno
+    AND tpo.obj# = tp.obj#
+    AND lspo.subname LIKE 'SYS_LOB_SUBP%'
+    AND tsp.obj# = lf.tabfragobjno
+columns: []
+referencedTables: []

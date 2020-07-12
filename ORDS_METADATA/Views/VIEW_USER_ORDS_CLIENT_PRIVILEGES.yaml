@@ -1,0 +1,30 @@
+schema: ORDS_METADATA
+name: USER_ORDS_CLIENT_PRIVILEGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    p.id client_priv_id,
+    p.created_by client_priv_created_by,
+    p.updated_by client_priv_updated_by,
+    p.client_id client_priv_client_id,
+    sec.id priv_id,
+    sec.name,
+    sec.label,
+    sec.description,
+    sch.parsing_schema,
+    c .name client_name,
+    c .created_by client_created_by
+  FROM
+    ords_schemas sch,
+    sec_privileges sec,
+    oauth_client_privileges p,
+    oauth_clients c
+  WHERE
+    sch.id = p.schema_id
+    AND sch.id = c .schema_id
+    AND sec.id = p.privilege_id
+    AND p.client_id = c .id
+    AND sch.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

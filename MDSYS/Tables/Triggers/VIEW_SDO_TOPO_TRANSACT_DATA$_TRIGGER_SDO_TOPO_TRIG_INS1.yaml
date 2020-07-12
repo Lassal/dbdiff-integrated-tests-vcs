@@ -1,0 +1,21 @@
+targetObjectSchema: MDSYS
+targetObjectName: SDO_TOPO_TRANSACT_DATA$
+targetObjectType: VIEW
+name: SDO_TOPO_TRIG_INS1
+eventTiming: INSTEAD OF
+event: INSERT
+eventActionBody: |-
+  declare
+  begin
+  INSERT INTO
+    SDO_TOPO_TRANSACT_DATA
+  values(
+      SDO_TOPO_TRANSACT_SUBSEQ.nextval,
+      :n.topology_id,
+      :n.topo_id,
+      :n.topo_type,
+      :n.topo_op,
+      :n.parent_id
+    );
+  end;
+executionOrder: 1

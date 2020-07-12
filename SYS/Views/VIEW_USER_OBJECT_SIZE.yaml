@@ -1,0 +1,225 @@
+schema: SYS
+name: USER_OBJECT_SIZE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    name,
+    decode(
+      type #,
+      2,
+      'TABLE',
+      4,
+      'VIEW',
+      5,
+      'SYNONYM',
+      6,
+      'SEQUENCE',
+      7,
+      'PROCEDURE',
+      8,
+      'FUNCTION',
+      9,
+      'PACKAGE',
+      11,
+      'PACKAGE BODY',
+      12,
+      'TRIGGER',
+      13,
+      'TYPE',
+      14,
+      'TYPE BODY',
+      28,
+      'JAVA SOURCE',
+      29,
+      'JAVA CLASS',
+      30,
+      'JAVA RESOURCE',
+      56,
+      'JAVA DATA',
+      92,
+      'CUBE DIMENSION',
+      93,
+      'CUBE',
+      94,
+      'MEASURE FOLDER',
+      95,
+      'CUBE BUILD PROCESS',
+      'UNDEFINED'
+    ),
+    sum(SOURCE_SIZE),
+    sum(PARSED_SIZE),
+    sum(CODE_SIZE),
+    sum(ERROR_SIZE)
+  from
+    (
+      select
+        o.name,
+        o.type#,
+        nvl(s.bytes, 0) source_size,
+        0 parsed_size,
+        0 code_size,
+        0 error_size
+      from
+        sys. "_CURRENT_EDITION_OBJ" o,
+        sys.source_size s
+      where
+        o.type# in (
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          28,
+          29,
+          30,
+          56
+        )
+        and o.owner# = userenv('SCHEMAID')
+        and o.obj# = s.obj# (+)
+      union all
+      select
+        o.name,
+        o.type#,
+        0,
+        nvl(p.bytes, 0),
+        0,
+        0
+      from
+        sys. "_CURRENT_EDITION_OBJ" o,
+        sys.parsed_size p
+      where
+        o.type# in (
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          28,
+          29,
+          30,
+          56
+        )
+        and o.owner# = userenv('SCHEMAID')
+        and o.obj# = p.obj# (+)
+      union all
+      select
+        o.name,
+        o.type#,
+        0,
+        0,
+        nvl(c .bytes, 0),
+        0
+      from
+        sys. "_CURRENT_EDITION_OBJ" o,
+        sys.code_size c
+      where
+        o.type# in (
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          28,
+          29,
+          30,
+          56
+        )
+        and o.owner# = userenv('SCHEMAID')
+        and o.obj# = c .obj# (+)
+      union all
+      select
+        o.name,
+        o.type#,
+        0,
+        0,
+        0,
+        nvl(e.bytes, 0)
+      from
+        sys. "_CURRENT_EDITION_OBJ" o,
+        sys.error_size e
+      where
+        o.type# in (
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          28,
+          29,
+          30,
+          56
+        )
+        and o.owner# = userenv('SCHEMAID')
+        and o.obj# = e.obj# (+)
+    )
+  group by
+    name,
+    decode(
+      type #,
+      2,
+      'TABLE',
+      4,
+      'VIEW',
+      5,
+      'SYNONYM',
+      6,
+      'SEQUENCE',
+      7,
+      'PROCEDURE',
+      8,
+      'FUNCTION',
+      9,
+      'PACKAGE',
+      11,
+      'PACKAGE BODY',
+      12,
+      'TRIGGER',
+      13,
+      'TYPE',
+      14,
+      'TYPE BODY',
+      28,
+      'JAVA SOURCE',
+      29,
+      'JAVA CLASS',
+      30,
+      'JAVA RESOURCE',
+      56,
+      'JAVA DATA',
+      92,
+      'CUBE DIMENSION',
+      93,
+      'CUBE',
+      94,
+      'MEASURE FOLDER',
+      95,
+      'CUBE BUILD PROCESS',
+      'UNDEFINED'
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,1131 @@
+schema: SYS
+name: DBMS_DATA_MINING
+routineType: PACKAGE
+returnParamater:
+  name: GET_MODEL_TRANSFORMATIONS.(--return--)
+  ordinalPosition: 0
+  dataType: TABLE
+  parameterMode: OUT
+parameters:
+- name: ADD_COST_MATRIX.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_COST_MATRIX.COST_MATRIX_TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_COST_MATRIX.COST_MATRIX_SCHEMA_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_REVERSE_EXPRESSION.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_REVERSE_EXPRESSION.EXPRESSION
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: ALTER_REVERSE_EXPRESSION.ATTRIBUTE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ALTER_REVERSE_EXPRESSION.ATTRIBUTE_SUBNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPLY.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPLY.DATA_TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPLY.CASE_ID_COLUMN_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPLY.RESULT_TABLE_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPLY.DATA_SCHEMA_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_CONFUSION_MATRIX.ACCURACY
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: OUT
+- name: COMPUTE_CONFUSION_MATRIX.APPLY_RESULT_TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_CONFUSION_MATRIX.TARGET_TABLE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_CONFUSION_MATRIX.CASE_ID_COLUMN_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_CONFUSION_MATRIX.TARGET_COLUMN_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_CONFUSION_MATRIX.CONFUSION_MATRIX_TABLE_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_CONFUSION_MATRIX.SCORE_COLUMN_NAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_CONFUSION_MATRIX.SCORE_CRITERION_COLUMN_NAME
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_CONFUSION_MATRIX.COST_MATRIX_TABLE_NAME
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_CONFUSION_MATRIX.APPLY_RESULT_SCHEMA_NAME
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_CONFUSION_MATRIX.TARGET_SCHEMA_NAME
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_CONFUSION_MATRIX.COST_MATRIX_SCHEMA_NAME
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_CONFUSION_MATRIX.SCORE_CRITERION_TYPE
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_LIFT.APPLY_RESULT_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_LIFT.TARGET_TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_LIFT.CASE_ID_COLUMN_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_LIFT.TARGET_COLUMN_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_LIFT.LIFT_TABLE_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_LIFT.POSITIVE_TARGET_VALUE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_LIFT.SCORE_COLUMN_NAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_LIFT.SCORE_CRITERION_COLUMN_NAME
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_LIFT.NUM_QUANTILES
+  ordinalPosition: 9
+  dataType: NUMBER
+  parameterMode: IN
+- name: COMPUTE_LIFT.COST_MATRIX_TABLE_NAME
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_LIFT.APPLY_RESULT_SCHEMA_NAME
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_LIFT.TARGET_SCHEMA_NAME
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_LIFT.COST_MATRIX_SCHEMA_NAME
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_LIFT.SCORE_CRITERION_TYPE
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_ROC.ROC_AREA_UNDER_CURVE
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: OUT
+- name: COMPUTE_ROC.APPLY_RESULT_TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_ROC.TARGET_TABLE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_ROC.CASE_ID_COLUMN_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_ROC.TARGET_COLUMN_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_ROC.ROC_TABLE_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_ROC.POSITIVE_TARGET_VALUE
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_ROC.SCORE_COLUMN_NAME
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_ROC.SCORE_CRITERION_COLUMN_NAME
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_ROC.APPLY_RESULT_SCHEMA_NAME
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: COMPUTE_ROC.TARGET_SCHEMA_NAME
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_MODEL.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_MODEL.MINING_FUNCTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_MODEL.DATA_TABLE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_MODEL.CASE_ID_COLUMN_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_MODEL.TARGET_COLUMN_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_MODEL.SETTINGS_TABLE_NAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_MODEL.DATA_SCHEMA_NAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_MODEL.SETTINGS_SCHEMA_NAME
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_MODEL.XFORM_LIST
+  ordinalPosition: 9
+  dataType: TABLE
+  parameterMode: IN
+- name: DROP_MODEL.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DROP_MODEL.FORCE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EXPORT_MODEL.FILENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT_MODEL.DIRECTORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT_MODEL.MODEL_FILTER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT_MODEL.FILESIZE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT_MODEL.OPERATION
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT_MODEL.REMOTE_LINK
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXPORT_MODEL.JOBNAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_ASSOCIATION_RULES.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_ASSOCIATION_RULES.TOPN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_ASSOCIATION_RULES.RULE_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: GET_ASSOCIATION_RULES.MIN_CONFIDENCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_ASSOCIATION_RULES.MIN_SUPPORT
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_ASSOCIATION_RULES.MAX_RULE_LENGTH
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: GET_ASSOCIATION_RULES.MIN_RULE_LENGTH
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: GET_ASSOCIATION_RULES.SORT_ORDER
+  ordinalPosition: 8
+  dataType: TABLE
+  parameterMode: IN
+- name: GET_ASSOCIATION_RULES.ANTECEDENT_ITEMS
+  ordinalPosition: 9
+  dataType: TABLE
+  parameterMode: IN
+- name: GET_ASSOCIATION_RULES.CONSEQUENT_ITEMS
+  ordinalPosition: 10
+  dataType: TABLE
+  parameterMode: IN
+- name: GET_ASSOCIATION_RULES.MIN_LIFT
+  ordinalPosition: 11
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_FREQUENT_ITEMSETS.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_FREQUENT_ITEMSETS.TOPN
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_FREQUENT_ITEMSETS.MAX_ITEMSET_LENGTH
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_COST_MATRIX.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_COST_MATRIX.MATRIX_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_AI.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_EM.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_EM.CLUSTER_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_EM.ATTRIBUTE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_EM.CENTROID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_EM.HISTOGRAM
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_EM.RULES
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_EM.ATTRIBUTE_SUBNAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_EM.TOPN_ATTRIBUTES
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_EM_COMP.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_EM_PROJ.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_GLM.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_GLOBAL.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_KM.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_KM.CLUSTER_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_KM.ATTRIBUTE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_KM.CENTROID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_KM.HISTOGRAM
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_KM.RULES
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_KM.ATTRIBUTE_SUBNAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_KM.TOPN_ATTRIBUTES
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_NB.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_NMF.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_OC.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_OC.CLUSTER_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_OC.ATTRIBUTE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_OC.CENTROID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_OC.HISTOGRAM
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_OC.RULES
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_OC.TOPN_ATTRIBUTES
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_SVD.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_SVD.MATRIX_TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_SVM.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_SVM.REVERSE_COEF
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_MODEL_DETAILS_XML.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_SETTINGS.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_SIGNATURE.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_MODEL_TRANSFORMATIONS.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_TRANSFORM_LIST.XFORM_LIST
+  ordinalPosition: 1
+  dataType: TABLE
+  parameterMode: OUT
+- name: GET_TRANSFORM_LIST.MODEL_XFORMS
+  ordinalPosition: 2
+  dataType: TABLE
+  parameterMode: IN
+- name: IMPORT_MODEL(1).FILENAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_MODEL(1).DIRECTORY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_MODEL(1).MODEL_FILTER
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_MODEL(1).OPERATION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_MODEL(1).REMOTE_LINK
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_MODEL(1).JOBNAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_MODEL(1).SCHEMA_REMAP
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_MODEL(1).TABLESPACE_REMAP
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_MODEL(2).MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IMPORT_MODEL(2).PMMLDOC
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: IMPORT_MODEL(2).STRICT_CHECK
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: RANK_APPLY.APPLY_RESULT_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RANK_APPLY.CASE_ID_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RANK_APPLY.SCORE_COLUMN_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RANK_APPLY.SCORE_CRITERION_COLUMN_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RANK_APPLY.RANKED_APPLY_TABLE_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RANK_APPLY.TOP_N
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: RANK_APPLY.COST_MATRIX_TABLE_NAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RANK_APPLY.APPLY_RESULT_SCHEMA_NAME
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RANK_APPLY.COST_MATRIX_SCHEMA_NAME
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_COST_MATRIX.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAME_MODEL.MODEL_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAME_MODEL.NEW_MODEL_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAME_MODEL.VERSIONED_MODEL_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_data_mining AUTHID CURRENT_USER AS ------------
+  --  OVERVIEW
+  --
+  --     This package provides general purpose routines for Data Mining
+  --     operations viz.
+  --     . CREATE a MODEL against build data.
+  --     . DROP an existing MODEL.
+  --     . RENAME an existing MODEL.
+  --     . COMPUTE various metrics to test a model against the APPLY
+  --       results on test data, with cost inputs
+  --     . APPLY a model to (production) mining data
+  --     . RANK the APPLY results based on cost and other factors
+  --     . GET the MODEL SIGNATURE - i.e. retrieve the attributes
+  --       that constitute the model and their relevant characteristics.
+  --     . GET the MODEL DETAILS - i.e. retrieve the contents of
+  --       the model - the specific patterns and rules that were used
+  --       in making the prediction (in the case of predictive models),
+  --       and/or the declarative rules (in the case of declarative models).
+  --
+  ------------------------
+  -- RULES AND LIMITATIONS
+  --
+  --     The following rules apply in the specification of functions and
+  --     procedures in this package.
+  --
+  --     A function/procedure will raise an INVALID_ARGVAL exception if the
+  --     the following restrictions are not followed in specifying values
+  --     for parameters (unless otherwise specified):
+  --
+  --     1. Every BUILD operation MUST have the mining function
+  --        name specified at the minimum.
+  --     2. All schema object names, except models, should be maximum
+  --        30 bytes in size.
+  --     3. All model names should be maximum 25 bytes in size.
+  --     4. The SETTINGS discussed below under CONSTANTS represent the name
+  --        tags and values that act as column values in a user-created
+  --        Settings Table, with a fixed schema and column types:
+  --
+  --        SETTING_NAME  SETTING_VALUE
+  --        varchar2(30)  varchar2(30)
+  --
+  --     5. For numerical settings, use TO_CHAR() to store them in the
+  --        SETTING_VALUE column - the API will interpret the values.
+  --
+  --
+  -----------
+  -- SECURITY
+  --
+  --     Privileges are associated with the the caller of the procedures/
+  --     functions in this package as follows:
+  --     If the caller is an anonymous PL/SQL block, the procedures/functions
+  --     are run with the privilege of the current user.
+  --     If the caller is a stored procedure, the procedures/functions are run
+  --     using the privileges of the owner of the stored procedure.
+  --
+  ------------
+  -- CONSTANTS
+  --
+  -- General Settings - Begin ------------------------------------------------
+  -- Data Prep: Setting Names
+  prep_auto CONSTANT VARCHAR2(30): = 'PREP_AUTO';
+  -- Data Prep: Setting Values for prep_auto
+  prep_auto_off CONSTANT VARCHAR2(30): = 'OFF';
+  prep_auto_on CONSTANT VARCHAR2(30): = 'ON';
+  -- Score Criterion Type: Setting Values for score_criterion_type
+  score_criterion_probability CONSTANT VARCHAR2(30): = 'PROBABILITY';
+  score_criterion_cost CONSTANT VARCHAR2(30): = 'COST';
+  -- Row Weights - Setting Name
+  odms_row_weight_column_name CONSTANT VARCHAR2(30): = 'ODMS_ROW_WEIGHT_COLUMN_NAME';
+  -- Cost Matrix
+  cost_matrix_type_score CONSTANT VARCHAR2(30): = 'SCORE';
+  cost_matrix_type_create CONSTANT VARCHAR2(30): = 'CREATE';
+  -- Missing Value Treatment - Setting Name
+  odms_missing_value_treatment CONSTANT VARCHAR2(30): = 'ODMS_MISSING_VALUE_TREATMENT';
+  -- Missing Value Treatment: Setting Values for ODMS_MISSING_VALUE_TREATMENT
+  odms_missing_value_mean_mode CONSTANT VARCHAR2(30): = 'ODMS_MISSING_VALUE_MEAN_MODE';
+  odms_missing_value_delete_row CONSTANT VARCHAR2(30): = 'ODMS_MISSING_VALUE_DELETE_ROW';
+  -- Transactional training data format: Setting Names
+  odms_item_id_column_name CONSTANT VARCHAR2(30): = 'ODMS_ITEM_ID_COLUMN_NAME';
+  odms_item_value_column_name CONSTANT VARCHAR2(30): = 'ODMS_ITEM_VALUE_COLUMN_NAME';
+  -- Unstructured Text Setting Names
+  odms_text_policy_name CONSTANT VARCHAR2(30): = 'ODMS_TEXT_POLICY_NAME';
+  odms_text_max_features CONSTANT VARCHAR2(30): = 'ODMS_TEXT_MAX_FEATURES';
+  -- Approximate computation
+  odms_approximate_computation CONSTANT VARCHAR2(30): = 'ODMS_APPROXIMATE_COMPUTATION';
+  -- Setting values for odms_approximate_computation
+  odms_appr_comp_enable CONSTANT VARCHAR2(30): = 'ODMS_APPR_COMP_ENABLE';
+  odms_appr_comp_disable CONSTANT VARCHAR2(30): = 'ODMS_APPR_COMP_DISABLE';
+  -- General Settings - End -------------------------------------------------
+  -----------   Function and Algorithm Settings - Begin ---------------------
+  -- FUNCTION NAME (input as CREATE_MODEL parameter)
+  --
+  classification CONSTANT VARCHAR2(30): = 'CLASSIFICATION';
+  regression CONSTANT VARCHAR2(30): = 'REGRESSION';
+  clustering CONSTANT VARCHAR2(30): = 'CLUSTERING';
+  association CONSTANT VARCHAR2(30): = 'ASSOCIATION';
+  feature_extraction CONSTANT VARCHAR2(30): = 'FEATURE_EXTRACTION';
+  attribute_importance CONSTANT VARCHAR2(30): = 'ATTRIBUTE_IMPORTANCE';
+  -- FUNCTION: Setting Names (input to settings_name column in settings table)
+  clas_priors_table_name CONSTANT VARCHAR2(30): = 'CLAS_PRIORS_TABLE_NAME';
+  clas_weights_table_name CONSTANT VARCHAR2(30): = 'CLAS_WEIGHTS_TABLE_NAME';
+  clas_cost_table_name CONSTANT VARCHAR2(30): = 'CLAS_COST_TABLE_NAME';
+  asso_max_rule_length CONSTANT VARCHAR2(30): = 'ASSO_MAX_RULE_LENGTH';
+  asso_min_confidence CONSTANT VARCHAR2(30): = 'ASSO_MIN_CONFIDENCE';
+  asso_min_support CONSTANT VARCHAR2(30): = 'ASSO_MIN_SUPPORT';
+  feat_num_features CONSTANT VARCHAR2(30): = 'FEAT_NUM_FEATURES';
+  clus_num_clusters CONSTANT VARCHAR2(30): = 'CLUS_NUM_CLUSTERS';
+  -- ALGORITHM Setting Name (input to settings_name column in settings table)
+  --
+  algo_name CONSTANT VARCHAR2(30): = 'ALGO_NAME';
+  -- ALGORITHM: Setting Values for algo_name
+  algo_naive_bayes CONSTANT VARCHAR2(30): = 'ALGO_NAIVE_BAYES';
+  algo_adaptive_bayes_network CONSTANT VARCHAR2(30): = 'ALGO_ADAPTIVE_BAYES_NETWORK';
+  algo_support_vector_machines CONSTANT VARCHAR2(30): = 'ALGO_SUPPORT_VECTOR_MACHINES';
+  algo_nonnegative_matrix_factor CONSTANT VARCHAR2(30): = 'ALGO_NONNEGATIVE_MATRIX_FACTOR';
+  algo_apriori_association_rules CONSTANT VARCHAR2(30): = 'ALGO_APRIORI_ASSOCIATION_RULES';
+  algo_kmeans CONSTANT VARCHAR2(30): = 'ALGO_KMEANS';
+  algo_ocluster CONSTANT VARCHAR2(30): = 'ALGO_O_CLUSTER';
+  algo_ai_mdl CONSTANT VARCHAR2(30): = 'ALGO_AI_MDL';
+  algo_decision_tree CONSTANT VARCHAR2(30): = 'ALGO_DECISION_TREE';
+  algo_generalized_linear_model CONSTANT VARCHAR2(30): = 'ALGO_GENERALIZED_LINEAR_MODEL';
+  algo_singular_value_decomp CONSTANT VARCHAR2(30): = 'ALGO_SINGULAR_VALUE_DECOMP';
+  algo_expectation_maximization CONSTANT VARCHAR2(30): = 'ALGO_EXPECTATION_MAXIMIZATION';
+  -- ALGORITHM SETTINGS AND VALUES
+  --
+  -- ABN: Setting Names
+  abns_model_type CONSTANT VARCHAR2(30): = 'ABNS_MODEL_TYPE';
+  abns_max_build_minutes CONSTANT VARCHAR2(30): = 'ABNS_MAX_BUILD_MINUTES';
+  abns_max_predictors CONSTANT VARCHAR2(30): = 'ABNS_MAX_PREDICTORS';
+  abns_max_nb_predictors CONSTANT VARCHAR2(30): = 'ABNS_MAX_NB_PREDICTORS';
+  -- ABN: Setting Values for abns_model_type
+  abns_multi_feature CONSTANT VARCHAR2(30): = 'ABNS_MULTI_FEATURE';
+  abns_single_feature CONSTANT VARCHAR2(30): = 'ABNS_SINGLE_FEATURE';
+  abns_naive_bayes CONSTANT VARCHAR2(30): = 'ABNS_NAIVE_BAYES';
+  -- NB: Setting Names
+  nabs_pairwise_threshold CONSTANT VARCHAR2(30): = 'NABS_PAIRWISE_THRESHOLD';
+  nabs_singleton_threshold CONSTANT VARCHAR2(30): = 'NABS_SINGLETON_THRESHOLD';
+  -- SVM: Setting Names
+  -- NOTE: svms_epsilon applies only for SVM Regression
+  --       svms_complexity_factor applies to both
+  --       svms_std_dev applies only for Gaussian Kernels
+  --       kernel_cache_size to Gaussian kernels only
+  svms_conv_tolerance CONSTANT VARCHAR2(30): = 'SVMS_CONV_TOLERANCE';
+  svms_std_dev CONSTANT VARCHAR2(30): = 'SVMS_STD_DEV';
+  svms_complexity_factor CONSTANT VARCHAR2(30): = 'SVMS_COMPLEXITY_FACTOR';
+  svms_kernel_cache_size CONSTANT VARCHAR2(30): = 'SVMS_KERNEL_CACHE_SIZE';
+  svms_epsilon CONSTANT VARCHAR2(30): = 'SVMS_EPSILON';
+  svms_kernel_function CONSTANT VARCHAR2(30): = 'SVMS_KERNEL_FUNCTION';
+  svms_active_learning CONSTANT VARCHAR2(30): = 'SVMS_ACTIVE_LEARNING';
+  svms_outlier_rate CONSTANT VARCHAR2(30): = 'SVMS_OUTLIER_RATE';
+  -- SVM: Setting Values for svms_kernel_function
+  svms_linear CONSTANT VARCHAR2(30): = 'SVMS_LINEAR';
+  svms_gaussian CONSTANT VARCHAR2(30): = 'SVMS_GAUSSIAN';
+  -- SVM: Setting Values for svms_active_learning
+  svms_al_enable CONSTANT VARCHAR2(30): = 'SVMS_AL_ENABLE';
+  svms_al_disable CONSTANT VARCHAR2(30): = 'SVMS_AL_DISABLE';
+  -- KMNS: Setting Names
+  kmns_distance CONSTANT VARCHAR2(30): = 'KMNS_DISTANCE';
+  kmns_iterations CONSTANT VARCHAR2(30): = 'KMNS_ITERATIONS';
+  kmns_conv_tolerance CONSTANT VARCHAR2(30): = 'KMNS_CONV_TOLERANCE';
+  kmns_split_criterion CONSTANT VARCHAR2(30): = 'KMNS_SPLIT_CRITERION';
+  kmns_min_pct_attr_support CONSTANT VARCHAR2(30): = 'KMNS_MIN_PCT_ATTR_SUPPORT';
+  kmns_block_growth CONSTANT VARCHAR2(30): = 'KMNS_BLOCK_GROWTH';
+  kmns_num_bins CONSTANT VARCHAR2(30): = 'KMNS_NUM_BINS';
+  -- KMNS: Setting Values for kmns_distance
+  kmns_euclidean CONSTANT VARCHAR2(30): = 'KMNS_EUCLIDEAN';
+  kmns_cosine CONSTANT VARCHAR2(30): = 'KMNS_COSINE';
+  kmns_fast_cosine CONSTANT VARCHAR2(30): = 'KMNS_FAST_COSINE';
+  -- KMNS: Setting Values for kmns_split_criterion
+  kmns_size CONSTANT VARCHAR2(30): = 'KMNS_SIZE';
+  kmns_variance CONSTANT VARCHAR2(30): = 'KMNS_VARIANCE';
+  -- NMF: Setting Names
+  nmfs_num_iterations CONSTANT VARCHAR2(30): = 'NMFS_NUM_ITERATIONS';
+  nmfs_conv_tolerance CONSTANT VARCHAR2(30): = 'NMFS_CONV_TOLERANCE';
+  nmfs_random_seed CONSTANT VARCHAR2(30): = 'NMFS_RANDOM_SEED';
+  nmfs_nonnegative_scoring CONSTANT VARCHAR2(30): = 'NMFS_NONNEGATIVE_SCORING';
+  -- Setting values for NMFS_NONNEGATIVE_SCORING
+  nmfs_nonneg_scoring_enable CONSTANT VARCHAR2(30): = 'NMFS_NONNEG_SCORING_ENABLE';
+  nmfs_nonneg_scoring_disable CONSTANT VARCHAR2(30): = 'NMFS_NONNEG_SCORING_DISABLE';
+  -- OCLT: Setting Names for O-Cluster
+  oclt_sensitivity CONSTANT VARCHAR2(30): = 'OCLT_SENSITIVITY';
+  oclt_max_buffer CONSTANT VARCHAR2(30): = 'OCLT_MAX_BUFFER';
+  -- TREE: Setting Names
+  tree_impurity_metric CONSTANT VARCHAR2(30): = 'TREE_IMPURITY_METRIC';
+  tree_term_max_depth CONSTANT VARCHAR2(30): = 'TREE_TERM_MAX_DEPTH';
+  tree_term_minrec_split CONSTANT VARCHAR2(30): = 'TREE_TERM_MINREC_SPLIT';
+  tree_term_minpct_split CONSTANT VARCHAR2(30): = 'TREE_TERM_MINPCT_SPLIT';
+  tree_term_minrec_node CONSTANT VARCHAR2(30): = 'TREE_TERM_MINREC_NODE';
+  tree_term_minpct_node CONSTANT VARCHAR2(30): = 'TREE_TERM_MINPCT_NODE';
+  -- TREE: Setting Values for tree_impurity_metric
+  tree_impurity_gini CONSTANT VARCHAR2(30): = 'TREE_IMPURITY_GINI';
+  tree_impurity_entropy CONSTANT VARCHAR2(30): = 'TREE_IMPURITY_ENTROPY';
+  -- GLM: Setting Names
+  glms_ridge_regression CONSTANT VARCHAR2(30): = 'GLMS_RIDGE_REGRESSION';
+  glms_diagnostics_table_name CONSTANT VARCHAR2(30): = 'GLMS_DIAGNOSTICS_TABLE_NAME';
+  glms_reference_class_name CONSTANT VARCHAR2(30): = 'GLMS_REFERENCE_CLASS_NAME';
+  glms_ridge_value CONSTANT VARCHAR2(30): = 'GLMS_RIDGE_VALUE';
+  glms_conf_level CONSTANT VARCHAR2(30): = 'GLMS_CONF_LEVEL';
+  glms_vif_for_ridge CONSTANT VARCHAR2(30): = 'GLMS_VIF_FOR_RIDGE';
+  -- GLM: Setting Values for glms_ridge_regression
+  glms_ridge_reg_enable CONSTANT VARCHAR2(30): = 'GLMS_RIDGE_REG_ENABLE';
+  glms_ridge_reg_disable CONSTANT VARCHAR2(30): = 'GLMS_RIDGE_REG_DISABLE';
+  -- GLM: Setting Values for glms_vif_for_ridge
+  glms_vif_ridge_enable CONSTANT VARCHAR2(30): = 'GLMS_VIF_RIDGE_ENABLE';
+  glms_vif_ridge_disable CONSTANT VARCHAR2(30): = 'GLMS_VIF_RIDGE_DISABLE';
+  -- GLM: Setting Values for glms_ftr_selection
+  glms_ftr_selection CONSTANT VARCHAR2(30): = 'GLMS_FTR_SELECTION';
+  glms_ftr_selection_enable CONSTANT VARCHAR2(30): = 'GLMS_FTR_SELECTION_ENABLE';
+  glms_ftr_selection_disable CONSTANT VARCHAR2(30): = 'GLMS_FTR_SELECTION_DISABLE';
+  -- GLM: Setting Values for glms_ftr_sel_crit
+  glms_ftr_sel_crit CONSTANT VARCHAR2(30): = 'GLMS_FTR_SEL_CRIT';
+  glms_ftr_sel_aic CONSTANT VARCHAR2(30): = 'GLMS_FTR_SEL_AIC';
+  glms_ftr_sel_sbic CONSTANT VARCHAR2(30): = 'GLMS_FTR_SEL_SBIC';
+  glms_ftr_sel_ric CONSTANT VARCHAR2(30): = 'GLMS_FTR_SEL_RIC';
+  glms_ftr_sel_alpha_inv CONSTANT VARCHAR2(30): = 'GLMS_FTR_SEL_ALPHA_INV';
+  -- GLM: Setting Values for glms_feature_generation
+  glms_ftr_generation CONSTANT VARCHAR2(30): = 'GLMS_FTR_GENERATION';
+  glms_ftr_generation_enable CONSTANT VARCHAR2(30): = 'GLMS_FTR_GENERATION_ENABLE';
+  glms_ftr_generation_disable CONSTANT VARCHAR2(30): = 'GLMS_FTR_GENERATION_DISABLE';
+  -- GLM: Setting Values for glms_feature_gen
+  glms_ftr_gen_method CONSTANT VARCHAR2(30): = 'GLMS_FTR_GEN_METHOD';
+  glms_ftr_gen_quadratic CONSTANT VARCHAR2(30): = 'GLMS_FTR_GEN_QUADRATIC';
+  glms_ftr_gen_cubic CONSTANT VARCHAR2(30): = 'GLMS_FTR_GEN_CUBIC';
+  -- GLM: feature selection categorical value handling
+  glms_select_block CONSTANT VARCHAR2(30): = 'GLMS_SELECT_BLOCK';
+  glms_select_block_disable CONSTANT VARCHAR2(30): = 'GLMS_SELECT_BLOCK_DISABLE';
+  glms_select_block_enable CONSTANT VARCHAR2(30): = 'GLMS_SELECT_BLOCK_ENABLE';
+  -- GLM: feature selection - max features selected
+  glms_max_features CONSTANT VARCHAR2(30): = 'GLMS_MAX_FEATURES';
+  -- GLM: feature identification - whether row sampling is used in the
+  --      selection of feature
+  glms_ftr_identification CONSTANT VARCHAR2(30): = 'GLMS_FTR_IDENTIFICATION';
+  glms_ftr_ident_quick CONSTANT VARCHAR2(30): = 'GLMS_FTR_IDENT_QUICK';
+  glms_ftr_ident_complete CONSTANT VARCHAR2(30): = 'GLMS_FTR_IDENT_COMPLETE';
+  -- GLM: model pruning - whether the final model features will be
+  --      pruned using t-statistics
+  glms_prune_model CONSTANT VARCHAR2(30): = 'GLMS_PRUNE_MODEL';
+  glms_prune_model_enable CONSTANT VARCHAR2(30): = 'GLMS_PRUNE_MODEL_ENABLE';
+  glms_prune_model_disable CONSTANT VARCHAR2(30): = 'GLMS_PRUNE_MODEL_DISABLE';
+  -- GLM: feature acceptance - whether partitioning the data into feature
+  --      ordering and feature selection sets will be used (strict) or
+  --      not (relaxed
+  glms_ftr_acceptance CONSTANT VARCHAR2(30): = 'GLMS_FTR_ACCEPTANCE';
+  glms_ftr_acceptance_strict CONSTANT VARCHAR2(30): = 'GLMS_FTR_ACCEPTANCE_STRICT';
+  glms_ftr_acceptance_relaxed CONSTANT VARCHAR2(30): = 'GLMS_FTR_ACCEPTANCE_RELAXED';
+  -- SVD
+  -- max number of features allowed
+  svds_max_num_features CONSTANT NUMBER: = 2500;
+  svds_scoring_mode CONSTANT VARCHAR2(30): = 'SVDS_SCORING_MODE';
+  -- SVD: Setting values for svds_scoring_mode
+  svds_scoring_svd CONSTANT VARCHAR2(30): = 'SVDS_SCORING_SVD';
+  svds_scoring_pca CONSTANT VARCHAR2(30): = 'SVDS_SCORING_PCA';
+  svds_u_matrix_output CONSTANT VARCHAR2(30): = 'SVDS_U_MATRIX_OUTPUT';
+  -- SVD: Setting values for svds_u_matrix_output
+  svds_u_matrix_enable CONSTANT VARCHAR2(30): = 'SVDS_U_MATRIX_ENABLE';
+  svds_u_matrix_disable CONSTANT VARCHAR2(30): = 'SVDS_U_MATRIX_DISABLE';
+  -- EM
+  -- number of components
+  emcs_num_components CONSTANT VARCHAR2(30): = 'EMCS_NUM_COMPONENTS';
+  -- high-level component clustering
+  emcs_cluster_components CONSTANT VARCHAR2(30): = 'EMCS_CLUSTER_COMPONENTS';
+  -- values for emcs_cluster_components
+  emcs_cluster_comp_enable CONSTANT VARCHAR2(30): = 'EMCS_CLUSTER_COMP_ENABLE';
+  emcs_cluster_comp_disable CONSTANT VARCHAR2(30): = 'EMCS_CLUSTER_COMP_DISABLE';
+  -- high-level cluster threshold
+  emcs_cluster_thresh CONSTANT VARCHAR2(30): = 'EMCS_CLUSTER_THRESH';
+  -- max number of 2D attributes
+  emcs_max_num_attr_2d CONSTANT VARCHAR2(30): = 'EMCS_MAX_NUM_ATTR_2D';
+  -- number of projections
+  emcs_num_projections CONSTANT VARCHAR2(30): = 'EMCS_NUM_PROJECTIONS';
+  -- number of quantile bins
+  emcs_num_quantile_bins CONSTANT VARCHAR2(30): = 'EMCS_NUM_QUANTILE_BINS';
+  -- number of topN bins
+  emcs_num_topn_bins CONSTANT VARCHAR2(30): = 'EMCS_NUM_TOPN_BINS';
+  -- number of equi-width bins
+  emcs_num_equiwidth_bins CONSTANT VARCHAR2(30): = 'EMCS_NUM_EQUIWIDTH_BINS';
+  -- minimum percentage attribute support
+  emcs_min_pct_attr_support CONSTANT VARCHAR2(30): = 'EMCS_MIN_PCT_ATTR_SUPPORT';
+  -- full covariance (next release)
+  --  emcs_full_covariance       CONSTANT VARCHAR2(30) := 'EMCS_FULL_COVARIANCE';
+  -- values for emcs_full_covariance
+  --  emcs_full_cov_enable       CONSTANT VARCHAR2(30) := 'EMCS_FULL_COV_ENABLE';
+  --  emcs_full_cov_disable      CONSTANT VARCHAR2(30) := 'EMCS_FULL_COV_DISABLE';
+  -- cluster statistics
+  emcs_cluster_statistics CONSTANT VARCHAR2(30): = 'EMCS_CLUSTER_STATISTICS';
+  -- values for emcs_cluster_statistics
+  emcs_clus_stats_enable CONSTANT VARCHAR2(30): = 'EMCS_CLUS_STATS_ENABLE';
+  emcs_clus_stats_disable CONSTANT VARCHAR2(30): = 'EMCS_CLUS_STATS_DISABLE';
+  -- distribution for modeling numerical attributes
+  emcs_num_distribution CONSTANT VARCHAR2(30): = 'EMCS_NUM_DISTRIBUTION';
+  -- values for emcs_num_distribution
+  emcs_num_distr_bernoulli CONSTANT VARCHAR2(30): = 'EMCS_NUM_DISTR_BERNOULLI';
+  emcs_num_distr_gaussian CONSTANT VARCHAR2(30): = 'EMCS_NUM_DISTR_GAUSSIAN';
+  emcs_num_distr_system CONSTANT VARCHAR2(30): = 'EMCS_NUM_DISTR_SYSTEM';
+  -- number of iterations
+  emcs_num_iterations CONSTANT VARCHAR2(30): = 'EMCS_NUM_ITERATIONS';
+  -- required log likelihood improvement
+  emcs_loglike_improvement CONSTANT VARCHAR2(30): = 'EMCS_LOGLIKE_IMPROVEMENT';
+  -- linkage function
+  emcs_linkage_function CONSTANT VARCHAR2(30): = 'EMCS_LINKAGE_FUNCTION';
+  -- values for linkage function
+  emcs_linkage_single CONSTANT VARCHAR2(30): = 'EMCS_LINKAGE_SINGLE';
+  emcs_linkage_average CONSTANT VARCHAR2(30): = 'EMCS_LINKAGE_AVERAGE';
+  emcs_linkage_complete CONSTANT VARCHAR2(30): = 'EMCS_LINKAGE_COMPLETE';
+  -- attribute filtering
+  emcs_attribute_filter CONSTANT VARCHAR2(30): = 'EMCS_ATTRIBUTE_FILTER';
+  -- values for attribute filtering
+  emcs_attr_filter_enable CONSTANT VARCHAR2(30): = 'EMCS_ATTR_FILTER_ENABLE';
+  emcs_attr_filter_disable CONSTANT VARCHAR2(30): = 'EMCS_ATTR_FILTER_DISABLE';
+  -- convergence criterion
+  emcs_convergence_criterion CONSTANT VARCHAR2(30): = 'EMCS_CONVERGENCE_CRITERION';
+  -- values for convergence criterion
+  emcs_conv_crit_heldaside CONSTANT VARCHAR2(30): = 'EMCS_CONV_CRIT_HELDASIDE';
+  emcs_conv_crit_bic CONSTANT VARCHAR2(30): = 'EMCS_CONV_CRIT_BIC';
+  -----------   Function and Algorithm Settings - End ------------------------
+  --------------
+  -- LOCAL TYPES
+  --
+  SUBTYPE TRANSFORM_LIST IS dbms_data_mining_transform.TRANSFORM_LIST;
+  -- Default values for model build settings
+  TYPE default_settings_type IS TABLE OF VARCHAR2(30) INDEX BY VARCHAR2(30);
+  external_default_settings default_settings_type;
+  internal_default_settings default_settings_type;
+  ---------------------------
+  -- PROCEDURES AND FUNCTIONS
+  --
+  PROCEDURE apply(
+    model_name IN VARCHAR2,
+    data_table_name IN VARCHAR2,
+    case_id_column_name IN VARCHAR2,
+    result_table_name IN VARCHAR2,
+    data_schema_name IN VARCHAR2 DEFAULT NULL
+  );
+  PROCEDURE compute_confusion_matrix(
+    accuracy OUT NUMBER,
+    apply_result_table_name IN VARCHAR2,
+    target_table_name IN VARCHAR2,
+    case_id_column_name IN VARCHAR2,
+    target_column_name IN VARCHAR2,
+    confusion_matrix_table_name IN VARCHAR2,
+    score_column_name IN VARCHAR2 DEFAULT 'PREDICTION',
+    score_criterion_column_name IN VARCHAR2 DEFAULT 'PROBABILITY',
+    cost_matrix_table_name IN VARCHAR2 DEFAULT NULL,
+    apply_result_schema_name IN VARCHAR2 DEFAULT NULL,
+    target_schema_name IN VARCHAR2 DEFAULT NULL,
+    cost_matrix_schema_name IN VARCHAR2 DEFAULT NULL,
+    score_criterion_type IN VARCHAR2 DEFAULT NULL
+  );
+  PROCEDURE compute_lift(
+    apply_result_table_name IN VARCHAR2,
+    target_table_name IN VARCHAR2,
+    case_id_column_name IN VARCHAR2,
+    target_column_name IN VARCHAR2,
+    lift_table_name IN VARCHAR2,
+    positive_target_value IN VARCHAR2,
+    score_column_name IN VARCHAR2 DEFAULT 'PREDICTION',
+    score_criterion_column_name IN VARCHAR2 DEFAULT 'PROBABILITY',
+    num_quantiles IN NUMBER DEFAULT 10,
+    cost_matrix_table_name IN VARCHAR2 DEFAULT NULL,
+    apply_result_schema_name IN VARCHAR2 DEFAULT NULL,
+    target_schema_name IN VARCHAR2 DEFAULT NULL,
+    cost_matrix_schema_name IN VARCHAR2 DEFAULT NULL,
+    score_criterion_type IN VARCHAR2 DEFAULT NULL
+  );
+  PROCEDURE compute_roc(
+    roc_area_under_curve OUT NUMBER,
+    apply_result_table_name IN VARCHAR2,
+    target_table_name IN VARCHAR2,
+    case_id_column_name IN VARCHAR2,
+    target_column_name IN VARCHAR2,
+    roc_table_name IN VARCHAR2,
+    positive_target_value IN VARCHAR2,
+    score_column_name IN VARCHAR2 DEFAULT 'PREDICTION',
+    score_criterion_column_name IN VARCHAR2 DEFAULT 'PROBABILITY',
+    apply_result_schema_name IN VARCHAR2 DEFAULT NULL,
+    target_schema_name IN VARCHAR2 DEFAULT NULL
+  );
+  PROCEDURE create_model(
+    model_name IN VARCHAR2,
+    mining_function IN VARCHAR2,
+    data_table_name IN VARCHAR2,
+    case_id_column_name IN VARCHAR2,
+    target_column_name IN VARCHAR2 DEFAULT NULL,
+    settings_table_name IN VARCHAR2 DEFAULT NULL,
+    data_schema_name IN VARCHAR2 DEFAULT NULL,
+    settings_schema_name IN VARCHAR2 DEFAULT NULL,
+    xform_list IN TRANSFORM_LIST DEFAULT NULL
+  );
+  PROCEDURE drop_model(
+    model_name IN VARCHAR2,
+    force IN BOOLEAN DEFAULT FALSE
+  );
+  PROCEDURE export_model (
+    filename IN VARCHAR2,
+    directory IN VARCHAR2,
+    model_filter IN VARCHAR2 DEFAULT NULL,
+    filesize IN VARCHAR2 DEFAULT NULL,
+    operation IN VARCHAR2 DEFAULT NULL,
+    remote_link IN VARCHAR2 DEFAULT NULL,
+    jobname IN VARCHAR2 DEFAULT NULL
+  );
+  -- XML (PMML) versions of get model details
+  FUNCTION get_model_details_xml(model_name IN VARCHAR2) RETURN XMLType;
+  -- Specifying topn orders by confidence DESC, support DESC
+  --   otherwise by rule_id
+  FUNCTION get_association_rules(
+    model_name IN VARCHAR2,
+    topn IN NUMBER DEFAULT NULL,
+    rule_id IN INTEGER DEFAULT NULL,
+    min_confidence IN NUMBER DEFAULT NULL,
+    min_support IN NUMBER DEFAULT NULL,
+    max_rule_length IN INTEGER DEFAULT NULL,
+    min_rule_length IN INTEGER DEFAULT NULL,
+    sort_order IN ORA_MINING_VARCHAR2_NT DEFAULT NULL,
+    antecedent_items IN DM_ITEMS DEFAULT NULL,
+    consequent_items IN DM_ITEMS DEFAULT NULL,
+    min_lift IN NUMBER DEFAULT NULL
+  ) RETURN DM_Rules PIPELINED;
+  -- Specifying topn orders by support DESC otherwise there
+  --   is no ordering
+  FUNCTION get_frequent_itemsets(
+    model_name IN VARCHAR2,
+    topn IN NUMBER DEFAULT NULL,
+    max_itemset_length IN NUMBER DEFAULT NULL
+  ) RETURN DM_ItemSets PIPELINED;
+  FUNCTION get_model_details_ai(model_name IN VARCHAR2) RETURN dm_ranked_attributes pipelined;
+  FUNCTION get_model_details_glm(model_name IN VARCHAR2) RETURN DM_GLM_Coeff_Set PIPELINED;
+  FUNCTION get_model_details_svd(
+    model_name IN VARCHAR2,
+    matrix_type IN VARCHAR2 DEFAULT NULL
+  ) RETURN DM_SVD_MATRIX_Set PIPELINED;
+  FUNCTION get_model_details_km(
+    model_name VARCHAR2,
+    cluster_id NUMBER DEFAULT NULL,
+    attribute VARCHAR2 DEFAULT NULL,
+    centroid NUMBER DEFAULT 1,
+    histogram NUMBER DEFAULT 1,
+    rules NUMBER DEFAULT 2,
+    attribute_subname VARCHAR2 DEFAULT NULL,
+    topn_attributes NUMBER DEFAULT NULL
+  ) RETURN dm_clusters PIPELINED;
+  FUNCTION get_model_details_nb(model_name IN VARCHAR2) RETURN DM_NB_Details PIPELINED;
+  FUNCTION get_model_details_nmf(model_name IN VARCHAR2) RETURN DM_NMF_Feature_Set PIPELINED;
+  FUNCTION get_model_details_oc(
+    model_name VARCHAR2,
+    cluster_id NUMBER DEFAULT NULL,
+    attribute VARCHAR2 DEFAULT NULL,
+    centroid NUMBER DEFAULT 1,
+    histogram NUMBER DEFAULT 1,
+    rules NUMBER DEFAULT 2,
+    topn_attributes NUMBER DEFAULT NULL
+  ) RETURN dm_clusters PIPELINED;
+  FUNCTION get_model_details_svm(
+    model_name VARCHAR2,
+    reverse_coef NUMBER DEFAULT 0
+  ) RETURN DM_SVM_Linear_Coeff_Set PIPELINED;
+  FUNCTION get_model_details_em(
+    model_name VARCHAR2,
+    cluster_id NUMBER DEFAULT NULL,
+    attribute VARCHAR2 DEFAULT NULL,
+    centroid NUMBER DEFAULT 1,
+    histogram NUMBER DEFAULT 1,
+    rules NUMBER DEFAULT 2,
+    attribute_subname VARCHAR2 DEFAULT NULL,
+    topn_attributes NUMBER DEFAULT NULL
+  ) RETURN dm_clusters PIPELINED;
+  FUNCTION get_model_details_em_comp(model_name IN VARCHAR2) RETURN DM_EM_COMPONENT_SET PIPELINED;
+  FUNCTION get_model_details_em_proj(model_name IN VARCHAR2) RETURN DM_EM_PROJECTION_SET PIPELINED;
+  FUNCTION get_model_details_global(model_name IN VARCHAR2) RETURN DM_model_global_details PIPELINED;
+  FUNCTION get_model_settings(model_name IN VARCHAR2) RETURN DM_Model_Settings PIPELINED;
+  FUNCTION get_default_settings RETURN DM_Model_Settings PIPELINED;
+  FUNCTION get_model_signature(model_name IN VARCHAR2) RETURN DM_Model_Signature PIPELINED;
+  FUNCTION get_model_transformations(model_name IN VARCHAR2) RETURN DM_Transforms PIPELINED;
+  PROCEDURE get_transform_list(
+    xform_list OUT NOCOPY TRANSFORM_LIST,
+    model_xforms IN DM_TRANSFORMS
+  );
+  PROCEDURE import_model (
+    filename IN VARCHAR2,
+    directory IN VARCHAR2,
+    model_filter IN VARCHAR2 DEFAULT NULL,
+    operation IN VARCHAR2 DEFAULT NULL,
+    remote_link IN VARCHAR2 DEFAULT NULL,
+    jobname IN VARCHAR2 DEFAULT NULL,
+    schema_remap IN VARCHAR2 DEFAULT NULL,
+    tablespace_remap IN VARCHAR2 DEFAULT NULL
+  );
+  PROCEDURE import_model (
+    model_name IN VARCHAR2,
+    pmmldoc IN XMLTYPE,
+    strict_check IN BOOLEAN DEFAULT FALSE
+  );
+  PROCEDURE rank_apply(
+    apply_result_table_name IN VARCHAR2,
+    case_id_column_name IN VARCHAR2,
+    score_column_name IN VARCHAR2,
+    score_criterion_column_name IN VARCHAR2,
+    ranked_apply_table_name IN VARCHAR2,
+    top_n IN INTEGER DEFAULT 1,
+    cost_matrix_table_name IN VARCHAR2 DEFAULT NULL,
+    apply_result_schema_name IN VARCHAR2 DEFAULT NULL,
+    cost_matrix_schema_name IN VARCHAR2 DEFAULT NULL
+  );
+  PROCEDURE rename_model(
+    model_name IN VARCHAR2,
+    new_model_name IN VARCHAR2,
+    versioned_model_name IN VARCHAR2 DEFAULT NULL
+  );
+  PROCEDURE add_cost_matrix(
+    model_name IN VARCHAR2,
+    cost_matrix_table_name IN VARCHAR2,
+    cost_matrix_schema_name IN VARCHAR2 DEFAULT NULL
+  );
+  PROCEDURE remove_cost_matrix(model_name IN VARCHAR2);
+  FUNCTION get_model_cost_matrix(
+    model_name IN VARCHAR2,
+    matrix_type IN VARCHAR2 DEFAULT cost_matrix_type_score
+  ) RETURN DM_COST_MATRIX PIPELINED;
+  PROCEDURE alter_reverse_expression(
+    model_name VARCHAR2,
+    expression CLOB,
+    attribute_name VARCHAR2 DEFAULT NULL,
+    attribute_subname VARCHAR2 DEFAULT NULL
+  );
+  END dbms_data_mining;

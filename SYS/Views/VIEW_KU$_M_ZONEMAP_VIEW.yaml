@@ -1,0 +1,16 @@
+schema: SYS
+name: KU$_M_ZONEMAP_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    *
+  from
+    ku$_m_view_view_base b
+  where
+    bitand(b.flag3, 512) = 512
+    /* snapshot = zonemap */
+    and bitand(b.xpflags, 34359738368) = 34359738368
+    /* summary = zonemap */
+columns: []
+referencedTables: []

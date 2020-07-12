@@ -1,0 +1,194 @@
+schema: SYS
+name: KU$_IOTABLE_DATA_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '2',
+    t.obj#,
+    o.dataobj_num,
+    o.name,
+    NULL,
+    0,
+    bitand(t.property, 4294967295),
+    trunc(t.property / power(2, 32)),
+    t.trigflag,
+    dbms_metadata_util.get_xmltype_fmts(t.obj#),
+    decode(
+      (
+        select
+          1
+        from
+          dual
+        where
+          (
+            exists (
+              select
+                q.obj#
+              from
+                sys.opqtype$ q
+              where
+                q.obj# = t.obj#
+                and q.type = 1
+                /* xmltype col */
+                and bitand(q.flags, 2 + 64) != 0
+            )
+          )
+      ),
+      /* CSX or SB */
+      1,
+      'Y',
+      'N'
+    ),
+    decode(
+      (
+        select
+          count(*)
+          /* outofline xml table */
+        from
+          sys.opqtype$ q
+        where
+          q.obj# = t.obj#
+          and bitand(q.flags, 32) = 32
+      ),
+      1,
+      'Y',
+      'N'
+    ),
+    'N',
+    /* IOT can't contain long or long raw column */
+    decode(
+      (
+        select
+          count(*)
+        from
+          sys.type$ ty,
+          sys.coltype$ ct
+        where
+          ty.toid = ct.toid
+          and ty.version# = ct.version#
+          and ct.obj# = t.obj#
+          /* 0x00008000 =   32768 = contains varray attribute */
+          /* 0x00100000 = 1048576 = has embedded non final type */
+          and bitand(ty.properties, 1081344) = 1081344
+      ),
+      0,
+      'N',
+      'Y'
+    ),
+    decode(
+      (
+        select
+          count(*)
+        from
+          sys.refcon$ rf,
+          sys.col$ c
+        where
+          c .obj# = rf.obj#
+          and c .intcol# = rf.intcol#
+          and c .obj# = t.obj#
+          and bitand(rf.reftyp, 1) = 0
+      ),
+      /* ref is non-scoped */
+      0,
+      'N',
+      'Y'
+    ),
+    (
+      select
+        sys.dbms_metadata_util.has_tstz_cols(t.obj#)
+      from
+        dual
+    ),
+    value(o),
+    ts.name,
+    ts.ts#,
+    ts.blocksize,
+    (
+      select
+        dbms_metadata_util.block_estimate(t.obj#, 4)
+      from
+        dual
+    ),
+    value(o),
+    -- if this is a secondary table, get domidx obj and ancestor obj
+    decode(
+      bitand(o.flags, 16),
+      16,
+      (
+        select
+          value(oo)
+        from
+          ku$_schemaobj_view oo,
+          secobj$ s
+        where
+          o.obj_num = s.secobj#
+          and oo.obj_num = s.obj#
+          and rownum < 2
+      ),
+      null
+    ),
+    decode(
+      bitand(o.flags, 16),
+      16,
+      (
+        select
+          value(oo)
+        from
+          ku$_schemaobj_view oo,
+          ind$ i,
+          secobj$ s
+        where
+          o.obj_num = s.secobj#
+          and i.obj# = s.obj#
+          and oo.obj_num = i.bo#
+          and rownum < 2
+      ),
+      null
+    ),
+    um.unload_method,
+    um.et_parallel,
+    (
+      select
+        count(*)
+      from
+        rls$ r
+      where
+        r.obj# = t.obj#
+        and r.enable_flag = 1
+        and bitand(r.stmt_type, 1) = 1
+    ),
+    0
+  from
+    ku$_schemaobjnum_view o,
+    ku$_unload_method_view um,
+    tab$ t,
+    ind$ i,
+    ts$ ts
+  where
+    t.obj# = o.obj_num
+    AND t.obj# = um.obj_num
+    and bitand(t.property, 64 + 512) = 64 -- IOT but not overflow
+    and bitand(t.property, 32 + 8192) = 0
+    /* but not partitioned    */
+    /* or nested table        */
+    and t.pctused$ = i.obj# -- For IOTs, pctused has index obj#
+    AND i.ts# = ts.ts#
+    AND (
+      bitand(o.flags, 16) != 16
+      OR sys.dbms_metadata.oktoexp_2ndary_table(o.obj_num) = 1
+    )
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

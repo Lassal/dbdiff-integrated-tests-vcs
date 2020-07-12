@@ -1,0 +1,66 @@
+schema: SYS
+name: KU$_TAB_STATS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '3',
+    '0',
+    o.obj#,
+    -- if this is a nested table, get parent table, otherwise get table.
+    decode(
+      bitand(t.property, 8192 + 512),
+      8192,
+      (
+        select
+          value(oo)
+        from
+          ku$_schemaobj_view oo
+        where
+          oo.obj_num = dbms_metadata_util.get_anc(o.obj#)
+      ),
+      512,
+      (
+        select
+          value(oo)
+        from
+          ku$_schemaobj_view oo
+        where
+          oo.obj_num = t.bobj#
+      ),
+      (
+        select
+          value(sov)
+        from
+          ku$_schemaobj_view sov
+        where
+          sov.obj_num = o.obj#
+      )
+    ),
+    decode(
+      bitand(t.property, 8192 + 512),
+      8192,
+      o.name,
+      512,
+      o.name,
+      null
+    )
+  from
+    sys.obj$ o,
+    sys.tab$ t
+  where
+    o.obj# = t.obj#
+    and o.type# = 2
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

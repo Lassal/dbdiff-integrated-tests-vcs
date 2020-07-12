@@ -1,0 +1,13 @@
+schema: SYS
+name: KU$_10_1_PROXY_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t. *
+  from
+    ku$_proxy_view t
+  where
+    bitand(t.flags, 16) = 0
+columns: []
+referencedTables: []

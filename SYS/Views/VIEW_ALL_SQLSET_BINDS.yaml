@@ -1,0 +1,81 @@
+schema: SYS
+name: ALL_SQLSET_BINDS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    name as sqlset_name,
+    d.owner as sqlset_owner,
+    sqlset_id,
+    s.con_dbid,
+    sql_id,
+    force_matching_signature,
+    p.plan_hash_value,
+    b.position,
+    b.value,
+    p.binds_captured as captured,
+    s.id as sql_seq
+  from
+    WRI$_SQLSET_DEFINITIONS d,
+    WRI$_SQLSET_STATEMENTS s,
+    WRI$_SQLSET_PLANS p,
+    WRI$_SQLSET_BINDS b
+  where
+    d.id = s.sqlset_id
+    AND s.id = p.stmt_id
+    AND s.con_dbid = p.con_dbid
+    AND p.stmt_id = b.stmt_id
+    AND p.plan_hash_value = b.plan_hash_value
+    AND p.con_dbid = b.con_dbid
+    AND (
+      d.owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+      OR EXISTS (
+        select
+          1
+        from
+          V$ENABLEDPRIVS
+        where
+          priv_number in (
+            -273
+            /*ADMINISTER ANY SQL TUNING SET*/
+          )
+      )
+    )
+  UNION ALL
+  select
+    d.name as sqlset_name,
+    d.owner as sqlset_owner,
+    s.sqlset_id,
+    s.con_dbid,
+    s.sql_id,
+    s.force_matching_signature,
+    p.plan_hash_value,
+    b.position,
+    b.value_anydata as value,
+    p.binds_captured as captured,
+    s.id as sql_seq
+  from
+    WRI$_SQLSET_DEFINITIONS d,
+    WRI$_SQLSET_STATEMENTS s,
+    WRI$_SQLSET_PLANS p,
+    TABLE(dbms_sqltune.extract_binds(p.bind_data)) b
+  where
+    d.id = s.sqlset_id
+    AND s.id = p.stmt_id
+    AND s.con_dbid = p.con_dbid
+    AND (
+      d.owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+      OR EXISTS (
+        select
+          1
+        from
+          V$ENABLEDPRIVS
+        where
+          priv_number in (
+            -273
+            /*ADMINISTER ANY SQL TUNING SET*/
+          )
+      )
+    )
+columns: []
+referencedTables: []

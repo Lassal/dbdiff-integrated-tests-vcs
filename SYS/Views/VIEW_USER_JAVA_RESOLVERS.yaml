@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_JAVA_RESOLVERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    nvl(j.longdbcs, o.name),
+    t.joxftresolvertermnumber,
+    t.joxftresolvertermpattern,
+    t.joxftresolvertermschema
+  from
+    sys.javasnm$ j,
+    sys.obj$ o,
+    sys.x$joxrsv t
+  where
+    o.obj# = t.joxftobn
+    and o.type# = 29
+    and o.owner# = userenv('SCHEMAID')
+    and j.short(+) = o.name
+columns: []
+referencedTables: []

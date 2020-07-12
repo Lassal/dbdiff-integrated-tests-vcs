@@ -1,0 +1,22 @@
+schema: SYS
+name: USER_CUBE_ATTR_UNIQUE_KEYS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name DIMENSION_NAME,
+    a .attribute_name ATTRIBUTE_NAME,
+    dl.level_name UNIQUE_KEY_LEVEL_NAME
+  FROM
+    olap_attributes$ a,
+    obj$ o,
+    olap_dim_levels$ dl,
+    olap_attribute_visibility$ av
+  WHERE
+    o.obj# = a .dim_obj#
+    AND o.owner# = USERENV('SCHEMAID')
+    AND a .attribute_id = av.attribute_id
+    AND av.is_unique_key = 1
+    AND av.owning_dim_id = dl.level_id
+columns: []
+referencedTables: []

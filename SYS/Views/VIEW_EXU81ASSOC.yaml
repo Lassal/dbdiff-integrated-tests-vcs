@@ -1,0 +1,45 @@
+schema: SYS
+name: EXU81ASSOC
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    ou$.name,
+    oo$.owner#,
+    a $.property,
+    oo$.name,
+    NVL(c $.name, ''),
+    NVL(su$.name, ''),
+    NVL(so$.name, ''),
+    NVL(a $.default_selectivity, 0),
+    NVL(a $.default_cpu_cost, 0),
+    NVL(a $.default_io_cost, 0),
+    NVL(a $.default_net_cost, 0),
+    a $.spare2
+  FROM
+    sys.association$ a $,
+    sys.exu81obj oo$,
+    sys.user$ ou$,
+    sys.col$ c $,
+    sys.obj$ so$,
+    sys.user$ su$
+  WHERE
+    a $.obj# = oo$.obj#
+    AND oo$.owner# = ou$.user#
+    AND a $.intcol# = c $.intcol# (+)
+    AND a $.obj# = c $.obj# (+)
+    AND a $.statstype# = so$.obj# (+)
+    AND so$.owner# = su$.user# (+)
+    AND (
+      userenv('SCHEMAID') IN (0, oo$.owner#)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,20 @@
+schema: SYS
+name: DATABASE_SUMMARY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    d.NAME,
+    p.VALUE "SERVICE_NAME",
+    i.HOST_NAME,
+    n.VALUE "DB_CHARACTERSET"
+  FROM
+    v$system_parameter p,
+    v$database d,
+    v$instance i,
+    nls_database_parameters n
+  WHERE
+    p.name = 'service_names'
+    AND n.parameter = 'NLS_CHARACTERSET'
+columns: []
+referencedTables: []

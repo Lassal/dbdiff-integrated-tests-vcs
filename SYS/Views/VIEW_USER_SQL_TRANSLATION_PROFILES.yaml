@@ -1,0 +1,27 @@
+schema: SYS
+name: USER_SQL_TRANSLATION_PROFILES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    case
+      when (
+        s.txlrowner is null
+        and s.txlrname is null
+      ) then null
+      else '"' || s.txlrowner || '"."' || s.txlrname || '"'
+    end,
+    decode(bitand(s.flags, 1), 1, 'TRUE', 0, 'FALSE'),
+    decode(bitand(s.flags, 2), 2, 'TRUE', 0, 'FALSE'),
+    decode(bitand(s.flags, 4), 4, 'TRUE', 0, 'FALSE'),
+    decode(bitand(s.flags, 8), 8, 'TRUE', 0, 'FALSE'),
+    decode(bitand(s.flags, 16), 16, 'TRUE', 0, 'FALSE')
+  from
+    sys.sqltxl$ s,
+    sys. "_CURRENT_EDITION_OBJ" o
+  where
+    s.obj# = o.obj#
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

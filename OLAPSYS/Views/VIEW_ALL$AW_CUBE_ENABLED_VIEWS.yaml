@@ -1,0 +1,33 @@
+schema: OLAPSYS
+name: ALL$AW_CUBE_ENABLED_VIEWS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    AW.AWOWNER as AW_OWNER,
+    AW.AWNAME as AW_NAME,
+    AW.COL1 as CUBE_NAME,
+    AW.COL5 as HIERCOMBO_NUM,
+    AW.COL6 as HIERCOMBO_STR,
+    AW.COL3 as SYSTEM_VIEWNAME,
+    AW.COL4 as USER_VIEWNAME
+  FROM
+    TABLE(
+      CAST(
+        OLAP_TABLE(
+          'SYS.AWMD duration query',
+          'olapsys.ALL_OLAP2_AW_METADATA_T',
+          'ACTIVE_CATALOG ''ALL_AW_CUBE_ENABLED_VIEWS'' ''ALL''',
+          'MEASURE AWOWNER FROM SYS.AWMD!AWOWNER
+                             MEASURE AWNAME FROM SYS.AWMD!AWNAME
+                             MEASURE COL1 FROM SYS.AWMD!CUBE_NAME
+                             MEASURE COL5 FROM SYS.AWMD!HIERCOMBO_NUM
+                             MEASURE COL6 FROM SYS.AWMD!HIERCOMBO_STR
+                             MEASURE COL3 FROM SYS.AWMD!VIEWNAME
+                             MEASURE COL4 FROM SYS.AWMD!USERVIEWNAME
+                             DIMENSION AWMDKEY FROM SYS.AWMD!AWMDKEY'
+        ) AS olapsys.ALL_OLAP2_AW_METADATA_T
+      )
+    ) AW
+columns: []
+referencedTables: []

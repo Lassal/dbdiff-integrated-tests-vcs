@@ -1,0 +1,17 @@
+schema: SYS
+name: V_$LOADISTAT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "OWNER",
+    "TABNAME",
+    "INDEXNAME",
+    "SUBNAME",
+    "MESSAGE_NUM",
+    "MESSAGE",
+    "CON_ID"
+  from
+    v$loadistat
+columns: []
+referencedTables: []

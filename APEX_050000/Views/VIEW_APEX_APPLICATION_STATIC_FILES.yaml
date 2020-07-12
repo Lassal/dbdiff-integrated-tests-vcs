@@ -1,0 +1,26 @@
+schema: APEX_050000
+name: APEX_APPLICATION_STATIC_FILES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .id as application_file_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    a .file_name,
+    a .mime_type,
+    a .file_charset,
+    a .file_content,
+    a .created_by,
+    a .created_on,
+    a .last_updated_by,
+    a .last_updated_on
+  from
+    wwv_flow_authorized f,
+    wwv_flow_static_files a
+  where
+    a .flow_id = f.application_id
+columns: []
+referencedTables: []

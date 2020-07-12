@@ -1,0 +1,90 @@
+schema: SYS
+name: USER_COLL_TYPES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    co.name,
+    c .upper_bound,
+    decode(
+      bitand(c .properties, 32768),
+      32768,
+      'REF',
+      decode(bitand(c .properties, 16384), 16384, 'POINTER')
+    ),
+    nvl2(
+      c .synobj#,
+      (
+        select
+          u.name
+        from
+          user $ u,
+          "_CURRENT_EDITION_OBJ" o
+        where
+          o.owner# = u.user#
+          and o.obj# = c .synobj#
+      ),
+      decode(bitand(et.properties, 64), 64, null, eu.name)
+    ),
+    nvl2(
+      c .synobj#,
+      (
+        select
+          o.name
+        from
+          "_CURRENT_EDITION_OBJ" o
+        where
+          o.obj# = c .synobj#
+      ),
+      decode(
+        et.typecode,
+        9,
+        decode(c .charsetform, 2, 'NVARCHAR2', eo.name),
+        96,
+        decode(c .charsetform, 2, 'NCHAR', eo.name),
+        112,
+        decode(c .charsetform, 2, 'NCLOB', eo.name),
+        eo.name
+      )
+    ),
+    c .length,
+    c .precision,
+    c .scale,
+    decode(
+      c .charsetform,
+      1,
+      'CHAR_CS',
+      2,
+      'NCHAR_CS',
+      3,
+      NLS_CHARSET_NAME(c .charsetid),
+      4,
+      'ARG:' || c .charsetid
+    ),
+    decode(
+      bitand(c .properties, 131072),
+      131072,
+      'FIXED',
+      decode(bitand(c .properties, 262144), 262144, 'VARYING')
+    ),
+    decode(bitand(c .properties, 65536), 65536, 'NO', 'YES')
+  from
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.collection$ c,
+    sys. "_CURRENT_EDITION_OBJ" co,
+    sys. "_CURRENT_EDITION_OBJ" eo,
+    sys.user$ eu,
+    sys.type$ et
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.oid$ = c .toid
+    and o.subname IS NULL -- only the most recent version
+    and o.type# <> 10 -- must not be invalid
+    and c .coll_toid = co.oid$
+    and c .elem_toid = eo.oid$
+    and eo.owner# = eu.user#
+    and c .elem_toid = et.tvoid
+    and c .package_obj# IS NULL -- filter out plsql types
+columns: []
+referencedTables: []

@@ -1,0 +1,52 @@
+schema: SYS
+name: ODCIENVDUMP
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: ENV
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE ODCIEnvDump(env ODCIEnv) IS
+  BEGIN
+    if env is null then dbms_output.put_line('ODCIEnv is null ');
+  return;
+  end if;
+  dbms_output.put_line('ODCIEnv');
+  IF (
+    bitand(env.EnvFlags, ODCIConst.DebuggingOn) = ODCIConst.DebuggingOn
+  ) THEN dbms_output.put_line('      Debugging is ON');
+  dbms_output.put_line('      DebugLevel is ' || env.DebugLevel);
+  END IF;
+  IF (
+    bitand(env.EnvFlags, ODCIConst.NoData) = ODCIConst.NoData
+  ) THEN dbms_output.put_line('      No Data for Index or Index Partition');
+  END IF;
+  IF (
+    bitand(env.EnvFlags, ODCIConst.UserParamString) = ODCIConst.UserParamString
+  ) THEN dbms_output.put_line(
+    '      User specified partition parameters string'
+  );
+  END IF;
+  IF (
+    bitand(env.EnvFlags, ODCIConst.RowMigration) = ODCIConst.RowMigration
+  ) THEN dbms_output.put_line('      Row Migration Operation');
+  END IF;
+  IF (
+    bitand(env.EnvFlags, ODCIConst.IndexKeyChanged) = ODCIConst.IndexKeyChanged
+  ) THEN dbms_output.put_line('      Index Key Changed');
+  END IF;
+  IF (env.CallProperty = ODCIConst.None) THEN dbms_output.put_line('      CallProperty is None ');
+  ELSIF (env.CallProperty = ODCIConst.FirstCall) THEN dbms_output.put_line('      CallProperty is First Call ');
+  ELSIF (env.CallProperty = ODCIConst.IntermediateCall) THEN dbms_output.put_line('      CallProperty is Intermediate Call ');
+  ELSIF (env.CallProperty = ODCIConst.FinalCall) THEN dbms_output.put_line('      CallProperty is Final Call ');
+  ELSIF (env.CallProperty = ODCIConst.RebuildIndex) THEN dbms_output.put_line('      CallProperty is Rebuild Index ');
+  ELSIF (env.CallProperty = ODCIConst.RebuildPMO) THEN dbms_output.put_line('      CallProperty is Rebuild PMO ');
+  ELSIF (env.CallProperty = ODCIConst.StatsGlobal) THEN dbms_output.put_line('      CallProperty is StatsGlobal ');
+  ELSIF (
+    env.CallProperty = ODCIConst.StatsGlobalAndPartition
+  ) THEN dbms_output.put_line('      CallProperty is StatsGlobalAndPartition ');
+  ELSIF (env.CallProperty = ODCIConst.StatsPartition) THEN dbms_output.put_line('      CallProperty is StatsPartition ');
+  END IF;
+  END;

@@ -1,0 +1,26 @@
+targetObjectSchema: APP_DATA
+targetObjectName: JOBS
+targetObjectType: VIEW
+name: JOBS_AUFER
+eventTiming: AFTER EACH ROW
+event: UPDATE
+eventActionBody: |-
+  DECLARE
+    l_cnt NUMBER;
+  BEGIN
+    LOCK TABLE employees IN SHARE MODE;
+  SELECT
+    COUNT(*) INTO l_cnt
+  FROM
+    employees
+  WHERE
+    job_id = :NEW.job_id
+    AND salary NOT BETWEEN :NEW.min_salary
+    and :NEW.max_salary;
+  IF (l_cnt > 0) THEN RAISE_APPLICATION_ERROR(
+      -20001,
+      'Salary update would violate ' || l_cnt || ' existing employee records'
+    );
+  END IF;
+  END;
+executionOrder: 1

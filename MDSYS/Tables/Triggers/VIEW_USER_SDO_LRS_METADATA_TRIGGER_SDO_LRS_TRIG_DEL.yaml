@@ -1,0 +1,21 @@
+targetObjectSchema: MDSYS
+targetObjectName: USER_SDO_LRS_METADATA
+targetObjectType: VIEW
+name: SDO_LRS_TRIG_DEL
+eventTiming: INSTEAD OF
+event: DELETE
+eventActionBody: |-
+  declare
+    user_name varchar2(32);
+  stmt varchar2(2048);
+  vcount INTEGER;
+  BEGIN
+    EXECUTE IMMEDIATE 'SELECT user FROM dual' into user_name;
+  DELETE FROM
+    sdo_lrs_metadata_table
+  WHERE
+    SDO_OWNER = user_name
+    AND SDO_TABLE_NAME = nls_upper(:n.table_name)
+    AND SDO_COLUMN_NAME = nls_upper(:n.column_name);
+  END;
+executionOrder: 1

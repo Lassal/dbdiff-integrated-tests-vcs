@@ -1,0 +1,18 @@
+schema: DVSYS
+name: GET_FACTOR
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: P_FACTOR
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION get_factor (p_factor IN VARCHAR2) RETURN VARCHAR2 IS
+  BEGIN
+    RETURN dvsys.dbms_macsec.get_factor(p_factor = > p_factor);
+  END;

@@ -1,0 +1,65 @@
+schema: SYS
+name: KU$_XSSCLASS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    sc.sc#,
+    sc.ctime,
+    sc.mtime,
+    sc.description,
+    (
+      select
+        value(xo)
+      from
+        ku$_xsobj_view xo
+      where
+        xo.id = sc.sc#
+    ),
+    (
+      cast(
+        multiset(
+          select
+            *
+          from
+            ku$_xspriv_view p
+          where
+            p.scid = sc.sc#
+        ) as ku$_xspriv_list_t
+      )
+    ),
+    (
+      cast(
+        multiset(
+          select
+            value(sh)
+          from
+            ku$_xssecclsh_view sh
+          where
+            sh.scid = sc.sc#
+        ) as ku$_xssecclsh_list_t
+      )
+    )
+  from
+    xs$seccls sc,
+    xs$obj xo
+  where
+    xo.type = 2
+    AND sc.sc# = xo.id
+    AND bitand(xo.flags, 1) = 0
+    /* not Oracle supplied */
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USER') IN (xo.owner, 'SYS')
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

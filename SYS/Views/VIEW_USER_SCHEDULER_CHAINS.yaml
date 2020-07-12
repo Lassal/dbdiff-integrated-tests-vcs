@@ -1,0 +1,42 @@
+schema: SYS
+name: USER_SCHEDULER_CHAINS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name,
+    c .rule_set_owner,
+    c .rule_set,
+    (
+      SELECT
+        count(*)
+      FROM
+        rule_map$ rm,
+        obj$ rmo,
+        user $ rmu
+      WHERE
+        rm.rs_obj# = rmo.obj#
+        AND rmo.owner# = rmu.user#
+        AND rmu.name = c .rule_set_owner
+        and rmo.name = c .rule_set
+    ),
+    (
+      SELECT
+        COUNT(*)
+      FROM
+        sys.scheduler$_step cs
+      WHERE
+        cs.oid = c .obj#
+    ),
+    DECODE(BITAND(c .flags, 1), 0, 'FALSE', 1, 'TRUE'),
+    c .eval_interval,
+    DECODE(BITAND(c .flags, 2), 2, 'FALSE', 0, 'TRUE'),
+    c .comments
+  FROM
+    obj$ o,
+    sys.scheduler$_chain c
+  WHERE
+    c .obj# = o.obj#
+    AND o.owner# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

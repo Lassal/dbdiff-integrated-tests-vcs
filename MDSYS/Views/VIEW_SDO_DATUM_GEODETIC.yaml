@@ -1,0 +1,25 @@
+schema: MDSYS
+name: SDO_DATUM_GEODETIC
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    DATUM_ID,
+    DATUM_NAME,
+    ELLIPSOID_ID,
+    PRIME_MERIDIAN_ID,
+    INFORMATION_SOURCE,
+    DATA_SOURCE,
+    SHIFT_X,
+    SHIFT_Y,
+    SHIFT_Z,
+    ROTATE_X,
+    ROTATE_Y,
+    ROTATE_Z,
+    SCALE_ADJUST
+  FROM
+    MDSYS.SDO_DATUMS
+  WHERE
+    DATUM_TYPE = 'GEODETIC'
+columns: []
+referencedTables: []

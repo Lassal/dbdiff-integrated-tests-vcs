@@ -1,0 +1,61 @@
+schema: WMSYS
+name: ROLE_WM_PRIVS
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    grantee role,
+    workspace,
+    decode(
+      priv,
+      'A',
+      'ACCESS_WORKSPACE',
+      'C',
+      'CREATE_WORKSPACE',
+      'D',
+      'REMOVE_WORKSPACE',
+      'F',
+      'FREEZE_WORKSPACE',
+      'G',
+      'GRANTPRIV_WORKSPACE',
+      'M',
+      'MERGE_WORKSPACE',
+      'R',
+      'ROLLBACK_WORKSPACE',
+      'AA',
+      'ACCESS_ANY_WORKSPACE',
+      'CA',
+      'CREATE_ANY_WORKSPACE',
+      'DA',
+      'REMOVE_ANY_WORKSPACE',
+      'FA',
+      'FREEZE_ANY_WORKSPACE',
+      'GA',
+      'GRANTPRIV_ANY_WORKSPACE',
+      'MA',
+      'MERGE_ANY_WORKSPACE',
+      'RA',
+      'ROLLBACK_ANY_WORKSPACE',
+      'W',
+      'WM_ADMIN',
+      'UNKNOWN_PRIV'
+    ) privilege,
+    decode(admin, 0, 'NO', 1, 'YES') grantable
+  from
+    wmsys.wm$workspace_priv_table
+  where
+    grantee in (
+      select
+        role
+      from
+        session_roles
+      union all
+      select
+        'WM_ADMIN_ROLE'
+      from
+        sys.dual
+      where
+        sys_context('userenv', 'current_user') = 'SYS'
+    ) WITH READ ONLY
+columns: []
+referencedTables: []

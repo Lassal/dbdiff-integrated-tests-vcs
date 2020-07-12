@@ -1,0 +1,134 @@
+schema: SYS
+name: ALL_SUBPART_KEY_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    'TABLE',
+    decode(bitand(c .property, 1), 1, a .name, c .name),
+    spc.pos#
+  from
+    obj$ o,
+    subpartcol$ spc,
+    col$ c,
+    user $ u,
+    attrcol$ a
+  where
+    spc.obj# = o.obj#
+    and spc.obj# = c .obj#
+    and c .intcol# = spc.intcol#
+    and u.user# = o.owner#
+    and c .obj# = a .obj#(+)
+    and c .intcol# = a .intcol#(+)
+    and o.subname IS NULL
+    and o.namespace = 1
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or spc.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+  union
+  select
+    u.name,
+    o.name,
+    'INDEX',
+    decode(bitand(c .property, 1), 1, a .name, c .name),
+    spc.pos#
+  from
+    obj$ o,
+    subpartcol$ spc,
+    col$ c,
+    user $ u,
+    ind$ i,
+    attrcol$ a
+  where
+    spc.obj# = i.obj#
+    and i.obj# = o.obj#
+    and i.bo# = c .obj#
+    and c .intcol# = spc.intcol#
+    and u.user# = o.owner#
+    and c .obj# = a .obj#(+)
+    and c .intcol# = a .intcol#(+)
+    and o.subname IS NULL
+    and o.namespace = 4
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or i.bo# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

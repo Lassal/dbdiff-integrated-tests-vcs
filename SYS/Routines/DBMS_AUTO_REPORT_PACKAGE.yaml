@@ -1,0 +1,262 @@
+schema: SYS
+name: DBMS_AUTO_REPORT
+routineType: PACKAGE
+returnParamater:
+  name: START_REPORT_CAPTURE_HELPER.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: REPORT_REPOSITORY_DETAIL.RID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: REPORT_REPOSITORY_DETAIL.TYPE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REPORT_REPOSITORY_DETAIL.BASE_PATH
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REPORT_REPOSITORY_DETAIL_XML.RID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: REPORT_REPOSITORY_DETAIL_XML.BASE_PATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.ACTIVE_SINCE
+  ordinalPosition: 1
+  dataType: DATE
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.ACTIVE_UPTO
+  ordinalPosition: 2
+  dataType: DATE
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.SNAPSHOT_ID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.DBID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.INST_ID
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.CON_DBID
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.SESSION_ID
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.SESSION_SERIAL
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.COMPONENT_NAME
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.KEY1
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.KEY2
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.KEY3
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.REPORT_LEVEL
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.BASE_PATH
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.TOP_N_COUNT
+  ordinalPosition: 15
+  dataType: NUMBER
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.TOP_N_RANKBY
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REPORT_REPOSITORY_LIST_XML.TOP_N_DETAIL_COUNT
+  ordinalPosition: 17
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_auto_report AUTHID CURRENT_USER IS -----------------------------------------------------------------------------
+  --                      global constant declarations                       --
+  -----------------------------------------------------------------------------
+  -- Custom Errors
+  ERR_FIN_CAPTURE CONSTANT NUMBER: = -13554;
+  ------------------------- report_repository_list_xml ------------------------
+  -- NAME:
+  --     report_repository_list_xml
+  --
+  -- DESCRIPTION:
+  --     This function generates an XML list report containing a list of all
+  --     reports from the repository that match the input criteria.
+  --
+  -- PARAMETERS:
+  --     active_since        (IN)   - start of activity period
+  --     active_upto         (IN)   - end of activity period
+  --     snapshot_id         (IN)   - only reports captured during this snap
+  --                                - id to be part of the list
+  --     dbid                (IN)   - only reports captured for this db to be
+  --                                  part of the list
+  --     inst_id             (IN)   - only reports captured for this instance
+  --                                  to be part of the list
+  --     con_dbid            (IN)   - only reports captured for this container
+  --                                  dbid to be part of the list
+  --     session_id          (IN)   - only reports captured for this session
+  --                                  id to be part of the list
+  --     session_serial      (IN)   - only reports captured for this session
+  --                                  serial # to be part of the list
+  --     component_name      (IN)   - name of component whose reports (only)
+  --                                  will be in the list
+  --     key1                (IN)   - reports matching value of key1 to be in
+  --                                  the list
+  --     key2                (IN)   - reports matching value of key2 to be in
+  --                                  the list
+  --     key3                (IN)   - reports matching value of key3 to be in
+  --                                  the list
+  --     report_level        (IN)   - detail level of report
+  --
+  --     base_path           (IN)   - this is the URL path for flex HTML
+  --                                  ressources since flex HTML format
+  --                                  requires to access external files
+  --                                  (java scripts and the flash swf file
+  --                                   itself).
+  --
+  --     top_n_count         (IN)   - maximum no of reports that will be
+  --                                  fetched in the list xml.
+  --
+  --     top_n_rankby        (IN)   - attribute (stats based) on which to
+  --                                  retrieve top N rows to limit size of XML.
+  --                                  1 => elapsed_time, 2 => duration
+  --                                  3 => cpu_time, 4 => io_requests,
+  --                                  5 => io_bytes
+  --
+  --     top_n_detail_count  (IN)   - decide if component (e.g., sql monitor)
+  --                                  detail report in the list should be part
+  --                                  of the list report.
+  --                                  A value (upto 10) indicates the number
+  --                                  of the component detail reports will be
+  --                                  included in the list.
+  --                                  If null, no detail report is included in
+  --                                  the list.
+  --
+  -- RETURN:
+  --     xml list report of all reports from the repository selected based on
+  --     the above criteria
+  --
+  -----------------------------------------------------------------------------
+  FUNCTION report_repository_list_xml(
+    active_since in date default NULL,
+    active_upto in date default NULL,
+    snapshot_id in number default NULL,
+    dbid in number default NULL,
+    inst_id in number default NULL,
+    con_dbid in number default NULL,
+    session_id in number default NULL,
+    session_serial in number default NULL,
+    component_name in varchar2 default NULL,
+    key1 in varchar2 default NULL,
+    key2 in varchar2 default NULL,
+    key3 in varchar2 default NULL,
+    report_level in varchar2 default 'TYPICAL',
+    base_path in varchar2 default NULL,
+    top_n_count in number default NULL,
+    top_n_rankby in varchar2 default 'db_time',
+    top_n_detail_count in number default NULL
+  ) RETURN xmltype;
+  ------------------------ report_repository_detail_xml -----------------------
+  -- NAME:
+  --     report_repository_detail_xml
+  --
+  -- DESCRIPTION:
+  --     This fn retrieves the stored XML report whose report_id is passed
+  --     as an input to the function. This report could belong to any of the
+  --     components registered with the report capture framework.
+  --
+  -- PARAMETERS:
+  --     rid              (IN)   - id of the report to be returned
+  --
+  --     base_path        (IN)   - this is the URL path for flex HTML
+  --                               ressources since flex HTML format
+  --                               requires to access external files
+  --                               (java scripts and the flash swf file itself).
+  --
+  --
+  -- RETURNS:
+  --     xml report as xmltype
+  -----------------------------------------------------------------------------
+  FUNCTION report_repository_detail_xml(
+    rid in number default NULL,
+    base_path in varchar2 default NULL
+  ) RETURN XMLTYPE;
+  FUNCTION report_repository_detail(
+    rid in number default NULL,
+    type in varchar2 default 'XML',
+    base_path in varchar2 default NULL
+  ) RETURN CLOB;
+  ----------------------------- start_report_capture --------------------------
+  -- NAME:
+  --     start_report_capture
+  --
+  -- DESCRIPTION:
+  --     This function changes the mode of execution of the auto report
+  --     capture service to a 'full capture'. This means that in every capture
+  --     cycle, there is no dbtime budget constraint and the capture will run
+  --     for as long as there are more reports to capture, (subject to the
+  --     time-out of the MMON slave).
+  --     This 'full capture' mode of execution can be seen by querying
+  --     dba_hist_reports_control. The full capture mode of execution continues
+  --     even if the db is bounced and will continue till it is explicitly
+  --     ended by running finish_report_capture.
+  --
+  -- PARAMETERS:
+  --     NONE
+  --
+  -----------------------------------------------------------------------------
+  PROCEDURE start_report_capture;
+  ---------------------------- finish_report_capture --------------------------
+  -- NAME:
+  --     finish_report_capture
+  --
+  -- DESCRIPTION:
+  --     This function changes the mode of execution of the auto report
+  --     capture service back to a 'regular capture'. This means that every
+  --     capture cycle will run subject to a dbtime budget constraint.
+  --     This procedure runs one last cycle in 'full capture' mode and then
+  --     changes the execution mode back to regular.
+  --
+  -- NOTE:
+  --     This is a blocking procedure and it will return when the last 'full
+  --     capture' cycle is completed (on each instance in case of RAC).
+  --
+  -- PARAMETERS:
+  --     NONE
+  -----------------------------------------------------------------------------
+  PROCEDURE finish_report_capture;
+  -----------------------------------------------------------------------------
+  --                     INTERNAL UNDOCUMENTED FUNCTIONS                     --
+  --                                                                         --
+  -----------------------------------------------------------------------------
+  ------------------------- finish_report_capture_helper ---------------------
+  FUNCTION finish_report_capture_helper RETURN NUMBER;
+  -------------------------- start_report_capture_helper ---------------------
+  FUNCTION start_report_capture_helper RETURN NUMBER;
+  end;

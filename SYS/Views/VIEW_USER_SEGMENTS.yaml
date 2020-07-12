@@ -1,0 +1,198 @@
+schema: SYS
+name: USER_SEGMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    segment_name,
+    partition_name,
+    segment_type,
+    segment_subtype,
+    tablespace_name,
+    decode(
+      bitand(segment_flags, 131072),
+      131072,
+      blocks,
+      (
+        decode(
+          bitand(segment_flags, 1),
+          1,
+          dbms_space_admin.segment_number_blocks(
+            tablespace_id,
+            header_file,
+            header_block,
+            segment_type_id,
+            buffer_pool_id,
+            segment_flags,
+            segment_objd,
+            blocks
+          ),
+          blocks
+        )
+      )
+    ) * blocksize,
+    decode(
+      bitand(segment_flags, 131072),
+      131072,
+      blocks,
+      (
+        decode(
+          bitand(segment_flags, 1),
+          1,
+          dbms_space_admin.segment_number_blocks(
+            tablespace_id,
+            header_file,
+            header_block,
+            segment_type_id,
+            buffer_pool_id,
+            segment_flags,
+            segment_objd,
+            blocks
+          ),
+          blocks
+        )
+      )
+    ),
+    decode(
+      bitand(segment_flags, 131072),
+      131072,
+      extents,
+      (
+        decode(
+          bitand(segment_flags, 1),
+          1,
+          dbms_space_admin.segment_number_extents(
+            tablespace_id,
+            header_file,
+            header_block,
+            segment_type_id,
+            buffer_pool_id,
+            segment_flags,
+            segment_objd,
+            extents
+          ),
+          extents
+        )
+      )
+    ),
+    initial_extent,
+    next_extent,
+    min_extents,
+    max_extents,
+    max_size,
+    retention,
+    minretention,
+    pct_increase,
+    freelists,
+    freelist_groups,
+    decode(
+      buffer_pool_id,
+      1,
+      'KEEP',
+      2,
+      'RECYCLE',
+      'DEFAULT'
+    ),
+    decode(flash_cache, 1, 'KEEP', 2, 'NONE', 'DEFAULT'),
+    decode(
+      cell_flash_cache,
+      1,
+      'KEEP',
+      2,
+      'NONE',
+      'DEFAULT'
+    ),
+    -- INMEMORY
+    decode (
+      bitand(segment_flags, 4294967296),
+      4294967296,
+      'ENABLED',
+      'DISABLED'
+    ),
+    -- INMEMORY_PRIORITY
+    decode(
+      bitand(segment_flags, 4294967296),
+      4294967296,
+      decode(
+        bitand(segment_flags, 34359738368),
+        34359738368,
+        decode(
+          bitand(segment_flags, 61572651155456),
+          8796093022208,
+          'LOW',
+          17592186044416,
+          'MEDIUM',
+          35184372088832,
+          'HIGH',
+          52776558133248,
+          'CRITICAL',
+          'NONE'
+        ),
+        'NONE'
+      ),
+      null
+    ),
+    -- INMEMORY_DISTRIBUTE
+    decode(
+      bitand(segment_flags, 4294967296),
+      4294967296,
+      decode(
+        bitand(segment_flags, 8589934592),
+        8589934592,
+        decode(
+          bitand(segment_flags, 206158430208),
+          68719476736,
+          'BY ROWID RANGE',
+          137438953472,
+          'BY PARTITION',
+          206158430208,
+          'BY SUBPARTITION',
+          0,
+          'AUTO'
+        ),
+        'UNKNOWN'
+      ),
+      null
+    ),
+    -- INMEMORY_DUPLICATE
+    decode(
+      bitand(segment_flags, 4294967296),
+      4294967296,
+      decode(
+        bitand(segment_flags, 6597069766656),
+        2199023255552,
+        'NO DUPLICATE',
+        4398046511104,
+        'DUPLICATE',
+        6597069766656,
+        'DUPLICATE ALL',
+        'UNKNOWN'
+      ),
+      null
+    ),
+    -- INMEMORY_COMPRESSSION
+    decode(
+      bitand(segment_flags, 4294967296),
+      4294967296,
+      decode(
+        bitand(segment_flags, 841813590016),
+        17179869184,
+        'NO MEMCOMPRESS',
+        274877906944,
+        'FOR DML',
+        292057776128,
+        'FOR QUERY LOW',
+        549755813888,
+        'FOR QUERY HIGH',
+        566935683072,
+        'FOR CAPACITY LOW',
+        824633720832,
+        'FOR CAPACITY HIGH',
+        'UNKNOWN'
+      ),
+      null
+    )
+  from
+    sys_user_segs
+columns: []
+referencedTables: []

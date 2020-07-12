@@ -1,0 +1,62 @@
+schema: SYS
+name: KU$_XSACE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    c .acl#,
+    c .order#,
+    c .ace_type,
+    c .prin#,
+    case
+      when c .prin# > 10000 then (
+        select
+          name
+        from
+          xs$obj o
+        where
+          o.id = c .prin#
+      )
+      else (
+        select
+          name
+        from
+          user $
+        where
+          user # = c .prin#
+      )
+    end,
+    c .prin_type,
+    c .prin_invert,
+    c .start_date,
+    c .end_date,
+    (
+      cast(
+        multiset(
+          select
+            *
+          from
+            ku$_xsacepriv_view p
+          where
+            p.aclid = c .acl#
+            and p.ace_order = c .order#
+        ) as ku$_xsacepriv_list_t
+      )
+    ),
+    (
+      select
+        value(xo)
+      from
+        ku$_xsobj_view xo
+      where
+        xo.id = c .acl#
+    ),
+    c .ace_flag
+  from
+    xs$ace c
+  where
+    bitand(c .ace_flag, 2) = 0
+columns: []
+referencedTables: []

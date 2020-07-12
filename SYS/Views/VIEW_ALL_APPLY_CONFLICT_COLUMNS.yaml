@@ -1,0 +1,21 @@
+schema: SYS
+name: ALL_APPLY_CONFLICT_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    c .object_owner,
+    c .object_name,
+    c .method_name,
+    c .resolution_column,
+    c .column_name,
+    c .apply_database_link
+  from
+    all_tab_columns o,
+    dba_apply_conflict_columns c
+  where
+    c .object_owner = o.owner
+    and c .object_name = o.table_name
+    and c .column_name = o.column_name
+columns: []
+referencedTables: []

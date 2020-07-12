@@ -1,0 +1,27 @@
+schema: APEX_050000
+name: WWV_CALCULATOR
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: DRAW.P_FIELD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SHOW.P_FIELD
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package wwv_calculator as --  Copyright (c) Oracle Corporation 2000. All Rights Reserved.
+  --
+  --    DESCRIPTION
+  --      Display a javascript based calculator passing a value back to a flow field.
+  --
+  --    SECURITY
+  --      Publicly executable.
+  --
+  --    NOTES
+  --
+  procedure draw(p_field varchar2);
+  procedure show(p_field varchar2);
+  end wwv_calculator;

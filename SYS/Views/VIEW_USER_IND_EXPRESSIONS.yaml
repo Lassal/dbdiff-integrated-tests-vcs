@@ -1,0 +1,58 @@
+schema: SYS
+name: USER_IND_EXPRESSIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    idx.name,
+    base.name,
+    c .default$,
+    ic.pos#
+  from
+    sys.col$ c,
+    sys.obj$ idx,
+    sys.obj$ base,
+    sys.icol$ ic,
+    sys.ind$ i
+  where
+    bitand(ic.spare1, 1) = 1
+    /* an expression */
+    and (bitand(i.property, 1024) = 0)
+    /* not bmji */
+    and c .obj# = base.obj#
+    and ic.bo# = base.obj#
+    and ic.intcol# = c .intcol#
+    and base.owner# = userenv('SCHEMAID')
+    and base.namespace in (1, 5)
+    and ic.obj# = idx.obj#
+    and idx.obj# = i.obj#
+    and i.type# in (1, 2, 3, 4, 6, 7, 9)
+  union all
+  select
+    idx.name,
+    base.name,
+    c .default$,
+    ic.pos#
+  from
+    sys.col$ c,
+    sys.obj$ idx,
+    sys.obj$ base,
+    sys.icol$ ic,
+    sys.ind$ i
+  where
+    bitand(ic.spare1, 1) = 1
+    /* an expression */
+    and (bitand(i.property, 1024) = 0)
+    /* not bmji */
+    and c .obj# = base.obj#
+    and i.bo# = base.obj#
+    and base.owner# != userenv('SCHEMAID')
+    and ic.intcol# = c .intcol#
+    and idx.owner# = userenv('SCHEMAID')
+    and idx.namespace = 4
+    /* index namespace */
+    and ic.obj# = idx.obj#
+    and idx.obj# = i.obj#
+    and i.type# in (1, 2, 3, 4, 6, 7, 9)
+columns: []
+referencedTables: []

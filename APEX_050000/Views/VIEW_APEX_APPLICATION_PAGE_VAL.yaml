@@ -1,0 +1,225 @@
+schema: APEX_050000
+name: APEX_APPLICATION_PAGE_VAL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    p.flow_id application_id,
+    f.name application_name,
+    p.id page_id,
+    p.name page_name,
+    --
+    v.VALIDATION_NAME validation_name,
+    v.VALIDATION_SEQUENCE validation_sequence,
+    v.TABULAR_FORM_REGION_ID region_id,
+    (
+      select
+        plug_name
+      from
+        wwv_flow_page_plugs
+      where
+        id = v.tabular_form_region_id
+    ) region_name,
+    --
+    decode(
+      v.VALIDATION_TYPE,
+      'EXISTS',
+      'Exists',
+      'FUNC_BODY_RETURNING_BOOLEAN',
+      'Function Returning Boolean',
+      'FUNC_BODY_RETURNING_ERR_TEXT',
+      'Function Returning Error Text',
+      'ITEM_NOT_NULL',
+      'Item\Column specified is NOT NULL',
+      'ITEM_IN_VALIDATION_CONTAINS_AT_LEAST_ONE_CHAR_IN_STRING2',
+      'Item\Column in Expression 1 contains at least one of the characters in Expression 2',
+      'ITEM_IN_VALIDATION_CONTAINS_ONLY_CHAR_IN_STRING2',
+      'Item\Column in Expression 1 contains only characters in Expression 2',
+      'ITEM_IN_VALIDATION_NOT_EQ_STRING2',
+      'Item\Column in Expression 1 does NOT equal string literal in Expression2',
+      'ITEM_IN_VALIDATION_CONTAINS_NO_CHAR_IN_STRING2',
+      'Item\Column in Expression 1 does not contain any of the characters in Expression 2',
+      'ITEM_IN_VALIDATION_EQ_STRING2',
+      'Item\Column in Expression 1 equals string literal in Expression 2',
+      'ITEM_IN_VALIDATION_NOT_IN_STRING2',
+      'Item\Column in Expression 1 is NOT contained in Expression 2',
+      'ITEM_IN_VALIDATION_IN_STRING2',
+      'Item\Column in Expression 1 is contained in Expression 2',
+      'ITEM_NOT_ZERO',
+      'Item\Column specified is NOT zero',
+      'ITEM_CONTAINS_NO_SPACES',
+      'Item\Column specified contains no spaces',
+      'ITEM_NOT_NULL_OR_ZERO',
+      'Item\Column specified is NOT NULL or zero',
+      'ITEM_IS_ALPHANUMERIC',
+      'Item\Column specified is alphanumeric',
+      'ITEM_IS_NUMERIC',
+      'Item\Column specified is numeric',
+      'ITEM_IS_DATE',
+      'Item\Column specified is a valid date',
+      'ITEM_IS_TIMESTAMP',
+      'Item\Column specified is a valid timestamp',
+      'REGULAR_EXPRESSION',
+      'Item\Column in Expression 1 matches Regular Expression in Expression 2',
+      'NOT_EXISTS',
+      'NOT Exists',
+      'PLSQL_ERROR',
+      'PL/SQL Error',
+      'PLSQL_EXPRESSION',
+      'PL/SQL Expression',
+      'SQL_EXPRESION',
+      'SQL Expression',
+      v.VALIDATION_TYPE
+    ) validation_type,
+    v.validation_type validation_type_code,
+    v.VALIDATION validation_expression1,
+    v.VALIDATION2 validation_expression2,
+    --
+    case
+      nvl(v.always_execute, 'N')
+      when 'Y' then 'Yes'
+      when 'N' then 'No'
+    end always_execute,
+    nvl(
+      (
+        select
+          r
+        from
+          apex_standard_conditions
+        where
+          d = v.VALIDATION_CONDITION_TYPE
+      ),
+      v.VALIDATION_CONDITION_TYPE
+    ) condition_type,
+    v.validation_condition_type condition_type_code,
+    v.VALIDATION_CONDITION condition_expression1,
+    v.VALIDATION_CONDITION2 condition_expression2,
+    case
+      nvl(v.exec_cond_for_each_row, 'N')
+      when 'Y' then 'Yes'
+      when 'N' then 'No'
+    end exec_cond_for_each_row,
+    --
+    (
+      select
+        button_name
+      from
+        wwv_flow_step_buttons
+      where
+        id = v.WHEN_BUTTON_PRESSED
+      union
+      select
+        name
+      from
+        wwv_flow_step_items
+      where
+        id = v.WHEN_BUTTON_PRESSED
+    ) when_button_pressed,
+    v.WHEN_BUTTON_PRESSED when_button_pressed_id,
+    case
+      nvl(v.only_for_changed_rows, 'Y')
+      when 'Y' then 'Yes'
+      when 'N' then 'No'
+    end only_for_changed_rows,
+    --
+    v.ERROR_MESSAGE validation_failure_text,
+    (
+      select
+        name
+      from
+        wwv_flow_step_items
+      where
+        id = v.ASSOCIATED_ITEM
+        and flow_id = f.id
+    ) associated_item,
+    v.associated_column associated_column,
+    v.ERROR_DISPLAY_LOCATION error_display_location,
+    (
+      select
+        case
+          when v.required_patch > 0 then PATCH_NAME
+          else '{Not ' || PATCH_NAME || '}'
+        end PATCH_NAME
+      from
+        wwv_flow_patches
+      where
+        id = abs(v.REQUIRED_PATCH)
+    ) build_option,
+    --
+    decode(substr(v.SECURITY_SCHEME, 1, 1), '!', 'Not ') || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(v.SECURITY_SCHEME, '!')
+          and flow_id = f.id
+      ),
+      v.SECURITY_SCHEME
+    ) authorization_scheme,
+    v.SECURITY_SCHEME authorization_scheme_id,
+    --
+    v.LAST_UPDATED_BY last_updated_by,
+    v.LAST_UPDATED_ON last_updated_on,
+    v.VALIDATION_COMMENT component_comment,
+    v.id validation_id,
+    'seq=' || v.VALIDATION_SEQUENCE || ',item='(
+      select
+        name
+      from
+        wwv_flow_step_items
+      where
+        id = v.ASSOCIATED_ITEM
+    ) || ',type=' || v.VALIDATION_TYPE || ',val=' || substr(v.VALIDATION, 1, 40) || '.' || length(v.VALIDATION) || '.' || substr(v.VALIDATION2, 1, 40) || '.' || length(v.VALIDATION2) || '.' || decode(
+      v.VALIDATION_CONDITION_TYPE,
+      null,
+      null,
+      ',cond=' || v.VALIDATION_CONDITION_TYPE || '.' || substr(v.VALIDATION_CONDITION, 1, 30) || length(v.VALIDATION_CONDITION) || '.' || substr(v.VALIDATION_CONDITION2, 1, 30) || length(v.VALIDATION_CONDITION2)
+    ) component_signature
+  from
+    wwv_flow_step_validations v,
+    wwv_flow_steps p,
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and f.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.security_group_id = w.PROVISIONING_COMPANY_ID
+    and s.schema = f.owner
+    and f.security_group_id = p.security_group_id
+    and f.security_group_id = v.security_group_id
+    and f.id = p.flow_id
+    and f.id = v.flow_id
+    and p.id = v.flow_step_id
+    and (
+      d.sgid != 0
+      or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
+    )
+    and w.PROVISIONING_COMPANY_ID != 0
+columns: []
+referencedTables: []

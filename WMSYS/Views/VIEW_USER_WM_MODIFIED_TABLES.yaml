@@ -1,0 +1,36 @@
+schema: WMSYS
+name: USER_WM_MODIFIED_TABLES
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    table_name,
+    workspace,
+    savepoint
+  from
+    (
+      select
+        distinct o.table_name,
+        o.workspace,
+        nvl(s.savepoint, 'LATEST') savepoint,
+        min(s.is_implicit) imp,
+        count(s.version) counter
+      from
+        wmsys.wm$modified_tables o,
+        wmsys.wm$workspace_savepoints_table s
+      where
+        substr(o.table_name, 1, instr(table_name, '.') -1) = sys_context('userenv', 'current_user')
+        and o.version = s.version (+)
+      group by
+        o.table_name,
+        o.workspace,
+        savepoint
+    )
+  where
+    (
+      imp = 0
+      or imp is null
+      or counter = 1
+    ) WITH READ ONLY
+columns: []
+referencedTables: []

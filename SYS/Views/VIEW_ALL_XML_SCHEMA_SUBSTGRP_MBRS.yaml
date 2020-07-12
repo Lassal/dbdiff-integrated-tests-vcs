@@ -1,0 +1,31 @@
+schema: SYS
+name: ALL_XML_SCHEMA_SUBSTGRP_MBRS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s.xmldata.schema_owner OWNER,
+    s.xmldata.schema_url SCHEMA_URL,
+    s.xmldata.target_namespace TARGET_NAMESPACE,
+    e.xmldata.property.name ELEMENT_NAME,
+    value(e) ELEMENT,
+    hs.xmldata.schema_owner HEAD_OWNER,
+    hs.xmldata.schema_url HEAD_SCHEMA_URL,
+    hs.xmldata.target_namespace HEAD_TARGET_NAMESPACE,
+    he.xmldata.property.name HEAD_ELEMENT_NAME,
+    value(he) HEAD_ELEMENT
+  from
+    xdb.xdb$schema s,
+    xdb.xdb$schema hs,
+    xdb.xdb$element e,
+    xdb.xdb$element he,
+    all_xml_schemas a
+  where
+    sys_op_r2o(e.xmldata.property.parent_schema) = s.sys_nc_oid$
+    and s.xmldata.schema_owner = a .owner
+    and s.xmldata.schema_url = a .schema_url
+    and e.xmldata.property.global = hexToRaw('01')
+    and he.sys_nc_oid$ = sys_op_r2o(e.xmldata.HEAD_ELEM_REF)
+    and sys_op_r2o(he.xmldata.property.parent_schema) = hs.sys_nc_oid$
+columns: []
+referencedTables: []

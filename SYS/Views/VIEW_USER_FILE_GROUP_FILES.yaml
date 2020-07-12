@@ -1,0 +1,24 @@
+schema: SYS
+name: USER_FILE_GROUP_FILES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    g.file_group_name,
+    v.version_name,
+    v.version_id,
+    f.file_name,
+    f.file_dir_obj,
+    f.file_type,
+    f.file_size,
+    f.file_blocksize,
+    f.user_comment
+  from
+    "_USER_FILE_GROUPS" g,
+    sys.fgr$_file_group_files f,
+    sys.fgr$_file_group_versions v
+  where
+    f.version_guid = v.version_guid
+    and v.file_group_id = g.file_group_id
+columns: []
+referencedTables: []

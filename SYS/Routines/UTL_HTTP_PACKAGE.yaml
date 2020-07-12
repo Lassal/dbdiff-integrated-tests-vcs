@@ -1,0 +1,2061 @@
+schema: SYS
+name: UTL_HTTP
+routineType: PACKAGE
+returnParamater:
+  name: REQUEST_PIECES.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL TABLE
+  parameterMode: OUT
+parameters:
+- name: ADD_COOKIES.COOKIES
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+- name: ADD_COOKIES.REQUEST_CONTEXT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: BEGIN_REQUEST.URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BEGIN_REQUEST.METHOD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BEGIN_REQUEST.HTTP_VERSION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: BEGIN_REQUEST.REQUEST_CONTEXT
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CLEAR_COOKIES.REQUEST_CONTEXT
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CLOSE_PERSISTENT_CONN.CONN
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+- name: CLOSE_PERSISTENT_CONNS.HOST
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLOSE_PERSISTENT_CONNS.PORT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CLOSE_PERSISTENT_CONNS.PROXY_HOST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLOSE_PERSISTENT_CONNS.PROXY_PORT
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CLOSE_PERSISTENT_CONNS.SSL
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CREATE_REQUEST_CONTEXT.WALLET_PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_REQUEST_CONTEXT.WALLET_PASSWORD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_REQUEST_CONTEXT.ENABLE_COOKIES
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CREATE_REQUEST_CONTEXT.MAX_COOKIES
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CREATE_REQUEST_CONTEXT.MAX_COOKIES_PER_SITE
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DESTROY_REQUEST_CONTEXT.REQUEST_CONTEXT
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: INOUT
+- name: END_REQUEST.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: END_RESPONSE.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: GET_AUTHENTICATION.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: GET_AUTHENTICATION.SCHEME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_AUTHENTICATION.REALM
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_AUTHENTICATION.FOR_PROXY
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GET_BODY_CHARSET(1).CHARSET
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_CONTENT_ENCODING_SUPPORT.SCHEME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_CONTENT_ENCODING_SUPPORT.ENABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: GET_COOKIE_COUNT.REQUEST_CONTEXT
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_COOKIES.COOKIES
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: GET_COOKIES.REQUEST_CONTEXT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_COOKIE_SUPPORT.ENABLE
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: GET_COOKIE_SUPPORT.MAX_COOKIES
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GET_COOKIE_SUPPORT.MAX_COOKIES_PER_SITE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GET_DETAILED_EXCP_SUPPORT.ENABLE
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: GET_FOLLOW_REDIRECT.MAX_REDIRECTS
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GET_HEADER.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: GET_HEADER.N
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_HEADER.NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_HEADER.VALUE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_HEADER_BY_NAME.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: GET_HEADER_BY_NAME.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GET_HEADER_BY_NAME.VALUE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_HEADER_BY_NAME.N
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GET_HEADER_COUNT.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: GET_PERSISTENT_CONNS.CONNECTIONS
+  ordinalPosition: 1
+  dataType: PL/SQL TABLE
+  parameterMode: INOUT
+- name: GET_PERSISTENT_CONN_SUPPORT.ENABLE
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: GET_PERSISTENT_CONN_SUPPORT.MAX_CONNS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GET_PROXY.PROXY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_PROXY.NO_PROXY_DOMAINS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GET_RESPONSE.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: GET_RESPONSE.RETURN_INFO_RESPONSE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GET_RESPONSE_ERROR_CHECK.ENABLE
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: GET_TRANSFER_TIMEOUT.TIMEOUT
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: READ_LINE.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: READ_LINE.DATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: READ_LINE.REMOVE_CRLF
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: READ_RAW.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: READ_RAW.DATA
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: OUT
+- name: READ_RAW.LEN
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: READ_TEXT.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: READ_TEXT.DATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: READ_TEXT.LEN
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REQUEST.URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REQUEST.PROXY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REQUEST.WALLET_PATH
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REQUEST.WALLET_PASSWORD
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REQUEST_PIECES.URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REQUEST_PIECES.MAX_PIECES
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: REQUEST_PIECES.PROXY
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REQUEST_PIECES.WALLET_PATH
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REQUEST_PIECES.WALLET_PASSWORD
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_AUTHENTICATION.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: SET_AUTHENTICATION.USERNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_AUTHENTICATION.PASSWORD
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_AUTHENTICATION.SCHEME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_AUTHENTICATION.FOR_PROXY
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_AUTHENTICATION_FROM_WALLET.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: SET_AUTHENTICATION_FROM_WALLET.ALIAS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_AUTHENTICATION_FROM_WALLET.SCHEME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_AUTHENTICATION_FROM_WALLET.FOR_PROXY
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_BODY_CHARSET(1).CHARSET
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_BODY_CHARSET(2).R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: SET_BODY_CHARSET(2).CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_BODY_CHARSET(3).R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: SET_BODY_CHARSET(3).CHARSET
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_CONTENT_ENCODING_SUPPORT(1).SCHEME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_CONTENT_ENCODING_SUPPORT(1).ENABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_CONTENT_ENCODING_SUPPORT(2).R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: SET_CONTENT_ENCODING_SUPPORT(2).SCHEME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_CONTENT_ENCODING_SUPPORT(2).ENABLE
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_COOKIE_SUPPORT(1).ENABLE
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_COOKIE_SUPPORT(1).MAX_COOKIES
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_COOKIE_SUPPORT(1).MAX_COOKIES_PER_SITE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_COOKIE_SUPPORT(2).R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: SET_COOKIE_SUPPORT(2).ENABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_DETAILED_EXCP_SUPPORT.ENABLE
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_FOLLOW_REDIRECT(1).MAX_REDIRECTS
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_FOLLOW_REDIRECT(2).R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: SET_FOLLOW_REDIRECT(2).MAX_REDIRECTS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_HEADER.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: SET_HEADER.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_HEADER.VALUE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_PERSISTENT_CONN_SUPPORT(1).ENABLE
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_PERSISTENT_CONN_SUPPORT(1).MAX_CONNS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_PERSISTENT_CONN_SUPPORT(2).R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: SET_PERSISTENT_CONN_SUPPORT(2).ENABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_PROPERTY.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: SET_PROPERTY.NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_PROPERTY.VALUE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_PROXY.PROXY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_PROXY.NO_PROXY_DOMAINS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_RESPONSE_ERROR_CHECK(1).ENABLE
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_RESPONSE_ERROR_CHECK(2).R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: SET_RESPONSE_ERROR_CHECK(2).ENABLE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SET_TRANSFER_TIMEOUT(1).TIMEOUT
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_TRANSFER_TIMEOUT(2).R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: SET_TRANSFER_TIMEOUT(2).TIMEOUT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_WALLET.PATH
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_WALLET.PASSWORD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITE_LINE.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: WRITE_LINE.DATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: WRITE_RAW.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: WRITE_RAW.DATA
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: WRITE_TEXT.R
+  ordinalPosition: 1
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+- name: WRITE_TEXT.DATA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: "PACKAGE utl_http AUTHID CURRENT_USER IS\n/******************************************************************\n\
+  \n\n\n  The UTL_HTTP package makes Hypertext Transfer Protocol (HTTP) callouts\n\
+  \n  from SQL and PL/SQL.  It can be used to access data on the Internet over\n\n\
+  \  the HTTP protocol.\n\n\n\n  The package contains a set of API that enables users\
+  \ to write PL/SQL\n\n  programs that communicate with Web (HTTP) servers.  It also\
+  \ contains a\n\n  function that can be used in SQL queries.  Besides the HTTP protocol,\
+  \ it\n\n  also supports the HTTP protocol over the Secured Socket Layer protocol\
+  \ (SSL),\n\n  also known as HTTPS, directly or via a HTTP proxy.  Other Internet-related\n\
+  \n  data-access protocols (such as the File Transfer Protocol (FTP) or\n\n  the\
+  \ Gopher protocol) are also supported via a HTTP proxy server that\n\n  supports\
+  \ those protocols.\n\n\n\n  When the package fetches data from a Web site using\
+  \ the HTTPS protocol,\n\n  it requires an Oracle wallet to be set up properly by\
+  \ Oracle Wallet Manager.\n\n  Non-HTTPS fetches do not require an Oracle wallet.\n\
+  \n\n\n  The API is divided into a number of categories.  The session API manipulates\n\
+  \n  configurations pertaining to the package within a database user session.\n\n\
+  \  The request API begins a new HTTP request, manipulates its attributes,\n\n  and\
+  \ sends information to the Web server.  The response API returns the\n\n  attributes\
+  \ of the response and receives information the response data\n\n  from the Web server.\
+  \  The cookies API manipulates the HTTP cookies maintained\n\n  by the package within\
+  \ the database user session.  The persistent connection\n\n  API manipulates the\
+  \ persistent connections maintained by the package.  There\n\n  are also two simple\
+  \ functions that allow users to fetch a Web page by\n\n  a single function call.\n\
+  \n\n\n  The following is an example that illustrate the use of the session,\n\n\
+  \  request, and response API to pretend to be the Netscape brower to fetch\n\n \
+  \ a Web page.\n\n\n\n  SET serveroutput ON SIZE 40000\n\n\n\n  DECLARE\n\n    req\
+  \   utl_http.req;\n\n    resp  utl_http.resp;\n\n    value VARCHAR2(1024);\n\n \
+  \ BEGIN\n\n\n\n    utl_http.set_proxy('proxy.it.my-company.com', 'my-company.com');\n\
+  \n\n\n    req := utl_http.begin_request('http://www-hr.corp.my-company.com');\n\n\
+  \    utl_http.set_header(req, 'User-Agent', 'Mozilla/4.0');\n\n    resp := utl_http.get_response(req);\n\
+  \n    LOOP\n\n      utl_http.read_line(resp, value, TRUE);\n\n      dbms_output.put_line(value);\n\
+  \n    END LOOP;\n\n    utl_http.end_response(resp);\n\n  EXCEPTION\n\n    WHEN utl_http.end_of_body\
+  \ THEN\n\n      utl_http.end_response(resp);\n\n  END;\n\n\n\n  The following is\
+  \ another example that illustrates how to use the simple\n\n  API to fetch a Web\
+  \ page in SQL (only the first 2000 bytes will be returned).\n\n\n\n  SVRMGR> select\
+  \ utl_http.request('http://www.oracle.com/')\n\n       2  from dual;\n\n  UTL_HTTP.REQUEST('HTTP://WWW.ORACLE.COM/')\n\
+  \n  ----------------------------------------------------------\n\n  <html>\n\n \
+  \ <head><title>Oracle Corporation Home Page</title>\n\n  <!--changed Jan. 16, 19\n\
+  \n  1 row selected.\n\n\n\n  Here is another example that illustrates how to use\
+  \ the other simple API\n\n  to fetch the complete Web page:\n\n\n\n  set serveroutput\
+  \ on\n\n\n\n  declare\n\n    x   utl_http.html_pieces;\n\n    len pls_integer;\n\
+  \n  begin\n\n    x := utl_http.request_pieces('http://www.oracle.com/', 100);\n\n\
+  \    dbms_output.put_line(x.count || ' pieces were retrieved.');\n\n    dbms_output.put_line('with\
+  \ total length ');\n\n    len := 0;\n\n    for i in 1..x.count loop\n\n      len\
+  \ := len + length(x(i));\n\n    end loop;\n\n    dbms_output.put_line(len);\n\n\
+  \  end;\n\n\n\n  Here is the output:\n\n\n\n  Statement processed.\n\n  4 pieces\
+  \ were retrieved.\n\n  with total length\n\n  7687\n\n\n\n  ***********************************************************************/\n\
+  -- The HTTP protocol versions that can be used in the function begin_request\nHTTP_VERSION_1_0\
+  \ CONSTANT VARCHAR2(64): = 'HTTP/1.0';\n-- HTTP 1.0\nHTTP_VERSION_1_1 CONSTANT VARCHAR2(64):\
+  \ = 'HTTP/1.1';\n-- HTTP 1.1\n-- The default TCP/IP port numbers that a HTTP server\
+  \ listens\nDEFAULT_HTTP_PORT CONSTANT PLS_INTEGER: = 80;\n-- HTTP server or proxy\
+  \ server\nDEFAULT_HTTPS_PORT CONSTANT PLS_INTEGER: = 443;\n-- HTTPS server\n-- HTTP\
+  \ status codes of a HTTP response as defined in HTTP 1.1\nHTTP_CONTINUE CONSTANT\
+  \ PLS_INTEGER: = 100;\nHTTP_SWITCHING_PROTOCOLS CONSTANT PLS_INTEGER: = 101;\nHTTP_OK\
+  \ CONSTANT PLS_INTEGER: = 200;\nHTTP_CREATED CONSTANT PLS_INTEGER: = 201;\nHTTP_ACCEPTED\
+  \ CONSTANT PLS_INTEGER: = 202;\nHTTP_NON_AUTHORITATIVE_INFO CONSTANT PLS_INTEGER:\
+  \ = 203;\nHTTP_NO_CONTENT CONSTANT PLS_INTEGER: = 204;\nHTTP_RESET_CONTENT CONSTANT\
+  \ PLS_INTEGER: = 205;\nHTTP_PARTIAL_CONTENT CONSTANT PLS_INTEGER: = 206;\nHTTP_MULTIPLE_CHOICES\
+  \ CONSTANT PLS_INTEGER: = 300;\nHTTP_MOVED_PERMANENTLY CONSTANT PLS_INTEGER: = 301;\n\
+  HTTP_FOUND CONSTANT PLS_INTEGER: = 302;\nHTTP_SEE_OTHER CONSTANT PLS_INTEGER: =\
+  \ 303;\nHTTP_NOT_MODIFIED CONSTANT PLS_INTEGER: = 304;\nHTTP_USE_PROXY CONSTANT\
+  \ PLS_INTEGER: = 305;\nHTTP_TEMPORARY_REDIRECT CONSTANT PLS_INTEGER: = 307;\nHTTP_BAD_REQUEST\
+  \ CONSTANT PLS_INTEGER: = 400;\nHTTP_UNAUTHORIZED CONSTANT PLS_INTEGER: = 401;\n\
+  HTTP_PAYMENT_REQUIRED CONSTANT PLS_INTEGER: = 402;\nHTTP_FORBIDDEN CONSTANT PLS_INTEGER:\
+  \ = 403;\nHTTP_NOT_FOUND CONSTANT PLS_INTEGER: = 404;\nHTTP_NOT_ACCEPTABLE CONSTANT\
+  \ PLS_INTEGER: = 406;\nHTTP_PROXY_AUTH_REQUIRED CONSTANT PLS_INTEGER: = 407;\nHTTP_REQUEST_TIME_OUT\
+  \ CONSTANT PLS_INTEGER: = 408;\nHTTP_CONFLICT CONSTANT PLS_INTEGER: = 409;\nHTTP_GONE\
+  \ CONSTANT PLS_INTEGER: = 410;\nHTTP_LENGTH_REQUIRED CONSTANT PLS_INTEGER: = 411;\n\
+  HTTP_PRECONDITION_FAILED CONSTANT PLS_INTEGER: = 412;\nHTTP_REQUEST_ENTITY_TOO_LARGE\
+  \ CONSTANT PLS_INTEGER: = 413;\nHTTP_REQUEST_URI_TOO_LARGE CONSTANT PLS_INTEGER:\
+  \ = 414;\nHTTP_UNSUPPORTED_MEDIA_TYPE CONSTANT PLS_INTEGER: = 415;\nHTTP_REQ_RANGE_NOT_SATISFIABLE\
+  \ CONSTANT PLS_INTEGER: = 416;\nHTTP_EXPECTATION_FAILED CONSTANT PLS_INTEGER: =\
+  \ 417;\nHTTP_NOT_IMPLEMENTED CONSTANT PLS_INTEGER: = 501;\nHTTP_BAD_GATEWAY CONSTANT\
+  \ PLS_INTEGER: = 502;\nHTTP_SERVICE_UNAVAILABLE CONSTANT PLS_INTEGER: = 503;\nHTTP_GATEWAY_TIME_OUT\
+  \ CONSTANT PLS_INTEGER: = 504;\nHTTP_VERSION_NOT_SUPPORTED CONSTANT PLS_INTEGER:\
+  \ = 505;\n-- Exceptions\n--\n-- NOTES:\n--   The partial_multibyte_char and transfer_timeout\
+  \ exceptions are\n-- duplicates of the same exceptions as defined in the UTL_TCP\
+  \ package.\n-- They are defined in this package so that the use of this package\
+  \ does not\n-- require the knowledge of the UTL_TCP package.  As those exceptions\n\
+  -- are duplicates, an exception handle which catches the\n-- partial_multibyte_char\
+  \ and transfer_timeout exceptions in this\n-- package also catches those exceptions\
+  \ in the UTL_TCP package.\n--\ninit_failed\nEXCEPTION;\n-- The UTL_HTTP pkg initialization\
+  \ failed\n  request_failed\nEXCEPTION;\n-- The HTTP request failed\n  bad_argument\n\
+  EXCEPTION;\n-- A bad argument was passed to an API\n  bad_url\nEXCEPTION;\n-- The\
+  \ URL is bad\n  protocol_error\nEXCEPTION;\n-- A HTTP protocol error occurred\n\
+  \  unknown_scheme\nEXCEPTION;\n-- The scheme of the URL is unknown\n  header_not_found\n\
+  EXCEPTION;\n-- The HTTP header is not found\n  end_of_body\nEXCEPTION;\n-- The end\
+  \ of response body is reached\n  illegal_call\nEXCEPTION;\n-- The API call is illegal\
+  \ at this stage\n  http_client_error\nEXCEPTION;\n-- A 4xx response code is returned\n\
+  \  http_server_error\nEXCEPTION;\n-- A 5xx response code is returned\n  too_many_requests\n\
+  EXCEPTION;\n-- Too many open requests or responses\n  partial_multibyte_char\nEXCEPTION;\n\
+  -- A partial multi-byte character found\n  transfer_timeout\nEXCEPTION;\n-- Transfer\
+  \ time-out occurred\n  network_access_denied\nEXCEPTION;\n-- Network access denied\n\
+  \  PRAGMA EXCEPTION_INIT(init_failed, -29272);\nPRAGMA EXCEPTION_INIT(request_failed,\
+  \ -29273);\nPRAGMA EXCEPTION_INIT(bad_argument, -29261);\nPRAGMA EXCEPTION_INIT(bad_url,\
+  \ -29262);\nPRAGMA EXCEPTION_INIT(protocol_error, -29263);\nPRAGMA EXCEPTION_INIT(unknown_scheme,\
+  \ -29264);\nPRAGMA EXCEPTION_INIT(header_not_found, -29265);\nPRAGMA EXCEPTION_INIT(end_of_body,\
+  \ -29266);\nPRAGMA EXCEPTION_INIT(illegal_call, -29267);\nPRAGMA EXCEPTION_INIT(http_client_error,\
+  \ -29268);\nPRAGMA EXCEPTION_INIT(http_server_error, -29269);\nPRAGMA EXCEPTION_INIT(too_many_requests,\
+  \ -29270);\nPRAGMA EXCEPTION_INIT(partial_multibyte_char, -29275);\nPRAGMA EXCEPTION_INIT(transfer_timeout,\
+  \ -29276);\nPRAGMA EXCEPTION_INIT(network_access_denied, -24247);\n-- VARCHAR2 table\
+  \ for returning HTML from request_pieces\n  TYPE html_pieces IS TABLE OF VARCHAR2(2000)\
+  \ INDEX BY BINARY_INTEGER;\n-- A PL/SQL record type that represents a HTTP request\n\
+  \  TYPE req IS RECORD (\n    url VARCHAR2(32767 byte),\n    -- Requested URL\n \
+  \   method VARCHAR2(64),\n    -- Requested method\n    http_version VARCHAR2(64),\n\
+  \    -- Requested HTTP version\n    private_hndl PLS_INTEGER -- For internal use\
+  \ only\n  );\n-- A PL/SQL record type that represents a HTTP response\n  TYPE resp\
+  \ IS RECORD (\n    status_code PLS_INTEGER,\n    -- Response status code\n    reason_phrase\
+  \ VARCHAR2(256),\n    -- Response reason phrase\n    http_version VARCHAR2(64),\n\
+  \    -- Response HTTP version\n    private_hndl PLS_INTEGER -- For internal use\
+  \ only\n  );\n  /* Note:\n  \n     * - the \"private_xxxx\" field(s) in the req\
+  \ and resp record types are for\n  \n     *   internal use only and users should\
+  \ not try to modify them.\n  \n     * - the HTTP information returned in the req\
+  \ and resp from the API\n  \n     *   begin_request and get_response are for read\
+  \ only.  Changing the\n  \n     *   field values in the records has no effect to\
+  \ request or reesponse\n  \n     *   when making calls to the API in this package.\n\
+  \  \n     */\n  -- A PL/SQL record type that represents a HTTP cookie\n  TYPE cookie\
+  \ IS RECORD (\n    name VARCHAR2(256),\n    -- Cookie name\n    value VARCHAR2(1024),\n\
+  \    -- Cookie value\n    domain VARCHAR2(256),\n    -- Domain for which the cookie\
+  \ applies\n    expire TIMESTAMP WITH TIME ZONE,\n    -- When should the cookie expire\
+  \ ?\n    path VARCHAR2(1024),\n    -- Virtual path for which the cookie applies\n\
+  \    secure BOOLEAN,\n    -- Should the cookie be transferred by HTTPS only\n  \
+  \  version PLS_INTEGER,\n    -- Cookie specification version\n    comment VARCHAR2(1024)\
+  \ -- Comments about this cookie\n  );\n-- A PL/SQL table of cookies\n  TYPE cookie_table\
+  \ IS TABLE OF cookie INDEX BY BINARY_INTEGER;\n-- A PL/SQL record type that represents\
+  \ the host name(s) and TCP/IP port\n  -- number(s) of a HTTP persistent connection\
+  \ that is maintained in\n  -- the current database session.\n  --\n  -- For a direct\
+  \ HTTP persistent connection to a Web server, the host and\n  -- port fields contain\
+  \ the host name and TCP/IP port number of the Web\n  -- server.  The proxy_host\
+  \ and proxy_port fields are not set.  For a HTTP\n  -- persistent connection that\
+  \ was previously used to connect to a Web\n  -- server via a proxy, the proxy_host\
+  \ and proxy_port fields contains\n  -- the host name and TCP/IP port number of the\
+  \ proxy server.  The host\n  -- and port fields are not set, which indicates that\
+  \ the persistent\n  -- connection, while connected to a proxy server, is not bound\
+  \ to any\n  -- particular target Web server.  As a matter of fact, a HTTP persistent\n\
+  \  -- connection to a proxy server can be used to access any target Web server\n\
+  \  -- to be accessed via the proxy.\n  --\n  -- The ssl field indicates if Secured\
+  \ Socket Layer (SSL) is being used in a\n  -- HTTP persistent connection or not.\
+  \ Note that a HTTPS request is a HTTP\n  -- request made over SSL.  For a HTTPS\
+  \ (SSL) persistent connection connected\n  -- via a proxy, the host and port fields\
+  \ contain the host name and TCP/IP\n  -- port number of the target HTTPS Web server\
+  \ and the fields will always be\n  -- set.  As a matter of fact, a HTTPS persistent\
+  \ connection to a HTTPS\n  -- Web server via a proxy server can only be reused to\
+  \ make another request\n  -- to the same target Web server.\n  --\n  TYPE connection\
+  \ IS RECORD (\n    host VARCHAR2(256),\n    -- The host this persistent conn. is\
+  \ connected to\n    port PLS_INTEGER,\n    -- The port this persistent conn. is\
+  \ connected to\n    proxy_host VARCHAR2(256),\n    -- The proxy host this persistent\
+  \ conn. is\n    -- connected to\n    proxy_port PLS_INTEGER,\n    -- The proxy port\
+  \ this persistent conn. is\n    -- connected to\n    ssl BOOLEAN -- Is this a SSL\
+  \ connection?\n  );\n-- A PL/SQL table of persistent connections\n  TYPE connection_table\
+  \ IS TABLE OF connection INDEX BY BINARY_INTEGER;\n-- A PL/SQL type that represents\
+  \ the key to a request context. A request\n  -- context is a context that holds\
+  \ a wallet and a cookie for private use\n  -- in making a HTTP request.\n  SUBTYPE\
+  \ request_context_key is PLS_INTEGER;\n  /*-------------------------- Session API\
+  \ ------------------------------*/\n  /* The following set of API manipulate the\
+  \ configuration and default\n  \n     * behavior of this package when executing\
+  \ HTTP requests within a database\n  \n     * user session. When a request is created,\
+  \ it inherits the default settings\n  \n     * of the HTTP cookie support, follow-redirect,\
+  \ body character set,\n  \n     * persistent-connection support, and transfer time-out\
+  \ of the current\n  \n     * session. Those settings may be changed later by calling\
+  \ the request API.\n  \n     * When a response is created for a request, it inherits\
+  \ those settings from\n  \n     * the request. Only the body character set may be\
+  \ changed later by calling\n  \n     * the response API.\n  \n     */\n  /**\n \
+  \ \n     * Sets the proxy to be used for requests of the HTTP or other protocols,\n\
+  \  \n     * excluding those for hosts which belong to the domain specified in\n\
+  \  \n     * no_proxy_domains. proxy may include an optional TCP/IP port number\n\
+  \  \n     * at which the proxy server listens at. If the port is not specified for\
+  \ the\n  \n     * proxy, port 80 is assumed.\n  \n     *\n  \n     * no_proxy_domains\
+  \ is a list of domains or hosts for which HTTP requests\n  \n     * should be sent\
+  \ directly to the destination HTTP server instead of going\n  \n     * through a\
+  \ proxy server. Optionally, a port number may be specified for\n  \n     * each\
+  \ domain or host. If the port number is specified, the no-proxy\n  \n     * restriction\
+  \ is only applied to the request at that port of the particular\n  \n     * domain\
+  \ or host. . When no_proxy_domains is\n  \n     * NULL and proxy is set, all requests\
+  \ go through the proxy. When proxy\n  \n     * is not set, UTL_HTTP sends the requests\
+  \ to the target Web servers\n  \n     * directly.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   proxy             The proxy host and port number. The syntax is\n\
+  \  \n     *                     \"[http://]host[:port][/]\".  For example,\n  \n\
+  \     *                     \"www-proxy.my-company.com:80\".\n  \n     *   no_proxy_domains\
+  \  The list of no-proxy domains or hosts.  The syntax is\n  \n     *           \
+  \          a list of host or domains, with optional port numbers\n  \n     *   \
+  \                  separated by a comma, a semi-colon, or a space.\n  \n     * \
+  \                    Example: \"corp.my-company.com, eng.my-company.com:80\"\n \
+  \ \n     * RETURN\n  \n     *   None\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous\
+  \ runtime exceptions.\n  \n     * NOTES\n  \n     *   When a database session starts,\
+  \ it will assume the proxy settings\n  \n     *   in the environment variables \"\
+  http_proxy\" and \"no_proxy\" if they are\n  \n     *   set when the database server\
+  \ instance is started. Proxy settings set\n  \n     *   by this procedure overrides\
+  \ the initial settings.\n  \n     *\n  \n     *  The general format would be\n \
+  \ \n     *                [http://][<user>[:<password>]@]<host>[:<port>].\n  \n\
+  \     *  Suppose the proxy parameter has username and password, then\n  \n     *\
+  \  begin_request will do the authentication also on the proxy.\n  \n     */\n  PROCEDURE\
+  \ set_proxy(\n    proxy IN VARCHAR2,\n    no_proxy_domains IN VARCHAR2 DEFAULT NULL\n\
+  \  );\nPRAGMA restrict_references(set_proxy, wnds, rnds, trust);\n  /**\n  \n  \
+  \   * Retrieves the current proxy settings\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   proxy              The proxy host and port number.\n  \n     *   no_proxy_domains\
+  \   The list of no-proxy domains or hosts.\n  \n     * RETURN\n  \n     *   None\n\
+  \  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n  \n   \
+  \  * NOTES\n  \n     *   None.\n  \n     */\n  PROCEDURE get_proxy(\n    proxy OUT\
+  \ NOCOPY VARCHAR2,\n    no_proxy_domains OUT NOCOPY VARCHAR2\n  );\nPRAGMA restrict_references(get_proxy,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Sets whether future HTTP requests should\
+  \ support the HTTP cookies or not,\n  \n     * and the maximum numbers of cookies\
+  \ to be maintained in the current\n  \n     * database user session.\n  \n     *\n\
+  \  \n     * If the cookie support is enabled for a HTTP request, all cookies that\n\
+  \  \n     * are saved in the current session and are applicable to the request will\n\
+  \  \n     * be returned to the Web server in the request in accordance to the HTTP\n\
+  \  \n     * cookies specification RFC 2109 and to the draft proposal by Netscape\n\
+  \  \n     * Communications Corporation. Cookies that are set in the response to\n\
+  \  \n     * the request will be saved in the current session for return to the Web\n\
+  \  \n     * server in the subsequent requests if the cookie support is enabled\n\
+  \  \n     * for those requests. If the cookie support is disabled for a HTTP request,\n\
+  \  \n     * no cookies will be returned to the Web server in the request and the\n\
+  \  \n     * cookies set in the response to the request will not be saved in the\n\
+  \  \n     * current session, although the \"Set-Cookie\" HTTP headers can still\
+  \ be\n  \n     * retrieved from the response.\n  \n     *\n  \n     * The cookie\
+  \ support is enabled for all HTTP requests by default in a\n  \n     * database\
+  \ user session. The default maximum numbers of cookies saved in\n  \n     * the\
+  \ current session totally and per-site are 300 and 20 respectively.\n  \n     *\
+  \ Use this procedure to change the default settings. The default setting\n  \n \
+  \    * of the cookie support (enabled vs. disabled) affects only the future\n  \n\
+  \     * requests and has no effect on the existing ones.\n  \n     *\n  \n     *\
+  \ Once a request is created, the cookie support setting may be changed\n  \n   \
+  \  * by using the other set_cookie_support procedure that operates\n  \n     * on\
+  \ a request.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   enable        Sets\
+  \ whether future HTTP requests should support HTTP\n  \n     *                 cookies\
+  \ or not. TRUE to enable the support, FALSE to\n  \n     *                 disable\
+  \ it.\n  \n     *   max_cookies   Sets the maximum total number of cookies that\
+  \ will be\n  \n     *                 maintained in the current session.\n  \n \
+  \    *   max_cookies_per_site  Sets the maximum number of cookies per each Web\n\
+  \  \n     *                         site that will be maintained in the current\n\
+  \  \n     *                         session.\n  \n     * EXCEPTIONS\n  \n     *\
+  \   miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *   If the maximum\
+  \ total number of cookies and the maximum number of cookies\n  \n     *   per each\
+  \ Web site are lowered when this procedure is called, the\n  \n     *   oldest cookies\
+  \ will be purged first to reduce the number of cookies\n  \n     *   to satisfy\
+  \ those new maximum limits.\n  \n     *\n  \n     *   Note that the HTTP cookies\
+  \ saved in the current session will last for\n  \n     *   the duration of the database\
+  \ session only and there is no persistent\n  \n     *   storage for the cookies.\
+  \ An example is given in the package\n  \n     *   documentation to illustrate how\
+  \ to use get_cookies and add_cookies\n  \n     *   to retrieve, save, and restore\
+  \ the cookies.\n  \n     *\n  \n     *   Note that setting the default setting of\
+  \ the cookie support to disabled\n  \n     *   with this procedure does not cause\
+  \ the cookies saved in the current\n  \n     *   session to be cleared.\n  \n  \
+  \   */\n  PROCEDURE set_cookie_support(\n    enable IN BOOLEAN,\n    max_cookies\
+  \ IN PLS_INTEGER DEFAULT 300,\n    max_cookies_per_site IN PLS_INTEGER DEFAULT 20\n\
+  \  );\nPRAGMA restrict_references(set_cookie_support, wnds, rnds, trust);\n  /**\n\
+  \  \n     * Retrieves the current cookie support settings.\n  \n     *\n  \n   \
+  \  * PARAMETERS\n  \n     *   enable        Whether all future HTTP requests will\
+  \ support the HTTP\n  \n     *                 cookies or not?\n  \n     *   max_cookies\
+  \   The maximum total number of cookies that will be\n  \n     *               \
+  \  maintained in the current session.\n  \n     *   max_cookies_per_site  The maximum\
+  \ number of cookies per each Web site\n  \n     *                         that will\
+  \ be maintained in the current session.\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous\
+  \ runtime exceptions.\n  \n     * NOTES\n  \n     *   None.\n  \n     */\n  PROCEDURE\
+  \ get_cookie_support(\n    enable OUT BOOLEAN,\n    max_cookies OUT PLS_INTEGER,\n\
+  \    max_cookies_per_site OUT PLS_INTEGER\n  );\nPRAGMA restrict_references(get_cookie_support,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Sets the maximum number of times the UTL_HTTP\
+  \ package should follow HTTP\n  \n     * redirect instruction in the HTTP responses\
+  \ to all future HTTP requests\n  \n     * in the function get_response.\n  \n  \
+  \   *\n  \n     * If max_redirects is set to a positive number, get_response will\n\
+  \  \n     * automatically follow the redirected URL for the HTTP response status\
+  \ code\n  \n     * 301, 302, and 307 for the HTTP HEAD and GET methods, and 303\
+  \ for all HTTP\n  \n     * methods, and retry the HTTP request (the request method\
+  \ will be changed\n  \n     * to HTTP GET for the status code 303) at the new location.\
+  \ It keeps\n  \n     * following the redirection until the final, non-redirect location\
+  \ is\n  \n     * reached, or an error occurs, or the maximum number of redirections\
+  \ has\n  \n     * been reached (to prevent an infinite loop). The url and method\
+  \ fields in\n  \n     * the req record will be updated to the last redirected URL\
+  \ and the method\n  \n     * used to access the URL. Set the maximum number of redirects\
+  \ to zero to\n  \n     * disable automatic redirection.\n  \n     *\n  \n     *\
+  \ The maximum number of redirection is 3 by default in a database user\n  \n   \
+  \  * session. Use this procedure to change the default settings. The default\n \
+  \ \n     * value affects only the future requests and has no effect on the\n  \n\
+  \     * existing ones.\n  \n     *\n  \n     * Once a request is created, the maximum\
+  \ number of redirection may be\n  \n     * changed by using the other set_follow_redirect\
+  \ procedure that operates\n  \n     * on a request.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   max_redirects  The maximum number of redirections. Set to zero to\n\
+  \  \n     *                  disable redirection.\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *   miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *  \
+  \ None.\n  \n     */\n  PROCEDURE set_follow_redirect(max_redirects IN PLS_INTEGER\
+  \ DEFAULT 3);\nPRAGMA restrict_references(set_follow_redirect, wnds, rnds, trust);\n\
+  \  /**\n  \n     *  Retrieves the follow-redirect setting in the current session.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   max_redirects  The maximum number\
+  \ of redirection for all future HTTP\n  \n     *                  requests.\n  \n\
+  \     *\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n\
+  \  \n     * NOTES\n  \n     *   None.\n  \n     */\n  PROCEDURE get_follow_redirect(max_redirects\
+  \ OUT PLS_INTEGER);\nPRAGMA restrict_references(get_follow_redirect, wnds, rnds,\
+  \ trust);\n  /**\n  \n     * Sets the default character set of the body of all future\
+  \ HTTP requests\n  \n     * when the media type is \"text\" but the character set\
+  \ is not specified in\n  \n     * the \"Content-Type\" header. Per the HTTP protocol\
+  \ standard specification,\n  \n     * if the media type of a request or a response\
+  \ is \"text\" but the character\n  \n     * set information is missing in the \"\
+  Content-Type\" header, the character\n  \n     * set of the request or response\
+  \ body should default to \"ISO-8859-1\".\n  \n     * Sets the default character\
+  \ set to override the default character set\n  \n     * \"ISO-8859-1\". Note that\
+  \ a response created for a request inherits the\n  \n     * default body character\
+  \ set of the request instead of that of the current\n  \n     * session.\n  \n \
+  \    *\n  \n     * The default body character set is \"ISO-8859-1\" in a database\
+  \ user session.\n  \n     * Use this procedure to change the default settings. The\
+  \ default body\n  \n     * character set setting affects only the future requests\
+  \ and has not\n  \n     * effect on the existing ones.\n  \n     *\n  \n     * Once\
+  \ a request is created, the body character set may be changed by\n  \n     * using\
+  \ the other set_body_charset procedure that operates on a request.\n  \n     *\n\
+  \  \n     * PARAMETERS\n  \n     *   charset   The default character set of the\
+  \ request body.\n  \n     *             The character set can be in Oracle or Internet\
+  \ Assigned\n  \n     *             Numbers Authority (IANA) naming convention. If\
+  \ charset is\n  \n     *             NULL, the database character set is assumed.\n\
+  \  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n  \n   \
+  \  * NOTES\n  \n     *   None.\n  \n     */\n  PROCEDURE set_body_charset(charset\
+  \ IN VARCHAR2 DEFAULT NULL);\nPRAGMA restrict_references(set_body_charset, wnds,\
+  \ rnds, trust);\n  /**\n  \n     * Retrieves the default character set of the body\
+  \ of all future HTTP\n  \n     * requests.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   charset   The default character set of the body of all future HTTP\n\
+  \  \n     *             requests.\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *\
+  \   miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *   None.\n  \n\
+  \     */\n  PROCEDURE get_body_charset(charset OUT NOCOPY VARCHAR2);\nPRAGMA restrict_references(get_body_charset,\
+  \ wnds, rnds, trust);\n  /* The following function, which returns the same default\
+  \ body character set\n  \n     * as the procedure \"get_body_charset\" does, is\
+  \ for use by the UTL_URL\n  \n     * package only. It is not intended to be used\
+  \ by Oracle users as a public\n  \n     * API.\n  \n     */\n  FUNCTION get_body_charset\
+  \ RETURN VARCHAR2;\nPRAGMA restrict_references(get_body_charset, wnds, rnds, trust);\n\
+  \  /**\n  \n     * Sets whether future HTTP requests should support the HTTP 1.1\
+  \ persistent-\n  \n     * connection or not, and the maximum numbers of persistent\
+  \ connections\n  \n     * to be maintained in the current database user session.\n\
+  \  \n     *\n  \n     * If the persistent-connection support is enabled for a HTTP\
+  \ request,\n  \n     * the package will keep the network connections to a Web server\
+  \ or the\n  \n     * proxy server open in the package after the request is completed\
+  \ properly\n  \n     * for a subsequent request to the same server to reuse per\
+  \ HTTP 1.1\n  \n     * protocol specification. With the persistent connection support,\n\
+  \  \n     * subsequent HTTP requests may be completed faster because the network\n\
+  \  \n     * connection latency is avoided. If the persistent-connection support\n\
+  \  \n     * is disabled for a request, the package will always send the HTTP header\n\
+  \  \n     * \"Connection: close\" automatically in the HTTP request and close the\n\
+  \  \n     * network connection when the request is completed. This setting has no\n\
+  \  \n     * effect on HTTP requests that follows HTTP 1.0 protocol, for which the\n\
+  \  \n     * network connections will always be closed after the requests are\n \
+  \ \n     * completed.\n  \n     *\n  \n     * When a request is being made, the\
+  \ package always attempts to reuse an\n  \n     * existing persistent connection\
+  \ to the target Web server (or proxy server)\n  \n     * if one is available. If\
+  \ none is available, a new network connection will\n  \n     * be initiated. The\
+  \ persistent-connection support setting for a request\n  \n     * affects only whether\
+  \ the network connection should be closed after a\n  \n     * request completes.\n\
+  \  \n     *\n  \n     * The persistent-connection support is disabled for all HTTP\
+  \ requests by\n  \n     * default in a database user session. The default maximum\
+  \ numbers of\n  \n     * persistent connections saved in the current session is\
+  \ zero. Use this\n  \n     * procedure to change the default settings. The default\
+  \ setting\n  \n     * of the persistent-connection support (enabled vs. disabled)\
+  \ affects only\n  \n     * the future requests and has no effect on the existing\
+  \ ones.\n  \n     *\n  \n     * Once a request is created, the persistent-connection\
+  \ support setting\n  \n     * may be changed by using the other set_persistent_conn_support\
+  \ procedure\n  \n     * that operates on a request.\n  \n     *\n  \n     * Users\
+  \ should note that while the use of persistent connections in UTL_HTTP\n  \n   \
+  \  * may reduce the time it takes to fetch multiple Web pages from the same\n  \n\
+  \     * server, it consumes precious system resources (network connections) in\n\
+  \  \n     * the database server. Excessive use of persistent connections may\n \
+  \ \n     * reduce the scalability of the database server when too many network\n\
+  \  \n     * connections are kept open in the database server. Therefore, users should\n\
+  \  \n     * exert discretion when using persistent connection. Network connections\n\
+  \  \n     * should be kept open only if they will be used immediately by subsequent\n\
+  \  \n     * requests and should be closed immediately when they are no longer needed.\n\
+  \  \n     * Also, users are advised to set the default persistent connection support\n\
+  \  \n     * support as disabled in the session, and to enable persistent connection\
+  \ in\n  \n     * individual HTTP requests as shown in the following code example:\n\
+  \  \n     *\n  \n     *   DECLARE\n  \n     *     TYPE vc2_table IS TABLE OF VARCHAR2(256)\
+  \ INDEX BY binary_integer;\n  \n     *     paths vc2_table;\n  \n     *\n  \n  \
+  \   *     PROCEDURE fetch_pages(paths IN vc2_table) AS\n  \n     *       url_prefix\
+  \ VARCHAR2(256) := 'http://www.my-company.com/';\n  \n     *       req   utl_http.req;\n\
+  \  \n     *       resp  utl_http.resp;\n  \n     *       data  VARCHAR2(1024);\n\
+  \  \n     *     BEGIN\n  \n     *       FOR i IN 1..paths.count LOOP\n  \n     *\
+  \         req := utl_http.begin_request(url_prefix || paths(i));\n  \n     *\n \
+  \ \n     *         -- Use persistent connection except for the last request\n  \n\
+  \     *         IF (i < paths.count) THEN\n  \n     *           utl_http.set_persistent_conn_support(req,\
+  \ TRUE);\n  \n     *         END IF;\n  \n     *\n  \n     *         resp := utl_http.get_response(req);\n\
+  \  \n     *\n  \n     *         BEGIN\n  \n     *           LOOP\n  \n     *   \
+  \          utl_http.read_text(resp, data);\n  \n     *             -- do something\
+  \ with the data\n  \n     *           END LOOP;\n  \n     *         EXCEPTION\n\
+  \  \n     *           WHEN utl_http.end_of_body THEN\n  \n     *             NULL;\n\
+  \  \n     *         END;\n  \n     *         utl_http.end_response(resp);\n  \n\
+  \     *       END LOOP;\n  \n     *     END;\n  \n     *\n  \n     *   BEGIN\n \
+  \ \n     *     utl_http.set_persistent_conn_support(FALSE, 1);\n  \n     *     paths(1)\
+  \ := '...';\n  \n     *     paths(2) := '...';\n  \n     *     ...\n  \n     * \
+  \    fetch_pages(paths);\n  \n     *   END;\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   enable    Set enable to TRUE to enable persistent connection support.\n\
+  \  \n     *             FALSE otherwise.\n  \n     *   max_conns Sets the maximum\
+  \ number of persistent connections that will\n  \n     *             be maintained\
+  \ in the current session.\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous\
+  \ runtime exceptions.\n  \n     * NOTES\n  \n     *   The default value of the maximum\
+  \ number of persistent connections\n  \n     * in a database session is zero.  To\
+  \ truly enable persistent connections,\n  \n     * the user must also set the maximum\
+  \ number of persistent connections to\n  \n     * a positive value or no connections\
+  \ will be kept persistent.\n  \n     */\n  PROCEDURE set_persistent_conn_support(\n\
+  \    enable IN BOOLEAN,\n    max_conns IN PLS_INTEGER DEFAULT 0\n  );\nPRAGMA restrict_references(set_persistent_conn_support,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Checks if the persistent connection support\
+  \ is enabled or not, and\n  \n     * retrieves the maximum number of persistent\
+  \ connections maintained\n  \n     * in the current session.\n  \n     *\n  \n \
+  \    * PARAMETERS\n  \n     *   enable    TRUE if persistent connection support\
+  \ is enabled.\n  \n     *             FALSE otherwise.\n  \n     *   max_conns The\
+  \ maximum number of persistent connections that will be\n  \n     *            \
+  \ maintained in the current session.\n  \n     *\n  \n     * EXCEPTIONS\n  \n  \
+  \   *   miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *   None.\n\
+  \  \n     */\n  PROCEDURE get_persistent_conn_support(\n    enable OUT BOOLEAN,\n\
+  \    max_conns OUT PLS_INTEGER\n  );\nPRAGMA restrict_references(get_persistent_conn_support,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Sets whether get_response should raise\
+  \ an exception when the Web server\n  \n     * returns a status code that indicates\
+  \ an error (namely, a status code in\n  \n     * the 4xx or 5xx ranges). For example,\
+  \ when the requested URL is not found\n  \n     * in the destination Web server,\
+  \ a 404 (document not found) response status\n  \n     * code is returned.  In general,\
+  \ a 4xx or 5xx response is considered an\n  \n     * error response.  If response\
+  \ error check is set, get_response will raise\n  \n     * the HTTP_CLIENT_ERROR\
+  \ or HTTP_SERVER_ERROR exception if the status code\n  \n     * indicates an error.\
+  \ Otherwise, get_response will not raise the exception\n  \n     * if the status\
+  \ codes indicates an error. Response error check is turned off\n  \n     * by default.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   enable         Set to TRUE to check\
+  \ for response error. FALSE otherwise.\n  \n     *\n  \n     * EXCEPTIONS\n  \n\
+  \     *   miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *   None.\n\
+  \  \n     */\n  PROCEDURE set_response_error_check(enable IN BOOLEAN DEFAULT FALSE);\n\
+  PRAGMA restrict_references(set_response_error_check, wnds, rnds, trust);\n  /**\n\
+  \  \n     * Checks if response error check is set or not.\n  \n     *\n  \n    \
+  \ * PARAMETERS\n  \n     *   enable         TRUE if response error check is set.\
+  \ FALSE otherwise.\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous\
+  \ runtime exceptions.\n  \n     * NOTES\n  \n     *   None.\n  \n     */\n  PROCEDURE\
+  \ get_response_error_check(enable OUT BOOLEAN);\nPRAGMA restrict_references(get_response_error_check,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Sets the UTL_HTTP package to raise a detailed\
+  \ exception. By default,\n  \n     * the UTL_HTTP package raises the exception request_failed\
+  \ when a HTTP\n  \n     * request fails. The user may use get_detailed_sqlcode and\n\
+  \  \n     * get_detailed_sqlerrm to obtained the more detailed information of the\n\
+  \  \n     * actual error. Use set_detailed_excp_support to ask the UTL_HTTP package\n\
+  \  \n     * to raise a detailed exception directly instead.\n  \n     *\n  \n  \
+  \   * PARAMETERS\n  \n     *   enable    Sets to TRUE to ask the UTL_HTTP package\
+  \ to raise a detailed\n  \n     *             exception directly. FALSE otherwise.\n\
+  \  \n     *\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n\
+  \  \n     * NOTES\n  \n     *   None.\n  \n     */\n  PROCEDURE set_detailed_excp_support(enable\
+  \ IN BOOLEAN DEFAULT FALSE);\nPRAGMA restrict_references(set_detailed_excp_support,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Checks if the UTL_HTTP package will raise\
+  \ a detailed exception or not.\n  \n     *\n  \n     * PARAMETERS\n  \n     *  \
+  \ enable    TRUE if the UTL_HTTP package will raise a detailed exception.\n  \n\
+  \     *             FALSE otherwise.\n  \n     *\n  \n     * EXCEPTIONS\n  \n  \
+  \   *   miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *   None.\n\
+  \  \n     */\n  PROCEDURE get_detailed_excp_support(enable OUT BOOLEAN);\nPRAGMA\
+  \ restrict_references(get_detailed_excp_support, wnds, rnds, trust);\n  /**\n  \n\
+  \     * Sets the Oracle wallet to be used for all HTTP requests over Secured\n \
+  \ \n     * Socket Layer (SSL), namely HTTPS. When the UTL_HTTP package communicates\n\
+  \  \n     * with a HTTP server over SSL, the HTTP server presents its digital\n\
+  \  \n     * certificate, which is signed by a certificate authority, to the UTL_HTTP\n\
+  \  \n     * package for identification purpose. The Oracle wallet contains the list\n\
+  \  \n     * of certificate authorities which are trusted by the user of the UTL_HTTP\n\
+  \  \n     * package. An Oracle wallet is required in order to make a HTTPS request\n\
+  \  \n     * successfully.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   path\
+  \      The directory path that contains the Oracle wallet.\n  \n     *         \
+  \    The format is \"file:<directory-path>\".\n  \n     *   password  The password\
+  \ needed to open the wallet. There may a second\n  \n     *             copy of\
+  \ a wallet in a wallet directory that may be opened\n  \n     *             without\
+  \ a password. That second copy of the wallet is for\n  \n     *             read\
+  \ only. If password is NULL, the UTL_HTTP package will\n  \n     *             open\
+  \ the second, read-only copy of the wallet instead.\n  \n     *             See\
+  \ the documentation on Oracle wallets for details.\n  \n     * EXCEPTIONS\n  \n\
+  \     *   miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *   None.\n\
+  \  \n     */\n  PROCEDURE set_wallet(\n    path IN VARCHAR2,\n    password IN VARCHAR2\
+  \ DEFAULT NULL\n  );\nPRAGMA restrict_references(set_wallet, wnds, rnds, trust);\n\
+  \  /**\n  \n     * Sets the default time-out value for all future HTTP requests\
+  \ that the\n  \n     * UTL_HTTP package should attempt reading the HTTP response\
+  \ from the\n  \n     * Web server or proxy server. This time-out value may be used\
+  \ to avoid the\n  \n     * PL/SQL programs from being blocked by busy Web servers\
+  \ or heavy network\n  \n     * traffic while retrieving Web pages from the Web servers.\
+  \ The default\n  \n     * value of the time-out is 60 seconds.\n  \n     *\n  \n\
+  \     * PARAMETERS\n  \n     *   timeout   The network transfer time-out value (in\
+  \ seconds).\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime\
+  \ exceptions.\n  \n     * NOTES\n  \n     *   None.\n  \n     */\n  PROCEDURE set_transfer_timeout(timeout\
+  \ IN PLS_INTEGER DEFAULT 60);\nPRAGMA restrict_references(set_transfer_timeout,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Retrieves the default time-out value for\
+  \ all future HTTP requests.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   timeout\
+  \   The network transfer time-out value (in seconds).\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *   miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *  \
+  \ None.\n  \n     */\n  PROCEDURE get_transfer_timeout(timeout OUT PLS_INTEGER);\n\
+  PRAGMA restrict_references(get_transfer_timeout, wnds, rnds, trust);\n  /**\n  \n\
+  \     * Creates a request context. A request context is a context that holds\n \
+  \ \n     * a wallet and a cookie for private use in making a HTTP request.\n  \n\
+  \     * This allows the HTTP request to use a wallet and a cookie table\n  \n  \
+  \   * that will not be shared with other applications making HTTP requests\n  \n\
+  \     * in the same database session.\n  \n     *\n  \n     * PARAMETERS\n  \n \
+  \    *   wallet_path  The directory path that contains the Oracle wallet.\n  \n\
+  \     *             The format is \"file:<directory-path>\".\n  \n     *   wallet_password\
+  \  The password needed to open the wallet. There may a\n  \n     *             second\
+  \ copy of a wallet in a wallet directory that may be\n  \n     *             opened\
+  \ without a password. That second copy of the wallet is\n  \n     *            \
+  \ for read only. If password is NULL, the UTL_HTTP package will\n  \n     *    \
+  \         open the second, read-only copy of the wallet instead.\n  \n     *   \
+  \          See the documentation on Oracle wallets for details.\n  \n     *   enable_cookies\
+  \  Sets whether HTTP requests using this request context\n  \n     *           \
+  \  should support HTTP cookies or not. TRUE to enable the\n  \n     *          \
+  \   support, FALSE to disable it.\n  \n     *   max_cookies  Sets the maximum total\
+  \ number of cookies that will be\n  \n     *             maintained in this request\
+  \ context.\n  \n     *   max_cookies_per_site  Sets the maximum number of cookies\
+  \ per each Web\n  \n     *             site that will be maintained in this request\
+  \ context.\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime\
+  \ exceptions.\n  \n     * NOTES\n  \n     *   None.\n  \n     */\n  FUNCTION create_request_context(\n\
+  \    wallet_path IN VARCHAR2 DEFAULT NULL,\n    wallet_password IN VARCHAR2 DEFAULT\
+  \ NULL,\n    enable_cookies IN BOOLEAN DEFAULT TRUE,\n    max_cookies IN PLS_INTEGER\
+  \ DEFAULT 300,\n    max_cookies_per_site IN PLS_INTEGER DEFAULT 20\n  ) RETURN request_context_key;\n\
+  PRAGMA restrict_references(create_request_context, wnds, rnds, trust);\n  /**\n\
+  \  \n     * Destroys a request context. A request cannot be destroyed when it is\n\
+  \  \n     * in use by a HTTP request or response.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   request_context  The request context to destroy\n  \n     *\n  \n\
+  \     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n  \n     * NOTES\n\
+  \  \n     *   None.\n  \n     */\n  PROCEDURE destroy_request_context(request_context\
+  \ IN OUT request_context_key);\nPRAGMA restrict_references(destroy_request_context,\
+  \ wnds, rnds, trust);\n  /*-------------------------- Request API ------------------------------*/\n\
+  \  /* The following set of API begin a HTTP request, manipulate its\n  \n     *\
+  \ attributes, and send the request information to the Web server.\n  \n     * When\
+  \ a request is created, it inherits the default settings of the HTTP\n  \n     *\
+  \ cookie support, follow-redirect, body character set, persistent-connection\n \
+  \ \n     * support, and transfer time-out of the current session.  Those settings\n\
+  \  \n     * may be changed by calling the request API.\n  \n     */\n  /**\n  \n\
+  \     * Begins a new HTTP request. When the function returns, the UTL_HTTP\n  \n\
+  \     * package has established the network connection to the target Web server,\n\
+  \  \n     * or the proxy server if a proxy server is to be used, and has sent the\n\
+  \  \n     * HTTP request line. The PL/SQL program should continue the request by\n\
+  \  \n     * calling some other API to complete the request.\n  \n     *\n  \n  \
+  \   * PARAMETERS\n  \n     *   url           The URL of the HTTP request.\n  \n\
+  \     *   method        The method to be performed on the resource identified by\n\
+  \  \n     *                 the URL.\n  \n     *   http_version  The HTTP protocol\
+  \ version to use to send the request.\n  \n     *                 The format of\
+  \ the protocol version is\n  \n     *                 \"HTTP/major-version.minor-version\"\
+  , where major-version\n  \n     *                 and minor-version are positive\
+  \ number. If this parameter\n  \n     *                 is set to NULL, the UTL_HTTP\
+  \ package will use the latest\n  \n     *                 HTTP protocol version\
+  \ that it supports to send the\n  \n     *                 request. The latest version\
+  \ that the package supports is\n  \n     *                 1.1 and it may be upgraded\
+  \ to a later version when one\n  \n     *                 becomes available. The\
+  \ parameter is set to NULL by\n  \n     *                 default.\n  \n     * \
+  \ request_context  The request context that holds the private wallet and\n  \n \
+  \    *                 the cookie table to use in this HTTP request. If this\n \
+  \ \n     *                 parameter is NULL, the wallet and cookie table shared\
+  \ in\n  \n     *                 the current database session will be used instead.\n\
+  \  \n     *\n  \n     * EXCEPTIONS\n  \n     *\n  \n     * When detailed-exception\
+  \ is disabled:\n  \n     *   request_failed    the request fails to execute\n  \n\
+  \     *                     (use get_detailed_sqlcode and get_detailed_sqlerrm to\n\
+  \  \n     *                      get the detailed error message)\n  \n     *\n \
+  \ \n     * When detailed-exception is enabled:\n  \n     *\n  \n     *   bad_argument\
+  \      when some of the arguments passed are not valid.\n  \n     *   bad_url  \
+  \         when the URL is not valid.\n  \n     *   unknown_scheme    when the request\
+  \ scheme is not known.\n  \n     *   too_many_requests when there are too many open\
+  \ requests.\n  \n     *   http_client_error when the HTTP proxy returns 4xx response\
+  \ for a HTTPS\n  \n     *                     request via the proxy\n  \n     *\
+  \   http_server_error when the HTTP proxy returns 5xx response for a HTTPS\n  \n\
+  \     *                     request via the proxy\n  \n     *   - plus miscellaneous\
+  \ network and runtime exceptions.\n  \n     * NOTES\n  \n     *   The URL passed\
+  \ as an argument to this function will not be examined\n  \n     * for illegal characters\
+  \ per the URL specification RFC 2396, like spaces\n  \n     * for example. The caller\
+  \ should escape those characters with the UTL_URL\n  \n     * package. See the comments\
+  \ of the package for the list of legal\n  \n     * characters in URLs. Note that\
+  \ URLs should consist of US-ASCII\n  \n     * characters only. The use of non-US-ASCII\
+  \ characters in an URL is\n  \n     * generally unsafe.\n  \n     *\n  \n     *\
+  \ URL may contain username and password to authenticate the request to the\n  \n\
+  \     * server. The general format would be\n  \n     *          <scheme>://[<user>[:<password>]@]<host>[:<port>]/[...].\n\
+  \  \n     *   An Oracle wallet must be set before accessing Web servers over the\
+  \ HTTPS\n  \n     * protocol. See the set_wallet procedure on how to set up an Oracle\
+  \ wallet.\n  \n     *   To connect to the remote Web server directly, or indirectly\
+  \ through\n  \n     * a HTTP proxy, the UTL_HTTP must have the \"connect\" ACL privilege\
+  \ to the\n  \n     * remote Web server host or the proxy host respectively.\n  \n\
+  \     *   To use the client-certificate credentials in a wallet to authenticate\n\
+  \  \n     * with the remote Web server over SSL, the UTL_HTTP must have the\n  \n\
+  \     * \"use-client-certificates\" privilege on the wallet.\n  \n     */\n  FUNCTION\
+  \ begin_request(\n    url IN VARCHAR2,\n    method IN VARCHAR2 DEFAULT 'GET',\n\
+  \    http_version IN VARCHAR2 DEFAULT NULL,\n    request_context IN request_context_key\
+  \ DEFAULT NULL\n  ) RETURN req;\nPRAGMA restrict_references(begin_request, wnds,\
+  \ rnds, trust);\n  /**\n  \n     * Sets a HTTP request property.\n  \n     *\n \
+  \ \n     * PARAMETERS\n  \n     *   r             The HTTP request\n  \n     * \
+  \  name          The name of the HTTP request property. The property name\n  \n\
+  \     *                 is case-sensitive.\n  \n     *   value         The value\
+  \ of the HTTP request property\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *\n\
+  \  \n     * When detailed-exception is disabled:\n  \n     *   request_failed  \
+  \  the request fails to execute\n  \n     *                     (use get_detailed_sqlcode\
+  \ and get_detailed_sqlerrm to\n  \n     *                      get the detailed\
+  \ error message)\n  \n     *\n  \n     * When detailed-exception is enabled:\n \
+  \ \n     *   bad_argument      when some of the arguments passed are not valid.\n\
+  \  \n     *   - plus miscellaneous network and runtime exceptions.\n  \n     */\n\
+  \  PROCEDURE set_property(\n    r IN OUT NOCOPY req,\n    name IN VARCHAR2,\n  \
+  \  value IN VARCHAR2 DEFAULT NULL\n  );\nPRAGMA restrict_references(set_property,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Sets a HTTP request header. The request\
+  \ header is sent to the Web server\n  \n     * as soon as it is set.\n  \n     *\n\
+  \  \n     * PARAMETERS\n  \n     *   r             The HTTP request\n  \n     *\
+  \   name          The name of the HTTP request header\n  \n     *   value      \
+  \   The value of the HTTP request header\n  \n     *\n  \n     * EXCEPTIONS\n  \n\
+  \     *\n  \n     * When detailed-exception is disabled:\n  \n     *   request_failed\
+  \    the request fails to execute\n  \n     *                     (use get_detailed_sqlcode\
+  \ and get_detailed_sqlerrm to\n  \n     *                      get the detailed\
+  \ error message)\n  \n     *\n  \n     * When detailed-exception is enabled:\n \
+  \ \n     *   bad_argument      when some of the arguments passed are not valid.\n\
+  \  \n     *   illegal_call      when the request body is already sent\n  \n    \
+  \ *   - plus miscellaneous network and runtime exceptions.\n  \n     * NOTES\n \
+  \ \n     *   Note that multiple HTTP headers with the same name are allowed per\n\
+  \  \n     * the HTTP protocol standard.  Therefore, setting a header does not\n\
+  \  \n     * replace a prior header with the same name.\n  \n     *   If the request\
+  \ is made using HTTP 1.1 protocol, the UTL_HTTP package\n  \n     * sets the \"\
+  Host\" header automatically for the user.\n  \n     *   When the user sets the \"\
+  Content-Type\" header with this procedure,\n  \n     * the UTL_HTTP package looks\
+  \ for the character set information in the\n  \n     * header value. If the character\
+  \ set information is present, it is set as\n  \n     * the character set of the\
+  \ request body. It can be overridden later by\n  \n     * using the set_body_charset\
+  \ procedure.\n  \n     *   When the user sets the \"Transfer-Encoding\" header with\
+  \ the value\n  \n     * \"chunked\", the UTL_HTTP automatically encodes the request\
+  \ body written\n  \n     * by the write_text, write_line, and write_raw procedures.\n\
+  \  \n     */\n  PROCEDURE set_header(\n    r IN OUT NOCOPY req,\n    name IN VARCHAR2,\n\
+  \    value IN VARCHAR2 DEFAULT NULL\n  );\nPRAGMA restrict_references(set_header,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Sets the HTTP authentication information\
+  \ in the HTTP request header\n  \n     * needed for the request to be authorized\
+  \ by the Web server.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   r        \
+  \     The HTTP request\n  \n     *   username      The username for the HTTP authentication\n\
+  \  \n     *   password      The password for the HTTP authentication\n  \n     *\
+  \   scheme        The HTTP authentication scheme. Either 'Basic' for\n  \n     *\
+  \                 the HTTP basic, 'Digest' for the HTTP digest, or\n  \n     * \
+  \                'AWS' for Amazon S3 authentication scheme.\n  \n     *        \
+  \         Default is 'Basic'.\n  \n     *   for_proxy     Is the HTTP authentication\
+  \ information for the access to\n  \n     *                 the HTTP proxy server\
+  \ instead of the Web server? Default\n  \n     *                 is FALSE.\n  \n\
+  \     *\n  \n     * EXCEPTIONS\n  \n     *\n  \n     * When detailed-exception is\
+  \ disabled:\n  \n     *   request_failed    the request fails to execute\n  \n \
+  \    *                     (use get_detailed_sqlcode and get_detailed_sqlerrm to\n\
+  \  \n     *                      get the detailed error message)\n  \n     *\n \
+  \ \n     * When detailed-exception is enabled:\n  \n     *   bad_argument      when\
+  \ some of the arguments passed are not valid.\n  \n     *   illegal_call      when\
+  \ the request body is already sent\n  \n     *   - plus miscellaneous network and\
+  \ runtime exceptions.\n  \n     * NOTES\n  \n     *     The supported authentication\
+  \ schemes are HTTP basic, digest and\n  \n     *   Amazon S3 authentication schemes.\n\
+  \  \n     *     For HTTP digest authentication, only \"auth\" but not \"auth-int\"\
+  \n  \n     *   quality-of protection (qop) is supported.\n  \n     *     For Amazon\
+  \ S3 authentication:\n  \n     *   - All headers used to compute the authentication\
+  \ header - Content-MD5,\n  \n     *     Content-Type, Date, and all X-Amz-* headers\
+  \ - must be set via the\n  \n     *     set_header procedure before set_authentication\
+  \ is called to compute\n  \n     *     and set the authentication header.\n  \n\
+  \     *   - When an endpoint other than \"s3.amazonaws.com\" is used, the user\n\
+  \  \n     *     should specify the correct endpoint to compute the authentication\n\
+  \  \n     *     header by setting the request property \"aws-endpoint\" using the\n\
+  \  \n     *     set_property procedure first. Alternatively, the user may specify\n\
+  \  \n     *     the CanonicalizedResource string through the request property\n\
+  \  \n     *     \"aws-canonicalized-resource\" irrespective of the endpoint to compute\n\
+  \  \n     *     the authentication header.\n  \n     */\n  PROCEDURE set_authentication(\n\
+  \    r IN OUT NOCOPY req,\n    username IN VARCHAR2,\n    password IN VARCHAR2 DEFAULT\
+  \ NULL,\n    scheme IN VARCHAR2 DEFAULT 'Basic',\n    for_proxy IN BOOLEAN DEFAULT\
+  \ FALSE\n  );\nPRAGMA restrict_references(set_authentication, wnds, rnds, trust);\n\
+  \  /**\n  \n     * Sets the HTTP authentication information in the HTTP request\
+  \ header\n  \n     * needed for the request to be authorized by the Web server using\
+  \ the\n  \n     * username and password credential stored in the Oracle wallet.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   r             The HTTP request\n\
+  \  \n     *   alias         The alias to identify and retrieve the username and\n\
+  \  \n     *                 password credential stored in the Oracle wallet\n  \n\
+  \     *   scheme        The HTTP authentication scheme. Either 'Basic' for\n  \n\
+  \     *                 the HTTP basic, 'Digest' for the HTTP digest, or\n  \n \
+  \    *                 'AWS' for Amazon S3 authentication scheme.\n  \n     *  \
+  \               Default is 'Basic'.\n  \n     *   for_proxy     Is the HTTP authentication\
+  \ information for the access to\n  \n     *                 the HTTP proxy server\
+  \ instead of the Web server? Default\n  \n     *                 is FALSE.\n  \n\
+  \     *\n  \n     * EXCEPTIONS\n  \n     *\n  \n     * When detailed-exception is\
+  \ disabled:\n  \n     *   request_failed    the request fails to execute\n  \n \
+  \    *                     (use get_detailed_sqlcode and get_detailed_sqlerrm to\n\
+  \  \n     *                      get the detailed error message)\n  \n     *\n \
+  \ \n     * When detailed-exception is enabled:\n  \n     *   bad_argument      when\
+  \ some of the arguments passed are not valid.\n  \n     *   illegal_call      when\
+  \ the request body is already sent\n  \n     *   - plus miscellaneous network and\
+  \ runtime exceptions.\n  \n     * NOTES\n  \n     *     To use the password credentials\
+  \ in a wallet, the UTL_HTTP must have\n  \n     *   the \"use-passwords\" privilege\
+  \ on the wallet.\n  \n     *     The supported authentication schemes are HTTP basic,\
+  \ digest and\n  \n     *   Amazon S3 authentication schemes.\n  \n     *     For\
+  \ HTTP digest authentication, only \"auth\" but not \"auth-int\"\n  \n     *   quality-of\
+  \ protection (qop) is supported.\n  \n     *     For Amazon S3 authentication:\n\
+  \  \n     *   - All headers used to compute the authentication header - Content-MD5,\n\
+  \  \n     *     Content-Type, Date, and all X-Amz-* headers - must be set via the\n\
+  \  \n     *     set_header procedure before set_authentication is called to compute\n\
+  \  \n     *     and set the authentication header.\n  \n     *   - When an endpoint\
+  \ other than \"s3.amazonaws.com\" is used, the user\n  \n     *     should specify\
+  \ the correct endpoint to compute the authentication\n  \n     *     header by setting\
+  \ the request property \"aws-endpoint\" using the\n  \n     *     set_property procedure\
+  \ first. Alternatively, the user may specify\n  \n     *     the CanonicalizedResource\
+  \ string through the request property\n  \n     *     \"aws-canonicalized-resource\"\
+  \ irrespective of the endpoint to compute\n  \n     *     the authentication header.\n\
+  \  \n     */\n  PROCEDURE set_authentication_from_wallet(\n    r IN OUT NOCOPY req,\n\
+  \    alias IN VARCHAR2,\n    scheme IN VARCHAR2 DEFAULT 'Basic',\n    for_proxy\
+  \ IN BOOLEAN DEFAULT FALSE\n  );\nPRAGMA restrict_references(\n    set_authentication_from_wallet,\n\
+  \    wnds,\n    rnds,\n    trust\n  );\n  /**\n  \n     * Enables (or disables)\
+  \ the support for the HTTP cookies in this request.\n  \n     *\n  \n     * If the\
+  \ cookie support is enabled for a HTTP request, all cookies that\n  \n     * are\
+  \ saved in the current session and are applicable to the request will\n  \n    \
+  \ * be returned to the Web server in the request in accordance to the HTTP\n  \n\
+  \     * cookies specification RFC 2109 and to the draft proposal by Netscape\n \
+  \ \n     * Communications Corporation. Cookies that are set in the response to\n\
+  \  \n     * the request will be saved in the current session for return to the Web\n\
+  \  \n     * server in the subsequent requests if the cookie support is enabled\n\
+  \  \n     * for those requests. If the cookie support is disabled for a HTTP request,\n\
+  \  \n     * no cookies will be returned to the Web server in the request and the\n\
+  \  \n     * cookies set in the response to the request will not be saved in the\n\
+  \  \n     * current session, although the \"Set-Cookie\" HTTP headers can still\
+  \ be\n  \n     * retrieved from the response.\n  \n     *\n  \n     * Use this procedure\
+  \ to change the cookie support setting a request inherits\n  \n     * from the session's\
+  \ default setting.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   r          \
+  \   The HTTP request\n  \n     *   enable        Set enable to TRUE to enable the\
+  \ HTTP cookie support.\n  \n     *                 FALSE otherwise.\n  \n     *\
+  \ EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n  \n     * NOTES\n\
+  \  \n     *   Note that the HTTP cookies saved in the current session will last\
+  \ for\n  \n     *   the duration of the database session only and there is no persistent\n\
+  \  \n     *   storage for the cookies. An example is given in the package\n  \n\
+  \     *   documentation to illustrate how to use get_cookies and add_cookies\n \
+  \ \n     *   to retrieve, save, and restore the cookies.\n  \n     */\n  PROCEDURE\
+  \ set_cookie_support(\n    r IN OUT NOCOPY req,\n    enable IN BOOLEAN DEFAULT TRUE\n\
+  \  );\nPRAGMA restrict_references(set_cookie_support, wnds, rnds, trust);\n  /**\n\
+  \  \n     * Sets the maximum number of times the UTL_HTTP package should follow\
+  \ HTTP\n  \n     * redirect instruction in the HTTP response to this request in\
+  \ the\n  \n     * function get_response.\n  \n     *\n  \n     * If max_redirects\
+  \ is set to a positive number, get_response will\n  \n     * automatically follow\
+  \ the redirected URL for the HTTP response status code\n  \n     * 301, 302, and\
+  \ 307 for the HTTP HEAD and GET methods, and 303 for all HTTP\n  \n     * methods,\
+  \ and retry the HTTP request (the request method will be changed\n  \n     * to\
+  \ HTTP GET for the status code 303) at the new location. It keeps\n  \n     * following\
+  \ the redirection until the final, non-redirect location is\n  \n     * reached,\
+  \ or an error occurs, or the maximum number of redirections has\n  \n     * been\
+  \ reached (to prevent an infinite loop). The url and method fields in\n  \n    \
+  \ * the req record will be updated to the last redirected URL and the method\n \
+  \ \n     * used to access the URL. Set the maximum number of redirects to zero to\n\
+  \  \n     * disable automatic redirection.\n  \n     *\n  \n     * Use this procedure\
+  \ to change the maximum number of redirections a request\n  \n     * inherits from\
+  \ the session's default setting.\n  \n     *\n  \n     * PARAMETERS\n  \n     *\
+  \   r             The HTTP request\n  \n     *   max_redirects The maximum number\
+  \ of redirections.  Set to zero to\n  \n     *                 disable redirection.\n\
+  \  \n     *\n  \n     * EXCEPTIONS\n  \n     *\n  \n     * When detailed-exception\
+  \ is disabled:\n  \n     *   request_failed    the request fails to execute\n  \n\
+  \     *                     (use get_detailed_sqlcode and get_detailed_sqlerrm to\n\
+  \  \n     *                      get the detailed error message)\n  \n     *\n \
+  \ \n     * When detailed-exception is enabled:\n  \n     *   bad_argument      when\
+  \ some of the arguments passed are not valid.\n  \n     *   - plus miscellaneous\
+  \ runtime exceptions.\n  \n     * NOTES\n  \n     *   set_follow_redirect must be\
+  \ called before get_response for any\n  \n     *   redirection to take effect.\n\
+  \  \n     */\n  PROCEDURE set_follow_redirect(\n    r IN OUT NOCOPY req,\n    max_redirects\
+  \ IN PLS_INTEGER DEFAULT 3\n  );\nPRAGMA restrict_references(set_follow_redirect,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Sets the character set of the request body\
+  \ when the media type is \"text\"\n  \n     * but the character set is not specified\
+  \ in the \"Content-Type\" header.\n  \n     * Per the HTTP protocol standard specification,\
+  \ if the media type of a\n  \n     * request or a response is \"text\" but the character\
+  \ set information is\n  \n     * missing in the \"Content-Type\" header, the character\
+  \ set of the request\n  \n     * or response body should default to \"ISO-8859-1\"\
+  .\n  \n     *\n  \n     * Use this procedure to change the default body character\
+  \ set a request\n  \n     * inherits from the session's default setting.\n  \n \
+  \    *\n  \n     * PARAMETERS\n  \n     *   r         The HTTP request\n  \n   \
+  \  *   charset   The default character set of the request body.\n  \n     *    \
+  \         The character set can be in Oracle or Internet Assigned\n  \n     *  \
+  \           Numbers Authority (IANA) naming convention. If charset is\n  \n    \
+  \ *             NULL, the database character set is assumed.\n  \n     *\n  \n \
+  \    * EXCEPTIONS\n  \n     *\n  \n     * When detailed-exception is disabled:\n\
+  \  \n     *   request_failed    the request fails to execute\n  \n     *       \
+  \              (use get_detailed_sqlcode and get_detailed_sqlerrm to\n  \n     *\
+  \                      get the detailed error message)\n  \n     *\n  \n     * When\
+  \ detailed-exception is enabled:\n  \n     *   bad_argument      when some of the\
+  \ arguments passed are not valid.\n  \n     *   - plus miscellaneous network or\
+  \ runtime exceptions.\n  \n     * NOTES\n  \n     *   None.\n  \n     */\n  PROCEDURE\
+  \ set_body_charset(\n    r IN OUT NOCOPY req,\n    charset IN VARCHAR2 DEFAULT NULL\n\
+  \  );\nPRAGMA restrict_references(set_body_charset, wnds, rnds, trust);\n  /**\n\
+  \  \n     * Enables (or disables) the support for the HTTP 1.1 persistent-connection\n\
+  \  \n     * in this request.\n  \n     *\n  \n     * If the persistent-connection\
+  \ support is enabled for a HTTP request,\n  \n     * the package will keep the network\
+  \ connections to a Web server or the\n  \n     * proxy server open in the package\
+  \ after the request is completed properly\n  \n     * for a subsequent request to\
+  \ the same server to reuse per HTTP 1.1\n  \n     * protocol specification. With\
+  \ the persistent connection support,\n  \n     * subsequent HTTP requests may be\
+  \ completed faster because the network\n  \n     * connection latency is avoided.\
+  \ If the persistent-connection support\n  \n     * is disabled for a request, the\
+  \ package will always send the HTTP header\n  \n     * \"Connection: close\" automatically\
+  \ in the HTTP request and close the\n  \n     * network connection when the request\
+  \ is completed. This setting has no\n  \n     * effect on HTTP requests that follows\
+  \ HTTP 1.0 protocol, for which the\n  \n     * network connections will always be\
+  \ closed after the requests are\n  \n     * completed.\n  \n     *\n  \n     * When\
+  \ a request is being made, the package always attempts to reuse an\n  \n     * existing\
+  \ persistent connection to the target Web server (or proxy server)\n  \n     * if\
+  \ one is available. If none is available, a new network connection will\n  \n  \
+  \   * be initiated. The persistent-connection support setting for a request\n  \n\
+  \     * affects only whether the network connection should be closed after a\n \
+  \ \n     * request completes.\n  \n     *\n  \n     * Use this procedure to change\
+  \ the persistent-connection support setting a\n  \n     * request inherits from\
+  \ the session's default setting.\n  \n     *\n  \n     * Users should note that\
+  \ while the use of persistent connections in UTL_HTTP\n  \n     * may reduce the\
+  \ time it takes to fetch multiple Web pages from the same\n  \n     * server, it\
+  \ consumes precious system resources (network connections) in\n  \n     * the database\
+  \ server. Also, excessive use of persistent connections may\n  \n     * reduce the\
+  \ scalability of the database server when too many network\n  \n     * connections\
+  \ are kept open in the database server. Therefore, users should\n  \n     * exert\
+  \ discretion when using persistent connection. Network connections\n  \n     * should\
+  \ be kept open only if they will be used immediately by subsequent\n  \n     * requests\
+  \ and should be closed immediately when they are no longer needed.\n  \n     * Also,\
+  \ users are advised to set the default persistent connection support\n  \n     *\
+  \ support as disabled in the session, and to enable persistent connection in\n \
+  \ \n     * individual HTTP requests as shown in the following code example:\n  \n\
+  \     *\n  \n     *   DECLARE\n  \n     *     TYPE vc2_table IS TABLE OF VARCHAR2(256)\
+  \ INDEX BY binary_integer;\n  \n     *     paths vc2_table;\n  \n     *\n  \n  \
+  \   *     PROCEDURE fetch_pages(paths IN vc2_table) AS\n  \n     *       url_prefix\
+  \ VARCHAR2(256) := 'http://www.my-company.com/';\n  \n     *       req   utl_http.req;\n\
+  \  \n     *       resp  utl_http.resp;\n  \n     *       data  VARCHAR2(1024);\n\
+  \  \n     *     BEGIN\n  \n     *       FOR i IN 1..paths.count LOOP\n  \n     *\
+  \         req := utl_http.begin_request(url_prefix || paths(i));\n  \n     *\n \
+  \ \n     *         -- Use persistent connection except for the last request\n  \n\
+  \     *         IF (i < paths.count) THEN\n  \n     *           utl_http.set_persistent_conn_support(req,\
+  \ pcn);\n  \n     *         END IF;\n  \n     *\n  \n     *         resp := utl_http.get_response(req);\n\
+  \  \n     *\n  \n     *         BEGIN\n  \n     *           LOOP\n  \n     *   \
+  \          utl_http.read_text(resp, data);\n  \n     *             -- do something\
+  \ with the data\n  \n     *           END LOOP;\n  \n     *         EXCEPTION\n\
+  \  \n     *           WHEN utl_http.end_of_body THEN\n  \n     *             NULL;\n\
+  \  \n     *         END;\n  \n     *         utl_http.end_response(resp);\n  \n\
+  \     *       END LOOP;\n  \n     *     END;\n  \n     *\n  \n     *   BEGIN\n \
+  \ \n     *     utl_http.set_persistent_conn_support(FALSE, 1);\n  \n     *     paths(1)\
+  \ := '...';\n  \n     *     paths(2) := '...';\n  \n     *     ...\n  \n     * \
+  \    fetch_pages(paths);\n  \n     *   END;\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   r             The HTTP request\n  \n     *   enable        TRUE to\
+  \ keep the network connection persistent.\n  \n     *                 FALSE otherwise.\n\
+  \  \n     *\n  \n     * EXCEPTIONS\n  \n     *\n  \n     * When detailed-exception\
+  \ is disabled:\n  \n     *   request_failed    the request fails to execute\n  \n\
+  \     *                     (use get_detailed_sqlcode and get_detailed_sqlerrm to\n\
+  \  \n     *                      get the detailed error message)\n  \n     *\n \
+  \ \n     * When detailed-exception is enabled:\n  \n     *   bad_argument      when\
+  \ some of the arguments passed are not valid.\n  \n     *   illegal_call      when\
+  \ the request body is already sent\n  \n     *   - plus miscellaneous network or\
+  \ runtime exceptions.\n  \n     * NOTES\n  \n     *   The default value of the maximum\
+  \ number of persistent connections\n  \n     * in a database session is zero.  To\
+  \ truly enable persistent connections,\n  \n     * the user must also set the maximum\
+  \ number of persistent connections to\n  \n     * a positive value or no connections\
+  \ will be kept persistent.\n  \n     */\n  PROCEDURE set_persistent_conn_support(\n\
+  \    r IN OUT NOCOPY req,\n    enable IN BOOLEAN DEFAULT FALSE\n  );\nPRAGMA restrict_references(set_persistent_conn_support,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Sets the time-out value that the UTL_HTTP\
+  \ package should attempt reading\n  \n     * the HTTP response of this HTTP request\
+  \ from the Web server or proxy\n  \n     * server. This time-out value may be used\
+  \ to avoid the PL/SQL programs\n  \n     * from being blocked by busy Web servers\
+  \ or heavy network traffic while\n  \n     * retrieving Web pages from the Web servers.\
+  \ The default value of the\n  \n     * time-out is 60 seconds.\n  \n     *\n  \n\
+  \     * PARAMETERS\n  \n     *   r         The HTTP request\n  \n     *   timeout\
+  \   The network transfer time-out value (in seconds).\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *   miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *  \
+  \ None.\n  \n     */\n  PROCEDURE set_transfer_timeout(\n    r IN OUT NOCOPY req,\n\
+  \    timeout IN PLS_INTEGER DEFAULT 60\n  );\nPRAGMA restrict_references(set_transfer_timeout,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Writes some text data in the HTTP request\
+  \ body. As soon as some data is\n  \n     * sent as the HTTP request body, the HTTP\
+  \ request headers section is\n  \n     * completed. Text data is automatically converted\
+  \ from the database\n  \n     * character set to the request body character set.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   r         The HTTP request\n  \n\
+  \     *   data      The text data to send in the HTTP request body\n  \n     *\n\
+  \  \n     * EXCEPTIONS\n  \n     *\n  \n     * When detailed-exception is disabled:\n\
+  \  \n     *   request_failed    the request fails to execute\n  \n     *       \
+  \              (use get_detailed_sqlcode and get_detailed_sqlerrm to\n  \n     *\
+  \                      get the detailed error message)\n  \n     *\n  \n     * When\
+  \ detailed-exception is enabled:\n  \n     *   bad_argument      when some of the\
+  \ arguments passed are not valid.\n  \n     *   - plus miscellaneous network or\
+  \ runtime exceptions.\n  \n     * NOTES\n  \n     *   A HTTP client must always\
+  \ let the remote Web server to know the length\n  \n     * of the request body it\
+  \ is sending. If the amount of data is known\n  \n     * beforehand, the user can\
+  \ set the \"Content-Length\" header in the request,\n  \n     * where the length\
+  \ of the content is measured in bytes instead of\n  \n     * characters. If the\
+  \ length of the request body is not know beforehand,\n  \n     * the user can choose\
+  \ to send the request body using the HTTP 1.1 chunked\n  \n     * transfer-encoding\
+  \ format. The request body will be sent in chunks where\n  \n     * the length of\
+  \ each chunk is sent before the chunk is sent. The UTL_HTTP\n  \n     * package\
+  \ performs chunked transfer-encoding on the request body\n  \n     * transparently\
+  \ when the \"Transfer-Encoding: chunked\" header is set.\n  \n     * Note that some\
+  \ HTTP-1.1-based Web servers or CGI programs do not support\n  \n     * or accept\
+  \ the request body encoding in the HTTP 1.1 chunked\n  \n     * transfer-encoding\
+  \ format. See the set_header procedure for details.\n  \n     *   If the user sends\
+  \ the \"Content-Length\" header, the user should note\n  \n     * that the length\
+  \ specify in the header should be the byte-length of the\n  \n     * textual request\
+  \ body after it is converted from the database character\n  \n     * set to the\
+  \ request body character set. When either one of the two\n  \n     * character sets\
+  \ is a multi-byte character set, the precise byte-length of\n  \n     * the request\
+  \ body in the request body character set may not be known\n  \n     * beforehand.\
+  \ In that case, the user may perform the character set\n  \n     * conversion explicitly,\
+  \ determine the byte-length of the results, send\n  \n     * the \"Content-Length\"\
+  \ header, and the results using the write_raw\n  \n     * procedure to avoid the\
+  \ automatic character set conversion.\n  \n     * Or if the remove Web server or\
+  \ CGI programs allows, the user may send\n  \n     * the request body using the\
+  \ HTTP 1.1 chunked transfer-encoding format\n  \n     * where the UTL_HTTP will\
+  \ handle the length of the chunks transparently.\n  \n     */\n  PROCEDURE write_text(\n\
+  \    r IN OUT NOCOPY req,\n    data IN VARCHAR2 CHARACTER\n    SET\n      ANY_CS\n\
+  \  );\nPRAGMA restrict_references(write_text, wnds, rnds, trust);\n  /**\n  \n \
+  \    * Writes a text line in the HTTP request body and ends the line with\n  \n\
+  \     * new-line characters (CRLF as defined in UTL_TCP). As soon as some data\n\
+  \  \n     * is sent as the HTTP request body, the HTTP request headers section is\n\
+  \  \n     * completed. Text data is automatically converted from the database\n\
+  \  \n     * character set to the request body character set.\n  \n     *\n  \n \
+  \    * PARAMETERS\n  \n     *   r         The HTTP request\n  \n     *   data  \
+  \    The text line to send in the HTTP request body\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *\n  \n     * When detailed-exception is disabled:\n  \n     *   request_failed\
+  \    the request fails to execute\n  \n     *                     (use get_detailed_sqlcode\
+  \ and get_detailed_sqlerrm to\n  \n     *                      get the detailed\
+  \ error message)\n  \n     *\n  \n     * When detailed-exception is enabled:\n \
+  \ \n     *   bad_argument      when some of the arguments passed are not valid.\n\
+  \  \n     *   - plus miscellaneous network or runtime exceptions.\n  \n     * NOTES\n\
+  \  \n     *   A HTTP client must always let the remote Web server to know the length\n\
+  \  \n     * of the request body it is sending. If the amount of data is known\n\
+  \  \n     * beforehand, the user can set the \"Content-Length\" header in the request,\n\
+  \  \n     * where the length of the content is measured in bytes instead of\n  \n\
+  \     * characters. If the length of the request body is not know beforehand,\n\
+  \  \n     * the user can choose to send the request body using the HTTP 1.1 chunked\n\
+  \  \n     * transfer-encoding format. The request body will be sent in chunks where\n\
+  \  \n     * the length of each chunk is sent before the chunk is sent. The UTL_HTTP\n\
+  \  \n     * package performs chunked transfer-encoding on the request body\n  \n\
+  \     * transparently when the \"Transfer-Encoding: chunked\" header is set.\n \
+  \ \n     * Note that some HTTP-1.1-based Web servers or CGI programs do not support\n\
+  \  \n     * or accept the request body encoding in the HTTP 1.1 chunked\n  \n  \
+  \   * transfer-encoding format. See the set_header procedure for details.\n  \n\
+  \     *   If the user sends the \"Content-Length\" header, the user should note\n\
+  \  \n     * that the length specify in the header should be the byte-length of the\n\
+  \  \n     * textual request body after it is converted from the database character\n\
+  \  \n     * set to the request body character set. When either one of the two\n\
+  \  \n     * character sets is a multi-byte character set, the precise byte-length\
+  \ of\n  \n     * the request body in the request body character set may not be known\n\
+  \  \n     * beforehand. In that case, the user may perform the character set\n \
+  \ \n     * conversion explicitly, determine the byte-length of the results, send\n\
+  \  \n     * the \"Content-Length\" header, and the results using the write_raw\n\
+  \  \n     * procedure to avoid the automatic character set conversion.\n  \n   \
+  \  * Or if the remove Web server or CGI programs allows, the user may send\n  \n\
+  \     * the request body using the HTTP 1.1 chunked transfer-encoding format\n \
+  \ \n     * where the UTL_HTTP will handle the length of the chunks transparently.\n\
+  \  \n     */\n  PROCEDURE write_line(\n    r IN OUT NOCOPY req,\n    data IN VARCHAR2\
+  \ CHARACTER\n    SET\n      ANY_CS\n  );\nPRAGMA restrict_references(write_line,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Writes some binary data in the HTTP request\
+  \ body. As soon as some data is\n  \n     * sent as the HTTP request body, the HTTP\
+  \ request headers section is\n  \n     * completed.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   r         The HTTP request\n  \n     *   data      The binary data\
+  \ to send in the HTTP request body\n  \n     *\n  \n     * EXCEPTIONS\n  \n    \
+  \ *\n  \n     * When detailed-exception is disabled:\n  \n     *   request_failed\
+  \    the request fails to execute\n  \n     *                     (use get_detailed_sqlcode\
+  \ and get_detailed_sqlerrm to\n  \n     *                      get the detailed\
+  \ error message)\n  \n     *\n  \n     * When detailed-exception is enabled:\n \
+  \ \n     *   bad_argument      when some of the arguments passed are not valid.\n\
+  \  \n     *   - plus miscellaneous network or runtime exceptions.\n  \n     * NOTES\n\
+  \  \n     *   A HTTP client must always let the remote Web server to know the length\n\
+  \  \n     * of the request body it is sending. If the amount of data is known\n\
+  \  \n     * beforehand, the user can set the \"Content-Length\" header in the request,\n\
+  \  \n     * where the length of the content is measured in bytes instead of\n  \n\
+  \     * characters. If the length of the request body is not know beforehand,\n\
+  \  \n     * the user can choose to send the request body using the HTTP 1.1 chunked\n\
+  \  \n     * transfer-encoding format. The request body will be sent in chunks where\n\
+  \  \n     * the length of each chunk is sent before the chunk is sent. The UTL_HTTP\n\
+  \  \n     * package performs chunked transfer-encoding on the request body\n  \n\
+  \     * transparently when the \"Transfer-Encoding: chunked\" header is set.\n \
+  \ \n     * Note that some HTTP-1.1-based Web servers or CGI programs do not support\n\
+  \  \n     * or accept the request body encoding in the HTTP 1.1 chunked\n  \n  \
+  \   * transfer-encoding format. See the set_header procedure for details.\n  \n\
+  \     */\n  PROCEDURE write_raw(\n    r IN OUT NOCOPY req,\n    data IN RAW\n  );\n\
+  PRAGMA restrict_references(write_raw, wnds, rnds, trust);\n  /**\n  \n     * Ends\
+  \ the HTTP request. In the not-so-normal situation when a PL/SQL\n  \n     * program\
+  \ wants to terminates the HTTP request without completing the\n  \n     * request\
+  \ and waiting for the response, the program can call this procedure\n  \n     *\
+  \ to terminate the request. Otherwise, the program should go through the\n  \n \
+  \    * normal sequence of beginning a request, getting the response, and\n  \n \
+  \    * closing the response. The network connection will always be closed and\n\
+  \  \n     * will not be reused.\n  \n     *\n  \n     * PARAMETERS\n  \n     * \
+  \  r            The HTTP request\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *\n\
+  \  \n     * When detailed-exception is disabled:\n  \n     *   request_failed  \
+  \  the request fails to execute\n  \n     *                     (use get_detailed_sqlcode\
+  \ and get_detailed_sqlerrm to\n  \n     *                      get the detailed\
+  \ error message)\n  \n     *\n  \n     * When detailed-exception is enabled:\n \
+  \ \n     *   bad_argument      when some of the arguments passed are not valid.\n\
+  \  \n     *   - plus miscellaneous network or runtime exceptions.\n  \n     * NOTES\n\
+  \  \n     *   None.\n  \n     */\n  PROCEDURE end_request(r IN OUT NOCOPY req);\n\
+  PRAGMA restrict_references(end_request, wnds, rnds, trust);\n  /*--------------------------\
+  \ Response API ------------------------------*/\n  /* The following set of API manipulate\
+  \ a HTTP response obtained from\n  \n     * get_response and to receive the response\
+  \ information from the Web server.\n  \n     * When a response is created for a\
+  \ request, it inherits settings of the\n  \n     * HTTP cookie support, follow-redirect,\
+  \ body character set, persistent-\n  \n     * connection support, and transfer time-out\
+  \ from the request. Only the body\n  \n     * character set may be changed by calling\
+  \ the response API.\n  \n     */\n  /**\n  \n     * Reads the HTTP response. When\
+  \ this procedure returns, the status line\n  \n     * and the HTTP response headers\
+  \ have been read and processed. The status\n  \n     * code, reason phrase and the\
+  \ HTTP protocol version are stored in the\n  \n     * response record. This function\
+  \ completes the HTTP headers section.\n  \n     *\n  \n     * PARAMETERS\n  \n \
+  \    *   r                     The HTTP request\n  \n     *   return_info_response\
+  \  Return 100 informational response or not. TRUE\n  \n     *                  \
+  \       means get_response should return 100 informational\n  \n     *         \
+  \                response when it is received from the HTTP server.\n  \n     *\
+  \                         The request will not be ended if a 100 response is\n \
+  \ \n     *                         returned. FALSE means the API should ignore any\
+  \ 100\n  \n     *                         informational response received from the\
+  \ HTTP server\n  \n     *                         and should return the following\
+  \ non-100 response\n  \n     *                         instead. The default is FALSE.\n\
+  \  \n     *                         See notes below for details.\n  \n     *\n \
+  \ \n     *\n  \n     * EXCEPTIONS\n  \n     *\n  \n     * When detailed-exception\
+  \ is disabled:\n  \n     *   request_failed    the request fails to execute\n  \n\
+  \     *                     (use get_detailed_sqlcode and get_detailed_sqlerrm to\n\
+  \  \n     *                      get the detailed error message)\n  \n     *\n \
+  \ \n     * When detailed-exception is enabled:\n  \n     *   bad_argument      when\
+  \ some of the arguments passed are not valid.\n  \n     *   When response error\
+  \ check is enabled:\n  \n     *     http_client_error   when the response code is\
+  \ in 400 range\n  \n     *     http_server_error   when the response code is in\
+  \ 500 range\n  \n     *   - plus miscellaneous network or runtime exceptions.\n\
+  \  \n     * NOTES\n  \n     *   - The request will be ended when this functions\
+  \ returns regardless of\n  \n     *     whether an exception is raised or not. \
+  \ There is no need to end\n  \n     *     the request with end_request.\n  \n  \
+  \   *   - If URL redirection occurs, the url and method fields in the req\n  \n\
+  \     *     record will be updated to the last redirected URL and the method used\n\
+  \  \n     *     to access the URL.\n  \n     *\n  \n     * Notes on 100 Continue:\n\
+  \  \n     * In certain situations (initiated by the HTTP client or not), the HTTP\n\
+  \  \n     * server may return a 1xx informational response. The user who does not\n\
+  \  \n     * expect such a response may indicate to get_response to ignore the response\n\
+  \  \n     * and proceed to receive the regular response. In the case when the user\n\
+  \  \n     * expects such a response, he can indicate to get_response to return the\n\
+  \  \n     * response. For example, when a user is issuing a HTTP POST request with\
+  \ a\n  \n     * large request body, the user may want to check with the HTTP server\
+  \ to\n  \n     * ensure that the server will accept the request before sending the\
+  \ data.\n  \n     * To do so, the user will send the additional \"Expect: 100-continue\"\
+  \ request\n  \n     * header, check for \"100 Continue\" response from the server\
+  \ before\n  \n     * proceeding to send the request body. Then, the user will get\
+  \ the regular\n  \n     * HTTP response as he normally does. The following code\
+  \ example illustrates\n  \n     * this:\n  \n     * DECLARE\n  \n     *  data  VARCHAR2(1024)\
+  \ := '...';\n  \n     *  req   utl_http.req;\n  \n     *  resp  utl_http.resp;\n\
+  \  \n     * BEGIN\n  \n     *\n  \n     *  req := utl_http.begin_request('http://www.acme.com/receiver',\
+  \ 'POST');\n  \n     *  utl_http.set_header(req, 'Content-Length', length(data));\n\
+  \  \n     *  -- Ask HTTP server to return \"100 Continue\" response\n  \n     *\
+  \  utl_http.set_header(req, 'Expect', '100-continue');\n  \n     *  resp := utl_http.get_response(req,\
+  \ TRUE);\n  \n     *\n  \n     *  -- Check for and dispose \"100 Continue\" response\n\
+  \  \n     *  IF (resp.status_code <> 100) THEN\n  \n     *    utl_http.end_response(resp);\n\
+  \  \n     *    raise_application_error(20000, 'Request rejected');\n  \n     * \
+  \ END IF;\n  \n     *  utl_http.end_response(resp);\n  \n     *\n  \n     *  --\
+  \ Now, send the request body\n  \n     *  utl_http.write_text(req, data);\n  \n\
+  \  \n  \n     *  -- Get the regular response\n  \n     *  resp := utl_http.get_response(req);\n\
+  \  \n     *  utl_http.read_text(resp, data);\n  \n     *\n  \n     *  utl_http.end_response(resp);\n\
+  \  \n     *\n  \n     * END;\n  \n     *\n  \n     */\n  FUNCTION get_response(\n\
+  \    r IN OUT NOCOPY req,\n    return_info_response BOOLEAN DEFAULT FALSE\n  ) RETURN\
+  \ resp;\nPRAGMA restrict_references(get_response, wnds, rnds, trust);\n  /**\n \
+  \ \n     * Returns the number of HTTP response headers returned in the response.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   r         The HTTP response\n \
+  \ \n     *\n  \n     * EXCEPTIONS\n  \n     *\n  \n     * When detailed-exception\
+  \ is disabled:\n  \n     *   request_failed    the request fails to execute\n  \n\
+  \     *                     (use get_detailed_sqlcode and get_detailed_sqlerrm to\n\
+  \  \n     *                      get the detailed error message)\n  \n     *\n \
+  \ \n     * When detailed-exception is enabled:\n  \n     *   bad_argument      when\
+  \ some of the arguments passed are not valid.\n  \n     *   - plus miscellaneous\
+  \ network or runtime exceptions.\n  \n     * NOTES\n  \n     *   If the response\
+  \ body returned by the remote Web server is encoded\n  \n     * in chunked transfer\
+  \ encoding format, the trailer headers that are returned\n  \n     * at the end\
+  \ of the response body will be added to the response and\n  \n     * the response\
+  \ header count will be updated. Users can retrieve the\n  \n     * additional headers\
+  \ after the end of the response body is reached and\n  \n     * before they end\
+  \ the response.\n  \n     */\n  FUNCTION get_header_count(r IN OUT NOCOPY resp)\
+  \ RETURN PLS_INTEGER;\nPRAGMA restrict_references(get_header_count, wnds, rnds,\
+  \ trust);\n  /**\n  \n     * Returns the n-th HTTP response header name and value\
+  \ returned in the\n  \n     * response.\n  \n     *\n  \n     * PARAMETERS\n  \n\
+  \     *   r         The HTTP response\n  \n     *   n         The n-th header to\
+  \ return\n  \n     *   name      The name of the HTTP respone header\n  \n     *\
+  \   value     The value of the HTTP response header\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *\n  \n     * When detailed-exception is disabled:\n  \n     *   request_failed\
+  \    the request fails to execute\n  \n     *                     (use get_detailed_sqlcode\
+  \ and get_detailed_sqlerrm to\n  \n     *                      get the detailed\
+  \ error message)\n  \n     *\n  \n     * When detailed-exception is enabled:\n \
+  \ \n     *   bad_argument      when some of the arguments passed are not valid.\n\
+  \  \n     *   header_not_found  when the n-th header is not found.\n  \n     * \
+  \  - plus miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *   If the\
+  \ response body returned by the remote Web server is encoded\n  \n     * in chunked\
+  \ transfer encoding format, the trailer headers that are returned\n  \n     * at\
+  \ the end of the response body will be added to the response and\n  \n     * the\
+  \ response header count will be updated. Users can retrieve the\n  \n     * additional\
+  \ headers after the end of the response body is reached and\n  \n     * before they\
+  \ end the response.\n  \n     */\n  PROCEDURE get_header(\n    r IN OUT NOCOPY resp,\n\
+  \    n IN PLS_INTEGER,\n    name OUT NOCOPY VARCHAR2,\n    value OUT NOCOPY VARCHAR2\n\
+  \  );\nPRAGMA restrict_references(get_header, wnds, rnds, trust);\n  /**\n  \n \
+  \    * Returns the HTTP response header value returned in the response given\n \
+  \ \n     * the name of the header.\n  \n     *\n  \n     * PARAMETERS\n  \n    \
+  \ *   r         The HTTP response\n  \n     *   name      The name of the HTTP response\
+  \ header\n  \n     *   value     The value of the HTTP response header\n  \n   \
+  \  *   n         The nth occurrence of HTTP response header by the specified\n \
+  \ \n     *             name to return. Default is 1.\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *\n  \n     * When detailed-exception is disabled:\n  \n     *   request_failed\
+  \    the request fails to execute\n  \n     *                     (use get_detailed_sqlcode\
+  \ and get_detailed_sqlerrm to\n  \n     *                      get the detailed\
+  \ error message)\n  \n     *\n  \n     * When detailed-exception is enabled:\n \
+  \ \n     *   bad_argument      when some of the arguments passed are not valid.\n\
+  \  \n     *   header_not_found  when the n-th header is not found.\n  \n     * \
+  \  - plus miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *   If the\
+  \ response body returned by the remote Web server is encoded\n  \n     * in chunked\
+  \ transfer encoding format, the trailer headers that are returned\n  \n     * at\
+  \ the end of the response body will be added to the response and\n  \n     * the\
+  \ response header count will be updated. Users can retrieve the\n  \n     * additional\
+  \ headers after the end of the response body is reached and\n  \n     * before they\
+  \ end the response.\n  \n     */\n  PROCEDURE get_header_by_name(\n    r IN OUT\
+  \ NOCOPY resp,\n    name IN VARCHAR2,\n    value OUT NOCOPY VARCHAR2,\n    n IN\
+  \ PLS_INTEGER DEFAULT 1\n  );\nPRAGMA restrict_references(get_header_by_name, wnds,\
+  \ rnds, trust);\n  /**\n  \n     * Retrieves the HTTP authentication information\
+  \ needed for the request to be\n  \n     * accepted by the Web server as indicated\
+  \ in the HTTP response header.\n  \n     *\n  \n     * PARAMETERS\n  \n     *  \
+  \ r         The HTTP response\n  \n     *   scheme    The scheme for the required\
+  \ HTTP authentication\n  \n     *   realm     The realm for the required HTTP authentication.\n\
+  \  \n     *   for_proxy Returns the HTTP authentication information required for\
+  \ the\n  \n     *             access to the HTTP proxy server instead of the Web\
+  \ server?\n  \n     *             Default is FALSE.\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *\n  \n     * When detailed-exception is disabled:\n  \n     *   request_failed\
+  \    the request fails to execute\n  \n     *                     (use get_detailed_sqlcode\
+  \ and get_detailed_sqlerrm to\n  \n     *                      get the detailed\
+  \ error message)\n  \n     *\n  \n     * When detailed-exception is enabled:\n \
+  \ \n     *   bad_argument      when some of the arguments passed are not valid.\n\
+  \  \n     *   - plus miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n \
+  \    *   None.\n  \n     */\n  PROCEDURE get_authentication(\n    r IN OUT NOCOPY\
+  \ resp,\n    scheme OUT NOCOPY VARCHAR2,\n    realm OUT NOCOPY VARCHAR2,\n    for_proxy\
+  \ IN BOOLEAN DEFAULT FALSE\n  );\nPRAGMA restrict_references(get_authentication,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Sets the character set of the response\
+  \ body when the media type is \"text\"\n  \n     * but the character set is not\
+  \ specified in the \"Content-Type\" header.\n  \n     * Per the HTTP protocol standard\
+  \ specification, if the media type of a\n  \n     * request or a response is \"\
+  text\" but the character set information is\n  \n     * missing in the \"Content-Type\"\
+  \ header, the character set of the request\n  \n     * or response body should default\
+  \ to \"ISO-8859-1\".\n  \n     *\n  \n     * Use this procedure to change the default\
+  \ body character set a response\n  \n     * inherits from the request.\n  \n   \
+  \  *\n  \n     * PARAMETERS\n  \n     *   r         The HTTP response\n  \n    \
+  \ *   charset   The default character set of the response body. The character\n\
+  \  \n     *             set can be in Oracle or Internet Assigned Numbers Authority\n\
+  \  \n     *             (IANA) naming convention. If charset is NULL, the database\n\
+  \  \n     *             character set is assumed.\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *\n  \n     * When detailed-exception is disabled:\n  \n     *   request_failed\
+  \    the request fails to execute\n  \n     *                     (use get_detailed_sqlcode\
+  \ and get_detailed_sqlerrm to\n  \n     *                      get the detailed\
+  \ error message)\n  \n     *\n  \n     * When detailed-exception is enabled:\n \
+  \ \n     *   bad_argument      when some of the arguments passed are not valid.\n\
+  \  \n     *   - plus miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n \
+  \    *   None.\n  \n     */\n  PROCEDURE set_body_charset(\n    r IN OUT NOCOPY\
+  \ resp,\n    charset IN VARCHAR2 DEFAULT NULL\n  );\nPRAGMA restrict_references(set_body_charset,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Reads the HTTP response body in text form\
+  \ and returns the output in the\n  \n     * caller-supplied buffer. The end_of_body\
+  \ exception will be raised if the\n  \n     * end of the HTTP response body is reached.\
+  \  Text data is automatically\n  \n     * converted from the response body character\
+  \ set to the database character\n  \n     * set.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   r         The HTTP response\n  \n     *   data      The HTTP response\
+  \ body in text form\n  \n     *   len       The maximum number of characters of\
+  \ data to read. If len is\n  \n     *             NULL, this procedure will read\
+  \ as much input as possible to\n  \n     *             fill the buffer allocated\
+  \ in data. The actual amount of data\n  \n     *             returned may be less\
+  \ than that specified if not so much data\n  \n     *             is available before\
+  \ the end of the HTTP response body is\n  \n     *             reached or the transfer_timeout\
+  \ amount of time has elapsed.\n  \n     *             The default is NULL.\n  \n\
+  \     *\n  \n     * EXCEPTIONS\n  \n     *   end_of_body       when no data can\
+  \ be returned because the end of\n  \n     *                     response body is\
+  \ reached.\n  \n     *\n  \n     * When detailed-exception is disabled:\n  \n  \
+  \   *   request_failed    the request fails to execute\n  \n     *             \
+  \        (use get_detailed_sqlcode and get_detailed_sqlerrm to\n  \n     *     \
+  \                 get the detailed error message)\n  \n     *\n  \n     * When detailed-exception\
+  \ is enabled:\n  \n     *   bad_argument      when some of the arguments passed\
+  \ are not valid.\n  \n     *   transfer_timeout  no data is read and a read time-out\
+  \ occurred.\n  \n     *   partial_multibyte_char - no data is read and a partial\
+  \ multi-byte\n  \n     *                     character is found at the end of the\
+  \ response body.\n  \n     *   - plus miscellaneous network or runtime exceptions.\n\
+  \  \n     * NOTES\n  \n     *   The UTL_HTTP package supports HTTP 1.1 chunked transfer-encoding.\n\
+  \  \n     * When the response body is returned in chunked transfer-encoding format\n\
+  \  \n     * as indicated in the response header, the package automatically decodes\n\
+  \  \n     * the chunks and return the response body in \"dechunked\" format.\n \
+  \ \n     *   If transfer time-out is set in the request of this response, this\n\
+  \  \n     * procedure will wait for each data packet to be ready to read until\n\
+  \  \n     * time-out occurs.  If it occurs, this procedure will stop reading and\n\
+  \  \n     * return all the data read successfully.  If no data is read successfully,\n\
+  \  \n     * the transfer_timeout exception will be raised.  The exception can be\n\
+  \  \n     * handled and the read operation can be retried at a later time.\n  \n\
+  \     *   If a partial multi-byte character is found at the end of response body,\n\
+  \  \n     * this function will stop reading and return all the complete multi-byte\n\
+  \  \n     * characters read successfully.  If no complete character is read\n  \n\
+  \     * successfully, the partial_multibyte_char exception will be raised.\n  \n\
+  \     * The exception can be handled and the bytes of that partial multi-byte\n\
+  \  \n     * character can be read as binary by the read_raw procedure.  If a partial\n\
+  \  \n     * multi-byte character is seen in the middle of the response body because\n\
+  \  \n     * the remaining bytes of the character have not arrived and read time-out\n\
+  \  \n     * occurs, the transfer_timeout exception will be raised instead.\n  \n\
+  \     * The exception can be handled and the read operation can be retried\n  \n\
+  \     * at a later time.\n  \n     *   When the \"Content-Type\" response header\
+  \ specifies the character set\n  \n     * of the response body and the character\
+  \ set is unknown to or unsupported by\n  \n     * Oracle, the \"ORA-01482: unsupported\
+  \ character set\" exception will be\n  \n     * raised if the user tries to read\
+  \ the response body as text. The user\n  \n     * may either read the response body\
+  \ as binary using the read_raw procedure,\n  \n     * or set the character set of\
+  \ the response body explicitly using the\n  \n     * set_body_charset procedure\
+  \ and read the response body as text again.\n  \n     */\n  PROCEDURE read_text(\n\
+  \    r IN OUT NOCOPY resp,\n    data OUT NOCOPY VARCHAR2 CHARACTER\n    SET\n  \
+  \    ANY_CS,\n      len IN PLS_INTEGER DEFAULT NULL\n  );\nPRAGMA restrict_references(read_text,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Reads the HTTP response body in text form\
+  \ until the end of line is\n  \n     * reached and returns the output in the caller-supplied\
+  \ buffer. The end of\n  \n     * line is as defined in the function read_line of\
+  \ UTL_TCP. The end_of_body\n  \n     * exception will be raised if the end of the\
+  \ HTTP response body is reached.\n  \n     * Text data is automatically converted\
+  \ from the response body character set\n  \n     * to the database character set.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   r            The HTTP response\n\
+  \  \n     *   data         The HTTP response body in text form\n  \n     *   remove_crlf\
+  \  Remove the newline characters?\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *\
+  \   end_of_body       when no data can be returned because the end of\n  \n    \
+  \ *                     response body is reached.\n  \n     *\n  \n     * When detailed-exception\
+  \ is disabled:\n  \n     *   request_failed    the request fails to execute\n  \n\
+  \     *                     (use get_detailed_sqlcode and get_detailed_sqlerrm to\n\
+  \  \n     *                      get the detailed error message)\n  \n     *\n \
+  \ \n     * When detailed-exception is enabled:\n  \n     *   bad_argument      when\
+  \ some of the arguments passed are not valid.\n  \n     *   transfer_timeout  no\
+  \ data is read and a read time-out occurred.\n  \n     *   partial_multibyte_char\
+  \ - no data is read and a partial multi-byte\n  \n     *                     character\
+  \ is found at the end of the response body.\n  \n     *   - plus miscellaneous network\
+  \ or runtime exceptions.\n  \n     * NOTES\n  \n     *   The UTL_HTTP package supports\
+  \ HTTP 1.1 chunked transfer-encoding.\n  \n     * When the response body is returned\
+  \ in chunked transfer-encoding format\n  \n     * as indicated in the response header,\
+  \ the package automatically decodes\n  \n     * the chunks and return the response\
+  \ body in \"dechunked\" format.\n  \n     *   If transfer time-out is set in the\
+  \ request of this response, this\n  \n     * procedure will wait for each data packet\
+  \ to be ready to read until\n  \n     * time-out occurs.  If it occurs, this procedure\
+  \ will stop reading and\n  \n     * return all the data read successfully.  If no\
+  \ data is read successfully,\n  \n     * the transfer_timeout exception will be\
+  \ raised.  The exception can be\n  \n     * handled and the read operation can be\
+  \ retried at a later time.\n  \n     *   If a partial multi-byte character is found\
+  \ at the end of response body,\n  \n     * this function will stop reading and return\
+  \ all the complete multi-byte\n  \n     * characters read successfully.  If no complete\
+  \ character is read\n  \n     * successfully, the partial_multibyte_char exception\
+  \ will be raised.\n  \n     * The exception can be handled and the bytes of that\
+  \ partial multi-byte\n  \n     * character can be read as binary by the read_raw\
+  \ procedure.  If a partial\n  \n     * multi-byte character is seen in the middle\
+  \ of the response body because\n  \n     * the remaining bytes of the character\
+  \ have not arrived and read time-out\n  \n     * occurs, the transfer_timeout exception\
+  \ will be raised instead.\n  \n     * The exception can be handled and the read\
+  \ operation can be retried\n  \n     * at a later time.\n  \n     *   When the \"\
+  Content-Type\" response header specifies the character set\n  \n     * of the response\
+  \ body and the character set is unknown to or unsupported by\n  \n     * Oracle,\
+  \ the \"ORA-01482: unsupported character set\" exception will be\n  \n     * raised\
+  \ if the user tries to read the response body as text. The user\n  \n     * may\
+  \ either read the response body as binary using the read_raw procedure,\n  \n  \
+  \   * or set the character set of the response body explicitly using the\n  \n \
+  \    * set_body_charset procedure and read the response body as text again.\n  \n\
+  \     */\n  PROCEDURE read_line(\n    r IN OUT NOCOPY resp,\n    data OUT NOCOPY\
+  \ VARCHAR2 CHARACTER\n    SET\n      ANY_CS,\n      remove_crlf IN BOOLEAN DEFAULT\
+  \ FALSE\n  );\nPRAGMA restrict_references(read_line, wnds, rnds, trust);\n  /**\n\
+  \  \n     * Reads the HTTP response body in binary form and returns the output in\n\
+  \  \n     * the caller-supplied buffer. The end_of_body exception will be raised\
+  \ if\n  \n     * the end of the HTTP response body is reached.\n  \n     *\n  \n\
+  \     * PARAMETERS\n  \n     *   r            The HTTP response\n  \n     *   data\
+  \         The HTTP response body in binary form\n  \n     *   len          The maximum\
+  \ number of bytes of data to read. If len is\n  \n     *                NULL, this\
+  \ procedure will read as much input as possible to\n  \n     *                fill\
+  \ the buffer allocated in data. The actual amount of\n  \n     *               \
+  \ data returned may be less than that specified if not so\n  \n     *          \
+  \      much data is available before the end of the HTTP response\n  \n     *  \
+  \              body is reached or the transfer_timeout amount of time has\n  \n\
+  \     *                elapsed. The default is NULL.\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *   end_of_body       when no data can be returned because the end of\n\
+  \  \n     *                     response body is reached.\n  \n     *\n  \n    \
+  \ * When detailed-exception is disabled:\n  \n     *   request_failed    the request\
+  \ fails to execute\n  \n     *                     (use get_detailed_sqlcode and\
+  \ get_detailed_sqlerrm to\n  \n     *                      get the detailed error\
+  \ message)\n  \n     *\n  \n     * When detailed-exception is enabled:\n  \n   \
+  \  *   bad_argument      when some of the arguments passed are not valid.\n  \n\
+  \     *   transfer_timeout  no data is read and a read time-out occurred.\n  \n\
+  \     *   - plus miscellaneous network or runtime exceptions.\n  \n     * NOTES\n\
+  \  \n     *   The UTL_HTTP package supports HTTP 1.1 chunked transfer-encoding.\n\
+  \  \n     * When the response body is returned in chunked transfer-encoding format\n\
+  \  \n     * as indicated in the response header, the package automatically decodes\n\
+  \  \n     * the chunks and return the response body in \"dechunked\" format.\n \
+  \ \n     *   If transfer time-out is set in the request of this response, this\n\
+  \  \n     * procedure will wait for each data packet to be ready to read until\n\
+  \  \n     * time-out occurs.  If it occurs, this procedure will stop reading and\n\
+  \  \n     * return all the data read successfully.  If no data is read successfully,\n\
+  \  \n     * the transfer_timeout exception will be raised.  The exception can be\n\
+  \  \n     * handled and the read operation can be retried at a later time.\n  \n\
+  \     */\n  PROCEDURE read_raw(\n    r IN OUT NOCOPY resp,\n    data OUT NOCOPY\
+  \ RAW,\n    len IN PLS_INTEGER DEFAULT NULL\n  );\nPRAGMA restrict_references(read_raw,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Ends the HTTP response. This completes\
+  \ the HTTP request and response.\n  \n     * Unless HTTP 1.1 persistent connection\
+  \ is used in this request, the\n  \n     * network connection will also be closed.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   r            The HTTP response\n\
+  \  \n     *\n  \n     * EXCEPTIONS\n  \n     *\n  \n     * When detailed-exception\
+  \ is disabled:\n  \n     *   request_failed    the request fails to execute\n  \n\
+  \     *                     (use get_detailed_sqlcode and get_detailed_sqlerrm to\n\
+  \  \n     *                      get the detailed error message)\n  \n     *\n \
+  \ \n     * When detailed-exception is enabled:\n  \n     *   bad_argument      when\
+  \ some of the arguments passed are not valid.\n  \n     *   - plus miscellaneous\
+  \ network or runtime exceptions.\n  \n     * NOTES\n  \n     *   None.\n  \n   \
+  \  */\n  PROCEDURE end_response(r IN OUT NOCOPY resp);\nPRAGMA restrict_references(end_response,\
+  \ wnds, rnds, trust);\n  /*----------------------- Cookies Management API ------------------------*/\n\
+  \  /* The following set of API manipulate the HTTP cookies maintained by the\n \
+  \ \n     * database user session.\n  \n     */\n  /**\n  \n     * Returns the number\
+  \ of cookies maintained either in a request context or\n  \n     * in the UTL_HTTP\
+  \ package's session state.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   request_context\
+  \  The request context to return the cookie count for.\n  \n     *             \
+  \ If NULL, the cookie count maintained in the UTL_HTTP\n  \n     *             \
+  \ package's session state will be returned instead.\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *   miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *  \
+  \ None.\n  \n     */\n  FUNCTION get_cookie_count(\n    request_context IN request_context_key\
+  \ DEFAULT NULL\n  ) RETURN PLS_INTEGER;\nPRAGMA restrict_references(get_cookie_count,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Returns all the cookies maintained either\
+  \ in a request context or\n  \n     * in the UTL_HTTP package's session state.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   cookies    The cookies returned.\n\
+  \  \n     *   request_context  The request context to return the cookies for. If\
+  \ NULL,\n  \n     *              the cookies maintained in the UTL_HTTP package's\
+  \ session\n  \n     *              state will be returned instead.\n  \n     *\n\
+  \  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n  \n   \
+  \  * NOTES\n  \n     *   None.\n  \n     */\n  PROCEDURE get_cookies(\n    cookies\
+  \ IN OUT NOCOPY cookie_table,\n    request_context IN request_context_key DEFAULT\
+  \ NULL\n  );\nPRAGMA restrict_references(get_cookies, wnds, rnds, trust);\n  /**\n\
+  \  \n     * Add the cookies either to a request context or to the UTL_HTTP package's\n\
+  \  \n     * session state.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   cookies\
+  \    The cookies to be added.\n  \n     *   request_context  The request context\
+  \ to add the cookies. If NULL,\n  \n     *              the cookies will be added\
+  \ to the UTL_HTTP package's\n  \n     *              session state instead.\n  \n\
+  \     *\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n\
+  \  \n     * NOTES\n  \n     *   The cookies that the package currently maintains\
+  \ will be not cleared\n  \n     *   before the new cookies are added.\n  \n    \
+  \ */\n  PROCEDURE add_cookies(\n    cookies IN cookie_table,\n    request_context\
+  \ IN request_context_key DEFAULT NULL\n  );\nPRAGMA restrict_references(add_cookies,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Clears all the cookies maintained either\
+  \ in a request context or\n  \n     * in the UTL_HTTP package's session state.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   request_context  The request context\
+  \ to clear the cookies. If NULL,\n  \n     *              the cookies maintained\
+  \ in the UTL_HTTP package's\n  \n     *              session state will be cleared\
+  \ instead.\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime\
+  \ exceptions.\n  \n     */\n  PROCEDURE clear_cookies(\n    request_context IN request_context_key\
+  \ DEFAULT NULL\n  );\nPRAGMA restrict_references(clear_cookies, wnds, rnds, trust);\n\
+  \  /*---------------- Persistent Connection Management API -----------------*/\n\
+  \  /* The following set of API manipulate the HTTP persistent connections\n  \n\
+  \     * maintained by the database user session.\n  \n     */\n  /**\n  \n     *\
+  \ Returns the number of network connections currently kept persistent by\n  \n \
+  \    * the UTL_HTTP package to the Web servers.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   None.\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous\
+  \ runtime exceptions.\n  \n     * NOTES\n  \n     *   Connections to the same Web\
+  \ server at different TCP/IP ports are\n  \n     *   counted individually. The host\
+  \ names of the Web servers are identified\n  \n     *   as specified in the URL\
+  \ of the original HTTP requests. Therefore,\n  \n     *   fully-qualified host names\
+  \ with domain names will be counted differently\n  \n     *   from the host names\
+  \ without domain names.\n  \n     */\n  FUNCTION get_persistent_conn_count RETURN\
+  \ PLS_INTEGER;\nPRAGMA restrict_references(get_persistent_conn_count, wnds, rnds,\
+  \ trust);\n  /**\n  \n     * Returns all the network connections currently kept\
+  \ persistent by the\n  \n     * UTL_HTTP package to the Web servers.\n  \n     *\n\
+  \  \n     * PARAMETERS\n  \n     *   connections  The network connections currently\
+  \ kept persistent\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous\
+  \ runtime exceptions.\n  \n     * NOTES\n  \n     *   Connections to the same Web\
+  \ server at different TCP/IP ports are\n  \n     *   counted individually. The host\
+  \ names of the Web servers are identified\n  \n     *   as specified in the URL\
+  \ of the original HTTP requests. Therefore,\n  \n     *   fully-qualified host names\
+  \ with domain names will be counted differently\n  \n     *   from the host names\
+  \ without domain names.\n  \n     */\n  PROCEDURE get_persistent_conns(connections\
+  \ IN OUT NOCOPY connection_table);\nPRAGMA restrict_references(get_persistent_conns,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Closes a HTTP persistent connection maintained\
+  \ by the UTL_HTTP package\n  \n     * in the current database session.\n  \n   \
+  \  *\n  \n     * PARAMETERS\n  \n     *   conn      The HTTP persistent connection\
+  \ to close.\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n\
+  \  \n     * NOTES\n  \n     *   Connections to the same Web server at different\
+  \ TCP/IP ports are\n  \n     *   counted individually. The host names of the Web\
+  \ servers are identified\n  \n     *   as specified in the URL of the original HTTP\
+  \ requests. Therefore,\n  \n     *   fully-qualified host names with domain names\
+  \ will be counted differently\n  \n     *   from the host names without domain names.\n\
+  \  \n     */\n  PROCEDURE close_persistent_conn(conn IN connection);\nPRAGMA restrict_references(close_persistent_conn,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Closes a group of HTTP persistent connections\
+  \ maintained by\n  \n     * the UTL_HTTP package in the current database session.\
+  \ This procedure\n  \n     * uses a pattern-match approach to decide which persistent\
+  \ connections\n  \n     * to close.\n  \n     *\n  \n     * To close a group of\
+  \ HTTP persistent connection that share a common\n  \n     * property (for example,\
+  \ all connections to a particular host, or all\n  \n     * SSL connections), set\
+  \ the particular parameter(s) and leave the rest\n  \n     * parameters NULL. If\
+  \ a particular parameter set to NULL when this procedure\n  \n     * is called,\
+  \ that parameter will not be used to decide which connections\n  \n     * to close\
+  \ (namely, the caller does not care that value).\n  \n     *\n  \n     * For example,\
+  \ the following call to the procedure closes all persistent\n  \n     * connections\
+  \ (SSL or non) to foobar\n  \n     *\n  \n     *   utl_http.close_persistent_conns(host\
+  \ => 'foobar');,\n  \n     *\n  \n     * And the following call to the procedure\
+  \ closes all persistent connections\n  \n     * (SSL or non) via the proxy www-proxy\
+  \ at TCP/IP port 80\n  \n     *\n  \n     *   utl_http.close_persistent_conns(proxy_host\
+  \ => 'foobar',\n  \n     *                                   proxy_port => 80);\n\
+  \  \n     *\n  \n     * And the following call to the procedure closes all persistent\
+  \ connections\n  \n     *\n  \n     *   utl_http.close_persistent_conns;\n  \n \
+  \    *\n  \n     * PARAMETERS\n  \n     *   host       The host for which persistent\
+  \ connections are to be closed.\n  \n     *   port       The port number for which\
+  \ persistent connections are to be\n  \n     *              closed.\n  \n     *\
+  \   proxy_host The proxy host for which persistent connections are to be\n  \n \
+  \    *              closed.\n  \n     *   proxy_host The proxy port for which persistent\
+  \ connections are to be\n  \n     *              closed.\n  \n     *   ssl     \
+  \   Close persistent SSL connection or non.\n  \n     * EXCEPTIONS\n  \n     * \
+  \  miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *   Connections\
+  \ to the same Web server at different TCP/IP ports are\n  \n     *   counted individually.\
+  \ The host names of the Web servers are identified\n  \n     *   as specified in\
+  \ the URL of the original HTTP requests. Therefore,\n  \n     *   fully-qualified\
+  \ host names with domain names will be counted differently\n  \n     *   from the\
+  \ host names without domain names.\n  \n     *\n  \n     *   Note that the use of\
+  \ a NULL value in a parameter when this procedure\n  \n     *   is called means\
+  \ that the caller does not care its value when the package\n  \n     *   decides\
+  \ which persistent connection to close. In the event that you\n  \n     *   want\
+  \ a NULL value in a parameter to match only a NULL value of the\n  \n     *   parameter\
+  \ of a persistent connection (which is when you want to close\n  \n     *   a specific\
+  \ persistent connection), you should use the\n  \n     *   close_persistent_conn\
+  \ procedure that closes a specific persistent\n  \n     *   connection.\n  \n  \
+  \   */\n  PROCEDURE close_persistent_conns(\n    host IN VARCHAR2 DEFAULT NULL,\n\
+  \    port IN PLS_INTEGER DEFAULT NULL,\n    proxy_host IN VARCHAR2 DEFAULT NULL,\n\
+  \    proxy_port IN PLS_INTEGER DEFAULT NULL,\n    ssl IN BOOLEAN DEFAULT NULL\n\
+  \  );\nPRAGMA restrict_references(close_persistent_conns, wnds, rnds, trust);\n\
+  \  /*--------------------- Last Detailed Exception API ---------------------*/\n\
+  \  /* This set of API return the last detailed exception when detailed exception\n\
+  \  \n     * is disabled.\n  \n     */\n  /**\n  \n     * Retrieves the detailed\
+  \ SQLCODE of the last exception raised.\n  \n     *\n  \n     * PARAMETERS\n  \n\
+  \     *   None.\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime\
+  \ exceptions.\n  \n     * NOTES\n  \n     *   None.\n  \n     */\n  FUNCTION get_detailed_sqlcode\
+  \ RETURN PLS_INTEGER;\nPRAGMA restrict_references(get_detailed_sqlcode, wnds, rnds,\
+  \ trust);\n  /**\n  \n     * Retrieves the detailed SQLERRM of the last exception\
+  \ raised.\n  \n     *\n  \n     * PARAMETERS\n  \n     *   None.\n  \n     *\n \
+  \ \n     * EXCEPTIONS\n  \n     *   miscellaneous runtime exceptions.\n  \n    \
+  \ * NOTES\n  \n     *   None.\n  \n     */\n  FUNCTION get_detailed_sqlerrm RETURN\
+  \ VARCHAR2;\nPRAGMA restrict_references(get_detailed_sqlerrm, wnds, rnds, trust);\n\
+  \  /*------------------------- Simple Fetch API ----------------------------*/\n\
+  \  /**\n  \n     * Fetches a Web page.  This function returns the first 2000 bytes\n\
+  \  \n     * of the page at most.\n  \n     *\n  \n     * PARAMETERS\n  \n     *\
+  \   url             The URL of the Web page\n  \n     *   proxy           The proxy\
+  \ host and port number.  See set_proxy for the\n  \n     *                   format\
+  \ of the proxy string.  If proxy is NULL, the\n  \n     *                   proxy\
+  \ session of the current session will be used.\n  \n     *   wallet_path     The\
+  \ path of the Oracle wallet. The format is\n  \n     *                   'file:/<wallet-directory-path>'.\
+  \  If wallet_path\n  \n     *                   is NULL, the wallet set for the\
+  \ current session will\n  \n     *                   be used.\n  \n     *   wallet_password\
+  \ The password needed to open the wallet. There may a\n  \n     *              \
+  \     second copy of a wallet in a wallet directory that\n  \n     *           \
+  \        may be opened without a password. That second copy of\n  \n     *     \
+  \              the wallet is for read only. If password is NULL, the\n  \n     *\
+  \                   UTL_HTTP package will open the second, read-only copy\n  \n\
+  \     *                   of the wallet instead.  See the documentation on Oracle\n\
+  \  \n     *                   wallets for details. If a password\n  \n     *   \
+  \                is required to open the wallet, it must be given\n  \n     *  \
+  \                 explicitly.  This function will NOT use the password\n  \n   \
+  \  *                   set previously with set_wallet.\n  \n     *\n  \n     * \
+  \  request_failed    the request fails to execute\n  \n     *                  \
+  \   (use get_detailed_sqlcode and get_detailed_sqlerrm to\n  \n     *          \
+  \            get the detailed error message)\n  \n     *\n  \n     * When detailed-exception\
+  \ is enabled:\n  \n     *\n  \n     *   bad_argument      when some of the arguments\
+  \ passed are not valid.\n  \n     *   bad_url           when the URL is not valid.\n\
+  \  \n     *   unknown_scheme    when the request scheme is not known.\n  \n    \
+  \ *   too_many_requests when there are too many open requests.\n  \n     *   - plus\
+  \ miscellaneous network and runtime exceptions.\n  \n     * NOTES\n  \n     * -\
+  \ The URL passed as an argument to this function will not be examined\n  \n    \
+  \ *   for illegal characters per the URL specification RFC 2396, like spaces\n \
+  \ \n     *   for example. The caller should escape those characters with the UTL_URL\n\
+  \  \n     *   package. See the comments of the package for the list of legal\n \
+  \ \n     *   characters in URLs. Note that URLs should consist of US-ASCII\n  \n\
+  \     *   characters only. The use of non-US-ASCII characters in an URL is\n  \n\
+  \     *   generally unsafe.\n  \n     *   URL may contain username and password\
+  \ to authenticate the request to\n  \n     *   the server. The general format would\
+  \ be\n  \n     *          <scheme>://[<user>[:<password>]@]<host>[:<port>]/[...].\n\
+  \  \n     * - Please see the documentation of the function set_wallet on the use\
+  \ of\n  \n     *   an Oracle wallet, which is required for accessing HTTPS Web servers.\n\
+  \  \n     * - Unless response error check is turned on, this function does not raise\n\
+  \  \n     *   an exception when a 4xx or 5xx response is received from the Web server.\n\
+  \  \n     *   Instead, it returns the formatted error message from the Web server:\n\
+  \  \n     *   \"<HTML>\n  \n     *   <HEAD>\n  \n     *   <TITLE>Error Message</TITLE>\n\
+  \  \n     *   </HEAD>\n  \n     *   <BODY>\n  \n     *   <H1>Fatal Error 500</H1>\n\
+  \  \n     *   Can't Access Document:  http://home.nothing.comm.\n  \n     *   <P>\n\
+  \  \n     *   <B>Reason:</B> Can't locate remote host:  home.nothing.comm.\n  \n\
+  \     *   <P>\n  \n     *\n  \n     *   <P><HR>\n  \n     *   <ADDRESS><A HREF=\"\
+  http://www.w3.org\">\n  \n     *    CERN-HTTPD3.0A</A></ADDRESS>\n  \n     *   </BODY>\n\
+  \  \n     *   </HTML>\"\n  \n     */\n  FUNCTION request(\n    url IN VARCHAR2,\n\
+  \    proxy in VARCHAR2 DEFAULT NULL,\n    wallet_path IN VARCHAR2 DEFAULT NULL,\n\
+  \    wallet_password IN VARCHAR2 DEFAULT NULL\n  ) RETURN VARCHAR2;\nPRAGMA restrict_references\
+  \ (request, wnds, rnds, wnps, rnps, trust);\n  /**\n  \n     * Fetches a Web page.\
+  \  The page is returned in a PL/SQL-table of\n  \n     * VARCHAR2(2000) pieces.\n\
+  \  \n     *\n  \n     * The elements of the PLSQL-table returned by request_pieces\
+  \ are\n  \n     * successive pieces of the data obtained from the HTTP request to\
+  \ that\n  \n     * URL.  Here is a typical URL:\n  \n     *            http://www.oracle.com\n\
+  \  \n     * So a call to request_pieces could look like the example below. Note\
+  \ the\n  \n     * use of the plsql-table method COUNT to discover the number of\
+  \ pieces\n  \n     * returned, which may be zero or more:\n  \n     *\n  \n    \
+  \ * declare\n  \n     *   pieces utl_http.html_pieces;\n  \n     * begin\n  \n \
+  \    *   pieces := utl_http.request_pieces('http://www.oracle.com/');\n  \n    \
+  \ *   for i in 1 .. pieces.count loop\n  \n     *     .... -- process each piece\n\
+  \  \n     *   end loop;\n  \n     * end;\n  \n     *\n  \n     * PARAMETERS\n  \n\
+  \     *   url             The URL of the Web page\n  \n     *   max_pieces     \
+  \ The maximum number of VARCHAR2 pieces to retrieve\n  \n     *   proxy        \
+  \   The proxy host and port number.  See set_proxy for the\n  \n     *         \
+  \          format of the proxy string.  If proxy is NULL, the\n  \n     *      \
+  \             proxy session of the current session will be used.\n  \n     *   wallet_path\
+  \     The path of the Oracle wallet. The format is\n  \n     *                 \
+  \  'file:/<wallet-directory-path>'.  If wallet_path\n  \n     *                \
+  \   is NULL, the wallet set for the current session will\n  \n     *           \
+  \        be used.\n  \n     *   wallet_password The password needed to open the\
+  \ wallet. There may a\n  \n     *                   second copy of a wallet in a\
+  \ wallet directory that\n  \n     *                   may be opened without a password.\
+  \ That second copy of\n  \n     *                   the wallet is for read only.\
+  \ If password is NULL, the\n  \n     *                   UTL_HTTP package will open\
+  \ the second, read-only copy\n  \n     *                   of the wallet instead.\
+  \  See the documentation on Oracle\n  \n     *                   wallets for details.\
+  \ If a password\n  \n     *                   is required to open the wallet, it\
+  \ must be given\n  \n     *                   explicitly.  This function will NOT\
+  \ use the password\n  \n     *                   set previously with set_wallet.\n\
+  \  \n     *\n  \n     *   request_failed    the request fails to execute\n  \n \
+  \    *                     (use get_detailed_sqlcode and get_detailed_sqlerrm to\n\
+  \  \n     *                      get the detailed error message)\n  \n     *\n \
+  \ \n     * When detailed-exception is enabled:\n  \n     *\n  \n     *   bad_argument\
+  \      when some of the arguments passed are not valid.\n  \n     *   bad_url  \
+  \         when the URL is not valid.\n  \n     *   unknown_scheme    when the request\
+  \ scheme is not known.\n  \n     *   too_many_requests when there are too many open\
+  \ requests.\n  \n     *   - plus miscellaneous network and runtime exceptions.\n\
+  \  \n     * NOTES\n  \n     * - The URL passed as an argument to this function will\
+  \ not be examined\n  \n     *   for illegal characters per the URL specification\
+  \ RFC 2396, like spaces\n  \n     *   for example. The caller should escape those\
+  \ characters with the UTL_URL\n  \n     *   package. See the comments of the package\
+  \ for the list of legal\n  \n     *   characters in URLs. Note that URLs should\
+  \ consist of US-ASCII\n  \n     *   characters only. The use of non-US-ASCII characters\
+  \ in an URL is\n  \n     *   generally unsafe.\n  \n     *   URL may contain username\
+  \ and password to authenticate the request to\n  \n     *   the server. The general\
+  \ format would be\n  \n     *          <scheme>://[<user>[:<password>]@]<host>[:<port>]/[...].\n\
+  \  \n     * - Each entry of the PL/SQL table (the \"pieces\") returned by this function\n\
+  \  \n     *   may not be filled to their fullest capacity.  The function may\n \
+  \ \n     *   start filling the data in the next \"piece\" before the previous \"\
+  piece\"\n  \n     *   is totally full.\n  \n     * - Please see the documentation\
+  \ of the function set_wallet on the use of\n  \n     *   an Oracle wallet, which\
+  \ is required for accessing HTTPS Web servers.\n  \n     * - Unless response error\
+  \ check is turned on, this function does not raise\n  \n     *   an exception when\
+  \ a 4xx or 5xx response is received from the Web server\n  \n     *   Instead, it\
+  \ returns the formatted error message from the Web server:\n  \n     *   \"<HTML>\n\
+  \  \n     *   <HEAD>\n  \n     *   <TITLE>Error Message</TITLE>\n  \n     *   </HEAD>\n\
+  \  \n     *   <BODY>\n  \n     *   <H1>Fatal Error 500</H1>\n  \n     *   Can't\
+  \ Access Document:  http://home.nothing.comm.\n  \n     *   <P>\n  \n     *   <B>Reason:</B>\
+  \ Can't locate remote host:  home.nothing.comm.\n  \n     *   <P>\n  \n     *\n\
+  \  \n     *   <P><HR>\n  \n     *   <ADDRESS><A HREF=\"http://www.w3.org\">\n  \n\
+  \     *    CERN-HTTPD3.0A</A></ADDRESS>\n  \n     *   </BODY>\n  \n     *   </HTML>\"\
+  \n  \n     */\n  FUNCTION request_pieces(\n    url IN VARCHAR2,\n    max_pieces\
+  \ IN NATURAL DEFAULT 32767,\n    proxy in VARCHAR2 DEFAULT NULL,\n    wallet_path\
+  \ IN VARCHAR2 DEFAULT NULL,\n    wallet_password IN VARCHAR2 DEFAULT NULL\n  ) RETURN\
+  \ html_pieces;\nPRAGMA restrict_references (request_pieces, wnds, rnds, wnps, rnps,\
+  \ trust);\n  /**\n  \n     * Sets the default content-encoding support for the specified\
+  \ encoding\n  \n     * scheme for all future HTTP requests.\n  \n     *\n  \n  \
+  \   * PARAMETERS\n  \n     *   scheme    The encoding scheme\n  \n     *   enable\
+  \    Enable the support or not\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *  \
+  \ miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *   Only the \"\
+  gzip\" encoding scheme is currently supported.\n  \n     */\n  PROCEDURE set_content_encoding_support(\n\
+  \    scheme IN VARCHAR2,\n    enable IN BOOLEAN DEFAULT FALSE\n  );\nPRAGMA restrict_references(set_content_encoding_support,\
+  \ wnds, rnds, trust);\n  /**\n  \n     * Retrieves the default content-encoding\
+  \ support for the specified encoding\n  \n     * scheme for all future HTTP requests.\n\
+  \  \n     *\n  \n     * PARAMETERS\n  \n     *   scheme    The encoding scheme\n\
+  \  \n     *   enable    The support is enabled or not\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *   miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *  \
+  \ Only the \"gzip\" encoding scheme is currently supported.\n  \n     */\n  PROCEDURE\
+  \ get_content_encoding_support(\n    scheme IN VARCHAR2,\n    enable OUT BOOLEAN\n\
+  \  );\nPRAGMA restrict_references(get_content_encoding_support, wnds, rnds, trust);\n\
+  \  /**\n  \n     * Sets the content-encoding support for the specified encoding\
+  \ scheme for\n  \n     * this HTTP request.\n  \n     *\n  \n     * PARAMETERS\n\
+  \  \n     *   r         The HTTP request\n  \n     *   scheme    The encoding scheme\n\
+  \  \n     *   enable    Enable the support or not\n  \n     *\n  \n     * EXCEPTIONS\n\
+  \  \n     *   miscellaneous runtime exceptions.\n  \n     * NOTES\n  \n     *  \
+  \ None.\n  \n     */\n  PROCEDURE set_content_encoding_support(\n    r IN OUT NOCOPY\
+  \ req,\n    scheme IN VARCHAR2,\n    enable IN BOOLEAN DEFAULT FALSE\n  );\nPRAGMA\
+  \ restrict_references(set_content_encoding_support, wnds, rnds, trust);\n  /**\n\
+  \  \n     * Sets whether get_response should raise an exception when the Web server\n\
+  \  \n     * returns a status code that indicates an error (namely, a status code\
+  \ in\n  \n     * the 4xx or 5xx ranges). For example, when the requested URL is\
+  \ not found\n  \n     * in the destination Web server, a 404 (document not found)\
+  \ response status\n  \n     * code is returned.  In general, a 4xx or 5xx response\
+  \ is considered an\n  \n     * error response.  If response error check is set,\
+  \ get_response will raise\n  \n     * the HTTP_CLIENT_ERROR or HTTP_SERVER_ERROR\
+  \ exception if the status code\n  \n     * indicates an error. Otherwise, get_response\
+  \ will not raise the exception\n  \n     * if the status codes indicates an error.\
+  \ Response error check is turned off\n  \n     * by default.\n  \n     *\n  \n \
+  \    * PARAMETERS\n  \n     *   enable         Set to TRUE to check for response\
+  \ error. FALSE otherwise.\n  \n     *\n  \n     * EXCEPTIONS\n  \n     *   miscellaneous\
+  \ runtime exceptions.\n  \n     * NOTES\n  \n     *   None.\n  \n     */\n  PROCEDURE\
+  \ set_response_error_check(\n    r IN OUT NOCOPY req,\n    enable IN BOOLEAN DEFAULT\
+  \ FALSE\n  );\nPRAGMA restrict_references(set_response_error_check, wnds, rnds,\
+  \ trust);\nEND utl_http;"

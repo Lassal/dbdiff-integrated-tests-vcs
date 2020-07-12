@@ -1,0 +1,3346 @@
+schema: MDSYS
+name: SDO_LRS
+routineType: PACKAGE
+returnParamater:
+  name: VALID_MEASURE_3D(2).(--return--)
+  ordinalPosition: 0
+  dataType: VARCHAR2
+  parameterMode: OUT
+parameters:
+- name: CLIP_GEOM_SEGMENT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT(1).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT(1).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT(2).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT(2).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT(2).TOLERANCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT_3D(1).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT_3D(1).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT_3D(2).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT_3D(2).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CLIP_GEOM_SEGMENT_3D(2).TOLERANCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS(1).GEOM_SEGMENT_1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS(1).DIM_ARRAY_1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS(1).GEOM_SEGMENT_2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS(1).DIM_ARRAY_2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS(2).GEOM_SEGMENT_1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS(2).GEOM_SEGMENT_2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS(2).TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS_3D(1).GEOM_SEGMENT_1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS_3D(1).DIM_ARRAY_1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS_3D(1).GEOM_SEGMENT_2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS_3D(1).DIM_ARRAY_2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS_3D(2).GEOM_SEGMENT_1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS_3D(2).GEOM_SEGMENT_2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONCATENATE_GEOM_SEGMENTS_3D(2).TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS(1).GEOM_SEGMENT_1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS(1).DIM_ARRAY_1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS(1).GEOM_SEGMENT_2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS(1).DIM_ARRAY_2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS(2).GEOM_SEGMENT_1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS(2).GEOM_SEGMENT_2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS(2).TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS_3D(1).GEOM_SEGMENT_1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS_3D(1).DIM_ARRAY_1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS_3D(1).GEOM_SEGMENT_2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS_3D(1).DIM_ARRAY_2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS_3D(2).GEOM_SEGMENT_1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS_3D(2).GEOM_SEGMENT_2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONNECTED_GEOM_SEGMENTS_3D(2).TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(1).DIM_ARRAY
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(1).DIM_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(1).DIM_POS
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(1).LOWER_BOUND
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(1).UPPER_BOUND
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(1).TOLERANCE
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(2).DIM_ARRAY
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(2).DIM_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(2).LOWER_BOUND
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(2).UPPER_BOUND
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(2).TOLERANCE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(3).DIM_ARRAY
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(3).LOWER_BOUND
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(3).UPPER_BOUND
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY(3).TOLERANCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY_3D.DIM_ARRAY
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY_3D.DIM_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY_3D.LOWER_BOUND
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY_3D.UPPER_BOUND
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_DIM_ARRAY_3D.TOLERANCE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(1).STANDARD_GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(1).M_POS
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(1).START_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(1).END_MEASURE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(2).STANDARD_GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(2).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(2).M_POS
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(3).STANDARD_GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(3).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(3).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(3).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(4).STANDARD_GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(4).M_POS
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(4).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(4).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(5).STANDARD_GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(5).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(5).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(6).STANDARD_GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(6).M_POS
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM(7).STANDARD_GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM_3D(1).STANDARD_GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM_3D(1).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM_3D(1).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM_3D(2).STANDARD_GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM_3D(2).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_GEOM_3D(2).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER(1).TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER(1).COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER(1).LOWER_BOUND
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER(1).UPPER_BOUND
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER(1).TOLERANCE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER(2).TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER(2).COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER(2).DIM_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER(2).DIM_POS
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER(2).LOWER_BOUND
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER(2).UPPER_BOUND
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER(2).TOLERANCE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER_3D(1).TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER_3D(1).COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER_3D(1).LOWER_BOUND
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER_3D(1).UPPER_BOUND
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER_3D(1).TOLERANCE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER_3D(2).TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER_3D(2).COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER_3D(2).DIM_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER_3D(2).LOWER_BOUND
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER_3D(2).UPPER_BOUND
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_LRS_LAYER_3D(2).TOLERANCE
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: CONVERT_TO_STD_DIM_ARRAY(1).DIM_ARRAY
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONVERT_TO_STD_DIM_ARRAY(2).DIM_ARRAY
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONVERT_TO_STD_DIM_ARRAY(2).M_POS
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: CONVERT_TO_STD_DIM_ARRAY_3D.DIM_ARRAY
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONVERT_TO_STD_GEOM(1).LRS_GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONVERT_TO_STD_GEOM(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONVERT_TO_STD_GEOM(2).LRS_GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONVERT_TO_STD_GEOM_3D(1).LRS_GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONVERT_TO_STD_GEOM_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CONVERT_TO_STD_GEOM_3D(2).LRS_GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: CONVERT_TO_STD_LAYER.TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_STD_LAYER.COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_STD_LAYER_3D.TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CONVERT_TO_STD_LAYER_3D.COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: DEFINE_GEOM_SEGMENT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT(1).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT(1).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: DEFINE_GEOM_SEGMENT(2).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: DEFINE_GEOM_SEGMENT(3).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT(3).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT(3).TOLERANCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: DEFINE_GEOM_SEGMENT(4).TOLERANCE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: DEFINE_GEOM_SEGMENT_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT_3D(1).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT_3D(1).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: DEFINE_GEOM_SEGMENT_3D(2).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT_3D(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: DEFINE_GEOM_SEGMENT_3D(3).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT_3D(3).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT_3D(3).TOLERANCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: DEFINE_GEOM_SEGMENT_3D(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: DEFINE_GEOM_SEGMENT_3D(4).TOLERANCE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT(1).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT(1).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT(2).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT(2).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT(2).TOLERANCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT_3D(1).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT_3D(1).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT_3D(2).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT_3D(2).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: DYNAMIC_SEGMENT_3D(2).TOLERANCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: FIND_LRS_DIM_POS.TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FIND_LRS_DIM_POS.COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: FIND_MEASURE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: FIND_MEASURE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: FIND_MEASURE(1).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: FIND_MEASURE(1).POINT_DIM_ARRAY
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: FIND_MEASURE(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: FIND_MEASURE(2).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: FIND_MEASURE(2).TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: FIND_MEASURE_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: FIND_MEASURE_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: FIND_MEASURE_3D(1).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: FIND_MEASURE_3D(1).POINT_DIM_ARRAY
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: FIND_MEASURE_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: FIND_MEASURE_3D(2).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: FIND_MEASURE_3D(2).TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: FIND_OFFSET(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: FIND_OFFSET(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: FIND_OFFSET(1).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: FIND_OFFSET(1).POINT_DIM_ARRAY
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: FIND_OFFSET(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: FIND_OFFSET(2).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: FIND_OFFSET(2).TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GEOM_SEGMENT_END_MEASURE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_END_MEASURE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GEOM_SEGMENT_END_MEASURE(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_END_MEASURE_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_END_MEASURE_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GEOM_SEGMENT_END_MEASURE_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_END_PT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_END_PT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GEOM_SEGMENT_END_PT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_END_PT_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_END_PT_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GEOM_SEGMENT_END_PT_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_LENGTH(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_LENGTH(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GEOM_SEGMENT_LENGTH(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_LENGTH(2).TOLERANCE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GEOM_SEGMENT_LENGTH_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_LENGTH_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GEOM_SEGMENT_LENGTH_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_LENGTH_3D(2).TOLERANCE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GEOM_SEGMENT_START_MEASURE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_START_MEASURE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GEOM_SEGMENT_START_MEASURE(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_START_MEASURE_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_START_MEASURE_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GEOM_SEGMENT_START_MEASURE_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_START_PT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_START_PT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GEOM_SEGMENT_START_PT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_START_PT_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GEOM_SEGMENT_START_PT_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GEOM_SEGMENT_START_PT_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_MEASURE(1).POINT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_MEASURE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_MEASURE(2).POINT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_MEASURE_3D(1).POINT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_MEASURE_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_MEASURE_3D(2).POINT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT(3).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT(3).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT(4).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE(3).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE(3).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE(4).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE_3D(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE_3D(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE_3D(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE_3D(3).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE_3D(3).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE_3D(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_MEASURE_3D(4).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_3D(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_3D(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_3D(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_3D(3).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_3D(3).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_3D(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_NEXT_SHAPE_PT_3D(4).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT(3).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT(3).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT(4).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE(3).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE(3).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE(4).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE_3D(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE_3D(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE_3D(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE_3D(3).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE_3D(3).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE_3D(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_MEASURE_3D(4).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_3D(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_3D(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_3D(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_3D(3).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_3D(3).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_3D(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: GET_PREV_SHAPE_PT_3D(4).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_GEOM_SEGMENT_DEFINED(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_GEOM_SEGMENT_DEFINED(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: IS_GEOM_SEGMENT_DEFINED(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_GEOM_SEGMENT_DEFINED_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_GEOM_SEGMENT_DEFINED_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: IS_GEOM_SEGMENT_DEFINED_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_MEASURE_DECREASING(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_MEASURE_DECREASING(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: IS_MEASURE_DECREASING(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_MEASURE_DECREASING_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_MEASURE_DECREASING_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: IS_MEASURE_DECREASING_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_MEASURE_INCREASING(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_MEASURE_INCREASING(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: IS_MEASURE_INCREASING(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_MEASURE_INCREASING_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_MEASURE_INCREASING_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: IS_MEASURE_INCREASING_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_SHAPE_PT_MEASURE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_SHAPE_PT_MEASURE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: IS_SHAPE_PT_MEASURE(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: IS_SHAPE_PT_MEASURE(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_SHAPE_PT_MEASURE(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: IS_SHAPE_PT_MEASURE_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_SHAPE_PT_MEASURE_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: IS_SHAPE_PT_MEASURE_3D(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: IS_SHAPE_PT_MEASURE_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: IS_SHAPE_PT_MEASURE_3D(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCATE_PT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: LOCATE_PT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: LOCATE_PT(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCATE_PT(1).OFFSET
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCATE_PT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: LOCATE_PT(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCATE_PT(2).OFFSET
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCATE_PT(2).TOLERANCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCATE_PT_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: LOCATE_PT_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: LOCATE_PT_3D(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCATE_PT_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: LOCATE_PT_3D(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: LOCATE_PT_3D(2).TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: LRS_INTERSECTION(1).GEOM_1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: LRS_INTERSECTION(1).DIM_ARRAY_1
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: LRS_INTERSECTION(1).GEOM_2
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: LRS_INTERSECTION(1).DIM_ARRAY_2
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: LRS_INTERSECTION(2).GEOM_1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: LRS_INTERSECTION(2).GEOM_2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: LRS_INTERSECTION(2).TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: MEASURE_RANGE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: MEASURE_RANGE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: MEASURE_RANGE(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: MEASURE_RANGE_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: MEASURE_RANGE_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: MEASURE_RANGE_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: MEASURE_TO_PERCENTAGE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: MEASURE_TO_PERCENTAGE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: MEASURE_TO_PERCENTAGE(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: MEASURE_TO_PERCENTAGE(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: MEASURE_TO_PERCENTAGE(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(1).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(1).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(1).OFFSET
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(1).UNIT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(2).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(2).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(2).OFFSET
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(2).TOLERANCE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(2).UNIT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(3).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(3).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(3).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(3).OFFSET
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(4).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(4).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(4).OFFSET
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(4).TOLERANCE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(5).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(5).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(5).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: OFFSET_GEOM_SEGMENT(5).OFFSET
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: PERCENTAGE_TO_MEASURE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PERCENTAGE_TO_MEASURE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: PERCENTAGE_TO_MEASURE(1).PERCENTAGE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: PERCENTAGE_TO_MEASURE(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PERCENTAGE_TO_MEASURE(2).PERCENTAGE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROJECT_PT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: PROJECT_PT(1).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT(1).POINT_DIM_ARRAY
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: PROJECT_PT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT(2).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: PROJECT_PT(2).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT(3).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: PROJECT_PT(3).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT(3).POINT_DIM_ARRAY
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: PROJECT_PT(3).OFFSET
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: OUT
+- name: PROJECT_PT(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT(4).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT(4).TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROJECT_PT(5).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT(5).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT(5).TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROJECT_PT(5).OFFSET
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+- name: PROJECT_PT_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: PROJECT_PT_3D(1).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT_3D(1).POINT_DIM_ARRAY
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: PROJECT_PT_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT_3D(2).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: PROJECT_PT_3D(2).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT_3D(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT_3D(3).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: PROJECT_PT_3D(3).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT_3D(3).POINT_DIM_ARRAY
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: PROJECT_PT_3D(3).OFFSET
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: OUT
+- name: PROJECT_PT_3D(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT_3D(4).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT_3D(4).TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROJECT_PT_3D(5).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT_3D(5).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: PROJECT_PT_3D(5).TOLERANCE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROJECT_PT_3D(5).OFFSET
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+- name: REDEFINE_GEOM_SEGMENT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: REDEFINE_GEOM_SEGMENT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT(1).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT(1).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: REDEFINE_GEOM_SEGMENT(2).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: REDEFINE_GEOM_SEGMENT(3).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT(3).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT(3).TOLERANCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: REDEFINE_GEOM_SEGMENT(4).TOLERANCE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: REDEFINE_GEOM_SEGMENT_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT_3D(1).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT_3D(1).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: REDEFINE_GEOM_SEGMENT_3D(2).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT_3D(3).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: REDEFINE_GEOM_SEGMENT_3D(3).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT_3D(3).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT_3D(3).TOLERANCE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: REDEFINE_GEOM_SEGMENT_3D(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: REDEFINE_GEOM_SEGMENT_3D(4).TOLERANCE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: RESET_MEASURE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: RESET_MEASURE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: RESET_MEASURE(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: REVERSE_GEOMETRY(1).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: REVERSE_GEOMETRY(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: REVERSE_GEOMETRY(2).GEOM
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: REVERSE_MEASURE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: REVERSE_MEASURE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: REVERSE_MEASURE(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: REVERSE_MEASURE_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: REVERSE_MEASURE_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: REVERSE_MEASURE_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SCALE_GEOM_SEGMENT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SCALE_GEOM_SEGMENT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SCALE_GEOM_SEGMENT(1).START_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SCALE_GEOM_SEGMENT(1).END_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: SCALE_GEOM_SEGMENT(1).SHIFT_MEASURE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: SCALE_GEOM_SEGMENT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SCALE_GEOM_SEGMENT(2).START_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SCALE_GEOM_SEGMENT(2).END_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SCALE_GEOM_SEGMENT(2).SHIFT_MEASURE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: SCALE_GEOM_SEGMENT(2).TOLERANCE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET_PT_MEASURE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: SET_PT_MEASURE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SET_PT_MEASURE(1).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: SET_PT_MEASURE(1).PT_DIM_ARRAY
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: SET_PT_MEASURE(1).MEASURE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET_PT_MEASURE(2).POINT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: SET_PT_MEASURE(2).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SET_PT_MEASURE(2).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET_PT_MEASURE(3).POINT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: SET_PT_MEASURE(3).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET_PT_MEASURE(4).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: SET_PT_MEASURE(4).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: SET_PT_MEASURE(4).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET_PT_MEASURE_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: SET_PT_MEASURE_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SET_PT_MEASURE_3D(1).POINT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: SET_PT_MEASURE_3D(1).PT_DIM_ARRAY
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: SET_PT_MEASURE_3D(1).MEASURE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: SET_PT_MEASURE_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: SET_PT_MEASURE_3D(2).POINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: SET_PT_MEASURE_3D(2).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SPLIT_GEOM_SEGMENT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SPLIT_GEOM_SEGMENT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SPLIT_GEOM_SEGMENT(1).SPLIT_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SPLIT_GEOM_SEGMENT(1).SEGMENT_1
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: OUT
+- name: SPLIT_GEOM_SEGMENT(1).SEGMENT_2
+  ordinalPosition: 5
+  dataType: OBJECT
+  parameterMode: OUT
+- name: SPLIT_GEOM_SEGMENT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SPLIT_GEOM_SEGMENT(2).SPLIT_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SPLIT_GEOM_SEGMENT(2).SEGMENT_1
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: OUT
+- name: SPLIT_GEOM_SEGMENT(2).SEGMENT_2
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: OUT
+- name: SPLIT_GEOM_SEGMENT(2).TOLERANCE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: SPLIT_GEOM_SEGMENT_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SPLIT_GEOM_SEGMENT_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SPLIT_GEOM_SEGMENT_3D(1).SPLIT_MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: SPLIT_GEOM_SEGMENT_3D(1).SEGMENT_1
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: OUT
+- name: SPLIT_GEOM_SEGMENT_3D(1).SEGMENT_2
+  ordinalPosition: 5
+  dataType: OBJECT
+  parameterMode: OUT
+- name: SPLIT_GEOM_SEGMENT_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SPLIT_GEOM_SEGMENT_3D(2).SPLIT_MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SPLIT_GEOM_SEGMENT_3D(2).SEGMENT_1
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: OUT
+- name: SPLIT_GEOM_SEGMENT_3D(2).SEGMENT_2
+  ordinalPosition: 4
+  dataType: OBJECT
+  parameterMode: OUT
+- name: SPLIT_GEOM_SEGMENT_3D(2).TOLERANCE
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: IN
+- name: TRANSLATE_MEASURE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: TRANSLATE_MEASURE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: TRANSLATE_MEASURE(1).TRANSLATE_M
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: TRANSLATE_MEASURE(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: TRANSLATE_MEASURE(2).TRANSLATE_M
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: TRANSLATE_MEASURE_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: TRANSLATE_MEASURE_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: TRANSLATE_MEASURE_3D(1).TRANSLATE_M
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: TRANSLATE_MEASURE_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: TRANSLATE_MEASURE_3D(2).TRANSLATE_M
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALIDATE_LRS_GEOMETRY(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALIDATE_LRS_GEOMETRY(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: VALIDATE_LRS_GEOMETRY(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALIDATE_LRS_GEOMETRY_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALIDATE_LRS_GEOMETRY_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: VALIDATE_LRS_GEOMETRY_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALID_GEOM_SEGMENT(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALID_GEOM_SEGMENT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: VALID_GEOM_SEGMENT(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALID_GEOM_SEGMENT_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALID_GEOM_SEGMENT_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: VALID_GEOM_SEGMENT_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALID_LRS_PT(1).POINT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALID_LRS_PT(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: VALID_LRS_PT(2).POINT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALID_LRS_PT_3D(1).POINT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALID_LRS_PT_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: VALID_LRS_PT_3D(2).POINT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALID_MEASURE(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALID_MEASURE(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: VALID_MEASURE(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALID_MEASURE(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALID_MEASURE(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALID_MEASURE_3D(1).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALID_MEASURE_3D(1).DIM_ARRAY
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: VALID_MEASURE_3D(1).MEASURE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: VALID_MEASURE_3D(2).GEOM_SEGMENT
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: VALID_MEASURE_3D(2).MEASURE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE sdo_lrs AUTHID current_user AS --
+  --
+  -- functions/procedure for defining, creating and manipulating LRS geometric segments
+  --
+  --
+  --
+  -- define an LRS geometric segment, all measures will be automatically populated
+  --
+  PROCEDURE define_geom_segment(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER
+  );
+  PROCEDURE define_geom_segment(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  );
+  PROCEDURE define_geom_segment(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  );
+  PROCEDURE define_geom_segment(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  );
+  PROCEDURE define_geom_segment_3d(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER
+  );
+  PROCEDURE define_geom_segment_3d(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  );
+  PROCEDURE define_geom_segment_3d(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  );
+  PROCEDURE define_geom_segment_3d(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  );
+  --
+  -- create a new geometric segment by clipping the given geometric segment
+  --
+  FUNCTION clip_geom_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION clip_geom_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION clip_geom_segment_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION clip_geom_segment_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- split a geometric segment into two
+  --
+  PROCEDURE split_geom_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    split_measure IN NUMBER,
+    segment_1 OUT MDSYS.SDO_GEOMETRY,
+    segment_2 OUT MDSYS.SDO_GEOMETRY
+  );
+  PROCEDURE split_geom_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    split_measure IN NUMBER,
+    segment_1 OUT MDSYS.SDO_GEOMETRY,
+    segment_2 OUT MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  );
+  PROCEDURE split_geom_segment_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    split_measure IN NUMBER,
+    segment_1 OUT MDSYS.SDO_GEOMETRY,
+    segment_2 OUT MDSYS.SDO_GEOMETRY
+  );
+  PROCEDURE split_geom_segment_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    split_measure IN NUMBER,
+    segment_1 OUT MDSYS.SDO_GEOMETRY,
+    segment_2 OUT MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  );
+  --
+  -- concatenate two geometric segments into one
+  --
+  FUNCTION concatenate_geom_segments(
+    geom_segment_1 IN MDSYS.SDO_GEOMETRY,
+    dim_array_1 IN MDSYS.SDO_DIM_ARRAY,
+    geom_segment_2 IN MDSYS.SDO_GEOMETRY,
+    dim_array_2 IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION concatenate_geom_segments(
+    geom_segment_1 IN MDSYS.SDO_GEOMETRY,
+    geom_segment_2 IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION concatenate_geom_segments_3d(
+    geom_segment_1 IN MDSYS.SDO_GEOMETRY,
+    dim_array_1 IN MDSYS.SDO_DIM_ARRAY,
+    geom_segment_2 IN MDSYS.SDO_GEOMETRY,
+    dim_array_2 IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION concatenate_geom_segments_3d(
+    geom_segment_1 IN MDSYS.SDO_GEOMETRY,
+    geom_segment_2 IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- general segment scaling function
+  --
+  FUNCTION scale_geom_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    shift_measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION scale_geom_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    shift_measure IN NUMBER,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  --
+  -- LRS query functions/procedures
+  --
+  --
+  --
+  -- check if the given geometric segment is valid
+  --
+  FUNCTION valid_geom_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION valid_geom_segment(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION valid_geom_segment_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION valid_geom_segment_3d(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN VARCHAR2 PARALLEL_ENABLE;
+  --
+  -- check if the measure information of a given geometric segment is defined
+  -- the geom segment must be valid, (type, length, and no of dim, etc)
+  --
+  FUNCTION is_geom_segment_defined(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION is_geom_segment_defined(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION is_geom_segment_defined_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION is_geom_segment_defined_3d(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN VARCHAR2 PARALLEL_ENABLE;
+  --
+  -- check if the given LRS point is valid
+  --
+  FUNCTION valid_lrs_pt(
+    point IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION valid_lrs_pt(point IN MDSYS.SDO_GEOMETRY) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION valid_lrs_pt_3d(
+    point IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION valid_lrs_pt_3d(point IN MDSYS.SDO_GEOMETRY) RETURN VARCHAR2 PARALLEL_ENABLE;
+  --
+  -- check if the given measure falls within the start/end measures
+  -- of a given geometric segment
+  --
+  FUNCTION valid_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION valid_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION valid_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION valid_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  --
+  -- check if two given geometric segments are connected
+  --
+  FUNCTION connected_geom_segments(
+    geom_segment_1 IN MDSYS.SDO_GEOMETRY,
+    dim_array_1 IN MDSYS.SDO_DIM_ARRAY,
+    geom_segment_2 IN MDSYS.SDO_GEOMETRY,
+    dim_array_2 IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION connected_geom_segments(
+    geom_segment_1 IN MDSYS.SDO_GEOMETRY,
+    geom_segment_2 IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION connected_geom_segments_3d(
+    geom_segment_1 IN MDSYS.SDO_GEOMETRY,
+    dim_array_1 IN MDSYS.SDO_DIM_ARRAY,
+    geom_segment_2 IN MDSYS.SDO_GEOMETRY,
+    dim_array_2 IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION connected_geom_segments_3d(
+    geom_segment_1 IN MDSYS.SDO_GEOMETRY,
+    geom_segment_2 IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  --
+  -- return the length of the given geometric segment
+  --
+  FUNCTION geom_segment_length(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION geom_segment_length(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION geom_segment_length_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION geom_segment_length_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  --
+  -- return the start point of the geometric segment
+  --
+  FUNCTION geom_segment_start_pt(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION geom_segment_start_pt(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION geom_segment_start_pt_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION geom_segment_start_pt_3d(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- return the start measure of the geometric segment
+  --
+  FUNCTION geom_segment_start_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION geom_segment_start_measure(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION geom_segment_start_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION geom_segment_start_measure_3d(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN NUMBER PARALLEL_ENABLE;
+  --
+  -- return the end point of the geometric segment
+  --
+  FUNCTION geom_segment_end_pt(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION geom_segment_end_pt(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION geom_segment_end_pt_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION geom_segment_end_pt_3d(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- return the end point of the geometric segment
+  --
+  FUNCTION geom_segment_end_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION geom_segment_end_measure(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION geom_segment_end_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION geom_segment_end_measure_3d(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN NUMBER PARALLEL_ENABLE;
+  --
+  -- return the measure of a LSR point
+  --
+  FUNCTION get_measure(
+    point IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_measure(point IN MDSYS.SDO_GEOMETRY) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_measure_3d(
+    point IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_measure_3d(point IN MDSYS.SDO_GEOMETRY) RETURN NUMBER PARALLEL_ENABLE;
+  --
+  -- locate the point w.r.t a given geometric segment
+  --
+  FUNCTION locate_pt(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER,
+    offset IN NUMBER DEFAULT 0
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION locate_pt(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER,
+    offset IN NUMBER default 0,
+    tolerance IN NUMBER default 1 .0e -8
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION locate_pt_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION locate_pt_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- return the projection point of a given point w.r.t. to a given geometric segment
+  --
+  FUNCTION project_pt(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY,
+    point_dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION project_pt(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION project_pt(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY,
+    point_dim_array IN MDSYS.SDO_DIM_ARRAY,
+    offset OUT NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION project_pt(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION project_pt(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER,
+    offset OUT NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION project_pt_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY,
+    point_dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION project_pt_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION project_pt_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY,
+    point_dim_array IN MDSYS.SDO_DIM_ARRAY,
+    offset OUT NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION project_pt_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION project_pt_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER,
+    offset OUT NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  ---
+  --- LRS 817 features declaration
+  ---
+  --
+  -- return geom segment measure range
+  --
+  FUNCTION measure_range(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION measure_range(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION measure_range_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION measure_range_3d(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN NUMBER PARALLEL_ENABLE;
+  --
+  -- Convert standard dim info to lrs diminfo by adding an additional measure informaiotn
+  --
+  FUNCTION convert_to_lrs_dim_array(
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    dim_name IN VARCHAR2,
+    dim_pos IN INTEGER,
+    lower_bound IN NUMBER DEFAULT NULL,
+    upper_bound IN NUMBER DEFAULT NULL,
+    tolerance IN NUMBER DEFAULT NULL
+  ) RETURN MDSYS.SDO_DIM_ARRAY PARALLEL_ENABLE;
+  --
+  -- Convert standard dim info to lrs diminfo by adding an additional measure informaiotn
+  --
+  FUNCTION convert_to_lrs_dim_array(
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    dim_name IN VARCHAR2,
+    lower_bound IN NUMBER DEFAULT NULL,
+    upper_bound IN NUMBER DEFAULT NULL,
+    tolerance IN NUMBER DEFAULT NULL
+  ) RETURN MDSYS.SDO_DIM_ARRAY PARALLEL_ENABLE;
+  FUNCTION convert_to_lrs_dim_array(
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    lower_bound IN NUMBER DEFAULT NULL,
+    upper_bound IN NUMBER DEFAULT NULL,
+    tolerance IN NUMBER DEFAULT NULL
+  ) RETURN MDSYS.SDO_DIM_ARRAY PARALLEL_ENABLE;
+  FUNCTION convert_to_lrs_dim_array_3d(
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    dim_name IN VARCHAR2,
+    lower_bound IN NUMBER DEFAULT NULL,
+    upper_bound IN NUMBER DEFAULT NULL,
+    tolerance IN NUMBER DEFAULT NULL
+  ) RETURN MDSYS.SDO_DIM_ARRAY PARALLEL_ENABLE;
+  FUNCTION convert_to_std_dim_array(dim_array IN MDSYS.SDO_DIM_ARRAY) RETURN MDSYS.SDO_DIM_ARRAY PARALLEL_ENABLE;
+  FUNCTION convert_to_std_dim_array(
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    m_pos IN INTEGER
+  ) RETURN MDSYS.SDO_DIM_ARRAY PARALLEL_ENABLE;
+  FUNCTION convert_to_std_dim_array_3d(dim_array IN MDSYS.SDO_DIM_ARRAY) RETURN MDSYS.SDO_DIM_ARRAY PARALLEL_ENABLE;
+  --
+  -- Convert standard linestring geometry to an LRS geom segment
+  --
+  FUNCTION convert_to_lrs_geom(
+    standard_geom IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    m_pos IN INTEGER,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION convert_to_lrs_geom(
+    standard_geom IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    m_pos IN INTEGER DEFAULT NULL
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION convert_to_lrs_geom(
+    standard_geom IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION convert_to_lrs_geom(
+    standard_geom IN MDSYS.SDO_GEOMETRY,
+    m_pos IN INTEGER,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION convert_to_lrs_geom(
+    standard_geom IN MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION convert_to_lrs_geom(
+    standard_geom IN MDSYS.SDO_GEOMETRY,
+    m_pos IN INTEGER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION convert_to_lrs_geom(standard_geom IN MDSYS.SDO_GEOMETRY) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION convert_to_lrs_geom_3d(
+    standard_geom IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    start_measure IN NUMBER DEFAULT NULL,
+    end_measure IN NUMBER DEFAULT NULL
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION convert_to_lrs_geom_3d(
+    standard_geom IN MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER DEFAULT NULL,
+    end_measure IN NUMBER DEFAULT NULL
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- Convert an LRS geometry to a standard linestring geometry
+  --
+  FUNCTION convert_to_std_geom(
+    lrs_geom IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION convert_to_std_geom(lrs_geom IN MDSYS.SDO_GEOMETRY) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION convert_to_std_geom_3d(
+    lrs_geom IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION convert_to_std_geom_3d(lrs_geom IN MDSYS.SDO_GEOMETRY) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- Update standard geometry layer to an LRS geometry layer, metadata is updated as well
+  --
+  FUNCTION convert_to_lrs_layer(
+    table_name IN VARCHAR2,
+    column_name IN VARCHAR2,
+    lower_bound IN NUMBER DEFAULT NULL,
+    upper_bound IN NUMBER DEFAULT NULL,
+    tolerance IN NUMBER DEFAULT NULL
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION convert_to_lrs_layer(
+    table_name IN VARCHAR2,
+    column_name IN VARCHAR2,
+    dim_name IN VARCHAR2,
+    dim_pos IN INTEGER,
+    lower_bound IN NUMBER DEFAULT NULL,
+    upper_bound IN NUMBER DEFAULT NULL,
+    tolerance IN NUMBER DEFAULT NULL
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION convert_to_lrs_layer_3d(
+    table_name IN VARCHAR2,
+    column_name IN VARCHAR2,
+    lower_bound IN NUMBER DEFAULT NULL,
+    upper_bound IN NUMBER DEFAULT NULL,
+    tolerance IN NUMBER DEFAULT NULL
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION convert_to_lrs_layer_3d(
+    table_name IN VARCHAR2,
+    column_name IN VARCHAR2,
+    dim_name IN VARCHAR2,
+    lower_bound IN NUMBER DEFAULT NULL,
+    upper_bound IN NUMBER DEFAULT NULL,
+    tolerance IN NUMBER DEFAULT NULL
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  --
+  -- Update standard geometry layer to an LRS geometry layer, metadata is updated as well
+  --
+  FUNCTION convert_to_std_layer(
+    table_name IN VARCHAR2,
+    column_name IN VARCHAR2
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION convert_to_std_layer_3d(
+    table_name IN VARCHAR2,
+    column_name IN VARCHAR2
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  --
+  -- LRS 817 feature
+  -- return a new geom_segment by translateing the original geom_segment
+  --
+  FUNCTION translate_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    translate_m IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION translate_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    translate_m IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION translate_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    translate_m IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION translate_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    translate_m IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- LRS 817 feature
+  -- return a new geom_segment by reversing the original geom segment
+  --
+  FUNCTION reverse_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION reverse_measure(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION reverse_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION reverse_measure_3d(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- LRS 817 find the measure of the closest pt of a given pt w.r.t. an LRS segment
+  -- first project the pt onto the LRS segment then get the measure of the projection pt
+  --
+  FUNCTION find_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY,
+    point_dim_array IN MDSYS.SDO_DIM_ARRAY DEFAULT NULL
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION find_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION find_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY,
+    point_dim_array IN MDSYS.SDO_DIM_ARRAY DEFAULT NULL
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION find_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION find_offset(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY,
+    point_dim_array IN MDSYS.SDO_DIM_ARRAY DEFAULT NULL
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION find_offset(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  --
+  -- LRS 817 dynamic segmentation, an alias of clip_geom_segment
+  --
+  FUNCTION dynamic_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION dynamic_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION dynamic_segment_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION dynamic_segment_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- LRS 817 convert a measure to a percentage (0%~100%) w.r.t. a given geom segment
+  --
+  FUNCTION measure_to_percentage(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION measure_to_percentage(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  --
+  -- LRS 817 convert a percentage (0%~100%) to a measure w.r.t. given geom segment
+  --
+  FUNCTION percentage_to_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    percentage IN NUMBER
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION percentage_to_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    percentage IN NUMBER
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  --
+  -- reset the measure values to NULL
+  --
+  PROCEDURE reset_measure(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  );
+  PROCEDURE reset_measure(geom_segment IN OUT MDSYS.SDO_GEOMETRY);
+  --
+  -- Redefine the LRS segment (ignore all current measures) and repopulate measure info. based on
+  -- the given start/end measure, this is different from define_geom_segment which keeps old measure info
+  -- if exist.
+  --
+  PROCEDURE redefine_geom_segment(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER
+  );
+  PROCEDURE redefine_geom_segment(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  );
+  PROCEDURE redefine_geom_segment(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  );
+  PROCEDURE redefine_geom_segment(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  );
+  PROCEDURE redefine_geom_segment_3d(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER
+  );
+  PROCEDURE redefine_geom_segment_3d(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  );
+  PROCEDURE redefine_geom_segment_3d(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  );
+  PROCEDURE redefine_geom_segment_3d(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER DEFAULT 1 .0e -8
+  );
+  ---
+  --- 82 LRS Features
+  ---
+  --
+  -- set the measure value of the closest point (using snap_to_pt) in the given geometry
+  --
+  FUNCTION set_pt_measure(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY,
+    pt_dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION set_pt_measure(
+    point IN OUT MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION set_pt_measure(
+    point IN OUT MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION set_pt_measure(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION set_pt_measure_3d(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY,
+    pt_dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION set_pt_measure_3d(
+    geom_segment IN OUT MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  --
+  -- reverse the direction of the geometry (shape pt order )
+  --
+  FUNCTION reverse_geometry(
+    geom IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION reverse_geometry(geom IN MDSYS.SDO_GEOMETRY) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- generate an offset curve w.r.t. to an LRS geometry
+  --
+  -- for geodetic offset, consider arc_tolerance
+  FUNCTION offset_geom_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    offset IN NUMBER,
+    unit IN VARCHAR2
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  -- for geodetic offset, consider arc_tolerance
+  FUNCTION offset_geom_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    offset IN NUMBER,
+    tolerance IN NUMBER,
+    unit IN VARCHAR2
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION offset_geom_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    offset IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION offset_geom_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    offset IN NUMBER,
+    tolerance IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION offset_geom_segment(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    start_measure IN NUMBER,
+    end_measure IN NUMBER,
+    offset IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION is_measure_increasing(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION is_measure_increasing(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION is_measure_increasing_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION is_measure_increasing_3d(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION is_measure_decreasing(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION is_measure_decreasing(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION is_measure_decreasing_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION is_measure_decreasing_3d(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION validate_lrs_geometry(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION validate_lrs_geometry(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION validate_lrs_geometry_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION validate_lrs_geometry_3d(geom_segment IN MDSYS.SDO_GEOMETRY) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION find_lrs_dim_pos(
+    table_name IN VARCHAR2,
+    column_name IN VARCHAR2
+  ) RETURN INTEGER PARALLEL_ENABLE;
+  --
+  -- get previous shape point based on the given measure
+  --
+  FUNCTION get_prev_shape_pt (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION get_prev_shape_pt (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION get_prev_shape_pt_3d (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION get_prev_shape_pt_3d (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- get previous shape point based on the given point
+  --
+  FUNCTION get_prev_shape_pt (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION get_prev_shape_pt (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION get_prev_shape_pt_3d (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION get_prev_shape_pt_3d (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- get the next shape point based on the given measure
+  --
+  FUNCTION get_next_shape_pt (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION get_next_shape_pt (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION get_next_shape_pt_3d (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION get_next_shape_pt_3d (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- get the next shape point based on  the given point
+  --
+  FUNCTION get_next_shape_pt (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION get_next_shape_pt (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION get_next_shape_pt_3d (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION get_next_shape_pt_3d (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  --
+  -- get previous measure basd on the given measure
+  --
+  FUNCTION get_prev_shape_pt_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_prev_shape_pt_measure (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_prev_shape_pt_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_prev_shape_pt_measure_3d (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  --
+  -- get previous measure (of shape point) based on the given point
+  --
+  FUNCTION get_prev_shape_pt_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_prev_shape_pt_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_prev_shape_pt_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_prev_shape_pt_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  --
+  -- get the next measure (of shape point) based on the given measure
+  --
+  FUNCTION get_next_shape_pt_measure (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_next_shape_pt_measure (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_next_shape_pt_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_next_shape_pt_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_next_shape_pt_measure_3d (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_next_shape_pt_measure_3d (
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_next_shape_pt_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN NUMBER PARALLEL_ENABLE;
+  FUNCTION get_next_shape_pt_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    point IN MDSYS.SDO_GEOMETRY
+  ) RETURN NUMBER;
+  FUNCTION is_shape_pt_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION is_shape_pt_measure(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION is_shape_pt_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    dim_array IN MDSYS.SDO_DIM_ARRAY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  FUNCTION is_shape_pt_measure_3d(
+    geom_segment IN MDSYS.SDO_GEOMETRY,
+    measure IN NUMBER
+  ) RETURN VARCHAR2 PARALLEL_ENABLE;
+  --
+  -- intersection for LRS geometries
+  --
+  FUNCTION lrs_intersection(
+    geom_1 IN MDSYS.SDO_GEOMETRY,
+    dim_array_1 IN MDSYS.SDO_DIM_ARRAY,
+    geom_2 IN MDSYS.SDO_GEOMETRY,
+    dim_array_2 IN MDSYS.SDO_DIM_ARRAY
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  FUNCTION lrs_intersection(
+    geom_1 IN MDSYS.SDO_GEOMETRY,
+    geom_2 IN MDSYS.SDO_GEOMETRY,
+    tolerance IN NUMBER
+  ) RETURN MDSYS.SDO_GEOMETRY DETERMINISTIC PARALLEL_ENABLE;
+  END sdo_lrs;

@@ -1,0 +1,31 @@
+schema: SYS
+name: KU$_JOB_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    u.user#,
+    j.powner,
+    j.lowner,
+    j.cowner,
+    j.job,
+    TO_CHAR(j.last_date, 'YYYY-MM-DD HH24:MI:SS'),
+    TO_CHAR(j.this_date, 'YYYY-MM-DD HH24:MI:SS'),
+    TO_CHAR(j.next_date, 'YYYY-MM-DD HH24:MI:SS'),
+    j.flag,
+    j.failures,
+    REPLACE(j.interval#, '''', ''''''),
+    TO_CLOB(REPLACE(j.what, '''', '''''')),
+    TO_CLOB(REPLACE(j.nlsenv, '''', '''''')),
+    j.env,
+    j.field1,
+    j.charenv
+  from
+    sys.job$ j,
+    sys.user$ u
+  where
+    j.powner = u.name
+columns: []
+referencedTables: []

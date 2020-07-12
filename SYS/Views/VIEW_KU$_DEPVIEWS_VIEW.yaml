@@ -1,0 +1,28 @@
+schema: SYS
+name: KU$_DEPVIEWS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    b.viewobjno,
+    b.viewname,
+    b.viewownerno,
+    b.viewowner,
+    b.dobjno,
+    b.dname
+  from
+    ku$_depviews_base_view b
+  where
+    (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (b.viewownerno, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,63 @@
+schema: SYS
+name: ALL_ERROR_TRANSLATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    s.errcode#,
+    s.txlcode#,
+    s.txlsqlstate,
+    decode(bitand(s.flags, 1), 1, 'TRUE', 0, 'FALSE'),
+    s.rtime,
+    s.comment$
+  from
+    sys.sqltxl_err$ s,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.user$ u
+  where
+    s.obj# = o.obj#
+    and o.owner# = u.user#
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or exists (
+        select
+          null
+        from
+          sys.objauth$ oa
+        where
+          oa.obj# = o.obj#
+          and oa.grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+          and oa.privilege# in (
+            0
+            /* ALTER */,
+            29
+            /* USE */
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -335
+            /* CREATE ANY SQL TRANSLATION PROFILE */,
+            -336
+            /* ALTER ANY SQL TRANSLATION PROFILE  */,
+            -337
+            /* USE ANY SQL TRANSLATION PROFILE    */,
+            -338
+            /* DROP ANY SQL TRANSLATION PROFILE   */
+          )
+      )
+    )
+columns: []
+referencedTables: []

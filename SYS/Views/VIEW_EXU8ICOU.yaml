@@ -1,0 +1,24 @@
+schema: SYS
+name: EXU8ICOU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "TOBJID",
+    "TOWNER",
+    "TOWNERID",
+    "TNAME",
+    "NAME",
+    "BTNAME",
+    "COLID",
+    "COLNUM",
+    "PROPERTY",
+    "BOBJID",
+    "FUNCTION",
+    "FUNCLEN"
+  FROM
+    sys.exu8ico
+  WHERE
+    townerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

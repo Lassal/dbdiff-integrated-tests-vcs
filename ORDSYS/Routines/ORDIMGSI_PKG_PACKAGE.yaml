@@ -1,0 +1,205 @@
+schema: ORDSYS
+name: ORDIMGSI_PKG
+routineType: PACKAGE
+returnParamater:
+  name: SI_SUPPORTEDTHUMBNAIL.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: COMPUTESCORE(1).COLOR
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: COMPUTESCORE(1).COLORFROMIMAGE
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: COMPUTESCORE(2).COLORFREQS
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: COMPUTESCORE(2).COLORFREQSFROMIMAGE
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: COMPUTESCORE(2).CLRSLIST
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: COMPUTESCORE(2).CLRSLISTFROMIMAGE
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: COMPUTESCORE(3).TEXTUREENC
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: COMPUTESCORE(3).TEXTUREENCFROMIMAGE
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: COMPUTESCORE(4).COLORPOS
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: COMPUTESCORE(4).COLORPOSFROMIMAGE
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: EXTRACT_ALLPROPERTIES.CONTENT
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: EXTRACT_ALLPROPERTIES.HEIGHT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EXTRACT_ALLPROPERTIES.WIDTH
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EXTRACT_ALLPROPERTIES.FLAT_AVGCOLOR
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: OUT
+- name: EXTRACT_ALLPROPERTIES.COLORFREQS
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: OUT
+- name: EXTRACT_ALLPROPERTIES.CLRSLIST
+  ordinalPosition: 6
+  dataType: VARRAY
+  parameterMode: OUT
+- name: EXTRACT_ALLPROPERTIES.POSCOL
+  ordinalPosition: 7
+  dataType: VARRAY
+  parameterMode: OUT
+- name: EXTRACT_ALLPROPERTIES.TEXHIST
+  ordinalPosition: 8
+  dataType: VARRAY
+  parameterMode: OUT
+- name: EXTRACT_ALLPROPERTIES_FUNC.CONTENT
+  ordinalPosition: 1
+  dataType: BLOB
+  parameterMode: IN
+- name: EXTRACT_ALLPROPERTIES_FUNC.HEIGHT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EXTRACT_ALLPROPERTIES_FUNC.WIDTH
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EXTRACT_ALLPROPERTIES_FUNC.AVGCOLOR
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: OUT
+- name: EXTRACT_ALLPROPERTIES_FUNC.COLORFREQS
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: OUT
+- name: EXTRACT_ALLPROPERTIES_FUNC.CLRSLIST
+  ordinalPosition: 6
+  dataType: VARRAY
+  parameterMode: OUT
+- name: EXTRACT_ALLPROPERTIES_FUNC.POSCOL
+  ordinalPosition: 7
+  dataType: VARRAY
+  parameterMode: OUT
+- name: EXTRACT_ALLPROPERTIES_FUNC.TEXHIST
+  ordinalPosition: 8
+  dataType: VARRAY
+  parameterMode: OUT
+- name: GETSCORE(1).AVGCOLOR
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: GETSCORE(1).AVGCOLORFROMIMAGE
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GETSCORE(2).TEXTUREENC
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: GETSCORE(2).TEXTUREENCFROMIMAGE
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GETSCORE(3).COLORFREQS
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: GETSCORE(3).COLORFREQSFROMIMAGE
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: GETSCORE(3).CLRSLIST
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: GETSCORE(3).CLRSLISTFROMIMAGE
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: GETSCORE(4).COLORPOS
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+- name: GETSCORE(4).COLORPOSFROMIMAGE
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SI_DERIVETHUMBNAIL.IMAGE
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: SI_DERIVETHUMBNAIL.HEIGHT
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: SI_DERIVETHUMBNAIL.WIDTH
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: SI_DERIVETHUMBNAIL.PRESERVEASPECTRATIO
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SI_ISSUPPORTEDFORMATCONV.SOURCEFORMAT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SI_ISSUPPORTEDFORMATCONV.TARGETFORMAT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SI_ISVALIDSTR.INSTRING
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SI_SUPPORTEDFORMAT.EXPLICITFORMAT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SI_SUPPORTEDTHUMBNAIL.SOURCEFORMAT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: PACKAGE ORDImgSI_Pkg wrapped a000000 1 abcd abcd abcd abcd abcd
+  abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd 9 efc 45f pNARMMJf6Ypu0726UoFboCQT5
+  / cwg5XqLiAFfHRVDfmU5q6yUOtLutwYR7TmAfqMXdjaROmc lOl49RGYaySq8eD6D5fxyxynhF4kCV3r7yaFKgHqoKZRfMGauyGaPCi
+  / iHlZ + scVq6LIyQUR Z / HMkPP4KfnY / fp06vG0XK3Kmqk + EydsPh8Z3IVEZHF + Fe3Q33Hn0HFhnwnhlvKGinGrFqaM
+  Q7ZyLqEJp6uvmzGmPSp81ncJuEjVYzZpvsrn6K / MFQGf49peXFUEUFmoNjxZvQJi3rW1bAgP 9sM9P4AAull1Csls3bMLcQVQqvfH8KXMt68HDNMuslrUNZniLsOMurEt2t6QZygv8f
+  + cMxyL BEK3WBp8uHmMqWzNBr + uxcHC44l7z2mn99pYA3oNJV5rVoVVZQBW9AJbNEC8mcBGKxReqYgv
+  axNmYcGjaQNj / WcTC5qwN + alq2l1U5Y0 + PtmGdT + gpZNVqsfAjqAodXKwSj + D7lPIE9heJ25
+  SCydkLav6loIAyShxfhwwnN2BX / J8kVFMA7oEZz9ZxDztDkSGiw6rvdTjJVlzEUto8dhJXon 7YqHwY3lC1gVGRuxtSRG3AA
+  / 1FtyVg1Y7fDaTAlUaC5yFmDaT0hz0ub / MHHXZrvQxsGqjEtD renTrAG5mw4EXZ / f47LWiTEdzOeZPKnUnxeFXU5a67bQ2EajAlbNDWMg4gIZSkjFzZSL4
+  + oS xcSwe8zwrc / i0IvrOvnevOa7brLtWyIrPplg8bPeJUkr / sJ45f9Sz2eSmuLYsaeh8MT / btOD
+  TAbL434ugDbcEvVFvDUxXgEALnfrji76WJX3Hs1W9hd5fN5Vbs2HD2EPv3iWJE + fKTX98JMn hdMLPJTyf0j2FI6M6LVOaI0MZCLS7mmM83aZtza
+  + RzoUNZ2iB6UZFQOHazm5 + 1kb3tWcqfG5 7dPo7lMn87kT + Qq1 / BoTRSsRyg / V2E29Mqkeo7jU1xwyc
+  + 1rhfIYu4aNYXn0QxQUsf3FMOKy QBFxg1u / LErrZfQ8vGdjUfAWg4e0Rt2jKoUObK3nz6HmT16gna4
+  + nIa + C4vOJ0J6CCHlHxyR vE9GFe1Dh5TZv537hR4HLQ ==

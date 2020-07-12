@@ -1,0 +1,231 @@
+schema: XDB
+name: DBMS_XMLSTORAGE_MANAGE
+routineType: PACKAGE
+returnParamater:
+  name: XPATH2TABCOLMAPPING.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: DISABLEINDEXESANDCONSTRAINTS.OWNER_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DISABLEINDEXESANDCONSTRAINTS.TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DISABLEINDEXESANDCONSTRAINTS.COLUMN_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DISABLEINDEXESANDCONSTRAINTS.CLEAR
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ENABLEINDEXESANDCONSTRAINTS.OWNER_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLEINDEXESANDCONSTRAINTS.TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLEINDEXESANDCONSTRAINTS.COLUMN_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXCHANGEPOSTPROC.OWNER_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXCHANGEPOSTPROC.TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXCHANGEPREPROC.OWNER_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXCHANGEPREPROC.TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETSIDXDEFFROMVIEW.VIEWNAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INDEXXMLREFERENCES.OWNER_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INDEXXMLREFERENCES.TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INDEXXMLREFERENCES.COLUMN_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: INDEXXMLREFERENCES.INDEX_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAMECOLLECTIONTABLE.OWNER_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAMECOLLECTIONTABLE.TAB_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAMECOLLECTIONTABLE.COL_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAMECOLLECTIONTABLE.XPATH
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAMECOLLECTIONTABLE.COLLECTION_TABLE_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RENAMECOLLECTIONTABLE.NAMESPACES
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: XPATH2TABCOLMAPPING.OWNER_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: XPATH2TABCOLMAPPING.TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: XPATH2TABCOLMAPPING.COLUMN_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: XPATH2TABCOLMAPPING.XPATH
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: XPATH2TABCOLMAPPING.NAMESPACES
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE DBMS_XMLSTORAGE_MANAGE authid CURRENT_USER AS procedure renameCollectionTable (
+    owner_name varchar2 default user,
+    tab_name varchar2,
+    col_name varchar2 default NULL,
+    xpath varchar2,
+    collection_table_name varchar2,
+    namespaces IN VARCHAR2 default NULL
+  );
+  -- Renames a collection table from the system generated name
+  -- to the given table name.
+  -- This function is called AFTER registering the xml schema.
+  -- NOTE: Since there is no direct schema annotation for this purpose
+  -- this post registration
+  -- function has to be used. Because all other functions are used before
+  -- registration this
+  -- function breaks the consistency. In addition, this is the only case
+  -- where we encourage the
+  -- user/dba to change a table/type name after registration.
+  -- Since one goal of the schema annotation is to enable more readable
+  -- query execution plans
+  -- we recommend to derive the name of a collection table by its
+  -- corresponding collection type name.
+  -- Since we have an annotation for collection type we should use this one
+  -- when creating the collection
+  -- table. This might make the renameCollectionTable obsolete.
+  procedure scopeXMLReferences;
+  -- Will scope all XML references. Scoped REF types require
+  -- less storage space and allow more
+  -- efficient access than unscoped REF types.
+  -- Note: This procedure does not need to be exposed
+  -- to customer if called automatically from
+  -- schema registration code.
+  -- In this case we will either move the procedure into a prvt package
+  -- or call the body of scopeXMLReferences from schema registration code
+  -- directly so that the
+  -- procedure would not be published at all.
+  procedure indexXMLReferences(
+    owner_name VARCHAR2 default user,
+    table_name VARCHAR2,
+    column_name VARCHAR2 default NULL,
+    index_name VARCHAR2
+  );
+  -- This procedure creates unique indexes on the ref columns
+  -- of the given XML type tables or XML type column of a given table.
+  -- In case of an XML type table the column name does not
+  -- have to be specified.
+  -- The index_name will be used to name the index- since multiple ref
+  -- columns could be affected the table name gets a iterator concatenated
+  -- at the end.
+  -- For instance if two ref columns are getting indexed they will be named
+  -- index_name_1 and index_name_2.
+  -- The procdure indexXMLReferences will not recursively index refs in child
+  -- tables of the table that this procedure is called on.
+  -- If this is desired we recommend to call the
+  -- procedure from within a loop  over the
+  -- DBA|ALL|USER_ XML_OUT_OF_LINE_TABLES or
+  -- DBA|ALL|USER_ XML_NESTED_TABLES view.
+  -- The index_name could then be created from the current
+  -- value of a view's column.
+  -- Indexed refs lead to higher performance when joins between the
+  -- child table and base table
+  -- occur in the query plan. If the selectivity of the child table
+  -- is higher than the join of one
+  -- row in the child table with the base table leads to a full table
+  -- scan of the base table if no indexes are present.
+  -- This is the exact motivation for indexing the refs in the base table.
+  -- If the base table has a higher selectivity than the child table there
+  -- is no need to index the refs.
+  -- Indexing the refs makes only sense if the refs are scoped.
+  -- ** Bulkload functionality
+  procedure disableIndexesAndConstraints(
+    owner_name varchar2 default user,
+    table_name varchar2,
+    column_name varchar2 default NULL,
+    clear Boolean default FALSE
+  );
+  -- This procedure will be used to drop the indexes and disable
+  -- the constraints for both xmltype
+  -- table (no P_COL_NAME) and xmltype columns.
+  -- For xmltype tables, the user needs to pass the xmltype-table
+  -- name on which the bulk load operation is to be performed.
+  -- For xmltype columns, the user needs to pass
+  -- the relational table_name and the corresponding xmltype column name.
+  procedure enableIndexesAndConstraints(
+    owner_name varchar2 default user,
+    table_name varchar2,
+    column_name varchar2 default NULL
+  );
+  -- This procedure will rebuild all indexes and enable the constraints
+  -- on the P_TABLE_NAME including its
+  -- child and out of line tables.
+  -- When P_COL_NAME is passed, it does the same for this xmltype column.
+  -- routine to disable constraints before exchange partition
+  procedure ExchangePreProc(
+    owner_name varchar2 default user,
+    table_name varchar2
+  );
+  -- routine to enable constraints after exchange partition
+  procedure ExchangePostProc(
+    owner_name varchar2 default user,
+    table_name varchar2
+  );
+  function xpath2TabColMapping(
+    owner_name VARCHAR2 default user,
+    table_name IN VARCHAR2,
+    column_name IN VARCHAR2 default NULL,
+    xpath IN VARCHAR2,
+    namespaces IN VARCHAR2 default NULL
+  ) RETURN XMLTYPE;
+  function getSIDXDefFromView(viewName IN VARCHAR2) RETURN CLOB;
+  --routine to get the type creation DDL for all CDB invalid types after PDB plugin
+  procedure GetTypeDDL;
+  END DBMS_XMLSTORAGE_MANAGE;

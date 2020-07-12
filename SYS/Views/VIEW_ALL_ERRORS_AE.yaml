@@ -1,0 +1,208 @@
+schema: SYS
+name: ALL_ERRORS_AE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    decode(
+      o.type#,
+      4,
+      'VIEW',
+      7,
+      'PROCEDURE',
+      8,
+      'FUNCTION',
+      9,
+      'PACKAGE',
+      11,
+      'PACKAGE BODY',
+      12,
+      'TRIGGER',
+      13,
+      'TYPE',
+      14,
+      'TYPE BODY',
+      22,
+      'LIBRARY',
+      28,
+      'JAVA SOURCE',
+      29,
+      'JAVA CLASS',
+      43,
+      'DIMENSION',
+      87,
+      'ASSEMBLY',
+      'UNDEFINED'
+    ),
+    e.sequence#,
+    e.line,
+    e.position#,
+    e.text,
+    decode(e.property, 0, 'ERROR', 1, 'WARNING', 'UNDEFINED'),
+    e.error#,
+    o.defining_edition
+  from
+    sys. "_ACTUAL_EDITION_OBJ" o,
+    sys.error$ e,
+    sys.user$ u
+  where
+    o.obj# = e.obj#
+    and o.owner# = u.user#
+    and o.type# in (4, 7, 8, 9, 11, 12, 13, 14, 22, 28, 29, 43, 87)
+    and (
+      o.owner# in (
+        userenv('SCHEMAID'),
+        1
+        /* PUBLIC */
+      )
+      or (
+        (
+          (
+            (
+              o.type# = 7
+              or o.type# = 8
+              or o.type# = 9
+              or o.type# = 13
+              or o.type# = 28
+              or o.type# = 29
+            )
+            and o.obj# in (
+              select
+                obj#
+              from
+                sys.objauth$
+              where
+                grantee# in (
+                  select
+                    kzsrorol
+                  from
+                    x$kzsro
+                )
+                and privilege# = 12
+                /* EXECUTE */
+            )
+          )
+          or (
+            o.type# = 4
+            and o.obj# in (
+              select
+                obj#
+              from
+                sys.objauth$
+              where
+                grantee# in (
+                  select
+                    kzsrorol
+                  from
+                    x$kzsro
+                )
+                and privilege# in (
+                  3
+                  /* DELETE */,
+                  6
+                  /* INSERT */,
+                  7
+                  /* LOCK */,
+                  9
+                  /* SELECT */,
+                  10
+                  /* UPDATE */,
+                  17
+                  /* READ */
+                )
+            )
+          )
+          or exists (
+            select
+              null
+            from
+              sys.sysauth$
+            where
+              grantee# in (
+                select
+                  kzsrorol
+                from
+                  x$kzsro
+              )
+              and (
+                (
+                  /* procedure */
+                  (
+                    o.type# = 7
+                    or o.type# = 8
+                    or o.type# = 9
+                    or o.type# = 28
+                    or o.type# = 29
+                  )
+                  and (
+                    privilege# = -144
+                    /* EXECUTE ANY PROCEDURE */
+                    or privilege# = -141
+                    /* CREATE ANY PROCEDURE */
+                  )
+                )
+                or (
+                  /* trigger */
+                  o.type# = 12
+                  and privilege# = -152
+                  /* CREATE ANY TRIGGER */
+                )
+                or (
+                  /* package body */
+                  o.type# = 11
+                  and privilege# = -141
+                  /* CREATE ANY PROCEDURE */
+                )
+                or (
+                  /* dimension */
+                  o.type# = 11
+                  and privilege# = -215
+                  /* CREATE ANY DIMENSION */
+                )
+                or (
+                  /* view */
+                  o.type# = 4
+                  and (
+                    privilege# in (
+                      -91
+                      /* CREATE ANY VIEW */,
+                      -45
+                      /* LOCK ANY TABLE */,
+                      -47
+                      /* SELECT ANY TABLE */,
+                      -397
+                      /* READ ANY TABLE */,
+                      -48
+                      /* INSERT ANY TABLE */,
+                      -49
+                      /* UPDATE ANY TABLE */,
+                      -50
+                      /* DELETE ANY TABLE */
+                    )
+                  )
+                )
+                or (
+                  /* type */
+                  o.type# = 13
+                  and (
+                    privilege# = -184
+                    /* EXECUTE ANY TYPE */
+                    or privilege# = -181
+                    /* CREATE ANY TYPE */
+                  )
+                )
+                or (
+                  /* type body */
+                  o.type# = 14
+                  and privilege# = -181
+                  /* CREATE ANY TYPE */
+                )
+              )
+          )
+        )
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,29 @@
+name: REVISED_TYPE_SUMMARY
+schema: XDBPM
+columns:
+- name: COLUMN_COUNT
+  ordinalPosition: 3
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  dataTypeLength: 30
+- name: TYPE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  dataTypeLength: 30
+constraints:
+- !<unique-constraint>
+  name: SYS_C0010266
+  type: PRIMARY_KEY
+  columns:
+  - name: OWNER
+    ordinalPosition: 1
+  - name: TYPE_NAME
+    ordinalPosition: 2

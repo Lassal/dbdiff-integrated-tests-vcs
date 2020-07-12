@@ -1,0 +1,165 @@
+schema: SYS
+name: DBA_IND_PENDING_STATS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    ut.name,
+    ot.name,
+    o.subname,
+    null,
+    h.blevel,
+    h.leafcnt,
+    h.distkey,
+    h.lblkkey,
+    h.dblkkey,
+    h.clufac,
+    h.rowcnt,
+    h.samplesize,
+    h.analyzetime
+  from
+    sys.user$ u,
+    sys.obj$ o,
+    sys.ind$ i,
+    sys.user$ ut,
+    sys.obj$ ot,
+    sys.wri$_optstat_ind_history h
+  where
+    u.user# = o.owner# -- user(i) X obj(i)
+    and o.obj# = i.obj# -- obj(i)  X ind
+    and h.obj# = i.obj# -- stat    X ind
+    and i.bo# = ot.obj# -- ind     X obj(t)
+    and ut.user# = ot.owner# -- user(t) X obj(t)
+    and o.namespace = 4
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+    and i.type# in (1, 2, 3, 4, 6, 7, 8)
+    and bitand(i.flags, 4096) = 0 -- not a fake index
+    and h.savtime > systimestamp
+  union all
+    -- partitions
+  select
+    u.name,
+    o.name,
+    ut.name,
+    ot.name,
+    o.subname,
+    null,
+    h.blevel,
+    h.leafcnt,
+    h.distkey,
+    h.lblkkey,
+    h.dblkkey,
+    h.clufac,
+    h.rowcnt,
+    h.samplesize,
+    h.analyzetime
+  from
+    sys.user$ u,
+    sys.obj$ o,
+    sys.ind$ i,
+    indpart$ ip,
+    sys.user$ ut,
+    sys.obj$ ot,
+    sys.wri$_optstat_ind_history h
+  where
+    u.user# = o.owner# -- user(i) X obj(i)
+    and ip.bo# = i.obj#
+    and h.obj# = ip.obj#
+    and i.bo# = ot.obj#
+    and o.obj# = ip.obj#
+    and ut.user# = ot.owner#
+    and o.namespace = 4
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+    and i.type# in (1, 2, 3, 4, 6, 7, 8)
+    and bitand(i.flags, 4096) = 0 -- not a fake index
+    and h.savtime > systimestamp
+  union all
+  select
+    u.name,
+    o.name,
+    ut.name,
+    ot.name,
+    o.subname,
+    null,
+    h.blevel,
+    h.leafcnt,
+    h.distkey,
+    h.lblkkey,
+    h.dblkkey,
+    h.clufac,
+    h.rowcnt,
+    h.samplesize,
+    h.analyzetime
+  from
+    sys.user$ u,
+    sys.obj$ o,
+    sys.ind$ i,
+    indcompart$ ip,
+    sys.user$ ut,
+    sys.obj$ ot,
+    sys.wri$_optstat_ind_history h
+  where
+    u.user# = o.owner# -- user(i) X obj(i)
+    and ip.bo# = i.obj#
+    and h.obj# = ip.obj#
+    and i.bo# = ot.obj#
+    and o.obj# = ip.obj#
+    and ut.user# = ot.owner#
+    and o.namespace = 4
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+    and i.type# in (1, 2, 3, 4, 6, 7, 8)
+    and bitand(i.flags, 4096) = 0 -- not a fake index
+    and h.savtime > systimestamp
+  union all
+    -- sub partitions
+  select
+    ui.name,
+    oi.name,
+    ut.name,
+    ot.name,
+    os.name,
+    os.subname,
+    h.blevel,
+    h.leafcnt,
+    h.distkey,
+    h.lblkkey,
+    h.dblkkey,
+    h.clufac,
+    h.rowcnt,
+    h.samplesize,
+    h.analyzetime
+  from
+    sys.obj$ os,
+    sys.indsubpart$ isp,
+    sys.indcompart$ icp,
+    sys.user$ ut,
+    sys.obj$ ot,
+    sys.obj$ oi,
+    sys.ind$ i,
+    sys.user$ ui,
+    sys.wri$_optstat_ind_history h
+  where
+    ui.user# = oi.owner#
+    and os.obj# = isp.obj#
+    and h.obj# = isp.obj#
+    and isp.pobj# = icp.obj#
+    and icp.bo# = i.obj#
+    and oi.obj# = i.obj#
+    and i.bo# = ot.obj#
+    and ut.user# = ot.owner#
+    and oi.type# = 1
+    and os.type# = 35
+    and ot.type# = 2
+    and os.namespace = 4
+    and os.remoteowner IS NULL
+    and os.linkname IS NULL
+    and i.type# in (1, 2, 3, 4, 6, 7, 8)
+    and bitand(i.flags, 4096) = 0 -- not a fake index
+    and h.savtime > systimestamp
+columns: []
+referencedTables: []

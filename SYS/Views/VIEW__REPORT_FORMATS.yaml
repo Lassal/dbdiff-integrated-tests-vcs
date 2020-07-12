@@ -1,0 +1,26 @@
+schema: SYS
+name: _REPORT_FORMATS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    c .id component_id,
+    c .name component_name,
+    r.id report_id,
+    r.name report_name,
+    fo.name format_name,
+    fo.type,
+    fo.content_type,
+    fo.text_linesize,
+    f.name xslt_filename
+  FROM
+    wri$_rept_components c,
+    wri$_rept_reports r,
+    wri$_emx_files f,
+    wri$_rept_formats fo
+  WHERE
+    c .id = r.component_id
+    AND fo.report_id = r.id
+    AND fo.stylesheet_id = f.id (+)
+columns: []
+referencedTables: []

@@ -1,0 +1,68 @@
+schema: SYS
+name: EXU8USCU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o$.obj#,
+    o$.dataobj#,
+    o$.name,
+    i$.ts#,
+    i$.file#,
+    i$.block#,
+    i$.bo#,
+    i$.pctfree$,
+    i$.initrans,
+    i$.maxtrans,
+    MOD(i$.pctthres$, 256),
+    t$.name,
+    i$.property,
+    i$.spare2,
+    DECODE(BITAND(i$.flags, 4), 4, 1, 0),
+    0
+  FROM
+    sys.obj$ o$,
+    sys.ind$ i$,
+    sys.file$ f$,
+    sys.ts$ t$
+  WHERE
+    o$.obj# = i$.obj#
+    AND f$.relfile# = i$.file#
+    AND f$.ts# = i$.ts#
+    AND f$.ts# = t$.ts#
+  UNION ALL
+  SELECT
+    o$.obj#,
+    o$.dataobj#,
+    o$.name,
+    ip$.ts#,
+    ip$.file#,
+    ip$.block#,
+    ind$.bo#,
+    ip$.pctfree$,
+    ip$.initrans,
+    ip$.maxtrans,
+    MOD(ip$.pctthres$, 256),
+    ts$.name,
+    ind$.property,
+    ip$.spare2,
+    DECODE(BITAND(ind$.flags, 4), 4, 1, 0),
+    ip$.bo#
+  FROM
+    sys.obj$ o$,
+    sys.indpart$ ip$,
+    sys.ts$ ts$,
+    sys.ind$ ind$,
+    sys.tab$ t$
+  WHERE
+    ip$.obj# = o$.obj#
+    AND ts$.ts# = ip$.ts#
+    AND ip$.bo# = ind$.obj#
+    AND o$.type# = 20
+    AND
+    /* Index partitions */
+    ind$.bo# = t$.obj#
+    AND BITAND(t$.property, 64) = 0
+    /* Non-IOTs */
+columns: []
+referencedTables: []

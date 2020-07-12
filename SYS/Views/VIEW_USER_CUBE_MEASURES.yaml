@@ -1,0 +1,120 @@
+schema: SYS
+name: USER_CUBE_MEASURES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name CUBE_NAME,
+    m.measure_name MEASURE_NAME,
+    m.measure_id MEASURE_ID,
+    ss.syntax_clob OVERRIDE_SOLVE_SPEC,
+    DECODE(m.measure_type, 1, 'BASE', 2, 'DERIVED') MEASURE_TYPE,
+    DECODE(m.measure_type, 2, s.syntax_clob) EXPRESSION,
+    d.description_value DESCRIPTION,
+    DECODE(
+      m.type#,
+      1,
+      decode(m.charsetform, 2, 'NVARCHAR2', 'VARCHAR2'),
+      2,
+      decode(
+        m.scale,
+        null,
+        decode(m.precision#, null, 'NUMBER', 'FLOAT'),
+        'NUMBER'
+      ),
+      8,
+      'LONG',
+      9,
+      decode(m.charsetform, 2, 'NCHAR VARYING', 'VARCHAR'),
+      12,
+      'DATE',
+      23,
+      'RAW',
+      24,
+      'LONG RAW',
+      69,
+      'ROWID',
+      96,
+      decode(m.charsetform, 2, 'NCHAR', 'CHAR'),
+      100,
+      'BINARY_FLOAT',
+      101,
+      'BINARY_DOUBLE',
+      105,
+      'MLSLABEL',
+      106,
+      'MLSLABEL',
+      112,
+      decode(m.charsetform, 2, 'NCLOB', 'CLOB'),
+      113,
+      'BLOB',
+      114,
+      'BFILE',
+      115,
+      'CFILE',
+      178,
+      'TIME(' || m.scale || ')',
+      179,
+      'TIME(' || m.scale || ')' || ' WITH TIME ZONE',
+      180,
+      'TIMESTAMP(' || m.scale || ')',
+      181,
+      'TIMESTAMP(' || m.scale || ')' || ' WITH TIME ZONE',
+      231,
+      'TIMESTAMP(' || m.scale || ')' || ' WITH LOCAL TIME ZONE',
+      182,
+      'INTERVAL YEAR(' || m.precision# || ') TO MONTH',
+      183,
+      'INTERVAL DAY(' || m.precision# || ') TO SECOND(' || m.scale || ')',
+      208,
+      'UROWID',
+      'UNDEFINED'
+    ) DATA_TYPE,
+    m.length DATA_LENGTH,
+    m.precision# DATA_PRECISION,
+    m.scale DATA_SCALE,
+    io.option_value LOOP_VAR_OVERRIDE,
+    io2.option_value LOOP_DENSE_OVERRIDE,
+    io3.option_value LOOP_TYPE
+  FROM
+    olap_measures$ m,
+    obj$ o,
+    olap_syntax$ ss,
+    olap_syntax$ s,
+    olap_impl_options$ io,
+    olap_impl_options$ io2,
+    olap_impl_options$ io3,
+    (
+      select
+        d. *
+      from
+        olap_descriptions$ d,
+        nls_session_parameters n
+      where
+        n.parameter = 'NLS_LANGUAGE'
+        and d.description_type = 'Description'
+        and d.owning_object_type = 2 --MEASURE
+        and (
+          d.language = n.value
+          or d.language like n.value || '\_%' escape '\')) d
+  WHERE
+    m.cube_obj#=o.obj# AND o.owner#=USERENV(' SCHEMAID ')
+    AND m.measure_id=s.owner_id(+)
+    AND m.measure_id=ss.owner_id(+)
+    AND io.owning_objectid(+)=m.measure_id
+    AND io.object_type(+)=2
+    AND io.option_type(+)=51 -- LOOP_VAR_OVERRIDE
+    AND io2.owning_objectid(+)=m.measure_id
+    AND io2.object_type(+)=2
+    AND io2.option_type(+)=52 -- LOOP_DENSE_OVERRIDE
+    AND io3.owning_objectid(+)=m.measure_id
+    AND io3.object_type(+)=2
+    AND io3.option_type(+)=53 -- LOOP_TYPE
+    AND m.is_hidden=0 --NOT HIDDEN
+    AND s.owner_type(+)=2 --MEASURE
+    AND s.ref_role(+)=14 --DERIVED_MEAS_EXPRESSION
+    AND ss.owner_type(+)=2 --MEASURE
+    AND ss.ref_role(+)=16 --CONSISTENT_SOLVE_SPEC
+    AND m.measure_id=d.owning_object_id(+)
+columns: []
+referencedTables: []

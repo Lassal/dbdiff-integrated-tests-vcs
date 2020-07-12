@@ -1,0 +1,23 @@
+schema: SYS
+name: USER_TSTZ_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    distinct table_name,
+    decode(
+      bitand(t.property, 137438953472),
+      137438953472,
+      'YES',
+      'NO'
+    )
+  from
+    user_tstz_tab_cols uttc,
+    sys.obj$ o,
+    sys.tab$ t
+  where
+    uttc.table_name = o.name
+    and o.owner# = userenv('SCHEMAID')
+    and o.obj# = t.obj#
+columns: []
+referencedTables: []

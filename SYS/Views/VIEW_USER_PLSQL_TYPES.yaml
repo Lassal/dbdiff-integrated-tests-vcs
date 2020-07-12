@@ -1,0 +1,45 @@
+schema: SYS
+name: USER_PLSQL_TYPES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t.typ_name || decode(
+      bitand(t.properties, 134217728),
+      134217728,
+      '%ROWTYPE',
+      null
+    ),
+    o.name,
+    t.toid,
+    decode(
+      t.typecode,
+      250,
+      decode(
+        bitand(t.properties, 134217728),
+        134217728,
+        'CURSOR ROWTYPE',
+        'PL/SQL RECORD'
+      ),
+      122,
+      'COLLECTION',
+      'UNKNOWN TYPECODE: ' || t.typecode
+    ),
+    t.attributes,
+    decode(
+      bitand(t.properties, 67108864),
+      67108864,
+      'YES',
+      0,
+      'NO'
+    )
+  from
+    sys.type$ t,
+    sys. "_CURRENT_EDITION_OBJ" o
+  where
+    o.owner# = userenv('SCHEMAID') -- only the current user
+    and t.package_obj# IS NOT NULL -- only package types
+    and o.obj# = t.package_obj# -- match type to its package obj#
+    and o.type# <> 10 -- package must not be invalid
+columns: []
+referencedTables: []

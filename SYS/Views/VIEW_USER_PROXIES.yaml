@@ -1,0 +1,48 @@
+schema: SYS
+name: USER_PROXIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    decode(
+      p.credential_type#,
+      0,
+      'NO',
+      5,
+      'YES'
+    ),
+    decode(
+      p.flags,
+      0,
+      null,
+      1,
+      'PROXY MAY ACTIVATE ALL CLIENT ROLES',
+      2,
+      'NO CLIENT ROLES MAY BE ACTIVATED',
+      4,
+      'PROXY MAY ACTIVATE ROLE',
+      5,
+      'PROXY MAY ACTIVATE ALL CLIENT ROLES',
+      8,
+      'PROXY MAY NOT ACTIVATE ROLE'
+    ),
+    (
+      select
+        u.name
+      from
+        sys.user$ u
+      where
+        pr.role# = u.user#
+    )
+  from
+    sys.user$ u,
+    sys.proxy_info$ p,
+    sys.proxy_role_info$ pr
+  where
+    u.user# = p.client#
+    and p.proxy# = pr.proxy#(+)
+    and p.client# = pr.client#(+)
+    and p.proxy# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

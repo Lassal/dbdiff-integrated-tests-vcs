@@ -1,0 +1,19 @@
+schema: MDSYS
+name: OGC_NUMGEOMETRIES
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: OUT
+parameters:
+- name: G
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_NumGeometries(g ST_GeomCollection) RETURN Integer IS
+  BEGIN
+    RETURN g.ST_Geometries() .LAST;
+  END OGC_NumGeometries;

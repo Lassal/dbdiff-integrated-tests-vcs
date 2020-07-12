@@ -1,0 +1,23 @@
+name: AUDIT_ACTIONS
+schema: SYS
+columns:
+- name: ACTION
+  ordinalPosition: 1
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 28
+  nullable: false
+  dataTypeLength: 28
+constraints:
+- !<check-constraint>
+  name: SYS_C001804
+  type: CHECK
+  checkClause: '"ACTION" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C001805
+  type: CHECK
+  checkClause: '"NAME" IS NOT NULL'

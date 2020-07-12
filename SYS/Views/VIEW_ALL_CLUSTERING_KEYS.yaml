@@ -1,0 +1,21 @@
+schema: SYS
+name: ALL_CLUSTERING_KEYS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    k.owner,
+    k.table_name,
+    k.detail_owner,
+    k.detail_name,
+    k.detail_column,
+    k.position,
+    k.groupid
+  from
+    DBA_CLUSTERING_KEYS k,
+    ALL_TABLES t
+  WHERE
+    k.OWNER = t.OWNER
+    AND k.TABLE_NAME = t.TABLE_NAME
+columns: []
+referencedTables: []

@@ -1,0 +1,25 @@
+schema: SYS
+name: USER_SUBPARTITION_TEMPLATES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    st.spart_name,
+    st.spart_position + 1,
+    ts.name,
+    st.hiboundval
+  from
+    sys.obj$ o,
+    sys.defsubpart$ st,
+    sys.ts$ ts
+  where
+    st.bo# = o.obj#
+    and st.ts# = ts.ts#(+)
+    and o.owner# = userenv('SCHEMAID')
+    and o.namespace = 1
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+    and o.subname IS NULL
+columns: []
+referencedTables: []

@@ -1,0 +1,23 @@
+schema: SYS
+name: IMP9SYNU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "SYNNAM",
+    "SYNNAM2",
+    "SYNTAB",
+    "TABOWN",
+    "TABNODE",
+    "PUBLIC$",
+    "SYNOWN",
+    "SYNOWNID",
+    "TABOWNID",
+    "SYNOBJNO",
+    "SYNTIME"
+  FROM
+    sys.exu9syn
+  WHERE
+    synownid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

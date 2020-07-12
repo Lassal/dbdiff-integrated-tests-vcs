@@ -1,0 +1,87 @@
+schema: SYS
+name: KU$_IND_SUBNAME_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    tsov.owner_name,
+    isov.owner_name,
+    tsov.name,
+    isov.name,
+    tsov.subname,
+    isov.subname,
+    NULL,
+    NULL,
+    ts$.name
+  FROM
+    sys.ku$_schemaobj_view tsov,
+    sys.ku$_schemaobj_view isov,
+    tabpart$ tp,
+    ind$ i,
+    indpart$ ip,
+    ts$
+  WHERE
+    tsov.obj_num = tp.obj#
+    AND isov.obj_num = ip.obj#
+    AND i.obj# = ip.bo#
+    AND i.bo# = tp.bo#
+    AND ip.ts# = ts$.ts#
+    AND ip.part# = tp.part#
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (isov.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+  UNION ALL
+  SELECT
+    tsov.owner_name,
+    isov.owner_name,
+    tsov.name,
+    isov.name,
+    tpo.subname,
+    ipo.subname,
+    tsov.subname,
+    isov.subname,
+    ts$.name
+  FROM
+    sys.ku$_schemaobj_view tsov,
+    sys.ku$_schemaobj_view isov,
+    sys.obj$ tpo,
+    sys.obj$ ipo,
+    sys.tabsubpart$ tsp,
+    sys.tabcompart$ tcp,
+    sys.indcompart$ icp,
+    sys.ind$ i,
+    indsubpart$ isp,
+    ts$
+  WHERE
+    tsov.obj_num = tsp.obj#
+    AND isov.obj_num = isp.obj#
+    AND isp.pobj# = icp.obj#
+    AND tsp.pobj# = tcp.obj#
+    AND tpo.obj# = tcp.obj#
+    AND isp.subpart# = tsp.subpart#
+    AND icp.part# = tcp.part#
+    AND icp.bo# = i.obj#
+    AND i.bo# = tcp.bo#
+    AND ipo.obj# = icp.obj#
+    AND isp.ts# = ts$.ts#
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (isov.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,22 @@
+schema: MDSYS
+name: OGC_DISTANCE
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: G1
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+- name: G2
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_Distance(g1 ST_Geometry, g2 ST_Geometry) RETURN NUMBER DETERMINISTIC IS
+  BEGIN
+    RETURN g1.ST_Distance(g2);
+  END OGC_Distance;

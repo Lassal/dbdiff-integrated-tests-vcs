@@ -1,0 +1,61 @@
+schema: SYS
+name: _ALL_SQLSET_STATEMENTS_PHV
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    d.name as sqlset_name,
+    d.owner as sqlset_owner,
+    s.sqlset_id,
+    s.con_dbid,
+    s.sql_id,
+    s.force_matching_signature,
+    p.plan_hash_value,
+    s.command_type,
+    p.parsing_schema_name,
+    substrb(
+      s.module,
+      1,
+      (
+        select
+          ksumodlen
+        from
+          x$modact_length
+      )
+    ) module,
+    substrb(
+      s.action,
+      1,
+      (
+        select
+          ksuactlen
+        from
+          x$modact_length
+      )
+    ) action,
+    p.plan_timestamp,
+    p.binds_captured,
+    s.id as sql_seq
+  from
+    WRI$_SQLSET_DEFINITIONS d,
+    WRI$_SQLSET_STATEMENTS s,
+    WRI$_SQLSET_PLANS p
+  where
+    d.id = s.sqlset_id
+    AND s.id = p.stmt_id
+    AND (
+      d.owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+      OR EXISTS (
+        select
+          1
+        from
+          V$ENABLEDPRIVS
+        where
+          priv_number in (
+            -273
+            /*ADMINISTER ANY SQL TUNING SET*/
+          )
+      )
+    )
+columns: []
+referencedTables: []

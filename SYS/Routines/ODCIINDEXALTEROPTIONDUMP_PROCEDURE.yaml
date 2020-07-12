@@ -1,0 +1,32 @@
+schema: SYS
+name: ODCIINDEXALTEROPTIONDUMP
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: OP
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE ODCIIndexAlterOptionDump(op NUMBER) IS
+  BEGIN
+    dbms_output.put('Alter Option :');
+  IF (op = ODCIConst.AlterIndexNone) THEN dbms_output.put_line(' None');
+  END IF;
+  IF (op = ODCIConst.AlterIndexRename) THEN dbms_output.put_line(' Rename');
+  END IF;
+  IF (op = ODCIConst.AlterIndexRebuild) THEN dbms_output.put_line(' Rebuild');
+  END IF;
+  IF (op = ODCIConst.AlterIndexRebuildOnline) THEN dbms_output.put_line(' Rebuild Online');
+  END IF;
+  IF (op = ODCIConst.AlterIndexModifyCol) THEN dbms_output.put_line(' Modify Column');
+  END IF;
+  IF (op = ODCIConst.AlterIndexUpdBlockRefs) THEN dbms_output.put_line(' Update Block References');
+  END IF;
+  IF (op = ODCIConst.AlterIndexRenameCol) THEN dbms_output.put_line(' Rename Column ');
+  END IF;
+  IF (op = ODCIConst.AlterIndexRenameTab) THEN dbms_output.put_line(' Rename Table ');
+  END IF;
+  IF (op = ODCIConst.AlterIndexMigrate) THEN dbms_output.put_line(' Migrate Index ');
+  END IF;
+  END;

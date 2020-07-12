@@ -1,0 +1,18 @@
+schema: CTXSYS
+name: CTX_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    cla_name obj_class,
+    obj_name obj_name,
+    obj_desc obj_description
+  from
+    dr$class,
+    dr$object
+  where
+    cla_id = obj_cla_id
+    and obj_system = 'N'
+    and cla_system = 'N'
+columns: []
+referencedTables: []

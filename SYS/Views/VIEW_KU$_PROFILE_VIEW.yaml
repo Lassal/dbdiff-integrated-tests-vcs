@@ -1,0 +1,52 @@
+schema: SYS
+name: KU$_PROFILE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    n.profile#,
+    n.name,
+    (
+      select
+        distinct o.name
+      from
+        sys.obj$ o,
+        sys.ku$_profile_attr_view p
+      where
+        o.type# = 8
+        AND o.owner# = 0
+        AND o.obj# = p.limit_num
+        and p.profile_id = n.profile#
+        and p.resource_num = 4
+        and -- res# 4, type# 1 =
+        p.type_num = 1
+    ),
+    -- PASSWORD_VERIFY_FUNCTION
+    cast(
+      multiset (
+        select
+          *
+        from
+          ku$_profile_attr_view pl
+        where
+          pl.profile_id = n.profile#
+      ) as ku$_profile_list_t
+    )
+  from
+    sys.profname$ n
+  where
+    (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

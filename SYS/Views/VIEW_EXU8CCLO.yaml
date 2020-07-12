@@ -1,0 +1,21 @@
+schema: SYS
+name: EXU8CCLO
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    a .ownerid,
+    a .cno,
+    a .colname,
+    a .colno,
+    a .property
+  FROM
+    sys.exu8ccl a,
+    sys.con$ b,
+    sys.cdef$ c
+  WHERE
+    b.owner# = userenv('SCHEMAID')
+    AND b.con# = c .con#
+    AND c .rcon# = a .cno
+columns: []
+referencedTables: []

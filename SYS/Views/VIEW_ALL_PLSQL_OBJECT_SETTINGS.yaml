@@ -1,0 +1,155 @@
+schema: SYS
+name: ALL_PLSQL_OBJECT_SETTINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    OWNER,
+    NAME,
+    TYPE,
+    PLSQL_OPTIMIZE_LEVEL,
+    PLSQL_CODE_TYPE,
+    PLSQL_DEBUG,
+    PLSQL_WARNINGS,
+    NLS_LENGTH_SEMANTICS,
+    PLSQL_CCFLAGS,
+    PLSCOPE_SETTINGS,
+    ORIGIN_CON_ID
+  from
+    INT $DBA_PLSQL_OBJECT_SETTINGS
+  where
+    (
+      OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+      or OWNER = 'PUBLIC'
+      or (
+        /* EXECUTE privilege does not let user see package or type body */
+        TYPE # in (7, 8, 9, 12, 13, 22)
+        and OBJ_ID(OWNER, NAME, TYPE #, OBJECT_ID) in (
+          select
+            obj#
+          from
+            sys.objauth$
+          where
+            grantee# in (
+              select
+                kzsrorol
+              from
+                x$kzsro
+            )
+            and privilege# in (
+              12
+              /* EXECUTE */,
+              26
+              /* DEBUG */
+            )
+        )
+      )
+      or (
+        TYPE # in (7, 8, 9)
+        /* procedure, function, package */
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -144
+              /* EXECUTE ANY PROCEDURE */,
+              -141
+              /* CREATE ANY PROCEDURE */,
+              -241
+              /* DEBUG ANY PROCEDURE */
+            )
+        )
+      )
+      or (
+        TYPE # = 11
+        /* package body */
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -141
+              /* CREATE ANY PROCEDURE */,
+              -241
+              /* DEBUG ANY PROCEDURE */
+            )
+        )
+      )
+      or (
+        TYPE # = 12
+        /* trigger */
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -152
+              /* CREATE ANY TRIGGER */,
+              -241
+              /* DEBUG ANY PROCEDURE */
+            )
+        )
+      )
+      or (
+        TYPE # = 13
+        /* type */
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -184
+              /* EXECUTE ANY TYPE */,
+              -181
+              /* CREATE ANY TYPE */,
+              -241
+              /* DEBUG ANY PROCEDURE */
+            )
+        )
+      )
+      or (
+        TYPE # = 14
+        /* type body */
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -181
+              /* CREATE ANY TYPE */,
+              -241
+              /* DEBUG ANY PROCEDURE */
+            )
+        )
+      )
+      or (
+        TYPE # = 22
+        /* library */
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -189
+              /* CREATE ANY LIBRARY */,
+              -192
+              /* EXECUTE ANY LIBRARY */
+            )
+        )
+      )
+    )
+columns: []
+referencedTables: []

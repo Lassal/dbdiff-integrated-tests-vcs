@@ -1,0 +1,32 @@
+schema: SYS
+name: KU$_DIRECTORY_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    o.obj#,
+    value(sov),
+    replace(d.audit$, chr(0), '-'),
+    d.os_path
+  from
+    sys.obj$ o,
+    sys.ku$_schemaobj_view sov,
+    sys.dir$ d
+  where
+    o.obj# = sov.obj_num
+    AND o.obj# = d.obj#
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

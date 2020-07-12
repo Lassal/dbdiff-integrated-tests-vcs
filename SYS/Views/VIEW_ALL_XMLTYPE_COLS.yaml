@@ -1,0 +1,81 @@
+schema: SYS
+name: ALL_XMLTYPE_COLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  (
+    (
+      select
+        s.sys_nc_oid$ as SCHEMA_ID,
+        s.xmldata.schema_url as SCHEMA_URL,
+        --schema URL for the column
+        c .name as COL_NAME,
+        --name of the relational column
+        (
+          select
+            c1.name
+          from
+            sys.col$ c1
+          where
+            c1.intcol# = op.objcol
+            and c1.obj# = op.obj#
+        ) QUALIFIED_COL_NAME,
+        o.name as TABLE_NAME,
+        --name of the parent table
+        u.name as TABLE_OWNER --parent table owner
+      from
+        xdb.xdb$schema s,
+        sys.opqtype$ op,
+        sys.col$ c,
+        sys.obj$ o,
+        sys.user$ u,
+        all_tables a
+      where
+        o.type# = 2
+        and o.obj# = op.obj#
+        and o.obj# = c .obj#
+        and op.schemaoid = s.sys_nc_oid$
+        and o.owner# = u.user#
+        and c .intcol# = op.intcol#
+        and o.name = a .table_name
+        and u.name = a .owner
+    )
+    UNION
+      (
+        select
+          NULL as SCHEMA_ID,
+          NULL as SCHEMA_URL,
+          --schema URL for the column
+          c .name as COL_NAME,
+          --name of the relational column
+          (
+            select
+              c1.name
+            from
+              sys.col$ c1
+            where
+              c1.intcol# = op.objcol
+              and c1.obj# = op.obj#
+          ) QUALIFIED_COL_NAME,
+          o.name as TABLE_NAME,
+          --name of the parent table
+          u.name as TABLE_OWNER --parent table owner
+        from
+          sys.opqtype$ op,
+          sys.col$ c,
+          sys.obj$ o,
+          sys.user$ u,
+          all_tables a
+        where
+          o.type# = 2
+          and o.obj# = op.obj#
+          and o.obj# = c .obj#
+          and o.owner# = u.user#
+          and c .intcol# = op.intcol#
+          and o.name = a .table_name
+          and u.name = a .owner
+          and op.schemaoid IS NULL
+      )
+  )
+columns: []
+referencedTables: []

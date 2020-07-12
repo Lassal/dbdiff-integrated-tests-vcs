@@ -1,0 +1,31 @@
+schema: SYS
+name: KU$_POST_DATA_TABLE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    t.obj#,
+    value(o),
+    t.spare1
+  from
+    sys.ku$_schemaobj_view o,
+    sys.tab$ t
+  where
+    t.obj# = o.obj_num
+    and bitand(t.spare1, 32768) != 0
+    and bitand(t.trigflag, 1048576) = 0
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

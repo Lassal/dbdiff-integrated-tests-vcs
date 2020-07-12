@@ -1,0 +1,80 @@
+schema: SYS
+name: ODCIQUERYINFODUMP
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: QI
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE ODCIQueryInfoDump(qi ODCIQueryInfo) IS
+  BEGIN
+    if qi is null then dbms_output.put_line('ODCIQueryInfo is null');
+  return;
+  end if;
+  dbms_output.put_line('ODCIQueryInfo');
+  dbms_output.put_line('Flags :');
+  IF (bitand(qi.Flags, ODCIConst.QueryFirstRows) > 0) THEN dbms_output.put_line('     First Rows');
+  END IF;
+  IF (bitand(qi.Flags, ODCIConst.QueryAllRows) > 0) THEN dbms_output.put_line('     All Rows');
+  END IF;
+  IF (bitand(qi.Flags, ODCIConst.QuerySortAsc) > 0) THEN dbms_output.put_line('     Sort Ascending');
+  END IF;
+  IF (bitand(qi.Flags, ODCIConst.QuerySortDesc) > 0) THEN dbms_output.put_line('     Sort Descending');
+  END IF;
+  IF (bitand(qi.Flags, ODCIConst.QueryBlocking) > 0) THEN dbms_output.put_line('     Blocking Operations');
+  END IF;
+  IF qi.AncOps IS NOT NULL
+  AND qi.AncOps.COUNT > 0 THEN dbms_output.put_line('Ancillary Operators  ');
+  FOR i IN qi.AncOps.FIRST..qi.AncOps.LAST
+  LOOP
+    dbms_output.put_line(
+      '   Name : ' || qi.AncOps(i) .ObjectName
+    );
+  dbms_output.put_line(
+      '   Schema :' || qi.AncOps(i) .ObjectSchema
+    );
+  END
+  LOOP;
+  END IF;
+  IF qi.CompInfo IS NOT NULL
+  AND qi.CompInfo.PredInfo IS NOT NULL THEN dbms_output.put_line('Pushed Down Predicates');
+  FOR i IN qi.CompInfo.PredInfo.FIRST..qi.CompInfo.PredInfo.LAST
+  LOOP
+    ODCIColInfoDump(qi.CompInfo.PredInfo(i) .ColInfo);
+  dbms_output.put_line(
+      '   Flags: ' || qi.CompInfo.PredInfo(i) .Flags
+    );
+  IF qi.CompInfo.PredInfo(i) .strt IS NOT NULL THEN dbms_output.put_line('   Start: ');
+  ODCIAnyDataDump(qi.CompInfo.PredInfo(i) .strt);
+  END IF;
+  IF qi.CompInfo.PredInfo(i) .stop IS NOT NULL THEN dbms_output.put_line('   Stop: ');
+  ODCIAnyDataDump(qi.CompInfo.PredInfo(i) .stop);
+  END IF;
+  END
+  LOOP;
+  END IF;
+  IF qi.CompInfo IS NOT NULL
+  AND qi.CompInfo.ObyInfo IS NOT NULL THEN dbms_output.put_line('Order By Clause');
+  FOR i IN qi.CompInfo.ObyInfo.FIRST..qi.CompInfo.ObyInfo.LAST
+  LOOP
+    dbms_output.put_line(
+      '   ExprType: ' || qi.CompInfo.ObyInfo(i) .ExprType
+    );
+  dbms_output.put_line(
+      '   Schema : ' || qi.CompInfo.ObyInfo(i) .ObjectSchema
+    );
+  dbms_output.put_line(
+      '   TableName : ' || qi.CompInfo.ObyInfo(i) .TableName
+    );
+  dbms_output.put_line(
+      '   ColumnName : ' || qi.CompInfo.ObyInfo(i) .ExprName
+    );
+  dbms_output.put_line(
+      '   SortOrder : ' || qi.CompInfo.ObyInfo(i) .SortOrder
+    );
+  END
+  LOOP;
+  END IF;
+  END;

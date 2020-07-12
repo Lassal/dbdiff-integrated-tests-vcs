@@ -1,0 +1,37 @@
+schema: SYS
+name: EXU92TSPL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    dspl.bo#,
+    o.owner#,
+    '"' || c .name || '"',
+    dspl.spart_position,
+    dspl.intcol#,
+    dspl.lob_spart_name,
+    ts.name,
+    dspl.lob_spart_ts#
+  FROM
+    sys.defsubpartlob$ dspl,
+    sys.obj$ o,
+    sys.ts$ ts,
+    sys.col$ c
+  WHERE
+    dspl.bo# = o.obj#
+    AND dspl.lob_spart_ts# = ts.ts# (+)
+    AND o.obj# = c .obj#
+    AND dspl.intcol# = c .col#
+    AND (
+      userenv('SCHEMAID') IN (0, o.owner#)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,17 @@
+schema: SYS
+name: PUBLICSYN
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    sname,
+    creator,
+    tname,
+    database,
+    tabtype
+  from
+    synonyms
+  where
+    syntype = 'PUBLIC'
+columns: []
+referencedTables: []

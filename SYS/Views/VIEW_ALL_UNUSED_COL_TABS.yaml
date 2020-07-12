@@ -1,0 +1,61 @@
+schema: SYS
+name: ALL_UNUSED_COL_TABS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    count(*)
+  from
+    sys.user$ u,
+    sys.obj$ o,
+    sys.col$ c
+  where
+    o.owner# = u.user#
+    and o.obj# = c .obj#
+    and bitand(c .property, 32768) = 32768 -- is unused column
+    and bitand(c .property, 1) != 1 -- not ADT attribute col
+    and bitand(c .property, 1024) != 1024 -- not NTAB's setid col
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+  group by
+    u.name,
+    o.name
+columns: []
+referencedTables: []

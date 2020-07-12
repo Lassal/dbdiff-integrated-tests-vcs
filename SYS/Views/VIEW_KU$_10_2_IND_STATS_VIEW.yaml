@@ -1,0 +1,122 @@
+schema: SYS
+name: KU$_10_2_IND_STATS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '2',
+    '0',
+    i.obj#,
+    i.bo#,
+    (
+      select
+        value(sov)
+      from
+        ku$_schemaobj_view sov
+      where
+        sov.obj_num = i.bo#
+    ),
+    (
+      select
+        value(sov)
+      from
+        ku$_schemaobj_view sov
+      where
+        sov.obj_num = i.obj#
+    ),
+    i.type#,
+    i.property,
+    i.intcols,
+    i.rowcnt,
+    i.leafcnt,
+    i.distkey,
+    i.lblkkey,
+    i.dblkkey,
+    i.clufac,
+    i.blevel,
+    decode(
+      bitand(i.flags, 2112),
+      2112,
+      3,
+      2048,
+      2,
+      64,
+      1,
+      0
+    ),
+    o.flags,
+    i.samplesize,
+    TO_CHAR(i.analyzetime, 'YYYY-MM-DD HH24:MI:SS'),
+    (
+      select
+        value(icsv)
+      from
+        sys.ku$_ind_cache_stats_view icsv
+      where
+        i.obj# = icsv.obj_num
+    ),
+    cast(
+      multiset(
+        select
+          value(psv)
+        from
+          sys.ku$_pind_stats_view psv
+        where
+          psv.bobj_num = i.obj#
+      ) as ku$_pind_stats_list_t
+    ),
+    cast(
+      multiset(
+        select
+          value(icv)
+        from
+          sys.ku$_ind_col_view icv
+        where
+          icv.obj_num = i.obj#
+          and bitand(o.flags, 4) = 4
+          and
+          /* system generated */
+          bitand(i.property, 1) = 1
+      )
+      /* constraint index */
+      as ku$_tab_col_list_t
+    )
+  from
+    sys.obj$ o,
+    sys.ind$ i
+  where
+    i.obj# = o.obj#
+    and bitand(i.flags, 2) = 2
+    and i.type# != 8
+    and
+    /* no lob indexes */
+    NOT EXISTS (
+      SELECT
+        1
+      FROM
+        SYS.COL$ C
+      WHERE
+        /* no indexes with */
+        C .OBJ# = I.BO#
+        AND
+        /* system generated */
+        BITAND(C .PROPERTY, 32) = 32
+        AND
+        /* column names */
+        BITAND(O.FLAGS, 4) = 4
+    )
+    AND
+    /* and index names */
+    (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

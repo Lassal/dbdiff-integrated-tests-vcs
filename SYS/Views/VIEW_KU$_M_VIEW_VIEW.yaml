@@ -1,0 +1,35 @@
+schema: SYS
+name: KU$_M_VIEW_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    *
+  from
+    ku$_m_view_view_base b
+  where
+    bitand(b.flag2, 33554432) != 33554432
+    and (
+      bitand(b.flag3, 512) = 0
+      /* snapshot != zonemap */
+      or bitand(b.xpflags, 34359738368) = 0
+    )
+    /* summary != zonemap */
+    and (
+      (
+        b.unusablebef_num = 0
+        OR dbms_editions_utilities.compare_edition(
+          dbms_metadata.get_edition_id,
+          b.unusablebef_num
+        ) in (0, 2)
+      )
+      AND (
+        b.unusablebeg_num = 0
+        OR dbms_editions_utilities.compare_edition(
+          dbms_metadata.get_edition_id,
+          b.unusablebeg_num
+        ) = 1
+      )
+    )
+columns: []
+referencedTables: []

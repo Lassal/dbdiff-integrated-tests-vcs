@@ -1,0 +1,25 @@
+schema: SYS
+name: ALL_CONTEXT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    c .schema,
+    c .package
+  from
+    context $ c,
+    obj$ o
+  where
+    o.obj# = c .obj#
+    and o.type# = 44
+    and exists (
+      select
+        null
+      from
+        v$context v
+      where
+        v.namespace = o.name
+    )
+columns: []
+referencedTables: []

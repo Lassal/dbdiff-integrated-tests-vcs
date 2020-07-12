@@ -1,0 +1,22 @@
+schema: SYS
+name: DBA_SYNC_CAPTURE_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    distinct sr.table_owner,
+    sr.table_name,
+    decode(bitand(t.trigflag, 32), 32, 'YES', 'NO')
+  FROM
+    dba_streams_table_rules sr,
+    obj$ tob,
+    user $ tu,
+    tab$ t
+  WHERE
+    streams_type = 'SYNC_CAPTURE'
+    AND sr.table_owner = tu.name
+    AND sr.table_name = tob.name
+    AND tob.owner# = tu.user#
+    AND tob.obj# = t.obj#
+columns: []
+referencedTables: []

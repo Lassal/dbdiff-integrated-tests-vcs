@@ -1,0 +1,109 @@
+schema: SYS
+name: ALL_CATALOG
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    decode(
+      o.type#,
+      0,
+      'NEXT OBJECT',
+      1,
+      'INDEX',
+      2,
+      'TABLE',
+      3,
+      'CLUSTER',
+      4,
+      'VIEW',
+      5,
+      'SYNONYM',
+      6,
+      'SEQUENCE',
+      'UNDEFINED'
+    )
+  from
+    sys.user$ u,
+    sys. "_CURRENT_EDITION_OBJ" o
+  where
+    o.owner# = u.user#
+    and (
+      (o.type# in (4, 5, 6))
+      or (
+        o.type# = 2
+        /* tables, excluding iot - overflow and nested tables */
+        and not exists (
+          select
+            null
+          from
+            sys.tab$ t
+          where
+            t.obj# = o.obj#
+            and (
+              bitand(t.property, 512) = 512
+              or bitand(t.property, 8192) = 8192
+            )
+        )
+      )
+    )
+    and o.linkname is null
+    and (
+      o.owner# in (userenv('SCHEMAID'), 1)
+      /* public objects */
+      or obj# in (
+        select
+          obj#
+          /* directly granted privileges */
+        from
+          sys.objauth$
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or (
+        o.type# in (2, 4, 5)
+        /* table, view, synonym */
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -45
+              /* LOCK ANY TABLE */,
+              -47
+              /* SELECT ANY TABLE */,
+              -397
+              /* READ ANY TABLE */,
+              -48
+              /* INSERT ANY TABLE */,
+              -49
+              /* UPDATE ANY TABLE */,
+              -50
+              /* DELETE ANY TABLE */
+            )
+        )
+      )
+      or (
+        o.type# = 6
+        /* sequence */
+        and exists (
+          select
+            null
+          from
+            v$enabledprivs
+          where
+            priv_number = -109
+            /* SELECT ANY SEQUENCE */
+        )
+      )
+    )
+columns: []
+referencedTables: []

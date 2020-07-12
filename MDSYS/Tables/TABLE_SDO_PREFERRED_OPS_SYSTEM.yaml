@@ -1,0 +1,45 @@
+name: SDO_PREFERRED_OPS_SYSTEM
+schema: MDSYS
+columns:
+- name: COORD_OP_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: SOURCE_SRID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: TARGET_SRID
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+constraints:
+- !<unique-constraint>
+  name: PREFERRED_OPS_SYS_PRIM
+  type: PRIMARY_KEY
+  columns:
+  - name: SOURCE_SRID
+    ordinalPosition: 1
+  - name: TARGET_SRID
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C005822
+  type: CHECK
+  checkClause: '"SOURCE_SRID" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005823
+  type: CHECK
+  checkClause: '"COORD_OP_ID" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005824
+  type: CHECK
+  checkClause: '"TARGET_SRID" IS NOT NULL'

@@ -1,0 +1,15 @@
+schema: MDSYS
+name: SDO_DIST_UNITS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    SHORT_NAME "SDO_UNIT",
+    UNIT_OF_MEAS_NAME "UNIT_NAME",
+    (FACTOR_B / FACTOR_C) "CONVERSION_FACTOR"
+  FROM
+    MDSYS.SDO_UNITS_OF_MEASURE
+  WHERE
+    nls_lower(UNIT_OF_MEAS_TYPE) = 'length'
+columns: []
+referencedTables: []

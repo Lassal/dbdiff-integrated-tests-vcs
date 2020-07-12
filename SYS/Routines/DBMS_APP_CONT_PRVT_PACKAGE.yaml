@@ -1,0 +1,103 @@
+schema: SYS
+name: DBMS_APP_CONT_PRVT
+routineType: PACKAGE
+returnParamater:
+  name: PARTITION_EXISTS.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: PARTITION_EXISTS.PART_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: PREPARE_REPLAY.CLIENT_LTXID
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: PREPARE_REPLAY.ATTEMPTING_REPLAY
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: PREPARE_REPLAY.COMMIT_ON_SUCCESS
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: PREPARE_REPLAY.CALL_FNCODE
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: PREPARE_REPLAY.SQL_TEXT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PREPARE_REPLAY.COMMITTED
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: PREPARE_REPLAY.EMBEDDED
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+routineDefinition: |-
+  PACKAGE dbms_app_cont_prvt AS ------------
+  --  OVERVIEW
+  --
+  --  This package is an internal package for applicaton continuity.
+  --
+  ----------------------------
+  --  PROCEDURES AND FUNCTIONS
+  --
+  FUNCTION partition_exists(part_id NUMBER) RETURN NUMBER;
+  -- Determines if a partition in the transaction history table exists.
+  ----------------------------
+  --  11.2.0.3 SELECT ONLY PROCEDURES AND FUNCTIONS
+  --
+  procedure monitor_txn;
+  -- Enables the monitoring of transactions in the server
+  procedure prepare_replay(
+    client_ltxid IN RAW,
+    attempting_replay IN BOOLEAN,
+    commit_on_success IN BOOLEAN,
+    call_fncode IN BINARY_INTEGER,
+    sql_text IN VARCHAR2,
+    committed OUT BOOLEAN,
+    embedded OUT BOOLEAN
+  );
+  --
+  --  Asks server to check status of last action and prepare for replay.
+  --
+  --  If necessary -- if the named call could have committed -- then
+  --  forces the outcome of a transaction (see force_outcome).
+  --
+  --  Input parameter(s):
+  --    client_ltxid      - LTXID from the client driver.
+  --    attempting_replay - client is attempting replay. If false, just
+  --                        checking the ltxid
+  --    commit_on_success - last call submitted with OCI_COMMIT_ON_SUCCES
+  --    call_fncode       - O* function call (see opidef.h) for last call
+  --    sql text          - SQL text if last call was SQL execute
+  --
+  --  Output parameter(s):
+  --    committed - Transaction has been committed
+  --    embedded  - Transaction commit was embedded
+  --
+  --  Exceptions:
+  --      - SERVER_AHEAD, the server is ahead, so the transaction is an
+  --                      old transaction and must have already been
+  --                      committed.
+  --      - CLIENT_AHEAD, the client is ahead of the server. This can only
+  --                      happen if the server has been flashbacked or the
+  --                      ltxid is corrupted. In any way, the outcome
+  --                      cannot be determined.
+  --      - ERROR, the outcome cannot be determined. During processing an
+  --               error happened.
+  --    error
+  --      Error code raised during the execution of force_outcome.
+  --
+  procedure begin_replay;
+  -- Enables the replay mode in the server. While in replay mode, no
+  -- transactions can be either started or committed.
+  procedure end_replay;
+  -- Disables the replay mode.
+  END dbms_app_cont_prvt;

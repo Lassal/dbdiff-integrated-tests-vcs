@@ -1,0 +1,27 @@
+schema: SYS
+name: USER_REPFLAVOR_OBJECTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    UNIQUE fo.fname,
+    fo.gname,
+    fo.sname,
+    fo.oname,
+    fo.type,
+    fo.group_owner
+  from
+    dba_repflavor_objects fo,
+    user_objects o,
+    sys.user$ u
+  where
+    fo.sname = u.name
+    and u.user# = userenv('SCHEMAID')
+    and fo.oname = o.object_name
+    and (
+      fo.type = o.object_type
+      OR fo.type = 'SNAPSHOT'
+      and o.object_type IN ('VIEW', 'TABLE')
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,82 @@
+schema: SYS
+name: KU$_DBLINK_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    u.name,
+    l.owner#,
+    l.name,
+    to_char(l.ctime, 'YYYY/MM/DD HH24:MI:SS'),
+    l.host,
+    l.userid,
+    l.password,
+    l.flag,
+    l.authusr,
+    l.authpwd,
+    dbms_metadata_util.glo(l.passwordx),
+    dbms_metadata_util.glo(l.authpwdx)
+  from
+    sys.user$ u,
+    sys.link$ l
+  where
+    u.user# = l.owner#
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (u.user#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'EXP_FULL_DATABASE'
+      )
+    )
+  UNION
+  select
+    '1',
+    '1',
+    u.name,
+    l.owner#,
+    l.name,
+    to_char(l.ctime, 'YYYY/MM/DD HH24:MI:SS'),
+    l.host,
+    l.userid,
+    NULL,
+    l.flag,
+    l.authusr,
+    NULL,
+    NULL,
+    NULL
+  from
+    sys.user$ u,
+    sys.link$ l
+  where
+    u.user# = l.owner#
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') NOT IN (u.user#, 0)
+    )
+    AND NOT (
+      EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'EXP_FULL_DATABASE'
+      )
+    )
+    AND (
+      EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,77 @@
+schema: SYS
+name: XDS_ACL
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .object_id,
+    substr(
+      extractvalue(
+        a .object_value,
+        '/acl/@shared',
+        'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+      ),
+      1,
+      5
+    ),
+    extractvalue(
+      a .object_value,
+      '/acl/@description',
+      'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+    ),
+    xmlquery(
+      'declare namespace a="http://xmlns.oracle.com/xdb/acl.xsd"; fn:namespace-uri-from-QName(fn:data(/a:acl/a:security-class))' PASSING OBJECT_VALUE returning content
+    ),
+    xmlquery(
+      'declare namespace a="http://xmlns.oracle.com/xdb/acl.xsd"; fn:local-name-from-QName(fn:data(/a:acl/a:security-class))' PASSING OBJECT_VALUE returning content
+    ),
+    CASE
+      existsNode(
+        a .object_value,
+        '/acl/extends-from',
+        'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+      )
+      WHEN 1 THEN extractvalue(
+        a .object_value,
+        '/acl/extends-from/@href',
+        'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+      )
+      ELSE (
+        CASE
+          existsNode(
+            a .object_value,
+            '/acl/constrained-with',
+            'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+          )
+          WHEN 1 THEN extractvalue(
+            a .object_value,
+            '/acl/constrained-with/@href',
+            'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+          )
+          ELSE NULL
+        END
+      )
+    END,
+    CASE
+      existsNode(
+        a .object_value,
+        '/acl/extends-from',
+        'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+      )
+      WHEN 1 THEN 'extends-from'
+      ELSE (
+        CASE
+          existsNode(
+            a .object_value,
+            '/acl/constrained-with',
+            'xmlns="http://xmlns.oracle.com/xdb/acl.xsd"'
+          )
+          WHEN 1 THEN 'constrained-with'
+          ELSE NULL
+        END
+      )
+    END
+  FROM
+    XDB.XDB$ACL a
+columns: []
+referencedTables: []

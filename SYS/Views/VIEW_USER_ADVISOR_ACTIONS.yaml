@@ -1,0 +1,49 @@
+schema: SYS
+name: USER_ADVISOR_ACTIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .task_id as task_id,
+    b.name as task_name,
+    a .exec_name as execution_name,
+    d.rec_id as rec_id,
+    a .id as action_id,
+    a .obj_id as object_id,
+    c .command_name as command,
+    a .command as command_id,
+    a .flags as flags,
+    a .attr1 as attr1,
+    a .attr2 as attr2,
+    a .attr3 as attr3,
+    a .attr4 as attr4,
+    a .attr5 as attr5,
+    a .attr6 as attr6,
+    a .num_attr1 as num_attr1,
+    a .num_attr2 as num_attr2,
+    a .num_attr3 as num_attr3,
+    a .num_attr4 as num_attr4,
+    a .num_attr5 as num_attr5,
+    dbms_advisor.format_message_group(a .msg_id) as message,
+    nvl(a .filtered, 'N') as filtered
+  from
+    wri$_adv_actions a,
+    wri$_adv_tasks b,
+    x$keacmdn c,
+    wri$_adv_rec_actions d
+  where
+    a .task_id = b.id
+    and a .command = c .indx
+    and d.task_id = a .task_id
+    and d.act_id = a .id
+    and b.owner# = userenv('SCHEMAID')
+    and bitand(b.property, 6) = 4
+    and (
+      (
+        b.advisor_id = 2
+        and bitand(a .flags, 2048) = 0
+      )
+      or (b.advisor_id <> 2)
+    )
+columns: []
+referencedTables: []

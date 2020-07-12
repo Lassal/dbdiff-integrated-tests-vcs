@@ -1,0 +1,16 @@
+schema: LBACSYS
+name: ALL_SA_PROG_PRIVS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    schema_name,
+    program_name,
+    policy_name,
+    prog_privileges as program_privileges
+  FROM
+    LBACSYS.all_sa_programs
+  WHERE
+    prog_privileges IS NOT NULL
+columns: []
+referencedTables: []

@@ -1,0 +1,27 @@
+schema: SYS
+name: ALL_XML_NESTED_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    x.OWNER,
+    x.TABLE_NAME,
+    NESTED_TABLE_NAME
+  from
+    ALL_XML_TABLES x,
+    (
+      select
+        TABLE_NAME NESTED_TABLE_NAME,
+        connect_by_root PARENT_TABLE_NAME PARENT_TABLE_NAME,
+        OWNER
+      from
+        ALL_NESTED_TABLES nt
+      connect by
+        prior TABLE_NAME = PARENT_TABLE_NAME
+        and OWNER = OWNER
+    ) nt
+  where
+    x.TABLE_NAME = nt.PARENT_TABLE_NAME
+    and x.OWNER = nt.OWNER
+columns: []
+referencedTables: []

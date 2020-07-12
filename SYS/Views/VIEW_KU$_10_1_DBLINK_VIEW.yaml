@@ -1,0 +1,14 @@
+schema: SYS
+name: KU$_10_1_DBLINK_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t. *
+  from
+    ku$_dblink_view t
+  where
+    NVL(t.userid, 'CURRENT_USER') = 'CURRENT_USER'
+    and t.authusr is NULL
+columns: []
+referencedTables: []

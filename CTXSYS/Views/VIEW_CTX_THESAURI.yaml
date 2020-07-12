@@ -1,0 +1,15 @@
+schema: CTXSYS
+name: CTX_THESAURI
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name ths_owner,
+    ths_name
+  from
+    dr$ths,
+    sys.user$ u
+  where
+    ths_owner# = u.user#
+columns: []
+referencedTables: []

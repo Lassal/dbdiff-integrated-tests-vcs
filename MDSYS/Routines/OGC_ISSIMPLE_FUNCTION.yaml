@@ -1,0 +1,19 @@
+schema: MDSYS
+name: OGC_ISSIMPLE
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: OUT
+parameters:
+- name: G
+  ordinalPosition: 1
+  dataType: OBJECT
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION OGC_IsSimple(g ST_Geometry) RETURN Integer DETERMINISTIC IS
+  BEGIN
+    RETURN g.ST_IsSimple();
+  END OGC_IsSimple;

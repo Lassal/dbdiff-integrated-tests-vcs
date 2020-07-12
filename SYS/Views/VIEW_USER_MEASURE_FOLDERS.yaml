@@ -1,0 +1,31 @@
+schema: SYS
+name: USER_MEASURE_FOLDERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name MEASURE_FOLDER_NAME,
+    mf.obj# MEASURE_FOLDER_ID,
+    d.description_value DESCRIPTION
+  FROM
+    olap_measure_folders$ mf,
+    obj$ o,
+    (
+      select
+        d. *
+      from
+        olap_descriptions$ d,
+        nls_session_parameters n
+      where
+        n.parameter = 'NLS_LANGUAGE'
+        and d.description_type = 'Description'
+        and d.owning_object_type = 10 --MEASURE_FOLDER
+        and (
+          d.language = n.value
+          or d.language like n.value || '\_%' escape '\')) d
+  WHERE
+    mf.obj# = o.obj#
+    AND o.owner# = USERENV(' SCHEMAID ')
+    AND mf.obj# = d.owning_object_id(+)
+columns: []
+referencedTables: []

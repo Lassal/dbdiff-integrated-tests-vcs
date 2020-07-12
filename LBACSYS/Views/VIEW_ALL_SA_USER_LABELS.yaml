@@ -1,0 +1,21 @@
+schema: LBACSYS
+name: ALL_SA_USER_LABELS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    user_name,
+    policy_name,
+    user_labels as labels,
+    MAX_READ_LABEL,
+    MAX_WRITE_LABEL,
+    MIN_WRITE_LABEL,
+    DEFAULT_READ_LABEL,
+    DEFAULT_WRITE_LABEL,
+    DEFAULT_ROW_LABEL
+  FROM
+    LBACSYS.all_sa_users
+  WHERE
+    MAX_READ_LABEL IS NOT NULL
+columns: []
+referencedTables: []

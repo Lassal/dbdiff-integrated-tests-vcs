@@ -1,0 +1,34 @@
+targetObjectSchema: MDSYS
+targetObjectName: USER_SDO_NETWORK_JAVA_OBJECTS
+targetObjectType: VIEW
+name: SDO_NETWORK_JAVA_INS_TRIG
+eventTiming: INSTEAD OF
+event: INSERT
+eventActionBody: |-
+  DECLARE
+    user_name VARCHAR2(32);
+  dir_name VARCHAR2(200);
+  file_name VARCHAR2(32);
+  class_file_name VARCHAR2(32);
+  BEGIN
+    EXECUTE IMMEDIATE 'SELECT user FROM dual' INTO user_name;
+  INSERT INTO
+    sdo_network_constraints (
+      sdo_owner,
+      constraint,
+      description,
+      class_name,
+      class,
+      java_interface
+    )
+  VALUES
+    (
+      NLS_UPPER(user_name),
+      :n.name,
+      :n.description,
+      :n.class_name,
+      :n.class,
+      :n.java_interface
+    );
+  END;
+executionOrder: 1

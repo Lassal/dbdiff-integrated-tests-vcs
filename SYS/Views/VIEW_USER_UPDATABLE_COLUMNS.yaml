@@ -1,0 +1,102 @@
+schema: SYS
+name: USER_UPDATABLE_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    c .name,
+    decode(
+      bitand(c .fixedstorage, 2),
+      2,
+      case
+        when exists (
+          select
+            1
+          from
+            trigger $ t,
+            "_CURRENT_EDITION_OBJ" trigobj
+          where
+            t.obj# = trigobj.obj#
+            /* trigger in edition */
+            and t.type# = 4
+            /* and insted of trigger */
+            and t.enabled = 1
+            /* and enabled */
+            and t.baseobject = o.obj#
+            /* on selected object */
+            and t.update$ <> 0
+        )
+        /* triggers on update */
+        then 'YES'
+        else 'NO'
+      end,
+      decode(bitand(c .property, 4096), 4096, 'NO', 'YES')
+    ),
+    decode(
+      bitand(c .fixedstorage, 2),
+      2,
+      case
+        when exists (
+          select
+            1
+          from
+            trigger $ t,
+            "_CURRENT_EDITION_OBJ" trigobj
+          where
+            t.obj# = trigobj.obj#
+            /* trigger in edition */
+            and t.type# = 4
+            /* and insted of trigger */
+            and t.enabled = 1
+            /* and enabled */
+            and t.baseobject = o.obj#
+            /* on selected object */
+            and t.insert$ <> 0
+        )
+        /* triggers on insert */
+        then 'YES'
+        else 'NO'
+      end,
+      decode(bitand(c .property, 2048), 2048, 'NO', 'YES')
+    ),
+    decode(
+      bitand(c .fixedstorage, 2),
+      2,
+      case
+        when exists (
+          select
+            1
+          from
+            trigger $ t,
+            "_CURRENT_EDITION_OBJ" trigobj
+          where
+            t.obj# = trigobj.obj#
+            /* trigger in edition */
+            and t.type# = 4
+            /* and insted of trigger */
+            and t.enabled = 1
+            /* and enabled */
+            and t.baseobject = o.obj#
+            /* on selected object */
+            and t.delete$ <> 0
+        )
+        /* triggers on delete */
+        then 'YES'
+        else 'NO'
+      end,
+      decode(bitand(c .property, 8192), 8192, 'NO', 'YES')
+    )
+  from
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.user$ u,
+    sys.col$ c
+  where
+    u.user# = o.owner#
+    and c .obj# = o.obj#
+    and u.user# = userenv('SCHEMAID')
+    and bitand(c .property, 32) = 0
+    /* not hidden column */
+columns: []
+referencedTables: []

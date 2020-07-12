@@ -1,0 +1,57 @@
+schema: SYS
+name: _ALL_FILE_GROUPS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    g.file_group_id,
+    u.name,
+    o.name,
+    g.keep_files,
+    g.min_versions,
+    g.max_versions,
+    g.retention_days,
+    g.creation_time,
+    g.user_comment,
+    g.default_dir_obj,
+    g.creator
+  from
+    sys.obj$ o,
+    sys.user$ u,
+    sys.fgr$_file_groups g
+  where
+    o.owner# = u.user#
+    and o.obj# = g.file_group_id
+    and (
+      o.owner# in (
+        USERENV('SCHEMAID'),
+        1
+        /* PUBLIC */
+      )
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -277,
+            -278
+          )
+      )
+    )
+columns: []
+referencedTables: []

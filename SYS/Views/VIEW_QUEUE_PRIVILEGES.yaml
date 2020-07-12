@@ -1,0 +1,41 @@
+schema: SYS
+name: QUEUE_PRIVILEGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ue.name GRANTEE,
+    u.name OWNER,
+    o.name NAME,
+    ur.name GRANTOR,
+    decode(sum(privilege#), 20, 1, 41, 1, 0) ENQUEUE_PRIVILEGE,
+    decode(sum(oa.privilege#), 21, 1, 41, 1, 0) DEQUEUE_PRIVILEGE
+  from
+    sys.objauth$ oa,
+    sys.obj$ o,
+    sys.user$ ue,
+    sys.user$ ur,
+    sys.user$ u
+  where
+    oa.obj# = o.obj#
+    and o.type# = 24
+    and oa.grantor# = ur.user#
+    and oa.grantee# = ue.user#
+    and u.user# = o.owner#
+    and (
+      oa.grantor# = userenv('SCHEMAID')
+      or oa.grantee# in (
+        select
+          kzsrorol
+        from
+          x$kzsro
+      )
+      or o.owner# = userenv('SCHEMAID')
+    )
+  group by
+    u.name,
+    o.name,
+    ur.name,
+    ue.name
+columns: []
+referencedTables: []

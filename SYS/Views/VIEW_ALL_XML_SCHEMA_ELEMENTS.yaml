@@ -1,0 +1,89 @@
+schema: SYS
+name: ALL_XML_SCHEMA_ELEMENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  (
+    select
+      s.xmldata.schema_owner AS OWNER,
+      s.xmldata.schema_url AS SCHEMA_URL,
+      s.xmldata.target_namespace AS TARGET_NAMESPACE,
+      (
+        case
+          when e.xmldata.property.name IS NULL then e.xmldata.property.propref_name.name
+          else e.xmldata.property.name
+        end
+      ) AS ELEMENT_NAME,
+      (
+        case
+          when e.xmldata.property.name IS NULL then 1
+          else 0
+        end
+      ) AS IS_REF,
+      e.xmldata.property.typename.name AS TYPE_NAME,
+      e.xmldata.property.global AS GLOBAL,
+      value(e) AS ELEMENT,
+      e.xmldata.sql_inline AS SQL_INLINE,
+      e.xmldata.property.sqltype AS SQL_TYPE,
+      e.xmldata.property.sqlschema AS SQL_SCHEMA,
+      e.xmldata.default_table AS DEFAULT_TABLE,
+      e.xmldata.property.sqlname AS SQL_NAME,
+      e.xmldata.property.sqlcolltype AS SQL_COL_TYPE,
+      e.xmldata.maintain_dom AS MAINTAIN_DOM,
+      e.xmldata.maintain_order AS MAINTAIN_ORDER,
+      hextoraw(e.xmldata.property.prop_number) AS ELEMENT_ID,
+      t.column_value AS PARENT_ELEMENT_ID
+    from
+      xdb.xdb$schema s,
+      xdb.xdb$element e,
+      all_xml_schemas a,
+      table(
+        PrvtParentChild.getParentID(e.xmldata.property.prop_number)
+      ) t
+    where
+      sys_op_r2o(e.xmldata.property.parent_schema) = s.sys_nc_oid$
+      and s.xmldata.schema_owner = a .owner
+      and s.xmldata.schema_url = a .schema_url
+      and PrvtParentChild.sizeArray(e.xmldata.property.prop_number) <> 0
+    UNION ALL
+    select
+      s.xmldata.schema_owner AS OWNER,
+      s.xmldata.schema_url AS SCHEMA_URL,
+      s.xmldata.target_namespace AS TARGET_NAMESPACE,
+      (
+        case
+          when e.xmldata.property.name IS NULL then e.xmldata.property.propref_name.name
+          else e.xmldata.property.name
+        end
+      ) AS ELEMENT_NAME,
+      (
+        case
+          when e.xmldata.property.name IS NULL then 1
+          else 0
+        end
+      ) AS IS_REF,
+      e.xmldata.property.typename.name AS TYPE_NAME,
+      e.xmldata.property.global AS GLOBAL,
+      value(e) AS ELEMENT,
+      e.xmldata.sql_inline AS SQL_INLINE,
+      e.xmldata.property.sqltype AS SQL_TYPE,
+      e.xmldata.property.sqlschema AS SQL_SCHEMA,
+      e.xmldata.default_table AS DEFAULT_TABLE,
+      e.xmldata.property.sqlname AS SQL_NAME,
+      e.xmldata.property.sqlcolltype AS SQL_COL_TYPE,
+      e.xmldata.maintain_dom AS MAINTAIN_DOM,
+      e.xmldata.maintain_order AS MAINTAIN_ORDER,
+      hextoraw(e.xmldata.property.prop_number) AS ELEMENT_ID,
+      NULL AS PARENT_ELEMENT_ID
+    from
+      xdb.xdb$schema s,
+      xdb.xdb$element e,
+      all_xml_schemas a
+    where
+      sys_op_r2o(e.xmldata.property.parent_schema) = s.sys_nc_oid$
+      and s.xmldata.schema_owner = a .owner
+      and s.xmldata.schema_url = a .schema_url
+      and PrvtParentChild.sizeArray(e.xmldata.property.prop_number) = 0
+  )
+columns: []
+referencedTables: []

@@ -1,0 +1,27 @@
+schema: SYS
+name: KU$_10_1_TABLE_OBJNUM_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    t. *
+  from
+    ku$_11_2_table_objnum_view t
+  where
+    NOT EXISTS (
+      select
+        property
+      from
+        col$ c
+        /* exclude tabs with virtual cols */
+      where
+        c .obj# = t.obj_num
+        and bitand(c .property, 65536) >= 65536
+        /* virtual cols */
+        and bitand(c .property, 256) = 0
+        /* not a sysgen col */
+        and bitand(c .property, 32768) = 0
+    )
+    /* not unused */
+columns: []
+referencedTables: []

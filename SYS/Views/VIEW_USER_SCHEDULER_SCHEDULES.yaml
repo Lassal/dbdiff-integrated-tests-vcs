@@ -1,0 +1,54 @@
+schema: SYS
+name: USER_SCHEDULER_SCHEDULES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    so.name,
+    (
+      CASE
+        WHEN s.recurrence_expr is null THEN 'ONCE'
+        ELSE DECODE(
+          BITAND(s.flags, 20),
+          0,
+          'CALENDAR',
+          20,
+          'FILE_WATCHER',
+          4,
+          'EVENT',
+          NULL
+        )
+      END
+    ),
+    s.reference_date,
+    decode(bitand(s.flags, 4 + 8), 0, recurrence_expr, null),
+    s.queue_owner,
+    s.queue_name,
+    s.queue_agent,
+    DECODE(BITAND(s.flags, 4 + 8), 4, s.recurrence_expr, null),
+    DECODE(
+      BITAND(s.flags, 16),
+      0,
+      NULL,
+      substr(s.fw_name, 1, instr(s.fw_name, '"') -1)
+    ),
+    DECODE(
+      BITAND(s.flags, 16),
+      0,
+      NULL,
+      substr(
+        s.fw_name,
+        instr(s.fw_name, '"') + 1,
+        length(s.fw_name) - instr(s.fw_name, '"')
+      )
+    ),
+    s.end_date,
+    s.comments
+  FROM
+    sys.scheduler$_schedule s,
+    obj$ so
+  WHERE
+    s.obj# = so.obj#
+    AND so.owner# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,115 @@
+schema: ORDS_METADATA
+name: ALL_ORDS_OBJ_MEMBERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  with sr as (
+    select
+      count(1) has_catalog
+    from
+      session_roles
+    where
+      role = 'SELECT_CATALOG_ROLE'
+  )
+  select
+    "SCHEMA_ID",
+    "OBJECT_ID",
+    "PARSING_SCHEMA",
+    "PARSING_OBJECT",
+    "PARSING_MEMBER",
+    "MEMBER_ALIAS",
+    "TYPE",
+    "VISIBLE",
+    "ORDER",
+    "PK_ORDER"
+  from
+    (
+      SELECT
+        OO.SCHEMA_ID,
+        OO.OBJECT_ID,
+        REALMBRS1.PARSING_SCHEMA PARSING_SCHEMA,
+        REALMBRS1.PARSING_OBJECT PARSING_OBJECT,
+        REALMBRS1.PARSING_MEMBER PARSING_MEMBER,
+        LOWER(REALMBRS1.PARSING_MEMBER) MEMBER_ALIAS,
+        REALMBRS1. "TYPE" "TYPE",
+        REALMBRS1. "VISIBLE" "VISIBLE",
+        REALMBRS1. "ORDER" "ORDER",
+        REALMBRS1. "PK_ORDER" "PK_ORDER"
+      FROM
+        (
+          select
+            PARSING_SCHEMA,
+            PARSING_OBJECT,
+            PARSING_MEMBER,
+            MEMBER_ALIAS,
+            "TYPE",
+            "VISIBLE",
+            COLUMN_ID "ORDER",
+            PK_ORDER
+          from
+            (
+              SELECT
+                SYS.ALL_TAB_COLUMNS. "OWNER" PARSING_SCHEMA,
+                SYS.ALL_TAB_COLUMNS.TABLE_NAME PARSING_OBJECT,
+                SYS.ALL_TAB_COLUMNS.COLUMN_NAME PARSING_MEMBER,
+                LOWER(SYS.ALL_TAB_COLUMNS.COLUMN_NAME) MEMBER_ALIAS,
+                SYS.ALL_TAB_COLUMNS.DATA_TYPE TYPE,
+                'ENABLED' VISIBLE,
+                SYS.ALL_TAB_COLUMNS.COLUMN_ID
+              FROM
+                SYS.ALL_TAB_COLUMNS,
+                SR
+              WHERE
+                SYS.ALL_TAB_COLUMNS. "OWNER" = sys_context('USERENV', 'CURRENT_USER')
+                OR sr.has_catalog = 1
+            ) MBRS,
+            (
+              SELECT
+                "ACC"."OWNER" "OWNER",
+                "ACC" .TABLE_NAME TABLE_NAME,
+                "ACC" .COLUMN_NAME COLUMN_NAME,
+                "ACC"."POSITION" PK_ORDER
+              FROM
+                ALL_CONSTRAINTS IAC,
+                ALL_CONS_COLUMNS "ACC",
+                SR
+              WHERE
+                IAC. "OWNER" = "ACC"."OWNER"
+                AND IAC.CONSTRAINT_NAME = "ACC" .CONSTRAINT_NAME
+                AND CONSTRAINT_TYPE = 'P'
+                AND (
+                  "ACC"."OWNER" = sys_context('USERENV', 'CURRENT_USER')
+                  or sr.has_catalog = 1
+                )
+            ) PKEY
+          WHERE
+            PKEY.OWNER(+) = MBRS.PARSING_SCHEMA
+            AND PKEY.TABLE_NAME(+) = MBRS.PARSING_OBJECT
+            AND PKEY.COLUMN_NAME(+) = MBRS.PARSING_MEMBER
+        ) REALMBRS1
+        LEFT OUTER JOIN (
+          SELECT
+            ords_schemas.id SCHEMA_ID,
+            ords_objects.ID OBJECT_ID,
+            ords_schemas.parsing_schema,
+            ords_objects.PARSING_OBJECT
+          FROM
+            ords_objects,
+            ords_schemas,
+            SR
+          WHERE
+            ords_objects.SCHEMA_ID = ords_schemas.id
+            AND (
+              parsing_schema = sys_context('USERENV', 'CURRENT_USER')
+              or sr.has_catalog = 1
+            )
+        ) OO ON OO.parsing_schema = REALMBRS1.PARSING_SCHEMA
+        AND OO.PARSING_OBJECT = REALMBRS1.PARSING_OBJECT --    WHERE REALMBRS1."PARSING_SCHEMA" = TABVIEWS.PARSING_SCHEMA and REALMBRS1.PARSING_OBJECT = TABVIEWS.PARSING_OBJECT
+        --
+      order by
+        parsing_schema,
+        parsing_object,
+        "ORDER"
+    ) X
+columns: []
+referencedTables: []

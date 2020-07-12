@@ -1,0 +1,29 @@
+schema: SYS
+name: EXU9PGP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    g.gname,
+    u.name,
+    o.name
+  FROM
+    sys.rls_grp$ g,
+    sys.user$ u,
+    sys.obj$ o
+  WHERE
+    g.obj# = o.obj#
+    AND u.user# = o.owner#
+    AND (
+      userenv('SCHEMAID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

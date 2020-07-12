@@ -1,0 +1,63 @@
+schema: SYS
+name: ALL_SCHEDULER_JOB_CLASSES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    u.name,
+    co.name,
+    c .res_grp_name,
+    c .affinity,
+    DECODE(
+      BITAND(c .flags, 32 + 64 + 128 + 256),
+      32,
+      'OFF',
+      64,
+      'RUNS',
+      128,
+      'FAILED RUNS',
+      256,
+      'FULL',
+      NULL
+    ),
+    c .log_history,
+    c .comments
+  FROM
+    obj$ co,
+    user $ u,
+    sys.scheduler$_class c
+  WHERE
+    c .obj# = co.obj#
+    AND co.owner# = u.user#
+    AND (
+      co.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -267,
+            /* EXECUTE ANY CLASS */
+            -268
+            /* MANAGE SCHEDULER */
+          )
+      )
+    )
+columns: []
+referencedTables: []

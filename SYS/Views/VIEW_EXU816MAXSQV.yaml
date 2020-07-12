@@ -1,0 +1,19 @@
+schema: SYS
+name: EXU816MAXSQV
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    sv.version#,
+    sv.sql_version
+  FROM
+    sys.sql_version$ sv
+  WHERE
+    sv.version# = (
+      SELECT
+        MAX(sv2.version#)
+      FROM
+        sys.sql_version$ sv2
+    )
+columns: []
+referencedTables: []

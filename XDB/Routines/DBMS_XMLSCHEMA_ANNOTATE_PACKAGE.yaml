@@ -1,0 +1,806 @@
+schema: XDB
+name: DBMS_XMLSCHEMA_ANNOTATE
+routineType: PACKAGE
+returnParamater:
+  name: GETSCHEMAANNOTATIONS.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: ADDXDBNAMESPACE.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: DISABLEDEFAULTTABLECREATION(1).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: DISABLEDEFAULTTABLECREATION(1).GLOBALELEMENTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DISABLEDEFAULTTABLECREATION(2).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: DISABLEMAINTAINDOM(1).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: DISABLEMAINTAINDOM(1).OVERWRITE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: DISABLEMAINTAINDOM(2).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: DISABLEMAINTAINDOM(2).COMPLEXTYPENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DISABLEMAINTAINDOM(2).OVERWRITE
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ENABLEDEFAULTTABLECREATION(1).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: ENABLEDEFAULTTABLECREATION(1).GLOBALELEMENTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLEDEFAULTTABLECREATION(2).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: ENABLEMAINTAINDOM(1).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: ENABLEMAINTAINDOM(1).OVERWRITE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ENABLEMAINTAINDOM(2).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: ENABLEMAINTAINDOM(2).COMPLEXTYPENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLEMAINTAINDOM(2).OVERWRITE
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GETSCHEMAANNOTATIONS.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PRINTWARNINGS.VALUE
+  ordinalPosition: 1
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: REMOVEANYSTORAGE.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVEANYSTORAGE.COMPLEXTYPENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVEDEFAULTTABLE.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVEDEFAULTTABLE.GLOBALELEMENTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVEMAINTAINDOM.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVEOUTOFLINE(1).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVEOUTOFLINE(1).ELEMENTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVEOUTOFLINE(1).ELEMENTTYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVEOUTOFLINE(2).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVEOUTOFLINE(2).GLOBALOBJECT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVEOUTOFLINE(2).GLOBALOBJECTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVEOUTOFLINE(2).LOCALELEMENTNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVEOUTOFLINE(3).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVEOUTOFLINE(3).REFERENCE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLCOLLTYPE(1).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVESQLCOLLTYPE(1).ELEMENTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLCOLLTYPE(2).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVESQLCOLLTYPE(2).GLOBALOBJECT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLCOLLTYPE(2).GLOBALOBJECTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLCOLLTYPE(2).LOCALELEMENTNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLNAME.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVESQLNAME.GLOBALOBJECT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLNAME.GLOBALOBJECTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLNAME.LOCALOBJECT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLNAME.LOCALOBJECTNAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLTYPE(1).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVESQLTYPE(1).GLOBALELEMENTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLTYPE(2).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVESQLTYPE(2).GLOBALOBJECT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLTYPE(2).GLOBALOBJECTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLTYPE(2).LOCALOBJECT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLTYPE(2).LOCALOBJECTNAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVESQLTYPEMAPPING.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVESQLTYPEMAPPING.SCHEMATYPENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVETABLEPROPS(1).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVETABLEPROPS(1).GLOBALELEMENTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVETABLEPROPS(2).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: REMOVETABLEPROPS(2).GLOBALOBJECT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVETABLEPROPS(2).GLOBALOBJECTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVETABLEPROPS(2).LOCALELEMENTNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVETIMESTAMPWITHTIMEZONE.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETANYSTORAGE.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETANYSTORAGE.COMPLEXTYPENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETANYSTORAGE.SQLTYPENAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETANYSTORAGE.OVERWRITE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETDEFAULTTABLE.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETDEFAULTTABLE.GLOBALELEMENTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETDEFAULTTABLE.TABLENAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETDEFAULTTABLE.OVERWRITE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETOUTOFLINE(1).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETOUTOFLINE(1).ELEMENTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETOUTOFLINE(1).ELEMENTTYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETOUTOFLINE(1).DEFAULTTABLENAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETOUTOFLINE(1).OVERWRITE
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETOUTOFLINE(2).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETOUTOFLINE(2).GLOBALOBJECT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETOUTOFLINE(2).GLOBALOBJECTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETOUTOFLINE(2).LOCALELEMENTNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETOUTOFLINE(2).DEFAULTTABLENAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETOUTOFLINE(2).OVERWRITE
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETOUTOFLINE(3).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETOUTOFLINE(3).REFERENCE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETOUTOFLINE(3).DEFAULTTABLENAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETOUTOFLINE(3).OVERWRITE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETSCHEMAANNOTATIONS.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETSCHEMAANNOTATIONS.ANNOTATIONS
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: SETSQLCOLLTYPE(1).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETSQLCOLLTYPE(1).ELEMENTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLCOLLTYPE(1).SQLCOLLTYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLCOLLTYPE(1).OVERWRITE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETSQLCOLLTYPE(2).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETSQLCOLLTYPE(2).GLOBALOBJECT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLCOLLTYPE(2).GLOBALOBJECTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLCOLLTYPE(2).LOCALELEMENTNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLCOLLTYPE(2).SQLCOLLTYPE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLCOLLTYPE(2).OVERWRITE
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETSQLNAME.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETSQLNAME.GLOBALOBJECT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLNAME.GLOBALOBJECTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLNAME.LOCALOBJECT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLNAME.LOCALOBJECTNAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLNAME.SQLNAME
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLNAME.OVERWRITE
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETSQLTYPE(1).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETSQLTYPE(1).GLOBALELEMENTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLTYPE(1).SQLTYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLTYPE(1).OVERWRITE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETSQLTYPE(2).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETSQLTYPE(2).GLOBALOBJECT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLTYPE(2).GLOBALOBJECTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLTYPE(2).LOCALOBJECT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLTYPE(2).LOCALOBJECTNAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLTYPE(2).SQLTYPE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLTYPE(2).OVERWRITE
+  ordinalPosition: 7
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETSQLTYPEMAPPING.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETSQLTYPEMAPPING.SCHEMATYPENAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLTYPEMAPPING.SQLTYPENAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETSQLTYPEMAPPING.OVERWRITE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETTABLEPROPS(1).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETTABLEPROPS(1).GLOBALELEMENTNAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETTABLEPROPS(1).TABLEPROPS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETTABLEPROPS(1).OVERWRITE
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETTABLEPROPS(2).XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETTABLEPROPS(2).GLOBALOBJECT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETTABLEPROPS(2).GLOBALOBJECTNAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETTABLEPROPS(2).LOCALELEMENTNAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETTABLEPROPS(2).TABLEPROPS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETTABLEPROPS(2).OVERWRITE
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: SETTIMESTAMPWITHTIMEZONE.XMLSCHEMA
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: INOUT
+- name: SETTIMESTAMPWITHTIMEZONE.OVERWRITE
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE DBMS_XMLSCHEMA_ANNOTATE authid CURRENT_USER AS procedure printWarnings(value in BOOLEAN default TRUE);
+  procedure addXDBNamespace(xmlschema in out XMLType);
+  -- Adds the XDB namespace that is required for xdb annotation.
+  -- This procedure is called implicitly by any other procedure that adds a
+  -- schema annotation. Without further annotations the xdb namespace
+  -- annotations does not make sense, therefore this procedure might mostly
+  -- be called by other annotations procedures and not by the user directly.
+  -- The procedure gets an XML Schema as XMLType, performs the annotation and
+  -- returns it.
+  procedure setDefaultTable(
+    xmlschema in out XMLType,
+    globalElementName VARCHAR2,
+    tableName VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- Sets the name of the default table for a given global element that is
+  -- specified by its name
+  procedure removeDefaultTable(
+    xmlschema in out XMLType,
+    globalElementName VARCHAR2
+  );
+  -- Removes the default table attribute for the given element.
+  -- After calling this
+  -- function system generated table names will be used. The procedure will
+  -- always overwrite.
+  procedure setTableProps(
+    xmlschema in out XMLType,
+    globalElementName VARCHAR2,
+    tableProps VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- Specifies the TABLE storage clause that is appended to the default
+  -- CREATE TABLE statement.
+  procedure removeTableProps(
+    xmlschema in out XMLType,
+    globalElementName VARCHAR2
+  );
+  -- removes the table storage props.
+  procedure setTableProps(
+    xmlschema in out XMLType,
+    globalObject VARCHAR2,
+    globalObjectName VARCHAR2,
+    localElementName VARCHAR2,
+    tableProps VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- Specifies the TABLE storage clause that is appended to the
+  -- default CREATE TABLE statement.
+  procedure removeTableProps(
+    xmlschema in out XMLType,
+    globalObject VARCHAR2,
+    globalObjectName VARCHAR2,
+    localElementName VARCHAR2
+  );
+  -- Removes the TABLE storage clause that is appended to the
+  -- default CREATE TABLE statement.
+  procedure disableDefaultTableCreation(
+    xmlschema in out XMLType,
+    globalElementName VARCHAR2
+  );
+  -- Add a default table attribute with an empty value to the
+  -- top level element with the specified name.
+  -- No table will be created for that element.
+  -- The procedure will always overwrite.
+  procedure disableDefaultTableCreation(xmlschema in out XMLType);
+  -- Add a default table attribute with an empty value to ALL top level
+  -- elements that have no defined default table name.
+  -- The procedure will never overwrite existing annotations since this
+  -- would lead to no table creation at all.
+  -- This is the way to prevent XDB from creating many and unused tables
+  -- for elements that are no root elements of
+  -- instance documents.
+  /* TODO This function
+
+    * This functions should test that at least one default table with a given
+
+    * name exists. If no default table name is assigned calling this
+
+    * disableTopLevelTableCreation would lead to no table creation at all. */
+  procedure enableDefaultTableCreation(
+    xmlschema in out XMLType,
+    globalElementName VARCHAR2
+  );
+  -- Enables the creation of top level tables by removing the empty default
+  -- table name annotation.
+  procedure enableDefaultTableCreation(xmlschema in out XMLType);
+  -- Enables the creation of ALL top level tables by removing the empty
+  -- default table name annotation.
+  procedure setSQLName (
+    xmlschema in out XMLType,
+    globalObject VARCHAR2,
+    globalObjectName VARCHAR2,
+    localObject VARCHAR2,
+    localObjectName VARCHAR2,
+    sqlName VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- assigns a sqlname to an element
+  procedure removeSQLName (
+    xmlschema in out XMLType,
+    globalObject VARCHAR2,
+    globalObjectName VARCHAR2,
+    localObject VARCHAR2,
+    localObjectName VARCHAR2
+  );
+  -- removes a sqlname from a global element
+  procedure setSQLType (
+    xmlschema in out XMLType,
+    globalElementName VARCHAR2,
+    sqlType VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- assigns a sqltype to a global element
+  procedure removeSQLType (
+    xmlschema in out XMLType,
+    globalElementName VARCHAR2
+  );
+  -- removes a sqltype from a global element
+  procedure setSQLType(
+    xmlschema in out XMLType,
+    globalObject VARCHAR2,
+    globalObjectName VARCHAR2,
+    localObject VARCHAR2,
+    localObjectName VARCHAR2,
+    sqlType VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- assigns a sqltype inside a complex type (local)
+  procedure removeSQLType (
+    xmlschema in out XMLType,
+    globalObject VARCHAR2,
+    globalObjectName VARCHAR2,
+    localObject VARCHAR2,
+    localObjectName VARCHAR2
+  );
+  -- removes a sqltype inside a complex type (local)
+  procedure setSQLTypeMapping(
+    xmlschema in out XMLType,
+    schemaTypeName VARCHAR2,
+    sqlTypeName VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- defines a mapping of schema type and sqltype.
+  -- The addSQLType procedure do not have to be called on all instances of
+  -- the schema type instead the schema is traversed and the
+  -- sqltype is assigned automatically.
+  procedure removeSQLTypeMapping(
+    xmlschema in out XMLType,
+    schemaTypeName VARCHAR2
+  );
+  -- removes the sqltype mapping for the given schema type.
+  procedure setTimeStampWithTimeZone(
+    xmlschema in out xmlType,
+    overwrite BOOLEAN default TRUE
+  );
+  -- sets the TimeStampWithTimeZone datatype to dateTime typed element.
+  procedure removeTimeStampWithTimeZone(xmlschema in out xmlType);
+  -- removes the TimeStampWithTimeZone datatype to dateTime typed element.
+  procedure setAnyStorage (
+    xmlschema in out XMLType,
+    complexTypeName VARCHAR2,
+    sqlTypeName VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- sets the sqltype of any
+  procedure removeAnyStorage (
+    xmlschema in out XMLType,
+    complexTypeName VARCHAR2
+  );
+  -- removes the sqltype of any
+  procedure setSQLCollType(
+    xmlschema in out XMLType,
+    elementName VARCHAR2,
+    sqlCollType VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- sets the name of the SQL collection type that corresponds
+  -- to this XML element
+  procedure removeSQLCollType(
+    xmlschema in out XMLType,
+    elementName VARCHAR2
+  );
+  -- removes the sql collection type
+  procedure setSQLCollType(
+    xmlschema in out XMLType,
+    globalObject VARCHAR2,
+    globalObjectName VARCHAR2,
+    localElementName VARCHAR2,
+    sqlCollType VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- Name of the SQL collection type that corresponds to this
+  -- XML element. inside a complex type.
+  procedure removeSQLCollType(
+    xmlschema in out XMLType,
+    globalObject VARCHAR2,
+    globalObjectName VARCHAR2,
+    localElementName VARCHAR2
+  );
+  -- removes the sql collection type
+  procedure disableMaintainDom(
+    xmlschema in out XMLType,
+    overwrite BOOLEAN default TRUE
+  );
+  -- sets dom fidelity to FALSE to ALL complex types irregardless
+  -- of their names
+  procedure enableMaintainDom(
+    xmlschema in out XMLType,
+    overwrite BOOLEAN default TRUE
+  );
+  -- sets dom fidelity to TRUE to ALL complex types irregardless
+  -- of their names
+  procedure disableMaintainDom(
+    xmlschema in out XMLType,
+    complexTypeName VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- sets the dom fidelity attribute for the given complex type name to FALSE.
+  procedure enableMaintainDom(
+    xmlschema in out XMLType,
+    complexTypeName VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- sets the dom fidelity attribute for the given complex type name to TRUE
+  procedure removeMaintainDom(xmlschema in out XMLType);
+  -- removes all maintain dom annotations from given schema
+  procedure setOutOfLine(
+    xmlschema in out XMLType,
+    elementName VARCHAR2,
+    elementType VARCHAR2,
+    defaultTableName VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- set the sqlInline attribute to false and forces the out of line storage
+  -- for the element specified by its name.
+  procedure removeOutOfLine(
+    xmlschema in out XMLType,
+    elementName VARCHAR2,
+    elementType VARCHAR2
+  );
+  -- removes the sqlInline attribute for the element specified by its name.
+  procedure setOutOfLine (
+    xmlschema in out XMLType,
+    globalObject VARCHAR2,
+    globalObjectName VARCHAR2,
+    localElementName VARCHAR2,
+    defaultTableName VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- set the sqlInline attribute to false and forces the out of line storage
+  -- for the element specified by its   local and global name
+  procedure removeOutOfLine (
+    xmlschema in out XMLType,
+    globalObject VARCHAR2,
+    globalObjectName VARCHAR2,
+    localElementName VARCHAR2
+  );
+  -- removes the sqlInline attribute for the element specified by its
+  -- global and local name
+  procedure setOutOfLine(
+    xmlschema in out XMLType,
+    reference VARCHAR2,
+    defaultTableName VARCHAR2,
+    overwrite BOOLEAN default TRUE
+  );
+  -- sets the default table name and sqlinline attribute for all references
+  -- to a particular global Element
+  procedure removeOutOfLine(xmlschema in out XMLType, reference VARCHAR2);
+  -- removes the the sqlInline attribute for the global element
+  function getSchemaAnnotations(xmlschema xmlType) return XMLType;
+  --  creates a diff of the annotated xml schema and the
+  --  non-annotated  xml schema.
+  --  This diff can be used to apply all annotation again on a
+  --  non-annotated schema.
+  --  A user calls this function to save all annotations in one document.
+  procedure setSchemaAnnotations(xmlschema in out xmlType, annotations XMLTYPE);
+  -- Will take the annotations
+  -- (diff result from call to 'getSchemaAnnotations'
+  -- and will patch in provided XML schema.
+  END DBMS_XMLSCHEMA_ANNOTATE;

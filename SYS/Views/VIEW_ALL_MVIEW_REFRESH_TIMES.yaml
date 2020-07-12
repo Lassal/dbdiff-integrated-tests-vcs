@@ -1,0 +1,19 @@
+schema: SYS
+name: ALL_MVIEW_REFRESH_TIMES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s. "OWNER",
+    s. "NAME",
+    s. "MASTER_OWNER",
+    s. "MASTER",
+    s. "LAST_REFRESH"
+  from
+    dba_mview_refresh_times s,
+    all_mviews a
+  where
+    s.owner = a .owner
+    and s.name = a .mview_name
+columns: []
+referencedTables: []

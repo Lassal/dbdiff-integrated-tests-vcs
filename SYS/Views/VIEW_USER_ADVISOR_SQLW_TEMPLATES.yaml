@@ -1,0 +1,23 @@
+schema: SYS
+name: USER_ADVISOR_SQLW_TEMPLATES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    b.id as workload_id,
+    b.name as workload_name,
+    b.description as description,
+    b.ctime as create_date,
+    b.mtime as modify_date,
+    b.source as source,
+    decode(bitand(b.property, 1), 1, 'TRUE', 'FALSE') as read_only
+  from
+    wri$_adv_sqlw_sum a,
+    wri$_adv_tasks b
+  where
+    b.owner# = userenv('SCHEMAID')
+    and a .workload_id = b.id
+    and bitand(b.property, 2) = 2
+    and b.advisor_id = 6
+columns: []
+referencedTables: []

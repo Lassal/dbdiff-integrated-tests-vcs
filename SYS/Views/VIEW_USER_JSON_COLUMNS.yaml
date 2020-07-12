@@ -1,0 +1,16 @@
+schema: SYS
+name: USER_JSON_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    TABLE_NAME,
+    COLUMN_NAME,
+    FORMAT,
+    DATA_TYPE
+  FROM
+    INT $DBA_JSON_COLUMNS
+  WHERE
+    OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

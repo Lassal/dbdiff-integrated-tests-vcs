@@ -1,0 +1,17 @@
+schema: SYS
+name: EXU8SPSU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.obj#,
+    s.line,
+    s.source
+  FROM
+    sys.source$ s,
+    sys.obj$ o
+  WHERE
+    s.obj# = o.obj#
+    AND o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

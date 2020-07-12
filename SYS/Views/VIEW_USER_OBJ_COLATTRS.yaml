@@ -1,0 +1,55 @@
+schema: SYS
+name: USER_OBJ_COLATTRS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    c .name,
+    lpad(decode(bitand(ct.flags, 512), 512, 'Y', 'N'), 15)
+  from
+    sys.coltype$ ct,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.col$ c
+  where
+    o.owner# = userenv('SCHEMAID')
+    and bitand(ct.flags, 2) = 2
+    /* ADT column */
+    and o.obj# = ct.obj#
+    and o.obj# = c .obj#
+    and c .intcol# = ct.intcol#
+    and bitand(c .property, 32768) != 32768
+    /* not unused column */
+    and not exists (
+      select
+        null
+        /* Doesn't exist in attrcol$ */
+      from
+        sys.attrcol$ ac
+      where
+        ac.intcol# = ct.intcol#
+        and ac.obj# = ct.obj#
+    )
+  union all
+  select
+    o.name,
+    ac.name,
+    lpad(decode(bitand(ct.flags, 512), 512, 'Y', 'N'), 15)
+  from
+    sys.coltype$ ct,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.attrcol$ ac,
+    col$ c
+  where
+    o.owner# = userenv('SCHEMAID')
+    and bitand(ct.flags, 2) = 2
+    /* ADT column */
+    and o.obj# = ct.obj#
+    and o.obj# = c .obj#
+    and o.obj# = ac.obj#
+    and c .intcol# = ct.intcol#
+    and c .intcol# = ac.intcol#
+    and bitand(c .property, 32768) != 32768
+    /* not unused column */
+columns: []
+referencedTables: []

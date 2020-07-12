@@ -1,0 +1,20 @@
+schema: SYS
+name: USER_XS_ACL_PARAMETERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    policy,
+    acl,
+    acl_owner,
+    parameter,
+    datatype,
+    value,
+    realm_order,
+    realm
+  from
+    sys.dba_xs_acl_parameters
+  where
+    policy_owner = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

@@ -1,0 +1,14 @@
+schema: SYS
+name: V_$REPLAY_CONTEXT_SYSDATE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    "CONTEXT_ID",
+    "SYSDATE_VALUE",
+    "REPLAYED",
+    "CON_ID"
+  from
+    v$replay_context_sysdate
+columns: []
+referencedTables: []

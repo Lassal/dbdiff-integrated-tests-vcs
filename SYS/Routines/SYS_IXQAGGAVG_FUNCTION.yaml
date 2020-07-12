@@ -1,0 +1,15 @@
+schema: SYS
+name: SYS_IXQAGGAVG
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: INPUT
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: function SYS_IXQAGGAVG(input sys.xmltype) return sys.xmltype aggregate
+  using AggXQAvgImp;

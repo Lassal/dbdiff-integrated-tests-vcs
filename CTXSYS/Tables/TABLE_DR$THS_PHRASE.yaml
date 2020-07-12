@@ -1,0 +1,47 @@
+name: DR$THS_PHRASE
+schema: CTXSYS
+columns:
+- name: THP_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: THP_NOTE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  dataTypeLength: 2000
+- name: THP_PHRASE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: false
+  dataTypeLength: 256
+- name: THP_QUALIFY
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  dataTypeLength: 256
+- name: THP_RINGID
+  ordinalPosition: 6
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: THP_THSID
+  ordinalPosition: 2
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: SYS_C005202
+  type: PRIMARY_KEY
+  columns:
+  - name: THP_THSID
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C005201
+  type: CHECK
+  checkClause: '"THP_PHRASE" IS NOT NULL'

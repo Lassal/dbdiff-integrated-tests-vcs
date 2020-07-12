@@ -1,0 +1,107 @@
+schema: SYS
+name: XS_DIAG
+routineType: PACKAGE
+returnParamater:
+  name: VALIDATE_WORKSPACE.(--return--)
+  ordinalPosition: 0
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+parameters:
+- name: VALIDATE_ACL.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_ACL.ERROR_LIMIT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VALIDATE_DATA_SECURITY.POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_DATA_SECURITY.TABLE_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_DATA_SECURITY.TABLE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_DATA_SECURITY.ERROR_LIMIT
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VALIDATE_NAMESPACE_TEMPLATE.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_NAMESPACE_TEMPLATE.ERROR_LIMIT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VALIDATE_PRINCIPAL.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_PRINCIPAL.ERROR_LIMIT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VALIDATE_ROLESET.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_ROLESET.ERROR_LIMIT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VALIDATE_SECURITY_CLASS.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_SECURITY_CLASS.ERROR_LIMIT
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: VALIDATE_WORKSPACE.ERROR_LIMIT
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: "PACKAGE XS_DIAG AUTHID CURRENT_USER AS -- Exeption when maximum\
+  \ number of messages allowed is set to be less than 1.\nERR_INVALID_MSG_MAX CONSTANT\
+  \ NUMBER: = -20028;\nEXCP_INVALID_MSG_MAX\nEXCEPTION;\nPRAGMA EXCEPTION_INIT(EXCP_INVALID_MSG_MAX,\
+  \ -20028);\n  /******************************************************************************\n\
+  \  \n                         Validation Routines\n  \n  \n  \n  Input:\n  \n  \
+  \  name               The name of object to be validated.\n  \n    error_limit \
+  \       The maximum number of errors that may be stored in the\n  \n           \
+  \            validation table.\n  \n    policy             The name of the policy\
+  \ to be validated\n  \n    table_owner        The owner of the table/view.\n  \n\
+  \    table_name         The name of the table/view.\n  \n  \n  \n  Output:\n  \n\
+  \    Return TRUE if the object is valid, otherwise return FALSE.\n  \n  \n  \n \
+  \   For each identified inconsistency, a row will be inserted into\n  \n    XS$VALIDATION_TABLE\
+  \ until the maximum number of inconisistencies that may be\n  \n    store has been\
+  \ reached.\n  \n  \n  \n    VALIDATE_DATA_SECURITY() provides three styles of policy\
+  \ validation:\n  \n    1. When policy is not null and table_name is null, the function\
+  \ will\n  \n       validate the policy against all the tables that the policy is\
+  \ applied to.\n  \n       Note, when table_name is null, table_owner will be ignored\
+  \ even if it is\n  \n       not null.\n  \n  \n  \n    2. When both policy and table_name\
+  \ are not null, the function will validate\n  \n       the policy against the specific\
+  \ table. If table_owner is not provided, the\n  \n       current schema will be\
+  \ used.\n  \n  \n  \n    3. When policy is null and table name is not null, the\
+  \ function will validate\n  \n       all the policies applied to the table against\
+  \ the table. If table_owner is\n  \n       not provided, the current schema will\
+  \ be used.\n  \n  \n  \n  ******************************************************************************/\n\
+  \  -- Validate principal.\n  FUNCTION validate_principal(\n    name IN VARCHAR2,\n\
+  \    error_limit IN PLS_INTEGER: = 1\n  ) RETURN BOOLEAN;\n-- Validate roleset.\n\
+  \  FUNCTION validate_roleset(\n    name IN VARCHAR2,\n    error_limit IN PLS_INTEGER:\
+  \ = 1\n  ) RETURN BOOLEAN;\n-- Validate security class.\n  FUNCTION validate_security_class(\n\
+  \    name IN VARCHAR2,\n    error_limit IN PLS_INTEGER: = 1\n  ) RETURN BOOLEAN;\n\
+  -- Validate acl.\n  FUNCTION validate_acl(\n    name IN VARCHAR2,\n    error_limit\
+  \ IN PLS_INTEGER: = 1\n  ) RETURN BOOLEAN;\n-- Validate data security policy against\
+  \ a specific table.\n  FUNCTION validate_data_security(\n    policy IN VARCHAR2:\
+  \ = NULL,\n    table_owner IN VARCHAR2: = NULL,\n    table_name IN VARCHAR2: = NULL,\n\
+  \    error_limit IN PLS_INTEGER: = 1\n  ) RETURN BOOLEAN;\n-- Validate namespace\
+  \ template.\n  FUNCTION validate_namespace_template(\n    name IN VARCHAR2,\n  \
+  \  error_limit IN PLS_INTEGER: = 1\n  ) RETURN BOOLEAN;\n-- Validate an entire workspace.\n\
+  \  FUNCTION validate_workspace(error_limit IN PLS_INTEGER: = 1) RETURN BOOLEAN;\n\
+  END XS_DIAG;"

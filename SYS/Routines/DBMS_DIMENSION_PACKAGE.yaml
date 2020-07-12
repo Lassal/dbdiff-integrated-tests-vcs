@@ -1,0 +1,119 @@
+schema: SYS
+name: DBMS_DIMENSION
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: DESCRIBE_DIMENSION.DIMENSION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_DIMENSION(1).DIMENSION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_DIMENSION(1).INCREMENTAL
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: VALIDATE_DIMENSION(1).CHECK_NULLS
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: VALIDATE_DIMENSION(1).STATEMENT_ID
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_DIMENSION(2).DIMENSION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VALIDATE_DIMENSION(2).CHECK_NULLS
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: VALIDATE_DIMENSION(2).STATEMENT_ID
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE dbms_dimension authid current_user IS ----------------------------------------------------------------------------
+  -- public constants
+  ----------------------------------------------------------------------------
+  dimensionnotfound
+  EXCEPTION;
+  ----------------------------------------------------------------------------
+    -- public procedures:
+    ----------------------------------------------------------------------------
+    ----------------------------------------------------------------------------
+    --    PROCEDURE DBMS_DIMENSION.DESCRIBE_DIMENSION
+    --    PURPOSE: prints out the definition of the input dimension, including
+    --             dimension owner and name, levels, hierarchies, attributes.
+    --             It displays the output via dbms_output.
+    --    PARAMETERS:
+    --         dimension: VARCHAR2
+    --            Name of the dimension, e.g. 'scott.dim1', 'scott.%', etc.
+    --
+    --    EXCEPTIONS:
+    --             dimensionnotfound       The specified dimension was not found
+    PROCEDURE describe_dimension(dimension IN VARCHAR2);
+  ----------------------------------------------------------------------------
+    --    PROCEDURE DBMS_DIMENSION.VALIDATE_DIMENSION
+    --    PURPOSE: To verify that the relationships specified in a DIMENSION
+    --             are correct. Offending rowids are stored in advisor repository
+    --    PARAMETERS:
+    --         dimension: VARCHAR2
+    --            Owner and name of the dimension in the format of 'owner.name'.
+    --
+    --         incremental: BOOLEAN (default: TRUE)
+    --            If TRUE, then tests are performed only for the rows specified
+    --            in the sumdelta$ table for tables of this dimension; if FALSE,
+    --            check all rows.
+    --
+    --         check_nulls: BOOLEAN (default: FALSE)
+    --            If TRUE, then all level columns are verified to be non-null;
+    --            If FALSE, this check is omitted. Specify FALSE when non-nullness
+    --            is guaranteed by other means, such as NOT NULL constraints.
+    --
+    --         statement_id: VARCHAR2 (default: NULL)
+    --            A client-supplied unique identifier to associate output rows
+    --            with specific invocations of the procedure.
+    --
+    --    EXCEPTIONS:
+    --             dimensionnotfound       The specified dimension was not found
+    --
+    --    NOTE: It is the 10i new interface. The 8.1 and 9i interfaces are deprecated,
+    --          but they should still remain working in 10i and after.
+    PROCEDURE validate_dimension (
+      dimension IN VARCHAR2,
+      incremental IN BOOLEAN: = TRUE,
+      check_nulls IN BOOLEAN: = FALSE,
+      statement_id IN VARCHAR2: = NULL
+    );
+  ----------------------------------------------------------------------------
+    --    PROCEDURE DBMS_DIMENSION.VALIDATE_DIMENSION
+    --    PURPOSE: To verify that the relationships specified in a DIMENSION
+    --             are correct. Offending rowids are stored in advisor repository
+    --    PARAMETERS:
+    --         dimension: VARCHAR2
+    --            Owner and name of the dimension in the format of 'owner.name'.
+    --
+    --         check_nulls: BOOLEAN (default: FALSE)
+    --            If TRUE, then all level columns are verified to be non-null;
+    --            If FALSE, this check is omitted. Specify FALSE when non-nullness
+    --            is guaranteed by other means, such as NOT NULL constraints.
+    --
+    --         statement_id: VARCHAR2 (default: NULL)
+    --            A client-supplied unique identifier to associate output rows
+    --            with specific invocations of the procedure.
+    --
+    --    EXCEPTIONS:
+    --             dimensionnotfound       The specified dimension was not found
+    --
+    --    NOTE: It is the 10i new interface. The 8.1 and 9i interfaces are deprecated,
+    --          but they should still remain working in 10i and after.
+    PROCEDURE validate_dimension (
+      dimension IN VARCHAR2,
+      check_nulls IN BOOLEAN: = FALSE,
+      statement_id IN VARCHAR2: = NULL
+    );
+  END dbms_dimension;

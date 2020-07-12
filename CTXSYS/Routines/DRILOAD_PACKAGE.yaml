@@ -1,0 +1,35 @@
+schema: CTXSYS
+name: DRILOAD
+routineType: PACKAGE
+returnParamater:
+  name: RESOLVE_SQE.(--return--)
+  ordinalPosition: 0
+  dataType: CLOB
+  parameterMode: OUT
+parameters:
+- name: RESOLVE_SQE.P_IDX_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: RESOLVE_SQE.P_SQE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package driload as
+  /*---------------------------- resolve_sqe --------------------------------*/
+  /*
+
+    NAME
+
+      resolve_sqe
+
+
+
+    NOTES
+
+      TODO: move this to a more appropriate place
+
+  */
+  FUNCTION resolve_sqe(p_idx_id in number, p_sqe_name in varchar2) return clob;
+  end driload;

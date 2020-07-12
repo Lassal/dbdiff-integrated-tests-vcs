@@ -1,0 +1,17 @@
+schema: SYS
+name: USER_PENDING_CONV_TABLES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name
+  from
+    sys.obj$ o
+  where
+    o.type# = 2
+    and o.status = 5
+    and bitand(o.flags, 4096) = 4096
+    /* type evolved flg */
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

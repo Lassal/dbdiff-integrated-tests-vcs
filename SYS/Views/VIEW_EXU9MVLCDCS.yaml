@@ -1,0 +1,50 @@
+schema: SYS
+name: EXU9MVLCDCS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    s.set_name,
+    s.username,
+    s.created,
+    s.status,
+    s.earliest_scn,
+    s.latest_scn,
+    s.description,
+    s.last_purged,
+    s.last_extended,
+    s.mvl_invalid,
+    s.handle
+  FROM
+    sys.cdc_subscribers$ s
+  WHERE
+    s.handle IN (
+      SELECT
+        t.handle
+      FROM
+        sys.cdc_subscribed_tables$ t
+      WHERE
+        t.change_table_obj# IN (
+          SELECT
+            obj#
+          FROM
+            sys.cdc_change_tables$ ct,
+            sys.user$ u
+          WHERE
+            (
+              ct.change_table_schema = u.name
+              AND u.user# = userenv('SCHEMAID')
+            )
+            OR userenv('SCHEMAID') = 0
+            OR EXISTS (
+              SELECT
+                role
+              FROM
+                sys.session_roles
+              WHERE
+                role = 'SELECT_CATALOG_ROLE'
+            )
+        )
+    )
+columns: []
+referencedTables: []

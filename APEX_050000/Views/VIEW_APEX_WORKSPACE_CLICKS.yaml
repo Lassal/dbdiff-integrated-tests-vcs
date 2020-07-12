@@ -1,0 +1,69 @@
+schema: APEX_050000
+name: APEX_WORKSPACE_CLICKS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    short_name workspace,
+    display_name workspace_display_name,
+    category category,
+    flow_user apex_user,
+    clickdate clickdate,
+    a .id click_id,
+    ip clicker_ip,
+    provisioning_company_id workspace_id
+  from
+    (
+      select
+        clickdate,
+        category,
+        l.id,
+        flow_user,
+        ip,
+        w.provisioning_company_id,
+        w.short_name,
+        w.display_name,
+        w.first_schema_provisioned
+      from
+        wwv_flow_clickthru_log$ l,
+        wwv_flow_companies w
+      where
+        l.security_group_id = w.provisioning_company_id
+      union all
+      select
+        clickdate,
+        category,
+        l.id,
+        flow_user,
+        ip,
+        w.provisioning_company_id,
+        w.short_name,
+        w.display_name,
+        w.first_schema_provisioned
+      from
+        wwv_flow_clickthru_log2$ l,
+        wwv_flow_companies w
+      where
+        l.security_group_id = w.provisioning_company_id
+    ) a,
+    wwv_flow_company_schemas s,
+    (
+      select
+        nvl(nv('FLOW_SECURITY_GROUP_ID'), 0) sgid
+      from
+        sys.dual
+    ) d
+  where
+    s.security_group_id = a .provisioning_company_id
+    and a .first_schema_provisioned = s.schema
+    and (
+      d.sgid = a .provisioning_company_id
+      or user = s.schema
+      or user in ('SYS', 'SYSTEM', 'APEX_050000')
+    )
+    and (
+      user in ('SYS', 'SYSTEM', 'APEX_050000')
+      or a .PROVISIONING_COMPANY_ID != 10
+    )
+columns: []
+referencedTables: []

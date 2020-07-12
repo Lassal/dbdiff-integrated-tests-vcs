@@ -1,0 +1,42 @@
+schema: WMSYS
+name: ALL_WM_VERSIONED_TABLES
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    /*+ LEADING(t) */
+    t.table_name,
+    t.owner,
+    disabling_ver state,
+    t.hist history,
+    decode(t.notification, 0, 'NO', 1, 'YES') notification,
+    substr(notifyWorkspaces, 2, length(notifyworkspaces) -2) notifyworkspaces,
+    wmsys.ltadm.AreThereConflicts(t.owner, t.table_name) conflict,
+    wmsys.ltadm.AreThereDiffs(t.owner, t.table_name) diff,
+    decode(t.validtime, 0, 'NO', 1, 'YES') validtime
+  from
+    wmsys.wm$versioned_tables t,
+    all_views av
+  where
+    t.table_name = av.view_name
+    and t.owner = av.owner
+  union all
+  select
+    /*+ LEADING(t) */
+    t.table_name,
+    t.owner,
+    disabling_ver state,
+    t.hist history,
+    decode(t.notification, 0, 'NO', 1, 'YES') notification,
+    substr(notifyWorkspaces, 2, length(notifyworkspaces) -2) notifyworkspaces,
+    wmsys.ltadm.AreThereConflicts(t.owner, t.table_name) conflict,
+    wmsys.ltadm.AreThereDiffs(t.owner, t.table_name) diff,
+    decode(t.validtime, 0, 'NO', 1, 'YES') validtime
+  from
+    wmsys.wm$versioned_tables t,
+    all_tables at
+  where
+    t.table_name = at .table_name
+    and t.owner = at .owner WITH READ ONLY
+columns: []
+referencedTables: []

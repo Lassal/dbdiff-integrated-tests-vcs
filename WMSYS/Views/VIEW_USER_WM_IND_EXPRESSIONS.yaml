@@ -1,0 +1,19 @@
+schema: WMSYS
+name: USER_WM_IND_EXPRESSIONS
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  select
+    /*+ LEADING(t1) */
+    t2.index_name,
+    t1.table_name,
+    t2.column_expression,
+    t2.column_position
+  from
+    wmsys.wm$constraints_table t1,
+    user_ind_expressions t2
+  where
+    t1.index_owner = sys_context('userenv', 'current_user')
+    and t1.index_name = t2.index_name WITH READ ONLY
+columns: []
+referencedTables: []

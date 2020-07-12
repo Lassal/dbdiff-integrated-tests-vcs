@@ -1,0 +1,31 @@
+schema: SYS
+name: KU$_TABLE_EST_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    t.cols,
+    t.rowcnt,
+    t.avgrln,
+    u.name,
+    o.name
+  FROM
+    SYS.OBJ$ O,
+    SYS.TAB$ T,
+    SYS.USER$ U
+  WHERE
+    t.obj# = o.obj#
+    AND o.owner# = u.user#
+    AND (
+      UID IN (0, o.owner#)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,536 @@
+schema: APEX_050000
+name: APEX_UI_DEFAULT_UPDATE
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: ADD_AD_COLUMN.P_COLUMN_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_AD_COLUMN.P_LABEL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_AD_COLUMN.P_HELP_TEXT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_AD_COLUMN.P_FORMAT_MASK
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_AD_COLUMN.P_DEFAULT_VALUE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_AD_COLUMN.P_FORM_FORMAT_MASK
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_AD_COLUMN.P_FORM_DISPLAY_WIDTH
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_AD_COLUMN.P_FORM_DISPLAY_HEIGHT
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: IN
+- name: ADD_AD_COLUMN.P_FORM_DATA_TYPE
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_AD_COLUMN.P_REPORT_FORMAT_MASK
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_AD_COLUMN.P_REPORT_COL_ALIGNMENT
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_AD_COLUMN.P_SYN_NAME1
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_AD_COLUMN.P_SYN_NAME2
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_AD_COLUMN.P_SYN_NAME3
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_AD_SYNONYM.P_COLUMN_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_AD_SYNONYM.P_SYN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEL_AD_COLUMN.P_COLUMN_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEL_AD_SYNONYM.P_SYN_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEL_COLUMN.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEL_COLUMN.P_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEL_GROUP.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEL_GROUP.P_GROUP_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DEL_TABLE.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SYNCH_TABLE.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_COLUMN.P_COLUMN_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_COLUMN.P_NEW_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_COLUMN.P_LABEL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_COLUMN.P_HELP_TEXT
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_COLUMN.P_FORMAT_MASK
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_COLUMN.P_DEFAULT_VALUE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_COLUMN.P_FORM_FORMAT_MASK
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_COLUMN.P_FORM_DISPLAY_WIDTH
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_COLUMN.P_FORM_DISPLAY_HEIGHT
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_COLUMN.P_FORM_DATA_TYPE
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_COLUMN.P_REPORT_FORMAT_MASK
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_COLUMN.P_REPORT_COL_ALIGNMENT
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_SYNONYM.P_SYN_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_AD_SYNONYM.P_NEW_SYN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_GROUP_ID
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_LABEL
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_HELP_TEXT
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_DISPLAY_IN_FORM
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_DISPLAY_SEQ_FORM
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_MASK_FORM
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_DEFAULT_VALUE
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_REQUIRED
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_DISPLAY_WIDTH
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_MAX_WIDTH
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_HEIGHT
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_DISPLAY_IN_REPORT
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_DISPLAY_SEQ_REPORT
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_MASK_REPORT
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_COLUMN.P_ALIGNMENT
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_DISPLAY_IN_FORM.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_DISPLAY_IN_FORM.P_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_DISPLAY_IN_FORM.P_DISPLAY_IN_FORM
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_DISPLAY_IN_REPORT.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_DISPLAY_IN_REPORT.P_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_DISPLAY_IN_REPORT.P_DISPLAY_IN_REPORT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_FORM_REGION_TITLE.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_FORM_REGION_TITLE.P_FORM_REGION_TITLE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_GROUP.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_GROUP.P_GROUP_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_GROUP.P_NEW_GROUP_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_GROUP.P_DESCRIPTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_GROUP.P_DISPLAY_SEQUENCE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_ITEM_DISPLAY_HEIGHT.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_ITEM_DISPLAY_HEIGHT.P_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_ITEM_DISPLAY_HEIGHT.P_DISPLAY_HEIGHT
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPD_ITEM_DISPLAY_WIDTH.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_ITEM_DISPLAY_WIDTH.P_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_ITEM_DISPLAY_WIDTH.P_DISPLAY_WIDTH
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: UPD_ITEM_FORMAT_MASK.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_ITEM_FORMAT_MASK.P_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_ITEM_FORMAT_MASK.P_FORMAT_MASK
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_ITEM_HELP.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_ITEM_HELP.P_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_ITEM_HELP.P_HELP_TEXT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_LABEL.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_LABEL.P_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_LABEL.P_LABEL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_REPORT_ALIGNMENT.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_REPORT_ALIGNMENT.P_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_REPORT_ALIGNMENT.P_REPORT_ALIGNMENT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_REPORT_FORMAT_MASK.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_REPORT_FORMAT_MASK.P_COLUMN_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_REPORT_FORMAT_MASK.P_FORMAT_MASK
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_REPORT_REGION_TITLE.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_REPORT_REGION_TITLE.P_REPORT_REGION_TITLE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_TABLE.P_TABLE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_TABLE.P_FORM_REGION_TITLE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: UPD_TABLE.P_REPORT_REGION_TITLE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package apex_ui_default_update as --  Copyright (c) Oracle Corporation 2008. All Rights Reserved.
+  --
+  --    NAME
+  --      apex_ui_default_update.sql
+  --
+  --    DESCRIPTION
+  --      API to allow update to select attributes via mechanism other than APEX.
+  --
+  --    NOTES
+  --      Within upd_table, upd_group, upd_column, and upd_ad_column, to set attribute to null, pass in 'null%'
+  --
+  --    INTERNATIONALIZATION
+  --      No known issues
+  --
+  --    MULTI-CUSTOMER
+  --      Because UI Defaults are schema specific, there is no SGID check
+  --      These can only be run for the current user
+  --
+  procedure upd_form_region_title (
+    p_table_name in varchar2,
+    p_form_region_title in varchar2 default null
+  );
+  procedure upd_report_region_title (
+    p_table_name in varchar2,
+    p_report_region_title in varchar2 default null
+  );
+  procedure upd_label (
+    p_table_name in varchar2,
+    p_column_name in varchar2,
+    p_label in varchar2 default null
+  );
+  procedure upd_item_help (
+    p_table_name in varchar2,
+    p_column_name in varchar2,
+    p_help_text in varchar2 default null
+  );
+  procedure upd_display_in_form (
+    p_table_name in varchar2,
+    p_column_name in varchar2,
+    p_display_in_form in varchar2
+  );
+  procedure upd_display_in_report (
+    p_table_name in varchar2,
+    p_column_name in varchar2,
+    p_display_in_report in varchar2
+  );
+  procedure upd_item_display_width (
+    p_table_name in varchar2,
+    p_column_name in varchar2,
+    p_display_width in number
+  );
+  procedure upd_item_display_height (
+    p_table_name in varchar2,
+    p_column_name in varchar2,
+    p_display_height in number
+  );
+  procedure upd_report_alignment (
+    p_table_name in varchar2,
+    p_column_name in varchar2,
+    p_report_alignment in varchar2
+  );
+  procedure upd_item_format_mask (
+    p_table_name in varchar2,
+    p_column_name in varchar2,
+    p_format_mask in varchar2 default null
+  );
+  procedure upd_report_format_mask (
+    p_table_name in varchar2,
+    p_column_name in varchar2,
+    p_format_mask in varchar2 default null
+  );
+  -- new
+  procedure synch_table (p_table_name in varchar2);
+  procedure upd_table (
+    p_table_name in varchar2,
+    p_form_region_title in varchar2 default null,
+    p_report_region_title in varchar2 default null
+  );
+  procedure upd_group (
+    p_table_name in varchar2,
+    p_group_name in varchar2,
+    p_new_group_name in varchar2 default null,
+    p_description in varchar2 default null,
+    p_display_sequence in varchar2 default null
+  );
+  procedure upd_column (
+    p_table_name in varchar2,
+    p_column_name in varchar2,
+    p_group_id in varchar2 default null,
+    p_label in varchar2 default null,
+    p_help_text in varchar2 default null,
+    p_display_in_form in varchar2 default null,
+    p_display_seq_form in varchar2 default null,
+    p_mask_form in varchar2 default null,
+    p_default_value in varchar2 default null,
+    p_required in varchar2 default null,
+    p_display_width in varchar2 default null,
+    p_max_width in varchar2 default null,
+    p_height in varchar2 default null,
+    p_display_in_report in varchar2 default null,
+    p_display_seq_report in varchar2 default null,
+    p_mask_report in varchar2 default null,
+    p_alignment in varchar2 default null
+  );
+  procedure del_table (p_table_name in varchar2);
+  procedure del_group (
+    p_table_name in varchar2,
+    p_group_name in varchar2
+  );
+  procedure del_column (
+    p_table_name in varchar2,
+    p_column_name in varchar2
+  );
+  procedure add_ad_column (
+    p_column_name in varchar2,
+    p_label in varchar2 default null,
+    p_help_text in varchar2 default null,
+    p_format_mask in varchar2 default null,
+    p_default_value in varchar2 default null,
+    p_form_format_mask in varchar2 default null,
+    p_form_display_width in number default null,
+    p_form_display_height in number default null,
+    p_form_data_type in varchar2 default null,
+    p_report_format_mask in varchar2 default null,
+    p_report_col_alignment in varchar2 default null,
+    p_syn_name1 in varchar2 default null,
+    p_syn_name2 in varchar2 default null,
+    p_syn_name3 in varchar2 default null
+  );
+  procedure upd_ad_column (
+    p_column_name in varchar2,
+    p_new_column_name in varchar2 default null,
+    p_label in varchar2 default null,
+    p_help_text in varchar2 default null,
+    p_format_mask in varchar2 default null,
+    p_default_value in varchar2 default null,
+    p_form_format_mask in varchar2 default null,
+    p_form_display_width in varchar2 default null,
+    p_form_display_height in varchar2 default null,
+    p_form_data_type in varchar2 default null,
+    p_report_format_mask in varchar2 default null,
+    p_report_col_alignment in varchar2 default null
+  );
+  procedure add_ad_synonym (
+    p_column_name in varchar2,
+    p_syn_name in varchar2
+  );
+  procedure upd_ad_synonym (
+    p_syn_name in varchar2,
+    p_new_syn_name in varchar2 default null
+  );
+  procedure del_ad_column (p_column_name in varchar2);
+  procedure del_ad_synonym (p_syn_name in varchar2);
+  end apex_ui_default_update;

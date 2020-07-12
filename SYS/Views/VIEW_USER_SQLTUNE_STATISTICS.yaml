@@ -1,0 +1,47 @@
+schema: SYS
+name: USER_SQLTUNE_STATISTICS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    b.TASK_ID,
+    b.OBJECT_ID,
+    PARSING_SCHEMA_ID,
+    SUBSTRB(
+      MODULE,
+      1,(
+        SELECT
+          KSUMODLEN
+        FROM
+          X$MODACT_LENGTH
+      )
+    ) MODULE,
+    SUBSTRB(
+      ACTION,
+      1,(
+        SELECT
+          KSUACTLEN
+        FROM
+          X$MODACT_LENGTH
+      )
+    ) ACTION,
+    ELAPSED_TIME,
+    CPU_TIME,
+    BUFFER_GETS,
+    DISK_READS,
+    DIRECT_WRITES,
+    ROWS_PROCESSED,
+    FETCHES,
+    EXECUTIONS,
+    END_OF_FETCH_COUNT,
+    OPTIMIZER_COST,
+    OPTIMIZER_ENV,
+    COMMAND_TYPE
+  FROM
+    wri$_adv_sqlt_statistics b,
+    wri$_adv_tasks t
+  WHERE
+    b.task_id = t.id
+    AND t.owner# = SYS_CONTEXT('USERENV', 'CURRENT_USERID')
+columns: []
+referencedTables: []

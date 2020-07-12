@@ -1,0 +1,23 @@
+schema: SYS
+name: NLS_INSTANCE_PARAMETERS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    substr(upper(name), 1, 30),
+    substr(value, 1, 64)
+  from
+    v$system_parameter
+  where
+    name like 'nls%'
+    and (
+      con_id = 0
+      or con_id = (
+        select
+          sys_context('userenv', 'con_id')
+        from
+          dual
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,55 @@
+schema: SYS
+name: ALL_LIBRARIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    OWNER,
+    LIBRARY_NAME,
+    FILE_SPEC,
+    DYNAMIC,
+    STATUS,
+    AGENT,
+    LEAF_FILENAME,
+    ORIGIN_CON_ID
+  from
+    INT $DBA_LIBRARIES
+  where
+    (
+      OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+      or OWNER = 'PUBLIC'
+      or OBJ_ID(OWNER, LIBRARY_NAME, 22, OBJECT_ID) in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or (
+        exists (
+          select
+            NULL
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -189
+              /* CREATE ANY LIBRARY */,
+              -190
+              /* ALTER ANY LIBRARY */,
+              -191
+              /* DROP ANY LIBRARY */,
+              -192
+              /* EXECUTE ANY LIBRARY */
+            )
+        )
+      )
+    )
+columns: []
+referencedTables: []

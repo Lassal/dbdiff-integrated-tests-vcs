@@ -1,0 +1,19 @@
+schema: SYS
+name: USER_RULESETS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    rule_set_name,
+    NULL,
+    decode(
+      rule_set_eval_context_owner,
+      NULL,
+      NULL,
+      rule_set_eval_context_owner || '.' || rule_set_eval_context_name
+    ),
+    rule_set_comment
+  FROM
+    user_rule_sets
+columns: []
+referencedTables: []

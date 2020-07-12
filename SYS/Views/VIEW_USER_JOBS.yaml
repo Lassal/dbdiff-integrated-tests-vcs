@@ -1,0 +1,32 @@
+schema: SYS
+name: USER_JOBS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    j. "JOB",
+    j. "LOG_USER",
+    j. "PRIV_USER",
+    j. "SCHEMA_USER",
+    j. "LAST_DATE",
+    j. "LAST_SEC",
+    j. "THIS_DATE",
+    j. "THIS_SEC",
+    j. "NEXT_DATE",
+    j. "NEXT_SEC",
+    j. "TOTAL_TIME",
+    j. "BROKEN",
+    j. "INTERVAL",
+    j. "FAILURES",
+    j. "WHAT",
+    j. "NLS_ENV",
+    j. "MISC_ENV",
+    j. "INSTANCE"
+  from
+    dba_jobs j,
+    sys.user$ u
+  where
+    j.priv_user = u.name
+    and u.user# = USERENV('SCHEMAID')
+columns: []
+referencedTables: []

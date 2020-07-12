@@ -1,0 +1,64 @@
+name: SDO_COORD_OP_PARAM_USE
+schema: MDSYS
+columns:
+- name: COORD_OP_METHOD_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: LEGACY_PARAM_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  defaultValue: NULL
+  dataTypeLength: 80
+- name: PARAMETER_ID
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: PARAM_SIGN_REVERSAL
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  dataTypeLength: 3
+- name: SORT_ORDER
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 5,0
+constraints:
+- !<unique-constraint>
+  name: COORD_OP_PARA_USE_PRIM
+  type: PRIMARY_KEY
+  columns:
+  - name: COORD_OP_METHOD_ID
+    ordinalPosition: 1
+  - name: SORT_ORDER
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: COORD_OP_PARA_USE_FOREIGN_METH
+  type: FOREIGN_KEY
+  columns:
+  - name: COORD_OP_METHOD_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_COORD_OP_METHODS
+    referencedTableColumnName: COORD_OP_METHOD_ID
+- !<fk-constraint>
+  name: COORD_OP_PARA_USE_FOREIGN_PARA
+  type: FOREIGN_KEY
+  columns:
+  - name: PARAMETER_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_COORD_OP_PARAMS
+    referencedTableColumnName: PARAMETER_ID

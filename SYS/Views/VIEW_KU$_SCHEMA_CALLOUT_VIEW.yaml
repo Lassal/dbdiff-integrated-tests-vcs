@@ -1,0 +1,45 @@
+schema: SYS
+name: KU$_SCHEMA_CALLOUT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    u.name,
+    null,
+    null,
+    p.package,
+    p.schema,
+    p.level#,
+    p.class,
+    pr.prepost,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  FROM
+    sys.user$ u,
+    sys.exppkgact$ p,
+    ku$_prepost_view pr
+  where
+    p.class = 6
+    and u.type# = 1
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (u.user#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+  order by
+    p.level#
+columns: []
+referencedTables: []

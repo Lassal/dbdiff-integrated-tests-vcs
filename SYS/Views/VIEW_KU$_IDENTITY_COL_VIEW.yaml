@@ -1,0 +1,42 @@
+schema: SYS
+name: KU$_IDENTITY_COL_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    obj#,
+    (
+      select
+        name
+      from
+        col$ c
+      where
+        c .obj# = s.obj#
+        and c .intcol# = s.intcol#
+    ),
+    (
+      select
+        trunc(c .property / power(2, 32))
+      from
+        col$ c
+      where
+        c .obj# = s.obj#
+        and c .intcol# = s.intcol#
+    ),
+    intcol#,
+    seqobj#,
+    startwith,
+    (
+      select
+        value(sv)
+      from
+        ku$_idcol_seq_view sv
+      where
+        obj_num = s.seqobj#
+    )
+  from
+    idnseq$ s
+columns: []
+referencedTables: []

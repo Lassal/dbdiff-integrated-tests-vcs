@@ -1,0 +1,258 @@
+schema: SYS
+name: XS_DATA_SECURITY
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: ADD_COLUMN_CONSTRAINTS(1).POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_COLUMN_CONSTRAINTS(1).COLUMN_CONSTRAINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: ADD_COLUMN_CONSTRAINTS(2).POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_COLUMN_CONSTRAINTS(2).COLUMN_CONSTRAINT_LIST
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: APPEND_REALM_CONSTRAINTS(1).POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPEND_REALM_CONSTRAINTS(1).REALM_CONSTRAINT
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: APPEND_REALM_CONSTRAINTS(2).POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPEND_REALM_CONSTRAINTS(2).REALM_CONSTRAINT_LIST
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: APPLY_OBJECT_POLICY.POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPLY_OBJECT_POLICY.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPLY_OBJECT_POLICY.OBJECT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPLY_OBJECT_POLICY.ROW_ACL
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: APPLY_OBJECT_POLICY.OWNER_BYPASS
+  ordinalPosition: 5
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: APPLY_OBJECT_POLICY.STATEMENT_TYPES
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: APPLY_OBJECT_POLICY.ACLMV
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ACL_PARAMETER.POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ACL_PARAMETER.PARAMETER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ACL_PARAMETER.PARAM_TYPE
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: CREATE_POLICY.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_POLICY.REALM_CONSTRAINT_LIST
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: CREATE_POLICY.COLUMN_CONSTRAINT_LIST
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: CREATE_POLICY.DESCRIPTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_ACL_PARAMETER.POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_ACL_PARAMETER.PARAMETER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_ACL_PARAMETER.DELETE_OPTION
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DELETE_POLICY.POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_POLICY.DELETE_OPTION
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: DISABLE_OBJECT_POLICY.POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DISABLE_OBJECT_POLICY.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DISABLE_OBJECT_POLICY.OBJECT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_OBJECT_POLICY.POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_OBJECT_POLICY.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_OBJECT_POLICY.OBJECT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_COLUMN_CONSTRAINTS.POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_OBJECT_POLICY.POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_OBJECT_POLICY.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_OBJECT_POLICY.OBJECT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_REALM_CONSTRAINTS.POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_DESCRIPTION.POLICY
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_DESCRIPTION.DESCRIPTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE XS_DATA_SECURITY AUTHID CURRENT_USER AS -- Apply policy options
+  APPLY_DYNAMIC_IS CONSTANT PLS_INTEGER: = 1;
+  APPLY_ACLOID_COLUMN CONSTANT PLS_INTEGER: = 2;
+  APPLY_STATIC_IS CONSTANT PLS_INTEGER: = 3;
+  -- Enable log based replication for this package
+  PRAGMA SUPPLEMENTAL_LOG_DATA(default, AUTO);
+  -- Create data security policy
+  PROCEDURE CREATE_POLICY (
+    name IN VARCHAR2,
+    realm_constraint_list IN XS$REALM_CONSTRAINT_LIST,
+    column_constraint_list IN XS$COLUMN_CONSTRAINT_LIST: = NULL,
+    description IN VARCHAR2: = NULL
+  );
+  -- Add a realm constraint to data security
+  PROCEDURE APPEND_REALM_CONSTRAINTS (
+    policy IN VARCHAR2,
+    realm_constraint IN XS$REALM_CONSTRAINT_TYPE
+  );
+  -- Add a list of realm constraints to data security
+  PROCEDURE APPEND_REALM_CONSTRAINTS (
+    policy IN VARCHAR2,
+    realm_constraint_list IN XS$REALM_CONSTRAINT_LIST
+  );
+  -- Remove all realm constraints
+  PROCEDURE REMOVE_REALM_CONSTRAINTS (
+    policy IN VARCHAR2
+  );
+  -- Add a column constraint to data security
+  PROCEDURE ADD_COLUMN_CONSTRAINTS (
+    policy IN VARCHAR2,
+    column_constraint IN XS$COLUMN_CONSTRAINT_TYPE
+  );
+  -- Add column constraints to data security
+  PROCEDURE ADD_COLUMN_CONSTRAINTS (
+    policy IN VARCHAR2,
+    column_constraint_list IN XS$COLUMN_CONSTRAINT_LIST
+  );
+  -- Remove all column constraints of data security
+  PROCEDURE REMOVE_COLUMN_CONSTRAINTS (
+    policy IN VARCHAR2
+  );
+  -- Create an ACL paramter
+  PROCEDURE CREATE_ACL_PARAMETER (
+    policy IN VARCHAR2,
+    parameter IN VARCHAR2,
+    param_type IN NUMBER
+  );
+  -- Delete an ACL parameter
+  PROCEDURE DELETE_ACL_PARAMETER (
+    policy IN VARCHAR2,
+    parameter IN VARCHAR2,
+    delete_option IN PLS_INTEGER: = XS_ADMIN_UTIL.DEFAULT_OPTION
+  );
+  -- Set the description of data security
+  PROCEDURE SET_DESCRIPTION (
+    policy IN VARCHAR2,
+    description IN VARCHAR2
+  );
+  -- Delete data security policy
+  PROCEDURE DELETE_POLICY(
+    policy IN VARCHAR2,
+    delete_option IN PLS_INTEGER: = XS_ADMIN_UTIL.DEFAULT_OPTION
+  );
+  -- apply_object_policy -  Apply XDS policy on a table
+  PROCEDURE APPLY_OBJECT_POLICY(
+    policy IN VARCHAR2,
+    schema IN VARCHAR2,
+    object IN VARCHAR2,
+    row_acl IN BOOLEAN: = FALSE,
+    owner_bypass IN BOOLEAN: = FALSE,
+    statement_types IN VARCHAR2: = NULL,
+    aclmv IN VARCHAR2: = NULL
+  );
+  -- enable_object_policy - disable an XDS policy for a table
+  PROCEDURE ENABLE_OBJECT_POLICY(
+    policy IN VARCHAR2,
+    schema IN VARCHAR2,
+    object IN VARCHAR2
+  );
+  -- disable_object_policy - disable an XDS policy for a table
+  PROCEDURE DISABLE_OBJECT_POLICY(
+    policy IN VARCHAR2,
+    schema IN VARCHAR2,
+    object IN VARCHAR2
+  );
+  -- remove_object_policy - remove an XDS policy from a table
+  PROCEDURE REMOVE_OBJECT_POLICY(
+    policy IN VARCHAR2,
+    schema IN VARCHAR2,
+    object IN VARCHAR2
+  );
+  END XS_DATA_SECURITY;

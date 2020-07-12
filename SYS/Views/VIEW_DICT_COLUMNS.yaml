@@ -1,0 +1,88 @@
+schema: SYS
+name: DICT_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    c .name,
+    co.comment$
+  from
+    sys.com$ co,
+    sys.col$ c,
+    sys.obj$ o
+  where
+    o.owner# = 0
+    and o.type# = 4
+    and (
+      o.name like 'USER%'
+      or o.name like 'ALL%'
+      or (
+        o.name like 'DBA%'
+        and exists (
+          select
+            null
+          from
+            sys.v$enabledprivs
+          where
+            priv_number = -47
+            /* SELECT ANY TABLE */
+            or priv_number = -397
+            /* READ ANY TABLE */
+        )
+      )
+    )
+    and o.obj# = c .obj#
+    and c .obj# = co.obj#(+)
+    and c .col# = co.col#(+)
+    and bitand(c .property, 32) = 0
+    /* not hidden column */
+  union all
+  select
+    o.name,
+    c .name,
+    co.comment$
+  from
+    sys.com$ co,
+    sys.col$ c,
+    sys.obj$ o
+  where
+    o.owner# = 0
+    and o.name in (
+      'AUDIT_ACTIONS',
+      'DUAL',
+      'DICTIONARY',
+      'DICT_COLUMNS'
+    )
+    and o.obj# = c .obj#
+    and c .obj# = co.obj#(+)
+    and c .col# = co.col#(+)
+    and bitand(c .property, 32) = 0
+    /* not hidden column */
+  union all
+  select
+    so.name,
+    c .name,
+    co.comment$
+  from
+    sys.com$ co,
+    sys.col$ c,
+    sys.obj$ ro,
+    sys.syn$ sy,
+    sys.obj$ so
+  where
+    so.type# = 5
+    and so.owner# = 1
+    and so.obj# = sy.obj#
+    and so.name <> sy.name
+    and sy.owner = 'SYS'
+    and sy.name = ro.name
+    and ro.owner# = 0
+    and ro.type# = 4
+    and ro.obj# = c .obj#
+    and c .col# = co.col#(+)
+    and bitand(c .property, 32) = 0
+    /* not hidden column */
+    and c .obj# = co.obj#(+)
+columns: []
+referencedTables: []

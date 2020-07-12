@@ -1,0 +1,65 @@
+schema: SYS
+name: USER_COL_PRIVS_MADE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ue.name,
+    o.name,
+    c .name,
+    ur.name,
+    tpm.name,
+    decode(mod(oa.option$, 2), 1, 'YES', 'NO'),
+    'NO'
+  from
+    sys.objauth$ oa,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.user$ ue,
+    sys.user$ ur,
+    sys.col$ c,
+    table_privilege_map tpm
+  where
+    oa.obj# = o.obj#
+    and oa.grantor# = ur.user#
+    and oa.grantee# = ue.user#
+    and oa.obj# = c .obj#
+    and oa.col# = c .col#
+    and bitand(c .property, 32) = 0
+    /* not hidden column */
+    and oa.col# is not null
+    and oa.privilege# = tpm.privilege
+    and o.owner# = userenv('SCHEMAID')
+    and bitand(nvl(oa.option$, 0), 4) = 0
+    /* Local, and maybe Common, Privs */
+  union all
+    /* Common Privileges */
+  select
+    ue.name,
+    o.name,
+    c .name,
+    ur.name,
+    tpm.name,
+    decode(bitand(oa.option$, 16), 16, 'YES', 'NO'),
+    'YES'
+  from
+    sys.objauth$ oa,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.user$ ue,
+    sys.user$ ur,
+    sys.col$ c,
+    table_privilege_map tpm
+  where
+    oa.obj# = o.obj#
+    and oa.grantor# = ur.user#
+    and oa.grantee# = ue.user#
+    and oa.obj# = c .obj#
+    and oa.col# = c .col#
+    and bitand(c .property, 32) = 0
+    /* not hidden column */
+    and oa.col# is not null
+    and oa.privilege# = tpm.privilege
+    and o.owner# = userenv('SCHEMAID')
+    and bitand(oa.option$, 8) = 8
+    /* Common, and maybe Local, priv */
+columns: []
+referencedTables: []

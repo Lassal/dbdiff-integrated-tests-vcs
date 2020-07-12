@@ -1,0 +1,72 @@
+schema: SYS
+name: ALL_REPCAT_USER_AUTHORIZATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    rt.refresh_template_name,
+    rt.owner,
+    rt.refresh_group_name,
+    rt.template_comment,
+    nvl(rt.public_template, 'N'),
+    u.username
+  from
+    system.repcat$_refresh_templates rt,
+    all_users u,
+    system.repcat$_user_authorizations ra,
+    system.repcat$_template_types tt
+  where
+    u.user_id = ra.user_id
+    and ra.refresh_template_id = rt.refresh_template_id
+    and rt.template_type_id = tt.template_type_id
+    and bitand(rawtohex(tt.flags), 1) = 1
+    and rt.refresh_template_id in (
+      select
+        rt.refresh_template_id
+      from
+        system.repcat$_refresh_templates
+      where
+        public_template = 'Y'
+      union
+      select
+        rt.refresh_template_id
+      from
+        system.repcat$_refresh_templates rt,
+        system.repcat$_user_authorizations at,
+        sys.all_users au
+      where
+        at .refresh_template_id = rt.refresh_template_id
+        and au.user_id = at .user_id
+        and nvl(rt.public_template, 'N') = 'N'
+        and au.user_id = userenv('SCHEMAID')
+      union
+      select
+        rt.refresh_template_id
+      from
+        system.repcat$_refresh_templates rt
+      where
+        nvl(rt.public_template, 'N') = 'N'
+        and exists (
+          select
+            1
+          from
+            v$enabledprivs
+          where
+            priv_number in (
+              -174
+              /* alter any snapshot */
+            )
+        )
+      union
+      select
+        rt.refresh_template_id
+      from
+        system.repcat$_refresh_templates rt,
+        sys.user$ u
+      where
+        nvl(rt.public_template, 'N') = 'N'
+        and rt.owner = u.name
+        and u.user# = userenv('SCHEMAID')
+    )
+columns: []
+referencedTables: []

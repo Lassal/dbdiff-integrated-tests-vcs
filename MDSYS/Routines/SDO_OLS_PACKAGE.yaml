@@ -1,0 +1,198 @@
+schema: MDSYS
+name: SDO_OLS
+routineType: PACKAGE
+returnParamater:
+  name: POSTXML.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: DETERMINE_CLASSIFICATION.OPENLS
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: DETERMINE_CLASSIFICATION.CLASSIFICATION_CRITERION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DETERMINE_CLASSIFICATION.OPENLS_VERSION
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACT.XML
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EXTRACT.XPATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACT.NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTVALUE.XML
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: EXTRACTVALUE.XPATH
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EXTRACTVALUE.NS
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATE_ERROR(1).OPENLS_VERSION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATE_ERROR(1).MESSAGE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATE_ERROR(1).REQUESTID
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATE_ERROR(2).OPENLS_VERSION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GENERATE_ERROR(2).REQUESTID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETBASISXML.NODE_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETBASISXML.OPENLS_VERSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNS(1).NSSHORTCUT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNS(1).OPENLSVERSION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETNS(2).OPENLSVERSION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HANDLE_OPENLS_ERROR.SPECIFIC_ERROR_MESSAGE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: HANDLE_OPENLS_ERROR.SPECIFIC_ERROR_CODE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: HANDLE_OPENLS_ERROR.DEFAULT_ERROR_MESSAGE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: MAKEOPENLSCLOBREQUEST.REQUEST
+  ordinalPosition: 1
+  dataType: CLOB
+  parameterMode: IN
+- name: MAKEOPENLSREQUEST.REQUEST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: MAKEOPENLSSOAPREQUEST.REQUEST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: MAKEOPENLS10REQUEST.REQUEST
+  ordinalPosition: 1
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: PARSE_COORD_PAIR.COORDS
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PARSE_COORD_PAIR.X
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: PARSE_COORD_PAIR.Y
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: POSTCLOB.URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POSTCLOB.PAYLOAD
+  ordinalPosition: 2
+  dataType: CLOB
+  parameterMode: IN
+- name: POSTXML.URL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: POSTXML.PAYLOAD
+  ordinalPosition: 2
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE sdo_ols AUTHID current_user AS FUNCTION generate_error(
+    openls_version VARCHAR2,
+    message VARCHAR2,
+    requestId VARCHAR2
+  ) RETURN XMLTYPE;
+  FUNCTION generate_error(
+    openls_version VARCHAR2,
+    requestId VARCHAR2
+  ) RETURN XMLTYPE;
+  FUNCTION PostClob(
+    url IN VARCHAR2,
+    payload IN CLOB
+  ) RETURN CLOB;
+  FUNCTION PostXml(
+    url IN VARCHAR2,
+    payload IN XMLTYPE
+  ) RETURN XMLTYPE;
+  FUNCTION getNS(
+    nsShortcut VARCHAR2,
+    openLsVersion VARCHAR2
+  ) RETURN VARCHAR2;
+  FUNCTION getNS(openLsVersion VARCHAR2) RETURN VARCHAR2;
+  FUNCTION extractValue(
+    xml XMLTYPE,
+    xPath VARCHAR2,
+    ns VARCHAR2
+  ) RETURN VARCHAR2;
+  FUNCTION extract(
+    xml XMLTYPE,
+    xPath VARCHAR2,
+    ns VARCHAR2
+  ) RETURN XMLTYPE;
+  FUNCTION getBasisXml(
+    node_name VARCHAR2,
+    openls_version VARCHAR2
+  ) RETURN XMLTYPE;
+  FUNCTION makeOpenLSClobRequest(request CLOB) RETURN CLOB;
+  FUNCTION makeOpenLSSoapRequest(request XMLTYPE) RETURN XMLTYPE;
+  FUNCTION makeOpenLSRequest(request XMLTYPE) RETURN XMLTYPE;
+  FUNCTION makeOpenLS10Request(request XMLTYPE) RETURN XMLTYPE;
+  FUNCTION determine_classification(
+    openls XMLTYPE,
+    classification_criterion VARCHAR2,
+    openls_version VARCHAR2
+  ) RETURN VARCHAR2;
+  PROCEDURE parse_coord_pair(
+    coords IN VARCHAR2,
+    x OUT NUMBER,
+    y OUT NUMBER
+  );
+  PROCEDURE handle_openls_error(
+    specific_error_message VARCHAR2,
+    specific_error_code NUMBER,
+    default_error_message VARCHAR2
+  );
+  END sdo_ols;

@@ -1,0 +1,21 @@
+schema: SYS
+name: USER_REPFLAVORS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    f.flavor_id,
+    f.gname,
+    f.fname,
+    f.creation_date,
+    u.name,
+    f.published,
+    f.gowner
+  from
+    system.repcat$_flavors f,
+    sys.user$ u
+  where
+    f.created_by = userenv('SCHEMAID')
+    and f.created_by = u.user#
+columns: []
+referencedTables: []

@@ -1,0 +1,35 @@
+schema: SYS
+name: EXU92TSP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    dsp.bo#,
+    o.owner#,
+    dsp.spart_position,
+    dsp.spart_name,
+    ts.name,
+    dsp.ts#,
+    dsp.flags,
+    dsp.hiboundlen,
+    dsp.hiboundval
+  FROM
+    sys.defsubpart$ dsp,
+    sys.obj$ o,
+    sys.ts$ ts
+  WHERE
+    dsp.bo# = o.obj#
+    AND dsp.ts# = ts.ts# (+)
+    AND (
+      userenv('SCHEMAID') IN (0, o.owner#)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

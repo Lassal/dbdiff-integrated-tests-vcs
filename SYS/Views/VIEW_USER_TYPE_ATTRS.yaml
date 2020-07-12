@@ -1,0 +1,86 @@
+schema: SYS
+name: USER_TYPE_ATTRS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    a .name,
+    decode(
+      bitand(a .properties, 32768),
+      32768,
+      'REF',
+      decode(bitand(a .properties, 16384), 16384, 'POINTER')
+    ),
+    nvl2(
+      a .synobj#,
+      (
+        select
+          u.name
+        from
+          user $ u,
+          "_CURRENT_EDITION_OBJ" o
+        where
+          o.owner# = u.user#
+          and o.obj# = a .synobj#
+      ),
+      decode(bitand(at .properties, 64), 64, null, au.name)
+    ),
+    nvl2(
+      a .synobj#,
+      (
+        select
+          o.name
+        from
+          "_CURRENT_EDITION_OBJ" o
+        where
+          o.obj# = a .synobj#
+      ),
+      decode(
+        at .typecode,
+        9,
+        decode(a .charsetform, 2, 'NVARCHAR2', ao.name),
+        96,
+        decode(a .charsetform, 2, 'NCHAR', ao.name),
+        112,
+        decode(a .charsetform, 2, 'NCLOB', ao.name),
+        ao.name
+      )
+    ),
+    a .length,
+    a .precision#,
+    a .scale,
+    decode(
+      a .charsetform,
+      1,
+      'CHAR_CS',
+      2,
+      'NCHAR_CS',
+      3,
+      NLS_CHARSET_NAME(a .charsetid),
+      4,
+      'ARG:' || a .charsetid
+    ),
+    a .attribute#,
+    decode(bitand(nvl(a .xflags, 0), 1), 1, 'YES', 'NO')
+  from
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.type$ t,
+    sys.attribute$ a,
+    sys. "_CURRENT_EDITION_OBJ" ao,
+    sys.user$ au,
+    sys.type$ at
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.oid$ = t.toid
+    and o.subname IS NULL -- only the latest version
+    and o.type# <> 10 -- must not be invalid
+    and bitand(t.properties, 2048) = 0 -- not system-generated
+    and t.toid = a .toid
+    and t.version# = a .version#
+    and t.package_obj# IS NULL -- filter out plsql types
+    and a .attr_toid = ao.oid$
+    and ao.owner# = au.user#
+    and a .attr_toid = at .tvoid
+columns: []
+referencedTables: []

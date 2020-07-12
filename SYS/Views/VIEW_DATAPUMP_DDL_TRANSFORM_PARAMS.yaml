@@ -1,0 +1,18 @@
+schema: SYS
+name: DATAPUMP_DDL_TRANSFORM_PARAMS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    type,
+    param
+  from
+    sys.metaxslparam$
+  where
+    model = 'ORACLE'
+    and transform = 'DDL'
+    and param != 'DUMMY'
+    and param not like 'PRS_%'
+    and type != '*'
+columns: []
+referencedTables: []

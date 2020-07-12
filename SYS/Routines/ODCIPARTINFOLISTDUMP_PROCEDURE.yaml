@@ -1,0 +1,20 @@
+schema: SYS
+name: ODCIPARTINFOLISTDUMP
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: PLIST
+  ordinalPosition: 1
+  dataType: VARRAY
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE ODCIPartInfoListDump(plist IN SYS.ODCIPartInfoList) IS col NUMBER;
+  BEGIN
+    dbms_output.put_line('ODCIPartInfoList :');
+  FOR col IN plist.FIRST..plist.LAST
+  LOOP
+    dbms_output.put_line('ODCIPartInfo (' || col || ') :');
+  ODCIPartInfoDump(plist(col));
+  END
+  LOOP;
+  END;

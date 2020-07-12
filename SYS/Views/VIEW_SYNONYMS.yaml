@@ -1,0 +1,71 @@
+schema: SYS
+name: SYNONYMS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    s.name,
+    decode(s.owner#, 1, 'PUBLIC', 'PRIVATE'),
+    t.owner,
+    t.name,
+    'LOCAL',
+    decode(
+      ot.type#,
+      1,
+      'INDEX',
+      2,
+      'TABLE',
+      3,
+      'CLUSTER',
+      4,
+      'VIEW',
+      5,
+      'SYNONYM',
+      6,
+      'SEQUENCE',
+      7,
+      'PROCEDURE',
+      8,
+      'FUNCTION',
+      9,
+      'PACKAGE',
+      22,
+      'LIBRARY',
+      29,
+      'JAVA CLASS',
+      87,
+      'ASSEMBLY',
+      'UNDEFINED'
+    )
+  from
+    sys. "_CURRENT_EDITION_OBJ" s,
+    sys. "_CURRENT_EDITION_OBJ" ot,
+    sys.syn$ t,
+    sys.user$ u
+  where
+    s.obj# = t.obj#
+    and ot.linkname is null
+    and s.type# = 5
+    and ot.name = t.name
+    and t.owner = u.name
+    and ot.owner# = u.user#
+    and s.owner# in (1, userenv('SCHEMAID'))
+    and t.node is null
+  union all
+  select
+    s.name,
+    decode(s.owner#, 1, 'PUBLIC', 'PRIVATE'),
+    t.owner,
+    t.name,
+    t.node,
+    'REMOTE'
+  from
+    sys. "_CURRENT_EDITION_OBJ" s,
+    sys.syn$ t
+  where
+    s.obj# = t.obj#
+    and s.type# = 5
+    and s.owner# in (1, userenv('SCHEMAID'))
+    and t.node is not null
+columns: []
+referencedTables: []

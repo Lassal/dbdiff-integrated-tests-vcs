@@ -1,0 +1,61 @@
+schema: SYS
+name: USER_SOURCE_AE
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    decode(
+      o.type#,
+      7,
+      'PROCEDURE',
+      8,
+      'FUNCTION',
+      9,
+      'PACKAGE',
+      11,
+      'PACKAGE BODY',
+      12,
+      'TRIGGER',
+      13,
+      'TYPE',
+      14,
+      'TYPE BODY',
+      22,
+      'LIBRARY',
+      87,
+      'ASSEMBLY',
+      'UNDEFINED'
+    ),
+    s.line,
+    s.source,
+    o.defining_edition
+  from
+    sys. "_ACTUAL_EDITION_OBJ" o,
+    sys.source$ s
+  where
+    o.obj# = s.obj#
+    and (
+      o.type# in (7, 8, 9, 11, 12, 14, 22, 87)
+      OR (
+        o.type# = 13
+        AND o.subname is null
+      )
+    )
+    and o.owner# = userenv('SCHEMAID')
+  union all
+  select
+    o.name,
+    'JAVA SOURCE',
+    s.joxftlno,
+    s.joxftsrc,
+    null
+  from
+    sys.obj$ o,
+    x$joxscd s
+  where
+    o.obj# = s.joxftobn
+    and o.type# = 28
+    and o.owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

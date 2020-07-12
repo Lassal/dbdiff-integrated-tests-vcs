@@ -1,0 +1,41 @@
+schema: SYS
+name: KU$_FULL_TYPE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '2',
+    oo.obj#,
+    value(o),
+    value(t),
+    (
+      select
+        value(tb)
+      from
+        ku$_type_body_view tb
+      where
+        oo.name = tb.schema_obj.name
+        and o.owner_name = tb.schema_obj.owner_name
+    )
+  from
+    sys.obj$ oo,
+    sys.ku$_edition_schemaobj_view o,
+    ku$_type_view t
+  where
+    oo.type# = 13
+    and oo.obj# = o.obj_num
+    and oo.obj# = t.schema_obj.obj_num
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

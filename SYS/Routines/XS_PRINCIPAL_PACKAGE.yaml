@@ -1,0 +1,478 @@
+schema: SYS
+name: XS_PRINCIPAL
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: ADD_PROXY_TO_DBUSER.DATABASE_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_PROXY_TO_DBUSER.PROXY_USER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_PROXY_TO_DBUSER.IS_EXTERNAL
+  ordinalPosition: 3
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ADD_PROXY_USER(1).TARGET_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_PROXY_USER(1).PROXY_USER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_PROXY_USER(1).TARGET_ROLES
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: ADD_PROXY_USER(2).TARGET_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADD_PROXY_USER(2).PROXY_USER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_DYNAMIC_ROLE.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_DYNAMIC_ROLE.DURATION
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CREATE_DYNAMIC_ROLE.SCOPE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CREATE_DYNAMIC_ROLE.DESCRIPTION
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROLE.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROLE.ENABLED
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: CREATE_ROLE.START_DATE
+  ordinalPosition: 3
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: CREATE_ROLE.END_DATE
+  ordinalPosition: 4
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: CREATE_ROLE.GUID
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: IN
+- name: CREATE_ROLE.EXTERNAL_SOURCE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_ROLE.DESCRIPTION
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_USER.NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_USER.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_USER.STATUS
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: CREATE_USER.START_DATE
+  ordinalPosition: 4
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: CREATE_USER.END_DATE
+  ordinalPosition: 5
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: CREATE_USER.GUID
+  ordinalPosition: 6
+  dataType: RAW
+  parameterMode: IN
+- name: CREATE_USER.EXTERNAL_SOURCE
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CREATE_USER.DESCRIPTION
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_PRINCIPAL.PRINCIPAL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DELETE_PRINCIPAL.DELETE_OPTION
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ENABLE_BY_DEFAULT.ROLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_BY_DEFAULT.ENABLED
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: ENABLE_ROLES_BY_DEFAULT.USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ENABLE_ROLES_BY_DEFAULT.ENABLED
+  ordinalPosition: 2
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: GRANT_ROLES(1).GRANTEE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANT_ROLES(1).ROLE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANT_ROLES(1).START_DATE
+  ordinalPosition: 3
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: GRANT_ROLES(1).END_DATE
+  ordinalPosition: 4
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: GRANT_ROLES(2).GRANTEE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GRANT_ROLES(2).ROLE_LIST
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: REMOVE_PROXY_FROM_DBUSER.DATABASE_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_PROXY_FROM_DBUSER.PROXY_USER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_PROXY_USERS(1).TARGET_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_PROXY_USERS(2).TARGET_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REMOVE_PROXY_USERS(2).PROXY_USER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKE_ROLES(1).GRANTEE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKE_ROLES(2).GRANTEE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKE_ROLES(2).ROLE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKE_ROLES(3).GRANTEE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REVOKE_ROLES(3).ROLE_LIST
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: SET_DESCRIPTION.PRINCIPAL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_DESCRIPTION.DESCRIPTION
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_DYNAMIC_ROLE_DURATION.ROLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_DYNAMIC_ROLE_DURATION.DURATION
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_DYNAMIC_ROLE_SCOPE.ROLE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_DYNAMIC_ROLE_SCOPE.SCOPE
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_EFFECTIVE_DATES.PRINCIPAL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_EFFECTIVE_DATES.START_DATE
+  ordinalPosition: 2
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: SET_EFFECTIVE_DATES.END_DATE
+  ordinalPosition: 3
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
+- name: SET_GUID.PRINCIPAL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_GUID.GUID
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: SET_PASSWORD.USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_PASSWORD.PASSWORD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_PASSWORD.TYPE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_PASSWORD.OPASSWORD
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_PROFILE.USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_PROFILE.PROFILE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_USER_SCHEMA.USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_USER_SCHEMA.SCHEMA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_USER_STATUS.USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_USER_STATUS.STATUS
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: SET_VERIFIER.USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_VERIFIER.VERIFIER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_VERIFIER.TYPE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE XS_PRINCIPAL AUTHID CURRENT_USER AS -- Public constants
+  -- The following constants define the user's status.
+  ACTIVE CONSTANT PLS_INTEGER: = 1;
+  INACTIVE CONSTANT PLS_INTEGER: = 2;
+  UNLOCK CONSTANT PLS_INTEGER: = 3;
+  EXPIRED CONSTANT PLS_INTEGER: = 4;
+  LOCKED CONSTANT PLS_INTEGER: = 5;
+  -- The following constants define dynamic role scope.
+  SESSION_SCOPE CONSTANT PLS_INTEGER: = 0;
+  REQUEST_SCOPE CONSTANT PLS_INTEGER: = 1;
+  -- The following constants define the Verifier type.
+  XS_SHA512 CONSTANT PLS_INTEGER: = 2;
+  XS_SALTED_SHA1 CONSTANT PLS_INTEGER: = 1;
+  -- Enable log based replication for this package
+  PRAGMA SUPPLEMENTAL_LOG_DATA(default, AUTO);
+  -- Principal creation APIs.
+  PROCEDURE create_user (
+    name IN VARCHAR2,
+    schema IN VARCHAR2: = NULL,
+    status IN PLS_INTEGER: = ACTIVE,
+    start_date IN TIMESTAMP WITH TIME ZONE: = NULL,
+    end_date IN TIMESTAMP WITH TIME ZONE: = NULL,
+    guid IN RAW: = NULL,
+    external_source IN VARCHAR2: = NULL,
+    description IN VARCHAR2: = NULL
+  );
+  PROCEDURE create_role (
+    name IN VARCHAR2,
+    enabled IN BOOLEAN: = FALSE,
+    start_date IN TIMESTAMP WITH TIME ZONE: = NULL,
+    end_date IN TIMESTAMP WITH TIME ZONE: = NULL,
+    guid IN RAW: = NULL,
+    external_source IN VARCHAR2: = NULL,
+    description IN VARCHAR2: = NULL
+  );
+  PROCEDURE create_dynamic_role (
+    name IN VARCHAR2,
+    duration IN PLS_INTEGER: = NULL,
+    scope IN PLS_INTEGER: = SESSION_SCOPE,
+    description IN VARCHAR2: = NULL
+  );
+  -- Grant a role to a principal
+  PROCEDURE grant_roles (
+    grantee IN VARCHAR2,
+    role IN VARCHAR2,
+    start_date IN TIMESTAMP WITH TIME ZONE: = NULL,
+    end_date IN TIMESTAMP WITH TIME ZONE: = NULL
+  );
+  -- Grant a list of roles to a principal
+  PROCEDURE grant_roles (
+    grantee IN VARCHAR2,
+    role_list IN XS$ROLE_GRANT_LIST
+  );
+  -- Revoke all roles from a principal.
+  PROCEDURE revoke_roles (grantee IN VARCHAR2);
+  -- Revoke a role from a principal
+  PROCEDURE revoke_roles (
+    grantee IN VARCHAR2,
+    role IN VARCHAR2
+  );
+  -- Revoke a list of roles from a principal
+  PROCEDURE revoke_roles (
+    grantee IN VARCHAR2,
+    role_list IN XS$NAME_LIST
+  );
+  -- Add a proxy user to a lightweight user.
+  -- proxy_user will proxy to and act on behalf of target_user.
+  -- If the target_roles is null, only xspublic and xsswitch
+  -- default roles will be enable for proxy user.
+  PROCEDURE add_proxy_user (
+    target_user IN VARCHAR2,
+    proxy_user IN VARCHAR2,
+    target_roles IN XS$NAME_LIST
+  );
+  -- Add proxy user to a target user with all with all default enabled
+  -- roles of target user.
+  PROCEDURE add_proxy_user (
+    target_user IN VARCHAR2,
+    proxy_user IN VARCHAR2
+  );
+  -- Add a proxy user to db user
+  PROCEDURE add_proxy_to_dbuser (
+    database_user IN VARCHAR2,
+    proxy_user IN VARCHAR2,
+    is_external IN BOOLEAN: = FALSE
+  );
+  -- Remove a proxy user from db user
+  PROCEDURE remove_proxy_from_dbuser (
+    database_user IN VARCHAR2,
+    proxy_user IN VARCHAR2
+  );
+  -- Remove all existing proxy users from a target user.
+  PROCEDURE remove_proxy_users (target_user IN VARCHAR2);
+  -- Remove a proxy user from a target user.
+  PROCEDURE remove_proxy_users (
+    target_user IN VARCHAR2,
+    proxy_user IN VARCHAR2
+  );
+  -- Update effective date of a user/role.
+  PROCEDURE set_effective_dates (
+    principal IN VARCHAR2,
+    start_date IN TIMESTAMP WITH TIME ZONE: = NULL,
+    end_date IN TIMESTAMP WITH TIME ZONE: = NULL
+  );
+  -- Update the duration of a dynamic role.
+  PROCEDURE set_dynamic_role_duration (
+    role IN VARCHAR2,
+    duration IN PLS_INTEGER
+  );
+  -- Update the scope attribute of a dynamic role
+  PROCEDURE set_dynamic_role_scope (
+    role IN VARCHAR2,
+    scope IN PLS_INTEGER
+  );
+  -- Enables/disables the role by default. This API only works on regular roles.
+  PROCEDURE enable_by_default (
+    role IN VARCHAR2,
+    enabled IN BOOLEAN: = TRUE
+  );
+  -- Enables/disables all directly granted roles for a user by default.
+  -- This API only works on users.
+  PROCEDURE enable_roles_by_default (
+    user IN VARCHAR2,
+    enabled IN BOOLEAN: = TRUE
+  );
+  -- Update the schema that a lightweight user owns. Only apply for LW user.
+  PROCEDURE set_user_schema (
+    user IN VARCHAR2,
+    schema IN VARCHAR2
+  );
+  -- Set GUID. The guid only can be set if the principal is from an external
+  -- source and the previous guid is null.
+  PROCEDURE set_guid (
+    principal IN VARCHAR2,
+    guid IN RAW
+  );
+  -- Set/modify the user status that a lightweight user owns.
+  PROCEDURE set_user_status (
+    user IN VARCHAR2,
+    status IN PLS_INTEGER
+  );
+  -- Set the description of a principal.
+  PROCEDURE set_description (
+    principal IN VARCHAR2,
+    description IN VARCHAR2
+  );
+  -- Set profile
+  PROCEDURE set_profile(
+    user IN VARCHAR2,
+    profile IN VARCHAR2
+  );
+  -- Set password.
+  PROCEDURE set_password (
+    user IN VARCHAR2,
+    password IN VARCHAR2,
+    type IN PLS_INTEGER: = XS_SHA512,
+    opassword IN VARCHAR2: = NULL
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(set_password, NONE);
+  -- set_verifier Wrapper.
+  PROCEDURE set_verifier (
+    user IN VARCHAR2,
+    verifier IN VARCHAR2,
+    type IN PLS_INTEGER: = XS_SHA512
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(set_verifier, NONE);
+  -- Delete the principal.
+  PROCEDURE delete_principal (
+    principal IN VARCHAR2,
+    delete_option IN PLS_INTEGER: = XS_ADMIN_UTIL.DEFAULT_OPTION
+  );
+  END XS_PRINCIPAL;

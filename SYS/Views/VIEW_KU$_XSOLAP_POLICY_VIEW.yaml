@@ -1,0 +1,17 @@
+schema: SYS
+name: KU$_XSOLAP_POLICY_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    o.schema_name,
+    o.logical_name,
+    o.policy_schema,
+    o.policy_name,
+    o.enable
+  from
+    xs$olap_policy o
+columns: []
+referencedTables: []

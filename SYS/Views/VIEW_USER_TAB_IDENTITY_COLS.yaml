@@ -1,0 +1,32 @@
+schema: SYS
+name: USER_TAB_IDENTITY_COLS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    o.name,
+    c .name,
+    decode(
+      bitand(c .property, 137438953472 + 274877906944),
+      137438953472,
+      'ALWAYS',
+      274877906944,
+      'BY DEFAULT'
+    ),
+    so.name,
+    'START WITH: ' || i.startwith || ', INCREMENT BY: ' || s.increment$ || ', MAX_VALUE: ' || s.maxvalue || ', MIN_VALUE: ' || s.minvalue || ', CYCLE_FLAG: ' || decode (s.cycle#, 0, 'N', 1, 'Y') || ', CACHE_SIZE: ' || s.cache || ', ORDER_FLAG: ' || decode (s.order$, 0, 'N', 1, 'Y')
+  from
+    sys.idnseq$ i,
+    sys.obj$ o,
+    sys.col$ c,
+    sys.seq$ s,
+    sys.obj$ so
+  where
+    o.owner# = userenv('SCHEMAID')
+    and o.obj# = i.obj#
+    and c .intcol# = i.intcol#
+    and c .obj# = i.obj#
+    and s.obj# = i.seqobj#
+    and so.obj# = i.seqobj#
+columns: []
+referencedTables: []

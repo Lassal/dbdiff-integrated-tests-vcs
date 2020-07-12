@@ -1,0 +1,30 @@
+schema: SYS
+name: EXU9PCT
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    c .ns,
+    c .attr,
+    u.name,
+    o.name
+  FROM
+    sys.rls_ctx$ c,
+    sys.user$ u,
+    sys.obj$ o
+  WHERE
+    c .obj# = o.obj#
+    AND u.user# = o.owner#
+    AND (
+      userenv('SCHEMAID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          role
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

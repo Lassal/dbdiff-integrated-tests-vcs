@@ -1,0 +1,45 @@
+schema: MDSYS
+name: HHCELLBNDRY
+routineType: FUNCTION
+returnParamater:
+  name: (--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: HHC
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+- name: DIM
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: LB
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: UB
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: LV
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: MM
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  FUNCTION hhcellbndry (
+    hhc IN RAW,
+    dim IN BINARY_INTEGER,
+    lb IN NUMBER,
+    ub IN NUMBER,
+    lv IN BINARY_INTEGER,
+    mm IN VARCHAR2
+  ) RETURN NUMBER IS
+  begin
+    return md.hhcellbndry(hhc, dim, lb, ub, lv, mm);
+  end;

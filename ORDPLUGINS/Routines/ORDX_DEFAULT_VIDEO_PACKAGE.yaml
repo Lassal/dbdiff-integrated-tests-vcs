@@ -1,0 +1,102 @@
+schema: ORDPLUGINS
+name: ORDX_DEFAULT_VIDEO
+routineType: PACKAGE
+returnParamater:
+  name: PROCESSCOMMAND.(--return--)
+  ordinalPosition: 0
+  dataType: RAW
+  parameterMode: OUT
+parameters:
+- name: CHECKPROPERTIES.CTX
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: INOUT
+- name: CHECKPROPERTIES.OBJ
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: GETALLATTRIBUTES.CTX
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: INOUT
+- name: GETALLATTRIBUTES.OBJ
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: GETALLATTRIBUTES.ATTRIBUTES
+  ordinalPosition: 3
+  dataType: CLOB
+  parameterMode: INOUT
+- name: GETATTRIBUTE.CTX
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: INOUT
+- name: GETATTRIBUTE.OBJ
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: IN
+- name: GETATTRIBUTE.NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOMMAND.CTX
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: INOUT
+- name: PROCESSCOMMAND.OBJ
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: PROCESSCOMMAND.CMD
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOMMAND.ARGUMENTS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: PROCESSCOMMAND.RESULT
+  ordinalPosition: 5
+  dataType: RAW
+  parameterMode: OUT
+- name: SETPROPERTIES.CTX
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: INOUT
+- name: SETPROPERTIES.OBJ
+  ordinalPosition: 2
+  dataType: OBJECT
+  parameterMode: INOUT
+- name: SETPROPERTIES.SETCOMMENTS
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  PACKAGE ORDX_DEFAULT_VIDEO authid current_user AS --VIDEO ATTRIBUTES ACCESSORS
+  FUNCTION getAttribute(
+    ctx IN OUT RAW,
+    obj IN ORDSYS.ORDVideo,
+    name IN VARCHAR2
+  ) RETURN VARCHAR2;
+  PROCEDURE setProperties(
+    ctx IN OUT RAW,
+    obj IN OUT NOCOPY ORDSYS.ORDVideo,
+    setComments IN NUMBER: = 0
+  );
+  FUNCTION checkProperties(ctx IN OUT RAW, obj IN OUT NOCOPY ORDSYS.ORDVideo) RETURN NUMBER;
+  -- must return name=value; name=value; ...  pairs
+  PROCEDURE getAllAttributes(
+    ctx IN OUT RAW,
+    obj IN ORDSYS.ORDVideo,
+    attributes IN OUT NOCOPY CLOB
+  );
+  -- VIDEO PROCESSING METHODS
+  FUNCTION processCommand(
+    ctx IN OUT RAW,
+    obj IN OUT NOCOPY ORDSYS.ORDVideo,
+    cmd IN VARCHAR2,
+    arguments IN VARCHAR2,
+    result OUT RAW
+  ) RETURN RAW;
+  PRAGMA RESTRICT_REFERENCES(getAttribute, WNDS, WNPS, RNDS, RNPS);
+  END;

@@ -1,0 +1,76 @@
+name: SDO_TIN_PC_SYSDATA_TABLE
+schema: MDSYS
+columns:
+- name: COLUMN_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1024
+  nullable: false
+  dataTypeLength: 1024
+- name: DEP_TABLE_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  dataTypeLength: 32
+- name: DEP_TABLE_SCHEMA
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  dataTypeLength: 32
+- name: SDO_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  dataTypeLength: 32
+- name: TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  dataTypeLength: 32
+constraints:
+- !<unique-constraint>
+  name: SDO_PK_TIN_PC
+  type: PRIMARY_KEY
+  columns:
+  - name: DEP_TABLE_NAME
+    ordinalPosition: 2
+  - name: DEP_TABLE_SCHEMA
+    ordinalPosition: 1
+- !<unique-constraint>
+  name: SDO_UNQ_PCATTR_TIN_PC
+  type: UNIQUE
+  columns:
+  - name: COLUMN_NAME
+    ordinalPosition: 3
+  - name: DEP_TABLE_NAME
+    ordinalPosition: 5
+  - name: DEP_TABLE_SCHEMA
+    ordinalPosition: 4
+  - name: SDO_OWNER
+    ordinalPosition: 1
+  - name: TABLE_NAME
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C006411
+  type: CHECK
+  checkClause: '"SDO_OWNER" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C006412
+  type: CHECK
+  checkClause: '"TABLE_NAME" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C006413
+  type: CHECK
+  checkClause: '"COLUMN_NAME" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C006414
+  type: CHECK
+  checkClause: '"DEP_TABLE_SCHEMA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C006415
+  type: CHECK
+  checkClause: '"DEP_TABLE_NAME" IS NOT NULL'

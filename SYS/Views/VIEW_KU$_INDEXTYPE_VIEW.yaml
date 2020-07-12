@@ -1,0 +1,62 @@
+schema: SYS
+name: KU$_INDEXTYPE_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    it.obj#,
+    value(o),
+    (
+      select
+        value(oit)
+      from
+        sys.ku$_schemaobj_view oit
+      where
+        it.implobj# = oit.obj_num
+    ),
+    it.property,
+    cast(
+      multiset(
+        select
+          value(io)
+        from
+          sys.ku$_indexop_view io
+        where
+          it.obj# = io.obj_num
+          /* the following order-by clause exists solely
+                                     to assure repeatable regression tests results */
+        order by
+          io.oper_obj.owner_name,
+          io.oper_obj.name
+      ) as ku$_indexop_list_t
+    ),
+    cast(
+      multiset(
+        select
+          value(ia)
+        from
+          sys.ku$_indarraytype_view ia
+        where
+          it.obj# = ia.obj_num
+      ) as ku$_indarraytype_list_t
+    )
+  from
+    sys.ku$_schemaobj_view o,
+    sys.indtypes$ it
+  where
+    it.obj# = o.obj_num
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner_num, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

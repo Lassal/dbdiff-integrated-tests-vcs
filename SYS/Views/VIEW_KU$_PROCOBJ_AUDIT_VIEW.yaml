@@ -1,0 +1,129 @@
+schema: SYS
+name: KU$_PROCOBJ_AUDIT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    o.obj#,
+    (
+      select
+        value(o1)
+      from
+        sys.ku$_schemaobj_view o1
+      where
+        o1.obj_num = o.obj#
+    ),
+    (
+      select
+        p.class
+      from
+        sys.exppkgobj$ p
+      where
+        p.type# = o.type#
+        and (
+          p.class = 1
+          or p.class = 2
+        )
+    ),
+    (
+      select
+        p.prepost
+      from
+        sys.exppkgobj$ p
+      where
+        p.type# = o.type#
+        and (
+          p.class = 1
+          or p.class = 2
+        )
+    ),
+    o.type#,
+    (
+      select
+        p.level#
+      from
+        sys.exppkgobj$ p
+      where
+        p.type# = o.type#
+        and (
+          p.class = 1
+          or p.class = 2
+        )
+    ),
+    (
+      select
+        p.package
+      from
+        sys.exppkgobj$ p
+      where
+        p.type# = o.type#
+        and (
+          p.class = 1
+          or p.class = 2
+        )
+    ),
+    (
+      select
+        p.schema
+      from
+        sys.exppkgobj$ p
+      where
+        p.type# = o.type#
+        and (
+          p.class = 1
+          or p.class = 2
+        )
+    ),
+    (
+      select
+        sys.dbms_metadata.get_procobj (
+          p.package,
+          p.schema,
+          'AUDIT_EXP',
+          o.obj#,
+          (
+            select
+              1
+            from
+              dual
+            where
+              (
+                SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+                OR EXISTS (
+                  SELECT
+                    *
+                  FROM
+                    sys.session_roles
+                  WHERE
+                    role = 'SELECT_CATALOG_ROLE'
+                )
+              )
+          )
+        )
+      from
+        sys.exppkgobj$ p
+      where
+        p.type# = o.type#
+        and (
+          p.class = 1
+          or p.class = 2
+        )
+    )
+  from
+    obj$ o
+  where
+    (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

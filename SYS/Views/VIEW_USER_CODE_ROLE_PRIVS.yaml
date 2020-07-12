@@ -1,0 +1,32 @@
+schema: SYS
+name: USER_CODE_ROLE_PRIVS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  (
+    select
+      o.name,
+      decode(
+        o.type#,
+        7,
+        'PROCEDURE',
+        8,
+        'FUNCTION',
+        9,
+        'PACKAGE',
+        13,
+        'TYPE',
+        'UNDEFINED'
+      ),
+      r.name
+    from
+      sys. "_CURRENT_EDITION_OBJ" o,
+      sys.user$ r,
+      sys.codeauth$ c
+    where
+      o.obj# = c .obj#
+      and c .privilege# = r.user#
+      and o.owner# = userenv('SCHEMAID')
+  )
+columns: []
+referencedTables: []

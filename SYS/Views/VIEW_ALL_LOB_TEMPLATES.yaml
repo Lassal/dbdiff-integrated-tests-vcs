@@ -1,0 +1,73 @@
+schema: SYS
+name: ALL_LOB_TEMPLATES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    decode(bitand(c .property, 1), 1, ac.name, c .name),
+    st.spart_name,
+    lst.lob_spart_name,
+    ts.name
+  from
+    sys.obj$ o,
+    sys.defsubpart$ st,
+    sys.defsubpartlob$ lst,
+    sys.ts$ ts,
+    sys.col$ c,
+    sys.attrcol$ ac,
+    sys.user$ u
+  where
+    o.obj# = lst.bo#
+    and st.bo# = lst.bo#
+    and st.spart_position = lst.spart_position
+    and lst.lob_spart_ts# = ts.ts#(+)
+    and c .obj# = lst.bo#
+    and c .intcol# = lst.intcol#
+    and lst.intcol# = ac.intcol#(+)
+    and lst.bo# = ac.obj#(+)
+    and o.owner# = u.user#
+    and o.subname IS NULL
+    and o.namespace = 1
+    and o.remoteowner IS NULL
+    and o.linkname IS NULL
+    and (
+      o.owner# = userenv('SCHEMAID')
+      or o.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

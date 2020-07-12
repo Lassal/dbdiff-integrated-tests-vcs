@@ -1,0 +1,37 @@
+schema: APEX_050000
+name: APEX_APPLICATION_THEME_FILES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    a .id as theme_file_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    a .theme_id as theme_number,
+    a .file_name,
+    a .mime_type,
+    a .file_charset,
+    a .file_content,
+    nvl2(a .reference_id, 'Yes', 'No') as is_subscribed,
+    (
+      select
+        a2.flow_id || '. ' || a2.file_name
+      from
+        wwv_flow_theme_files a2
+      where
+        a2.id = a .reference_id
+    ) as subscribed_from,
+    a .reference_id as subscribed_from_id,
+    a .created_by,
+    a .created_on,
+    a .last_updated_by,
+    a .last_updated_on
+  from
+    wwv_flow_authorized f,
+    wwv_flow_theme_files a
+  where
+    a .flow_id = f.application_id
+columns: []
+referencedTables: []

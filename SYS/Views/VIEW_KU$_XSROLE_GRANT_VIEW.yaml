@@ -1,0 +1,46 @@
+schema: SYS
+name: KU$_XSROLE_GRANT_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '0',
+    r.grantee#,
+    (
+      select
+        name
+      from
+        xs$obj o
+      where
+        o.id = r.grantee#
+    ),
+    r.role#,
+    (
+      select
+        name
+      from
+        xs$obj o
+      where
+        o.id = r.role#
+    ),
+    r.granter#,
+    (
+      select
+        name
+      from
+        xs$obj o
+      where
+        o.id = r.granter#
+    ),
+    r.start_date,
+    r.end_date
+  from
+    xs$role_grant r,
+    xs$obj xo
+  where
+    xo.id = r.grantee#
+    and bitand(xo.flags, 1) = 0
+    /* not Oracle supplied */
+columns: []
+referencedTables: []

@@ -1,0 +1,76 @@
+schema: SYS
+name: KU$_XSRLS_POLICY_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    '1',
+    '1',
+    value(sov),
+    r.obj#,
+    r.gname,
+    r.pname,
+    BITAND(r.stmt_type, 15) + BITAND(r.stmt_type, 2048),
+    r.check_opt,
+    r.enable_flag,
+    r.pfschma,
+    r.ppname,
+    r.pfname,
+    case
+      bitand(r.stmt_type, 16 + 64 + 128 + 256 + 8192 + 16384 + 32768)
+      when 16 then 'dbms_rls.STATIC'
+      when 64 then 'dbms_rls.SHARED_STATIC'
+      when 128 then 'dbms_rls.CONTEXT_SENSITIVE'
+      when 256 then 'dbms_rls.SHARED_CONTEXT_SENSITIVE'
+      when 8192 then 'dbms_rls.XDS1'
+      when 16384 then 'dbms_rls.XDS2'
+      when 32768 then 'dbms_rls.XDS3'
+      else 'dbms_rls.DYNAMIC'
+    end,
+    BITAND(r.stmt_type, 512),
+    cast(
+      multiset(
+        select
+          c .name
+        from
+          col$ c,
+          rls_sc$ sc
+        where
+          sc.obj# = r.obj#
+          and sc.gname = r.gname
+          and sc.pname = r.pname
+          and sc.obj# = c .obj#
+          and sc.intcol# = c .intcol#
+      ) as ku$_rls_sec_rel_col_list_t
+    ),
+    BITAND(r.stmt_type, 4096),
+    cast(
+      multiset(
+        select
+          *
+        from
+          sys.rls_csa$ rlsa
+        where
+          rlsa.obj# = r.obj#
+          and rlsa.gname = r.gname
+          and rlsa.pname = r.pname
+      ) as ku$_rls_assoc_list_t
+    )
+  from
+    ku$_schemaobj_view sov,
+    sys.rls$ r
+  where
+    r.obj# = sov.obj_num
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') in (0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,43 @@
+schema: SYS
+name: USER_EXTENTS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ds.segment_name,
+    ds.partition_name,
+    ds.segment_type,
+    ds.tablespace_name,
+    e.ext#,
+    e.length * ds.blocksize,
+    e.length
+  from
+    sys.uet$ e,
+    sys.sys_user_segs ds
+  where
+    e.segfile# = ds.header_file
+    and e.segblock# = ds.header_block
+    and e.ts# = ds.tablespace_id
+    and bitand(NVL(ds.segment_flags, 0), 1) = 0
+    and bitand(NVL(ds.segment_flags, 0), 65536) = 0
+  union all
+  select
+    /*+ ordered use_nl(e) */
+    ds.segment_name,
+    ds.partition_name,
+    ds.segment_type,
+    ds.tablespace_name,
+    e.ktfbueextno,
+    e.ktfbueblks * ds.blocksize,
+    e.ktfbueblks
+  from
+    sys.sys_user_segs ds,
+    sys.x$ktfbue e
+  where
+    e.ktfbuesegfno = ds.header_file
+    and e.ktfbuesegbno = ds.header_block
+    and e.ktfbuesegtsn = ds.tablespace_id
+    and bitand(NVL(ds.segment_flags, 0), 1) = 1
+    and bitand(NVL(ds.segment_flags, 0), 65536) = 0
+columns: []
+referencedTables: []

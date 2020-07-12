@@ -1,0 +1,162 @@
+name: SDO_UNITS_OF_MEASURE
+schema: MDSYS
+columns:
+- name: DATA_SOURCE
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  dataTypeLength: 40
+- name: FACTOR_B
+  ordinalPosition: 7
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: FACTOR_C
+  ordinalPosition: 8
+  dataType: NUMBER
+  nullable: true
+  dataTypeLength:
+- name: INFORMATION_SOURCE
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 254
+  nullable: true
+  dataTypeLength: 254
+- name: IS_LEGACY
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: false
+  dataTypeLength: 5
+- name: LEGACY_CODE
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: LEGACY_UNIT_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  defaultValue: NULL
+  dataTypeLength: 80
+- name: SHORT_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  dataTypeLength: 80
+- name: TARGET_UOM_ID
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: UNIT_OF_MEAS_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 2083
+  nullable: false
+  dataTypeLength: 2083
+- name: UNIT_OF_MEAS_TYPE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: UOM_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+constraints:
+- !<unique-constraint>
+  name: UNIT_OF_MEASURE_PRIM
+  type: PRIMARY_KEY
+  columns:
+  - name: UOM_ID
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: ELLIPSOID_FOREIGN_LEGACY
+  type: FOREIGN_KEY
+  columns:
+  - name: LEGACY_CODE
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_ELLIPSOIDS
+    referencedTableColumnName: ELLIPSOID_ID
+- !<fk-constraint>
+  name: UNIT_OF_MEASURE_FOREIGN_LEGACY
+  type: FOREIGN_KEY
+  columns:
+  - name: LEGACY_CODE
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_UNITS_OF_MEASURE
+    referencedTableColumnName: UOM_ID
+- !<fk-constraint>
+  name: UNIT_OF_MEASURE_FOREIGN_UOM
+  type: FOREIGN_KEY
+  columns:
+  - name: TARGET_UOM_ID
+    ordinalPosition: 1
+    referencedSchemaName: MDSYS
+    referencedTableName: SDO_UNITS_OF_MEASURE
+    referencedTableColumnName: UOM_ID
+- !<unique-constraint>
+  name: UOM_UNIQUE1
+  type: UNIQUE
+  columns:
+  - name: UNIT_OF_MEAS_TYPE
+    ordinalPosition: 2
+  - name: UOM_ID
+    ordinalPosition: 1
+- !<unique-constraint>
+  name: UOM_UNIQUE_SHORT_NAME
+  type: UNIQUE
+  columns:
+  - name: SHORT_NAME
+    ordinalPosition: 1
+- !<check-constraint>
+  name: FACTOR_B_MUST_BE_POS
+  type: CHECK
+  checkClause: |-
+    FACTOR_B IS NULL
+    OR FACTOR_B > 0
+- !<check-constraint>
+  name: FACTOR_C_MUST_BE_POS
+  type: CHECK
+  checkClause: |-
+    FACTOR_C IS NULL
+    OR FACTOR_C > 0
+- !<check-constraint>
+  name: ONLY_STD_TARGET_UOMS
+  type: CHECK
+  checkClause: target_uom_id in (9001, 9101, 9201, 10008, 19501)
+- !<check-constraint>
+  name: SYS_C005781
+  type: CHECK
+  checkClause: '"UOM_ID" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005782
+  type: CHECK
+  checkClause: '"UNIT_OF_MEAS_NAME" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C005783
+  type: CHECK
+  checkClause: '"IS_LEGACY" IS NOT NULL'
+- !<check-constraint>
+  name: UOM_ID_MUST_BE_POS
+  type: CHECK
+  checkClause: UOM_ID > 0
+- !<check-constraint>
+  name: UOM_TYPE_CONSTR
+  type: CHECK
+  checkClause: nls_lower(unit_of_meas_type) in ('area', 'angle', 'length', 'scale',
+    'volume')

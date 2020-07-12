@@ -1,0 +1,21 @@
+schema: SYS
+name: EXU8RFSU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "OBJNO",
+    "OWNERID",
+    "PROPERTY",
+    "COLNAME",
+    "REFTYP",
+    "SOID",
+    "ROBJID",
+    "PKEYCNO",
+    "PKEYOWNER"
+  FROM
+    sys.exu8rfs
+  WHERE
+    ownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

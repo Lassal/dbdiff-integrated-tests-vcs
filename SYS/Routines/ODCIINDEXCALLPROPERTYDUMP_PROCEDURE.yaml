@@ -1,0 +1,27 @@
+schema: SYS
+name: ODCIINDEXCALLPROPERTYDUMP
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: OP
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE ODCIIndexCallPropertyDump(op NUMBER) IS
+  BEGIN
+    IF (
+      op IS NOT NULL
+      AND op != ODCIConst.None
+    ) THEN dbms_output.put('Call : ');
+  IF (op = ODCIConst.FirstCall) THEN dbms_output.put_line('First Call');
+  ELSIF (op = ODCIConst.IntermediateCall) THEN dbms_output.put_line('Intermediate Call');
+  ELSIF (op = ODCIConst.FinalCall) THEN dbms_output.put_line('Final Call');
+  ELSIF (op = ODCIConst.RebuildIndex) THEN dbms_output.put_line('Rebuild Index');
+  ELSIF (op = ODCIConst.RebuildPMO) THEN dbms_output.put_line('Rebuild PMO');
+  ELSIF (op = ODCIConst.StatsGlobal) THEN dbms_output.put_line('StatsGlobal');
+  ELSIF (op = ODCIConst.StatsGlobalAndPartition) THEN dbms_output.put_line('StatsGlobalAndPartition');
+  ELSIF (op = ODCIConst.StatsPartition) THEN dbms_output.put_line('StatsPartition');
+  END IF;
+  END IF;
+  END;

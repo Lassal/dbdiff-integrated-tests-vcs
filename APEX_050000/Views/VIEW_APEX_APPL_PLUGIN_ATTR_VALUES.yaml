@@ -1,0 +1,31 @@
+schema: APEX_050000
+name: APEX_APPL_PLUGIN_ATTR_VALUES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    v.id as plugin_attribute_value_id,
+    f.workspace,
+    f.workspace_display_name,
+    f.application_id,
+    f.application_name,
+    v.plugin_attribute_id,
+    a .prompt as plugin_attribute_prompt,
+    v.display_sequence,
+    v.display_value,
+    v.return_value,
+    v.is_quick_pick,
+    v.help_text,
+    v.created_by,
+    v.created_on,
+    v.last_updated_by,
+    v.last_updated_on
+  from
+    wwv_flow_authorized_and_4411 f,
+    wwv_flow_plugin_attr_values v,
+    wwv_flow_plugin_attributes a
+  where
+    v.flow_id = f.application_id
+    and a .id = v.plugin_attribute_id
+columns: []
+referencedTables: []

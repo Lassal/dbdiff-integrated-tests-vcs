@@ -1,0 +1,44 @@
+schema: SYS
+name: DATAPUMP_PATHS_VERSION
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    m.htype,
+    m.name,
+    m.seq#,
+    (
+      select
+        m2.name
+      from
+        sys.metanametrans$ m2
+      where
+        m2.seq# = m.seq#
+        and m2.htype = m.htype
+        and bitand(m2.properties, 1) = 1
+    ),
+    (
+      select
+        version
+      from
+        metascript$ s
+      where
+        s.seq# = m.seq#
+        and s.htype = m.htype
+    ),
+    0 -- these are not tags
+  from
+    sys.metanametrans$ m
+  union
+    -- add in tag names for options, so they can be included/excluded.
+  select
+    unique 'DATABASE_EXPORT',
+    tag,
+    -1,
+    tag,
+    1200000000,
+    1
+  from
+    impcalloutreg$
+columns: []
+referencedTables: []

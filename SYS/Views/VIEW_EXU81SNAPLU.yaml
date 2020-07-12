@@ -1,0 +1,26 @@
+schema: SYS
+name: EXU81SNAPLU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "LOG_OWNER",
+    "LOG_OWNERID",
+    "MASTER",
+    "LOG_TABLE",
+    "LOG_TRIGGER",
+    "FLAG",
+    "YOUNGEST",
+    "OLDEST",
+    "OLDEST_PK",
+    "MTIME",
+    "ROWID_SNAPL",
+    "PRIMKEY_SNAPL",
+    "FILE_VER",
+    "TEMP_LOG"
+  FROM
+    sys.exu81snapl
+  WHERE
+    log_ownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

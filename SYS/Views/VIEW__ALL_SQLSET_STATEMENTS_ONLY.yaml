@@ -1,0 +1,56 @@
+schema: SYS
+name: _ALL_SQLSET_STATEMENTS_ONLY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    d.name as sqlset_name,
+    d.owner as sqlset_owner,
+    s.sqlset_id,
+    s.con_dbid,
+    s.sql_id,
+    s.force_matching_signature,
+    s.command_type,
+    s.parsing_schema_name,
+    substrb(
+      module,
+      1,
+      (
+        select
+          ksumodlen
+        from
+          x$modact_length
+      )
+    ) module,
+    substrb(
+      action,
+      1,
+      (
+        select
+          ksuactlen
+        from
+          x$modact_length
+      )
+    ) action,
+    s.id as sql_seq
+  from
+    WRI$_SQLSET_DEFINITIONS d,
+    WRI$_SQLSET_STATEMENTS s
+  where
+    d.id = s.sqlset_id
+    AND (
+      d.owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
+      OR EXISTS (
+        select
+          1
+        from
+          V$ENABLEDPRIVS
+        where
+          priv_number in (
+            -273
+            /*ADMINISTER ANY SQL TUNING SET*/
+          )
+      )
+    )
+columns: []
+referencedTables: []

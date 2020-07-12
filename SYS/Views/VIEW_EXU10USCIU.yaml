@@ -1,0 +1,27 @@
+schema: SYS
+name: EXU10USCIU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "IPCTTHRES",
+    "IPRECCNT",
+    "IOBJID",
+    "TOBJID",
+    "OVFOBJID",
+    "OWNERID",
+    "ITSNO",
+    "IFILENO",
+    "IBLOCKNO",
+    "IPCTFREE",
+    "IINITR",
+    "IMAXTR",
+    "DEFLOG",
+    "IDOBJID",
+    "MAPOBJ"
+  FROM
+    sys.exu10usci
+  WHERE
+    ownerid = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,40 @@
+schema: SYS
+name: EXPTABSUBPARTDATA_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    sp.bhiboundval SPBND,
+    dsp.bhiboundval DSPBND,
+    p.obj# PONO,
+    sp.tsno SPTS,
+    dsp.ts# DSPTS,
+    p.defts# PDEFTS,
+    tpo.defts# TDEFTS,
+    u.datats# UDEFTS
+  FROM
+    sys.tabcompart$ p,
+    sys.partobj$ tpo,
+    sys.exptabsubpart sp,
+    sys.defsubpart$ dsp,
+    sys.obj$ po,
+    sys.obj$ spo,
+    sys.user$ u
+  WHERE
+    p.bo# = tpo.obj#
+    AND p.subpartcnt = MOD(TRUNC(tpo.spare2 / 65536), 65536)
+    AND sp.pobjno = p.obj#
+    AND po.obj# = p.obj#
+    AND spo.obj# = sp.objno
+    AND sp.subpartno = dsp.spart_position
+    AND dsp.bo# = p.bo#
+    AND u.user# = po.owner#
+    and (
+      spo.subname = (po.subname || '_' || dsp.spart_name)
+      OR (
+        po.subname LIKE 'SYS_P%'
+        AND spo.subname LIKE 'SYS_SUBP%'
+      )
+    )
+columns: []
+referencedTables: []

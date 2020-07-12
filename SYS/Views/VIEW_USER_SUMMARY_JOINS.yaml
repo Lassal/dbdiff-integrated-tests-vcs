@@ -1,0 +1,43 @@
+schema: SYS
+name: USER_SUMMARY_JOINS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.name,
+    o.name,
+    u1.name,
+    o1.name,
+    c1.name,
+    '=',
+    u2.name,
+    o2.name,
+    c2.name
+  from
+    sys.sumjoin$ sj,
+    sys.obj$ o,
+    sys.user$ u,
+    sys.obj$ o1,
+    sys.user$ u1,
+    sys.col$ c1,
+    sys.obj$ o2,
+    sys.user$ u2,
+    sys.col$ c2,
+    sys.sum$ s
+  where
+    sj.sumobj# = o.obj#
+    AND o.owner# = u.user#
+    AND sj.tab1obj# = o1.obj#
+    AND o1.owner# = u1.user#
+    AND sj.tab1obj# = c1.obj#
+    AND sj.tab1col# = c1.intcol#
+    AND sj.tab2obj# = o2.obj#
+    AND o2.owner# = u2.user#
+    AND sj.tab2obj# = c2.obj#
+    AND sj.tab2col# = c2.intcol#
+    AND o.owner# = userenv('SCHEMAID')
+    AND s.obj# = sj.sumobj#
+    AND bitand(s.xpflags, 8388608) = 0
+    /* NOT REWRITE EQUIVALENCE SUMMARY */
+columns: []
+referencedTables: []

@@ -1,0 +1,115 @@
+schema: SYS
+name: ROLE_TAB_PRIVS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u1.name,
+    u2.name,
+    o.name,
+    col$.name,
+    tpm.name,
+    decode(max(mod(oa.option$, 2)), 1, 'YES', 'NO'),
+    'NO'
+  from
+    sys.user$ u1,
+    sys.user$ u2,
+    sys.table_privilege_map tpm,
+    sys.objauth$ oa,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.col$
+  where
+    grantee# in (
+      select
+        distinct(privilege#)
+      from
+        sys.sysauth$ sa
+      where
+        privilege# > 0
+      connect by
+        prior sa.privilege# = sa.grantee#
+      start with
+        grantee# = userenv('SCHEMAID')
+        or grantee# = 1
+        or grantee# in (
+          select
+            kzdosrol
+          from
+            x$kzdos
+        )
+    )
+    and u1.user# = oa.grantee#
+    and oa.privilege# = tpm.privilege
+    and oa.obj# = o.obj#
+    and oa.obj# = col$.obj#(+)
+    and oa.col# = col$.col#(+)
+    and u2.user# = o.owner#
+    and (
+      col$.property IS NULL
+      OR bitand(col$.property, 32) = 0
+    )
+    and bitand(nvl(oa.option$, 0), 4) = 0
+    /* Local, and maybe Common, Privs */
+  group by
+    u1.name,
+    u2.name,
+    o.name,
+    col$.name,
+    tpm.name
+  union all
+    /* Common Privileges */
+  select
+    u1.name,
+    u2.name,
+    o.name,
+    col$.name,
+    tpm.name,
+    decode(max(bitand(oa.option$, 16)), 16, 'YES', 'NO'),
+    'YES'
+  from
+    sys.user$ u1,
+    sys.user$ u2,
+    sys.table_privilege_map tpm,
+    sys.objauth$ oa,
+    sys. "_CURRENT_EDITION_OBJ" o,
+    sys.col$
+  where
+    grantee# in (
+      select
+        distinct(privilege#)
+      from
+        sys.sysauth$ sa
+      where
+        privilege# > 0
+      connect by
+        prior sa.privilege# = sa.grantee#
+      start with
+        grantee# = userenv('SCHEMAID')
+        or grantee# = 1
+        or grantee# in (
+          select
+            kzdosrol
+          from
+            x$kzdos
+        )
+    )
+    and u1.user# = oa.grantee#
+    and oa.privilege# = tpm.privilege
+    and oa.obj# = o.obj#
+    and oa.obj# = col$.obj#(+)
+    and oa.col# = col$.col#(+)
+    and u2.user# = o.owner#
+    and (
+      col$.property IS NULL
+      OR bitand(col$.property, 32) = 0
+    )
+    and bitand(oa.option$, 8) = 8
+    /* Common, and maybe Local, priv */
+  group by
+    u1.name,
+    u2.name,
+    o.name,
+    col$.name,
+    tpm.name
+columns: []
+referencedTables: []

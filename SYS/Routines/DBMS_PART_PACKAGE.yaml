@@ -1,0 +1,60 @@
+schema: SYS
+name: DBMS_PART
+routineType: PACKAGE
+returnParamater: null
+parameters:
+- name: CLEANUP_GIDX.SCHEMA_NAME_IN
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEANUP_GIDX.TABLE_NAME_IN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEANUP_GIDX_INTERNAL.SCHEMA_NAME_IN
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEANUP_GIDX_INTERNAL.TABLE_NAME_IN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEANUP_GIDX_INTERNAL.ORPHANS_ONLY_IN
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: CLEANUP_GIDX_INTERNAL.NOOP_OKAY_IN
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: IN
+- name: CLEANUP_ONLINE_OP.SCHEMA_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEANUP_ONLINE_OP.TABLE_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CLEANUP_ONLINE_OP.PARTITION_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package dbms_part authid current_user as procedure cleanup_gidx(
+    schema_name_in varchar2 default null,
+    table_name_in varchar2 default null
+  );
+  procedure cleanup_gidx_internal(
+    schema_name_in varchar2 default null,
+    table_name_in varchar2 default null,
+    orphans_only_in integer default 1,
+    noop_okay_in integer default 0
+  );
+  procedure cleanup_online_op(
+    schema_name in varchar2 default null,
+    table_name in varchar2 default null,
+    partition_name in varchar2 default null
+  );
+  end dbms_part;

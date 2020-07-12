@@ -1,0 +1,15 @@
+schema: SYS
+name: USER_XS_SECURITY_CLASS_DEP
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    security_class,
+    parent,
+    parent_owner
+  from
+    sys.dba_xs_security_class_dep
+  where
+    owner = sys_context('USERENV', 'CURRENT_USER')
+columns: []
+referencedTables: []

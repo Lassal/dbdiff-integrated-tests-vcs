@@ -1,0 +1,96 @@
+schema: XDBPM
+name: XDBPM_CONFIGURATION
+routineType: PACKAGE
+returnParamater:
+  name: GETDATABASESUMMARY.(--return--)
+  ordinalPosition: 0
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: OUT
+parameters:
+- name: ADDMIMEMAPPING.P_EXTENSION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDMIMEMAPPING.P_MAPPING
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDSCHEMAMAPPING.P_NAMESPACE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDSCHEMAMAPPING.P_ROOT_ELEMENT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDSCHEMAMAPPING.P_SCHEMA_URL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDSERVLETMAPPING.P_PATTERN
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDSERVLETMAPPING.P_SERVLET_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDSERVLETMAPPING.P_DISP_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDSERVLETMAPPING.P_SERVLET_CLASS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDSERVLETMAPPING.P_SERVLET_SCHEMA
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDSERVLETMAPPING.P_LANGUAGE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDSERVLETMAPPING.P_DESCRIPTION
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: ADDSERVLETMAPPING.P_SECURITY_ROLE
+  ordinalPosition: 8
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+- name: DELETESERVLETMAPPING.P_SERVLET_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: REGISTERXMLEXTENSION.P_EXTENSION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SETANONYMOUSACCESS.P_STATE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  package XDBPM_CONFIGURATION AUTHID CURRENT_USER as function getDatabaseSummary return XMLType;
+  procedure folderDatabaseSummary;
+  procedure addSchemaMapping(
+    P_NAMESPACE VARCHAR2,
+    P_ROOT_ELEMENT VARCHAR2,
+    P_SCHEMA_URL VARCHAR2
+  );
+  procedure addMimeMapping(P_EXTENSION VARCHAR2, P_MAPPING VARCHAR2);
+  procedure registerXMLExtension(P_EXTENSION VARCHAR2);
+  procedure addServletMapping(
+    P_PATTERN VARCHAR2,
+    P_SERVLET_NAME VARCHAR2,
+    P_DISP_NAME VARCHAR2,
+    P_SERVLET_CLASS VARCHAR2,
+    P_SERVLET_SCHEMA VARCHAR2,
+    P_LANGUAGE VARCHAR2 DEFAULT 'Java',
+    P_DESCRIPTION VARCHAR2 DEFAULT '',
+    P_SECURITY_ROLE XMLType DEFAULT NULL
+  );
+  procedure deleteservletMapping(P_SERVLET_NAME VARCHAR2);
+  procedure setAnonymousAccess(P_STATE VARCHAR2);
+  end XDBPM_CONFIGURATION;

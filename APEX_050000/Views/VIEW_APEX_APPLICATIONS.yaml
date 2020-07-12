@@ -1,0 +1,602 @@
+schema: APEX_050000
+name: APEX_APPLICATIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    w.short_name workspace,
+    w.display_name workspace_display_name,
+    f.ID application_id,
+    f.NAME application_name,
+    f.ALIAS alias,
+    f.OWNER owner,
+    (
+      select
+        group_name
+      from
+        wwv_flow_application_groups
+      where
+        id = f.group_id
+    ) application_group,
+    group_id application_group_id,
+    decode(
+      upper(f.WEBDB_LOGGING),
+      'YES',
+      'Yes',
+      'NO',
+      'No',
+      f.WEBDB_LOGGING
+    ) logging,
+    f.FLOW_LANGUAGE application_primary_language,
+    f.FLOW_LANGUAGE_DERIVED_FROM language_derived_from,
+    decode(
+      upper(f.csv_encoding),
+      'Y',
+      'Yes',
+      'N',
+      'No',
+      f.csv_encoding
+    ) csv_encoding,
+    f.date_format date_format,
+    f.date_time_format date_time_format,
+    f.timestamp_format timestamp_format,
+    f.timestamp_tz_format timestamp_tz_format,
+    f.nls_sort nls_sort,
+    f.nls_comp nls_comp,
+    f.auto_time_zone auto_time_zone,
+    f.ui_detection_css_urls ui_detection_css_urls,
+    f.error_handling_function error_handling_function,
+    f.default_error_display_location default_error_display_location,
+    f.FLOW_IMAGE_PREFIX image_prefix,
+    case
+      substr(authentication.scheme_type, 1, 7)
+      when 'NATIVE_' then (
+        select
+          display_name
+        from
+          wwv_flow_plugins
+        where
+          flow_id = 4411
+          and plugin_type = 'AUTHENTICATION TYPE'
+          and name = substr(authentication.scheme_type, 8)
+      )
+      when 'PLUGIN_' then (
+        select
+          display_name
+        from
+          wwv_flow_plugins
+        where
+          flow_id = f.id
+          and plugin_type = 'AUTHENTICATION TYPE'
+          and name = substr(authentication.scheme_type, 8)
+      )
+      else decode(
+        f.AUTHENTICATION,
+        'CUSTOM2',
+        'Authentication Scheme',
+        'COOKIE',
+        'APEX Authentication',
+        f.AUTHENTICATION
+      )
+    end authentication_scheme_type,
+    authentication.name authentication_scheme,
+    f.authentication_id authentication_scheme_id,
+    authentication.LOGOUT_URL logout_url,
+    decode(
+      substr(f.LOGO_IMAGE, 1, 5),
+      'TEXT:',
+      'Text Logo',
+      'Image Logo'
+    ) logo_type,
+    f.LOGO_IMAGE logo,
+    f.LOGO_IMAGE_ATTRIBUTES logo_attributes,
+    --f.PUBLIC_URL_PREFIX              public_url_prefix,
+    f.PUBLIC_USER public_user,
+    --f.DBAUTH_URL_PREFIX              db_auth_url_prefix,
+    f.PROXY_SERVER proxy_server,
+    f.media_type media_type,
+    --
+    --f.CUSTOM_AUTHENTICATION_PAGE     custom_auth_page,
+    --f.CUSTOM_AUTH_LOGIN_URL          custom_auth_login_url,
+    f.FLOW_VERSION version,
+    decode(
+      f.FLOW_STATUS,
+      'AVAILABLE',
+      'Available',
+      'AVAILABLE_W_EDIT_LINK',
+      'Available with Edit Links',
+      'DEVELOPERS_ONLY',
+      'Available to Developers Only',
+      'RESTRICTED_ACCESS',
+      'Restricted Access',
+      'UNAVAILABLE',
+      'Unavailable',
+      'UNAVAILABLE_PLSQL',
+      'Unavailable (Status Shown with PL/SQL)',
+      'UNAVAILABLE_URL',
+      'Unavailable (Redirect to URL)',
+      f.flow_status
+    ) availability_status,
+    f.FLOW_UNAVAILABLE_TEXT unavailable_text,
+    f.RESTRICT_TO_USER_LIST restrict_to_user,
+    decode(
+      f.APPLICATION_TAB_SET,
+      1,
+      'Allowed',
+      0,
+      'Not Allowed',
+      'Allowed'
+    ) debugging,
+    decode(
+      f.EXACT_SUBSTITUTIONS_ONLY,
+      'N',
+      'No',
+      'Y',
+      'Yes',
+      f.EXACT_SUBSTITUTIONS_ONLY
+    ) exact_substitutions,
+    decode(
+      f.BUILD_STATUS,
+      'RUN_ONLY',
+      'Run Only',
+      'RUN_AND_BUILD',
+      'Run and Develop',
+      'RUN_AND_HIDDEN',
+      'Run and Hidden',
+      f.BUILD_STATUS
+    ) build_status,
+    decode(f.publish_yn, 'Y', 'Yes', 'N', 'No', 'No') publish,
+    f.VPD vpd,
+    /* for compatibility reasons */
+    f.VPD db_session_init_code,
+    f.vpd_teardown_code db_session_cleanup_code,
+    --
+    decode(substr(f.SECURITY_SCHEME, 1, 1), '!', 'Not ') || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(f.SECURITY_SCHEME, '!')
+          and flow_id = f.id
+      ),
+      f.SECURITY_SCHEME
+    ) authorization_scheme,
+    f.security_scheme authorization_scheme_id,
+    decode(f.authorize_public_pages_yn, 'Y', 'Yes', 'No') authorize_public_pages,
+    f.LAST_UPDATED_BY last_updated_by,
+    f.LAST_UPDATED_ON last_updated_on,
+    f.GLOBAL_NOTIFICATION global_notification,
+    decode(
+      f.PAGE_PROTECTION_ENABLED_Y_N,
+      'Y',
+      'Enabled',
+      'N',
+      'Disabled',
+      'Disabled'
+    ) Session_State_Protection,
+    f.MAX_SESSION_LENGTH_SEC Maximum_Session_Life_Seconds,
+    ON_MAX_SESSION_TIMEOUT_URL Session_Lifetime_Exceeded_URL,
+    f.MAX_SESSION_IDLE_SEC Maximum_Session_Idle_Seconds,
+    ON_MAX_IDLE_TIMEOUT_URL Session_Idle_Time_Exceeded_URL,
+    case
+      f.browser_cache
+      when 'Y' then 'Enabled'
+      else 'Disabled'
+    end browser_cache,
+    case
+      f.browser_frame
+      when 'D' then 'Deny'
+      when 'S' then 'Allow from same origin'
+      else 'Allow'
+    end browser_frame,
+    case
+      f.deep_linking
+      when 'Y' then 'Enabled'
+      else 'Disabled'
+    end deep_linking,
+    compatibility_mode,
+    case
+      html_escaping_mode
+      when 'B' then 'Basic'
+      when 'E' then 'Extended'
+    end html_escaping_mode,
+    case
+      allow_feedback_yn
+      when 'Y' then 'Enabled'
+      else 'Disabled'
+    end feedback,
+    email_from,
+    f.file_prefix,
+    f.files_version,
+    f.runtime_api_usage,
+    case
+      f.rejoin_existing_sessions
+      when 'Y' then 'All Sessions'
+      when 'P' then 'Public Sessions'
+      when 'N' then 'Disabled'
+    end rejoin_existing_sessions,
+    f.http_response_headers http_response_headers,
+    f.bookmark_checksum_function bookmark_checksum_function,
+    -- sub components
+    (
+      select
+        count(*)
+      from
+        wwv_flow_steps
+      where
+        flow_id = f.id
+    ) pages,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_tabs
+      where
+        flow_id = f.id
+    ) tabs,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_toplevel_tabs
+      where
+        flow_id = f.id
+    ) parent_tabs,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_items
+      where
+        flow_id = f.id
+    ) application_items,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_processing
+      where
+        flow_id = f.id
+    ) application_processes,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_computations
+      where
+        flow_id = f.id
+    ) application_computations,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_shortcuts
+      where
+        flow_id = f.id
+    ) shortcuts,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_shared_web_services
+      where
+        flow_id = f.id
+    ) web_services,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_trees
+      where
+        flow_id = f.id
+    ) trees,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_patches
+      where
+        flow_id = f.id
+    ) build_options,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_menus
+      where
+        flow_id = f.id
+    ) breadcrumbs,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_icon_bar
+      where
+        flow_id = f.id
+    ) nav_bar_entries,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_lists
+      where
+        flow_id = f.id
+    ) lists,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_lists_of_values$
+      where
+        flow_id = f.id
+    ) lists_of_values,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_themes
+      where
+        flow_id = f.id
+    ) themes,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_authentications
+      where
+        flow_id = f.id
+    ) authentication_schemes,
+    (
+      select
+        count(*)
+      from
+        WWV_FLOW_SECURITY_SCHEMES
+      where
+        flow_id = f.id
+    ) authorization_schemes,
+    (
+      select
+        count(*)
+      from
+        WWV_FLOW_MESSAGES$
+      where
+        flow_id = f.id
+    ) translation_messages,
+    (
+      select
+        count(*)
+      from
+        wwv_flow_install_scripts
+      where
+        flow_id = f.id
+    ) installation_scripts,
+    (
+      select
+        count(*)
+      from
+        WWV_FLOW_STEPS
+      where
+        flow_id = f.id
+        and CACHE_MODE <> 'NOCACHE'
+    ) cached_pages,
+    (
+      select
+        count(*)
+      from
+        WWV_FLOW_PAGE_PLUGS
+      where
+        flow_id = f.id
+        and PLUG_CACHING <> 'NOCACHE'
+    ) cached_regions,
+    --
+    'a=' || f.ALIAS || ' o=' || f.OWNER || ' l=' || decode(
+      upper(f.WEBDB_LOGGING),
+      'YES',
+      'Yes',
+      'NO',
+      'No',
+      f.WEBDB_LOGGING
+    ) || ' l=' || f.FLOW_LANGUAGE || ' ' || f.FLOW_LANGUAGE_DERIVED_FROM || ' i=' || substr(f.FLOW_IMAGE_PREFIX, 1, 20) || length(f.FLOW_IMAGE_PREFIX) || ' a=' || substr(f.AUTHENTICATION, 1, 20) || length(f.AUTHENTICATION) || ' l=' || substr(f.LOGOUT_URL, 1, 20) || length(f.LOGOUT_URL) || ' l=' || decode(
+      substr(f.LOGO_IMAGE, 1, 5),
+      'TEXT:',
+      'TextLogo',
+      'Image Logo'
+    ) || ',' || substr(f.LOGO_IMAGE, 1, 20) || length(f.LOGO_IMAGE) || ',' || substr(f.LOGO_IMAGE_ATTRIBUTES, 1, 20) || length(f.LOGO_IMAGE_ATTRIBUTES) || ' p=' || f.PUBLIC_USER || ' p=' || substr(f.PROXY_SERVER, 1, 20) || length(f.PROXY_SERVER) || ' v=' || f.FLOW_VERSION || ' s=' || decode(
+      f.FLOW_STATUS,
+      'AVAILABLE',
+      'Available',
+      'AVAILABLE_W_EDIT_LINK',
+      'AvailwEL',
+      'DEVELOPERS_ONLY',
+      'DevOnly',
+      'RESTRICTED_ACCESS',
+      'Rests',
+      'UNAVAILABLE',
+      'Unavail',
+      'UNAVAILABLE_PLSQL',
+      'UnavailPL/SQL)',
+      'UNAVAILABLE_URL',
+      'UnavailableRedir',
+      f.flow_status
+    ) || ' u=' || substr(f.FLOW_UNAVAILABLE_TEXT, 1, 20) || length(f.FLOW_UNAVAILABLE_TEXT) || ' r=' || substr(f.RESTRICT_TO_USER_LIST, 1, 20) || length(f.RESTRICT_TO_USER_LIST) || ' d=' || decode(
+      f.APPLICATION_TAB_SET,
+      1,
+      'Allowed',
+      0,
+      '!Allowed',
+      'Allowed'
+    ) || ' s=' || decode(
+      f.EXACT_SUBSTITUTIONS_ONLY,
+      'N',
+      'No',
+      'Y',
+      'Yes',
+      f.EXACT_SUBSTITUTIONS_ONLY
+    ) || ' s=' || decode(
+      f.BUILD_STATUS,
+      'RUN_ONLY',
+      'Run Only',
+      'RUN_AND_BUILD',
+      'Run+Dev',
+      f.BUILD_STATUS
+    ) || ' v=' || substr(f.VPD, 1, 20) || length(f.vpd) || ' v2=' || substr(f.vpd_teardown_code, 1, 20) || length(f.vpd_teardown_code) || ' a=' || decode(substr(f.SECURITY_SCHEME, 1, 1), '!', 'Not ') || nvl(
+      (
+        select
+          name
+        from
+          wwv_flow_security_schemes
+        where
+          to_char(id) = ltrim(f.SECURITY_SCHEME, '!')
+          and flow_id = f.id
+      ),
+      'Not found'
+    ) || ' gn=' || substr(f.GLOBAL_NOTIFICATION, 1, 20) || length(f.GLOBAL_NOTIFICATION) || ' pp=' || decode(
+      f.PAGE_PROTECTION_ENABLED_Y_N,
+      'Y',
+      'Enabled',
+      'N',
+      'Disabled',
+      'Disabled'
+    ) || ' timeout=' || f.MAX_SESSION_LENGTH_SEC || '.' || ON_MAX_SESSION_TIMEOUT_URL || '.' || f.MAX_SESSION_IDLE_SEC || '.' || ON_MAX_IDLE_TIMEOUT_URL component_signature,
+    f.security_group_id workspace_id,
+    --
+    -- For compatibility with SQL Developer and existing applications (bug# 14545162)
+    -- Get the values from the user interfaces table, but only if the app has only one user interface
+    (
+      select
+        case
+          when count(*) = 1 then min(theme_id)
+        end
+      from
+        wwv_flow_user_interfaces
+      where
+        flow_id = f.id
+    ) as theme_number,
+    (
+      select
+        case
+          when count(*) = 1 then min(home_url)
+        end
+      from
+        wwv_flow_user_interfaces
+      where
+        flow_id = f.id
+    ) as home_link,
+    (
+      select
+        case
+          when count(*) = 1 then min(login_url)
+        end
+      from
+        wwv_flow_user_interfaces
+      where
+        flow_id = f.id
+    ) as login_url,
+    (
+      select
+        case
+          when count(*) = 1 then min(pt.name)
+        end
+      from
+        wwv_flow_user_interfaces ui,
+        wwv_flow_themes t,
+        wwv_flow_templates pt
+      where
+        ui.flow_id = f.id
+        and t.flow_id = ui.flow_id
+        and t.theme_id = ui.theme_id
+        and pt.id = t.default_page_template
+    ) as page_template,
+    (
+      select
+        case
+          when count(*) = 1 then min(pt.name)
+        end
+      from
+        wwv_flow_user_interfaces ui,
+        wwv_flow_themes t,
+        wwv_flow_templates pt
+      where
+        ui.flow_id = f.id
+        and t.flow_id = ui.flow_id
+        and t.theme_id = ui.theme_id
+        and pt.id = t.error_template
+    ) as error_page_template,
+    (
+      select
+        case
+          when count(*) = 1 then min(content_delivery_network)
+        end
+      from
+        wwv_flow_user_interfaces
+      where
+        flow_id = f.id
+    ) as content_delivery_network,
+    (
+      select
+        case
+          when count(*) = 1 then min(javascript_file_urls)
+        end
+      from
+        wwv_flow_user_interfaces
+      where
+        flow_id = f.id
+    ) as javascript_file_urls,
+    (
+      select
+        case
+          when count(*) = 1 then min(include_legacy_javascript)
+        end
+      from
+        wwv_flow_user_interfaces
+      where
+        flow_id = f.id
+    ) as include_legacy_javascript
+  from
+    wwv_flows f,
+    wwv_flow_companies w,
+    wwv_flow_company_schemas s,
+    wwv_flow_authentications authentication,
+    (
+      select
+        nvl(nv('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+        (
+          select
+            sys_context('USERENV', 'CURRENT_USER')
+          from
+            sys.dual
+        ) cu
+      from
+        sys.dual
+    ) d
+  where
+    (
+      s.schema = cu
+      or (
+        select
+          wwv_flow_security.has_apex_administrator_role_yn(cu)
+        from
+          sys.dual
+      ) = 'Y'
+      or d.sgid = w.PROVISIONING_COMPANY_ID
+    )
+    and w.provisioning_company_id <> 0
+    and f.security_group_id = w.provisioning_company_id
+    and f.security_group_id = s.security_group_id
+    and s.schema = f.owner
+    and f.authentication_id = authentication.id (+)
+    /* keep this not exists */
+    and not exists (
+      select
+        1
+      from
+        wwv_flow_language_map m
+      where
+        m.translation_flow_id = f.id
+        and m.security_group_id = f.security_group_id
+        and f.authentication_id <> trunc(f.authentication_id)
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,21 @@
+schema: SYS
+name: DM_USER_MODELS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    m.model_name,
+    mining_function,
+    algorithm,
+    creation_date,
+    build_duration,
+    attribute_name,
+    model_size
+  from
+    user_mining_models m,
+    user_mining_model_attributes a
+  where
+    m.model_name = a .model_name(+)
+    and target(+) = 'YES'
+columns: []
+referencedTables: []

@@ -1,0 +1,13 @@
+schema: SYS
+name: USER_EPG_DAD_AUTHORIZATION
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    ea.dadname
+  from
+    epg$_auth ea
+  where
+    ea.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

@@ -1,0 +1,94 @@
+schema: SYS
+name: USER_CUBE_ATTR_MAPPINGS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name DIMENSION_NAME,
+    a .attribute_name ATTRIBUTE_NAME,
+    decode(
+      owner_map.mapping_owner_type,
+      '12',
+      'DIMENSION LEVEL',
+      '11',
+      'PRIMARY DIMENSION',
+      '14',
+      'HIERARCHY LEVEL',
+      '13',
+      'HIERARCHY'
+    ) OWNER_MAP_DIMENSION_TYPE,
+    owner_map.map_name OWNER_MAP_NAME,
+    CASE
+      owner_map.mapping_owner_type
+      WHEN 14 -- hier_level
+      THEN (
+        select
+          h.hierarchy_name
+        from
+          olap_dim_levels$ dl,
+          olap_hier_levels$ hl,
+          olap_hierarchies$ h
+        where
+          owner_map.mapping_owner_id = hl.hierarchy_level_id
+          AND hl.dim_level_id = dl.level_id
+          AND hl.hierarchy_id = h.hierarchy_id
+      )
+      WHEN 13 -- hierarchy
+      THEN (
+        select
+          h.hierarchy_name
+        from
+          olap_hierarchies$ h
+        where
+          owner_map.mapping_owner_id = h.hierarchy_id
+      )
+      ELSE NULL
+    END AS OWNER_MAP_HIERARCHY_NAME,
+    CASE
+      owner_map.mapping_owner_type
+      WHEN 12 -- dim_level
+      THEN (
+        select
+          dl.level_name
+        from
+          olap_dim_levels$ dl
+        where
+          owner_map.mapping_owner_id = dl.level_id
+      )
+      WHEN 14 -- hier_level
+      THEN (
+        select
+          dl.level_name
+        from
+          olap_dim_levels$ dl,
+          olap_hier_levels$ hl
+        where
+          owner_map.mapping_owner_id = hl.hierarchy_level_id
+          AND hl.dim_level_id = dl.level_id
+      )
+      ELSE NULL
+    END AS OWNER_MAP_LEVEL_NAME,
+    m.map_name MAP_NAME,
+    m.map_id MAP_ID,
+    s1.syntax_clob ATTRIBUTE_EXPRESSION,
+    i1.option_value LANGUAGE
+  FROM
+    olap_mappings$ m,
+    olap_mappings$ owner_map,
+    obj$ o,
+    olap_attributes$ a,
+    olap_syntax$ s1,
+    olap_impl_options$ i1
+  WHERE
+    m.map_type = 17
+    AND m.mapping_owner_id = owner_map.map_id
+    AND m.mapped_object_id = a .attribute_id
+    AND a .dim_obj# = o.obj#
+    AND o.owner# = USERENV('SCHEMAID')
+    AND m.map_id = s1.owner_id(+)
+    AND m.map_type = s1.owner_type(+)
+    AND s1.ref_role(+) = 2
+    AND m.map_id = i1.owning_objectid(+)
+    AND i1.option_type(+) = 12
+columns: []
+referencedTables: []

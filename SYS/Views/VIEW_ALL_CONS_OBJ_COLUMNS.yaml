@@ -1,0 +1,149 @@
+schema: SYS
+name: ALL_CONS_OBJ_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    uc.name,
+    oc.name,
+    c .name,
+    ut.name,
+    ot.name,
+    lpad(decode(bitand(sc.flags, 2), 2, 'Y', 'N'), 15)
+  from
+    sys.user$ uc,
+    sys. "_CURRENT_EDITION_OBJ" oc,
+    sys.col$ c,
+    sys. "_BASE_USER" ut,
+    sys.obj$ ot,
+    sys.subcoltype$ sc
+  where
+    oc.owner# = uc.user#
+    and bitand(sc.flags, 1) = 1
+    /* Type is specified in the IS OF clause */
+    and oc.obj# = sc.obj#
+    and oc.obj# = c .obj#
+    and c .intcol# = sc.intcol#
+    and sc.toid = ot.oid$
+    and ot.owner# = ut.user#
+    and bitand(c .property, 32768) != 32768
+    /* not unused column */
+    and not exists (
+      select
+        null
+        /* Doesn't exist in attrcol$ */
+      from
+        sys.attrcol$ ac
+      where
+        ac.intcol# = sc.intcol#
+        and ac.obj# = sc.obj#
+    )
+    and (
+      oc.owner# = userenv('SCHEMAID')
+      or oc.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+  union all
+  select
+    uc.name,
+    oc.name,
+    ac.name,
+    ut.name,
+    ot.name,
+    lpad(decode(bitand(sc.flags, 2), 2, 'Y', 'N'), 15)
+  from
+    sys.user$ uc,
+    sys. "_CURRENT_EDITION_OBJ" oc,
+    sys.col$ c,
+    sys. "_BASE_USER" ut,
+    sys.obj$ ot,
+    sys.subcoltype$ sc,
+    sys.attrcol$ ac
+  where
+    oc.owner# = uc.user#
+    and bitand(sc.flags, 1) = 1
+    /* Type is specified in the IS OF clause */
+    and oc.obj# = sc.obj#
+    and oc.obj# = c .obj#
+    and oc.obj# = ac.obj#
+    and c .intcol# = sc.intcol#
+    and ac.intcol# = sc.intcol#
+    and sc.toid = ot.oid$
+    and ot.owner# = ut.user#
+    and bitand(c .property, 32768) != 32768
+    /* not unused column */
+    and (
+      oc.owner# = userenv('SCHEMAID')
+      or oc.obj# in (
+        select
+          oa.obj#
+        from
+          sys.objauth$ oa
+        where
+          grantee# in (
+            select
+              kzsrorol
+            from
+              x$kzsro
+          )
+      )
+      or
+      /* user has system privileges */
+      exists (
+        select
+          null
+        from
+          v$enabledprivs
+        where
+          priv_number in (
+            -45
+            /* LOCK ANY TABLE */,
+            -47
+            /* SELECT ANY TABLE */,
+            -397
+            /* READ ANY TABLE */,
+            -48
+            /* INSERT ANY TABLE */,
+            -49
+            /* UPDATE ANY TABLE */,
+            -50
+            /* DELETE ANY TABLE */
+          )
+      )
+    )
+columns: []
+referencedTables: []

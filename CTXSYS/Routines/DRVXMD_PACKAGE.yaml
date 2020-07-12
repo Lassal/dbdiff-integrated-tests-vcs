@@ -1,0 +1,856 @@
+schema: CTXSYS
+name: DRVXMD
+routineType: PACKAGE
+returnParamater:
+  name: SUBSTRINGENABLED.(--return--)
+  ordinalPosition: 0
+  dataType: NUMBER
+  parameterMode: OUT
+parameters:
+- name: ALLOCATEDOCIDS.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: ALLOCATEDOCIDS.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: ALLOCATEDOCIDS.P_ALLOCSZ
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: ALLOCATEDOCIDS.P_STARTID
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+- name: AUTOOPT_PREP.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: AUTOOPT_PREP.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: AUTOOPT_PREP.P_WAIT
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: AUTOOPT_PREP.P_LOCKRET
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: AUTOOPT_PUSH_TOKEN.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: AUTOOPT_PUSH_TOKEN.P_MESSAGE
+  ordinalPosition: 2
+  dataType: RAW
+  parameterMode: IN
+- name: CHECK_FILE_ACCESS_ROLE.P_USER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: CHKINDEXOPTION.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: CHKINDEXOPTION.P_OPT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: DECREMENTDOCCNT.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: DECREMENTDOCCNT.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: DECREMENTDOCCNT.P_DELTA
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETBASETABLENAME.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETBASETABLENAME.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETDOCIDCOUNT.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETDOCIDCOUNT.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETFIELDSECNAME.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETFIELDSECNAME.P_SECID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETINDEXMD.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETINDEXMD.O_OWNER
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETINDEXMD.O_OWNER#
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETINDEXMD.O_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETINDEXMD.O_TABLE_OBJ#
+  ordinalPosition: 5
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETINDEXMD.O_TABLE_DATAOBJ#
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETINDEXMD.O_KEY_NAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETINDEXMD.O_KEY_TYPE
+  ordinalPosition: 8
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GETINDEXMD.O_TEXT_NAME
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETINDEXMD.O_TEXT_TYPE
+  ordinalPosition: 10
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GETINDEXMD.O_TEXT_LENGTH
+  ordinalPosition: 11
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GETINDEXMD.O_LANG_COL
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETINDEXMD.O_FMT_COL
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETINDEXMD.O_CSET_COL
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETINDEXMD.O_IDX_TYPE
+  ordinalPosition: 15
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GETINDEXMD.O_IDX_OPTION
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETINDEXMD.O_IDX_SYNC_TYPE
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETINDEXMD.O_IDX_SYNC_MEMORY
+  ordinalPosition: 18
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GETINDEXMD.O_IDX_SRC_NAME
+  ordinalPosition: 19
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETINDEXMD.O_IDX_SRC_ID
+  ordinalPosition: 20
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GETINDEXMD.O_IDX_VERSION
+  ordinalPosition: 21
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GETINDEXMD.O_CONFIG_COL
+  ordinalPosition: 22
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETINDEXPARTITION.O_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETINDEXPARTITION.O_TABPART_DATAOBJ#
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETINDEXPARTITION.O_SYNC_TYPE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETINDEXPARTITION.O_SYNC_MEMORY
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETINDEXPARTITION.O_OPTION
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETINDEXPARTITION.I_CID
+  ordinalPosition: 6
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETINDEXPARTITION.I_PNAME
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETINDEXSTATS.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETINDEXSTATS.P_SMPLSZ
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: INOUT
+- name: GETMVFLAG.TABLE_ID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETMVFLAG.OWNER_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: GETMVFLAG.OPT
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: GETNEXTID.P_IDXID
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GETNEXTID.P_IXPID
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: GETOBJDEFAULT.P_OATID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETOBJDEFAULT.O_DEFAULT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: GETPREFCLAOBJ.P_PREID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETPREFCLAOBJ.O_CLAID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETPREFCLAOBJ.O_OBJID
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: OUT
+- name: GETSECDATATYPE.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETSECDATATYPE.P_SECID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: GETSLXMDATASECID.IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: INCREMENTDOCCNT.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: INCREMENTDOCCNT.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: INCREMENTDOCCNT.P_DELTA
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: INDEXHASGTABLE.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: INDEXHASGTABLE.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: NEXTINDEXCDI.O_CDI_POS
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXCDI.O_CDI_TYPE#
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXCDI.O_CDI_LEN
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXCDI.O_CDI_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: NEXTINDEXCDI.O_CDI_SEC
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: NEXTINDEXCDI.O_CDI_STYPE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXCDI.O_CDI_ID
+  ordinalPosition: 7
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXOBJECT.O_CLA_ID
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXOBJECT.O_OBJ_ID
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXOBJECT.O_ACNT
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXVALUE.O_CLA_ID
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXVALUE.O_ATT_ID
+  ordinalPosition: 2
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXVALUE.O_DATATYPE
+  ordinalPosition: 3
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXVALUE.O_SUB_GROUP
+  ordinalPosition: 4
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXVALUE.O_SUB_ATT_ID
+  ordinalPosition: 5
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXVALUE.O_SUB_DATATYPE
+  ordinalPosition: 6
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: NEXTINDEXVALUE.O_VALUE
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: NEXTPREFVALUE.O_VALUE
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: NEXTPREFVALUE.O_OATID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: OUT
+- name: OPENINDEXMDSCAN.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: OPENPREFVALUE.P_PREID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: OPTGETSTATE.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: OPTGETSTATE.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: OPTGETSTATE.P_NTABLE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPTGETSTATE.P_ITABLE_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPTGETSTATE.P_SNTABLE_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPTGETSTATE.P_BEG_S_OPT
+  ordinalPosition: 6
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: OPTGETSTATE.O_OPT_TOKEN
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: OPTGETSTATE.O_OPT_TYPE
+  ordinalPosition: 8
+  dataType: NUMBER
+  parameterMode: OUT
+- name: OPTGETTYPE.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: OPTGETTYPE.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: OPTGETTYPE.P_NTABLE_NAME
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPTGETTYPE.P_ITABLE_NAME
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPTGETTYPE.P_SNTABLE_NAME
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPTGETTYPE.O_OPT_TOKEN
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: OPTGETTYPE.O_OPT_TYPE
+  ordinalPosition: 7
+  dataType: NUMBER
+  parameterMode: IN
+- name: OPTSETSTATE.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: OPTSETSTATE.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: OPTSETSTATE.P_OPT_TOKEN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: OPTSETSTATE.P_OPT_TYPE
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROCESSN.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROCESSN.P_IXPID
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: PROCESSN.DEL
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: RECORDINDEXERROR.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: RECORDINDEXERROR.P_TEXTKEY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RECORDINDEXERROR.P_STACK
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RECORDOPTTOKENERROR.TOKEN_TEXT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: RECORDOPTTOKENERROR.TOKEN_TYPE
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: SELECTUSERANLDICTLOB.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: SELECTUSERANLDICTLOB.P_DICTLANG
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_REVERSE_DOCID_SWITCH.OWNER_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_REVERSE_DOCID_SWITCH.INDEX_NAME
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SET_REVERSE_DOCID_SWITCH.VALUE
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: SUBSTRINGENABLED.P_IDXID
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: TXNALGETKEY.P_KEY
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: INOUT
+- name: TXNALSETKEY.P_KEY
+  ordinalPosition: 1
+  dataType: RAW
+  parameterMode: IN
+routineDefinition: |-
+  package drvxmd authid current_user is
+  /*---------------------------- GetIndexMD  -------------------------------*/
+  /* fetch selected dr$index column values into out variables */
+  procedure GetIndexMD(
+    p_idxid in number,
+    o_owner out varchar2,
+    o_owner# out number,
+    o_name out varchar2,
+    o_table_obj# out number,
+    o_table_dataobj# out number,
+    o_key_name out varchar2,
+    o_key_type out binary_integer,
+    o_text_name out varchar2,
+    o_text_type out binary_integer,
+    o_text_length out binary_integer,
+    o_lang_col out varchar2,
+    o_fmt_col out varchar2,
+    o_cset_col out varchar2,
+    o_idx_type out binary_integer,
+    o_idx_option out varchar2,
+    o_idx_sync_type out varchar2,
+    o_idx_sync_memory out binary_integer,
+    o_idx_src_name out varchar2,
+    o_idx_src_id out binary_integer,
+    o_idx_version out binary_integer,
+    o_config_col out varchar2
+  );
+  /*---------------------------- GetIndexPartition  -----------------------*/
+  /* get dr$index_partition information */
+  procedure GetIndexPartition(
+    o_id out number,
+    o_tabpart_dataobj# out number,
+    o_sync_type out varchar2,
+    o_sync_memory out number,
+    o_option out varchar2,
+    i_cid in number,
+    i_pname in varchar2
+  );
+  /*---------------------------- OpenIndexMDScan ----------------------*/
+  /* open dr$index_object and value cursors */
+  procedure OpenIndexMDScan(p_idxid in number);
+  /*---------------------------- NextIndexObject ---------------------------*/
+  /* get next dr$index_object cursor */
+  function NextIndexObject(
+    o_cla_id out binary_integer,
+    o_obj_id out binary_integer,
+    o_acnt out binary_integer
+  ) return binary_integer;
+  /*---------------------------- NextIndexValue ----------------------------*/
+  /* get next dr$index_value cursor */
+  function NextIndexValue(
+    o_cla_id out binary_integer,
+    o_att_id out binary_integer,
+    o_datatype out binary_integer,
+    o_sub_group out binary_integer,
+    o_sub_att_id out binary_integer,
+    o_sub_datatype out binary_integer,
+    o_value out varchar2
+  ) return binary_integer;
+  /*---------------------------- NextIndexCDI ---------------------------*/
+  /* get next dr$index_cdi_column cursor */
+  function NextIndexCDI(
+    o_cdi_pos out binary_integer,
+    o_cdi_type# out binary_integer,
+    o_cdi_len out binary_integer,
+    o_cdi_name out varchar2,
+    o_cdi_sec out varchar2,
+    o_cdi_stype out binary_integer,
+    o_cdi_id out binary_integer
+  ) return binary_integer;
+  /*---------------------------- GetDocidCount -----------------------------*/
+  /* get docid count */
+  function GetDocidCount(
+    p_idxid in number,
+    p_ixpid in number default null
+  ) return number;
+  /*--------------------------- GetNextId -------------------------------------*/
+  /* get next docid */
+  function GetNextId(
+    p_idxid in binary_integer,
+    p_ixpid in binary_integer default null
+  ) return binary_integer;
+  /*---------------------------- GetIndexStats -----------------------------*/
+  /* get index stats from dr$stats */
+  procedure GetIndexStats(
+    p_idxid in number,
+    p_smplsz in out nocopy number
+  );
+  /*---------------------------- GetBaseTableName --------------------------*/
+  /* get base table name */
+  function GetBaseTableName(
+    p_idxid in number,
+    p_ixpid in number default null
+  ) return varchar2;
+  /*---------------------------- IncrementDocCnt --------------------------*/
+  /* increment docid count */
+  procedure IncrementDocCnt(
+    p_idxid in number,
+    p_ixpid in number,
+    p_delta in number
+  );
+  /*--------------------------- DecrementDocCnt ------------------------------*/
+  /* decrement docid count */
+  procedure DecrementDocCnt(
+    p_idxid in number,
+    p_ixpid in number,
+    p_delta in number
+  );
+  /*---------------------------- AllocateDocids ---------------------------*/
+  /* allocate docids */
+  procedure AllocateDocids(
+    p_idxid in number,
+    p_ixpid in number,
+    p_allocsz in binary_integer,
+    p_startid out number
+  );
+  /*---------------------------- RecordIndexError -------------------------*/
+  /* records an error to the dr$index_error table */
+  procedure RecordIndexError(
+    p_idxid in number,
+    p_textkey in varchar2,
+    p_stack in varchar2
+  );
+  /*---------------------------- OptStartTimer -----------------------------*/
+  /* starts optimization timer */
+  procedure OptStartTimer;
+  /*---------------------------- OptGetTimer -------------------------------*/
+  /* gets optimization timer */
+  function OptGetTimer return binary_integer;
+  /*---------------------------- OptGetState -------------------------------*/
+  /* get full optimize state */
+  procedure OptGetState(
+    p_idxid in number,
+    p_ixpid in number,
+    p_ntable_name in varchar2,
+    p_itable_name in varchar2,
+    p_sntable_name in varchar2,
+    p_beg_s_opt in boolean,
+    o_opt_token out varchar2,
+    o_opt_type out number
+  );
+  /*---------------------------- OptGetType -------------------------------*/
+  /* get type optimize start token */
+  procedure OptGetType(
+    p_idxid in number,
+    p_ixpid in number,
+    p_ntable_name in varchar2,
+    p_itable_name in varchar2,
+    p_sntable_name in varchar2,
+    o_opt_token out varchar2,
+    o_opt_type in number
+  );
+  /*---------------------------- OptSetState -------------------------------*/
+  /* set full optimize state */
+  procedure OptSetState(
+    p_idxid in number,
+    p_ixpid in number,
+    p_opt_token in varchar2,
+    p_opt_type in number
+  );
+  /*---------------------------- GetFieldSecName -----------------------------*/
+  /* get field section name */
+  function GetFieldSecName (p_idxid in number, p_secid in number) return varchar2;
+  /*---------------------------- GetPrefClaObj -----------------------------*/
+  procedure GetPrefClaObj(
+    p_preid in number,
+    o_claid out number,
+    o_objid out number
+  );
+  /*---------------------------- GetObjDefault -----------------------------*/
+  procedure GetObjDefault(
+    p_oatid in number,
+    o_default out varchar2
+  );
+  /*---------------------------- OpenPrefValue ------------------------------*/
+  procedure OpenPrefValue(p_preid in number);
+  /*---------------------------- NextPrefValue ------------------------------*/
+  function NextPrefValue(
+    o_value out varchar2,
+    o_oatid out number
+  ) return binary_integer;
+  /*---------------- set_reverse_docid_switch  -------------------*/
+  /*
+
+    NAME
+
+      Set_reverse_docid_switch
+
+
+
+    DESCRIPTION
+
+      Turns ON/OFF reverse docid processing for a specified index.
+
+
+
+    ARGUMENTS
+
+      owner_name     index owner
+
+      index_name     index name
+
+      value          switch value (ON or OFF)
+
+  */
+  PROCEDURE set_reverse_docid_switch(
+    owner_name in varchar2,
+    index_name in varchar2,
+    value in varchar2
+  );
+  PRAGMA SUPPLEMENTAL_LOG_DATA(set_reverse_docid_switch, AUTO);
+  /*------------------- get_functional_cache_size ----------------------------*/
+  FUNCTION get_functional_cache_size RETURN number;
+  /*--------------- GetMVFlag ------------------------------------------------*/
+  /*
+
+    NAME
+
+      GetMVFlag
+
+
+
+    DESCRIPTION
+
+      Check whether it's index on Materialized View
+
+
+
+    ARGUMENTs
+
+      table_id
+
+      owner_name
+
+      opt              1 -- index on MView
+
+                       0 -- not index on MView
+
+  */
+  PROCEDURE GetMVFlag(
+    table_id in number,
+    owner_name in varchar2,
+    opt out binary_integer
+  );
+  /*---------------------------- GetSecDataType -----------------------------*/
+  /* get section datatype, mainly for MDATA and SDATA */
+  function GetSecDataType (p_idxid in number, p_secid in number) return number;
+  /*---------------------------- ChkIndexOption -----------------------------*/
+  /*
+
+    Take in index id, and an option letter (see drdmlop() for a list of
+
+    options), return 1 if the given option is set, 0 otherwise.
+
+  */
+  function ChkIndexOption (
+    p_idxid in number,
+    p_opt in varchar2
+  ) return number;
+  /*---------------------------- SelectUserAnlDictLob-----------------------------*/
+  /*
+
+    Take index id and dictionary language as input and return user supplied
+
+    dictionary lob to be used by ATG auto lexer
+
+  */
+  function SelectUserAnlDictLob(
+    p_idxid in number,
+    p_dictlang in varchar2
+  ) return clob;
+  /*--------------------------- ctx_sqe_tbl_func ------------------------------*/
+  /*
+
+    Table function for creating the ctx_user_sqes view
+
+  */
+  type ctx_sqe_type is record(
+    sqe_owner# number,
+    sqe_name varchar2(30),
+    sqe_query clob
+  );
+  type ctx_sqe_type_tab is table of ctx_sqe_type;
+  function ctx_sqe_tbl_func return ctx_sqe_type_tab pipelined;
+  /*---------------------- check_file_access_role -----------------------------*/
+  /*
+
+     Returns TRUE if the specified user has the role given by file_access_role
+
+     and can therefore create/sync indexes using file or URL datastore
+
+  */
+  function check_file_access_role(p_user IN varchar2) return boolean;
+  /*--------------------------- autoopt_prep --------------------------------*/
+  /* autoopt_prep - preparation for autoopt */
+  procedure autoopt_prep(
+    p_idxid in number,
+    p_ixpid in number,
+    p_wait in number,
+    p_lockret in out number
+  );
+  /*--------------------------- autoopt_clo --------------------------------*/
+  /* autoopt_clo - close for autoopt */
+  procedure autoopt_clo;
+  /*--------------------------- autoopt_push_token --------------------------*/
+  /* autoopt_push_token - push a token to autooptimize */
+  procedure autoopt_push_token(
+    p_idxid in number,
+    p_message in raw
+  );
+  /*--------------------------- TxnalGetKey --------------------------------*/
+  /* Return the key if it has been set.  Returns Null if not set            */
+  procedure TxnalGetKey(p_key in out raw);
+  /*--------------------------- TxnalSetKey --------------------------------*/
+  /* Set the key.  Set flag                                                 */
+  procedure TxnalSetKey(p_key in raw);
+  /*------------------------ GetSLXMdataSecID ------------------------------*/
+  /* Get section id/token type for DR$ML MDATA section, doc level lexer     */
+  FUNCTION GetSLXMdataSecID(idxid in number) return number;
+  /*------------------------ RecordOptTokenError ---------------------------*/
+  PROCEDURE RecordOptTokenError(
+    token_text in varchar2,
+    token_type in number
+  );
+  /*----------------------- ProcessN -------------------------------*/
+  PROCEDURE ProcessN(
+    p_idxid in number,
+    p_ixpid in number,
+    del in number
+  );
+  /* 14175174: ------------- SubstringEnabled ------------------------*/
+  FUNCTION SubstringEnabled(p_idxid in number) RETURN number;
+  /*---------------------------- IndexHasGTable ------------------------------*/
+  FUNCTION IndexHasGTable(
+    p_idxid in number,
+    p_ixpid in number default NULL
+  ) RETURN boolean;
+  end drvxmd;

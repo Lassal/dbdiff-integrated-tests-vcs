@@ -1,0 +1,121 @@
+schema: APEX_050000
+name: APEX_THEMES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    x.theme_number,
+    x.theme_name,
+    x.theme_type,
+    x.workspace,
+    x.workspace_display_name,
+    x.workspace_id
+  from
+    (
+      -- repository theme
+      select
+        'Theme - ' || i theme_name,
+        i theme_number,
+        'BUILTIN' theme_type,
+        null workspace,
+        null workspace_display_name,
+        null workspace_id
+      from
+        wwv_flow_dual100
+      where
+        i <= 20
+      union all
+        -- public theme
+      select
+        distinct wwv_flow_escape.html(t.theme_name) || ' - ' || t.theme_id theme_name,
+        theme_id theme_number,
+        'PUBLIC' theme_type,
+        null workspace,
+        null workspace_display_name,
+        null workspace_id
+      from
+        wwv_flow_themes t,
+        wwv_flow_companies w,
+        wwv_flow_company_schemas s,
+        (
+          select
+            nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+            (
+              select
+                sys_context('USERENV', 'CURRENT_USER')
+              from
+                sys.dual
+            ) cu
+          from
+            sys.dual
+        ) d
+      where
+        (
+          s.schema = cu
+          or (
+            select
+              wwv_flow_security.has_apex_administrator_role_yn(cu)
+            from
+              sys.dual
+          ) = 'Y'
+          or d.sgid = w.PROVISIONING_COMPANY_ID
+        )
+        and s.security_group_id = w.provisioning_company_id
+        and (
+          user in ('SYS', 'SYSTEM', 'APEX_050000')
+          or w.provisioning_company_id != 10
+        )
+        and t.security_group_id = 11
+        and t.theme_security_group_id is null
+      union all
+        -- workspace theme
+      select
+        distinct wwv_flow_escape.html(t.theme_name) || ' - ' || t.theme_id theme_name,
+        theme_id theme_number,
+        'WORKSPACE' theme_type,
+        w.short_name workspace,
+        w.display_name workspace_display_name,
+        w.provisioning_company_id workspace_id
+      from
+        wwv_flow_themes t,
+        wwv_flow_companies w,
+        wwv_flow_company_schemas s,
+        (
+          select
+            nvl(v('FLOW_SECURITY_GROUP_ID'), 0) sgid,
+            (
+              select
+                sys_context('USERENV', 'CURRENT_USER')
+              from
+                sys.dual
+            ) cu
+          from
+            sys.dual
+        ) d
+      where
+        (
+          s.schema = cu
+          or (
+            select
+              wwv_flow_security.has_apex_administrator_role_yn(cu)
+            from
+              sys.dual
+          ) = 'Y'
+          or d.sgid = w.PROVISIONING_COMPANY_ID
+        )
+        and s.security_group_id = w.provisioning_company_id
+        and (
+          user in ('SYS', 'SYSTEM', 'APEX_050000')
+          or w.provisioning_company_id != 10
+        )
+        and t.security_group_id = 11
+        and w.provisioning_company_id = t.theme_security_group_id
+        and (
+          t.theme_security_group_id = d.sgid
+          or t.theme_security_group_id = s.security_group_id
+        )
+    ) x
+  order by
+    1
+columns: []
+referencedTables: []

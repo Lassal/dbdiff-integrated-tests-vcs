@@ -1,0 +1,36 @@
+schema: SYS
+name: USER_RESOURCE_LIMITS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    m.name,
+    decode (
+      u.limit#,
+      2147483647,
+      'UNLIMITED',
+      0,
+      decode (
+        p.limit#,
+        2147483647,
+        'UNLIMITED',
+        p.limit#
+      ),
+      u.limit#
+    )
+  from
+    sys.profile$ u,
+    sys.profile$ p,
+    sys.resource_map m,
+    user $ s
+  where
+    u.resource# = m.resource#
+    and p.profile# = 0
+    and p.resource# = u.resource#
+    and u.type# = p.type#
+    and p.type# = 0
+    and m.type# = 0
+    and s.resource$ = u.profile#
+    and s.user# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

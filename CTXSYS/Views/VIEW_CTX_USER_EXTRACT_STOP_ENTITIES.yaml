@@ -1,0 +1,29 @@
+schema: CTXSYS
+name: CTX_USER_EXTRACT_STOP_ENTITIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    i.idx_name ese_policy_name,
+    e.ese_name ese_name,
+    e.ese_type ese_type,
+    decode(
+      e.ese_status,
+      0,
+      'not compiled',
+      1,
+      'to be deleted',
+      2,
+      'compiled',
+      3,
+      'subset'
+    ) ese_status,
+    e.ese_comments ese_comments
+  from
+    dr$user_extract_stop_entity e,
+    dr$index i
+  where
+    i.idx_owner# = userenv('SCHEMAID')
+    and e.ese_pol_id = i.idx_id
+columns: []
+referencedTables: []

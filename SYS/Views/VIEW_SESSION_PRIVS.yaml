@@ -1,0 +1,14 @@
+schema: SYS
+name: SESSION_PRIVS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    spm.name
+  from
+    sys.v$enabledprivs ep,
+    system_privilege_map spm
+  where
+    spm.privilege = ep.priv_number
+columns: []
+referencedTables: []

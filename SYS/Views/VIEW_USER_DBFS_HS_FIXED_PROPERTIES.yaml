@@ -1,0 +1,15 @@
+schema: SYS
+name: USER_DBFS_HS_FIXED_PROPERTIES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    STORE_NAME,
+    PROP_NAME,
+    PROP_VALUE
+  FROM
+    DBA_DBFS_HS_FIXED_PROPERTIES
+  WHERE
+    STORE_OWNER = sys_context('USERENV', 'SESSION_USER')
+columns: []
+referencedTables: []

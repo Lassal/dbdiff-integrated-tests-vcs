@@ -1,0 +1,24 @@
+schema: SYS
+name: USER_DIM_JOIN_KEY
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    d. "OWNER",
+    d. "DIMENSION_NAME",
+    d. "DIM_KEY_ID",
+    d. "LEVEL_NAME",
+    d. "KEY_POSITION",
+    d. "HIERARCHY_NAME",
+    d. "CHILD_JOIN_OWNER",
+    d. "CHILD_JOIN_TABLE",
+    d. "CHILD_JOIN_COLUMN",
+    d. "CHILD_LEVEL_NAME"
+  FROM
+    dba_dim_join_key d,
+    sys.user$ u
+  where
+    u.user# = userenv('SCHEMAID')
+    and d.owner = u.name
+columns: []
+referencedTables: []

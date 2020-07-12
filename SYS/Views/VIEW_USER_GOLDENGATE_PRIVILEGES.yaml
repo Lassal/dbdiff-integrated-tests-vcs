@@ -1,0 +1,30 @@
+schema: SYS
+name: USER_GOLDENGATE_PRIVILEGES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    decode(
+      p.privilege_type,
+      1,
+      'CAPTURE',
+      2,
+      'APPLY',
+      3,
+      '*'
+    ),
+    decode(
+      p.privilege_level,
+      0,
+      'NO',
+      1,
+      'YES'
+    ),
+    create_time
+  from
+    sys.goldengate$_privileges p,
+    user_users u
+  where
+    p.username = u.username
+columns: []
+referencedTables: []

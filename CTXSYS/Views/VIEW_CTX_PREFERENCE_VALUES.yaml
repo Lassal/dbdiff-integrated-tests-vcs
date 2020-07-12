@@ -1,0 +1,30 @@
+schema: CTXSYS
+name: CTX_PREFERENCE_VALUES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    /*+ ORDERED INDEX(dr$preference_value) */
+    u.name prv_owner,
+    pre_name prv_preference,
+    oat_name prv_attribute,
+    decode(
+      oat_datatype,
+      'B',
+      decode(prv_value, 1, 'YES', 'NO'),
+      nvl(oal_label, prv_value)
+    ) prv_value
+  from
+    sys.user$ u,
+    dr$preference,
+    dr$preference_value,
+    dr$object_attribute,
+    dr$object_attribute_lov
+  where
+    prv_value = nvl(oal_value, prv_value)
+    and oat_id = oal_oat_id (+)
+    and oat_id = prv_oat_id
+    and prv_pre_id = pre_id
+    and pre_owner# = u.user#
+columns: []
+referencedTables: []

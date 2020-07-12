@@ -1,0 +1,23 @@
+schema: SYS
+name: HS_PARALLEL_PARTITION_DATA
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    hp.dblink,
+    hp.remote_table_name,
+    hp.remote_schema_name,
+    hp.low_value,
+    hp.high_value,
+    hp.partition_position,
+    hm.partition_col_names,
+    hm.partition_col_types
+  from
+    hs$_parallel_partition_data hp,
+    HS$_PARALLEL_METADATA hm
+  where
+    hp.dblink = hm.dblink
+    and hp.remote_table_name = hm.remote_table_name
+    and hp.remote_schema_name = hm.remote_schema_name
+columns: []
+referencedTables: []

@@ -1,0 +1,250 @@
+schema: SYS
+name: AUDITABLE_SYSTEM_ACTIONS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    audit_type,
+    component,
+    command_type,
+    command_name
+  from
+    (
+      select
+        distinct audit_type,
+        component
+      from
+        v$unified_audit_record_format
+      where
+        component = 'Standard'
+    ),
+    v$sqlcommand
+  where
+    command_type NOT IN (
+      0,
+      27,
+      34,
+      57,
+      87,
+      89,
+      203,
+      204,
+      209,
+      210,
+      211,
+      213,
+      17,
+      18,
+      30,
+      31,
+      47,
+      189
+    )
+  UNION ALL
+  select
+    audit_type,
+    component,
+    action,
+    name
+  from
+    (
+      select
+        distinct audit_type,
+        component
+      from
+        v$unified_audit_record_format
+      where
+        component = 'Standard'
+    ),
+    (
+      select
+        17 action,
+        'GRANT' name
+      from
+        dual
+      UNION ALL
+      select
+        18 action,
+        'REVOKE' name
+      from
+        dual
+      UNION ALL
+      select
+        30 action,
+        'AUDIT' name
+      from
+        dual
+      UNION ALL
+      select
+        31 action,
+        'NOAUDIT' name
+      from
+        dual
+      UNION ALL
+      select
+        100 action,
+        'LOGON' name
+      from
+        dual
+      UNION ALL
+      select
+        101 action,
+        'LOGOFF' name
+      from
+        dual
+      UNION ALL
+      select
+        47 action,
+        'EXECUTE' name
+      from
+        dual
+      UNION ALL
+      select
+        189 action,
+        'MERGE' name
+      from
+        dual
+      UNION ALL
+      select
+        (
+          select
+            max(command_type)
+          from
+            v$sqlcommand
+        ) + 1 action,
+        'ALL' name
+      from
+        dual
+    )
+    /* 2. Add OLS audit actions */
+  UNION ALL
+  select
+    audit_type,
+    component,
+    indx,
+    action_name
+  from
+    (
+      select
+        distinct audit_type,
+        component
+      from
+        v$unified_audit_record_format
+      where
+        component = 'Label Security'
+    ),
+    (
+      select
+        indx,
+        action_name
+      from
+        x$aud_ols_actions
+      where
+        indx <> 0
+    )
+    /* 3. Add Triton audit actions */
+  UNION ALL
+  select
+    audit_type,
+    component,
+    indx,
+    action_name
+  from
+    (
+      select
+        distinct audit_type,
+        component
+      from
+        v$unified_audit_record_format
+      where
+        component = 'XS'
+    ),
+    (
+      select
+        indx,
+        action_name
+      from
+        x$aud_xs_actions
+      where
+        indx <> 0
+    )
+    /* 5. Add Data Pump audit actions */
+  UNION ALL
+  select
+    audit_type,
+    component,
+    indx,
+    action_name
+  from
+    (
+      select
+        distinct audit_type,
+        component
+      from
+        v$unified_audit_record_format
+      where
+        component = 'Datapump'
+    ),
+    (
+      select
+        indx,
+        action_name
+      from
+        x$aud_dp_actions
+      where
+        indx <> 0
+    )
+    /* 6. Add Database Vault audit actions */
+  UNION ALL
+  select
+    audit_type,
+    component,
+    indx,
+    action_name
+  from
+    (
+      select
+        distinct audit_type,
+        component
+      from
+        v$unified_audit_record_format
+      where
+        component = 'Database Vault'
+    ),
+    (
+      select
+        indx,
+        action_name
+      from
+        x$aud_dv_obj_events
+      where
+        indx <> 0
+    )
+    /* 7. Add Direct path API audit actions */
+  UNION ALL
+  select
+    audit_type,
+    component,
+    indx,
+    action_name
+  from
+    (
+      select
+        distinct audit_type,
+        component
+      from
+        v$unified_audit_record_format
+      where
+        component = 'Direct path API'
+    ),
+    (
+      select
+        indx,
+        action_name
+      from
+        x$aud_dpapi_actions
+      where
+        indx <> 0
+    )
+columns: []
+referencedTables: []

@@ -1,0 +1,15 @@
+schema: SYS
+name: EXU8ORDU
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    "DLEVEL",
+    "OBJ#",
+    "D_OWNER#"
+  FROM
+    sys.exu8ord
+  WHERE
+    d_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

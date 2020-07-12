@@ -1,0 +1,27 @@
+schema: CTXSYS
+name: CTX_USER_FILTER_BY_COLUMNS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    idx_name fbc_index_name,
+    u.name fbc_table_owner,
+    o.name fbc_table_name,
+    cdi_column_name fbc_column_name,
+    cdi_column_type fbc_column_type,
+    cdi_section_name fbc_section_name,
+    decode(cdi_section_type, 8, 'SDATA', 9, 'MDATA', 'UNKNOWN') fbc_section_type,
+    cdi_section_id fbc_section_id
+  from
+    dr$index_cdi_column,
+    dr$index,
+    sys.obj$ o,
+    sys.user$ u
+  where
+    cdi_idx_id = idx_id
+    and cdi_column_position = 0
+    and idx_table_owner# = u.user#
+    and idx_table# = o.obj#
+    and idx_owner# = userenv('SCHEMAID')
+columns: []
+referencedTables: []

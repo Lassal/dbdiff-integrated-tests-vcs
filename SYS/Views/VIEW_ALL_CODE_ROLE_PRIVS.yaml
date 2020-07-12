@@ -1,0 +1,108 @@
+schema: SYS
+name: ALL_CODE_ROLE_PRIVS
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  (
+    select
+      u.name,
+      o.name,
+      decode(
+        o.type#,
+        7,
+        'PROCEDURE',
+        8,
+        'FUNCTION',
+        9,
+        'PACKAGE',
+        13,
+        'TYPE',
+        'UNDEFINED'
+      ),
+      r.name
+    from
+      sys. "_CURRENT_EDITION_OBJ" o,
+      sys.user$ u,
+      sys.user$ r,
+      sys.codeauth$ c
+    where
+      o.obj# = c .obj#
+      and c .privilege# = r.user#
+      and u.user# = o.owner#
+      and (
+        o.owner# = userenv('SCHEMAID')
+        or (
+          o.obj# in (
+            select
+              obj#
+            from
+              sys.objauth$
+            where
+              grantee# in (
+                select
+                  kzsrorol
+                from
+                  x$kzsro
+              )
+              and privilege# in (
+                3
+                /* DELETE */,
+                6
+                /* INSERT */,
+                7
+                /* LOCK */,
+                9
+                /* SELECT */,
+                10
+                /* UPDATE */,
+                12
+                /* EXECUTE */,
+                11
+                /* USAGE */,
+                16
+                /* CREATE */,
+                17
+                /* READ */,
+                18
+                /* WRITE  */
+              )
+          )
+        )
+        or (
+          o.type# in (7, 8, 9)
+          /* prc, fcn, pkg */
+          and exists (
+            select
+              null
+            from
+              v$enabledprivs
+            where
+              priv_number in (
+                -144
+                /* EXECUTE ANY PROCEDURE */,
+                -141
+                /* CREATE ANY PROCEDURE */
+              )
+          )
+        )
+        or (
+          o.type# = 13
+          /* type */
+          and exists (
+            select
+              null
+            from
+              v$enabledprivs
+            where
+              priv_number in (
+                -184
+                /* EXECUTE ANY TYPE */,
+                -181
+                /* CREATE ANY TYPE */
+              )
+          )
+        )
+      )
+  )
+columns: []
+referencedTables: []

@@ -1,0 +1,31 @@
+schema: SYS
+name: KU$_IND_EXISTS_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    i.obj#,
+    i.bo#,
+    u.name,
+    i.type#,
+    i.property
+  from
+    ind$ i,
+    obj$ o,
+    user $ u
+  where
+    o.obj# = i.obj#
+    and o.owner# = u.user#
+    and (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') IN (o.owner#, 0)
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

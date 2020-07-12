@@ -1,0 +1,42 @@
+schema: SYS
+name: KU$_PROXY_VIEW
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  select
+    u.user#,
+    u.name,
+    up.name,
+    pi.flags,
+    pi.credential_type#,
+    cast(
+      multiset (
+        select
+          *
+        from
+          ku$_proxy_role_list_view pr
+        where
+          pr.client = u.name
+          AND pr.proxy = up.name
+      ) as ku$_proxy_role_list_t
+    )
+  from
+    sys.user$ u,
+    sys.user$ up,
+    sys.proxy_info$ pi
+  where
+    pi.client# = u.user#
+    AND pi.proxy# = up.user#(+)
+    AND (
+      SYS_CONTEXT('USERENV', 'CURRENT_USERID') = 0
+      OR EXISTS (
+        SELECT
+          *
+        FROM
+          sys.session_roles
+        WHERE
+          role = 'SELECT_CATALOG_ROLE'
+      )
+    )
+columns: []
+referencedTables: []

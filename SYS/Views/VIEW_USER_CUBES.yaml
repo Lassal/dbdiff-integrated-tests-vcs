@@ -1,0 +1,104 @@
+schema: SYS
+name: USER_CUBES
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    o.name CUBE_NAME,
+    c .obj# CUBE_ID,
+    a .awname AW_NAME,
+    syn.syntax_clob CONSISTENT_SOLVE_SPEC,
+    d.description_value DESCRIPTION,
+    io.option_value SPARSE_TYPE,
+    syn2.syntax_clob PRECOMPUTE_CONDITION,
+    io2.option_num_value PRECOMPUTE_PERCENT,
+    io3.option_num_value PRECOMPUTE_PERCENT_TOP,
+    od.name PARTITION_DIMENSION_NAME,
+    h.hierarchy_name PARTITION_HIERARCHY_NAME,
+    dl.level_name PARTITION_LEVEL_NAME,
+    io5.option_value REFRESH_MVIEW_NAME,
+    io6.option_value REWRITE_MVIEW_NAME,
+    syn3.syntax_clob DEFAULT_BUILD_SPEC,
+    io7.option_value MEASURE_STORAGE,
+    syn4.syntax_clob SQL_CUBE_STORAGE_TYPE,
+    io8.option_value CUBE_STORAGE_TYPE
+  FROM
+    olap_cubes$ c,
+    aw$ a,
+    obj$ o,
+    olap_syntax$ syn,
+    olap_syntax$ syn2,
+    olap_syntax$ syn3,
+    olap_syntax$ syn4,
+    (
+      select
+        d. *
+      from
+        olap_descriptions$ d,
+        nls_session_parameters n
+      where
+        n.parameter = 'NLS_LANGUAGE'
+        and d.description_type = 'Description'
+        and d.owning_object_type = 1 --CUBE
+        and (
+          d.language = n.value
+          or d.language like n.value || '\_%' escape '\')) d,
+    olap_impl_options$ io,
+    olap_impl_options$ io2,
+    olap_impl_options$ io3,
+    olap_impl_options$ io4,
+    olap_impl_options$ io5,
+    olap_impl_options$ io6,
+    olap_impl_options$ io7,
+    olap_impl_options$ io8,
+    olap_hier_levels$ hl,
+    olap_dim_levels$ dl,
+    olap_hierarchies$ h,
+    obj$ od
+  WHERE
+    o.obj#=c.obj#
+    AND o.owner#=USERENV(' SCHEMAID ')
+    AND c.awseq#=a.awseq#(+)
+    AND c.obj#=d.owning_object_id(+)
+    AND syn.owner_id(+)=c.obj#
+    AND syn.owner_type(+)=1
+    AND syn.ref_role(+)=16 -- consistent solve spec
+    AND syn2.owner_id(+)=c.obj#
+    AND syn2.owner_type(+)=1
+    AND syn2.ref_role(+)=20 -- precompute condition
+    AND syn3.owner_id(+)=c.obj#
+    AND syn3.owner_type(+)=1
+    AND syn3.ref_role(+)=17 -- default build spec
+    AND syn4.owner_id(+)=c.obj#
+    AND syn4.owner_type(+)=1
+    AND syn4.ref_role(+)=24 -- sql cube storage type
+    AND io.owning_objectid(+)=c.obj#
+    AND io.object_type(+)=1
+    AND io.option_type(+)=7 -- sparse type
+    AND io2.owning_objectid(+)=c.obj#
+    AND io2.object_type(+)=1
+    AND io2.option_type(+)=24 -- precompute percent
+    AND io3.owning_objectid(+)=c.obj#
+    AND io3.object_type(+)=1
+    AND io3.option_type(+)=25 -- precompute percent top
+    AND io4.owning_objectid(+)=c.obj#
+    AND io4.object_type(+)=1
+    AND io4.option_type(+)=9 -- partition level
+    AND io4.option_num_value=hl.hierarchy_level_id(+)
+    AND io5.owning_objectid(+)=c.obj#
+    AND io5.object_type(+)=1
+    AND io5.option_type(+)=30 -- refresh MV name
+    AND io6.owning_objectid(+)=c.obj#
+    AND io6.object_type(+)=1
+    AND io6.option_type(+)=31 -- rewrite MV name
+    AND io7.owning_objectid(+)=c.obj#
+    AND io7.object_type(+)=1
+    AND io7.option_type(+)=17 -- measure storage
+    AND io8.owning_objectid(+)=c.obj#
+    AND io8.object_type(+)=1
+    AND io8.option_type(+)=20 -- cube storage type
+    AND hl.hierarchy_id=h.hierarchy_id(+)
+    AND hl.dim_level_id=dl.level_id(+)
+    AND h.dim_obj#=od.obj#(+)
+columns: []
+referencedTables: []

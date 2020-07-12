@@ -1,0 +1,214 @@
+schema: SYS
+name: DBMS_RULE
+routineType: PACKAGE
+returnParamater:
+  name: GET_NEXT_HIT.(--return--)
+  ordinalPosition: 0
+  dataType: OBJECT
+  parameterMode: OUT
+parameters:
+- name: CLOSE_ITERATOR.ITERATOR
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: EVALUATE(1).RULE_SET_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATE(1).EVALUATION_CONTEXT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATE(1).EVENT_CONTEXT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: EVALUATE(1).TABLE_VALUES
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE(1).COLUMN_VALUES
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE(1).VARIABLE_VALUES
+  ordinalPosition: 6
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE(1).ATTRIBUTE_VALUES
+  ordinalPosition: 7
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE(1).STOP_ON_FIRST_HIT
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EVALUATE(1).SIMPLE_RULES_ONLY
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EVALUATE(1).RESULT_CACHE
+  ordinalPosition: 10
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EVALUATE(1).TRUE_RULES
+  ordinalPosition: 11
+  dataType: VARRAY
+  parameterMode: OUT
+- name: EVALUATE(1).MAYBE_RULES
+  ordinalPosition: 12
+  dataType: VARRAY
+  parameterMode: OUT
+- name: EVALUATE(2).RULE_SET_NAME
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATE(2).EVALUATION_CONTEXT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATE(2).EVENT_CONTEXT
+  ordinalPosition: 3
+  dataType: OBJECT
+  parameterMode: IN
+- name: EVALUATE(2).TABLE_VALUES
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE(2).COLUMN_VALUES
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE(2).VARIABLE_VALUES
+  ordinalPosition: 6
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE(2).ATTRIBUTE_VALUES
+  ordinalPosition: 7
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE(2).SIMPLE_RULES_ONLY
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EVALUATE(2).TRUE_RULES_ITERATOR
+  ordinalPosition: 9
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: EVALUATE(2).MAYBE_RULES_ITERATOR
+  ordinalPosition: 10
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+- name: EVALUATE_EXPRESSION.RULE_EXPRESSION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: EVALUATE_EXPRESSION.TABLE_ALIASES
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE_EXPRESSION.VARIABLE_TYPES
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE_EXPRESSION.TABLE_VALUES
+  ordinalPosition: 4
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE_EXPRESSION.COLUMN_VALUES
+  ordinalPosition: 5
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE_EXPRESSION.VARIABLE_VALUES
+  ordinalPosition: 6
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE_EXPRESSION.ATTRIBUTE_VALUES
+  ordinalPosition: 7
+  dataType: VARRAY
+  parameterMode: IN
+- name: EVALUATE_EXPRESSION.CACHE
+  ordinalPosition: 8
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+- name: EVALUATE_EXPRESSION.RESULT_VAL
+  ordinalPosition: 9
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+- name: GET_NEXT_HIT.ITERATOR
+  ordinalPosition: 1
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+- name: IS_FAST.EXPRESSION
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: IS_FAST.TABLE_ALIASES
+  ordinalPosition: 2
+  dataType: VARRAY
+  parameterMode: IN
+- name: IS_FAST.VARIABLE_TYPES
+  ordinalPosition: 3
+  dataType: VARRAY
+  parameterMode: IN
+- name: IS_FAST.RESULT_VAL
+  ordinalPosition: 4
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+routineDefinition: |-
+  PACKAGE dbms_rule AUTHID CURRENT_USER AS --------------------
+  -- PUBLIC CONSTANTS
+  --------------------
+  ---------------------
+  -- PUBLIC PROCEDURE
+  ---------------------
+  PROCEDURE evaluate(
+    rule_set_name IN varchar2,
+    evaluation_context IN varchar2,
+    event_context IN sys.re$nv_list: = NULL,
+    table_values IN sys.re$table_value_list: = NULL,
+    column_values IN sys.re$column_value_list: = NULL,
+    variable_values IN sys.re$variable_value_list: = NULL,
+    attribute_values IN sys.re$attribute_value_list: = NULL,
+    stop_on_first_hit IN boolean: = FALSE,
+    simple_rules_only IN boolean: = FALSE,
+    result_cache IN boolean: = TRUE,
+    true_rules OUT sys.re$rule_hit_list,
+    maybe_rules OUT sys.re$rule_hit_list
+  );
+  PROCEDURE evaluate(
+    rule_set_name IN varchar2,
+    evaluation_context IN varchar2,
+    event_context IN sys.re$nv_list: = NULL,
+    table_values IN sys.re$table_value_list: = NULL,
+    column_values IN sys.re$column_value_list: = NULL,
+    variable_values IN sys.re$variable_value_list: = NULL,
+    attribute_values IN sys.re$attribute_value_list: = NULL,
+    simple_rules_only IN boolean: = FALSE,
+    true_rules_iterator OUT binary_integer,
+    maybe_rules_iterator OUT binary_integer
+  );
+  PROCEDURE evaluate_expression(
+    rule_expression IN varchar2,
+    table_aliases IN sys.re$table_alias_list: = NULL,
+    variable_types IN sys.re$variable_type_list: = NULL,
+    table_values IN sys.re$table_value_list: = NULL,
+    column_values IN sys.re$column_value_list: = NULL,
+    variable_values IN sys.re$variable_value_list: = NULL,
+    attribute_values IN sys.re$attribute_value_list: = NULL,
+    cache IN boolean: = FALSE,
+    result_val OUT boolean
+  );
+  PROCEDURE is_fast (
+    expression IN varchar2,
+    table_aliases IN sys.re$table_alias_list: = NULL,
+    variable_types IN sys.re$variable_type_list: = NULL,
+    result_val OUT boolean
+  );
+  FUNCTION get_next_hit(
+    iterator IN binary_integer
+  ) RETURN sys.re$rule_hit;
+  PROCEDURE close_iterator(
+    iterator IN binary_integer
+  );
+  END dbms_rule;
