@@ -1,0 +1,123 @@
+name: TBCLCR_EMSR_SALD_FTRO_COND
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_EMSR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: DT_MVMN
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: QT_TRNS_ETNC
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+- name: VL_BRTO_TRNS_ETNC
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+- name: VL_ITCM_TRNS_ETNC
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+- name: VL_LQDO_TRNS_ETNC
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+- name: VL_TOTL_CLDO
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+- name: VL_TRBT_RMNR_IRNL
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_EMSR_SALD_FTRO_COND
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_EMSR
+    ordinalPosition: 2
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+  - name: DT_MVMN
+    ordinalPosition: 4
+- !<check-constraint>
+  name: SYS_C0048458
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0048459
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0048460
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0048461
+  type: CHECK
+  checkClause: '"DT_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0048462
+  type: CHECK
+  checkClause: '"QT_TRNS_ETNC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0048463
+  type: CHECK
+  checkClause: '"VL_BRTO_TRNS_ETNC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0048464
+  type: CHECK
+  checkClause: '"VL_ITCM_TRNS_ETNC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0048465
+  type: CHECK
+  checkClause: '"VL_TOTL_CLDO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0048466
+  type: CHECK
+  checkClause: '"VL_TRBT_RMNR_IRNL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0048467
+  type: CHECK
+  checkClause: '"VL_LQDO_TRNS_ETNC" IS NOT NULL'

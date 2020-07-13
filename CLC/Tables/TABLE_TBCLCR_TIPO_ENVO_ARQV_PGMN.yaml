@@ -1,0 +1,49 @@
+name: TBCLCR_TIPO_ENVO_ARQV_PGMN
+schema: CLC
+columns:
+- name: CD_TIPO_ENVO_ARQV_PGMN
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_ENVO_ARQV_PGMN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_ENVO_ARQV_PGMN
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_ENVO_ARQV_PGMN
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0030102
+  type: CHECK
+  checkClause: '"CD_TIPO_ENVO_ARQV_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030103
+  type: CHECK
+  checkClause: '"NM_TIPO_ENVO_ARQV_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030104
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030105
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

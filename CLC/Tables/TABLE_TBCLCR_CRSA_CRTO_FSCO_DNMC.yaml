@@ -1,0 +1,230 @@
+name: TBCLCR_CRSA_CRTO_FSCO_DNMC
+schema: CLC
+columns:
+- name: CD_ATZC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: false
+  dataTypeLength: 6
+- name: CD_BNDR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_IDTF_CHVE_BNDR
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  dataTypeLength: 10
+- name: CD_IDTF_CHVE_CRTO
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  dataTypeLength: 10
+- name: CD_NIVL_SGRN_RECB
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: true
+  dataTypeLength: 2
+- name: DH_INCL_RGST
+  ordinalPosition: 17
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: false
+  defaultValue: 'null '
+  dataTypeLength:
+- name: DT_LOCL_TRNS
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_BIN_RECB
+  ordinalPosition: 18
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  defaultValue: 'NULL '
+  dataTypeLength: 6,0
+- name: NU_CRTO_CRED_DNMC
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 19
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 19,0
+- name: NU_CRTO_CRPT_BNDR
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  dataTypeLength: 512
+- name: NU_CRTO_CRPT_PCSR
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  dataTypeLength: 512
+- name: NU_CRTO_DNMC_CRPT_BNDR
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  dataTypeLength: 512
+- name: NU_CRTO_DNMC_CRPT_PCSR
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  dataTypeLength: 512
+- name: NU_FINL_CRTO
+  ordinalPosition: 19
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  defaultValue: 'null '
+  dataTypeLength: 4,0
+- name: NU_HASH_CRTO_BNDR
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  dataTypeLength: 512
+- name: NU_HASH_CRTO_DNMC_BNDR
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  dataTypeLength: 512
+- name: NU_HASH_CRTO_DNMC_PCSR
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  dataTypeLength: 512
+- name: NU_HASH_CRTO_PCSR
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  dataTypeLength: 512
+- name: NU_IDTF_RQSE_RECB
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  dataTypeLength: 11
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CRSA_CRTO_FSCO_DNMC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_ATZC
+    ordinalPosition: 2
+  - name: DT_LOCL_TRNS
+    ordinalPosition: 3
+  - name: NU_CRTO_CRED_DNMC
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_CRPA_CRTO_BNDR_CLC04
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CRPA_CRTO_BNDR
+    referencedTableColumnName: CD_BNDR
+  - name: CD_IDTF_CHVE_BNDR
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CRPA_CRTO_BNDR
+    referencedTableColumnName: CD_IDTF_CHVE_BNDR
+- !<fk-constraint>
+  name: FKR_CRPA_CRTO_CLC05
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CRPA_CRTO
+    referencedTableColumnName: CD_BNDR
+  - name: CD_IDTF_CHVE_CRTO
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CRPA_CRTO
+    referencedTableColumnName: CD_IDTF_CHVE_CRTO
+- !<check-constraint>
+  name: SYS_C0025945
+  type: CHECK
+  checkClause: '"NU_CRTO_CRED_DNMC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025946
+  type: CHECK
+  checkClause: '"CD_ATZC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025947
+  type: CHECK
+  checkClause: '"DT_LOCL_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025948
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025949
+  type: CHECK
+  checkClause: '"CD_IDTF_CHVE_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025950
+  type: CHECK
+  checkClause: '"CD_IDTF_CHVE_CRTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025951
+  type: CHECK
+  checkClause: '"NU_CRTO_CRPT_PCSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025952
+  type: CHECK
+  checkClause: '"NU_HASH_CRTO_PCSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025953
+  type: CHECK
+  checkClause: '"NU_CRTO_DNMC_CRPT_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025954
+  type: CHECK
+  checkClause: '"NU_CRTO_DNMC_CRPT_PCSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025955
+  type: CHECK
+  checkClause: '"NU_HASH_CRTO_DNMC_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025956
+  type: CHECK
+  checkClause: '"NU_HASH_CRTO_DNMC_PCSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025957
+  type: CHECK
+  checkClause: '"NU_CRTO_CRPT_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025958
+  type: CHECK
+  checkClause: '"NU_HASH_CRTO_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025959
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025960
+  type: CHECK
+  checkClause: '"NU_BIN_RECB" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025961
+  type: CHECK
+  checkClause: '"NU_FINL_CRTO" IS NOT NULL'

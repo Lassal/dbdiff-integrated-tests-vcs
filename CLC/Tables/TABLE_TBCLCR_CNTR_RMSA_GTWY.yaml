@@ -1,0 +1,124 @@
+name: TBCLCR_CNTR_RMSA_GTWY
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_GTWY_TRNS_P2P
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_STCO_RMSA_GTWY
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_RMSA_GTWY
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ENVO_RMSA_LQDC
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_GRCO_RMSA
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_RMSA_GTWY
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CNTR_RMSA_GTWY
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_GTWY_TRNS_P2P
+    ordinalPosition: 2
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+  - name: CD_TIPO_RMSA_GTWY
+    ordinalPosition: 5
+  - name: NU_RMSA_GTWY
+    ordinalPosition: 4
+- !<fk-constraint>
+  name: FKR_TIPO_RMSA_GTWY_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_RMSA_GTWY
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_RMSA_GTWY
+    referencedTableColumnName: CD_TIPO_RMSA_GTWY
+- !<check-constraint>
+  name: SYS_C0026509
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026510
+  type: CHECK
+  checkClause: '"CD_GTWY_TRNS_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026511
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026512
+  type: CHECK
+  checkClause: '"NU_RMSA_GTWY" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026513
+  type: CHECK
+  checkClause: '"CD_STCO_RMSA_GTWY" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026514
+  type: CHECK
+  checkClause: '"DT_GRCO_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026515
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026516
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026517
+  type: CHECK
+  checkClause: '"CD_TIPO_RMSA_GTWY" IS NOT NULL'

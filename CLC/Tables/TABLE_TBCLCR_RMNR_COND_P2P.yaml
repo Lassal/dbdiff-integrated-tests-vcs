@@ -1,0 +1,314 @@
+name: TBCLCR_RMNR_COND_P2P
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_EMSR
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_GTWY_TRNS_P2P
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PCSR
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_POCS_ATZC_TRNS
+  ordinalPosition: 13
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_PRDT_BNDR
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_APRS_TRNS
+  ordinalPosition: 16
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_MDLO_NGCO
+  ordinalPosition: 17
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_TRNS_BNDR
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_TRNS_ORIG
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_TRNS_P2P
+  ordinalPosition: 18
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: DH_INCL_RGST
+  ordinalPosition: 21
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_MVMN
+  ordinalPosition: 2
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM_BNDR
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_BNCO_LQDN
+  ordinalPosition: 14
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_RMSA_CRDE
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_RMSA_EMSR
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: QT_TOTL_TRNS_BNDR
+  ordinalPosition: 19
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+- name: SG_ORGM_IFMC
+  ordinalPosition: 15
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: VL_TOTL_TRNS_BNDR
+  ordinalPosition: 20
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_RMNR_COND_P2P
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_EMSR
+    ordinalPosition: 5
+  - name: CD_GTWY_TRNS_P2P
+    ordinalPosition: 16
+  - name: CD_PCSR
+    ordinalPosition: 6
+  - name: CD_POCS_ATZC_TRNS
+    ordinalPosition: 12
+  - name: CD_PRDT_BNDR
+    ordinalPosition: 9
+  - name: CD_TIPO_APRS_TRNS
+    ordinalPosition: 14
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 4
+  - name: CD_TIPO_TRNS_BNDR
+    ordinalPosition: 11
+  - name: CD_TIPO_TRNS_ORIG
+    ordinalPosition: 10
+  - name: DT_MVMN
+    ordinalPosition: 2
+  - name: DT_VNCM_BNDR
+    ordinalPosition: 3
+  - name: NU_BNCO_LQDN
+    ordinalPosition: 13
+  - name: NU_RMSA_CRDE
+    ordinalPosition: 8
+  - name: NU_RMSA_EMSR
+    ordinalPosition: 7
+  - name: SG_ORGM_IFMC
+    ordinalPosition: 15
+- !<fk-constraint>
+  name: FKR_RMSA_CRDE_CLC11
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_CRDE
+    referencedTableColumnName: CD_BNDR
+  - name: CD_GTWY_TRNS_P2P
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_CRDE
+    referencedTableColumnName: CD_CRDE
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_CRDE
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: NU_RMSA_CRDE
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_CRDE
+    referencedTableColumnName: NU_RMSA_CRDE
+- !<fk-constraint>
+  name: FKR_TIPO_APRS_TRNS_CLC07
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_APRS_TRNS
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_APRS_TRNS
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_APRS_TRNS
+    referencedTableColumnName: CD_TIPO_APRS_TRNS
+- !<fk-constraint>
+  name: FKR_TIPO_TRNS_P2P_CLC02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_TRNS_P2P
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_TRNS_P2P
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_TRNS_P2P
+    referencedTableColumnName: CD_TIPO_TRNS_P2P
+- !<check-constraint>
+  name: SYS_C0024363
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024364
+  type: CHECK
+  checkClause: '"DT_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024365
+  type: CHECK
+  checkClause: '"DT_VNCM_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024366
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024367
+  type: CHECK
+  checkClause: '"CD_GTWY_TRNS_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024368
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024369
+  type: CHECK
+  checkClause: '"CD_PCSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024370
+  type: CHECK
+  checkClause: '"NU_RMSA_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024371
+  type: CHECK
+  checkClause: '"NU_RMSA_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024372
+  type: CHECK
+  checkClause: '"CD_PRDT_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024373
+  type: CHECK
+  checkClause: '"CD_TIPO_TRNS_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024374
+  type: CHECK
+  checkClause: '"CD_TIPO_TRNS_ORIG" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024375
+  type: CHECK
+  checkClause: '"CD_POCS_ATZC_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024376
+  type: CHECK
+  checkClause: '"NU_BNCO_LQDN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024377
+  type: CHECK
+  checkClause: '"SG_ORGM_IFMC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024378
+  type: CHECK
+  checkClause: '"CD_TIPO_APRS_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024379
+  type: CHECK
+  checkClause: '"CD_TIPO_MDLO_NGCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024380
+  type: CHECK
+  checkClause: '"CD_TIPO_TRNS_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024381
+  type: CHECK
+  checkClause: '"QT_TOTL_TRNS_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024382
+  type: CHECK
+  checkClause: '"VL_TOTL_TRNS_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024383
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

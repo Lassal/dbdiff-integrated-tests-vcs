@@ -1,0 +1,50 @@
+name: TBCLCR_TIPO_CNCT_CRTO
+schema: CLC
+columns:
+- name: CD_TIPO_CNCT_CRTO
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_CNCT_CRTO
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_CNCT_CRTO
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_CNCT_CRTO
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0026526
+  type: CHECK
+  checkClause: '"CD_TIPO_CNCT_CRTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026527
+  type: CHECK
+  checkClause: '"DC_TIPO_CNCT_CRTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026530
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026532
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

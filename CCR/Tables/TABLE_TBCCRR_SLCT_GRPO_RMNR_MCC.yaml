@@ -1,0 +1,61 @@
+name: TBCCRR_SLCT_GRPO_RMNR_MCC
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_MCC_BNDR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 5,0
+- name: NU_SQNC_SLCT_GRPO_RMNR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_SLCT_GRPO_RMNR_MCC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_MCC_BNDR
+    ordinalPosition: 3
+  - name: NU_SQNC_SLCT_GRPO_RMNR
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_SLCT_GRPO_RMNR_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_SLCT_GRPO_RMNR
+    referencedTableColumnName: CD_BNDR
+  - name: NU_SQNC_SLCT_GRPO_RMNR
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_SLCT_GRPO_RMNR
+    referencedTableColumnName: NU_SQNC_SLCT_GRPO_RMNR
+- !<check-constraint>
+  name: SYS_C0029045
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029046
+  type: CHECK
+  checkClause: '"NU_SQNC_SLCT_GRPO_RMNR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029047
+  type: CHECK
+  checkClause: '"CD_MCC_BNDR" IS NOT NULL'

@@ -1,0 +1,25 @@
+name: TBCLCR_RSLD_VLDC_AUTC
+schema: CLC
+columns:
+- name: CD_RSLD_VLDC_AUTC
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: NM_RSLD_VLDC_AUTC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  dataTypeLength: 30
+constraints:
+- !<check-constraint>
+  name: SYS_C0026763
+  type: CHECK
+  checkClause: '"CD_RSLD_VLDC_AUTC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026764
+  type: CHECK
+  checkClause: '"NM_RSLD_VLDC_AUTC" IS NOT NULL'

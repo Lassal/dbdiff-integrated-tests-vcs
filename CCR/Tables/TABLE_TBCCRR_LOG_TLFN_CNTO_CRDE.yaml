@@ -1,0 +1,183 @@
+name: TBCCRR_LOG_TLFN_CNTO_CRDE
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CNTO_CRDE_BNDR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ACAO_FIM_RGST
+  ordinalPosition: 14
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_ACAO_INCO_RGST
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 10
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NU_DDD
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: NU_RAML
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 5,0
+- name: NU_SQNC_TLFN_CRDE_BNDR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_TLFN
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_LOG_TLFN_CNTO_CRDE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CNTO_CRDE_BNDR
+    ordinalPosition: 4
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: DH_ACAO_INCO_RGST
+    ordinalPosition: 5
+  - name: NU_SQNC_TLFN_CRDE_BNDR
+    ordinalPosition: 3
+- !<fk-constraint>
+  name: FKR_TLFN_CNTO_CRDE_BNDR_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TLFN_CNTO_CRDE_BNDR
+    referencedTableColumnName: CD_BNDR
+  - name: CD_CNTO_CRDE_BNDR
+    ordinalPosition: 4
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TLFN_CNTO_CRDE_BNDR
+    referencedTableColumnName: CD_CNTO_CRDE_BNDR
+  - name: CD_CRDE
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TLFN_CNTO_CRDE_BNDR
+    referencedTableColumnName: CD_CRDE
+  - name: NU_SQNC_TLFN_CRDE_BNDR
+    ordinalPosition: 3
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TLFN_CNTO_CRDE_BNDR
+    referencedTableColumnName: NU_SQNC_TLFN_CRDE_BNDR
+- !<check-constraint>
+  name: CKCCRR_LOG_TLFN_CNTO_CRDE_010
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0027059
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027060
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027061
+  type: CHECK
+  checkClause: '"CD_CNTO_CRDE_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027062
+  type: CHECK
+  checkClause: '"NU_SQNC_TLFN_CRDE_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027063
+  type: CHECK
+  checkClause: '"DH_ACAO_INCO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027064
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027065
+  type: CHECK
+  checkClause: '"NU_DDD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027066
+  type: CHECK
+  checkClause: '"NU_TLFN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027067
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027068
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027069
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027070
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'

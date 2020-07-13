@@ -1,0 +1,214 @@
+name: TBCLCR_CNTR_RMSA_LQDC_CRTO
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CICL_LQDC_CIP
+  ordinalPosition: 16
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  defaultValue: '1 '
+  dataTypeLength: 2,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_STCO_LQDC
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: CD_TIPO_STCO_LYOT_PCSM
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  dataTypeLength: 6
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ENVO_RMSA
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 14
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_RERO_ARQV_LQDC
+  ordinalPosition: 12
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_RERO_ARQV_PCSM
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM_TRNS
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_ARQV_RMSA_LQDC_CRTO
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  textMaxLength: 25
+  nullable: false
+  dataTypeLength: 25
+- name: NU_SQNL_RMSA_LQDC_CRTO
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: QT_RGST_RMSA
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 5,0
+- name: VL_TOTL_RMSA
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CNTR_RMSA_LQDC_CRTO
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 2
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 3
+  - name: DT_VNCM_TRNS
+    ordinalPosition: 4
+  - name: NU_SQNL_RMSA_LQDC_CRTO
+    ordinalPosition: 5
+- !<fk-constraint>
+  name: FKR_CICL_LQDC_CIP_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_CICL_LQDC_CIP
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CICL_LQDC_CIP
+    referencedTableColumnName: CD_CICL_LQDC_CIP
+- !<fk-constraint>
+  name: FKR_CNTR_CICL_VIDA_GRDE_CLC03
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_CICL_VIDA_GRDE
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_CICL_VIDA_GRDE
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_CICL_VIDA_GRDE
+    referencedTableColumnName: DT_RFRN_MVMN
+  - name: DT_VNCM_TRNS
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_CICL_VIDA_GRDE
+    referencedTableColumnName: DT_VNCM_TRNS
+- !<fk-constraint>
+  name: FKR_TIPO_STCO_LQDC_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_STCO_LQDC
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_LQDC
+    referencedTableColumnName: CODIGO_TIPO_SITUACAO_LIQUIDACA
+- !<fk-constraint>
+  name: FKR_TIPO_STCO_LYOT_PCSM_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_STCO_LYOT_PCSM
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_LYOT_PCSM
+    referencedTableColumnName: CD_TIPO_STCO_LYOT_PCSM
+- !<check-constraint>
+  name: SYS_C0024131
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024132
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024133
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024134
+  type: CHECK
+  checkClause: '"DT_VNCM_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024135
+  type: CHECK
+  checkClause: '"NU_SQNL_RMSA_LQDC_CRTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024136
+  type: CHECK
+  checkClause: '"DH_ENVO_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024137
+  type: CHECK
+  checkClause: '"QT_RGST_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024138
+  type: CHECK
+  checkClause: '"VL_TOTL_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024139
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024140
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024141
+  type: CHECK
+  checkClause: '"NM_ARQV_RMSA_LQDC_CRTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024142
+  type: CHECK
+  checkClause: '"CD_CICL_LQDC_CIP" IS NOT NULL'

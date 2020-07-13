@@ -1,0 +1,30 @@
+name: TBCLCR_TIPO_SLCT_TRNS_PRAT
+schema: CLC
+columns:
+- name: CD_TIPO_SLCT_TRNS_PRAT
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: DC_TIPO_SLCT_TRNS_PRAT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: false
+  dataTypeLength: 80
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_SLCT_TRNS_PRAT
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_SLCT_TRNS_PRAT
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0031513
+  type: CHECK
+  checkClause: '"CD_TIPO_SLCT_TRNS_PRAT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031514
+  type: CHECK
+  checkClause: '"DC_TIPO_SLCT_TRNS_PRAT" IS NOT NULL'

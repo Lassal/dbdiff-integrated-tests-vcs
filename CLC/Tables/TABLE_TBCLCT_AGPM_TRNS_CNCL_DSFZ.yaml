@@ -1,0 +1,162 @@
+name: TBCLCT_AGPM_TRNS_CNCL_DSFZ
+schema: CLC
+columns:
+- name: CD_ATZC
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  dataTypeLength: 6
+- name: CD_ATZC_ORIG
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  dataTypeLength: 6
+- name: CD_BNDR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: DH_TRNI
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_LOCL_TRNS
+  ordinalPosition: 9
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_TRNS_ORIG
+  ordinalPosition: 12
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: HR_LOCL_TRNS
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: HR_TRNS_ORIG
+  ordinalPosition: 13
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 15
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NU_BIN_RECB
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_FINL_CRTO
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_IDTF_TRNS
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_NSU_REDE_CPTR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: false
+  dataTypeLength: 12
+- name: VL_TRNS
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 12
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 12,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCT_AGPM_TRNS_CNCL_DSFZ
+  type: PRIMARY_KEY
+  columns:
+  - name: DH_TRNI
+    ordinalPosition: 3
+  - name: NU_IDTF_TRNS
+    ordinalPosition: 1
+  - name: NU_NSU_REDE_CPTR
+    ordinalPosition: 2
+- !<check-constraint>
+  name: CKC1_IN_RGST_ATVO_TBCLCT_A
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0028088
+  type: CHECK
+  checkClause: '"NU_IDTF_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028089
+  type: CHECK
+  checkClause: '"NU_NSU_REDE_CPTR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028090
+  type: CHECK
+  checkClause: '"DH_TRNI" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028091
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028092
+  type: CHECK
+  checkClause: '"NU_BIN_RECB" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028093
+  type: CHECK
+  checkClause: '"NU_FINL_CRTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028094
+  type: CHECK
+  checkClause: '"VL_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028095
+  type: CHECK
+  checkClause: '"HR_LOCL_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028096
+  type: CHECK
+  checkClause: '"DT_LOCL_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028097
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028098
+  type: CHECK
+  checkClause: '"DT_TRNS_ORIG" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028099
+  type: CHECK
+  checkClause: '"HR_TRNS_ORIG" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028100
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'

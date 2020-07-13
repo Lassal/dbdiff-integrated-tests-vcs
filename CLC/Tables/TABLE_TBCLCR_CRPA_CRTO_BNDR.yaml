@@ -1,0 +1,132 @@
+name: TBCLCR_CRPA_CRTO_BNDR
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CHVE_CRPT_ALEO_CRTO
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: true
+  dataTypeLength: 512
+- name: CD_CHVE_CRPT_BNDR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  dataTypeLength: 512
+- name: CD_IDTF_CHVE_BNDR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  dataTypeLength: 10
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_CHVE_CRPT_BNDR
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ATLC_RGST
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 6
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NU_VERF_CHVE_CRPT_BNDR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: false
+  dataTypeLength: 8
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CRPA_CRTO_BNDR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_IDTF_CHVE_BNDR
+    ordinalPosition: 2
+- !<check-constraint>
+  name: CKCLCR_CRPA_CRTO_BNDR_006
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0025336
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025337
+  type: CHECK
+  checkClause: '"CD_IDTF_CHVE_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025338
+  type: CHECK
+  checkClause: '"CD_CHVE_CRPT_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025339
+  type: CHECK
+  checkClause: '"NU_VERF_CHVE_CRPT_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025340
+  type: CHECK
+  checkClause: '"DC_CHVE_CRPT_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025341
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025342
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025343
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025344
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025345
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025346
+  type: CHECK
+  checkClause: '"DH_ATLC_RGST" IS NOT NULL'

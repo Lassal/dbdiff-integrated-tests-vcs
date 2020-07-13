@@ -1,0 +1,147 @@
+name: TBCLCR_CTCI_PCSM
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_MSGM_CRDE
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: false
+  dataTypeLength: 5
+- name: CD_TIPO_ARQV_RMSA
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_RMSA_CRDE_AGND_PDV
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: QT_ICDT_PCSM
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 7
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 7,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CTCI_PCSM
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_MSGM_CRDE
+    ordinalPosition: 5
+  - name: CD_TIPO_ARQV_RMSA
+    ordinalPosition: 6
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+  - name: NU_RMSA_CRDE_AGND_PDV
+    ordinalPosition: 4
+- !<fk-constraint>
+  name: FKR_RMSA_CRDE_AGND_PDV_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_CRDE_AGND_PDV
+    referencedTableColumnName: CD_BNDR
+  - name: CD_CRDE
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_CRDE_AGND_PDV
+    referencedTableColumnName: CD_CRDE
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_CRDE_AGND_PDV
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: NU_RMSA_CRDE_AGND_PDV
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_CRDE_AGND_PDV
+    referencedTableColumnName: NU_RMSA_CRDE_AGND_PDV
+- !<fk-constraint>
+  name: FKR_TIPO_ARQV_RMSA_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_ARQV_RMSA
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_ARQV_RMSA
+    referencedTableColumnName: CD_TIPO_ARQV_RMSA
+- !<check-constraint>
+  name: SYS_C0028217
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028218
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028219
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028220
+  type: CHECK
+  checkClause: '"NU_RMSA_CRDE_AGND_PDV" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028221
+  type: CHECK
+  checkClause: '"CD_MSGM_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028222
+  type: CHECK
+  checkClause: '"CD_TIPO_ARQV_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028223
+  type: CHECK
+  checkClause: '"QT_ICDT_PCSM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028224
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028225
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

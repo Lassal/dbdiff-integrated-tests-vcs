@@ -1,0 +1,31 @@
+name: TBCLCR_PRDO_CRTE
+schema: CLC
+columns:
+- name: CD_PRDO_CRTE
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: DC_PRDO_CRTE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 15
+  nullable: false
+  dataTypeLength: 15
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_PRDO_CRTE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_PRDO_CRTE
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0030774
+  type: CHECK
+  checkClause: '"CD_PRDO_CRTE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030775
+  type: CHECK
+  checkClause: '"DC_PRDO_CRTE" IS NOT NULL'

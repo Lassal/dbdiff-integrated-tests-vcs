@@ -1,0 +1,206 @@
+name: TBCLCR_TRNS_CBRN_PRCR_SAQE
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_EMSR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_IDTR_SRVC_PRCR
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  dataTypeLength: 10
+- name: CD_IDTR_TRMN
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: false
+  dataTypeLength: 8
+- name: CD_PCSR_ATRZ
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_PRCR_CPTU_SAQE
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_STCO_TRNS
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ALTR_RGST
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ALTR_RGST
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_TRNS
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_CLCL_LQDC_DAUT
+  ordinalPosition: 18
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'''
+  dataTypeLength: 1
+- name: NU_BIN_RECB
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: false
+  dataTypeLength: 6
+- name: NU_RMSA_PRCR
+  ordinalPosition: 17
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_SQNL_UNCO_TRNS
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 38,0
+- name: QT_DIA_LQDC_PRCR
+  ordinalPosition: 13
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: VL_TRNS_PRCR_SAQE
+  ordinalPosition: 15
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TRNS_CBRN_PRCR_SAQE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_EMSR
+    ordinalPosition: 4
+  - name: CD_IDTR_SRVC_PRCR
+    ordinalPosition: 8
+  - name: CD_IDTR_TRMN
+    ordinalPosition: 7
+  - name: CD_PRCR_CPTU_SAQE
+    ordinalPosition: 5
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 2
+  - name: NU_SQNL_UNCO_TRNS
+    ordinalPosition: 6
+- !<check-constraint>
+  name: CKCLCR_TRNS_CBRN_PRCR_SAQE_018
+  type: CHECK
+  checkClause: IN_CLCL_LQDC_DAUT in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0027476
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027477
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027478
+  type: CHECK
+  checkClause: '"CD_PRCR_CPTU_SAQE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027479
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027480
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027481
+  type: CHECK
+  checkClause: '"CD_IDTR_TRMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027482
+  type: CHECK
+  checkClause: '"NU_SQNL_UNCO_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027483
+  type: CHECK
+  checkClause: '"DH_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027484
+  type: CHECK
+  checkClause: '"CD_IDTR_SRVC_PRCR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027485
+  type: CHECK
+  checkClause: '"DH_ALTR_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027486
+  type: CHECK
+  checkClause: '"CD_USRO_ALTR_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027487
+  type: CHECK
+  checkClause: '"QT_DIA_LQDC_PRCR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027488
+  type: CHECK
+  checkClause: '"NU_BIN_RECB" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027489
+  type: CHECK
+  checkClause: '"CD_PCSR_ATRZ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027490
+  type: CHECK
+  checkClause: '"NU_RMSA_PRCR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0054480
+  type: CHECK
+  checkClause: '"IN_CLCL_LQDC_DAUT" IS NOT NULL'

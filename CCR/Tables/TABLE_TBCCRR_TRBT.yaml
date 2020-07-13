@@ -1,0 +1,85 @@
+name: TBCCRR_TRBT
+schema: CCR
+columns:
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TRBT
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ACAO_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 7
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_TRBT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 150
+  nullable: false
+  dataTypeLength: 150
+- name: SG_TRBT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 15
+  nullable: false
+  dataTypeLength: 15
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_TRBT
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TRBT
+    ordinalPosition: 1
+- !<check-constraint>
+  name: CKCCRR_TRBT_007
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0028322
+  type: CHECK
+  checkClause: '"CD_TRBT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028323
+  type: CHECK
+  checkClause: '"SG_TRBT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028324
+  type: CHECK
+  checkClause: '"NM_TRBT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028325
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028326
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028328
+  type: CHECK
+  checkClause: '"DH_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028330
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'

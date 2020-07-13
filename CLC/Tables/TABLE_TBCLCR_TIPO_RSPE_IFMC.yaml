@@ -1,0 +1,43 @@
+name: TBCLCR_TIPO_RSPE_IFMC
+schema: CLC
+columns:
+- name: CD_TIPO_RSPE_IFMC
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_RSPE_IFMC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+constraints:
+- !<check-constraint>
+  name: SYS_C0027354
+  type: CHECK
+  checkClause: '"CD_TIPO_RSPE_IFMC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027356
+  type: CHECK
+  checkClause: '"NM_TIPO_RSPE_IFMC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027358
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027360
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

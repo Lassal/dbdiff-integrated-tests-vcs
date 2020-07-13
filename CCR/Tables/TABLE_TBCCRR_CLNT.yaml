@@ -1,0 +1,200 @@
+name: TBCCRR_CLNT
+schema: CCR
+columns:
+- name: CD_MARC_EC
+  ordinalPosition: 16
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 17,0
+- name: CD_PAIS
+  ordinalPosition: 22
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 3,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CNPJ_CPF_TOKEN
+  ordinalPosition: 18
+  dataType: NUMBER
+  numericPrecision: 12
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 12,0
+- name: CPF_CNPJ_TOKEN
+  ordinalPosition: 17
+  dataType: NUMBER
+  numericPrecision: 12
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 12,0
+- name: DC_ENDR_CLNT
+  ordinalPosition: 20
+  dataType: VARCHAR2
+  textMaxLength: 36
+  nullable: true
+  dataTypeLength: 36
+- name: DC_URL_CLNT
+  ordinalPosition: 23
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 5
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_CIDE_CLNT
+  ordinalPosition: 21
+  dataType: VARCHAR2
+  textMaxLength: 26
+  nullable: true
+  dataTypeLength: 26
+- name: NM_CLNT
+  ordinalPosition: 19
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  dataTypeLength: 100
+- name: NM_CLNT_OLD
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  dataTypeLength: 100
+- name: NM_FNTS_CLNT
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  dataTypeLength: 100
+- name: NU_CEP_CLNT
+  ordinalPosition: 15
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 8,0
+- name: NU_CLNT
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: NU_CPF_CLNT
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 9,0
+- name: NU_DV_CNPJ_CLNT
+  ordinalPosition: 13
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: NU_DV_CPF_CLNT
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: NU_FILI_CNPJ_CLNT
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: NU_RAIZ_CNPJ_CLNT
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 8,0
+- name: SG_TPPS
+  ordinalPosition: 2
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_CLNT
+  type: PRIMARY_KEY
+  columns:
+  - name: NU_CLNT
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_TPPS_CCR03
+  type: FOREIGN_KEY
+  columns:
+  - name: SG_TPPS
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TPPS
+    referencedTableColumnName: SG_TPPS
+- !<check-constraint>
+  name: CKCCRR_CLNT_005
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0023561
+  type: CHECK
+  checkClause: '"NU_CLNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023563
+  type: CHECK
+  checkClause: '"SG_TPPS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023565
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023567
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023569
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023571
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023573
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'

@@ -1,0 +1,49 @@
+name: TBCLCR_TIPO_PTPN_P2P
+schema: CLC
+columns:
+- name: CD_TIPO_PTPN_P2P
+  ordinalPosition: 1
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_PTPN_P2P
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_PTPN_P2P
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_PTPN_P2P
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0024394
+  type: CHECK
+  checkClause: '"CD_TIPO_PTPN_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024395
+  type: CHECK
+  checkClause: '"NM_TIPO_PTPN_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024396
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024397
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

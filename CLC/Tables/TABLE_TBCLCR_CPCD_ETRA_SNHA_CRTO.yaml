@@ -1,0 +1,25 @@
+name: TBCLCR_CPCD_ETRA_SNHA_CRTO
+schema: CLC
+columns:
+- name: CD_CPCD_ETRA_SNHA_CRTO
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: NM_CPCD_ETRA_SNHA_CRTO
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+constraints:
+- !<check-constraint>
+  name: SYS_C0026877
+  type: CHECK
+  checkClause: '"CD_CPCD_ETRA_SNHA_CRTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026878
+  type: CHECK
+  checkClause: '"NM_CPCD_ETRA_SNHA_CRTO" IS NOT NULL'

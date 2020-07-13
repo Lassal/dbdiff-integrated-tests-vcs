@@ -1,0 +1,93 @@
+name: TBCLCR_PARZ_MDLO_RMNR_P2P
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_POCS_ATZC_TRNS
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_FOMA_CBRN_P2P
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+- name: CD_TIPO_FOMA_CMNC_P2P
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_PARZ_MDLO_RMNR_P2P
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_POCS_ATZC_TRNS
+    ordinalPosition: 4
+  - name: CD_TIPO_FOMA_CBRN_P2P
+    ordinalPosition: 3
+  - name: CD_TIPO_FOMA_CMNC_P2P
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_TIPO_FOMA_CMNC_P2P_CLC03
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_FOMA_CMNC_P2P
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_FOMA_CMNC_P2P
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_FOMA_CMNC_P2P
+    referencedTableColumnName: CD_TIPO_FOMA_CMNC_P2P
+- !<check-constraint>
+  name: SYS_C0026871
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026872
+  type: CHECK
+  checkClause: '"CD_POCS_ATZC_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026873
+  type: CHECK
+  checkClause: '"CD_TIPO_FOMA_CMNC_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026874
+  type: CHECK
+  checkClause: '"CD_TIPO_FOMA_CBRN_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026875
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026876
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

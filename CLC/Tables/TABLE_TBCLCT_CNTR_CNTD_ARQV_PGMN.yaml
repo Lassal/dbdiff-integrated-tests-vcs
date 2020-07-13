@@ -1,0 +1,171 @@
+name: TBCLCT_CNTR_CNTD_ARQV_PGMN
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_ARQV_PGMN
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_RGST_RMSA_LQDC
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: CD_TIPO_STCO_PCSM
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 10
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_RCBM_ARQV
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_RFRN_SQNC_RGST
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 9,0
+- name: NU_SQNC_RGST
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+- name: TX_RGST_LNHA_ARQV
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: false
+  dataTypeLength: 1000
+constraints:
+- !<unique-constraint>
+  name: PK_TBCLCT_CNTR_CNTD_ARQV_PGMN
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 3
+  - name: CD_TIPO_ARQV_PGMN
+    ordinalPosition: 2
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 4
+  - name: DH_RCBM_ARQV
+    ordinalPosition: 5
+  - name: NU_SQNC_RGST
+    ordinalPosition: 6
+- !<fk-constraint>
+  name: FKR_TIPO_ARQV_PGMN_CLC03
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_ARQV_PGMN
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_ARQV_PGMN
+    referencedTableColumnName: CD_TIPO_ARQV_PGMN
+- !<fk-constraint>
+  name: FKR_TIPO_RGST_RMSA_LQDC_CLC05
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_RGST_RMSA_LQDC
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_RGST_RMSA_LQDC
+    referencedTableColumnName: CD_TIPO_RGST_RMSA_LQDC
+- !<fk-constraint>
+  name: FKR_TIPO_STCO_PCSM_CLC05
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_PCSM
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_STCO_PCSM
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_PCSM
+    referencedTableColumnName: CD_TIPO_STCO_PCSM
+- !<check-constraint>
+  name: SYS_C0030604
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030605
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030606
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030607
+  type: CHECK
+  checkClause: '"CD_TIPO_ARQV_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030608
+  type: CHECK
+  checkClause: '"DH_RCBM_ARQV" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030609
+  type: CHECK
+  checkClause: '"CD_TIPO_RGST_RMSA_LQDC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030610
+  type: CHECK
+  checkClause: '"NU_SQNC_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030611
+  type: CHECK
+  checkClause: '"TX_RGST_LNHA_ARQV" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030612
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030613
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030614
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_PCSM" IS NOT NULL'

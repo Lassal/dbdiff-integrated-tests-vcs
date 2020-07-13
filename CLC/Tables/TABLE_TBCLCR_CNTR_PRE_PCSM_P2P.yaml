@@ -1,0 +1,97 @@
+name: TBCLCR_CNTR_PRE_PCSM_P2P
+schema: CLC
+columns:
+- name: CD_ATZC
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: false
+  dataTypeLength: 6
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_FOMA_CMNC_P2P
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNDA
+  ordinalPosition: 2
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CNTR_PRE_PCSM_P2P
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_ATZC
+    ordinalPosition: 4
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 3
+  - name: DT_VNDA
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_TIPO_FOMA_CMNC_P2P_CLC05
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_FOMA_CMNC_P2P
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_FOMA_CMNC_P2P
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_FOMA_CMNC_P2P
+    referencedTableColumnName: CD_TIPO_FOMA_CMNC_P2P
+- !<check-constraint>
+  name: SYS_C0028593
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028594
+  type: CHECK
+  checkClause: '"DT_VNDA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028595
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028596
+  type: CHECK
+  checkClause: '"CD_TIPO_FOMA_CMNC_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028597
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028598
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

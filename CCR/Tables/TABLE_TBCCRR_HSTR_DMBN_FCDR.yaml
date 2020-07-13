@@ -1,0 +1,86 @@
+name: TBCCRR_HSTR_DMBN_FCDR
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_CNTA_PGMN
+  ordinalPosition: 4
+  dataType: CHAR
+  textMaxLength: 2
+  nullable: true
+  dataTypeLength: 2
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  dataTypeLength: 20
+- name: DH_HSTR
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_AGNC_DMBN_FCDR
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 5,0
+- name: NU_BNCO
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: NU_CLNT_FCDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: NU_CNTA_PGMN_FCDR
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  dataTypeLength: 20
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_HSTR_DMBN_FCDR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+  - name: DH_HSTR
+    ordinalPosition: 3
+  - name: NU_CLNT_FCDR
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0025796
+  type: CHECK
+  checkClause: '"NU_CLNT_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025797
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025798
+  type: CHECK
+  checkClause: '"DH_HSTR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025799
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

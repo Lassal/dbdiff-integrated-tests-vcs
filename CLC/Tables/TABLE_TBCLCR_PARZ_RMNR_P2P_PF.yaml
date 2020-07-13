@@ -1,0 +1,194 @@
+name: TBCLCR_PARZ_RMNR_P2P_PF
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_POCS_ATZC_TRNS
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_FOMA_CBRN_P2P
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+- name: CD_TIPO_FOMA_CMNC_P2P
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_PTPN_P2P
+  ordinalPosition: 4
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 12
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 11
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NU_CPF_CLNT
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+- name: NU_DV_CPF_CLNT
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: PC_TAXA_TRNS
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 9
+  nullable: false
+  dataTypeLength: 9,9
+- name: VL_MXMO_TAXA_TRNS
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TARF_TRNS
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 20
+  numericScale: 5
+  nullable: false
+  dataTypeLength: 20,5
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_PARZ_RMNR_P2P_PF
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_POCS_ATZC_TRNS
+    ordinalPosition: 2
+  - name: CD_TIPO_FOMA_CBRN_P2P
+    ordinalPosition: 5
+  - name: CD_TIPO_FOMA_CMNC_P2P
+    ordinalPosition: 3
+  - name: CD_TIPO_PTPN_P2P
+    ordinalPosition: 4
+  - name: NU_CPF_CLNT
+    ordinalPosition: 6
+  - name: NU_DV_CPF_CLNT
+    ordinalPosition: 7
+- !<fk-constraint>
+  name: FKR_TIPO_PTPN_P2P_CLC06
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_PTPN_P2P
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_PTPN_P2P
+    referencedTableColumnName: CD_TIPO_PTPN_P2P
+- !<fk-constraint>
+  name: FKR_TIPO_PTPN_P2P_CLC07
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_FOMA_CMNC_P2P
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_FOMA_CMNC_P2P
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_FOMA_CMNC_P2P
+    referencedTableColumnName: CD_TIPO_FOMA_CMNC_P2P
+- !<check-constraint>
+  name: CKCLCR_PARZ_RMNR_P2P_PF_011
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0024760
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024762
+  type: CHECK
+  checkClause: '"CD_POCS_ATZC_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024764
+  type: CHECK
+  checkClause: '"CD_TIPO_FOMA_CMNC_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024766
+  type: CHECK
+  checkClause: '"CD_TIPO_PTPN_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024767
+  type: CHECK
+  checkClause: '"CD_TIPO_FOMA_CBRN_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024768
+  type: CHECK
+  checkClause: '"NU_CPF_CLNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024769
+  type: CHECK
+  checkClause: '"NU_DV_CPF_CLNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024770
+  type: CHECK
+  checkClause: '"PC_TAXA_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024771
+  type: CHECK
+  checkClause: '"VL_TARF_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024772
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024773
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024774
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024775
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'

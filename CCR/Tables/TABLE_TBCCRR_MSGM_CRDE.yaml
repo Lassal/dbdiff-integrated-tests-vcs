@@ -1,0 +1,71 @@
+name: TBCCRR_MSGM_CRDE
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_MSGM_CRDE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: false
+  dataTypeLength: 5
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_MSGM
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: false
+  dataTypeLength: 200
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_MSGM_CRDE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_MSGM_CRDE
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_BNDR_CCR06
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_BNDR
+    referencedTableColumnName: CD_BNDR
+- !<check-constraint>
+  name: SYS_C0028504
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028505
+  type: CHECK
+  checkClause: '"CD_MSGM_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028506
+  type: CHECK
+  checkClause: '"DC_MSGM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028507
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028508
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

@@ -1,0 +1,98 @@
+name: TBCLCR_CNTR_ARQV_RECB_CRDE
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_ARQV_RMSA
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: DH_EXOT
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_MVMN
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_ARQV_RECB_CRDE
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CNTR_ARQV_RECB_CRDE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_TIPO_ARQV_RMSA
+    ordinalPosition: 4
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+  - name: DT_MVMN
+    ordinalPosition: 5
+- !<fk-constraint>
+  name: FKR_TIPO_ARQV_RMSA_CLC02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_ARQV_RMSA
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_ARQV_RMSA
+    referencedTableColumnName: CD_TIPO_ARQV_RMSA
+- !<check-constraint>
+  name: SYS_C0028306
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028307
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028309
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028311
+  type: CHECK
+  checkClause: '"CD_TIPO_ARQV_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028313
+  type: CHECK
+  checkClause: '"DT_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028315
+  type: CHECK
+  checkClause: '"DH_EXOT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028316
+  type: CHECK
+  checkClause: '"NM_ARQV_RECB_CRDE" IS NOT NULL'

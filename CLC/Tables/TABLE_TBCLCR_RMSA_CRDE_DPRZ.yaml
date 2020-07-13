@@ -1,0 +1,255 @@
+name: TBCLCR_RMSA_CRDE_DPRZ
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_BNDR_DPRZ
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_CRDE_DPRZ
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_MTVO_RJCO_RMSA
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: CD_PRDO_CRTE
+  ordinalPosition: 21
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 1,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_PLTF_PGMN_DPRZ
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_STCO_PCSM
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_GRCO_RMSA
+  ordinalPosition: 19
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 12
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_PCSM_RMSA
+  ordinalPosition: 20
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_DVLC_RMSA_DPRZ
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_RCBM_RMSA_DPRZ
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 11
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NU_RMSA_DPRZ
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: false
+  dataTypeLength: 6
+- name: NU_SQNL_RMSA_DPRZ
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: QT_TOTL_TRNS_RJTD
+  ordinalPosition: 18
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 9,0
+- name: TX_CDGO_VRSO_MSGR
+  ordinalPosition: 22
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: false
+  defaultValue: 'null '
+  dataTypeLength: 3
+- name: TX_QNTD_TOTL_RGST_RECB
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  dataTypeLength: 8
+- name: TX_VALR_TOTL_RMSA
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  dataTypeLength: 20
+- name: VL_CTCO_DOLR
+  ordinalPosition: 23
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  dataTypeLength: 10
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_RMSA_CRDE_DPRZ
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR_DPRZ
+    ordinalPosition: 1
+  - name: CD_CRDE_DPRZ
+    ordinalPosition: 2
+  - name: CD_TIPO_PLTF_PGMN_DPRZ
+    ordinalPosition: 3
+  - name: NU_RMSA_DPRZ
+    ordinalPosition: 4
+  - name: NU_SQNL_RMSA_DPRZ
+    ordinalPosition: 5
+- !<fk-constraint>
+  name: FKR_MTVO_RJCO_RMSA_CLC02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_MTVO_RJCO_RMSA
+    referencedTableColumnName: CD_BNDR
+  - name: CD_MTVO_RJCO_RMSA
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_MTVO_RJCO_RMSA
+    referencedTableColumnName: CD_MTVO_RJCO_RMSA
+- !<fk-constraint>
+  name: FKR_PRDO_CRTE_CLC02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_PRDO_CRTE
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PRDO_CRTE
+    referencedTableColumnName: CD_PRDO_CRTE
+- !<fk-constraint>
+  name: FKR_TIPO_STCO_PCSM_CLC03
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_PCSM
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_STCO_PCSM
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_PCSM
+    referencedTableColumnName: CD_TIPO_STCO_PCSM
+- !<check-constraint>
+  name: CKCLCR_RMSA_CRDE_DPRZ_013
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0031320
+  type: CHECK
+  checkClause: '"CD_BNDR_DPRZ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031321
+  type: CHECK
+  checkClause: '"CD_CRDE_DPRZ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031322
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN_DPRZ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031323
+  type: CHECK
+  checkClause: '"NU_RMSA_DPRZ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031324
+  type: CHECK
+  checkClause: '"NU_SQNL_RMSA_DPRZ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031325
+  type: CHECK
+  checkClause: '"DT_RCBM_RMSA_DPRZ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031326
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031327
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_PCSM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031328
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031329
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031330
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031331
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031332
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031333
+  type: CHECK
+  checkClause: '"TX_CDGO_VRSO_MSGR" IS NOT NULL'

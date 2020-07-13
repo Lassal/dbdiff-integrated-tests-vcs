@@ -1,0 +1,65 @@
+name: TBCCRR_ARQV_PCSM_CDST
+schema: CCR
+columns:
+- name: CD_ARQV_PCSM_CDST
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_ARQV_RECB
+  ordinalPosition: 3
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_ARQV_PCSM_CDST
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_ARQV_PCSM_CDST
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_ARQV_PCSM_CDST
+    ordinalPosition: 1
+- !<check-constraint>
+  name: CKCCRR_ARQV_PCSM_CDST_003
+  type: CHECK
+  checkClause: IN_ARQV_RECB in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0028442
+  type: CHECK
+  checkClause: '"CD_ARQV_PCSM_CDST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028443
+  type: CHECK
+  checkClause: '"NM_ARQV_PCSM_CDST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028444
+  type: CHECK
+  checkClause: '"IN_ARQV_RECB" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028445
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028446
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

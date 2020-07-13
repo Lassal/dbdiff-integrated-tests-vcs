@@ -1,0 +1,145 @@
+name: TBCLCR_TRNS_RJCO_EMSR
+schema: CLC
+columns:
+- name: CD_ATZC_TRNS
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: false
+  dataTypeLength: 6
+- name: CD_CRDE
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_EMSR
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_ERRO_PCSM_LQDC_RECB
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  dataTypeLength: 3
+- name: CD_PCSR
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: DC_ERRO_PCSM_LQDC
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: DT_HORA_ACAO_INCE_RGST
+  ordinalPosition: 14
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 2
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_RMSA_CRDE
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_RMSA_EMSR
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_SQNL_RJCO_EMSR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 15,0
+- name: TX_IFMC_ADCN_TRNS
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 450
+  nullable: true
+  dataTypeLength: 450
+- name: TX_RGST_LNCM_TRNS_ETNC
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 168
+  nullable: false
+  dataTypeLength: 168
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TRNS_RJCO_EMSR
+  type: PRIMARY_KEY
+  columns:
+  - name: NU_SQNL_RJCO_EMSR
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0028630
+  type: CHECK
+  checkClause: '"NU_SQNL_RJCO_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028631
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028632
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028633
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028634
+  type: CHECK
+  checkClause: '"CD_PCSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028635
+  type: CHECK
+  checkClause: '"CD_ATZC_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028636
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028637
+  type: CHECK
+  checkClause: '"NU_RMSA_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028638
+  type: CHECK
+  checkClause: '"NU_RMSA_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028639
+  type: CHECK
+  checkClause: '"DC_ERRO_PCSM_LQDC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028640
+  type: CHECK
+  checkClause: '"TX_RGST_LNCM_TRNS_ETNC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028641
+  type: CHECK
+  checkClause: '"DT_HORA_ACAO_INCE_RGST" IS NOT NULL'

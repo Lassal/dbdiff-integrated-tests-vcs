@@ -1,0 +1,25 @@
+name: TBCLCR_MODO_ETRA_CRTO
+schema: CLC
+columns:
+- name: CD_MODO_ETRA_CRTO
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: NM_MODO_ETRA_CRTO
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+constraints:
+- !<check-constraint>
+  name: SYS_C0025713
+  type: CHECK
+  checkClause: '"CD_MODO_ETRA_CRTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025714
+  type: CHECK
+  checkClause: '"NM_MODO_ETRA_CRTO" IS NOT NULL'

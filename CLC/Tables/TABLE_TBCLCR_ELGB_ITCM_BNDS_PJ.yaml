@@ -1,0 +1,53 @@
+name: TBCLCR_ELGB_ITCM_BNDS_PJ
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_RAIZ_CNPJ_CLNT_BNDS
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_ELGB_ITCM_BNDS_PJ
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: NU_RAIZ_CNPJ_CLNT_BNDS
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C0027017
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027018
+  type: CHECK
+  checkClause: '"NU_RAIZ_CNPJ_CLNT_BNDS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027019
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027020
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

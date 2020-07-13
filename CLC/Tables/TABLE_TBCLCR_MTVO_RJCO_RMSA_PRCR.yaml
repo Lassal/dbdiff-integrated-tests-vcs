@@ -1,0 +1,50 @@
+name: TBCLCR_MTVO_RJCO_RMSA_PRCR
+schema: CLC
+columns:
+- name: CD_RJCO_RMSA_PRCR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_RJCO_RMSA_PRCR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TRNI_RMSA_PRCR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_RJCO_RMSA_PRCR
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0029397
+  type: CHECK
+  checkClause: '"CD_RJCO_RMSA_PRCR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029398
+  type: CHECK
+  checkClause: '"NM_RJCO_RMSA_PRCR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029399
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029400
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

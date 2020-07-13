@@ -1,0 +1,171 @@
+name: TBCCRR_LOG_PRCR_CPTU_SAQE
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_PRCR_CPTU_SAQE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CNPJ_CPF_TOKEN
+  ordinalPosition: 16
+  dataType: NUMBER
+  numericPrecision: 12
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 12,0
+- name: CPF_CNPJ_TOKEN
+  ordinalPosition: 15
+  dataType: NUMBER
+  numericPrecision: 12
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 12,0
+- name: DH_ACAO_FIM_RGST
+  ordinalPosition: 14
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_ACAO_INCO_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 10
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_FNTS_PRCR_CPTU
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: NM_RZSC_PRCR_CPTU
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: NU_DV_CNPJ_CPTU
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: NU_FILI_CNPJ_PRCR_CPTU
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_RAIZ_CNPJ_PRCR_CPTU
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_LOG_PRCR_CPTU_SAQE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_PRCR_CPTU_SAQE
+    ordinalPosition: 2
+  - name: DH_ACAO_INCO_RGST
+    ordinalPosition: 3
+- !<check-constraint>
+  name: CKCCRR_LOG_PRCR_CPTU_SAQE_010
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0029893
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029894
+  type: CHECK
+  checkClause: '"CD_PRCR_CPTU_SAQE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029895
+  type: CHECK
+  checkClause: '"DH_ACAO_INCO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029896
+  type: CHECK
+  checkClause: '"NU_RAIZ_CNPJ_PRCR_CPTU" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029897
+  type: CHECK
+  checkClause: '"NU_FILI_CNPJ_PRCR_CPTU" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029898
+  type: CHECK
+  checkClause: '"NU_DV_CNPJ_CPTU" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029899
+  type: CHECK
+  checkClause: '"NM_RZSC_PRCR_CPTU" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029900
+  type: CHECK
+  checkClause: '"NM_FNTS_PRCR_CPTU" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029901
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029902
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029903
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029904
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029905
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'

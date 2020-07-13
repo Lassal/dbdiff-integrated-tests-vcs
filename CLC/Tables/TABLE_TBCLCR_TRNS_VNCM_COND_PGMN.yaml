@@ -1,0 +1,187 @@
+name: TBCLCR_TRNS_VNCM_COND_PGMN
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_MODA
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_LNCM_AGND_PDV
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 13
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_LOTE_PCSM
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_LOTE_PCSM
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 20
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 20,0
+- name: QT_TRNS
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 7
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 7,0
+- name: VL_ICML_BRTO
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+- name: VL_ICML_LQDO
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TRNS_VNCM_COND_PGMN
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_TIPO_LNCM_AGND_PDV
+    ordinalPosition: 5
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 6
+  - name: DT_VNCM
+    ordinalPosition: 4
+- !<fk-constraint>
+  name: FKR_MODA_CLC16
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_MODA
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_MODA
+    referencedTableColumnName: CD_MODA
+- !<fk-constraint>
+  name: FKR_TIPO_LNCM_AGND_PDV_CLC03
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_LNCM_AGND_PDV
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_LNCM_AGND_PDV
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_LNCM_AGND_PDV
+    referencedTableColumnName: CD_TIPO_LNCM_AGND_PDV
+- !<check-constraint>
+  name: SYS_C0023803
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023804
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023805
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023806
+  type: CHECK
+  checkClause: '"CD_TIPO_LNCM_AGND_PDV" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023807
+  type: CHECK
+  checkClause: '"DT_VNCM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023808
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023809
+  type: CHECK
+  checkClause: '"CD_MODA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023810
+  type: CHECK
+  checkClause: '"VL_ICML_BRTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023811
+  type: CHECK
+  checkClause: '"VL_ICML_LQDO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023812
+  type: CHECK
+  checkClause: '"QT_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023813
+  type: CHECK
+  checkClause: '"DT_LOTE_PCSM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023814
+  type: CHECK
+  checkClause: '"NU_LOTE_PCSM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023815
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023816
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

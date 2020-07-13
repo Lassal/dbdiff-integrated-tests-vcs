@@ -1,0 +1,41 @@
+name: TBCLCR_RGRA_BTMN
+schema: CLC
+columns:
+- name: CD_RGRA_BTMN
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: DC_RGRA_BTMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: false
+  dataTypeLength: 200
+- name: NM_RGRA_BTMN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_RGRA_BTMN
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_RGRA_BTMN
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0029301
+  type: CHECK
+  checkClause: '"CD_RGRA_BTMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029302
+  type: CHECK
+  checkClause: '"NM_RGRA_BTMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029303
+  type: CHECK
+  checkClause: '"DC_RGRA_BTMN" IS NOT NULL'

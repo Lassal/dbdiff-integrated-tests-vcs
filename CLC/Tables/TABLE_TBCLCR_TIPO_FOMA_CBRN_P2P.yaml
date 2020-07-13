@@ -1,0 +1,50 @@
+name: TBCLCR_TIPO_FOMA_CBRN_P2P
+schema: CLC
+columns:
+- name: CD_TIPO_FOMA_CBRN_P2P
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_FOMA_CBRN_P2P
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_FOMA_CBRN_P2P
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_FOMA_CBRN_P2P
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0027468
+  type: CHECK
+  checkClause: '"CD_TIPO_FOMA_CBRN_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027469
+  type: CHECK
+  checkClause: '"NM_TIPO_FOMA_CBRN_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027470
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027471
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

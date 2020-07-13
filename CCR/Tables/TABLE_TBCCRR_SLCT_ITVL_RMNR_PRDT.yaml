@@ -1,0 +1,166 @@
+name: TBCCRR_SLCT_ITVL_RMNR_PRDT
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_ITVL_PRCL
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PRDT_BNDR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_FOMA_CBRN_BNDR
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_SQNC_SLCT_GRPO_RMNR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+- name: PC_TAXA_USO_BNDR
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 9
+  nullable: true
+  dataTypeLength: 9,9
+- name: PC_TAXA_USO_BNDR_PF
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 9
+  nullable: true
+  dataTypeLength: 9,9
+- name: VL_ADCN_PRCL
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 20
+  numericScale: 5
+  nullable: true
+  dataTypeLength: 20,5
+- name: VL_ADCN_PRCL_PF
+  ordinalPosition: 13
+  dataType: NUMBER
+  numericPrecision: 20
+  numericScale: 5
+  nullable: true
+  dataTypeLength: 20,5
+- name: VL_MXMO_CBRN_USO_BNDR
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 15,2
+- name: VL_MXMO_CBRN_USO_BNDR_PF
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 15,2
+- name: VL_TARF_CBRN_USO_BNDR
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 20
+  numericScale: 5
+  nullable: true
+  dataTypeLength: 20,5
+- name: VL_TARF_CBRN_USO_BNDR_PF
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 20
+  numericScale: 5
+  nullable: true
+  dataTypeLength: 20,5
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_SLCT_ITVL_RMNR_PRDT
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_ITVL_PRCL
+    ordinalPosition: 4
+  - name: CD_PRDT_BNDR
+    ordinalPosition: 3
+  - name: CD_TIPO_FOMA_CBRN_BNDR
+    ordinalPosition: 5
+  - name: NU_SQNC_SLCT_GRPO_RMNR
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_ITVL_PRCL_CCR02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_ITVL_PRCL
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_ITVL_PRCL
+    referencedTableColumnName: CD_ITVL_PRCL
+- !<fk-constraint>
+  name: FKR_SLCT_GRPO_RMNR_CCR03
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_SLCT_GRPO_RMNR
+    referencedTableColumnName: CD_BNDR
+  - name: NU_SQNC_SLCT_GRPO_RMNR
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_SLCT_GRPO_RMNR
+    referencedTableColumnName: NU_SQNC_SLCT_GRPO_RMNR
+- !<fk-constraint>
+  name: FKR_TIPO_FOMA_CBRN_BNDR_CCR05
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TIPO_FOMA_CBRN_BNDR
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_FOMA_CBRN_BNDR
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TIPO_FOMA_CBRN_BNDR
+    referencedTableColumnName: CD_TIPO_FOMA_CBRN_BNDR
+- !<check-constraint>
+  name: SYS_C0031192
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031193
+  type: CHECK
+  checkClause: '"NU_SQNC_SLCT_GRPO_RMNR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031194
+  type: CHECK
+  checkClause: '"CD_PRDT_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031195
+  type: CHECK
+  checkClause: '"CD_ITVL_PRCL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031196
+  type: CHECK
+  checkClause: '"CD_TIPO_FOMA_CBRN_BNDR" IS NOT NULL'

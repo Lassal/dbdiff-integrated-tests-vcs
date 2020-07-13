@@ -1,0 +1,198 @@
+name: TBCCRR_CNTR_RMSA_BNDR
+schema: CCR
+columns:
+- name: CD_ARQV_PCSM_CDST
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_STCO_PCSM_ARQV
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  dataTypeLength: 3
+- name: CD_TIPO_STCO_SLCT
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  dataTypeLength: 3
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_VLDC_RGST
+  ordinalPosition: 19
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  dataTypeLength: 20
+- name: DH_ENVO_RMSA
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_FIM_PCSM_RMSA
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCO_PCSM_RMSA
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_VLDC_RGST
+  ordinalPosition: 18
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 9
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_ARQV_ORIG
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  dataTypeLength: 100
+- name: NM_ARQV_RERO
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  dataTypeLength: 100
+- name: NU_RMSA
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: QT_TOTL_RGST_TRTD
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_CNTR_RMSA_BNDR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_ARQV_PCSM_CDST
+    ordinalPosition: 2
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: NU_RMSA
+    ordinalPosition: 3
+- !<fk-constraint>
+  name: FKR_ARQV_PCSM_CDST_CCR02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_ARQV_PCSM_CDST
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_ARQV_PCSM_CDST
+    referencedTableColumnName: CD_ARQV_PCSM_CDST
+- !<fk-constraint>
+  name: FKR_BNDR_CCR12
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_BNDR
+    referencedTableColumnName: CD_BNDR
+- !<fk-constraint>
+  name: FKR_TIPO_STCO_PCSM_ARQV_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_STCO_PCSM_ARQV
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TIPO_STCO_PCSM_ARQV
+    referencedTableColumnName: CD_TIPO_STCO_PCSM_ARQV
+- !<check-constraint>
+  name: CKCCRR_CNTR_RMSA_BNDR_009
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0030764
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030765
+  type: CHECK
+  checkClause: '"CD_ARQV_PCSM_CDST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030766
+  type: CHECK
+  checkClause: '"NU_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030767
+  type: CHECK
+  checkClause: '"QT_TOTL_RGST_TRTD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030768
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030769
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030770
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030771
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030772
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030773
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'

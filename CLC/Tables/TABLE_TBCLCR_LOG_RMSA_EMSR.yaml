@@ -1,0 +1,355 @@
+name: TBCLCR_LOG_RMSA_EMSR
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_EMSR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_MTVO_RJCO_RMSA
+  ordinalPosition: 19
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  defaultValue: null
+  dataTypeLength: 2,0
+- name: CD_PCSR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_STCO_PCSM
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_VRSO_MSGR
+  ordinalPosition: 27
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  defaultValue: 'null '
+  dataTypeLength: 3,0
+- name: DH_ACAO_FIM_RGST
+  ordinalPosition: 18
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_ACAO_INCO_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_DVLC_RMSA
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 14
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_GRCO_RMSA
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_RNVO_RMSA
+  ordinalPosition: 20
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_VNCM_RMSA
+  ordinalPosition: 21
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: IN_DCRO_PRZO
+  ordinalPosition: 10
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''N'' '
+  dataTypeLength: 1
+- name: IN_RGST_ATVO
+  ordinalPosition: 13
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: IN_RMNR_RMSA_EMSR_EFET
+  ordinalPosition: 28
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''N'' '
+  dataTypeLength: 1
+- name: IN_TRNS_ETNC
+  ordinalPosition: 22
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NU_RMSA_EMSR
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_RMSA_RNVO_EMSR
+  ordinalPosition: 25
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 6,0
+- name: QT_TOTL_RGST_RECB
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+- name: QT_TOTL_TRNS_RJTD
+  ordinalPosition: 24
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 9,0
+- name: QT_TOTL_TRNS_TRTD
+  ordinalPosition: 23
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 9,0
+- name: TX_JSTV_LBRC
+  ordinalPosition: 26
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  dataTypeLength: 255
+- name: VL_TOTL_RMSA
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_LOG_RMSA_EMSR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_EMSR
+    ordinalPosition: 2
+  - name: CD_PCSR
+    ordinalPosition: 3
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 4
+  - name: DH_ACAO_INCO_RGST
+    ordinalPosition: 6
+  - name: NU_RMSA_EMSR
+    ordinalPosition: 5
+- !<fk-constraint>
+  name: FKR_MTVO_RJCO_RMSA_CLC06
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_MTVO_RJCO_RMSA
+    referencedTableColumnName: CD_BNDR
+  - name: CD_MTVO_RJCO_RMSA
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_MTVO_RJCO_RMSA
+    referencedTableColumnName: CD_MTVO_RJCO_RMSA
+- !<fk-constraint>
+  name: FKR_RMSA_EMSR_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_EMSR
+    referencedTableColumnName: CD_BNDR
+  - name: CD_EMSR
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_EMSR
+    referencedTableColumnName: CD_EMSR
+  - name: CD_PCSR
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_EMSR
+    referencedTableColumnName: CD_PCSR
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_EMSR
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: NU_RMSA_EMSR
+    ordinalPosition: 5
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_EMSR
+    referencedTableColumnName: NU_RMSA_EMSR
+- !<fk-constraint>
+  name: FKR_TIPO_STCO_PCSM_CLC04
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_PCSM
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_STCO_PCSM
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_PCSM
+    referencedTableColumnName: CD_TIPO_STCO_PCSM
+- !<fk-constraint>
+  name: FKR_VRSO_MSGR_CLC05
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_VRSO_MSGR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_VRSO_MSGR
+    referencedTableColumnName: CD_VRSO_MSGR
+- !<check-constraint>
+  name: CKCLCR_LOG_RMSA_EMSR_011
+  type: CHECK
+  checkClause: IN_DCRO_PRZO in ('N', 'S')
+- !<check-constraint>
+  name: CKCLCR_LOG_RMSA_EMSR_014
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: CKC_IN_RMNR_RMSA_EMSR_TBCLCR_L
+  type: CHECK
+  checkClause: IN_RMNR_RMSA_EMSR_EFET in ('N', 'S')
+- !<check-constraint>
+  name: CKC_IN_TRNS_ETNC_TBCLCR_L
+  type: CHECK
+  checkClause: IN_TRNS_ETNC in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0028744
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028745
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028746
+  type: CHECK
+  checkClause: '"CD_PCSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028747
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028748
+  type: CHECK
+  checkClause: '"NU_RMSA_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028749
+  type: CHECK
+  checkClause: '"DH_ACAO_INCO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028750
+  type: CHECK
+  checkClause: '"DT_GRCO_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028751
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_PCSM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028752
+  type: CHECK
+  checkClause: '"IN_DCRO_PRZO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028753
+  type: CHECK
+  checkClause: '"QT_TOTL_RGST_RECB" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028754
+  type: CHECK
+  checkClause: '"VL_TOTL_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028755
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028756
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028757
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028758
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028759
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028761
+  type: CHECK
+  checkClause: '"IN_TRNS_ETNC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028762
+  type: CHECK
+  checkClause: '"CD_VRSO_MSGR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0039668
+  type: CHECK
+  checkClause: '"IN_RMNR_RMSA_EMSR_EFET" IS NOT NULL'

@@ -1,0 +1,31 @@
+name: TBCLCR_TIPO_ABRT_PLNO_PARC
+schema: CLC
+columns:
+- name: CD_TIPO_ABRT_PLNO_PARC
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: DC_TIPO_ABRT_PLNO_PARC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_ABRT_PLNO_PARC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_ABRT_PLNO_PARC
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0024052
+  type: CHECK
+  checkClause: '"CD_TIPO_ABRT_PLNO_PARC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024053
+  type: CHECK
+  checkClause: '"DC_TIPO_ABRT_PLNO_PARC" IS NOT NULL'

@@ -1,0 +1,85 @@
+name: TBL_INPUT_MASSA_DADOS_TE44
+schema: CLC
+columns:
+- name: CD_BANDEIRA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: CD_MOTIVO_REJEICAO
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: DT_CONFIRMACAO_REMESSA
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: DT_MOVIMENTO
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: IN_SITUACAO_REMESSA
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: NU_GERACAO
+  ordinalPosition: 1
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: NU_REMESSA
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: QT_TOTAL_REGISTROS
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: QT_TRANSACOES_ACEITAS
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: QT_TRANSACOES_REJEITADAS
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: VL_TRANSACOES_ACEITAS
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: VL_TRANSACOES_REJEITADAS
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+constraints:
+- !<unique-constraint>
+  name: PK_TBL_INPUT_MASSA_DADOS_TE44
+  type: PRIMARY_KEY
+  columns:
+  - name: NU_GERACAO
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0029401
+  type: CHECK
+  checkClause: '"NU_GERACAO" IS NOT NULL'

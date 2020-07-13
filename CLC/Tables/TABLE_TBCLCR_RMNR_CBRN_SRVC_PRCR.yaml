@@ -1,0 +1,111 @@
+name: TBCLCR_RMNR_CBRN_SRVC_PRCR
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_EMSR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PRCR_CPTU_SAQE
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_SRVC
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_USRO_ALTR_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ALTR_RGST
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: VL_TARF_CBRN
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 15,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_RMNR_CBRN_SRVC_PRCR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_EMSR
+    ordinalPosition: 4
+  - name: CD_PRCR_CPTU_SAQE
+    ordinalPosition: 3
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 5
+  - name: CD_TIPO_SRVC
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_TIPO_SRVC_PRCR_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_SRVC
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_SRVC_PRCR
+    referencedTableColumnName: CD_TIPO_SRVC
+- !<check-constraint>
+  name: SYS_C0024439
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024441
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024443
+  type: CHECK
+  checkClause: '"CD_PRCR_CPTU_SAQE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024445
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024447
+  type: CHECK
+  checkClause: '"CD_TIPO_SRVC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024449
+  type: CHECK
+  checkClause: '"VL_TARF_CBRN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024451
+  type: CHECK
+  checkClause: '"DH_ALTR_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024453
+  type: CHECK
+  checkClause: '"CD_USRO_ALTR_RGST" IS NOT NULL'

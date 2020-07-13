@@ -1,0 +1,285 @@
+name: TBCLCT_PGMN_ANLT_CLNT_INCE
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_MODA_INCE
+  ordinalPosition: 24
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  dataTypeLength: 3
+- name: CD_PDV_CENZ
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 15,0
+- name: CD_TIPO_ARQV_PGMN
+  ordinalPosition: 29
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: CD_TIPO_ENVO_ARQV_PGMN_INCE
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_STCO_PRVI_CLNT_INCE
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: true
+  dataTypeLength: 2
+- name: CD_UNCO_PGMN
+  ordinalPosition: 18
+  dataType: VARCHAR2
+  textMaxLength: 22
+  nullable: false
+  dataTypeLength: 22
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 21
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 20
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_MVMN
+  ordinalPosition: 25
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM_ORIG
+  ordinalPosition: 28
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM_PGMN
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_AGNC_LQDC_INCE
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  dataTypeLength: 5
+- name: NU_BNCO_DMCL
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_CLNT_PDV_CENZ
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: NU_CNTA_LQDC_INCE
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  textMaxLength: 14
+  nullable: true
+  dataTypeLength: 14
+- name: NU_CPF_CLNT
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 9,0
+- name: NU_DV_CNPJ_CLNT
+  ordinalPosition: 15
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: NU_DV_CPF_CLNT
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: NU_FILI_CNPJ_CLNT
+  ordinalPosition: 14
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: NU_RAIZ_CNPJ_CLNT
+  ordinalPosition: 13
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 8,0
+- name: NU_RMSA_PGMN
+  ordinalPosition: 26
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: SG_ORGM_IFMC
+  ordinalPosition: 27
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: SG_TPPS_INCE
+  ordinalPosition: 8
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: VL_BRTO_PGMN
+  ordinalPosition: 19
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  defaultValue: '0 '
+  dataTypeLength: 17,2
+- name: VL_LQDO_ORDM_PGMN
+  ordinalPosition: 22
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_LQDO_PGMN_ACTO_ISNT
+  ordinalPosition: 23
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCT_PGMN_ANLT_CLNT_INCE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_PDV_CENZ
+    ordinalPosition: 6
+  - name: CD_TIPO_ARQV_PGMN
+    ordinalPosition: 9
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 4
+  - name: CD_UNCO_PGMN
+    ordinalPosition: 8
+  - name: DT_VNCM_PGMN
+    ordinalPosition: 7
+  - name: NU_BNCO_DMCL
+    ordinalPosition: 3
+  - name: NU_CLNT_PDV_CENZ
+    ordinalPosition: 5
+- !<fk-constraint>
+  name: FKR_TIPO_ARQV_PGMN_CLC15
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_ARQV_PGMN
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_ARQV_PGMN
+    referencedTableColumnName: CD_TIPO_ARQV_PGMN
+- !<check-constraint>
+  name: SYS_C0023954
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023955
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023956
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023957
+  type: CHECK
+  checkClause: '"NU_BNCO_DMCL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023958
+  type: CHECK
+  checkClause: '"NU_CLNT_PDV_CENZ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023959
+  type: CHECK
+  checkClause: '"CD_PDV_CENZ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023960
+  type: CHECK
+  checkClause: '"DT_VNCM_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023961
+  type: CHECK
+  checkClause: '"CD_UNCO_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023962
+  type: CHECK
+  checkClause: '"VL_BRTO_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023963
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023964
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023965
+  type: CHECK
+  checkClause: '"DT_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023966
+  type: CHECK
+  checkClause: '"NU_RMSA_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023967
+  type: CHECK
+  checkClause: '"SG_ORGM_IFMC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023968
+  type: CHECK
+  checkClause: '"DT_VNCM_ORIG" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0023969
+  type: CHECK
+  checkClause: '"CD_TIPO_ARQV_PGMN" IS NOT NULL'

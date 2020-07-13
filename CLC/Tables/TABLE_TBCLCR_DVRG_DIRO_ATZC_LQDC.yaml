@@ -1,0 +1,155 @@
+name: TBCLCR_DVRG_DIRO_ATZC_LQDC
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_EMSR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PCSR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 12
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM_LQDC
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: PC_RSLD_DVRG_ATZC_LQDC
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 3
+  nullable: false
+  dataTypeLength: 17,3
+- name: PC_TLRN_DVRG_ATZC_LQDC
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 3
+  nullable: false
+  dataTypeLength: 17,3
+- name: VL_DVRG_DIRO_ATZC_LQDC
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+- name: VL_MNTN_ATZC
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+- name: VL_MNTN_LQDC
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_DVRG_DIRO_ATZC_LQDC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_EMSR
+    ordinalPosition: 3
+  - name: CD_PCSR
+    ordinalPosition: 4
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 5
+  - name: DT_VNCM_LQDC
+    ordinalPosition: 6
+- !<check-constraint>
+  name: SYS_C0031233
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031234
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031235
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031236
+  type: CHECK
+  checkClause: '"CD_PCSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031237
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031238
+  type: CHECK
+  checkClause: '"DT_VNCM_LQDC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031239
+  type: CHECK
+  checkClause: '"VL_MNTN_ATZC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031240
+  type: CHECK
+  checkClause: '"VL_MNTN_LQDC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031241
+  type: CHECK
+  checkClause: '"VL_DVRG_DIRO_ATZC_LQDC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031242
+  type: CHECK
+  checkClause: '"PC_TLRN_DVRG_ATZC_LQDC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031243
+  type: CHECK
+  checkClause: '"PC_RSLD_DVRG_ATZC_LQDC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031244
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031245
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

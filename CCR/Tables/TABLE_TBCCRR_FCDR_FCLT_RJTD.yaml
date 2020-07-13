@@ -1,0 +1,42 @@
+name: TBCCRR_FCDR_FCLT_RJTD
+schema: CCR
+columns:
+- name: DH_PCSM_FCDR_FCLT_RJTD
+  ordinalPosition: 1
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_LNHA_PCSM_FCDR_FCLT_RJTD
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+- name: TX_IFMC_FCDR_FCLT_RJTD
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: false
+  dataTypeLength: 200
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_FCDR_FCLT_RJTD
+  type: PRIMARY_KEY
+  columns:
+  - name: DH_PCSM_FCDR_FCLT_RJTD
+    ordinalPosition: 1
+  - name: NU_LNHA_PCSM_FCDR_FCLT_RJTD
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C0026701
+  type: CHECK
+  checkClause: '"DH_PCSM_FCDR_FCLT_RJTD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026702
+  type: CHECK
+  checkClause: '"NU_LNHA_PCSM_FCDR_FCLT_RJTD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026703
+  type: CHECK
+  checkClause: '"TX_IFMC_FCDR_FCLT_RJTD" IS NOT NULL'

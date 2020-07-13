@@ -1,0 +1,95 @@
+name: TBCLCR_VRSO_MSGR_FRNT_TBHO
+schema: CLC
+columns:
+- name: CD_FRNT_TBHO
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_VRSO_MSGR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 4
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: IN_ULTO_VRSO_MSGR
+  ordinalPosition: 3
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_VRSO_MSGR_FRNT_TBHO
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_FRNT_TBHO
+    ordinalPosition: 1
+  - name: CD_VRSO_MSGR
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_FRNT_TBHO_CLC06
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_FRNT_TBHO
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_FRNT_TBHO
+    referencedTableColumnName: CD_FRNT_TBHO
+- !<fk-constraint>
+  name: FKR_VRSO_MSGR_CLC03
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_VRSO_MSGR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_VRSO_MSGR
+    referencedTableColumnName: CD_VRSO_MSGR
+- !<check-constraint>
+  name: CKCLCR_VRSO_MSGR_FRNT_CKHO_004
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0028760
+  type: CHECK
+  checkClause: '"CD_FRNT_TBHO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028763
+  type: CHECK
+  checkClause: '"CD_VRSO_MSGR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028764
+  type: CHECK
+  checkClause: '"IN_ULTO_VRSO_MSGR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028765
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028766
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028767
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

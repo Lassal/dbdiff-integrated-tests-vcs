@@ -1,0 +1,144 @@
+name: TBCLCR_CNTR_RMSA_AGND_PCSR
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_EMSR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PCSR
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_RLTR_AGND
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ENVO_RMSA
+  ordinalPosition: 9
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_FIM_PCSM_RMSA
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 12
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCO_PCSM_RMSA
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_RMSA
+  ordinalPosition: 3
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: QT_TOTL_RGST_TRTD
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CNTR_RMSA_AGND_PCSR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_EMSR
+    ordinalPosition: 4
+  - name: CD_PCSR
+    ordinalPosition: 6
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 5
+  - name: CD_TIPO_RLTR_AGND
+    ordinalPosition: 2
+  - name: NU_RMSA
+    ordinalPosition: 3
+- !<fk-constraint>
+  name: FKR_TIPO_RLTR_AGND_CLC02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_RLTR_AGND
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_RLTR_AGND
+    referencedTableColumnName: CD_TIPO_RLTR_AGND
+- !<check-constraint>
+  name: SYS_C0026879
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026880
+  type: CHECK
+  checkClause: '"CD_TIPO_RLTR_AGND" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026881
+  type: CHECK
+  checkClause: '"NU_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026882
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026883
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026884
+  type: CHECK
+  checkClause: '"CD_PCSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026885
+  type: CHECK
+  checkClause: '"QT_TOTL_RGST_TRTD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026886
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026887
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026888
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

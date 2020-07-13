@@ -1,0 +1,49 @@
+name: TBCLCR_TIPO_OCRC_BNCO
+schema: CLC
+columns:
+- name: CD_TIPO_OCRC_BNCO
+  ordinalPosition: 1
+  dataType: CHAR
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_OCRC_BNCO
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_OCRC_BNCO
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_OCRC_BNCO
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0024690
+  type: CHECK
+  checkClause: '"CD_TIPO_OCRC_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024691
+  type: CHECK
+  checkClause: '"DC_TIPO_OCRC_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024692
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024693
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

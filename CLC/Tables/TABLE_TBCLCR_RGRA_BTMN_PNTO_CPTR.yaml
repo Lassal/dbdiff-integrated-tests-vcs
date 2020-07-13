@@ -1,0 +1,72 @@
+name: TBCLCR_RGRA_BTMN_PNTO_CPTR
+schema: CLC
+columns:
+- name: CD_PNTO_CPTR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_RGRA_BTMN
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_OPRD
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_RGRA_BTMN_PNTO_CPTR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_PNTO_CPTR
+    ordinalPosition: 1
+  - name: CD_RGRA_BTMN
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_PNTO_CPTR_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_PNTO_CPTR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PNTO_CPTR
+    referencedTableColumnName: CD_PNTO_CPTR
+- !<fk-constraint>
+  name: FKR_RGRA_BTMN_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_RGRA_BTMN
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RGRA_BTMN
+    referencedTableColumnName: CD_RGRA_BTMN
+- !<fk-constraint>
+  name: FKR_TIPO_OPRD_CLC05
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_OPRD
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_OPRD
+    referencedTableColumnName: CD_TIPO_OPRD
+- !<check-constraint>
+  name: SYS_C0024283
+  type: CHECK
+  checkClause: '"CD_PNTO_CPTR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024285
+  type: CHECK
+  checkClause: '"CD_RGRA_BTMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024286
+  type: CHECK
+  checkClause: '"CD_TIPO_OPRD" IS NOT NULL'

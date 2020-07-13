@@ -1,0 +1,31 @@
+name: TBCCRR_TIPO_FCDR
+schema: CCR
+columns:
+- name: CD_TIPO_FCDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: NM_TIPO_FCDR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_TIPO_FCDR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_FCDR
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0028354
+  type: CHECK
+  checkClause: '"CD_TIPO_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028355
+  type: CHECK
+  checkClause: '"NM_TIPO_FCDR" IS NOT NULL'

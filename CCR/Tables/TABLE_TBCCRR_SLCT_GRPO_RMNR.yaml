@@ -1,0 +1,161 @@
+name: TBCCRR_SLCT_GRPO_RMNR
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_GRPO_RMNR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 7
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 7,0
+- name: CD_GRPO_RMNR_RFRN
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 7
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 7,0
+- name: CD_TIPO_ACAO_GRPO_RMNR
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: false
+  defaultValue: 'null '
+  dataTypeLength: 2
+- name: CD_TIPO_RMNR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_STCO_SLCT
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_USRO_VLDC
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  dataTypeLength: 20
+- name: DC_JSTV_VLDC_GSTR
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 300
+  nullable: true
+  dataTypeLength: 300
+- name: DT_FIM_VGNC
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_INCO_VGNC
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: NM_GRPO_RMNR
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  dataTypeLength: 40
+- name: NU_SQNC_SLCT_GRPO_RMNR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+- name: PC_ACSM_DIA_PDRO_PRDT
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 9
+  nullable: true
+  dataTypeLength: 9,9
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_SLCT_GRPO_RMNR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: NU_SQNC_SLCT_GRPO_RMNR
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_BNDR_CCR20
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_BNDR
+    referencedTableColumnName: CD_BNDR
+- !<fk-constraint>
+  name: FKR_GRPO_RMNR_CCR08
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_GRPO_RMNR
+    referencedTableColumnName: CD_BNDR
+  - name: CD_GRPO_RMNR_RFRN
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_GRPO_RMNR
+    referencedTableColumnName: CD_GRPO_RMNR
+  - name: CD_TIPO_RMNR
+    ordinalPosition: 3
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_GRPO_RMNR
+    referencedTableColumnName: CD_TIPO_RMNR
+- !<fk-constraint>
+  name: FKR_TIPO_ACAO_GRPO_RMNR_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_ACAO_GRPO_RMNR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TIPO_ACAO_GRPO_RMNR
+    referencedTableColumnName: CD_TIPO_ACAO_GRPO_RMNR
+- !<fk-constraint>
+  name: FKR_TIPO_RMNR_CCR03
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_RMNR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TIPO_RMNR
+    referencedTableColumnName: CD_TIPO_RMNR
+- !<check-constraint>
+  name: SYS_C0030414
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030415
+  type: CHECK
+  checkClause: '"NU_SQNC_SLCT_GRPO_RMNR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030416
+  type: CHECK
+  checkClause: '"CD_TIPO_RMNR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030417
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_SLCT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030418
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_GRPO_RMNR" IS NOT NULL'

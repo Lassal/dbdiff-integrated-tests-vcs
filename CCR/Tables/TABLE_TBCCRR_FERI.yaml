@@ -1,0 +1,67 @@
+name: TBCCRR_FERI
+schema: CCR
+columns:
+- name: CD_TIPO_FERI
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_FERI
+  ordinalPosition: 1
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_FERI
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_FERI
+  type: PRIMARY_KEY
+  columns:
+  - name: DT_FERI
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_TIPO_FERI_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_FERI
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TIPO_FERI
+    referencedTableColumnName: CD_TIPO_FERI
+- !<check-constraint>
+  name: SYS_C0027382
+  type: CHECK
+  checkClause: '"DT_FERI" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027383
+  type: CHECK
+  checkClause: '"NM_FERI" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027384
+  type: CHECK
+  checkClause: '"CD_TIPO_FERI" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027385
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027386
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

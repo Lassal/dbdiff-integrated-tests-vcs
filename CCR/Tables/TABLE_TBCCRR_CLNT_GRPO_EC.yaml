@@ -1,0 +1,131 @@
+name: TBCCRR_CLNT_GRPO_EC
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_GRPO_EC
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 17,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CNPJ_CPF_TOKEN
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 12
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 12,0
+- name: CPF_CNPJ_TOKEN
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 12
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 12,0
+- name: DH_INCL_RGST
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 4
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: SG_TPPS
+  ordinalPosition: 3
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: TX_IDTR_CPF_CNPJ
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: false
+  dataTypeLength: 11
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_CLNT_GRPO_EC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 3
+  - name: SG_TPPS
+    ordinalPosition: 2
+  - name: TX_IDTR_CPF_CNPJ
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_BNDR_CCR23
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_BNDR
+    referencedTableColumnName: CD_BNDR
+- !<fk-constraint>
+  name: FKR_GRPO_EC_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_GRPO_EC
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_GRPO_EC
+    referencedTableColumnName: CD_GRPO_EC
+- !<fk-constraint>
+  name: FKR_TPPS_CCR02
+  type: FOREIGN_KEY
+  columns:
+  - name: SG_TPPS
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TPPS
+    referencedTableColumnName: SG_TPPS
+- !<check-constraint>
+  name: CKC_IN_RGST_ATVO_TBCCRRC
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0025464
+  type: CHECK
+  checkClause: '"CD_GRPO_EC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025466
+  type: CHECK
+  checkClause: '"TX_IDTR_CPF_CNPJ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025468
+  type: CHECK
+  checkClause: '"SG_TPPS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025470
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025472
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025473
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0025474
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'

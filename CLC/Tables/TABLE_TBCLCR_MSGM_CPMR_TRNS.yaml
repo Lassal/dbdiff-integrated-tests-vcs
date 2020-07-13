@@ -1,0 +1,65 @@
+name: TBCLCR_MSGM_CPMR_TRNS
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_MSGM_CPMR_TRNS
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_RSPS_MSGM_TRNS
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_MSGM_NGTV
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<check-constraint>
+  name: SYS_C0027931
+  type: CHECK
+  checkClause: '"CD_MSGM_CPMR_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027932
+  type: CHECK
+  checkClause: '"DC_TIPO_MSGM_NGTV" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027933
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027934
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027935
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027936
+  type: CHECK
+  checkClause: '"CD_RSPS_MSGM_TRNS" IS NOT NULL'

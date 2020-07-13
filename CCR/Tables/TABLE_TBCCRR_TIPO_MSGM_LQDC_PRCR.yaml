@@ -1,0 +1,31 @@
+name: TBCCRR_TIPO_MSGM_LQDC_PRCR
+schema: CCR
+columns:
+- name: CD_TIPO_MSGM_LQDC
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: NM_TIPO_MSGM_LQDC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_TIPO_MSGM_LQDC_PRCR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_MSGM_LQDC
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0027091
+  type: CHECK
+  checkClause: '"CD_TIPO_MSGM_LQDC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027092
+  type: CHECK
+  checkClause: '"NM_TIPO_MSGM_LQDC" IS NOT NULL'

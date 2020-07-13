@@ -1,0 +1,43 @@
+name: TBCLCR_TIPO_STCO_TNTV_DSPI
+schema: CLC
+columns:
+- name: CD_TIPO_STCO_TNTV_DSPI
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_STCO_TNTV_DSPI
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 160
+  nullable: false
+  dataTypeLength: 160
+constraints:
+- !<check-constraint>
+  name: SYS_C0027085
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_TNTV_DSPI" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027086
+  type: CHECK
+  checkClause: '"NM_TIPO_STCO_TNTV_DSPI" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027087
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027088
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

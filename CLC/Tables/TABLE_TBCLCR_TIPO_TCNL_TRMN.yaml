@@ -1,0 +1,75 @@
+name: TBCLCR_TIPO_TCNL_TRMN
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_ORIG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: CD_TIPO_TCNL_TRMN
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_TCNL_CNRO_ESPF
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: DC_TIPO_TCNL_TRMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: DH_INCL_RGST
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_TCNL_TRMN
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+  - name: CD_TIPO_TCNL_TRMN
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0030591
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030592
+  type: CHECK
+  checkClause: '"CD_TIPO_TCNL_TRMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030593
+  type: CHECK
+  checkClause: '"CD_ORIG" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030594
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030595
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

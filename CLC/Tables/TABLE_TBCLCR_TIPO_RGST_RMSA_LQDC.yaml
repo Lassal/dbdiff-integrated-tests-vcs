@@ -1,0 +1,49 @@
+name: TBCLCR_TIPO_RGST_RMSA_LQDC
+schema: CLC
+columns:
+- name: CD_TIPO_RGST_RMSA_LQDC
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_RGST_RMSA_LQDC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_RGST_RMSA_LQDC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_RGST_RMSA_LQDC
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0031539
+  type: CHECK
+  checkClause: '"CD_TIPO_RGST_RMSA_LQDC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031540
+  type: CHECK
+  checkClause: '"NM_TIPO_RGST_RMSA_LQDC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031541
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0031542
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

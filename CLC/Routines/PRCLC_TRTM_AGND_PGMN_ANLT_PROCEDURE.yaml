@@ -1,0 +1,48 @@
+schema: CLC
+name: PRCLC_TRTM_AGND_PGMN_ANLT
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: V_PART
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: V_MSG
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  parameterMode: OUT
+- name: V_ERR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: OUT
+routineDefinition: |-
+  PROCEDURE PRCLC_TRTM_AGND_PGMN_ANLT (
+    V_PART IN VARCHAR2,
+    V_MSG OUT VARCHAR2,
+    V_ERR OUT VARCHAR2
+  ) IS
+  BEGIN
+    EXECUTE IMMEDIATE 'ALTER TABLE CLC.TBCLCT_TRTM_AGND_PGMN_ANLT' || ' TRUNCATE PARTITION ' || V_PART || ' UPDATE INDEXES';
+  -- trunca as partições
+    -- ROTINA DE COLETA DE ESTATISTICAS DEVIDO O TRUNCATE
+    DBMS_STATS.GATHER_TABLE_STATS (
+      'CLC',
+      'TBCLCT_TRTM_AGND_PGMN_ANLT',
+      method_opt = > 'FOR ALL COLUMNS SIZE 1',
+      CASCADE = > TRUE,
+      DEGREE = > 32,
+      estimate_percent = > 100,
+      NO_INVALIDATE = > FALSE,
+      GRANULARITY = > 'ALL'
+    );
+  -- RETORNA MENSAGEM DE PROCESSO EXECUTADO COM SUCESSO
+    V_MSG: = 'PARTITION ' || V_PART || ' DA TABELA TBCLCT_TRTM_AGND_PGMN_ANLT TRUNCADA/REMOVIDA....';
+  V_ERR: = 0;
+  -- SUCESSO
+  EXCEPTION
+    WHEN OTHERS THEN -- RETORNA MENSAGEM DE ERRO - EXEMPLO ORA -
+    V_MSG: = SQLERRM;
+  -- IRÁ TRAZER O CODIGO E DESCRIÇÃO DO ERRO ORACLE
+    V_ERR: = '1';
+  -- ERRO
+  end;

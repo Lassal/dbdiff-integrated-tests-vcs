@@ -1,0 +1,52 @@
+name: TBCCRR_CSTM_TRBT_ALQT
+schema: CCR
+columns:
+- name: CD_TIPO_ALQT_TRBT
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TRBT
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_CSTM_TRBT_ALQT
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_ALQT_TRBT
+    ordinalPosition: 2
+  - name: CD_TRBT
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_TIPO_ALQT_TRBT_CCR03
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_ALQT_TRBT
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TIPO_ALQT_TRBT
+    referencedTableColumnName: CD_TIPO_ALQT_TRBT
+- !<fk-constraint>
+  name: FKR_TRBT_CCR04
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TRBT
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TRBT
+    referencedTableColumnName: CD_TRBT
+- !<check-constraint>
+  name: SYS_C0027044
+  type: CHECK
+  checkClause: '"CD_TRBT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027045
+  type: CHECK
+  checkClause: '"CD_TIPO_ALQT_TRBT" IS NOT NULL'

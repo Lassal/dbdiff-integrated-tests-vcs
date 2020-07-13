@@ -1,0 +1,50 @@
+name: TBCLCR_TIPO_RMSA_GTWY
+schema: CLC
+columns:
+- name: CD_TIPO_RMSA_GTWY
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_RMSA_GTWY
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_RMSA_GTWY
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_RMSA_GTWY
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0028286
+  type: CHECK
+  checkClause: '"CD_TIPO_RMSA_GTWY" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028287
+  type: CHECK
+  checkClause: '"DC_TIPO_RMSA_GTWY" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028288
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0028289
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

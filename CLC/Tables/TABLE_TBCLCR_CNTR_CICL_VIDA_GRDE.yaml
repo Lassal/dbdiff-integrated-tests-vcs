@@ -1,0 +1,133 @@
+name: TBCLCR_CNTR_CICL_VIDA_GRDE
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_STCO_CICL_VIDA_GRDE
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_CNFR_GRDE
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM_TRNS
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_STCO_ENVO_LQDC
+  ordinalPosition: 9
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''N'' '
+  dataTypeLength: 1
+- name: IN_STCO_ENVO_LQDC_P2P
+  ordinalPosition: 11
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: 'null '
+  dataTypeLength: 1
+- name: NU_PTCL_ATZC_GRDE
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 18
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 18,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CNTR_CICL_VIDA_GRDE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 2
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 3
+  - name: DT_VNCM_TRNS
+    ordinalPosition: 4
+- !<fk-constraint>
+  name: FKR_STCO_CICL_VIDA_GRDE_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_STCO_CICL_VIDA_GRDE
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_STCO_CICL_VIDA_GRDE
+    referencedTableColumnName: CD_STCO_CICL_VIDA_GRDE
+- !<check-constraint>
+  name: CKCLCR_CNTR_CICL_VIDA_GRDE_011
+  type: CHECK
+  checkClause: IN_STCO_ENVO_LQDC_P2P in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0030317
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030318
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030319
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030320
+  type: CHECK
+  checkClause: '"DT_VNCM_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030321
+  type: CHECK
+  checkClause: '"CD_STCO_CICL_VIDA_GRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030322
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030323
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030324
+  type: CHECK
+  checkClause: '"IN_STCO_ENVO_LQDC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0030325
+  type: CHECK
+  checkClause: '"IN_STCO_ENVO_LQDC_P2P" IS NOT NULL'

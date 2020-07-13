@@ -1,0 +1,43 @@
+name: TBCLCR_SGRN_CRTO
+schema: CLC
+columns:
+- name: CD_SGRN_CRTO
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_SGRN_CRTO
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 160
+  nullable: false
+  dataTypeLength: 160
+constraints:
+- !<check-constraint>
+  name: SYS_C0029979
+  type: CHECK
+  checkClause: '"CD_SGRN_CRTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029980
+  type: CHECK
+  checkClause: '"NM_SGRN_CRTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029981
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0029982
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

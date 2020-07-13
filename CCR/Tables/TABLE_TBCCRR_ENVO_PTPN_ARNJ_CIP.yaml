@@ -1,0 +1,43 @@
+name: TBCCRR_ENVO_PTPN_ARNJ_CIP
+schema: CCR
+columns:
+- name: NU_ISPB_BNCO_ENVO_CIP
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+- name: NU_SQNC_ARNJ
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_ENVO_PTPN_ARNJ_CIP
+  type: PRIMARY_KEY
+  columns:
+  - name: NU_ISPB_BNCO_ENVO_CIP
+    ordinalPosition: 2
+  - name: NU_SQNC_ARNJ
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_PTPN_ARNJ_CCR02
+  type: FOREIGN_KEY
+  columns:
+  - name: NU_SQNC_ARNJ
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_PTPN_ARNJ
+    referencedTableColumnName: NU_SQNC_ARNJ
+- !<check-constraint>
+  name: SYS_C0026028
+  type: CHECK
+  checkClause: '"NU_SQNC_ARNJ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0026029
+  type: CHECK
+  checkClause: '"NU_ISPB_BNCO_ENVO_CIP" IS NOT NULL'

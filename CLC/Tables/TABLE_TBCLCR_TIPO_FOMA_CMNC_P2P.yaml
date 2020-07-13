@@ -1,0 +1,84 @@
+name: TBCLCR_TIPO_FOMA_CMNC_P2P
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_FOMA_CMNC_P2P
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_MDLO_NGCO
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_ITRA_BNDR
+  ordinalPosition: 4
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: IN_ITRA_EMSR
+  ordinalPosition: 5
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_FOMA_CMNC_P2P
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_TIPO_FOMA_CMNC_P2P
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C0027093
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027094
+  type: CHECK
+  checkClause: '"CD_TIPO_FOMA_CMNC_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027095
+  type: CHECK
+  checkClause: '"CD_TIPO_MDLO_NGCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027096
+  type: CHECK
+  checkClause: '"IN_ITRA_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027097
+  type: CHECK
+  checkClause: '"IN_ITRA_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027098
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0027099
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
