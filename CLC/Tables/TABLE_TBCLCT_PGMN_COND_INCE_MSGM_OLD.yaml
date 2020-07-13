@@ -1,0 +1,148 @@
+name: TBCLCT_PGMN_COND_INCE_MSGM_OLD
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_MSGM_CRDE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: false
+  dataTypeLength: 5
+- name: CD_TIPO_ARQV_PGMN
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM_PGMN
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_BNCO
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCT_PGMN_COND_INCE_MSGM
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_MSGM_CRDE
+    ordinalPosition: 6
+  - name: CD_TIPO_ARQV_PGMN
+    ordinalPosition: 7
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 4
+  - name: DT_VNCM_PGMN
+    ordinalPosition: 5
+  - name: NU_BNCO
+    ordinalPosition: 3
+- !<fk-constraint>
+  name: FKT_PGMN_COND_CRDE_INCE_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCT_PGMN_COND_CRDE_INCE_OLD
+    referencedTableColumnName: CD_BNDR
+  - name: CD_CRDE
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCT_PGMN_COND_CRDE_INCE_OLD
+    referencedTableColumnName: CD_CRDE
+  - name: CD_TIPO_ARQV_PGMN
+    ordinalPosition: 6
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCT_PGMN_COND_CRDE_INCE_OLD
+    referencedTableColumnName: CD_TIPO_ARQV_PGMN
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCT_PGMN_COND_CRDE_INCE_OLD
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: DT_VNCM_PGMN
+    ordinalPosition: 5
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCT_PGMN_COND_CRDE_INCE_OLD
+    referencedTableColumnName: DT_VNCM_PGMN
+  - name: NU_BNCO
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCT_PGMN_COND_CRDE_INCE_OLD
+    referencedTableColumnName: NU_BNCO
+- !<check-constraint>
+  name: SYS_C0013230
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013232
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013234
+  type: CHECK
+  checkClause: '"NU_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013235
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013236
+  type: CHECK
+  checkClause: '"DT_VNCM_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013237
+  type: CHECK
+  checkClause: '"CD_MSGM_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013238
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013239
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013240
+  type: CHECK
+  checkClause: '"CD_TIPO_ARQV_PGMN" IS NOT NULL'

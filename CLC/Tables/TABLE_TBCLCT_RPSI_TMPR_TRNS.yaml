@@ -1,0 +1,63 @@
+name: TBCLCT_RPSI_TMPR_TRNS
+schema: CLC
+columns:
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_TRNI
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_IDTF_TRNS
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_NSU_REDE_CPTR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: false
+  dataTypeLength: 12
+- name: TX_CADA_CRCT_FILA_TRNS
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: false
+  dataTypeLength: 4000
+constraints:
+- !<check-constraint>
+  name: SYS_C0010514
+  type: CHECK
+  checkClause: '"NU_IDTF_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010515
+  type: CHECK
+  checkClause: '"NU_NSU_REDE_CPTR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010516
+  type: CHECK
+  checkClause: '"DH_TRNI" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010517
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010518
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010519
+  type: CHECK
+  checkClause: '"TX_CADA_CRCT_FILA_TRNS" IS NOT NULL'

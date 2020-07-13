@@ -1,0 +1,91 @@
+name: TBCLCW_TRTM_DPLD_TRNS
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: DT_RFRN_MVMN
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_RMSA_CRDE
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 6,0
+- name: NU_SQNL_TRTM_DPLD_TRNS
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 15,0
+- name: TX_CHVE_FRTE_TRNS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+constraints:
+- !<unique-constraint>
+  name: PKCLCW_TRTM_DPLD_TRNS
+  type: PRIMARY_KEY
+  columns:
+  - name: NU_SQNL_TRTM_DPLD_TRNS
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_RMSA_CRDE_CLC13
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_CRDE
+    referencedTableColumnName: CD_BNDR
+  - name: CD_CRDE
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_CRDE
+    referencedTableColumnName: CD_CRDE
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_CRDE
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: NU_RMSA_CRDE
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMSA_CRDE
+    referencedTableColumnName: NU_RMSA_CRDE
+- !<check-constraint>
+  name: SYS_C0018589
+  type: CHECK
+  checkClause: '"NU_SQNL_TRTM_DPLD_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018590
+  type: CHECK
+  checkClause: '"TX_CHVE_FRTE_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018591
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'

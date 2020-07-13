@@ -1,0 +1,88 @@
+name: TBCLCR_STCO_PCSM_FRNT_TBHO_OLD
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_FRNT_TBHO
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_STCO_PCSM
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_STCO_PCSM_FRNT_TBHO
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_FRNT_TBHO
+    ordinalPosition: 2
+  - name: CD_TIPO_STCO_PCSM
+    ordinalPosition: 3
+- !<fk-constraint>
+  name: FKR_FRNT_TBHO_CLC1002
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_FRNT_TBHO
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_FRNT_TBHO
+    referencedTableColumnName: CD_FRNT_TBHO
+- !<fk-constraint>
+  name: FKR_TIPO_STCO_PCSM_CLC18
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_PCSM
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_STCO_PCSM
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_PCSM
+    referencedTableColumnName: CD_TIPO_STCO_PCSM
+- !<check-constraint>
+  name: SYS_C0017575
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017577
+  type: CHECK
+  checkClause: '"CD_FRNT_TBHO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017578
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_PCSM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017579
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017580
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

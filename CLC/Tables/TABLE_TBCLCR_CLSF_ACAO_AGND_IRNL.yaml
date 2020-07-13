@@ -1,0 +1,113 @@
+name: TBCLCR_CLSF_ACAO_AGND_IRNL
+schema: CLC
+columns:
+- name: CD_ACAO_AGND_IRNL
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_BNDR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 3,0
+- name: CD_TIPO_APRS_TRNS
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: CD_TIPO_ORGM_TRNS_IRNL
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: CD_TIPO_TRNS_BNDR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_SQNC_CLSF_ACAO
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CLSF_ACAO_AGND_IRNL
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_ACAO_AGND_IRNL
+    ordinalPosition: 1
+  - name: NU_SQNC_CLSF_ACAO
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_ACAO_AGND_IRNL_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_ACAO_AGND_IRNL
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_ACAO_AGND_IRNL
+    referencedTableColumnName: CD_ACAO_AGND_IRNL
+- !<fk-constraint>
+  name: FKR_TIPO_APRS_TRNS_CLC08
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_APRS_TRNS
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_APRS_TRNS
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_APRS_TRNS
+    referencedTableColumnName: CD_TIPO_APRS_TRNS
+- !<fk-constraint>
+  name: FKR_TIPO_ORGM_TRNS_IRNL_CLC02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_ORGM_TRNS_IRNL
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_ORGM_TRNS_IRNL
+    referencedTableColumnName: CD_TIPO_ORGM_TRNS_IRNL
+- !<check-constraint>
+  name: SYS_C0019348
+  type: CHECK
+  checkClause: '"CD_ACAO_AGND_IRNL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019349
+  type: CHECK
+  checkClause: '"NU_SQNC_CLSF_ACAO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019350
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019351
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

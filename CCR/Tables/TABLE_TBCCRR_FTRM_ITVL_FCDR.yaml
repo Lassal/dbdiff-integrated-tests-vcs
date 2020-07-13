@@ -1,0 +1,69 @@
+name: TBCCRR_FTRM_ITVL_FCDR
+schema: CCR
+columns:
+- name: CD_FTRM_ITVL_FCDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: DC_CLSF_FTRM_FCDR
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  defaultValue: 'NULL '
+  dataTypeLength: 10
+- name: IN_RGST_ATVO
+  ordinalPosition: 4
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: VL_FIM_FTRM_ITVL_FCDR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+- name: VL_INCO_FTRM_ITVL_FCDR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_FTRM_ITVL_FCDR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_FTRM_ITVL_FCDR
+    ordinalPosition: 1
+- !<check-constraint>
+  name: CKCCRR_FTRM_ITVL_FCDR_004
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0010997
+  type: CHECK
+  checkClause: '"CD_FTRM_ITVL_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010998
+  type: CHECK
+  checkClause: '"VL_INCO_FTRM_ITVL_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010999
+  type: CHECK
+  checkClause: '"VL_FIM_FTRM_ITVL_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011000
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011001
+  type: CHECK
+  checkClause: '"DC_CLSF_FTRM_FCDR" IS NOT NULL'

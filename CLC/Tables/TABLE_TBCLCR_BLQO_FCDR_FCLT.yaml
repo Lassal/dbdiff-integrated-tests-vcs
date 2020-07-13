@@ -1,0 +1,155 @@
+name: TBCLCR_BLQO_FCDR_FCLT
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_BLQO_PGMN
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_BLQO_PGMN
+  ordinalPosition: 12
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 10
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NU_CLNT_FCDR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: NU_CLNT_FCLT
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_BLQO_FCDR_FCLT
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 5
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 4
+  - name: NU_CLNT_FCDR
+    ordinalPosition: 2
+  - name: NU_CLNT_FCLT
+    ordinalPosition: 3
+- !<fk-constraint>
+  name: FKR_TIPO_BLQO_PGMN_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_BLQO_PGMN
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_BLQO_PGMN
+    referencedTableColumnName: CD_TIPO_BLQO_PGMN
+- !<check-constraint>
+  name: CKCLCR_BLQO_FCDR_FCLT_010
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0014660
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014661
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014662
+  type: CHECK
+  checkClause: '"NU_CLNT_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014663
+  type: CHECK
+  checkClause: '"NU_CLNT_FCLT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014664
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014666
+  type: CHECK
+  checkClause: '"CD_TIPO_BLQO_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014668
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014670
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014672
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014674
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014676
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014678
+  type: CHECK
+  checkClause: '"DH_BLQO_PGMN" IS NOT NULL'

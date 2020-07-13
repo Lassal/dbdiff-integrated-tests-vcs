@@ -1,0 +1,20 @@
+schema: CLC
+name: TBCLCW_FERI_RPLC
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    CICL.DT_PCSM_ATUL AS DT_RFRN_MVMN,
+    FERI.DT_FERI,
+    FERI.NM_FERI,
+    FERI.CD_TIPO_FERI,
+    TIPO.NM_TIPO_FERI
+  FROM
+    CCR.TBCCRR_FERI FERI,
+    CCR.TBCCRR_TIPO_FERI TIPO,
+    ccr.tbccrr_cicl_pcsm_cdst CICL
+  WHERE
+    TIPO.CD_TIPO_FERI = FERI.CD_TIPO_FERI
+    and CICL.IN_RGST_ATVO = 'S'
+columns: []
+referencedTables: []

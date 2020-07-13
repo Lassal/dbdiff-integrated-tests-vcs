@@ -1,0 +1,55 @@
+name: TBCLCR_TIPO_TRNS_ATZC
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_TRNS_ATZC
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_TRNS_ATZC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+constraints:
+- !<check-constraint>
+  name: SYS_C0011060
+  type: CHECK
+  checkClause: '"CD_TIPO_TRNS_ATZC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011061
+  type: CHECK
+  checkClause: '"NM_TIPO_TRNS_ATZC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011062
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011063
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011064
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'

@@ -1,0 +1,102 @@
+name: TBCLCR_PAIS_MODA
+schema: CLC
+columns:
+- name: CD_MODA
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_PAIS
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 3
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_PAIS_MODA
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_MODA
+    ordinalPosition: 1
+  - name: CD_PAIS
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_MODA_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_MODA
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_MODA
+    referencedTableColumnName: CD_MODA
+- !<fk-constraint>
+  name: FKR_PAIS_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_PAIS
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PAIS
+    referencedTableColumnName: CD_PAIS
+- !<check-constraint>
+  name: CKCLCR_PAIS_MODA_003
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0017024
+  type: CHECK
+  checkClause: '"CD_MODA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017025
+  type: CHECK
+  checkClause: '"CD_PAIS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017026
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017027
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017028
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017029
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

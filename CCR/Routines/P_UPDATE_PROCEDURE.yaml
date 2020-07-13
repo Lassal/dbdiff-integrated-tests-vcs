@@ -1,0 +1,50 @@
+schema: CCR
+name: P_UPDATE
+routineType: PROCEDURE
+returnParamater: null
+parameters: []
+routineDefinition: |-
+  PROCEDURE p_update IS CURSOR C_CURSOR IS
+  SELECT
+    rowid browid --- não tem necessidade de retornar  todos os campos, somente o rowid
+  FROM
+    CLC.TBCLCR_TRNS_COND_AGND_EMSR
+  WHERE
+    CD_EMSR = 204
+    AND DT_VNCM_TRNS >= (
+      SELECT
+        DT_PCSM_ATUL
+      FROM
+        CCR.tbccrr_cicl_pcsm_cdst
+    ) + 1;
+  TYPE TYPE_CURSOR IS TABLE OF C_CURSOR % ROWTYPE INDEX BY BINARY_INTEGER;
+  R_CURSOR TYPE_CURSOR;
+  BEGIN
+    OPEN C_CURSOR;
+  LOOP
+    --preenche a memória de 1000 em 1000 registros
+    FETCH C_CURSOR BULK COLLECT INTO R_CURSOR
+  LIMIT
+    30000;
+  --commit a cada 30 mil insert(s)
+    EXIT
+    WHEN R_CURSOR.COUNT = 0;
+  FOR I IN 1 .. R_CURSOR.COUNT
+  LOOP
+  UPDATE
+    CLC.TBCLCR_TRNS_COND_AGND_EMSR
+  SET
+    TBCLCR_TRNS_COND_AGND_EMSR.CD_EMSR = 237,
+    TBCLCR_TRNS_COND_AGND_EMSR.NU_BNCO_LQDN = 237
+  where
+    rowid = R_CURSOR(I) .browid;
+  END
+  LOOP;
+  --VAI APLICAR COMMIT DE 30000 EM 30000;
+    COMMIT;
+  END
+  LOOP
+    C_CURSOR;
+  CLOSE C_CURSOR;
+  COMMIT;
+  END;

@@ -1,0 +1,49 @@
+schema: CLC
+name: CARREGAINSUMOSAUTORIZACAO
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: VDATAMOVIMENTO
+  ordinalPosition: 1
+  dataType: DATE
+  parameterMode: INOUT
+routineDefinition: "PROCEDURE CARREGAINSUMOSAUTORIZACAO (vdataMovimento IN OUT DATE)\
+  \ AS vdataVencimento DATE;\nBEGIN\n  /*DOMINIOS DA TABELA DE INSUMOS GRADE\n  \n\
+  \   FRENTE EXTRAÇÃO - 1 HISTÓRICO\n  \n  \t\t\t\t - 2 AUTORIZAÇÃO\n  \n  \t\t\t\t\
+  \ - 3 OUTGOING SEM REMUNERAÇÃO\n  \n  \t\t\t\t - 4 OUTGOING COM REMUNERAÇÃO\t\t\t\
+  \t \n  \n  \t\t\t\t \n  \n   STATUS DA CARGA CONTINGENCIA\n  \n  \t\t\t\t - 1 EXTRAÍ\
+  DO\n  \n  \t\t\t\t - 2 SELECIONADO PELO OPERADOR\n  \n  \t\t\t\t - 3 CARGA EFETUADA\
+  \ NA GRADE\n  \n  \t\t\t\t - 4 NÃO UTILIZADO NA GRADE\n  \n  */\n  IF vdataMovimento\
+  \ IS NULL THEN\nSELECT\n  TRUNC(dt_pcsm_atul) INTO vdataMovimento\nFROM\n  ccr.tbccrr_cicl_pcsm_cdst;\n\
+  END IF;\nSELECT\n  min(DATA_) INTO vdataVencimento\nFROM\n  (\n    SELECT\n    \
+  \  DATAS_MES + LEVEL - 1 DATA_,\n      TO_CHAR(DATAS_MES + LEVEL - 1, 'd') DIA_SEMANA\n\
+  \    FROM\n      (\n        SELECT\n          TRUNC(vdataMovimento + 1, 'MM') DATAS_MES\n\
+  \        FROM\n          DUAL\n      )\n    CONNECT BY\n      DATAS_MES + LEVEL\
+  \ - 1 <= LAST_DAY(DATAS_MES)\n  )\nWHERE\n  DIA_SEMANA NOT IN (1, 7)\n  AND DATA_\
+  \ NOT IN (\n    SELECT\n      TO_DATE(\n        DD_HOLIDAY || '/' || MM_HOLIDAY\
+  \ || '/' || YY_HOLIDAY,\n        'DD/MM/YYYY'\n      )\n    FROM\n      CNTRPCSM.TBSHRR_HOLIDAY\n\
+  \  )\n  AND DATA_ >= (vdataMovimento + 1);\nBEGIN\nINSERT INTO\n  CLC.TBCLCR_CNGA_GRDE\
+  \ (\n    CD_BNDR,\n    CD_CRDE,\n    CD_TIPO_PLTF_PGMN,\n    CD_EMSR,\n    CD_PCSR,\n\
+  \    NU_BNCO_LQDN,\n    DT_VNCM_TRNS,\n    DT_RFRN_MVMN,\n    CD_TIPO_ORGM_CNGA_GRDE,\n\
+  \    VL_LQDO_TRNS_ETNC,\n    QT_TOTL_LNCM_BNDR,\n    CD_STCO_CRGA_CNGA_GRDE\n  )\
+  \ (\n    select\n      7,\n      CREDENCIADORA,\n      'D',\n      EMISSOR,\n  \
+  \    PROCESSADORA,\n      BANCO_LIQ_EMISSOR,\n      vdataVencimento,\n      DATA_LOCAL_TRANSACAO,\n\
+  \      FRENTE_EXTRACAO,\n      VALOR_TRANSACAO,\n      QUANTIDADE_TRANSACAO,\n \
+  \     1\n    FROM\n      (\n        SELECT\n          T.CD_CRDE AS CREDENCIADORA,\n\
+  \          (\n            CASE\n              t.cd_emsr\n              WHEN 770\
+  \ THEN 6770\n              ELSE T.CD_EMSR\n            END\n          ) AS EMISSOR,\n\
+  \          BIN.CD_PCSR_LQDC AS PROCESSADORA,\n          BIN.NU_BNCO_LQDN as BANCO_LIQ_EMISSOR,\n\
+  \          T.DT_LOCL_TRNS as DATA_LOCAL_TRANSACAO,\n          T.CD_MODA as MOEDA,\n\
+  \          ROUND(((SUM(T.VL_TRNS)) * 0.98), 2) as VALOR_TRANSACAO,\n          COUNT(1)\
+  \ as QUANTIDADE_TRANSACAO,\n          2 AS FRENTE_EXTRACAO\n        FROM\n     \
+  \     ATZ.TBATZR_TRNS T\n          INNER JOIN ATZ.TBATZR_TRNS_BNDR_ELO e ON t.nu_idtf_trns\
+  \ = e.nu_idtf_trns\n          AND t.nu_nsu_rede_cptr = e.nu_nsu_rede_cptr\n    \
+  \      and T.DH_TRNI = E.DH_TRNI\n          AND T.DT_LOCL_TRNS = E.DT_LOCL_TRNS\n\
+  \          LEFT JOIN CEM.TBCEMR_BIN_PLTF_ATZC_LQDC bin ON t.cd_emsr = bin.cd_emsr\n\
+  \          and T.NU_BIN_RECB = BIN.NU_BIN\n          AND BIN.CD_TIPO_PLTF_PGMN =\
+  \ 'D'\n        where\n          T.CD_TIPO_STCO_TRNS = 1\n          AND t.dt_locl_trns\
+  \ = vdataMovimento\n          AND E.CD_TIPO_CNTA_TRNS_BNDR_ORGM IN (10, 20)\n  \
+  \        and T.CD_TIPO_TRNS_ATZC = 100\n        GROUP BY\n          T.CD_CRDE,\n\
+  \          T.CD_EMSR,\n          BIN.CD_PCSR_LQDC,\n          BIN.NU_BNCO_LQDN,\n\
+  \          T.DT_LOCL_TRNS,\n          T.CD_MODA\n      )\n  );\nCOMMIT;\nEND;\n\
+  END CARREGAINSUMOSAUTORIZACAO;"

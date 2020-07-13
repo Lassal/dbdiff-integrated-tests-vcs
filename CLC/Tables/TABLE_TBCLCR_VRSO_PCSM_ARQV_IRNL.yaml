@@ -1,0 +1,77 @@
+name: TBCLCR_VRSO_PCSM_ARQV_IRNL
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_VRSO_PCSM_ARQV_AGND
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_VRSO_PCSM_ARQV_IRNL
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 3
+  - name: NU_VRSO_PCSM_ARQV_AGND
+    ordinalPosition: 4
+- !<check-constraint>
+  name: SYS_C0019671
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019672
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019673
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019674
+  type: CHECK
+  checkClause: '"NU_VRSO_PCSM_ARQV_AGND" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019675
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019676
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

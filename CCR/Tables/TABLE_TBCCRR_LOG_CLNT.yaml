@@ -1,0 +1,218 @@
+name: TBCCRR_LOG_CLNT
+schema: CCR
+columns:
+- name: CD_IDTF_ELO_CLNT_FCDR
+  ordinalPosition: 24
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: CD_MARC_EC
+  ordinalPosition: 18
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 17,0
+- name: CD_PAIS
+  ordinalPosition: 22
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 3,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_ENDR_CLNT
+  ordinalPosition: 20
+  dataType: VARCHAR2
+  textMaxLength: 36
+  nullable: true
+  dataTypeLength: 36
+- name: DC_URL_CLNT
+  ordinalPosition: 23
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: DH_ACAO_FIM_RGST
+  ordinalPosition: 10
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_ACAO_INCO_RGST
+  ordinalPosition: 2
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 6
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_CIDE_CLNT
+  ordinalPosition: 21
+  dataType: VARCHAR2
+  textMaxLength: 26
+  nullable: true
+  dataTypeLength: 26
+- name: NM_CLNT
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  dataTypeLength: 100
+- name: NM_CLNT_TOKN
+  ordinalPosition: 19
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  dataTypeLength: 100
+- name: NM_FNTS_CLNT
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  dataTypeLength: 100
+- name: NU_CEP_CLNT
+  ordinalPosition: 17
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 8,0
+- name: NU_CLNT
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: NU_CPF_CLNT
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 9,0
+- name: NU_DV_CNPJ_CLNT
+  ordinalPosition: 15
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: NU_DV_CPF_CLNT
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: NU_FILI_CNPJ_CLNT
+  ordinalPosition: 14
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: NU_RAIZ_CNPJ_CLNT
+  ordinalPosition: 13
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 8,0
+- name: SG_TPPS
+  ordinalPosition: 4
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_LOG_CLNT
+  type: PRIMARY_KEY
+  columns:
+  - name: DH_ACAO_INCO_RGST
+    ordinalPosition: 2
+  - name: NU_CLNT
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_CLNT_CCR02
+  type: FOREIGN_KEY
+  columns:
+  - name: NU_CLNT
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CLNT
+    referencedTableColumnName: NU_CLNT
+- !<fk-constraint>
+  name: FKR_TPPS_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: SG_TPPS
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TPPS
+    referencedTableColumnName: SG_TPPS
+- !<check-constraint>
+  name: CKCCRR_LOG_CLNT_006
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0018296
+  type: CHECK
+  checkClause: '"NU_CLNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018298
+  type: CHECK
+  checkClause: '"DH_ACAO_INCO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018300
+  type: CHECK
+  checkClause: '"SG_TPPS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018302
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018304
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018306
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018308
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018310
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'

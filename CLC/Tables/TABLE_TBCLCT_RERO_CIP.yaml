@@ -1,0 +1,46 @@
+name: TBCLCT_RERO_CIP
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: NU_CNTR_CENZ
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  defaultValue: '''0'' '
+  dataTypeLength: 20
+- name: NU_UNCO_LQDC_CIP
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  dataTypeLength: 20
+- name: TX_ERRO
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 500
+  nullable: true
+  dataTypeLength: 500
+constraints:
+- !<unique-constraint>
+  name: PKCLCT_RERO_CIP
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: NU_CNTR_CENZ
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C0015148
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015149
+  type: CHECK
+  checkClause: '"NU_CNTR_CENZ" IS NOT NULL'

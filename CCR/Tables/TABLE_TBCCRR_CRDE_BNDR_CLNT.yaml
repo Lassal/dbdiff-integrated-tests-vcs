@@ -1,0 +1,241 @@
+name: TBCCRR_CRDE_BNDR_CLNT
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_CNAL_ORGM_TRNS
+  ordinalPosition: 17
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  defaultValue: 1
+  dataTypeLength: 2,0
+- name: CD_TIPO_CNTA_PGMN
+  ordinalPosition: 15
+  dataType: CHAR
+  textMaxLength: 2
+  nullable: true
+  dataTypeLength: 2
+- name: CD_TIPO_MDLO_NGCO
+  ordinalPosition: 16
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  defaultValue: 1
+  dataTypeLength: 2,0
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_FIM_ACTC_CRTO_DNRS
+  ordinalPosition: 19
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_FIM_TRVA_DMBN
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_INCO_ACTC_CRTO_DNRS
+  ordinalPosition: 18
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_INCO_TRVA_DMBN
+  ordinalPosition: 10
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 5
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: IN_TRVA_DMBN
+  ordinalPosition: 9
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''N'' '
+  dataTypeLength: 1
+- name: NU_AGNC_DMBN
+  ordinalPosition: 13
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 5,0
+- name: NU_BNCO
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: NU_CLNT
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: NU_CNTA_PGMN
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  dataTypeLength: 20
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_CRDE_BNDR_CLNT
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: NU_CLNT
+    ordinalPosition: 3
+- !<fk-constraint>
+  name: FKR_BNCO_CCR09
+  type: FOREIGN_KEY
+  columns:
+  - name: NU_BNCO
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_BNCO
+    referencedTableColumnName: NU_BNCO
+- !<fk-constraint>
+  name: FKR_CLNT_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: NU_CLNT
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CLNT
+    referencedTableColumnName: NU_CLNT
+- !<fk-constraint>
+  name: FKR_CRDE_BNDR_CCR08
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CRDE_BNDR
+    referencedTableColumnName: CD_BNDR
+  - name: CD_CRDE
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CRDE_BNDR
+    referencedTableColumnName: CD_CRDE
+- !<fk-constraint>
+  name: FKR_TIPO_CNAL_ORGM_TRNS_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_CNAL_ORGM_TRNS
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TIPO_CNAL_ORGM_TRNS
+    referencedTableColumnName: CD_TIPO_CNAL_ORGM_TRNS
+- !<fk-constraint>
+  name: FKR_TIPO_CNTA_PGMN_CCR02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_CNTA_PGMN
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TIPO_CNTA_PGMN
+    referencedTableColumnName: CD_TIPO_CNTA_PGMN
+- !<fk-constraint>
+  name: FKR_TIPO_MDLO_NGCO_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_MDLO_NGCO
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TIPO_MDLO_NGCO
+    referencedTableColumnName: CD_TIPO_MDLO_NGCO
+- !<check-constraint>
+  name: CKCCRR_CRDE_BNDR_CLNT_004
+  type: CHECK
+  checkClause: IN_TRVA_DMBN in ('S', 'N')
+- !<check-constraint>
+  name: CKCCRR_CRDE_BNDR_CLNT_006
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0020066
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020067
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020068
+  type: CHECK
+  checkClause: '"NU_CLNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020069
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020070
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020071
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020072
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020073
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020074
+  type: CHECK
+  checkClause: '"IN_TRVA_DMBN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020075
+  type: CHECK
+  checkClause: '"CD_TIPO_CNAL_ORGM_TRNS" IS NOT NULL'

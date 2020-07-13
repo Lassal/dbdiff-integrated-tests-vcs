@@ -1,0 +1,129 @@
+name: TBCCRR_BNCO
+schema: CCR
+columns:
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 9
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_BNCO
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: NU_BNCO
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_DV_CNPJ_BNCO
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: NU_FILI_CNPJ_BNCO
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_ISPB_BNCO
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+- name: NU_RZCN_BNCO
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_BNCO
+  type: PRIMARY_KEY
+  columns:
+  - name: NU_BNCO
+    ordinalPosition: 1
+- !<check-constraint>
+  name: CKC_IN_RGST_ATVO_TBCCRR_B
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0017559
+  type: CHECK
+  checkClause: '"NU_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017560
+  type: CHECK
+  checkClause: '"NM_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017561
+  type: CHECK
+  checkClause: '"NU_RZCN_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017562
+  type: CHECK
+  checkClause: '"NU_FILI_CNPJ_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017563
+  type: CHECK
+  checkClause: '"NU_DV_CNPJ_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017564
+  type: CHECK
+  checkClause: '"NU_ISPB_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017565
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017566
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017567
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017568
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017569
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'

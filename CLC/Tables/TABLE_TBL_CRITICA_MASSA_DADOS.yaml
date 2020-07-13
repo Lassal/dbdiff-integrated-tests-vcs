@@ -1,0 +1,28 @@
+name: TBL_CRITICA_MASSA_DADOS
+schema: CLC
+columns:
+- name: DSC_LINHA_ARQUIVO
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 500
+  nullable: true
+  dataTypeLength: 500
+- name: NRO_IDENTIF_GERA_MASSA
+  ordinalPosition: 1
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+- name: NRO_LINHA_ARQUIVO
+  ordinalPosition: 2
+  dataType: NUMBER
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKTBL_CRITICA_MASSA_DADOS
+  type: PRIMARY_KEY
+  columns:
+  - name: NRO_IDENTIF_GERA_MASSA
+    ordinalPosition: 1
+  - name: NRO_LINHA_ARQUIVO
+    ordinalPosition: 2

@@ -1,0 +1,49 @@
+name: TBCLCR_TIPO_STCO_LYOT_PCSM
+schema: CLC
+columns:
+- name: CD_TIPO_STCO_LYOT_PCSM
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: false
+  dataTypeLength: 6
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_STCO_LYOT_PCSM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 60
+  nullable: false
+  dataTypeLength: 60
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_STCO_LYOT_PCSM
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_STCO_LYOT_PCSM
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0013771
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_LYOT_PCSM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013772
+  type: CHECK
+  checkClause: '"DC_TIPO_STCO_LYOT_PCSM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013773
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013774
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

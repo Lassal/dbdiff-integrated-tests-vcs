@@ -1,0 +1,31 @@
+name: TBCLCR_TIPO_ORGM_CNGA_GRDE
+schema: CLC
+columns:
+- name: CD_TIPO_ORGM_CNGA_GRDE
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NM_TIPO_ORGM_CNGA_GRDE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_ORGM_CNGA_GRDE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_ORGM_CNGA_GRDE
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0014824
+  type: CHECK
+  checkClause: '"CD_TIPO_ORGM_CNGA_GRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014826
+  type: CHECK
+  checkClause: '"NM_TIPO_ORGM_CNGA_GRDE" IS NOT NULL'

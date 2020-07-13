@@ -1,0 +1,39 @@
+schema: CLC
+name: DELETAR_CARTAO_ABERTO_RECEBIDO
+routineType: PROCEDURE
+returnParamater: null
+parameters: []
+routineDefinition: |-
+  PROCEDURE DELETAR_CARTAO_ABERTO_RECEBIDO (P_DATA_MVMN IN DATE) IS v_cont number(20): = 0;
+  v_linha number(20): = 0;
+  BEGIN
+    dbms_output.put_line('Iniciando iteracao ');
+  for x in (
+      SELECT
+        rowid
+      FROM
+        CLC.TBCLCT_CRTO_ABRO_LNCM_RECB
+      WHERE
+        DT_RFRN_MVMN = P_DATA_MVMN
+    )
+  loop
+  DELETE FROM
+    CLC.TBCLCT_CRTO_ABRO_LNCM_RECB
+  WHERE
+    rowid = x.rowid;
+  v_cont: = v_cont + 1;
+  v_linha: = v_linha + 1;
+  IF v_cont = 10000 THEN dbms_output.put_line(
+      'Commitando 10000 linhas. Linhas iteradas: ' || v_linha
+    );
+  COMMIT;
+  v_cont: = 0;
+  END IF;
+  END
+  LOOP;
+  dbms_output.put_line('Finalizando iteracao ');
+  COMMIT;
+  dbms_output.put_line(
+      'Commitando o restante das linhas. Linhas iteradas: ' || v_linha
+    );
+  END;

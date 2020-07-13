@@ -1,0 +1,108 @@
+name: TBCLCR_CNTR_STCO_TRNS_CBRN
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_EMSR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PRCR_CPTU_SAQE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_STCO_TRNS_PRCR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+- name: CD_USRO_ALTR_RGST
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ALTR_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_CBRN_TARF
+  ordinalPosition: 5
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: IN_TRNS_FINC
+  ordinalPosition: 8
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CNTR_STCO_TRNS_CBRN
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_EMSR
+    ordinalPosition: 3
+  - name: CD_PRCR_CPTU_SAQE
+    ordinalPosition: 2
+  - name: CD_TIPO_STCO_TRNS_PRCR
+    ordinalPosition: 4
+- !<fk-constraint>
+  name: FKR_TIPO_STCO_TRNS_PRCR_CLC03
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_STCO_TRNS_PRCR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_TRNS_PRCR
+    referencedTableColumnName: CD_TIPO_STCO_TRNS_PRCR
+- !<check-constraint>
+  name: SYS_C0010610
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010611
+  type: CHECK
+  checkClause: '"CD_PRCR_CPTU_SAQE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010612
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010613
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_TRNS_PRCR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010614
+  type: CHECK
+  checkClause: '"IN_CBRN_TARF" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010615
+  type: CHECK
+  checkClause: '"DH_ALTR_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010616
+  type: CHECK
+  checkClause: '"CD_USRO_ALTR_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010617
+  type: CHECK
+  checkClause: '"IN_TRNS_FINC" IS NOT NULL'

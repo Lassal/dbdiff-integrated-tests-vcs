@@ -1,0 +1,50 @@
+name: TBCLCR_VRSO_MSGR
+schema: CLC
+columns:
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_VRSO_MSGR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: DC_VRSO_MSGR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_VRSO_MSGR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_VRSO_MSGR
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0019149
+  type: CHECK
+  checkClause: '"CD_VRSO_MSGR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019150
+  type: CHECK
+  checkClause: '"DC_VRSO_MSGR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019151
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019152
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

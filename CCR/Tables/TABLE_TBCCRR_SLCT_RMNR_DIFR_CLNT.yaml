@@ -1,0 +1,80 @@
+name: TBCCRR_SLCT_RMNR_DIFR_CLNT
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: NM_GSTR_CLNT_CNTA_BNDR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: NU_CLNT
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: NU_SQNC_SLCT_GRPO_RMNR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_SLCT_RMNR_DIFR_CLNT
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+  - name: NU_CLNT
+    ordinalPosition: 1
+  - name: NU_SQNC_SLCT_GRPO_RMNR
+    ordinalPosition: 3
+- !<fk-constraint>
+  name: FKR_CLNT_CCR06
+  type: FOREIGN_KEY
+  columns:
+  - name: NU_CLNT
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CLNT
+    referencedTableColumnName: NU_CLNT
+- !<fk-constraint>
+  name: FKR_SLCT_GRPO_RMNR_CCR04
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_SLCT_GRPO_RMNR
+    referencedTableColumnName: CD_BNDR
+  - name: NU_SQNC_SLCT_GRPO_RMNR
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_SLCT_GRPO_RMNR
+    referencedTableColumnName: NU_SQNC_SLCT_GRPO_RMNR
+- !<check-constraint>
+  name: SYS_C0016531
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016532
+  type: CHECK
+  checkClause: '"NU_SQNC_SLCT_GRPO_RMNR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016533
+  type: CHECK
+  checkClause: '"NU_CLNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016534
+  type: CHECK
+  checkClause: '"NM_GSTR_CLNT_CNTA_BNDR" IS NOT NULL'

@@ -1,0 +1,95 @@
+schema: CCR
+name: SP08
+routineType: PROCEDURE
+returnParamater: null
+parameters: []
+routineDefinition: |-
+  procedure sp08 as
+  begin
+  DECLARE
+    i NUMBER: = 0;
+  j NUMBER: = 0;
+  ini DATE: = SYSDATE;
+  BEGIN
+    FOR x IN (
+      SELECT
+        /* parallel 10 */
+        sg_tpps,
+        nu_raiz_cnpj_clnt,
+        nu_fili_cnpj_clnt,
+        nu_dv_cnpj_clnt,
+        COUNT(1)
+      FROM
+        ccr.tbccrr_clnt
+      WHERE
+        sg_tpps = 'J'
+      GROUP BY
+        sg_tpps,
+        nu_raiz_cnpj_clnt,
+        nu_fili_cnpj_clnt,
+        nu_dv_cnpj_clnt
+      HAVING
+        COUNT(1) > 1
+    )
+  LOOP
+  BEGIN
+    FOR y IN (
+      SELECT
+        /* parallel 10 */
+        cd_bndr,
+        cd_grpo_rmnr,
+        cd_tipo_rmnr,
+        nu_clnt
+      FROM
+        ccr.tbccrr_rmnr_difr_clnt
+      WHERE
+        cd_bndr = 7
+        AND (
+          in_rgst_atvo = 'N'
+          OR cd_tipo_acao_rgst = 'E'
+        )
+        AND nu_clnt IN (
+          SELECT
+            nu_clnt
+          FROM
+            ccr.tbccrr_clnt
+          WHERE
+            sg_tpps = x.sg_tpps
+            AND nu_raiz_cnpj_clnt = x.nu_raiz_cnpj_clnt
+            AND nu_fili_cnpj_clnt = x.nu_fili_cnpj_clnt
+            AND nu_dv_cnpj_clnt = x.nu_dv_cnpj_clnt
+        )
+    )
+  LOOP
+  BEGIN
+  DELETE
+    /*+ parallel 10 */
+  FROM
+    ccr.tbccrr_rmnr_difr_clnt
+  WHERE
+    cd_bndr = y.cd_bndr
+    AND cd_grpo_rmnr = y.cd_grpo_rmnr
+    AND cd_tipo_rmnr = y.cd_tipo_rmnr
+    AND nu_clnt = y.nu_clnt;
+  END;
+  END
+  LOOP;
+  --COMMIT;
+    j: = j + 1;
+  i: = i + 1;
+  IF i > 1000 THEN COMMIT;
+  i: = 0;
+  END IF;
+  END;
+  END
+  LOOP;
+  dbms_output.put_line(
+      'Data de inicio: ' || TO_CHAR(ini, 'DD/MM/YYYY HH24:mm:SS')
+    );
+  dbms_output.put_line('Quantidade de registros afetados: ' || j);
+  dbms_output.put_line(
+      'Data de final: ' || TO_CHAR(SYSDATE, 'DD/MM/YYYY HH24:mm:SS')
+    );
+  COMMIT;
+  END;
+  end sp08;

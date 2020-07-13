@@ -1,0 +1,64 @@
+name: TBCLCR_POCS_NGCO
+schema: CLC
+columns:
+- name: CD_POCS_NGCO
+  ordinalPosition: 1
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 5
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_POCS_NGCO
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_POCS_NGCO
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_POCS_NGCO
+    ordinalPosition: 1
+- !<check-constraint>
+  name: CKCLCR_POCS_NGCO_001
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0017077
+  type: CHECK
+  checkClause: '"CD_POCS_NGCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017078
+  type: CHECK
+  checkClause: '"NM_POCS_NGCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017079
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017080
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017081
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'

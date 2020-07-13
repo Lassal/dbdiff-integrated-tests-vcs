@@ -1,0 +1,48 @@
+schema: CLC
+name: PROC_RET_PARC1
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: V_CRED
+  ordinalPosition: 1
+  dataType: NUMBER
+  parameterMode: IN
+- name: V_INI
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: V_FIM
+  ordinalPosition: 3
+  dataType: NUMBER
+  parameterMode: IN
+- name: V_VALOR
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: V_RETURN
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  parameterMode: OUT
+routineDefinition: |-
+  PROCEDURE proc_ret_parc1 (
+    V_CRED IN NUMBER,
+    V_INI IN NUMBER,
+    V_FIM IN NUMBER,
+    V_VALOR IN NUMBER,
+    V_RETURN OUT VARCHAR2
+  ) -- RETURN VARCHAR2
+  IS --V_RET VARCHAR2(2000);
+  V_PARC NUMBER: = 0;
+  BEGIN
+    FOR X IN V_INI .. V_FIM
+  LOOP
+    IF X <> V_FIM THEN DBMS_OUTPUT.PUT_LINE(
+      V_CRED || ',' || TO_CHAR(X + 1) || '/' || V_FIM || ',' || V_VALOR || CHR(13)
+    );
+  V_RETURN: = V_RETURN || ' ' || V_CRED || ',' || TO_CHAR(X + 1) || '/' || V_FIM || ',' || V_VALOR || CHR(13);
+    ELSE NULL;
+  END IF;
+  END
+  LOOP;
+  --SELECT V_RET INTO V_RETURN FROM DUAL;
+  END;

@@ -1,0 +1,30 @@
+name: TBCLCR_RERO_PSQS_TRNS_ORIG
+schema: CLC
+columns:
+- name: CD_RERO_PSQS_TRNS_ORIG
+  ordinalPosition: 1
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: DC_RERO_PSQS_TRNS_ORIG
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  dataTypeLength: 30
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_RERO_PSQS_TRNS_ORIG
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_RERO_PSQS_TRNS_ORIG
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0018434
+  type: CHECK
+  checkClause: '"CD_RERO_PSQS_TRNS_ORIG" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018435
+  type: CHECK
+  checkClause: '"DC_RERO_PSQS_TRNS_ORIG" IS NOT NULL'

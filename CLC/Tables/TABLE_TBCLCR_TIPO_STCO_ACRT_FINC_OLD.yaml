@@ -1,0 +1,49 @@
+name: TBCLCR_TIPO_STCO_ACRT_FINC_OLD
+schema: CLC
+columns:
+- name: CD_TIPO_STCO_ACRT_FINC
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_STCO_ACRT_FINC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_STCO_ACRT_FINC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_STCO_ACRT_FINC
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0017484
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_ACRT_FINC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017485
+  type: CHECK
+  checkClause: '"DC_TIPO_STCO_ACRT_FINC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017486
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017487
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

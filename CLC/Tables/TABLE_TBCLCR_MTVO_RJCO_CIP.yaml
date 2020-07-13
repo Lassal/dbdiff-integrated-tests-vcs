@@ -1,0 +1,49 @@
+name: TBCLCR_MTVO_RJCO_CIP
+schema: CLC
+columns:
+- name: CD_MTVO_RJCO_CIP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  dataTypeLength: 10
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_MTVO_RJCO_CIP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_MTVO_RJCO_CIP
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_MTVO_RJCO_CIP
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0015942
+  type: CHECK
+  checkClause: '"CD_MTVO_RJCO_CIP" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015943
+  type: CHECK
+  checkClause: '"DC_MTVO_RJCO_CIP" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015944
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015945
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

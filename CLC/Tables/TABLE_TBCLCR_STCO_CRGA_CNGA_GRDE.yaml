@@ -1,0 +1,31 @@
+name: TBCLCR_STCO_CRGA_CNGA_GRDE
+schema: CLC
+columns:
+- name: CD_STCO_CRGA_CNGA_GRDE
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NM_STCO_CRGA_CNGA_GRDE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_STCO_CRGA_CNGA_GRDE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_STCO_CRGA_CNGA_GRDE
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0014844
+  type: CHECK
+  checkClause: '"CD_STCO_CRGA_CNGA_GRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014845
+  type: CHECK
+  checkClause: '"NM_STCO_CRGA_CNGA_GRDE" IS NOT NULL'

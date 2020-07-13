@@ -1,0 +1,135 @@
+name: TBCCRR_CNTO_PRCR_CPTU_SAQE
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CNTO_PRCR_CPTU_SAQE
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PRCR_CPTU_SAQE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 7
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_CNTO_PRCR_CPTU_SAQE
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: NM_EMAL_CNTO_CPTU
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_CNTO_PRCR_CPTU_SAQE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CNTO_PRCR_CPTU_SAQE
+    ordinalPosition: 3
+  - name: CD_PRCR_CPTU_SAQE
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_PRCR_CPTU_SAQE_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_PRCR_CPTU_SAQE
+    referencedTableColumnName: CD_BNDR
+  - name: CD_PRCR_CPTU_SAQE
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_PRCR_CPTU_SAQE
+    referencedTableColumnName: CD_PRCR_CPTU_SAQE
+- !<check-constraint>
+  name: CKCCRR_CNTO_PRCR_CPTU_SAQE_006
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0017188
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017189
+  type: CHECK
+  checkClause: '"CD_PRCR_CPTU_SAQE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017190
+  type: CHECK
+  checkClause: '"CD_CNTO_PRCR_CPTU_SAQE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017191
+  type: CHECK
+  checkClause: '"NM_CNTO_PRCR_CPTU_SAQE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017192
+  type: CHECK
+  checkClause: '"NM_EMAL_CNTO_CPTU" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017193
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017194
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017195
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017196
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017197
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'

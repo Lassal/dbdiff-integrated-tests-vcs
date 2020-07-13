@@ -1,0 +1,71 @@
+name: TBCCRR_GRPO_MARC_EC
+schema: CCR
+columns:
+- name: CD_GRPO_MARC_EC
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 17,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 3
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_GRPO_MARC_EC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: NM_GRPO_MARC_EC_TOKN
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  dataTypeLength: 100
+constraints:
+- !<unique-constraint>
+  name: PK_TBCCRR_GRPO_MARC_EC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_GRPO_MARC_EC
+    ordinalPosition: 1
+- !<check-constraint>
+  name: CKC_IN_RGST_ATVO_TBCCRR_G
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0015561
+  type: CHECK
+  checkClause: '"CD_GRPO_MARC_EC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015562
+  type: CHECK
+  checkClause: '"NM_GRPO_MARC_EC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015563
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015564
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015565
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

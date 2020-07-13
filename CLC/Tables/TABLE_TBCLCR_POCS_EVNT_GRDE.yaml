@@ -1,0 +1,107 @@
+name: TBCLCR_POCS_EVNT_GRDE
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_FRNT_TBHO
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_POCS_MONM
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 5,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_POCS_MONM
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_POCS_ATMT
+  ordinalPosition: 5
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_POCS_EVNT_GRDE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_FRNT_TBHO
+    ordinalPosition: 2
+  - name: CD_POCS_MONM
+    ordinalPosition: 3
+- !<check-constraint>
+  name: CKCLCR_POCS_EVNT_GRDE_005
+  type: CHECK
+  checkClause: IN_POCS_ATMT in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0017804
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017805
+  type: CHECK
+  checkClause: '"CD_FRNT_TBHO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017806
+  type: CHECK
+  checkClause: '"CD_POCS_MONM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017807
+  type: CHECK
+  checkClause: '"DC_POCS_MONM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017808
+  type: CHECK
+  checkClause: '"IN_POCS_ATMT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017809
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017810
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017812
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'

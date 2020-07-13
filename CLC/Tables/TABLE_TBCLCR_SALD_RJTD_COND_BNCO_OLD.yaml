@@ -1,0 +1,175 @@
+name: TBCLCR_SALD_RJTD_COND_BNCO_OLD
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_ARQV_PGMN
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: DT_MVMN
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM_PGMN
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_BNCO
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: VL_LQDO_ACTO_ISNT_RNVO
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  defaultValue: '0.00 '
+  dataTypeLength: 17,2
+- name: VL_LQDO_RNVO
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  defaultValue: '0.00 '
+  dataTypeLength: 17,2
+- name: VL_RJTD
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  defaultValue: '0.00 '
+  dataTypeLength: 17,2
+- name: VL_SADA_BAXA_ORDM_PGMN
+  ordinalPosition: 13
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  defaultValue: '0.00 '
+  dataTypeLength: 17,2
+- name: VL_SADA_BAXA_RCTA
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  defaultValue: '0.00 '
+  dataTypeLength: 17,2
+- name: VL_SADA_BAXA_RJCO_INDD
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  defaultValue: '0.00 '
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_SALD_RJTD_COND_BNCO
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_TIPO_ARQV_PGMN
+    ordinalPosition: 7
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 4
+  - name: DT_MVMN
+    ordinalPosition: 5
+  - name: DT_VNCM_PGMN
+    ordinalPosition: 6
+  - name: NU_BNCO
+    ordinalPosition: 3
+- !<fk-constraint>
+  name: FKR_TIPO_ARQV_PGMN_CLC18
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_ARQV_PGMN
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_ARQV_PGMN_OLD
+    referencedTableColumnName: CD_TIPO_ARQV_PGMN
+- !<check-constraint>
+  name: SYS_C0017593
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017594
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017595
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017596
+  type: CHECK
+  checkClause: '"NU_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017597
+  type: CHECK
+  checkClause: '"DT_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017598
+  type: CHECK
+  checkClause: '"DT_VNCM_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017599
+  type: CHECK
+  checkClause: '"CD_TIPO_ARQV_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017600
+  type: CHECK
+  checkClause: '"VL_RJTD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017601
+  type: CHECK
+  checkClause: '"VL_LQDO_RNVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017602
+  type: CHECK
+  checkClause: '"VL_SADA_BAXA_RCTA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017603
+  type: CHECK
+  checkClause: '"VL_LQDO_ACTO_ISNT_RNVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017604
+  type: CHECK
+  checkClause: '"VL_SADA_BAXA_RJCO_INDD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017605
+  type: CHECK
+  checkClause: '"VL_SADA_BAXA_ORDM_PGMN" IS NOT NULL'

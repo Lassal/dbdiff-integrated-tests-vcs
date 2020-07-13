@@ -1,0 +1,14 @@
+schema: CCR
+name: SP_TRUNCATE_REPLICA
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: V_TABELA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE SP_TRUNCATE_REPLICA (v_tabela IN VARCHAR2) AS v_owner VARCHAR2(3): = 'CCR';
+  BEGIN
+    EXECUTE IMMEDIATE 'TRUNCATE TABLE ' || v_owner || '.' || v_tabela;
+  END;

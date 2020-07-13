@@ -1,0 +1,202 @@
+name: TBCLCR_POCS_MONM_CICL_VIDA
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_FRNT_TBHO
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_FRNT_TBHO_DPNT
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_POCS_MONM
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 5,0
+- name: CD_POCS_MONM_DPNT
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 5,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_FIM_POCS
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 12
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCO_POCS
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM_TRNS
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_POCS_FNLO_ONLN
+  ordinalPosition: 11
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_POCS_MONM_CICL_VIDA
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 2
+  - name: DH_INCO_POCS
+    ordinalPosition: 5
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 3
+  - name: DT_VNCM_TRNS
+    ordinalPosition: 4
+- !<fk-constraint>
+  name: FKR_CNTR_CICL_VIDA_GRDE_CLC04
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_CICL_VIDA_GRDE
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_CICL_VIDA_GRDE
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_CICL_VIDA_GRDE
+    referencedTableColumnName: DT_RFRN_MVMN
+  - name: DT_VNCM_TRNS
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_CICL_VIDA_GRDE
+    referencedTableColumnName: DT_VNCM_TRNS
+- !<fk-constraint>
+  name: FKR_POCS_EVNT_DPND_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_POCS_EVNT_DPND
+    referencedTableColumnName: CD_BNDR
+  - name: CD_FRNT_TBHO
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_POCS_EVNT_DPND
+    referencedTableColumnName: CD_FRNT_TBHO
+  - name: CD_FRNT_TBHO_DPNT
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_POCS_EVNT_DPND
+    referencedTableColumnName: CD_FRNT_TBHO_DPNT
+  - name: CD_POCS_MONM
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_POCS_EVNT_DPND
+    referencedTableColumnName: CD_POCS_MONM
+  - name: CD_POCS_MONM_DPNT
+    ordinalPosition: 5
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_POCS_EVNT_DPND
+    referencedTableColumnName: CD_POCS_MONM_DPNT
+- !<check-constraint>
+  name: CKCLCR_POCS_MONM_CICL_VIDA_011
+  type: CHECK
+  checkClause: IN_POCS_FNLO_ONLN in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0017968
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017971
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017974
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017976
+  type: CHECK
+  checkClause: '"DT_VNCM_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017977
+  type: CHECK
+  checkClause: '"DH_INCO_POCS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017978
+  type: CHECK
+  checkClause: '"CD_FRNT_TBHO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017979
+  type: CHECK
+  checkClause: '"CD_POCS_MONM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017980
+  type: CHECK
+  checkClause: '"CD_FRNT_TBHO_DPNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017981
+  type: CHECK
+  checkClause: '"CD_POCS_MONM_DPNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017982
+  type: CHECK
+  checkClause: '"IN_POCS_FNLO_ONLN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017983
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017984
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

@@ -1,0 +1,133 @@
+name: TBCCRR_GRPO_RMNR_MCC
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_GRPO_RMNR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 7
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 7,0
+- name: CD_MCC_BNDR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 5,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_RMNR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 5
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_GRPO_RMNR_MCC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_GRPO_RMNR
+    ordinalPosition: 2
+  - name: CD_MCC_BNDR
+    ordinalPosition: 3
+  - name: CD_TIPO_RMNR
+    ordinalPosition: 4
+- !<fk-constraint>
+  name: FKR_GRPO_RMNR_CCR04
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_GRPO_RMNR
+    referencedTableColumnName: CD_BNDR
+  - name: CD_GRPO_RMNR
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_GRPO_RMNR
+    referencedTableColumnName: CD_GRPO_RMNR
+  - name: CD_TIPO_RMNR
+    ordinalPosition: 3
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_GRPO_RMNR
+    referencedTableColumnName: CD_TIPO_RMNR
+- !<check-constraint>
+  name: CKCCRR_GRPO_RMNR_MCC_005
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0013173
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013174
+  type: CHECK
+  checkClause: '"CD_GRPO_RMNR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013175
+  type: CHECK
+  checkClause: '"CD_TIPO_RMNR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013176
+  type: CHECK
+  checkClause: '"CD_MCC_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013177
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013178
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013179
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013180
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013181
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'

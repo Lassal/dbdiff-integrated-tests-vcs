@@ -1,0 +1,129 @@
+name: TBCLCR_OBSV_CICL_VIDA_GRDE
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_OBSV_CICL_VIDA_GRDE
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_OBSV_CICL_VIDA_GRDE
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM_TRNS
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: TX_OBSV_CICL_VIDA_GRDE
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 500
+  nullable: false
+  dataTypeLength: 500
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_OBSV_CICL_VIDA_GRDE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 2
+  - name: DH_OBSV_CICL_VIDA_GRDE
+    ordinalPosition: 5
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 3
+  - name: DT_VNCM_TRNS
+    ordinalPosition: 4
+- !<fk-constraint>
+  name: FKR_CNTR_CICL_VIDA_GRDE_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_CICL_VIDA_GRDE
+    referencedTableColumnName: CD_BNDR
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_CICL_VIDA_GRDE
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_CICL_VIDA_GRDE
+    referencedTableColumnName: DT_RFRN_MVMN
+  - name: DT_VNCM_TRNS
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_CICL_VIDA_GRDE
+    referencedTableColumnName: DT_VNCM_TRNS
+- !<check-constraint>
+  name: SYS_C0016212
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016213
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016214
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016215
+  type: CHECK
+  checkClause: '"DT_VNCM_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016216
+  type: CHECK
+  checkClause: '"DH_OBSV_CICL_VIDA_GRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016217
+  type: CHECK
+  checkClause: '"CD_USRO_OBSV_CICL_VIDA_GRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016218
+  type: CHECK
+  checkClause: '"TX_OBSV_CICL_VIDA_GRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016219
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016220
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

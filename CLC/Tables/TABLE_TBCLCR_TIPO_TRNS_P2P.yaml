@@ -1,0 +1,73 @@
+name: TBCLCR_TIPO_TRNS_P2P
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_TRNS_P2P
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_TRNS_P2P
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: NM_TIPO_TRNS_P2P_RDZD
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  dataTypeLength: 30
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_TRNS_P2P
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_TIPO_TRNS_P2P
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C0015865
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015866
+  type: CHECK
+  checkClause: '"CD_TIPO_TRNS_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015867
+  type: CHECK
+  checkClause: '"NM_TIPO_TRNS_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015868
+  type: CHECK
+  checkClause: '"NM_TIPO_TRNS_P2P_RDZD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015869
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015870
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

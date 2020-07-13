@@ -1,0 +1,154 @@
+name: TBCCRR_LOG_BNCO
+schema: CCR
+columns:
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ACAO_FIM_RGST
+  ordinalPosition: 13
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_ACAO_INCO_RGST
+  ordinalPosition: 2
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 10
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 9
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_BNCO
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: NU_BNCO
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_DV_CNPJ_BNCO
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: NU_FILI_CNPJ_BNCO
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_ISPB_BNCO
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+- name: NU_RAIZ_CNPJ_BNCO
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_LOG_BNCO
+  type: PRIMARY_KEY
+  columns:
+  - name: DH_ACAO_INCO_RGST
+    ordinalPosition: 2
+  - name: NU_BNCO
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_BNCO_CCR04
+  type: FOREIGN_KEY
+  columns:
+  - name: NU_BNCO
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_BNCO
+    referencedTableColumnName: NU_BNCO
+- !<check-constraint>
+  name: CKCCRR_LOG_BNCO_009
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0011818
+  type: CHECK
+  checkClause: '"NU_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011819
+  type: CHECK
+  checkClause: '"DH_ACAO_INCO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011820
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011821
+  type: CHECK
+  checkClause: '"NM_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011822
+  type: CHECK
+  checkClause: '"NU_RAIZ_CNPJ_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011823
+  type: CHECK
+  checkClause: '"NU_FILI_CNPJ_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011824
+  type: CHECK
+  checkClause: '"NU_DV_CNPJ_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011825
+  type: CHECK
+  checkClause: '"NU_ISPB_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011826
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011827
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011828
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011829
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'

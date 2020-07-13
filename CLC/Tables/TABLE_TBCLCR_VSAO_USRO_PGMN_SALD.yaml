@@ -1,0 +1,30 @@
+name: TBCLCR_VSAO_USRO_PGMN_SALD
+schema: CLC
+columns:
+- name: CD_VSAO_USRO_PGMN_SALD
+  ordinalPosition: 1
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: DC_VSAO_USRO_PGMN_SALD
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_VSAO_USRO_PGMN_SALD
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_VSAO_USRO_PGMN_SALD
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0015175
+  type: CHECK
+  checkClause: '"CD_VSAO_USRO_PGMN_SALD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015176
+  type: CHECK
+  checkClause: '"DC_VSAO_USRO_PGMN_SALD" IS NOT NULL'

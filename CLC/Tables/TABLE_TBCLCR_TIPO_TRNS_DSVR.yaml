@@ -1,0 +1,61 @@
+name: TBCLCR_TIPO_TRNS_DSVR
+schema: CLC
+columns:
+- name: CD_TIPO_AGPM_ELO_IRNL
+  ordinalPosition: 3
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_TIPO_TRNS_DSVR
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_TIPO_TRNS_EXTN_DSVR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: false
+  dataTypeLength: 6
+- name: DC_TIPO_TRNS_DSVR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_TRNS_DSVR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_TRNS_DSVR
+    ordinalPosition: 1
+  - name: CD_TIPO_TRNS_EXTN_DSVR
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_TIPO_AGPM_ELO_IRNL_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_AGPM_ELO_IRNL
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_AGPM_ELO_IRNL
+    referencedTableColumnName: CD_TIPO_AGPM_ELO_IRNL
+- !<check-constraint>
+  name: SYS_C009915
+  type: CHECK
+  checkClause: '"CD_TIPO_TRNS_DSVR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009916
+  type: CHECK
+  checkClause: '"DC_TIPO_TRNS_DSVR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009917
+  type: CHECK
+  checkClause: '"CD_TIPO_AGPM_ELO_IRNL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009918
+  type: CHECK
+  checkClause: '"CD_TIPO_TRNS_EXTN_DSVR" IS NOT NULL'

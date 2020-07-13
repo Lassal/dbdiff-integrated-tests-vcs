@@ -1,0 +1,103 @@
+name: TBCLCR_BNDR_CNTO_MSGM
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CNTO_BNDR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_SQNC_EMAL_CNTO_BNDR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_SQNC_TLFN_CNTO_BNDR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: TX_MSGM_CRSA
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 500
+  nullable: false
+  dataTypeLength: 500
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_BNDR_CNTO_MSGM
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0015815
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015817
+  type: CHECK
+  checkClause: '"CD_CNTO_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015819
+  type: CHECK
+  checkClause: '"NU_SQNC_TLFN_CNTO_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015821
+  type: CHECK
+  checkClause: '"NU_SQNC_EMAL_CNTO_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015823
+  type: CHECK
+  checkClause: '"TX_MSGM_CRSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015825
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015827
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015829
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015831
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'

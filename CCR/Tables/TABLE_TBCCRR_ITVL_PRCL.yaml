@@ -1,0 +1,72 @@
+name: TBCCRR_ITVL_PRCL
+schema: CCR
+columns:
+- name: CD_ITVL_PRCL
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_ITVL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: DH_INCL_RGST
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_PRCL_FINL
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: NU_PRCL_ICIL
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_ITVL_PRCL
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_ITVL_PRCL
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0011855
+  type: CHECK
+  checkClause: '"CD_ITVL_PRCL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011857
+  type: CHECK
+  checkClause: '"DC_ITVL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011858
+  type: CHECK
+  checkClause: '"NU_PRCL_ICIL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011859
+  type: CHECK
+  checkClause: '"NU_PRCL_FINL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011860
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011861
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

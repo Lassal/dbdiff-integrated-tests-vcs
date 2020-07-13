@@ -1,0 +1,156 @@
+name: TBCCRR_RMSA_TIPO_RGST
+schema: CCR
+columns:
+- name: CD_ARQV_PCSM_CDST
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_RGST
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 9
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_RMSA
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: QT_TOTL_RGST_ACTO
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+- name: QT_TOTL_RGST_RJTD
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 9,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_RMSA_TIPO_RGST
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_ARQV_PCSM_CDST
+    ordinalPosition: 3
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_TIPO_RGST
+    ordinalPosition: 4
+  - name: NU_RMSA
+    ordinalPosition: 5
+- !<fk-constraint>
+  name: FKR_CNTR_RMSA_CDST_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_ARQV_PCSM_CDST
+    ordinalPosition: 3
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CNTR_RMSA_CDST
+    referencedTableColumnName: CD_ARQV_PCSM_CDST
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CNTR_RMSA_CDST
+    referencedTableColumnName: CD_BNDR
+  - name: CD_CRDE
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CNTR_RMSA_CDST
+    referencedTableColumnName: CD_CRDE
+  - name: NU_RMSA
+    ordinalPosition: 4
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CNTR_RMSA_CDST
+    referencedTableColumnName: NU_RMSA
+- !<fk-constraint>
+  name: FKR_TIPO_RGST_CCR02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_RGST
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TIPO_RGST
+    referencedTableColumnName: CD_TIPO_RGST
+- !<check-constraint>
+  name: SYS_C0016058
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016059
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016060
+  type: CHECK
+  checkClause: '"CD_ARQV_PCSM_CDST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016061
+  type: CHECK
+  checkClause: '"NU_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016062
+  type: CHECK
+  checkClause: '"CD_TIPO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016063
+  type: CHECK
+  checkClause: '"QT_TOTL_RGST_ACTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016064
+  type: CHECK
+  checkClause: '"QT_TOTL_RGST_RJTD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016065
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016066
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016067
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

@@ -1,0 +1,43 @@
+name: TBCLCR_MQNA_TRNS_ORGM
+schema: CLC
+columns:
+- name: CD_MQNA_TRNS_ORGM
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_MQNA_TRNS_ORGM
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+constraints:
+- !<check-constraint>
+  name: SYS_C0011027
+  type: CHECK
+  checkClause: '"CD_MQNA_TRNS_ORGM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011028
+  type: CHECK
+  checkClause: '"NM_MQNA_TRNS_ORGM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011029
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011030
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

@@ -1,0 +1,201 @@
+name: TBCLCR_STCO_PRCL_LNCM_ESTQ
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PRDT_BNDR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_RASD_CICL_VIDA_TRNS
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 70
+  nullable: true
+  dataTypeLength: 70
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_STCO_PRCL
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: DT_ALTR_STCO_PRCL_LNCM_ESTQ
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: HR_ALTR_STCO_PRCL_LNCM_ESTQ
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_PRCL
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: NU_PRCL_BAXA
+  ordinalPosition: 13
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: NU_PRCL_BNDR
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  defaultValue: '0 '
+  dataTypeLength: 2,0
+- name: NU_PRCL_CRDE
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: NU_PRCL_ULTO_STCO
+  ordinalPosition: 14
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: NU_RFRN
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 23
+  nullable: false
+  dataTypeLength: 23
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_STCO_PRCL_LNCM_ESTQ
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_PRDT_BNDR
+    ordinalPosition: 3
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 4
+  - name: CD_TIPO_STCO_PRCL
+    ordinalPosition: 9
+  - name: DT_ALTR_STCO_PRCL_LNCM_ESTQ
+    ordinalPosition: 7
+  - name: HR_ALTR_STCO_PRCL_LNCM_ESTQ
+    ordinalPosition: 8
+  - name: NU_PRCL
+    ordinalPosition: 6
+  - name: NU_RFRN
+    ordinalPosition: 5
+- !<fk-constraint>
+  name: FKR_LNCM_ESTQ_TRNS_CLC02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_LNCM_ESTQ_TRNS
+    referencedTableColumnName: CD_BNDR
+  - name: CD_CRDE
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_LNCM_ESTQ_TRNS
+    referencedTableColumnName: CD_CRDE
+  - name: CD_PRDT_BNDR
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_LNCM_ESTQ_TRNS
+    referencedTableColumnName: CD_PRDT_BNDR
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_LNCM_ESTQ_TRNS
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: NU_PRCL
+    ordinalPosition: 6
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_LNCM_ESTQ_TRNS
+    referencedTableColumnName: NU_PRCL
+  - name: NU_RFRN
+    ordinalPosition: 5
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_LNCM_ESTQ_TRNS
+    referencedTableColumnName: NU_RFRN
+- !<fk-constraint>
+  name: FKR_TIPO_STCO_PRCL_CLC05
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_STCO_PRCL
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_PRCL
+    referencedTableColumnName: CD_TIPO_STCO_PRCL
+- !<check-constraint>
+  name: SYS_C009891
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009892
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009893
+  type: CHECK
+  checkClause: '"CD_PRDT_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009894
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009896
+  type: CHECK
+  checkClause: '"NU_RFRN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009898
+  type: CHECK
+  checkClause: '"NU_PRCL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009900
+  type: CHECK
+  checkClause: '"DT_ALTR_STCO_PRCL_LNCM_ESTQ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009902
+  type: CHECK
+  checkClause: '"HR_ALTR_STCO_PRCL_LNCM_ESTQ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009904
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_PRCL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009906
+  type: CHECK
+  checkClause: '"NU_PRCL_BNDR" IS NOT NULL'

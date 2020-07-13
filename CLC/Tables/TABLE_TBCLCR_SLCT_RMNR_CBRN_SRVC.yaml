@@ -1,0 +1,179 @@
+name: TBCLCR_SLCT_RMNR_CBRN_SRVC
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_EMSR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PRCR_CPTU_SAQE
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_SRVC
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_STCO_SLCT
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_SLCT
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_JSTV_ACAO_SLCT
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 300
+  nullable: true
+  dataTypeLength: 300
+- name: DH_ACAO_RGST
+  ordinalPosition: 12
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_SLCT
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_TRNS_FINC
+  ordinalPosition: 13
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''N'' '
+  dataTypeLength: 1
+- name: VL_TARF_CBRN
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 15,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_SLCT_RMNR_CBRN_SRVC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 4
+  - name: CD_EMSR
+    ordinalPosition: 3
+  - name: CD_PRCR_CPTU_SAQE
+    ordinalPosition: 5
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 2
+  - name: CD_TIPO_SRVC
+    ordinalPosition: 1
+  - name: DH_SLCT
+    ordinalPosition: 6
+- !<fk-constraint>
+  name: FKR_RMNR_CBRN_SRVC_PRCR_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMNR_CBRN_SRVC_PRCR
+    referencedTableColumnName: CD_BNDR
+  - name: CD_EMSR
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMNR_CBRN_SRVC_PRCR
+    referencedTableColumnName: CD_EMSR
+  - name: CD_PRCR_CPTU_SAQE
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMNR_CBRN_SRVC_PRCR
+    referencedTableColumnName: CD_PRCR_CPTU_SAQE
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 5
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMNR_CBRN_SRVC_PRCR
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: CD_TIPO_SRVC
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_RMNR_CBRN_SRVC_PRCR
+    referencedTableColumnName: CD_TIPO_SRVC
+- !<check-constraint>
+  name: SYS_C0010192
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010193
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010194
+  type: CHECK
+  checkClause: '"CD_PRCR_CPTU_SAQE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010195
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010196
+  type: CHECK
+  checkClause: '"CD_TIPO_SRVC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010197
+  type: CHECK
+  checkClause: '"DH_SLCT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010198
+  type: CHECK
+  checkClause: '"VL_TARF_CBRN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010199
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_SLCT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010200
+  type: CHECK
+  checkClause: '"CD_USRO_SLCT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010201
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010202
+  type: CHECK
+  checkClause: '"DH_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010203
+  type: CHECK
+  checkClause: '"IN_TRNS_FINC" IS NOT NULL'

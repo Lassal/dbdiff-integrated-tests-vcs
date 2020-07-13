@@ -1,0 +1,49 @@
+name: TBCCRR_TIPO_FERI
+schema: CCR
+columns:
+- name: CD_TIPO_FERI
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_FERI
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_TIPO_FERI
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_FERI
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0017680
+  type: CHECK
+  checkClause: '"CD_TIPO_FERI" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017681
+  type: CHECK
+  checkClause: '"NM_TIPO_FERI" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017682
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017683
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

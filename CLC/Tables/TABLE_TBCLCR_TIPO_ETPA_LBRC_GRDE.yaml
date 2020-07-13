@@ -1,0 +1,70 @@
+name: TBCLCR_TIPO_ETPA_LBRC_GRDE
+schema: CLC
+columns:
+- name: CD_GRPO_ETPA_GRDE
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_ETPA_LBRC_GRDE
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_ETPA_LBRC_GRDE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_ETPA_LBRC_GRDE
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_ETPA_LBRC_GRDE
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_GRPO_ETPA_GRDE_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_GRPO_ETPA_GRDE
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_GRPO_ETPA_GRDE
+    referencedTableColumnName: CD_GRPO_ETPA_GRDE
+- !<check-constraint>
+  name: SYS_C0011339
+  type: CHECK
+  checkClause: '"CD_TIPO_ETPA_LBRC_GRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011340
+  type: CHECK
+  checkClause: '"DC_TIPO_ETPA_LBRC_GRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011341
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011342
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011343
+  type: CHECK
+  checkClause: '"CD_GRPO_ETPA_GRDE" IS NOT NULL'

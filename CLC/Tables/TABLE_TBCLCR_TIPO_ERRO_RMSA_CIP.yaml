@@ -1,0 +1,30 @@
+name: TBCLCR_TIPO_ERRO_RMSA_CIP
+schema: CLC
+columns:
+- name: CD_TIPO_ERRO_RMSA_CIP
+  ordinalPosition: 1
+  dataType: CHAR
+  textMaxLength: 8
+  nullable: false
+  dataTypeLength: 8
+- name: DC_TIPO_ERRO_RMSA_CIP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: false
+  dataTypeLength: 200
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_ERRO_RMSA_CIP
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_ERRO_RMSA_CIP
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0010110
+  type: CHECK
+  checkClause: '"CD_TIPO_ERRO_RMSA_CIP" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010111
+  type: CHECK
+  checkClause: '"DC_TIPO_ERRO_RMSA_CIP" IS NOT NULL'

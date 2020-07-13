@@ -1,0 +1,264 @@
+schema: CLC
+name: SEL_CGAGRDCREDENCIADORA0612
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: VDATAMOVIMENTO
+  ordinalPosition: 1
+  dataType: DATE
+  parameterMode: IN
+- name: VCREDENCIADORA
+  ordinalPosition: 2
+  dataType: NUMBER
+  parameterMode: IN
+- name: VPLATAFORMA
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  parameterMode: IN
+- name: VREMESSA
+  ordinalPosition: 4
+  dataType: NUMBER
+  parameterMode: IN
+- name: X
+  ordinalPosition: 5
+  dataType: REF CURSOR
+  parameterMode: OUT
+routineDefinition: |-
+  PROCEDURE "SEL_CGAGRDCREDENCIADORA0612" (
+    vdataMovimento IN DATE,
+    vcredenciadora IN NUMBER,
+    vplataforma IN VARCHAR,
+    vremessa IN NUMBER,
+    x OUT SYS_REFCURSOR
+  ) AS vdataMovimentoAux DATE;
+  vremessaAux NUMBER;
+  BEGIN
+    vdataMovimentoAux: = vdataMovimento;
+  vremessaAux: = vremessa;
+  IF vdataMovimentoAux IS NULL THEN
+  SELECT
+    TRUNC(dt_pcsm_atul) INTO vdataMovimentoAux
+  FROM
+    ccr.tbccrr_cicl_pcsm_cdst;
+  END IF;
+  IF (vremessaAux IS NULL)
+  OR (vremessaAux = 0) THEN
+  SELECT
+    MIN(R.NU_RMSA_CRDE) INTO vremessaAux
+  FROM
+    CLC.TBCLCR_RMSA_CRDE R,
+    CLC.TBCLCR_LQDC_GRDE L
+  WHERE
+    R.DT_RCBM_RMSA = vdataMovimentoAux
+    AND L.DT_RFRN_MVMN (+) = vdataMovimentoAux
+    AND R.CD_CRDE = vcredenciadora
+    AND R.CD_TIPO_PLTF_PGMN = vplataforma
+    AND R.CD_BNDR = L.CD_BNDR (+)
+    AND R.CD_CRDE = L.CD_CRDE (+)
+    AND R.CD_TIPO_PLTF_PGMN = L.CD_TIPO_PLTF_PGMN (+)
+    AND R.NU_RMSA_CRDE = L.NU_RMSA_CRDE (+)
+    AND R.DT_RCBM_RMSA = L.DT_RFRN_MVMN (+)
+    AND R.IN_RMNR_RMSA_CRDE_EFET = 'S'
+    AND R.CD_TIPO_STCO_PCSM = 'PRO' --Novo
+    AND L.CD_BNDR IS NULL;
+  END IF;
+  OPEN x FOR
+  SELECT
+    lancamento.cd_bndr,
+    lancamento.cd_crde,
+    lancamento.CD_TIPO_PLTF_PGMN,
+    lancamento.CD_EMSR,
+    lancamento.CD_PCSR,
+    lancamento.cd_tipo_trns_bndr_recb,
+    lancamento.CD_PRDT_BNDR_RECB,
+    lancamento.cd_tipo_trns_bndr_recb as cd_tipo_trns_bndr,
+    lancamento.SG_ORGM_IFMC_RECB,
+    lancamento.DT_RFRN_MVMN,
+    remuneracao.DT_VNCM_LQDC_EMSR,
+    lancamento.nu_rmsa_crde,
+    lancamento.nu_rmsa_emsr,
+    lancamento.CD_MODA_RECB,
+    operador.CD_TIPO_OPRD,
+    lancamento.CD_TIPO_APRS_TRNS_RECB,
+    bin.NU_BNCO_LQDN,
+    cobranca.CD_TIPO_FOMA_CBRN_BNDR,
+    count(
+      CASE
+        WHEN CAST(NVL(lancamento.CD_RGRA_OPRC_TRNS, '0') AS INT) BETWEEN 0
+        and 993 THEN lancamento.NU_PRCL
+      end
+    ) AS qt_transacoes,
+    SUM(
+      lancamento.TX_VALR_VNDA + TX_VALR_TAXA_EMBQ + TX_VALR_ORGM_TRNE_FNDO
+    ) / 100 as valor_transacoes,
+    SUM(remuneracao.VL_ITCM_VNDA) AS valor_intercambio,
+    SUM(cobranca.vl_rmnr_bndr_vnda) as vl_rmnr_bndr_vnda,
+    remuneracao.CD_TIPO_RMNR_ITCM
+  FROM
+    CLC.TBCLCR_LNCM_RECB lancamento,
+    CLC.TBCLCR_LNCM_RECB_RMNR remuneracao,
+    CLC.TBCLCR_LNCM_RECB_RMNR_CBRN cobranca,
+    CLC.TBCLCR_TIPO_TRNS_OPRD operador,
+    CEM.TBCEMR_BIN_PLTF_ATZC_LQDC bin
+  WHERE
+    lancamento.cd_bndr = remuneracao.cd_bndr
+    AND lancamento.dt_rfrn_mvmn = remuneracao.dt_rfrn_mvmn
+    AND lancamento.cd_tipo_pltf_pgmn = remuneracao.cd_tipo_pltf_pgmn
+    AND lancamento.cd_crde = remuneracao.cd_crde
+    AND lancamento.nu_rmsa_crde = remuneracao.nu_rmsa_crde
+    AND lancamento.cd_emsr = remuneracao.cd_emsr
+    AND lancamento.cd_pcsr = remuneracao.cd_pcsr
+    AND lancamento.nu_rmsa_emsr = remuneracao.nu_rmsa_emsr
+    AND lancamento.nu_sqnl = remuneracao.nu_sqnl
+    AND NVL(lancamento.nu_rfrn, 0) = remuneracao.nu_rfrn
+    AND remuneracao.cd_tipo_trns_bndr_recb = lancamento.cd_tipo_trns_bndr_recb
+    AND remuneracao.cd_bndr = cobranca.cd_bndr
+    AND remuneracao.dt_rfrn_mvmn = cobranca.dt_rfrn_mvmn
+    AND remuneracao.cd_tipo_pltf_pgmn = cobranca.cd_tipo_pltf_pgmn
+    AND remuneracao.cd_crde = cobranca.cd_crde
+    AND remuneracao.nu_rmsa_crde = cobranca.nu_rmsa_crde
+    AND remuneracao.cd_emsr = cobranca.cd_emsr
+    AND remuneracao.cd_pcsr = cobranca.cd_pcsr
+    AND remuneracao.nu_rmsa_emsr = cobranca.nu_rmsa_emsr
+    AND remuneracao.nu_sqnl = cobranca.nu_sqnl
+    AND remuneracao.nu_rfrn = cobranca.nu_rfrn
+    AND remuneracao.cd_tipo_trns_bndr_recb = cobranca.cd_tipo_trns_bndr_recb
+    AND operador.cd_bndr = lancamento.cd_bndr
+    AND operador.cd_tipo_trns_bndr = lancamento.CD_TIPO_TRNS_BNDR_recb
+    AND operador.CD_TIPO_TRNS_BNDR_ORGM = lancamento.CD_TIPO_TRNS_BNDR_recb
+    AND operador.sg_orgm_ifmc = lancamento.SG_ORGM_IFMC_RECB
+    AND lancamento.CD_CRDE = vcredenciadora
+    AND lancamento.CD_TIPO_PLTF_PGMN = vplataforma
+    AND lancamento.DT_RFRN_MVMN = vdataMovimentoAux
+    AND remuneracao.DT_RFRN_MVMN = vdataMovimentoAux
+    AND lancamento.NU_RMSA_CRDE = vremessaAux
+    AND lancamento.IN_ENVO_ANLT_CRDE_BNDR_EMSR = 'S'
+    AND bin.CD_BNDR = lancamento.CD_BNDR
+    AND bin.NU_BIN = regexp_substr(
+      lancamento.cd_rasd_cicl_vida_trns,
+      '[\.]?([^.]*)|NULL[\.]?',
+      1,
+      5,
+      NULL,
+      1
+    )
+    AND bin.CD_EMSR = lancamento.CD_EMSR
+    AND bin.CD_TIPO_PLTF_PGMN = lancamento.CD_TIPO_PLTF_PGMN
+    AND lancamento.CD_TIPO_TRNS_BNDR_recb <> '46'
+  GROUP BY
+    lancamento.cd_bndr,
+    lancamento.cd_crde,
+    lancamento.CD_TIPO_PLTF_PGMN,
+    lancamento.CD_EMSR,
+    lancamento.CD_PCSR,
+    lancamento.cd_tipo_trns_bndr_recb,
+    lancamento.CD_PRDT_BNDR_RECB,
+    lancamento.cd_tipo_trns_bndr_recb,
+    lancamento.cd_tipo_trns_bndr_recb,
+    lancamento.SG_ORGM_IFMC_RECB,
+    lancamento.DT_RFRN_MVMN,
+    remuneracao.DT_VNCM_LQDC_EMSR,
+    lancamento.nu_rmsa_crde,
+    lancamento.nu_rmsa_emsr,
+    lancamento.CD_MODA_RECB,
+    operador.CD_TIPO_OPRD,
+    lancamento.CD_TIPO_APRS_TRNS_RECB,
+    bin.NU_BNCO_LQDN,
+    cobranca.CD_TIPO_FOMA_CBRN_BNDR,
+    remuneracao.CD_TIPO_RMNR_ITCM
+  UNION ALL
+  SELECT
+    lancamento.cd_bndr,
+    lancamento.cd_crde,
+    lancamento.CD_TIPO_PLTF_PGMN,
+    lancamento.CD_EMSR,
+    lancamento.CD_PCSR,
+    lancamento.cd_tipo_trns_bndr_recb,
+    lancamento.CD_PRDT_BNDR_RECB,
+    lancamento.cd_tipo_trns_bndr_recb as cd_tipo_trns_bndr,
+    lancamento.SG_ORGM_IFMC_RECB,
+    lancamento.DT_RFRN_MVMN,
+    remuneracao.DT_VNCM_LQDC_EMSR,
+    lancamento.nu_rmsa_crde,
+    lancamento.nu_rmsa_emsr,
+    lancamento.CD_MODA_RECB,
+    operador.CD_TIPO_OPRD,
+    lancamento.CD_TIPO_APRS_TRNS_RECB,
+    bin.NU_BNCO_LQDN,
+    0,
+    count(
+      CASE
+        WHEN CAST(NVL(lancamento.CD_RGRA_OPRC_TRNS, '0') AS INT) BETWEEN 0
+        and 993 THEN lancamento.NU_PRCL
+      end
+    ) AS qt_transacoes,
+    SUM(
+      lancamento.TX_VALR_VNDA + TX_VALR_TAXA_EMBQ + TX_VALR_ORGM_TRNE_FNDO
+    ) / 100 as valor_transacoes,
+    NVL(0, SUM(remuneracao.VL_ITCM_VNDA)) AS valor_intercambio,
+    0,
+    remuneracao.CD_TIPO_RMNR_ITCM
+  FROM
+    CLC.TBCLCR_LNCM_RECB lancamento,
+    CLC.TBCLCR_LNCM_RECB_RMNR remuneracao,
+    CLC.TBCLCR_TIPO_TRNS_OPRD operador,
+    CEM.TBCEMR_BIN_PLTF_ATZC_LQDC bin,
+    CLC.TBCLCR_CRTO_CRPT_LNCM_RECB cripto
+  WHERE
+    lancamento.cd_bndr = remuneracao.cd_bndr
+    AND lancamento.dt_rfrn_mvmn = remuneracao.dt_rfrn_mvmn
+    AND lancamento.cd_tipo_pltf_pgmn = remuneracao.cd_tipo_pltf_pgmn
+    AND lancamento.cd_crde = remuneracao.cd_crde
+    AND lancamento.nu_rmsa_crde = remuneracao.nu_rmsa_crde
+    AND lancamento.cd_emsr = remuneracao.cd_emsr
+    AND lancamento.cd_pcsr = remuneracao.cd_pcsr
+    AND lancamento.nu_rmsa_emsr = remuneracao.nu_rmsa_emsr
+    AND lancamento.nu_sqnl = remuneracao.nu_sqnl
+    AND NVL(lancamento.nu_rfrn, 0) = remuneracao.nu_rfrn
+    AND remuneracao.cd_tipo_trns_bndr_recb = lancamento.cd_tipo_trns_bndr_recb
+    AND operador.cd_bndr = lancamento.cd_bndr
+    AND operador.cd_tipo_trns_bndr = lancamento.CD_TIPO_TRNS_BNDR_recb
+    AND operador.CD_TIPO_TRNS_BNDR_ORGM = lancamento.CD_TIPO_TRNS_BNDR_recb
+    AND operador.sg_orgm_ifmc = lancamento.SG_ORGM_IFMC_RECB
+    AND lancamento.CD_CRDE = vcredenciadora
+    AND lancamento.CD_TIPO_PLTF_PGMN = vplataforma
+    AND lancamento.DT_RFRN_MVMN = vdataMovimentoAux
+    AND remuneracao.DT_RFRN_MVMN = vdataMovimentoAux
+    AND lancamento.NU_RMSA_CRDE = vremessaAux
+    AND lancamento.IN_ENVO_ANLT_CRDE_BNDR_EMSR = 'S'
+    AND lancamento.cd_bndr = cripto.cd_bndr
+    AND lancamento.dt_rfrn_mvmn = cripto.dt_rfrn_mvmn
+    AND lancamento.cd_tipo_pltf_pgmn = cripto.cd_tipo_pltf_pgmn
+    AND lancamento.cd_crde = cripto.cd_crde
+    AND lancamento.nu_rmsa_crde = cripto.nu_rmsa_crde
+    AND lancamento.cd_emsr = cripto.cd_emsr
+    AND lancamento.cd_pcsr = cripto.cd_pcsr
+    AND lancamento.nu_rmsa_emsr = cripto.nu_rmsa_emsr
+    AND lancamento.nu_sqnl = cripto.nu_sqnl
+    AND cripto.CD_TIPO_CNCT_CRTO = 1
+    AND bin.CD_BNDR = lancamento.CD_BNDR
+    AND bin.NU_BIN = cripto.NU_BIN_RECB
+    AND bin.CD_EMSR = lancamento.CD_EMSR
+    AND bin.CD_TIPO_PLTF_PGMN = lancamento.CD_TIPO_PLTF_PGMN
+    AND lancamento.CD_TIPO_TRNS_BNDR_recb in ('10', '20')
+  GROUP BY
+    lancamento.cd_bndr,
+    lancamento.cd_crde,
+    lancamento.CD_TIPO_PLTF_PGMN,
+    lancamento.CD_EMSR,
+    lancamento.CD_PCSR,
+    lancamento.cd_tipo_trns_bndr_recb,
+    lancamento.CD_PRDT_BNDR_RECB,
+    lancamento.cd_tipo_trns_bndr_recb,
+    lancamento.cd_tipo_trns_bndr_recb,
+    lancamento.SG_ORGM_IFMC_RECB,
+    lancamento.DT_RFRN_MVMN,
+    remuneracao.DT_VNCM_LQDC_EMSR,
+    lancamento.nu_rmsa_crde,
+    lancamento.nu_rmsa_emsr,
+    lancamento.CD_MODA_RECB,
+    operador.CD_TIPO_OPRD,
+    lancamento.CD_TIPO_APRS_TRNS_RECB,
+    bin.NU_BNCO_LQDN,
+    remuneracao.CD_TIPO_RMNR_ITCM;
+  END SEL_CGAGRDCREDENCIADORA0612;

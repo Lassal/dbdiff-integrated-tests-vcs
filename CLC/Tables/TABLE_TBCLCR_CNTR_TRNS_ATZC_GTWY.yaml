@@ -1,0 +1,144 @@
+name: TBCLCR_CNTR_TRNS_ATZC_GTWY
+schema: CLC
+columns:
+- name: CD_ATZC_ENVO
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: false
+  dataTypeLength: 6
+- name: CD_ATZC_REDO_API
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  dataTypeLength: 6
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_EMSR_ENVO
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_EMSR_REDO
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: CD_GTWY_TRNS_P2P
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PRDT
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 3,0
+- name: DH_INCL_RGST
+  ordinalPosition: 14
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNDA
+  ordinalPosition: 2
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_BIN_TRNS_P2P
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_CPF_CNAL_ORGR
+  ordinalPosition: 15
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 9,0
+- name: NU_IDTR_REDO_API
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  dataTypeLength: 40
+- name: NU_RAIZ_CNPJ_CNAL_ORGR
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 8,0
+- name: NU_SQNL_UNCO_ENVO
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: NU_SQNL_UNCO_REDO
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  dataTypeLength: 40
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CNTR_TRNS_ATZC_GTWY
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_GTWY_TRNS_P2P
+    ordinalPosition: 4
+  - name: DT_VNDA
+    ordinalPosition: 3
+  - name: NU_SQNL_UNCO_ENVO
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C0017038
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017039
+  type: CHECK
+  checkClause: '"DT_VNDA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017040
+  type: CHECK
+  checkClause: '"NU_SQNL_UNCO_ENVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017041
+  type: CHECK
+  checkClause: '"CD_GTWY_TRNS_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017042
+  type: CHECK
+  checkClause: '"NU_BIN_TRNS_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017043
+  type: CHECK
+  checkClause: '"CD_ATZC_ENVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017044
+  type: CHECK
+  checkClause: '"CD_EMSR_ENVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017045
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

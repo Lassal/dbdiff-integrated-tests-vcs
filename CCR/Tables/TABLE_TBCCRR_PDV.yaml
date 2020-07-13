@@ -1,0 +1,216 @@
+name: TBCCRR_PDV
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_MCC_BNDR
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 5,0
+- name: CD_PDV
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 15,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 9
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_ACTC_CRTO_CHIP_DNRS
+  ordinalPosition: 15
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: IN_ACTC_CRTO_CTLS_DNRS
+  ordinalPosition: 16
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: IN_RGST_ATVO
+  ordinalPosition: 8
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: IN_TRNS_FINC
+  ordinalPosition: 5
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NU_CLNT
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: NU_CLNT_ANTR
+  ordinalPosition: 14
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 10,0
+- name: TX_QNTD_DIA_LQDC_CRED
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: true
+  defaultValue: '''00'''
+  dataTypeLength: 2
+- name: TX_QNTD_DIA_LQDC_DBTO
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: true
+  defaultValue: '''00'''
+  dataTypeLength: 2
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_PDV
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+  - name: CD_CRDE
+    ordinalPosition: 3
+  - name: CD_PDV
+    ordinalPosition: 1
+  - name: NU_CLNT
+    ordinalPosition: 4
+- !<fk-constraint>
+  name: FKR_CRDE_BNDR_CLNT_CCR02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CRDE_BNDR_CLNT
+    referencedTableColumnName: CD_BNDR
+  - name: CD_CRDE
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CRDE_BNDR_CLNT
+    referencedTableColumnName: CD_CRDE
+  - name: NU_CLNT
+    ordinalPosition: 3
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CRDE_BNDR_CLNT
+    referencedTableColumnName: NU_CLNT
+- !<fk-constraint>
+  name: FKR_PDV_CCR03
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_PDV
+    referencedTableColumnName: CD_BNDR
+  - name: CD_CRDE
+    ordinalPosition: 3
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_PDV
+    referencedTableColumnName: CD_CRDE
+  - name: CD_PDV
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_PDV
+    referencedTableColumnName: CD_PDV
+  - name: NU_CLNT_ANTR
+    ordinalPosition: 4
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_PDV
+    referencedTableColumnName: NU_CLNT
+- !<check-constraint>
+  name: CKCCRR_PDV_005
+  type: CHECK
+  checkClause: IN_TRNS_FINC in ('S', 'N')
+- !<check-constraint>
+  name: CKCCRR_PDV_009
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0015363
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015364
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015365
+  type: CHECK
+  checkClause: '"NU_CLNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015366
+  type: CHECK
+  checkClause: '"CD_PDV" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015367
+  type: CHECK
+  checkClause: '"IN_TRNS_FINC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015368
+  type: CHECK
+  checkClause: '"CD_MCC_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015369
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015370
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015371
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015372
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015373
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'

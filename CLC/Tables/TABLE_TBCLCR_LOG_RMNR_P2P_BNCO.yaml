@@ -1,0 +1,109 @@
+name: TBCLCR_LOG_RMNR_P2P_BNCO
+schema: CLC
+columns:
+- name: CD_RMNR_P2P_MDLO_BNCO
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ACAO_FIM_RGST
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_ACAO_INCO_RGST
+  ordinalPosition: 2
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 7
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: VL_TARF_ITCM_ITRE_RECR
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TARF_USO_BNDR_ITRA_ORGR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TARF_USO_BNDR_ITRE_ORGR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TARF_USO_BNDR_ITRE_RECR
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_LOG_RMNR_P2P_BNCO
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_RMNR_P2P_MDLO_BNCO
+    ordinalPosition: 1
+  - name: DH_ACAO_INCO_RGST
+    ordinalPosition: 2
+- !<check-constraint>
+  name: CKCLCR_LOG_RMNR_P2P_BNCO_007
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0014397
+  type: CHECK
+  checkClause: '"CD_RMNR_P2P_MDLO_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014398
+  type: CHECK
+  checkClause: '"DH_ACAO_INCO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014399
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014400
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014401
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014402
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'

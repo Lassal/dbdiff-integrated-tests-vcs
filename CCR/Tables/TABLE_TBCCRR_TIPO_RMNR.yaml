@@ -1,0 +1,50 @@
+name: TBCCRR_TIPO_RMNR
+schema: CCR
+columns:
+- name: CD_TIPO_RMNR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_RMNR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_TIPO_RMNR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_RMNR
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0012004
+  type: CHECK
+  checkClause: '"CD_TIPO_RMNR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012005
+  type: CHECK
+  checkClause: '"NM_TIPO_RMNR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012006
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012007
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

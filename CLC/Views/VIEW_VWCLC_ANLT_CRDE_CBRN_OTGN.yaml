@@ -1,0 +1,389 @@
+schema: CLC
+name: VWCLC_ANLT_CRDE_CBRN_OTGN
+updatedAllowed: false
+insertAllowed: false
+viewDefinition: |-
+  SELECT
+    lnrecb.DT_RFRN_MVMN as DT_RFRN_MVMN,
+    lnrecb.CD_BNDR as CD_BNDR,
+    lnrecb.CD_CRDE as CD_CRDE,
+    lnrecb.CD_TIPO_PLTF_PGMN,
+    lnrecb.CD_EMSR as CD_EMSR_RLTR,
+    lnrecb.CD_PCSR as CD_PCSR_RLTR,
+    lnrecb.CD_PRDT_BNDR_RECB as CD_PRDT_BNDR_RLTR,
+    lnrecb.CD_MODA_RECB as CD_MODA_RLTR,
+    lnrecb.CD_TIPO_TRNS_BNDR_RECB as CD_TIPO_TRNS_BNDR_RLTR,
+    CAST(lnrecb.CD_TIPO_TRNS_BNDR_RECB AS NUMBER(2)) as CD_TIPO_TRNS_ORIG,
+    lnrecb.QT_DIA_LQDC_ENVO_EMSR,
+    lnrecb.NU_RFRN as NU_RFRN_RLTR,
+    lnrecb.NU_SQNL,
+    lnrecb.CD_ATZC_TRNS as CD_ATZC_TRNS_RLTR,
+    lnrecb.CD_PDV_RECB as CD_PDV_RLTR,
+    lnrecb.NU_CLNT NU_CLNT,
+    ttop.CD_TIPO_OPRD,
+    lnrecb.SG_ORGM_IFMC_RECB as SG_ORGM_IFMC,
+    null as CD_ERRO_PCSM_LQDC,
+    crto.NU_BIN_RECB as NU_BIN_RLTR,
+    crto.NU_FINL_CRTO_RECB as NU_FINL_CRTO_RLTR,
+    lnrecb.CD_MCC_BNDR_RECB as CD_MCC_BNDR_RLTR,
+    lnrecb.TX_DATA_VNDA as TX_DATA_VNDA_RLTR,
+    lnrecb.SG_TPPS_RECB as SG_TPPS_RLTR,
+    lnrecb.IN_RNVO_TRNS,
+    lnrecb.TX_QNTD_TOTL_PRCL as TX_QNTD_TOTL_PRCL_RLTR,
+    lnrecb.NU_PRCL as NU_PRCL_RLTR,
+    lnrecb.TX_VALR_ORGM_TRNE_FNDO as TX_VALR_ORGM_TRNE_FNDO_RLTR,
+    lnrecb.CD_USRO_INCL_RGST,
+    lnrecb.DH_INCL_RGST,
+    lnrecb.TX_QNTD_DIA_LQDC_CRDE_BNDR,
+    lnrecb.QT_DIA_LQDC_BNDR_EMSR,
+    lnrecb.TX_NMRO_CPF_CLNT,
+    lnrecb.TX_NMRO_DV_CPF_CLNT,
+    lnrecb.TX_NMRO_RAIZ_CNPJ_CLNT,
+    lnrecb.TX_NMRO_FILI_CNPJ_CLNT,
+    lnrecb.TX_NMRO_DV_CNPJ_CLNT,
+    lnrecb.CD_TIPO_APRS_TRNS_RECB as CD_TIPO_APRS_TRNS_RLTR,
+    lnrecb.CD_GRPO_RMNR,
+    lnrecb.CD_TIPO_RMNR,
+    lnrecb.CD_SGMT_ITCM,
+    lnrecb.CD_TIPO_FOMA_CBRN_BNDR,
+    CAST(lnrecb.PC_RMNR_BNDR AS NUMBER(9, 9)) AS PC_RMNR_BNDR,
+    CAST(lnrecb.VL_TARF_TRNS AS NUMBER(17, 2)) as VL_TARF_TRNS,
+    CAST(lnrecb.VL_MXMO_RMNR_TRNS AS NUMBER(17, 2)) as VL_MXMO_RMNR_TRNS,
+    CAST(lnrecb.VL_TAXA_TRNS AS NUMBER(17, 2)) as VL_TAXA_TRNS,
+    CAST(lnrecb.VL_RMNR_BNDR_TRNS AS NUMBER(17, 2)) as VL_RMNR_BNDR_TRNS,
+    CAST(lnrecb.VL_ADCN_PRCL_TRNS AS NUMBER(17, 2)) as VL_ADCN_PRCL_TRNS,
+    CAST(lnrecb.VL_TARF_VNDA AS NUMBER(17, 2)) as VL_TARF_VNDA,
+    CAST(lnrecb.VL_RMNR_BNDR_VNDA AS NUMBER(17, 2)) as VL_RMNR_BNDR_VNDA,
+    CAST(lnrecb.VL_MXMO_RMNR_VNDA AS NUMBER(17, 2)) as VL_MXMO_RMNR_VNDA,
+    CAST(lnrecb.VL_TAXA_VNDA AS NUMBER(17, 2)) as VL_TAXA_VNDA,
+    CAST(lnrecb.VL_ADCN_PRCL_VNDA AS NUMBER(17, 2)) as VL_ADCN_PRCL_VNDA
+  FROM
+    (
+      SELECT
+        lnrecb.DT_RFRN_MVMN,
+        lnrecb.CD_BNDR,
+        lnrecb.CD_CRDE,
+        lnrecb.CD_TIPO_PLTF_PGMN,
+        lnrecb.CD_EMSR,
+        lnrecb.CD_PCSR,
+        lnrecb.CD_PRDT_BNDR_RECB,
+        lnrecb.CD_MODA_RECB,
+        lnrecb.CD_TIPO_TRNS_BNDR_RECB,
+        lnrecb.QT_DIA_LQDC_ENVO_EMSR,
+        NVL(lnrecb.NU_RFRN, 0) AS NU_RFRN,
+        lnrecb.CD_ATZC_TRNS,
+        lnrecb.CD_PDV_RECB,
+        lnrecb.NU_CLNT,
+        lnrecb.SG_ORGM_IFMC_RECB,
+        lnrecb.CD_ERRO_PCSM_LQDC_RECB,
+        lnrecb.CD_MCC_BNDR_RECB,
+        lnrecb.TX_DATA_VNDA,
+        lnrecb.SG_TPPS_RECB,
+        lnrecb.IN_RNVO_TRNS,
+        lnrecb.TX_QNTD_TOTL_PRCL,
+        lnrecb.NU_PRCL,
+        lnrecb.TX_VALR_ORGM_TRNE_FNDO,
+        lnrecb.CD_USRO_INCL_RGST,
+        lnrecb.DH_INCL_RGST,
+        lnrecb.TX_QNTD_DIA_LQDC_CRDE_BNDR,
+        lnrecb.QT_DIA_LQDC_BNDR_EMSR,
+        lnrecb.TX_NMRO_CPF_CLNT,
+        lnrecb.TX_NMRO_DV_CPF_CLNT,
+        lnrecb.TX_NMRO_RAIZ_CNPJ_CLNT,
+        lnrecb.TX_NMRO_FILI_CNPJ_CLNT,
+        lnrecb.TX_NMRO_DV_CNPJ_CLNT,
+        lnrecb.CD_TIPO_APRS_TRNS_RECB,
+        lnrecb.TX_VALR_TRNS,
+        lnrecb.CD_TIPO_MVMC_PARC,
+        lnrecb.NU_RMSA_CRDE,
+        lnrecb.NU_RMSA_EMSR,
+        lnrecb.IN_ENVO_ANLT_CRDE_BNDR_EMSR,
+        lnrmnr.CD_GRPO_RMNR,
+        lnrmnr.CD_TIPO_RMNR,
+        lnrmnr.CD_TIPO_TRNS_ORIG,
+        lnrmnr.DT_VNCM_LQDC_PDV,
+        lnrmnr.DT_VNCM_LQDC_EMSR,
+        lnrmnr.CD_SGMT_ITCM,
+        lnrmnr.CD_TIPO_RMNR_ITCM,
+        lnrmnr.CD_TIPO_TRNS_PGMN,
+        lnrmnr.IN_CNGA_TAXA_PDRO,
+        lnrmnr.VL_TRNS_MXMO,
+        lnrmnr.PC_TAXA_ITCM,
+        lnrmnr.VL_TARF_ITCM_TRNS,
+        lnrmnr.VL_MXMO_ITCM_TRNS,
+        lnrmnr.VL_ITCM_TRNS,
+        lnrmnrcbr.CD_TIPO_FOMA_CBRN_BNDR,
+        lnrmnrcbr.PC_TAXA_USO_BNDR,
+        lnrmnrcbr.PC_RMNR_BNDR,
+        MAX(lnrecb.NU_SQNL) AS NU_SQNL,
+        SUM(
+          CASE
+            CAST(NVL(CD_RGRA_OPRC_TRNS, '0') AS INT)
+            WHEN 994 THEN '0'
+            ELSE lnrecb.TX_VALR_VNDA
+          END
+        ) AS TX_VALR_VNDA,
+        SUM(
+          CASE
+            CAST(CD_RGRA_OPRC_TRNS AS INT)
+            WHEN 994 THEN lnrecb.TX_VALR_VNDA
+          END
+        ) AS TX_VALR_ENTR,
+        SUM(lnrecb.TX_VALR_TAXA_EMBQ) AS TX_VALR_TAXA_EMBQ,
+        MAX(lnrmnrcbr.VL_TARF_TRNS) AS VL_TARF_TRNS,
+        MAX(lnrmnrcbr.VL_MXMO_RMNR_TRNS) AS VL_MXMO_RMNR_TRNS,
+        MAX(lnrmnrcbr.VL_TAXA_TRNS) AS VL_TAXA_TRNS,
+        MAX(lnrmnrcbr.VL_RMNR_BNDR_TRNS) AS VL_RMNR_BNDR_TRNS,
+        MAX(lnrmnrcbr.VL_ADCN_PRCL_TRNS) AS VL_ADCN_PRCL_TRNS,
+        SUM(lnrmnrcbr.VL_TARF_VNDA) AS VL_TARF_VNDA,
+        SUM(lnrmnrcbr.VL_RMNR_BNDR_VNDA) AS VL_RMNR_BNDR_VNDA,
+        SUM(lnrmnrcbr.VL_MXMO_RMNR_VNDA) AS VL_MXMO_RMNR_VNDA,
+        SUM(lnrmnrcbr.VL_TAXA_VNDA) AS VL_TAXA_VNDA,
+        SUM(lnrmnrcbr.VL_ADCN_PRCL_VNDA) as VL_ADCN_PRCL_VNDA
+      FROM
+        CLC.TBCLCR_LNCM_RECB lnrecb,
+        CLC.TBCLCR_LNCM_RECB_RMNR lnrmnr,
+        CLC.TBCLCR_LNCM_RECB_RMNR_CBRN lnrmnrcbr
+      WHERE
+        lnrecb.CD_TIPO_TRNS_BNDR_RECB = lnrmnr.CD_TIPO_TRNS_BNDR_RECB
+        AND lnrecb.SG_ORGM_IFMC_RECB = 'CRD'
+        AND NVL(lnrecb.NU_RFRN, 0) NOT IN 0
+        AND lnrecb.CD_BNDR = lnrmnr.CD_BNDR
+        AND lnrecb.CD_CRDE = lnrmnr.CD_CRDE
+        AND lnrecb.CD_EMSR = lnrmnr.CD_EMSR
+        AND lnrecb.CD_TIPO_PLTF_PGMN = lnrmnr.CD_TIPO_PLTF_PGMN
+        AND lnrecb.CD_PCSR = lnrmnr.CD_PCSR
+        AND NVL(lnrecb.NU_RFRN, 0) = NVL(lnrmnr.NU_RFRN, 0)
+        AND lnrecb.NU_RMSA_CRDE = lnrmnr.NU_RMSA_CRDE
+        AND lnrecb.NU_RMSA_EMSR = lnrmnr.NU_RMSA_EMSR
+        AND lnrecb.DT_RFRN_MVMN = lnrmnr.DT_RFRN_MVMN
+        AND lnrecb.NU_SQNL = lnrmnr.NU_SQNL
+        AND lnrecb.CD_BNDR = lnrmnrcbr.CD_BNDR(+)
+        AND lnrecb.CD_CRDE = lnrmnrcbr.CD_CRDE(+)
+        AND lnrecb.CD_EMSR = lnrmnrcbr.CD_EMSR(+)
+        AND lnrecb.CD_TIPO_PLTF_PGMN = lnrmnrcbr.CD_TIPO_PLTF_PGMN(+)
+        AND lnrecb.CD_PCSR = lnrmnrcbr.CD_PCSR(+)
+        AND lnrecb.CD_TIPO_TRNS_BNDR_RECB = lnrmnrcbr.CD_TIPO_TRNS_BNDR_RECB(+)
+        AND NVL(lnrecb.NU_RFRN, 0) = NVL(lnrmnrcbr.NU_RFRN, 0)
+        AND lnrecb.NU_SQNL = lnrmnrcbr.NU_SQNL(+)
+        AND lnrecb.NU_RMSA_CRDE = lnrmnrcbr.NU_RMSA_CRDE(+)
+        AND lnrecb.NU_RMSA_EMSR = lnrmnrcbr.NU_RMSA_EMSR(+)
+        AND lnrecb.DT_RFRN_MVMN = lnrmnrcbr.DT_RFRN_MVMN(+)
+        AND lnrecb.CD_TIPO_TRNS_BNDR_RECB = lnrmnrcbr.CD_TIPO_TRNS_BNDR_RECB
+        AND lnrecb.IN_ENVO_ANLT_CRDE_BNDR_EMSR = 'S'
+        AND lnrmnrcbr.DT_RFRN_MVMN = (
+          select
+            DT_PCSM_ATUL
+          from
+            CCR.TBCCRR_CICL_PCSM_CDST
+        )
+        AND lnrmnr.DT_RFRN_MVMN = (
+          select
+            DT_PCSM_ATUL
+          from
+            CCR.TBCCRR_CICL_PCSM_CDST
+        )
+        AND lnrecb.DT_RFRN_MVMN = (
+          select
+            DT_PCSM_ATUL
+          from
+            CCR.TBCCRR_CICL_PCSM_CDST
+        )
+      GROUP BY
+        lnrecb.DT_RFRN_MVMN,
+        lnrecb.CD_BNDR,
+        lnrecb.CD_CRDE,
+        lnrecb.CD_TIPO_PLTF_PGMN,
+        lnrecb.CD_EMSR,
+        lnrecb.CD_PCSR,
+        lnrecb.CD_PRDT_BNDR_RECB,
+        lnrecb.CD_MODA_RECB,
+        lnrecb.CD_TIPO_TRNS_BNDR_RECB,
+        lnrecb.QT_DIA_LQDC_ENVO_EMSR,
+        lnrecb.NU_RFRN,
+        lnrecb.CD_ATZC_TRNS,
+        lnrecb.CD_PDV_RECB,
+        lnrecb.NU_CLNT,
+        lnrecb.SG_ORGM_IFMC_RECB,
+        lnrecb.CD_ERRO_PCSM_LQDC_RECB,
+        lnrecb.CD_MCC_BNDR_RECB,
+        lnrecb.TX_DATA_VNDA,
+        lnrecb.SG_TPPS_RECB,
+        lnrecb.IN_RNVO_TRNS,
+        lnrecb.TX_QNTD_TOTL_PRCL,
+        lnrecb.NU_PRCL,
+        lnrecb.TX_VALR_ORGM_TRNE_FNDO,
+        lnrecb.CD_USRO_INCL_RGST,
+        lnrecb.DH_INCL_RGST,
+        lnrecb.TX_QNTD_DIA_LQDC_CRDE_BNDR,
+        lnrecb.QT_DIA_LQDC_BNDR_EMSR,
+        lnrecb.TX_NMRO_CPF_CLNT,
+        lnrecb.TX_NMRO_DV_CPF_CLNT,
+        lnrecb.TX_NMRO_RAIZ_CNPJ_CLNT,
+        lnrecb.TX_NMRO_FILI_CNPJ_CLNT,
+        lnrecb.TX_NMRO_DV_CNPJ_CLNT,
+        lnrecb.CD_TIPO_APRS_TRNS_RECB,
+        lnrecb.TX_VALR_TRNS,
+        lnrecb.CD_TIPO_MVMC_PARC,
+        lnrecb.NU_RMSA_CRDE,
+        lnrecb.NU_RMSA_EMSR,
+        lnrecb.IN_ENVO_ANLT_CRDE_BNDR_EMSR,
+        lnrmnr.CD_GRPO_RMNR,
+        lnrmnr.CD_TIPO_RMNR,
+        lnrmnr.CD_TIPO_TRNS_ORIG,
+        lnrmnr.DT_VNCM_LQDC_PDV,
+        lnrmnr.DT_VNCM_LQDC_EMSR,
+        lnrmnr.CD_SGMT_ITCM,
+        lnrmnr.CD_TIPO_RMNR_ITCM,
+        lnrmnr.CD_TIPO_TRNS_PGMN,
+        lnrmnr.IN_CNGA_TAXA_PDRO,
+        lnrmnr.VL_TRNS_MXMO,
+        lnrmnr.PC_TAXA_ITCM,
+        lnrmnr.VL_TARF_ITCM_TRNS,
+        lnrmnr.VL_MXMO_ITCM_TRNS,
+        lnrmnr.VL_ITCM_TRNS,
+        lnrmnrcbr.CD_TIPO_FOMA_CBRN_BNDR,
+        lnrmnrcbr.PC_TAXA_USO_BNDR,
+        lnrmnrcbr.PC_RMNR_BNDR
+      UNION ALL
+      SELECT
+        lnrecb.DT_RFRN_MVMN,
+        lnrecb.CD_BNDR,
+        lnrecb.CD_CRDE,
+        lnrecb.CD_TIPO_PLTF_PGMN,
+        lnrecb.CD_EMSR,
+        lnrecb.CD_PCSR,
+        lnrecb.CD_PRDT_BNDR_RECB,
+        lnrecb.CD_MODA_RECB,
+        lnrecb.CD_TIPO_TRNS_BNDR_RECB,
+        lnrecb.QT_DIA_LQDC_ENVO_EMSR,
+        NVL(lnrecb.NU_RFRN, 0) AS NU_RFRN,
+        lnrecb.CD_ATZC_TRNS,
+        lnrecb.CD_PDV_RECB,
+        lnrecb.NU_CLNT,
+        lnrecb.SG_ORGM_IFMC_RECB,
+        lnrecb.CD_ERRO_PCSM_LQDC_RECB,
+        lnrecb.CD_MCC_BNDR_RECB,
+        lnrecb.TX_DATA_VNDA,
+        lnrecb.SG_TPPS_RECB,
+        lnrecb.IN_RNVO_TRNS,
+        lnrecb.TX_QNTD_TOTL_PRCL,
+        lnrecb.NU_PRCL,
+        lnrecb.TX_VALR_ORGM_TRNE_FNDO,
+        lnrecb.CD_USRO_INCL_RGST,
+        lnrecb.DH_INCL_RGST,
+        lnrecb.TX_QNTD_DIA_LQDC_CRDE_BNDR,
+        lnrecb.QT_DIA_LQDC_BNDR_EMSR,
+        lnrecb.TX_NMRO_CPF_CLNT,
+        lnrecb.TX_NMRO_DV_CPF_CLNT,
+        lnrecb.TX_NMRO_RAIZ_CNPJ_CLNT,
+        lnrecb.TX_NMRO_FILI_CNPJ_CLNT,
+        lnrecb.TX_NMRO_DV_CNPJ_CLNT,
+        lnrecb.CD_TIPO_APRS_TRNS_RECB,
+        lnrecb.TX_VALR_TRNS,
+        lnrecb.CD_TIPO_MVMC_PARC,
+        lnrecb.NU_RMSA_CRDE,
+        lnrecb.NU_RMSA_EMSR,
+        lnrecb.IN_ENVO_ANLT_CRDE_BNDR_EMSR,
+        lnrmnr.CD_GRPO_RMNR,
+        lnrmnr.CD_TIPO_RMNR,
+        lnrmnr.CD_TIPO_TRNS_ORIG,
+        lnrmnr.DT_VNCM_LQDC_PDV,
+        lnrmnr.DT_VNCM_LQDC_EMSR,
+        lnrmnr.CD_SGMT_ITCM,
+        lnrmnr.CD_TIPO_RMNR_ITCM,
+        lnrmnr.CD_TIPO_TRNS_PGMN,
+        lnrmnr.IN_CNGA_TAXA_PDRO,
+        lnrmnr.VL_TRNS_MXMO,
+        lnrmnr.PC_TAXA_ITCM,
+        lnrmnr.VL_TARF_ITCM_TRNS,
+        lnrmnr.VL_MXMO_ITCM_TRNS,
+        lnrmnr.VL_ITCM_TRNS,
+        lnrmnrcbr.CD_TIPO_FOMA_CBRN_BNDR,
+        lnrmnrcbr.PC_TAXA_USO_BNDR,
+        lnrmnrcbr.PC_RMNR_BNDR,
+        lnrecb.NU_SQNL,
+        CAST(lnrecb.TX_VALR_VNDA AS INT) AS TX_VALR_VNDA,
+        0 AS TX_VALR_ENTR,
+        CAST(lnrecb.TX_VALR_TAXA_EMBQ AS INT) AS TX_VALR_TAXA_EMBQ,
+        lnrmnrcbr.VL_TARF_TRNS,
+        lnrmnrcbr.VL_MXMO_RMNR_TRNS,
+        lnrmnrcbr.VL_TAXA_TRNS,
+        lnrmnrcbr.VL_RMNR_BNDR_TRNS,
+        lnrmnrcbr.VL_ADCN_PRCL_TRNS,
+        lnrmnrcbr.VL_TARF_VNDA,
+        lnrmnrcbr.VL_RMNR_BNDR_VNDA,
+        lnrmnrcbr.VL_MXMO_RMNR_VNDA,
+        lnrmnrcbr.VL_TAXA_VNDA,
+        lnrmnrcbr.VL_ADCN_PRCL_VNDA
+      FROM
+        CLC.TBCLCR_LNCM_RECB lnrecb,
+        CLC.TBCLCR_LNCM_RECB_RMNR lnrmnr,
+        CLC.TBCLCR_LNCM_RECB_RMNR_CBRN lnrmnrcbr
+      WHERE
+        lnrecb.CD_TIPO_TRNS_BNDR_RECB = lnrmnr.CD_TIPO_TRNS_BNDR_RECB
+        AND lnrecb.SG_ORGM_IFMC_RECB = 'CRD'
+        AND NVL(lnrecb.NU_RFRN, 0) IN 0
+        AND lnrecb.CD_BNDR = lnrmnr.CD_BNDR
+        AND lnrecb.CD_CRDE = lnrmnr.CD_CRDE
+        AND lnrecb.CD_EMSR = lnrmnr.CD_EMSR
+        AND lnrecb.CD_TIPO_PLTF_PGMN = lnrmnr.CD_TIPO_PLTF_PGMN
+        AND lnrecb.CD_PCSR = lnrmnr.CD_PCSR
+        AND NVL(lnrecb.NU_RFRN, 0) = NVL(lnrmnr.NU_RFRN, 0)
+        AND lnrecb.NU_RMSA_CRDE = lnrmnr.NU_RMSA_CRDE
+        AND lnrecb.NU_RMSA_EMSR = lnrmnr.NU_RMSA_EMSR
+        AND lnrecb.DT_RFRN_MVMN = lnrmnr.DT_RFRN_MVMN
+        AND lnrecb.NU_SQNL = lnrmnr.NU_SQNL
+        AND lnrecb.CD_BNDR = lnrmnrcbr.CD_BNDR(+)
+        AND lnrecb.CD_CRDE = lnrmnrcbr.CD_CRDE(+)
+        AND lnrecb.CD_EMSR = lnrmnrcbr.CD_EMSR(+)
+        AND lnrecb.CD_TIPO_PLTF_PGMN = lnrmnrcbr.CD_TIPO_PLTF_PGMN(+)
+        AND lnrecb.CD_PCSR = lnrmnrcbr.CD_PCSR(+)
+        AND lnrecb.CD_TIPO_TRNS_BNDR_RECB = lnrmnrcbr.CD_TIPO_TRNS_BNDR_RECB(+)
+        AND NVL(lnrecb.NU_RFRN, 0) = NVL(lnrmnrcbr.NU_RFRN, 0)
+        AND lnrecb.NU_SQNL = lnrmnrcbr.NU_SQNL(+)
+        AND lnrecb.NU_RMSA_CRDE = lnrmnrcbr.NU_RMSA_CRDE(+)
+        AND lnrecb.NU_RMSA_EMSR = lnrmnrcbr.NU_RMSA_EMSR(+)
+        AND lnrecb.DT_RFRN_MVMN = lnrmnrcbr.DT_RFRN_MVMN(+)
+        AND lnrecb.CD_TIPO_TRNS_BNDR_RECB = lnrmnrcbr.CD_TIPO_TRNS_BNDR_RECB
+        AND lnrecb.IN_ENVO_ANLT_CRDE_BNDR_EMSR = 'S'
+        AND lnrmnrcbr.DT_RFRN_MVMN = (
+          select
+            DT_PCSM_ATUL
+          from
+            CCR.TBCCRR_CICL_PCSM_CDST
+        )
+        AND lnrmnr.DT_RFRN_MVMN = (
+          select
+            DT_PCSM_ATUL
+          from
+            CCR.TBCCRR_CICL_PCSM_CDST
+        )
+        AND lnrecb.DT_RFRN_MVMN = (
+          select
+            DT_PCSM_ATUL
+          from
+            CCR.TBCCRR_CICL_PCSM_CDST
+        )
+    ) lnrecb,
+    CLC.TBCLCR_TIPO_TRNS_OPRD ttop,
+    CLC.TBCLCR_CRTO_CRPT_LNCM_RECB crto
+  WHERE
+    lnrecb.CD_BNDR = ttop.CD_BNDR
+    AND lnrecb.CD_TIPO_TRNS_BNDR_RECB = ttop.CD_TIPO_TRNS_BNDR
+    AND lnrecb.CD_TIPO_TRNS_BNDR_RECB = ttop.CD_TIPO_TRNS_BNDR_ORGM
+    AND nvl(lnrecb.CD_TIPO_MVMC_PARC, 0) = nvl(ttop.CD_TIPO_MVMC_PARC, 0)
+    AND ttop.SG_ORGM_IFMC = 'CRD'
+    AND lnrecb.SG_ORGM_IFMC_RECB = ttop.SG_ORGM_IFMC
+    AND lnrecb.CD_BNDR = crto.CD_BNDR
+    AND lnrecb.DT_RFRN_MVMN = crto.DT_RFRN_MVMN
+    AND lnrecb.CD_TIPO_PLTF_PGMN = crto.CD_TIPO_PLTF_PGMN
+    AND lnrecb.CD_CRDE = crto.CD_CRDE
+    AND lnrecb.NU_RMSA_CRDE = crto.NU_RMSA_CRDE
+    AND lnrecb.CD_EMSR = crto.CD_EMSR
+    AND lnrecb.CD_PCSR = crto.CD_PCSR
+    AND lnrecb.NU_RMSA_EMSR = crto.NU_RMSA_EMSR
+    AND lnrecb.NU_SQNL = crto.NU_SQNL
+    AND crto.CD_TIPO_CNCT_CRTO = 1 with read only
+columns: []
+referencedTables: []

@@ -1,0 +1,43 @@
+name: TBCLCR_RGRA_OPRC_TRNS_BKP
+schema: CLC
+columns:
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CODIGO_REGRA_OPERACAO_TRANSACA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: false
+  dataTypeLength: 5
+- name: DESCRICAO_REGRA_OPERACAO_TRANS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<check-constraint>
+  name: SYS_C0017717
+  type: CHECK
+  checkClause: '"CODIGO_REGRA_OPERACAO_TRANSACA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017718
+  type: CHECK
+  checkClause: '"DESCRICAO_REGRA_OPERACAO_TRANS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017719
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017720
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

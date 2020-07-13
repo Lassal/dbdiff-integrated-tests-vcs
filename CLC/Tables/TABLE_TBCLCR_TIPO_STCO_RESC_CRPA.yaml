@@ -1,0 +1,43 @@
+name: TBCLCR_TIPO_STCO_RESC_CRPA
+schema: CLC
+columns:
+- name: CD_TIPO_STCO_RESC_CRPA
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_STCO_RESC_CRPA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: false
+  dataTypeLength: 80
+constraints:
+- !<check-constraint>
+  name: SYS_C0011135
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_RESC_CRPA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011136
+  type: CHECK
+  checkClause: '"NM_TIPO_STCO_RESC_CRPA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011137
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011138
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

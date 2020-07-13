@@ -1,0 +1,50 @@
+name: TBCLCR_TIPO_SALD_PGMN
+schema: CLC
+columns:
+- name: CD_TIPO_SALD_PGMN
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_SALD_PGMN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_SALD_PGMN
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_SALD_PGMN
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0014568
+  type: CHECK
+  checkClause: '"CD_TIPO_SALD_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014569
+  type: CHECK
+  checkClause: '"DC_TIPO_SALD_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014570
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014571
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

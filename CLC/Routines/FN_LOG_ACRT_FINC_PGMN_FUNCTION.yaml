@@ -1,0 +1,22 @@
+schema: CLC
+name: FN_LOG_ACRT_FINC_PGMN
+routineType: FUNCTION
+returnParamater: null
+parameters: []
+routineDefinition: |-
+  FUNCTION FN_LOG_ACRT_FINC_PGMN(
+    vcd_bndr IN number,
+    vcd_crde in number,
+    vcd_tipo_pocs_acrt_finc number
+  ) RETURN DATE IS v_data date;
+  BEGIN
+  SELECT
+    MAX(DH_ACAO_INCO_RGST) INTO v_data
+  FROM
+    CLC.TBCLCR_LOG_ACRT_FINC_PGMN
+  WHERE
+    CD_BNDR = vcd_bndr
+    AND CD_CRDE = vcd_crde
+    AND CD_TIPO_POCS_ACRT_FINC = vcd_tipo_pocs_acrt_finc;
+  RETURN(v_data);
+  END;

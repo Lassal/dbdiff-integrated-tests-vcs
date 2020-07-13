@@ -1,0 +1,63 @@
+name: TBCLCR_MTVO_CHRG
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_MTVO_CHRG
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_MTVO_CHRG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: DH_INCL_RGST
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_MTVO_CHRG
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_MTVO_CHRG
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C0011893
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011894
+  type: CHECK
+  checkClause: '"CD_MTVO_CHRG" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011895
+  type: CHECK
+  checkClause: '"DC_MTVO_CHRG" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011896
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011897
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

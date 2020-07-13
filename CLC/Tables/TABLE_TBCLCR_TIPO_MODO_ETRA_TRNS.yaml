@@ -1,0 +1,73 @@
+name: TBCLCR_TIPO_MODO_ETRA_TRNS
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_ORIG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: CD_TIPO_MODO_ETRA_TRNS
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_MODO_ETRA_TRNS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_MODO_ETRA_TRNS
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_TIPO_MODO_ETRA_TRNS
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C0020180
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020181
+  type: CHECK
+  checkClause: '"CD_TIPO_MODO_ETRA_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020182
+  type: CHECK
+  checkClause: '"CD_ORIG" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020183
+  type: CHECK
+  checkClause: '"DC_TIPO_MODO_ETRA_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020184
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020185
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

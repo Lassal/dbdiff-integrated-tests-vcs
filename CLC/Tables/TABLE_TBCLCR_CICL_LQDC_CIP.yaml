@@ -1,0 +1,31 @@
+name: TBCLCR_CICL_LQDC_CIP
+schema: CLC
+columns:
+- name: CD_CICL_LQDC_CIP
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: DC_CICL_LQDC_CIP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CICL_LQDC_CIP
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_CICL_LQDC_CIP
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0016165
+  type: CHECK
+  checkClause: '"CD_CICL_LQDC_CIP" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016166
+  type: CHECK
+  checkClause: '"DC_CICL_LQDC_CIP" IS NOT NULL'

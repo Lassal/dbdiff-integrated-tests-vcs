@@ -1,0 +1,136 @@
+schema: CCR
+name: SP11
+routineType: PROCEDURE
+returnParamater: null
+parameters: []
+routineDefinition: |-
+  procedure sp11 as
+  begin
+  DECLARE
+    i NUMBER: = 0;
+  j NUMBER: = 0;
+  min_clnt ccr.tbccrr_clnt.nu_clnt % TYPE;
+  ini DATE: = SYSDATE;
+  BEGIN
+    FOR x IN (
+      SELECT
+        sg_tpps,
+        nu_raiz_cnpj_clnt,
+        nu_fili_cnpj_clnt,
+        nu_dv_cnpj_clnt,
+        COUNT(1)
+      FROM
+        ccr.tbccrr_clnt
+      WHERE
+        sg_tpps = 'J'
+      GROUP BY
+        sg_tpps,
+        nu_raiz_cnpj_clnt,
+        nu_fili_cnpj_clnt,
+        nu_dv_cnpj_clnt
+      HAVING
+        COUNT(1) > 1
+    )
+  LOOP
+  BEGIN
+  SELECT
+    /*+ parallel 10 */
+    MIN(nu_clnt) AS nu_clnt INTO min_clnt
+  FROM
+    ccr.tbccrr_clnt
+  WHERE
+    sg_tpps = x.sg_tpps
+    AND nu_raiz_cnpj_clnt = x.nu_raiz_cnpj_clnt
+    AND nu_fili_cnpj_clnt = x.nu_fili_cnpj_clnt
+    AND nu_dv_cnpj_clnt = x.nu_dv_cnpj_clnt;
+  FOR y IN (
+      SELECT
+        /*+ INDEX CCR.ICCRR_RMNR_DIFR_CLNT_03 parallel 10 */
+        cd_bndr,
+        cd_grpo_rmnr,
+        cd_tipo_rmnr,
+        nu_clnt,
+        nm_gstr_clnt_cnta_bndr,
+        in_rgst_atvo,
+        dh_incl_rgst,
+        cd_usro_incl_rgst,
+        cd_usro_acao_rgst,
+        cd_tipo_acao_rgst
+      FROM
+        ccr.tbccrr_rmnr_difr_clnt
+      WHERE
+        cd_bndr = 7
+        AND nu_clnt IN (
+          SELECT
+            nu_clnt
+          FROM
+            ccr.tbccrr_clnt
+          WHERE
+            sg_tpps = x.sg_tpps
+            AND nu_raiz_cnpj_clnt = x.nu_raiz_cnpj_clnt
+            AND nu_fili_cnpj_clnt = x.nu_fili_cnpj_clnt
+            AND nu_dv_cnpj_clnt = x.nu_dv_cnpj_clnt
+            AND nu_clnt <> min_clnt
+        )
+    )
+  LOOP
+  BEGIN
+    --------------- TABLE REMUNERACAO DIFERENCIADA CLIENTE
+  INSERT
+    /*+ parallel 10 */
+    INTO ccr.tbccrr_rmnr_difr_clnt (
+      cd_bndr,
+      cd_grpo_rmnr,
+      cd_tipo_rmnr,
+      nu_clnt,
+      nm_gstr_clnt_cnta_bndr,
+      in_rgst_atvo,
+      dh_incl_rgst,
+      cd_usro_incl_rgst,
+      cd_usro_acao_rgst,
+      cd_tipo_acao_rgst
+    )
+  VALUES
+    (
+      y.cd_bndr,
+      y.cd_grpo_rmnr,
+      y.cd_tipo_rmnr,
+      min_clnt,
+      y.nm_gstr_clnt_cnta_bndr,
+      y.in_rgst_atvo,
+      y.dh_incl_rgst,
+      y.cd_usro_incl_rgst,
+      y.cd_usro_acao_rgst,
+      y.cd_tipo_acao_rgst
+    );
+  DELETE
+    /*+ parallel 10 */
+  FROM
+    ccr.tbccrr_rmnr_difr_clnt
+  WHERE
+    cd_bndr = y.cd_bndr
+    AND cd_grpo_rmnr = y.cd_grpo_rmnr
+    AND cd_tipo_rmnr = y.cd_tipo_rmnr
+    AND nu_clnt = y.nu_clnt;
+  END;
+  END
+  LOOP;
+  --COMMIT;
+    j: = j + 1;
+  i: = i + 1;
+  IF i > 1000 THEN COMMIT;
+  i: = 0;
+  END IF;
+  END;
+  END
+  LOOP;
+  dbms_output.put_line(
+      'Data de inicio: ' || TO_CHAR(ini, 'DD/MM/YYYY HH24:mm:SS')
+    );
+  dbms_output.put_line('Quantidade de registros afetados: ' || j);
+  dbms_output.put_line(
+      'Data de final: ' || TO_CHAR(SYSDATE, 'DD/MM/YYYY HH24:mm:SS')
+    );
+  COMMIT;
+  END;
+  end sp11;

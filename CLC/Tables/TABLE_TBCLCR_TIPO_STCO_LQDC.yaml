@@ -1,0 +1,50 @@
+name: TBCLCR_TIPO_STCO_LQDC
+schema: CLC
+columns:
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CODIGO_TIPO_SITUACAO_LIQUIDACA
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: DESCRICAO_TIPO_SITUACAO_LIQUID
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_STCO_LQDC
+  type: PRIMARY_KEY
+  columns:
+  - name: CODIGO_TIPO_SITUACAO_LIQUIDACA
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0020297
+  type: CHECK
+  checkClause: '"CODIGO_TIPO_SITUACAO_LIQUIDACA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020298
+  type: CHECK
+  checkClause: '"DESCRICAO_TIPO_SITUACAO_LIQUID" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020299
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020300
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

@@ -1,0 +1,130 @@
+schema: CLC
+name: FKS_SEM_INDICES
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: V_OWNER
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE FKS_SEM_INDICES (V_OWNER IN VARCHAR2) AS
+  BEGIN
+  DECLARE
+    V_SQL VARCHAR2(8000);
+  TYPE CSR IS REF CURSOR;
+  C_CUR CSR;
+  V_PCT_SELETIVIDADE VARCHAR2(10);
+  CURSOR C1 IS
+  SELECT
+    OWNER,
+    TABLE_NAME,
+    CONSTRAINT_NAME,
+    COLUMNS COLUNA,
+    'CREATE INDEX ' || V_OWNER || '.' || CONSTRAINT_NAME || '_IDX ON ' || V_OWNER || '.' || TABLE_NAME || '(' || COLUMNS || ');' INDICE
+  FROM
+    (
+      SELECT
+        OWNER,
+        TABLE_NAME,
+        CONSTRAINT_NAME,
+        CNAME1 || NVL2(CNAME2, ',' || CNAME2, NULL) || NVL2(CNAME3, ',' || CNAME3, NULL) || NVL2(CNAME4, ',' || CNAME4, NULL) || NVL2(CNAME5, ',' || CNAME5, NULL) || NVL2(CNAME6, ',' || CNAME6, NULL) || NVL2(CNAME7, ',' || CNAME7, NULL) || NVL2(CNAME8, ',' || CNAME8, NULL) COLUMNS
+      FROM
+        (
+          SELECT
+            B.OWNER,
+            B.TABLE_NAME,
+            B.CONSTRAINT_NAME,
+            MAX(DECODE(POSITION, 1, COLUMN_NAME, NULL)) CNAME1,
+            MAX(DECODE(POSITION, 2, COLUMN_NAME, NULL)) CNAME2,
+            MAX(DECODE(POSITION, 3, COLUMN_NAME, NULL)) CNAME3,
+            MAX(DECODE(POSITION, 4, COLUMN_NAME, NULL)) CNAME4,
+            MAX(DECODE(POSITION, 5, COLUMN_NAME, NULL)) CNAME5,
+            MAX(DECODE(POSITION, 6, COLUMN_NAME, NULL)) CNAME6,
+            MAX(DECODE(POSITION, 7, COLUMN_NAME, NULL)) CNAME7,
+            MAX(DECODE(POSITION, 8, COLUMN_NAME, NULL)) CNAME8,
+            COUNT(*) COL_CNT
+          FROM
+            (
+              SELECT
+                SUBSTR(TABLE_NAME, 1, 30) TABLE_NAME,
+                SUBSTR(CONSTRAINT_NAME, 1, 30) CONSTRAINT_NAME,
+                SUBSTR(COLUMN_NAME, 1, 30) COLUMN_NAME,
+                POSITION,
+                OWNER
+              FROM
+                ALL_CONS_COLUMNS
+            ) A,
+            ALL_CONSTRAINTS B
+          WHERE
+            A .CONSTRAINT_NAME = B.CONSTRAINT_NAME
+            AND A .OWNER = B.OWNER
+            AND B.CONSTRAINT_TYPE = 'R'
+            AND A .OWNER = V_OWNER
+          GROUP BY
+            B.OWNER,
+            B.TABLE_NAME,
+            B.CONSTRAINT_NAME
+        ) CONS
+      WHERE
+        COL_CNT > ALL (
+          SELECT
+            COUNT(*)
+          FROM
+            ALL_IND_COLUMNS I
+          WHERE
+            I.TABLE_NAME = CONS.TABLE_NAME
+            AND I.COLUMN_NAME IN (
+              CNAME1,
+              CNAME2,
+              CNAME3,
+              CNAME4,
+              CNAME5,
+              CNAME6,
+              CNAME7,
+              CNAME8
+            )
+            AND I.COLUMN_POSITION <= CONS.COL_CNT
+          GROUP BY
+            I.INDEX_NAME
+        )
+    );
+  REGC C1 % ROWTYPE;
+  BEGIN
+    OPEN C1;
+  LOOP
+    FETCH C1 INTO REGC;
+  EXIT
+    WHEN C1 % NOTFOUND;
+  V_SQL: = 'SELECT TO_CHAR(100*AVG(X)/SUM(X),''9990D99'') PCT_SELETIVIDADE ';
+  V_SQL: = V_SQL || 'FROM (SELECT COUNT(*) X FROM ' || REGC.OWNER || '.' || REGC.TABLE_NAME || ' ';
+  V_SQL: = V_SQL || 'GROUP BY ' || REGC.COLUNA || ')';
+  EXECUTE IMMEDIATE V_SQL;
+  OPEN C_CUR FOR V_SQL;
+  LOOP
+    FETCH C_CUR INTO V_PCT_SELETIVIDADE;
+  EXIT
+    WHEN C_CUR % NOTFOUND;
+  IF CAST(V_PCT_SELETIVIDADE AS DECIMAL) <= 15 THEN
+  INSERT INTO
+    TB_FK_SEM_IDX
+  VALUES
+    (
+      REGC.TABLE_NAME,
+      V_PCT_SELETIVIDADE,
+      REGC.INDICE,
+      SYSDATE
+    );
+  END IF;
+  END
+  LOOP;
+  CLOSE C_CUR;
+  END
+  LOOP;
+  CLOSE C1;
+  COMMIT;
+  END;
+  EXCEPTION
+    WHEN OTHERS THEN RAISE_APPLICATION_ERROR (-20001, SQLCODE || ': ' || SQLERRM);
+  ROLLBACK;
+  END;

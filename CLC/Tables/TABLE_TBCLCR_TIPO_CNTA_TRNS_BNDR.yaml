@@ -1,0 +1,24 @@
+name: TBCLCR_TIPO_CNTA_TRNS_BNDR
+schema: CLC
+columns:
+- name: CD_TIPO_CNTA_TRNS_BNDR
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: NM_TIPO_CNTA_TRNS_BNDR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: false
+  dataTypeLength: 80
+constraints:
+- !<check-constraint>
+  name: SYS_C0010559
+  type: CHECK
+  checkClause: '"CD_TIPO_CNTA_TRNS_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010560
+  type: CHECK
+  checkClause: '"NM_TIPO_CNTA_TRNS_BNDR" IS NOT NULL'

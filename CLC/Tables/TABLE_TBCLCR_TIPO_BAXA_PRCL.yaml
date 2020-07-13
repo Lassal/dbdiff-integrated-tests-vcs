@@ -1,0 +1,30 @@
+name: TBCLCR_TIPO_BAXA_PRCL
+schema: CLC
+columns:
+- name: CD_TIPO_BAXA_PRCL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: NM_TIPO_BAXA_PRCL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_BAXA_PRCL
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_BAXA_PRCL
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0019683
+  type: CHECK
+  checkClause: '"CD_TIPO_BAXA_PRCL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019684
+  type: CHECK
+  checkClause: '"NM_TIPO_BAXA_PRCL" IS NOT NULL'

@@ -1,0 +1,50 @@
+name: TBCLCR_TIPO_ARQV_RMSA
+schema: CLC
+columns:
+- name: CD_TIPO_ARQV_RMSA
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: CHAR
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_ARQV_RMSA
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_ARQV_RMSA
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_ARQV_RMSA
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0016126
+  type: CHECK
+  checkClause: '"CD_TIPO_ARQV_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016127
+  type: CHECK
+  checkClause: '"DC_TIPO_ARQV_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016128
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016129
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

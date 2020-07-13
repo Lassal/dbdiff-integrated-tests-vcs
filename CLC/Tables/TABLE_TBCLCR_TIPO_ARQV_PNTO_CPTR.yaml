@@ -1,0 +1,31 @@
+name: TBCLCR_TIPO_ARQV_PNTO_CPTR
+schema: CLC
+columns:
+- name: CD_TIPO_ARQV_PNTO_CPTR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NM_TIPO_ARQV_PNTO_CPTR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_ARQV_PNTO_CPTR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_ARQV_PNTO_CPTR
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0012976
+  type: CHECK
+  checkClause: '"CD_TIPO_ARQV_PNTO_CPTR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012977
+  type: CHECK
+  checkClause: '"NM_TIPO_ARQV_PNTO_CPTR" IS NOT NULL'

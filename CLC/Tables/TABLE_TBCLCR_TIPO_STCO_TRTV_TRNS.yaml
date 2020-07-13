@@ -1,0 +1,50 @@
+name: TBCLCR_TIPO_STCO_TRTV_TRNS
+schema: CLC
+columns:
+- name: CD_TIPO_TRTV_TRNS
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_TRTV_TRNS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+constraints:
+- !<unique-constraint>
+  name: PK_TBCLCR_TIPO_STCO_TRTV_TRNS
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_TRTV_TRNS
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0014106
+  type: CHECK
+  checkClause: '"CD_TIPO_TRTV_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014107
+  type: CHECK
+  checkClause: '"NM_TIPO_TRTV_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014108
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014109
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

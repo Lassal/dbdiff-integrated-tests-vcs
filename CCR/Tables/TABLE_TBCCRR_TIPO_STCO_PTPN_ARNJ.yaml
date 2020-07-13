@@ -1,0 +1,31 @@
+name: TBCCRR_TIPO_STCO_PTPN_ARNJ
+schema: CCR
+columns:
+- name: CD_TIPO_STCO_PTPN_ARNJ
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: DC_TIPO_STCO_PTPN_ARNJ
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_TIPO_STCO_PTPN_ARNJ
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_STCO_PTPN_ARNJ
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0015249
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_PTPN_ARNJ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015250
+  type: CHECK
+  checkClause: '"DC_TIPO_STCO_PTPN_ARNJ" IS NOT NULL'

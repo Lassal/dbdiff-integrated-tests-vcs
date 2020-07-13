@@ -1,0 +1,81 @@
+schema: CCR
+name: SP10
+routineType: PROCEDURE
+returnParamater: null
+parameters: []
+routineDefinition: |-
+  procedure sp10 as
+  begin
+  DECLARE
+    i NUMBER: = 0;
+  j NUMBER: = 0;
+  k NUMBER: = 0;
+  ini DATE: = SYSDATE;
+  fk_exception
+  EXCEPTION;
+  PRAGMA exception_init (fk_exception, -2292);
+  BEGIN
+    FOR x IN (
+      SELECT
+        /* parallel 10 */
+        sg_tpps,
+        nu_raiz_cnpj_clnt,
+        nu_fili_cnpj_clnt,
+        nu_dv_cnpj_clnt,
+        COUNT(1)
+      FROM
+        ccr.tbccrr_clnt
+      WHERE
+        sg_tpps = 'J'
+      GROUP BY
+        sg_tpps,
+        nu_raiz_cnpj_clnt,
+        nu_fili_cnpj_clnt,
+        nu_dv_cnpj_clnt
+      HAVING
+        COUNT(1) > 1
+    )
+  LOOP
+  BEGIN
+  DELETE
+    /* parallel 10 */
+  FROM
+    ccr.tbccrr_clnt
+  WHERE
+    (
+      in_rgst_atvo = 'N'
+      OR cd_tipo_acao_rgst = 'E'
+    )
+    AND nu_clnt IN (
+      SELECT
+        nu_clnt
+      FROM
+        ccr.tbccrr_clnt
+      WHERE
+        sg_tpps = x.sg_tpps
+        AND nu_raiz_cnpj_clnt = x.nu_raiz_cnpj_clnt
+        AND nu_fili_cnpj_clnt = x.nu_fili_cnpj_clnt
+        AND nu_dv_cnpj_clnt = x.nu_dv_cnpj_clnt
+    );
+  --COMMIT;
+    j: = j + 1;
+  i: = i + 1;
+  IF i > 1000 THEN COMMIT;
+  i: = 0;
+  END IF;
+  EXCEPTION
+    WHEN fk_exception THEN k: = k + 1;
+  END;
+  END
+  LOOP;
+  dbms_output.put_line(
+      'Data de inicio: ' || TO_CHAR(ini, 'DD/MM/YYYY HH24:mm:SS')
+    );
+  dbms_output.put_line('Quantidade de registros com FK: ' || k);
+  dbms_output.put_line('Quantidade de registros afetados: ' || j);
+  dbms_output.put_line(
+      'Data de final: ' || TO_CHAR(SYSDATE, 'DD/MM/YYYY HH24:mm:SS')
+    );
+  COMMIT;
+  END;
+  end sp10;

@@ -1,0 +1,104 @@
+name: TBCLCR_STCO_CNTR_RMSA_CIP
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_STCO_RMSA_CIP
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  defaultValue: '''JavaBatch'' '
+  dataTypeLength: 20
+- name: DT_STCO_STCO_RMSA_CIP
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_ENVO_ARQV
+  ordinalPosition: 6
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''N'' '
+  dataTypeLength: 1
+- name: NM_ARQV_CIP
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_STCO_CNTR_RMSA_CIP
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+  - name: CD_TIPO_STCO_RMSA_CIP
+    ordinalPosition: 3
+  - name: NM_ARQV_CIP
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_CNTR_RMSA_CIP_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_CIP
+    referencedTableColumnName: CD_BNDR
+  - name: NM_ARQV_CIP
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_CIP
+    referencedTableColumnName: NM_ARQV_CIP
+- !<fk-constraint>
+  name: FKR_TIPO_STCO_RMSA_CIP_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_STCO_RMSA_CIP
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_RMSA_CIP
+    referencedTableColumnName: CD_TIPO_STCO_RMSA_CIP
+- !<check-constraint>
+  name: CKCLCR_STCO_CNTR_RMSA_CIP_006
+  type: CHECK
+  checkClause: IN_ENVO_ARQV in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0012818
+  type: CHECK
+  checkClause: '"NM_ARQV_CIP" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012819
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012820
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_RMSA_CIP" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012821
+  type: CHECK
+  checkClause: '"DT_STCO_STCO_RMSA_CIP" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012822
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012823
+  type: CHECK
+  checkClause: '"IN_ENVO_ARQV" IS NOT NULL'

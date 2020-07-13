@@ -1,0 +1,26 @@
+name: TBCCRR_TIPO_CNTA_PGMN
+schema: CCR
+columns:
+- name: CD_TIPO_CNTA_PGMN
+  ordinalPosition: 1
+  dataType: CHAR
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: NM_TIPO_CNTA_PGMN
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_TIPO_CNTA_PGMN
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_CNTA_PGMN
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C009963
+  type: CHECK
+  checkClause: '"CD_TIPO_CNTA_PGMN" IS NOT NULL'

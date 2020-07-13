@@ -1,0 +1,178 @@
+name: TBCLCR_LOG_PARZ_RMNR_PJ
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_POCS_ATZC_TRNS
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_FOMA_CBRN_P2P
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+- name: CD_TIPO_FOMA_CMNC_P2P
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_PTPN_P2P
+  ordinalPosition: 4
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ACAO_FIM_RGST
+  ordinalPosition: 14
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_ACAO_INCO_RGST
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 15
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 11
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NU_RAIZ_CNPJ_CLNT
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+- name: PC_TAXA_TRNS
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 9
+  nullable: false
+  dataTypeLength: 9,9
+- name: VL_MXMO_TAXA_TRNS
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+- name: VL_TARF_TRNS
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 20
+  numericScale: 5
+  nullable: false
+  dataTypeLength: 20,5
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_LOG_PARZ_RMNR_PJ
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_POCS_ATZC_TRNS
+    ordinalPosition: 3
+  - name: CD_TIPO_FOMA_CBRN_P2P
+    ordinalPosition: 4
+  - name: CD_TIPO_FOMA_CMNC_P2P
+    ordinalPosition: 2
+  - name: CD_TIPO_PTPN_P2P
+    ordinalPosition: 5
+  - name: DH_ACAO_INCO_RGST
+    ordinalPosition: 7
+  - name: NU_RAIZ_CNPJ_CLNT
+    ordinalPosition: 6
+- !<check-constraint>
+  name: CKCLCR_LOG_PARZ_RMNR_PJ_011
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0016892
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016893
+  type: CHECK
+  checkClause: '"CD_POCS_ATZC_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016894
+  type: CHECK
+  checkClause: '"CD_TIPO_FOMA_CMNC_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016895
+  type: CHECK
+  checkClause: '"CD_TIPO_PTPN_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016896
+  type: CHECK
+  checkClause: '"CD_TIPO_FOMA_CBRN_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016897
+  type: CHECK
+  checkClause: '"NU_RAIZ_CNPJ_CLNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016898
+  type: CHECK
+  checkClause: '"DH_ACAO_INCO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016899
+  type: CHECK
+  checkClause: '"PC_TAXA_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016900
+  type: CHECK
+  checkClause: '"VL_TARF_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016901
+  type: CHECK
+  checkClause: '"VL_MXMO_TAXA_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016902
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016903
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016904
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016905
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

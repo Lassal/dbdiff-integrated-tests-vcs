@@ -1,0 +1,27 @@
+schema: CLC
+name: TBCLCW_PRDT_BNDR_RPLC
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    CICL.DT_PCSM_ATUL AS DT_RFRN_MVMN,
+    PRDT.CD_BNDR,
+    BNDR.NM_BNDR,
+    PRDT.CD_PRDT_BNDR,
+    PRDT.NM_PRDT_BNDR,
+    PRDT.CD_TIPO_PLTF_PGMN,
+    PLTF.NM_TIPO_PLTF_PGMN,
+    PRDT.QT_DIA_LQDC_EMSR,
+    PRDT.IN_PRDT_BNDR_ATVO
+  FROM
+    CCR.TBCCRR_BNDR BNDR,
+    CPR.TBCPRR_PRDT_BNDR PRDT,
+    CPR.TBCPRR_TIPO_PLTF_PGMN PLTF,
+    ccr.tbccrr_cicl_pcsm_cdst CICL
+  WHERE
+    PRDT.CD_BNDR = BNDR.CD_BNDR
+    AND PRDT.CD_BNDR = PLTF.CD_BNDR
+    AND PRDT.CD_TIPO_PLTF_PGMN = PLTF.CD_TIPO_PLTF_PGMN
+    AND CICL.IN_RGST_ATVO = 'S'
+columns: []
+referencedTables: []

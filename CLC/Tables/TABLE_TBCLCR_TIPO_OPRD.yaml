@@ -1,0 +1,60 @@
+name: TBCLCR_TIPO_OPRD
+schema: CLC
+columns:
+- name: CD_TIPO_OPRD
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_OPRD
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: SG_TIPO_OPRD
+  ordinalPosition: 2
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_OPRD
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_OPRD
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0020204
+  type: CHECK
+  checkClause: '"CD_TIPO_OPRD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020205
+  type: CHECK
+  checkClause: '"SG_TIPO_OPRD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020206
+  type: CHECK
+  checkClause: '"NM_TIPO_OPRD" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020207
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020208
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

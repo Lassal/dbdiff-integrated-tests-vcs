@@ -1,0 +1,73 @@
+name: TBCLCR_TIPO_CNDC_TRNS_CHIP
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_ORIG
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_CNDC_TRNS_CHIP
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_CNDC_TRNS_CHIP
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_CNDC_TRNS_CHIP
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+  - name: CD_TIPO_CNDC_TRNS_CHIP
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0014544
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014545
+  type: CHECK
+  checkClause: '"CD_TIPO_CNDC_TRNS_CHIP" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014546
+  type: CHECK
+  checkClause: '"CD_ORIG" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014547
+  type: CHECK
+  checkClause: '"DC_TIPO_CNDC_TRNS_CHIP" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014548
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014549
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

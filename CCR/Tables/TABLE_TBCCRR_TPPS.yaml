@@ -1,0 +1,49 @@
+name: TBCCRR_TPPS
+schema: CCR
+columns:
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TPPS
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: SG_TPPS
+  ordinalPosition: 1
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_TPPS
+  type: PRIMARY_KEY
+  columns:
+  - name: SG_TPPS
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0017046
+  type: CHECK
+  checkClause: '"SG_TPPS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017047
+  type: CHECK
+  checkClause: '"NM_TPPS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017048
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017049
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

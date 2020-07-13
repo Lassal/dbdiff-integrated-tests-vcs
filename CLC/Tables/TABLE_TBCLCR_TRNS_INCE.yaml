@@ -1,0 +1,50 @@
+name: TBCLCR_TRNS_INCE
+schema: CLC
+columns:
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_SQNC_TRNS_INCE
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 12
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 12,0
+- name: TX_CADA_CRCT_INCE_TRNS
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: false
+  dataTypeLength: 4000
+- name: TX_ERRO_TRNS_INCE
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: true
+  dataTypeLength: 512
+constraints:
+- !<check-constraint>
+  name: SYS_C0010510
+  type: CHECK
+  checkClause: '"NU_SQNC_TRNS_INCE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010511
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010512
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010513
+  type: CHECK
+  checkClause: '"TX_CADA_CRCT_INCE_TRNS" IS NOT NULL'

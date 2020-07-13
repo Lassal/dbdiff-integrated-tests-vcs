@@ -1,0 +1,311 @@
+name: TBCLCR_ACRT_FINC_PGMN_FRNR_OLD
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_MTVO_ACRT_FINC
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_ORGM_ACRT_FINC
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_PDV_CENZ
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 15,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 18
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_POCS_ACRT_FINC
+  ordinalPosition: 25
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_STCO_ACRT_FINC
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_UNCO_PGMN
+  ordinalPosition: 24
+  dataType: VARCHAR2
+  textMaxLength: 22
+  nullable: false
+  dataTypeLength: 22
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 19
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 21
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 20
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_MVMN
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_MVMN_AGND_CRDE
+  ordinalPosition: 22
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_VNCM_AGND_CRDE
+  ordinalPosition: 23
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_VNCM_PGMN
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_ENVO_AGND_CRDE
+  ordinalPosition: 17
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''N'' '
+  dataTypeLength: 1
+- name: IN_RGST_ATVO
+  ordinalPosition: 26
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NU_BNCO_DMCL
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_CLNT_PDV_CENZ
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: TX_OBSV_USRO
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  dataTypeLength: 200
+- name: VL_ACRT_FINC_CLDO
+  ordinalPosition: 14
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_ACRT_FINC_IFMD
+  ordinalPosition: 15
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_BRTO_PGMN_AGND_PGMN
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_BRTO_PGMN_FRNR
+  ordinalPosition: 13
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_ACRT_FINC_PGMN_FRNR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_PDV_CENZ
+    ordinalPosition: 6
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+  - name: CD_UNCO_PGMN
+    ordinalPosition: 9
+  - name: DT_MVMN
+    ordinalPosition: 7
+  - name: DT_VNCM_PGMN
+    ordinalPosition: 8
+  - name: NU_BNCO_DMCL
+    ordinalPosition: 4
+  - name: NU_CLNT_PDV_CENZ
+    ordinalPosition: 5
+- !<fk-constraint>
+  name: FKR_MTVO_ACRT_FINC_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_MTVO_ACRT_FINC
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_MTVO_ACRT_FINC_OLD
+    referencedTableColumnName: CD_MTVO_ACRT_FINC
+- !<fk-constraint>
+  name: FKR_ORGM_ACRT_FINC_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_ORGM_ACRT_FINC
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_ORGM_ACRT_FINC_OLD
+    referencedTableColumnName: CD_ORGM_ACRT_FINC
+- !<fk-constraint>
+  name: FKR_TIPO_POCS_ACRT_FINC_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_POCS_ACRT_FINC
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_POCS_ACRT_FINC_OLD
+    referencedTableColumnName: CD_TIPO_POCS_ACRT_FINC
+- !<fk-constraint>
+  name: FKR_TIPO_STCO_ACRT_FINC_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_STCO_ACRT_FINC
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_STCO_ACRT_FINC_OLD
+    referencedTableColumnName: CD_TIPO_STCO_ACRT_FINC
+- !<check-constraint>
+  name: CKCLCR_ACRT_FINC_PGMN_FRNR_017
+  type: CHECK
+  checkClause: IN_ENVO_AGND_CRDE in ('N', 'S')
+- !<check-constraint>
+  name: CKCLCR_ACRT_FINC_PGMN_FRNR_026
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0011833
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011834
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011835
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011836
+  type: CHECK
+  checkClause: '"NU_BNCO_DMCL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011837
+  type: CHECK
+  checkClause: '"NU_CLNT_PDV_CENZ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011839
+  type: CHECK
+  checkClause: '"CD_PDV_CENZ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011841
+  type: CHECK
+  checkClause: '"DT_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011842
+  type: CHECK
+  checkClause: '"DT_VNCM_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011843
+  type: CHECK
+  checkClause: '"CD_ORGM_ACRT_FINC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011844
+  type: CHECK
+  checkClause: '"CD_MTVO_ACRT_FINC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011845
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_ACRT_FINC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011846
+  type: CHECK
+  checkClause: '"IN_ENVO_AGND_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011847
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011848
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011849
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011850
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011852
+  type: CHECK
+  checkClause: '"CD_UNCO_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011853
+  type: CHECK
+  checkClause: '"CD_TIPO_POCS_ACRT_FINC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0011854
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'

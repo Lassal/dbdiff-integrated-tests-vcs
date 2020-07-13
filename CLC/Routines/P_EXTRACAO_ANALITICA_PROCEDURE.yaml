@@ -1,0 +1,383 @@
+schema: CLC
+name: P_EXTRACAO_ANALITICA
+routineType: PROCEDURE
+returnParamater: null
+parameters: []
+routineDefinition: |-
+  PROCEDURE P_EXTRACAO_ANALITICA IS v_data DATE: = TO_DATE(TO_CHAR(SYSDATE - 1, 'DD/MM/YYYY'), 'DD/MM/YYYY');
+  CURSOR C_CURSOR IS
+  SELECT
+    l.cd_bndr,
+    l.cd_tipo_pltf_pgmn,
+    l.nu_rmsa_crde,
+    l.cd_pcsr,
+    l.nu_rmsa_emsr,
+    l.nu_sqnl,
+    nvl(l.nu_rfrn, 0) AS nu_rfrn,
+    l.tx_valr_vnda / 100 AS vl_venda,
+    l.tx_valr_trns / 100 AS vl_transacao,
+    l.cd_crde,
+    l.cd_mcc_bndr_recb AS mcc,
+    l.tx_nmro_raiz_cnpj_clnt AS raiz_cnpj,
+    l.tx_nmro_cpf_clnt AS cpf,
+    l.tx_nmro_dv_cpf_clnt AS cpf_dv,
+    l.cd_prdt_bndr_recb AS produto,
+    DECODE(
+      v_data,
+      l.dt_rero_emsr,
+      l.dt_rero_emsr,
+      l.dt_rfrn_mvmn
+    ) AS dt_rfrn_mvmn,
+    l.nu_prcl AS parcela,
+    DECODE(
+      v_data,
+      l.dt_rero_emsr,
+      1,
+      l.cd_tipo_trns_bndr_recb
+    ) AS te,
+    DECODE(
+      v_data,
+      l.dt_rero_emsr,
+      l.cd_tipo_trns_bndr_recb,
+      r.cd_tipo_trns_orig
+    ) AS te_original,
+    r.cd_grpo_rmnr,
+    CASE
+      WHEN to_number(nvl(l.tx_qntd_totl_prcl, 0)) > 6 THEN 4
+      WHEN to_number(nvl(l.tx_qntd_totl_prcl, 0)) > 1
+      AND to_number(nvl(l.tx_qntd_totl_prcl, 0)) <= 6 THEN 2
+      ELSE NULL
+    END AS intervalo_parcelas,
+    l.tx_qntd_totl_prcl as total_parcelas,
+    SUM(
+      DECODE(
+        c .cd_tipo_foma_cbrn_bndr,
+        1,
+        nvl(c .vl_rmnr_bndr_vnda, 0)
+      )
+    ) AS vl_remuneracao_vd_fee_1_orig,
+    SUM(
+      DECODE(
+        c .cd_tipo_foma_cbrn_bndr,
+        2,
+        nvl(c .vl_rmnr_bndr_vnda, 0)
+      )
+    ) AS vl_remuneracao_vd_fee_2_orig,
+    SUM(
+      DECODE(
+        c .cd_tipo_foma_cbrn_bndr,
+        3,
+        nvl(c .vl_rmnr_bndr_vnda, 0)
+      )
+    ) AS vl_remuneracao_vd_fee_3_orig,
+    SUM(
+      DECODE(
+        c .cd_tipo_foma_cbrn_bndr,
+        1,
+        nvl(c .vl_rmnr_bndr_trns, 0)
+      )
+    ) AS vl_remuneracao_trx_fee_1_orig,
+    SUM(
+      DECODE(
+        c .cd_tipo_foma_cbrn_bndr,
+        2,
+        nvl(c .vl_rmnr_bndr_trns, 0)
+      )
+    ) AS vl_remuneracao_trx_fee_2_orig,
+    SUM(
+      DECODE(
+        c .cd_tipo_foma_cbrn_bndr,
+        3,
+        nvl(c .vl_rmnr_bndr_trns, 0)
+      )
+    ) AS vl_remuneracao_trx_fee_3_orig,
+    l.tx_data_vnda,
+    r.cd_sgmt_itcm,
+    r.pc_taxa_itcm,
+    r.vl_itcm_vnda AS vl_itcm_vd_orig,
+    r.vl_itcm_trns AS vl_itcm_trx_orig,
+    r.vl_mxmo_itcm_vnda AS teto,
+    DECODE(
+      v_data,
+      l.dt_rero_emsr,
+      'EMI',
+      l.sg_orgm_ifmc_recb
+    ) AS origem,
+    l.cd_emsr,
+    crpt.NU_BIN_RECB AS NU_BIN,
+    top.sg_tipo_oprd AS operador,
+    l.CD_ATZC_TRNS,
+    crpt.NU_FINL_CRTO_RECB AS NU_FINL_CRTO,
+    l.TX_VALR_ORGM_TRNE_FNDO,
+    l.TX_VALR_TAXA_EMBQ,
+    l.CD_MODA_RECB,
+    l.CD_PDV_RECB,
+    l.SG_TPPS_RECB,
+    l.CD_TIPO_APRS_TRNS_RECB,
+    l.CD_MTVO_CHRG_RECB,
+    l.CD_ERRO_PCSM_LQDC_RECB,
+    l.CD_TIPO_STCO_PCSM,
+    l.CD_MTVO_TRNE_FNDO_RECB,
+    l.CD_MTVO_FRDE_RECB,
+    l.CD_RGRA_OPRC_TRNS,
+    l.IN_RNVO_TRNS,
+    l.NU_CLNT,
+    l.DT_VNDA,
+    l.HR_VNDA,
+    l.IN_LNCM_CRTO_PSEN as cartao_presente,
+    l.IN_AUTC_SGRN as autenticado,
+    r.CD_TIPO_RMNR_ITCM as tipo_remuneracao_intercambio,
+    CASE
+      WHEN l.cd_prdt_bndr_recb NOT IN (70, 71) THEN 'N'
+      WHEN l.CD_POCS_ATZC_TRNS = '14' THEN 'S'
+      WHEN l.CD_TIPO_MODO_CMNC_TRNS = '2' THEN 'S'
+      ELSE 'N'
+    END AS RECORRENTE,
+    L.CD_TIPO_ABRT_PLNO_PARC
+  FROM
+    clc.tbclcr_lncm_recb l
+    JOIN clc.tbclcr_lncm_recb_rmnr r ON l.dt_rfrn_mvmn = r.dt_rfrn_mvmn
+    AND l.cd_bndr = r.cd_bndr
+    AND l.cd_tipo_pltf_pgmn = r.cd_tipo_pltf_pgmn
+    AND l.cd_crde = r.cd_crde
+    AND l.nu_rmsa_crde = r.nu_rmsa_crde
+    AND l.cd_emsr = r.cd_emsr
+    AND l.cd_pcsr = r.cd_pcsr
+    AND l.nu_rmsa_emsr = r.nu_rmsa_emsr
+    AND l.nu_sqnl = r.nu_sqnl
+    AND nvl(l.nu_rfrn, 0) = r.nu_rfrn
+    AND CASE
+      WHEN v_data = l.dt_rero_emsr
+      AND l.cd_erro_pcsm_lqdc_recb >= CHR(0) THEN '01'
+      ELSE l.cd_tipo_trns_bndr_recb
+    END = r.cd_tipo_trns_bndr_recb
+    JOIN clc.tbclcr_lncm_recb_rmnr_cbrn c ON r.dt_rfrn_mvmn = c .dt_rfrn_mvmn
+    AND r.cd_bndr = c .cd_bndr
+    AND r.cd_tipo_pltf_pgmn = c .cd_tipo_pltf_pgmn
+    AND r.cd_crde = c .cd_crde
+    AND r.nu_rmsa_crde = c .nu_rmsa_crde
+    AND r.cd_emsr = c .cd_emsr
+    AND r.cd_pcsr = c .cd_pcsr
+    AND r.nu_rmsa_emsr = c .nu_rmsa_emsr
+    AND r.nu_sqnl = c .nu_sqnl
+    AND r.nu_rfrn = c .nu_rfrn
+    AND r.cd_tipo_trns_bndr_recb = c .cd_tipo_trns_bndr_recb
+    JOIN CLC.TBCLCR_CRTO_CRPT_LNCM_RECB crpt ON crpt.CD_BNDR = l.CD_BNDR
+    AND crpt.DT_RFRN_MVMN = l.DT_RFRN_MVMN
+    AND crpt.CD_TIPO_PLTF_PGMN = l.CD_TIPO_PLTF_PGMN
+    AND crpt.CD_CRDE = l.CD_CRDE
+    AND crpt.NU_RMSA_CRDE = l.NU_RMSA_CRDE
+    AND crpt.CD_EMSR = l.CD_EMSR
+    AND crpt.CD_PCSR = l.CD_PCSR
+    AND crpt.NU_RMSA_EMSR = l.NU_RMSA_EMSR
+    AND crpt.NU_SQNL = l.NU_SQNL
+    AND crpt.CD_TIPO_CNCT_CRTO = 1
+    LEFT JOIN clc.tbclcr_tipo_trns_oprd tto ON CASE
+      WHEN v_data = l.dt_rero_emsr
+      AND l.cd_erro_pcsm_lqdc_recb >= CHR(0) THEN '1'
+      ELSE l.cd_tipo_trns_bndr_recb
+    END = tto.cd_tipo_trns_bndr
+    AND nvl(l.cd_tipo_mvmc_parc, 0) = nvl(tto.cd_tipo_mvmc_parc, 0)
+    AND DECODE(
+      v_data,
+      l.dt_rero_emsr,
+      l.cd_tipo_trns_bndr_recb,
+      r.cd_tipo_trns_orig
+    ) = tto.cd_tipo_trns_bndr_orgm
+    AND l.sg_orgm_ifmc_recb = tto.sg_orgm_ifmc
+    LEFT JOIN clc.tbclcr_tipo_oprd top ON tto.cd_tipo_oprd = top.cd_tipo_oprd
+  WHERE
+    (
+      (
+        l.dt_rfrn_mvmn = v_data
+        AND l.sg_orgm_ifmc_recb = 'CRD'
+      )
+      OR (
+        l.dt_rero_emsr = v_data
+        AND (
+          l.sg_orgm_ifmc_recb = 'EMI'
+          OR (
+            l.sg_orgm_ifmc_recb = 'CRD'
+            AND l.cd_erro_pcsm_lqdc_recb >= CHR(0)
+          )
+        )
+      )
+    )
+    AND r.cd_tipo_trns_orig NOT IN (40, 44)
+  GROUP BY
+    l.cd_bndr,
+    l.cd_tipo_pltf_pgmn,
+    l.nu_rmsa_crde,
+    l.cd_pcsr,
+    l.nu_rmsa_emsr,
+    l.nu_sqnl,
+    nvl(l.nu_rfrn, 0),
+    l.tx_valr_vnda / 100,
+    l.tx_valr_trns / 100,
+    l.cd_crde,
+    l.cd_mcc_bndr_recb,
+    l.tx_nmro_raiz_cnpj_clnt,
+    l.tx_nmro_cpf_clnt,
+    l.tx_nmro_dv_cpf_clnt,
+    l.cd_prdt_bndr_recb,
+    DECODE(
+      v_data,
+      l.dt_rero_emsr,
+      l.dt_rero_emsr,
+      l.dt_rfrn_mvmn
+    ),
+    l.nu_prcl,
+    DECODE(
+      v_data,
+      l.dt_rero_emsr,
+      1,
+      l.cd_tipo_trns_bndr_recb
+    ),
+    DECODE(
+      v_data,
+      l.dt_rero_emsr,
+      l.cd_tipo_trns_bndr_recb,
+      r.cd_tipo_trns_orig
+    ),
+    r.cd_grpo_rmnr,
+    CASE
+      WHEN to_number(nvl(l.tx_qntd_totl_prcl, 0)) > 6 THEN 4
+      WHEN to_number(nvl(l.tx_qntd_totl_prcl, 0)) > 1
+      AND to_number(nvl(l.tx_qntd_totl_prcl, 0)) <= 6 THEN 2
+      ELSE NULL
+    END,
+    l.tx_qntd_totl_prcl,
+    l.tx_data_vnda,
+    r.cd_sgmt_itcm,
+    r.pc_taxa_itcm,
+    r.vl_itcm_vnda,
+    r.vl_itcm_trns,
+    r.vl_mxmo_itcm_vnda,
+    DECODE(
+      v_data,
+      l.dt_rero_emsr,
+      'EMI',
+      l.sg_orgm_ifmc_recb
+    ),
+    l.cd_emsr,
+    crpt.NU_BIN_RECB,
+    top.sg_tipo_oprd,
+    l.CD_ATZC_TRNS,
+    crpt.NU_FINL_CRTO_RECB,
+    l.TX_VALR_ORGM_TRNE_FNDO,
+    l.TX_VALR_TAXA_EMBQ,
+    l.CD_MODA_RECB,
+    l.CD_PDV_RECB,
+    l.SG_TPPS_RECB,
+    l.CD_TIPO_APRS_TRNS_RECB,
+    l.CD_MTVO_CHRG_RECB,
+    l.CD_ERRO_PCSM_LQDC_RECB,
+    l.CD_TIPO_STCO_PCSM,
+    l.CD_MTVO_TRNE_FNDO_RECB,
+    l.CD_MTVO_FRDE_RECB,
+    l.CD_RGRA_OPRC_TRNS,
+    l.IN_RNVO_TRNS,
+    l.NU_CLNT,
+    l.DT_VNDA,
+    l.HR_VNDA,
+    l.IN_LNCM_CRTO_PSEN,
+    l.IN_AUTC_SGRN,
+    r.CD_TIPO_RMNR_ITCM,
+    CASE
+      WHEN l.cd_prdt_bndr_recb NOT IN (70, 71) THEN 'N'
+      WHEN l.CD_POCS_ATZC_TRNS = '14' THEN 'S'
+      WHEN l.CD_TIPO_MODO_CMNC_TRNS = '2' THEN 'S'
+      ELSE 'N'
+    END,
+    L.CD_TIPO_ABRT_PLNO_PARC;
+  TYPE TYPE_CURSOR IS TABLE OF C_CURSOR % ROWTYPE INDEX BY BINARY_INTEGER;
+  R_CURSOR TYPE_CURSOR;
+  V_TRUNC VARCHAR2(100): = 'TRUNCATE TABLE CLC.TBL_EXTRACAO_ANALITICA';
+  BEGIN
+    execute immediate v_trunc;
+  OPEN C_CURSOR;
+  LOOP
+    --   preenche a memória de 50000 em 50000 registros
+    FETCH C_CURSOR BULK COLLECT INTO R_CURSOR
+  LIMIT
+    50000;
+  EXIT
+    WHEN R_CURSOR.COUNT = 0;
+  FOR I IN 1 .. R_CURSOR.COUNT
+  LOOP
+  INSERT INTO
+    CLC.TBL_EXTRACAO_ANALITICA
+  VALUES
+    (
+      R_CURSOR(I) .CD_BNDR,
+      R_CURSOR(I) .CD_TIPO_PLTF_PGMN,
+      R_CURSOR(I) .NU_RMSA_CRDE,
+      R_CURSOR(I) .CD_PCSR,
+      R_CURSOR(I) .NU_RMSA_EMSR,
+      R_CURSOR(I) .NU_SQNL,
+      R_CURSOR(I) .NU_RFRN,
+      R_CURSOR(I) .VL_VENDA,
+      R_CURSOR(I) .VL_TRANSACAO,
+      R_CURSOR(I) .CD_CRDE,
+      R_CURSOR(I) .MCC,
+      R_CURSOR(I) .RAIZ_CNPJ,
+      R_CURSOR(I) .CPF,
+      R_CURSOR(I) .CPF_DV,
+      R_CURSOR(I) .PRODUTO,
+      R_CURSOR(I) .DT_RFRN_MVMN,
+      R_CURSOR(I) .PARCELA,
+      R_CURSOR(I) .TE,
+      R_CURSOR(I) .TE_ORIGINAL,
+      R_CURSOR(I) .CD_GRPO_RMNR,
+      R_CURSOR(I) .INTERVALO_PARCELAS,
+      R_CURSOR(I) .TOTAL_PARCELAS,
+      R_CURSOR(I) .VL_REMUNERACAO_VD_FEE_1_ORIG,
+      R_CURSOR(I) .VL_REMUNERACAO_VD_FEE_2_ORIG,
+      R_CURSOR(I) .VL_REMUNERACAO_VD_FEE_3_ORIG,
+      R_CURSOR(I) .VL_REMUNERACAO_TRX_FEE_1_ORIG,
+      R_CURSOR(I) .VL_REMUNERACAO_TRX_FEE_2_ORIG,
+      R_CURSOR(I) .VL_REMUNERACAO_TRX_FEE_3_ORIG,
+      R_CURSOR(I) .TX_DATA_VNDA,
+      R_CURSOR(I) .CD_SGMT_ITCM,
+      R_CURSOR(I) .PC_TAXA_ITCM,
+      R_CURSOR(I) .VL_ITCM_VD_ORIG,
+      R_CURSOR(I) .VL_ITCM_TRX_ORIG,
+      R_CURSOR(I) .TETO,
+      R_CURSOR(I) .ORIGEM,
+      R_CURSOR(I) .CD_EMSR,
+      R_CURSOR(I) .NU_BIN,
+      R_CURSOR(I) .OPERADOR,
+      R_CURSOR(I) .CD_ATZC_TRNS,
+      R_CURSOR(I) .NU_FINL_CRTO,
+      R_CURSOR(I) .TX_VALR_ORGM_TRNE_FNDO,
+      R_CURSOR(I) .TX_VALR_TAXA_EMBQ,
+      R_CURSOR(I) .CD_MODA_RECB,
+      R_CURSOR(I) .CD_PDV_RECB,
+      R_CURSOR(I) .SG_TPPS_RECB,
+      R_CURSOR(I) .CD_TIPO_APRS_TRNS_RECB,
+      R_CURSOR(I) .CD_MTVO_CHRG_RECB,
+      R_CURSOR(I) .CD_ERRO_PCSM_LQDC_RECB,
+      R_CURSOR(I) .CD_TIPO_STCO_PCSM,
+      R_CURSOR(I) .CD_MTVO_TRNE_FNDO_RECB,
+      R_CURSOR(I) .CD_MTVO_FRDE_RECB,
+      R_CURSOR(I) .CD_RGRA_OPRC_TRNS,
+      R_CURSOR(I) .IN_RNVO_TRNS,
+      R_CURSOR(I) .NU_CLNT,
+      R_CURSOR(I) .DT_VNDA,
+      R_CURSOR(I) .HR_VNDA,
+      R_CURSOR(I) .CARTAO_PRESENTE,
+      R_CURSOR(I) .AUTENTICADO,
+      R_CURSOR(I) .TIPO_REMUNERACAO_INTERCAMBIO,
+      R_CURSOR(I) .RECORRENTE,
+      R_CURSOR(I) .CD_TIPO_ABRT_PLNO_PARC
+    );
+  END
+  LOOP;
+  --VAI APLICAR COMMIT DE 50000 EM 50000;
+    COMMIT;
+  END
+  LOOP
+    C_CURSOR;
+  CLOSE C_CURSOR;
+  commit;
+  END;

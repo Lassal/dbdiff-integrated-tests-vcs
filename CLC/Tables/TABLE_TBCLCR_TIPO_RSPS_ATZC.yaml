@@ -1,0 +1,62 @@
+name: TBCLCR_TIPO_RSPS_ATZC
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_RSPS_ATZC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_RSPS_ATZC
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+- name: DH_INCL_RGST
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_RSPS_ATZC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+  - name: CD_TIPO_RSPS_ATZC
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0013924
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013925
+  type: CHECK
+  checkClause: '"CD_TIPO_RSPS_ATZC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013926
+  type: CHECK
+  checkClause: '"DC_TIPO_RSPS_ATZC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013927
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013928
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

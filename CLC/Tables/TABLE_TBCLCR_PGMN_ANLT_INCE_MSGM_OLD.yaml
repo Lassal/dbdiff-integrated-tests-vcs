@@ -1,0 +1,217 @@
+name: TBCLCR_PGMN_ANLT_INCE_MSGM_OLD
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_MSGM_CRDE
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: false
+  dataTypeLength: 5
+- name: CD_PDV_CENZ
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 15,0
+- name: CD_TIPO_ARQV_PGMN
+  ordinalPosition: 13
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_UNCO_PGMN
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 22
+  nullable: false
+  dataTypeLength: 22
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_MVMN
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM_PGMN
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_BNCO_DMCL
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_CLNT_PDV_CENZ
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_PGMN_ANLT_INCE_MSGM
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_MSGM_CRDE
+    ordinalPosition: 8
+  - name: CD_PDV_CENZ
+    ordinalPosition: 9
+  - name: CD_TIPO_ARQV_PGMN
+    ordinalPosition: 11
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+  - name: CD_UNCO_PGMN
+    ordinalPosition: 10
+  - name: DT_MVMN
+    ordinalPosition: 5
+  - name: DT_VNCM_PGMN
+    ordinalPosition: 7
+  - name: NU_BNCO_DMCL
+    ordinalPosition: 4
+  - name: NU_CLNT_PDV_CENZ
+    ordinalPosition: 6
+- !<fk-constraint>
+  name: FKR_PGMN_ANLT_CLNT_INCE_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PGMN_ANLT_CLNT_INCE_OLD
+    referencedTableColumnName: CD_BNDR
+  - name: CD_CRDE
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PGMN_ANLT_CLNT_INCE_OLD
+    referencedTableColumnName: CD_CRDE
+  - name: CD_PDV_CENZ
+    ordinalPosition: 8
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PGMN_ANLT_CLNT_INCE_OLD
+    referencedTableColumnName: CD_PDV_CENZ
+  - name: CD_TIPO_ARQV_PGMN
+    ordinalPosition: 10
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PGMN_ANLT_CLNT_INCE_OLD
+    referencedTableColumnName: CD_TIPO_ARQV_PGMN
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PGMN_ANLT_CLNT_INCE_OLD
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: CD_UNCO_PGMN
+    ordinalPosition: 9
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PGMN_ANLT_CLNT_INCE_OLD
+    referencedTableColumnName: CD_UNCO_PGMN
+  - name: DT_MVMN
+    ordinalPosition: 5
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PGMN_ANLT_CLNT_INCE_OLD
+    referencedTableColumnName: DT_MVMN
+  - name: DT_VNCM_PGMN
+    ordinalPosition: 6
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PGMN_ANLT_CLNT_INCE_OLD
+    referencedTableColumnName: DT_VNCM_PGMN
+  - name: NU_BNCO_DMCL
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PGMN_ANLT_CLNT_INCE_OLD
+    referencedTableColumnName: NU_BNCO_DMCL
+  - name: NU_CLNT_PDV_CENZ
+    ordinalPosition: 7
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PGMN_ANLT_CLNT_INCE_OLD
+    referencedTableColumnName: NU_CLNT_PDV_CENZ
+- !<check-constraint>
+  name: SYS_C0017791
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017792
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017793
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017794
+  type: CHECK
+  checkClause: '"NU_BNCO_DMCL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017795
+  type: CHECK
+  checkClause: '"DT_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017796
+  type: CHECK
+  checkClause: '"DT_VNCM_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017797
+  type: CHECK
+  checkClause: '"CD_MSGM_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017798
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017799
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017800
+  type: CHECK
+  checkClause: '"NU_CLNT_PDV_CENZ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017801
+  type: CHECK
+  checkClause: '"CD_PDV_CENZ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017802
+  type: CHECK
+  checkClause: '"CD_UNCO_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017803
+  type: CHECK
+  checkClause: '"CD_TIPO_ARQV_PGMN" IS NOT NULL'

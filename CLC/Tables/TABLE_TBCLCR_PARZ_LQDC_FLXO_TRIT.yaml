@@ -1,0 +1,114 @@
+name: TBCLCR_PARZ_LQDC_FLXO_TRIT
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_EMSR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PCSR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 9
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_FIM_VGNC_PRMT
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_INCO_VGNC_PRMT
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: PC_TLRN_LQDC_FLXO_TRIT
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 3
+  nullable: false
+  dataTypeLength: 6,3
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_PARZ_LQDC_FLXO_TRIT
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_EMSR
+    ordinalPosition: 2
+  - name: CD_PCSR
+    ordinalPosition: 4
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+  - name: DT_INCO_VGNC_PRMT
+    ordinalPosition: 5
+- !<check-constraint>
+  name: SYS_C0014334
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014335
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014336
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014337
+  type: CHECK
+  checkClause: '"CD_PCSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014338
+  type: CHECK
+  checkClause: '"DT_INCO_VGNC_PRMT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014339
+  type: CHECK
+  checkClause: '"PC_TLRN_LQDC_FLXO_TRIT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014340
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014341
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014342
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

@@ -1,0 +1,128 @@
+name: TBCLCR_LOG_BNDR_CNTO_MSGM
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CNTO_BNDR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ACAO_FIM_RGST
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_ACAO_INCO_RGST
+  ordinalPosition: 2
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_SQNC_EMAL_CNTO_BNDR
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_SQNC_TLFN_CNTO_BNDR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: TX_MSGM_CRSA
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 500
+  nullable: false
+  dataTypeLength: 500
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_LOG_BNDR_CNTO_MSGM
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: DH_ACAO_INCO_RGST
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_BNDR_CNTO_MSGM_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_BNDR_CNTO_MSGM
+    referencedTableColumnName: CD_BNDR
+- !<check-constraint>
+  name: SYS_C0018377
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018378
+  type: CHECK
+  checkClause: '"DH_ACAO_INCO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018379
+  type: CHECK
+  checkClause: '"CD_CNTO_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018380
+  type: CHECK
+  checkClause: '"NU_SQNC_TLFN_CNTO_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018381
+  type: CHECK
+  checkClause: '"NU_SQNC_EMAL_CNTO_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018382
+  type: CHECK
+  checkClause: '"TX_MSGM_CRSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018383
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018384
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018385
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018386
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'

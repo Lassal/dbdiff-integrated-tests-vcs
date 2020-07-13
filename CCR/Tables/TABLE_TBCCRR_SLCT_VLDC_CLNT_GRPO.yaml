@@ -1,0 +1,154 @@
+name: TBCCRR_SLCT_VLDC_CLNT_GRPO
+schema: CCR
+columns:
+- name: CD_ARQV_PCSM_CDST
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_BNDR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_GRPO_EC
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 17,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 7
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NU_RMSA
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: SG_TPPS
+  ordinalPosition: 3
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: TX_IDTR_CPF_CNPJ
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: false
+  dataTypeLength: 11
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_SLCT_VLDC_CLNT_GRPO
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: SG_TPPS
+    ordinalPosition: 3
+  - name: TX_IDTR_CPF_CNPJ
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_BNDR_CCR22
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_BNDR
+    referencedTableColumnName: CD_BNDR
+- !<fk-constraint>
+  name: FKR_CNTR_RMSA_BNDR_CCR02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_ARQV_PCSM_CDST
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CNTR_RMSA_BNDR
+    referencedTableColumnName: CD_ARQV_PCSM_CDST
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CNTR_RMSA_BNDR
+    referencedTableColumnName: CD_BNDR
+  - name: NU_RMSA
+    ordinalPosition: 3
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CNTR_RMSA_BNDR
+    referencedTableColumnName: NU_RMSA
+- !<fk-constraint>
+  name: FKR_GRPO_EC_CCR02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_GRPO_EC
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_GRPO_EC
+    referencedTableColumnName: CD_GRPO_EC
+- !<fk-constraint>
+  name: FKR_TPPS_CCR04
+  type: FOREIGN_KEY
+  columns:
+  - name: SG_TPPS
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_TPPS
+    referencedTableColumnName: SG_TPPS
+- !<check-constraint>
+  name: CKCCRR_SLCT_VLDC_CLNT_GRPO_008
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0015270
+  type: CHECK
+  checkClause: '"TX_IDTR_CPF_CNPJ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015271
+  type: CHECK
+  checkClause: '"SG_TPPS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015272
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015273
+  type: CHECK
+  checkClause: '"CD_ARQV_PCSM_CDST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015274
+  type: CHECK
+  checkClause: '"NU_RMSA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015275
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015276
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015277
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

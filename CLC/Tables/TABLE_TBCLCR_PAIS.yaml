@@ -1,0 +1,70 @@
+name: TBCLCR_PAIS
+schema: CLC
+columns:
+- name: CD_PAIS
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_PAIS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: SG_PAIS_ALFN_DOIS_CRCT
+  ordinalPosition: 2
+  dataType: CHAR
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: SG_PAIS_ALFN_TRES_CRCT
+  ordinalPosition: 3
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_PAIS
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_PAIS
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0020157
+  type: CHECK
+  checkClause: '"CD_PAIS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020158
+  type: CHECK
+  checkClause: '"SG_PAIS_ALFN_DOIS_CRCT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020159
+  type: CHECK
+  checkClause: '"SG_PAIS_ALFN_TRES_CRCT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020160
+  type: CHECK
+  checkClause: '"NM_PAIS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020161
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0020162
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

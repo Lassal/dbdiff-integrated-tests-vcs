@@ -1,0 +1,76 @@
+name: TBCLCR_CNTR_DVRG_TRNS_ESTQ
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_RASD_CICL_VIDA_TRNS
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 70
+  nullable: false
+  dataTypeLength: 70
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CNTR_DVRG_TRNS_ESTQ
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_RASD_CICL_VIDA_TRNS
+    ordinalPosition: 4
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 3
+- !<check-constraint>
+  name: SYS_C0015675
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015676
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015677
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015678
+  type: CHECK
+  checkClause: '"CD_RASD_CICL_VIDA_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015679
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015680
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

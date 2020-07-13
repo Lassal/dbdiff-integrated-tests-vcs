@@ -1,0 +1,93 @@
+name: TBCLCR_RMNR_P2P_MDLO_BNCO
+schema: CLC
+columns:
+- name: CD_RMNR_P2P_MDLO_BNCO
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 6
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: VL_TARF_ITCM_ITRE_RECR
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TARF_USO_BNDR_ITRA_ORGR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TARF_USO_BNDR_ITRE_ORGR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TARF_USO_BNDR_ITRE_RECR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_RMNR_P2P_MDLO_BNCO
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_RMNR_P2P_MDLO_BNCO
+    ordinalPosition: 1
+- !<check-constraint>
+  name: CKCLCR_RMNR_P2P_MDLO_BNCO_006
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0014377
+  type: CHECK
+  checkClause: '"CD_RMNR_P2P_MDLO_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014378
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014379
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014380
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014381
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'

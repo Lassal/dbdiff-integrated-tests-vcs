@@ -1,0 +1,138 @@
+name: TBCLCR_ERRO_ARQV_CNGA_CIP
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PDV
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 15,0
+- name: CD_TIPO_ERRO_RMSA_CIP
+  ordinalPosition: 9
+  dataType: CHAR
+  textMaxLength: 8
+  nullable: true
+  dataTypeLength: 8
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  defaultValue: '''JavaBatch'' '
+  dataTypeLength: 20
+- name: DT_VNCM
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_ARQV_CIP_RMSA_ERRO
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+- name: NM_TAG_ARQV_ERRO
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+- name: NU_CLNT
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_ERRO_ARQV_CNGA_CIP
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+  - name: CD_CRDE
+    ordinalPosition: 3
+  - name: CD_PDV
+    ordinalPosition: 7
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 5
+  - name: DT_VNCM
+    ordinalPosition: 4
+  - name: NM_ARQV_CIP_RMSA_ERRO
+    ordinalPosition: 1
+  - name: NM_TAG_ARQV_ERRO
+    ordinalPosition: 8
+  - name: NU_CLNT
+    ordinalPosition: 6
+- !<fk-constraint>
+  name: FKR_CNTR_RMSA_CIP_CLC03
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_CIP
+    referencedTableColumnName: CD_BNDR
+  - name: NM_ARQV_CIP_RMSA_ERRO
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_CIP
+    referencedTableColumnName: NM_ARQV_CIP
+- !<check-constraint>
+  name: SYS_C0013394
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013395
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013396
+  type: CHECK
+  checkClause: '"NU_CLNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013397
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013398
+  type: CHECK
+  checkClause: '"CD_PDV" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013399
+  type: CHECK
+  checkClause: '"DT_VNCM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013400
+  type: CHECK
+  checkClause: '"NM_ARQV_CIP_RMSA_ERRO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013401
+  type: CHECK
+  checkClause: '"NM_TAG_ARQV_ERRO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013402
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

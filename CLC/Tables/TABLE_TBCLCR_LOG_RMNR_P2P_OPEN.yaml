@@ -1,0 +1,151 @@
+name: TBCLCR_LOG_RMNR_P2P_OPEN
+schema: CLC
+columns:
+- name: CD_RMNR_P2P_MDLO_OPEN
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ACAO_FIM_RGST
+  ordinalPosition: 17
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_ACAO_INCO_RGST
+  ordinalPosition: 2
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 14
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 13
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: PC_TAXA_ITCM_REDO_ORGR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 9
+  nullable: true
+  dataTypeLength: 9,9
+- name: PC_TAXA_USO_BNDR_REDO_ORGR
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 9
+  nullable: true
+  dataTypeLength: 9,9
+- name: PC_TAXA_USO_GTWY_REDO_CRDE
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 9
+  nullable: true
+  dataTypeLength: 9,9
+- name: VL_TARF_GTWY_ENVO_CRDE
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TARF_ITCM_ENVO_RECR
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TARF_ITCM_REDO_ORGR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TARF_PCSM_ENVO_CRDE
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TARF_PCSM_REDO_CRDE
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TARF_USO_BNDR_ENVO_RECR
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TARF_USO_BNDR_REDO_ORGR
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_LOG_RMNR_P2P_OPEN
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_RMNR_P2P_MDLO_OPEN
+    ordinalPosition: 1
+  - name: DH_ACAO_INCO_RGST
+    ordinalPosition: 2
+- !<check-constraint>
+  name: CKCLCR_LOG_RMNR_P2P_OPEN_013
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0014384
+  type: CHECK
+  checkClause: '"CD_RMNR_P2P_MDLO_OPEN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014385
+  type: CHECK
+  checkClause: '"DH_ACAO_INCO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014386
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014387
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014388
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014389
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'

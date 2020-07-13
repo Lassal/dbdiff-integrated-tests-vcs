@@ -1,0 +1,131 @@
+name: TBCLCR_CPSC_TRNS_AGND
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_CPSC_TRNS
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  defaultValue: 'null '
+  dataTypeLength: 1,0
+- name: CD_TIPO_RSPE_IFMC
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: CD_TIPO_TRNS_BNDR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_TRNS_BNDR_ORGM
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_CPSC_TRNS_AGND
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+- name: DH_INCL_RGST
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CPSC_TRNS_AGND
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+  - name: CD_TIPO_CPSC_TRNS
+    ordinalPosition: 5
+  - name: CD_TIPO_RSPE_IFMC
+    ordinalPosition: 4
+  - name: CD_TIPO_TRNS_BNDR
+    ordinalPosition: 1
+  - name: CD_TIPO_TRNS_BNDR_ORGM
+    ordinalPosition: 3
+- !<fk-constraint>
+  name: FKR_TIPO_CPSC_TRNS_CLC02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_CPSC_TRNS
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_CPSC_TRNS
+    referencedTableColumnName: CD_TIPO_CPSC_TRNS
+- !<check-constraint>
+  name: SYS_C0013461
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013462
+  type: CHECK
+  checkClause: '"CD_TIPO_TRNS_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013463
+  type: CHECK
+  checkClause: '"CD_TIPO_TRNS_BNDR_ORGM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013464
+  type: CHECK
+  checkClause: '"CD_TIPO_RSPE_IFMC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013465
+  type: CHECK
+  checkClause: '"DC_CPSC_TRNS_AGND" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013466
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013467
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013468
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013469
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013470
+  type: CHECK
+  checkClause: '"CD_TIPO_CPSC_TRNS" IS NOT NULL'

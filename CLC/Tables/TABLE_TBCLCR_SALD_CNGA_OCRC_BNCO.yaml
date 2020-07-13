@@ -1,0 +1,140 @@
+name: TBCLCR_SALD_CNGA_OCRC_BNCO
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PDV
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 15,0
+- name: CD_TIPO_OCRC_BNCO
+  ordinalPosition: 8
+  dataType: CHAR
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_OCRC_BNCO
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_ARQV_CIP
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+- name: NU_CLNT
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_SALD_CNGA_OCRC_BNCO
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_PDV
+    ordinalPosition: 7
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 5
+  - name: DH_OCRC_BNCO
+    ordinalPosition: 8
+  - name: DT_VNCM
+    ordinalPosition: 3
+  - name: NM_ARQV_CIP
+    ordinalPosition: 4
+  - name: NU_CLNT
+    ordinalPosition: 6
+- !<fk-constraint>
+  name: FKR_CNTR_RMSA_CIP_CLC04
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_CIP
+    referencedTableColumnName: CD_BNDR
+  - name: NM_ARQV_CIP
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_CIP
+    referencedTableColumnName: NM_ARQV_CIP
+- !<check-constraint>
+  name: SYS_C0014519
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014520
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014521
+  type: CHECK
+  checkClause: '"DT_VNCM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014522
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014523
+  type: CHECK
+  checkClause: '"NU_CLNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014524
+  type: CHECK
+  checkClause: '"CD_PDV" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014526
+  type: CHECK
+  checkClause: '"DH_OCRC_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014528
+  type: CHECK
+  checkClause: '"CD_TIPO_OCRC_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014530
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0014532
+  type: CHECK
+  checkClause: '"NM_ARQV_CIP" IS NOT NULL'

@@ -1,0 +1,30 @@
+name: TBCLCR_STCO_RMSA_CRDE_IRNL
+schema: CLC
+columns:
+- name: CD_STCO_RMSA_CRDE_IRNL
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: NM_STCO_RMSA_CRDE_IRNL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  dataTypeLength: 30
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_STCO_RMSA_CRDE_IRNL
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_STCO_RMSA_CRDE_IRNL
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0024513
+  type: CHECK
+  checkClause: '"CD_STCO_RMSA_CRDE_IRNL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0024514
+  type: CHECK
+  checkClause: '"NM_STCO_RMSA_CRDE_IRNL" IS NOT NULL'

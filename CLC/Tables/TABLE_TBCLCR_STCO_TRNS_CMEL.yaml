@@ -1,0 +1,25 @@
+name: TBCLCR_STCO_TRNS_CMEL
+schema: CLC
+columns:
+- name: CD_STCO_TRNS_CMEL
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: DC_STCO_TRNS_CMEL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 140
+  nullable: false
+  dataTypeLength: 140
+constraints:
+- !<check-constraint>
+  name: SYS_C0010573
+  type: CHECK
+  checkClause: '"CD_STCO_TRNS_CMEL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010574
+  type: CHECK
+  checkClause: '"DC_STCO_TRNS_CMEL" IS NOT NULL'

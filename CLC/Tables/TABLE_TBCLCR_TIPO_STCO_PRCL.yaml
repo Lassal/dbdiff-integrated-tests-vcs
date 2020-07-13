@@ -1,0 +1,56 @@
+name: TBCLCR_TIPO_STCO_PRCL
+schema: CLC
+columns:
+- name: CD_TIPO_STCO_PRCL
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_TRNS_BNDR
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 45
+  nullable: true
+  dataTypeLength: 45
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_STCO_PRCL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_STCO_PRCL
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_STCO_PRCL
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0019878
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_PRCL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019879
+  type: CHECK
+  checkClause: '"NM_TIPO_STCO_PRCL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019880
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019881
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

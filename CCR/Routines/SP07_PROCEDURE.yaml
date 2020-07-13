@@ -1,0 +1,150 @@
+schema: CCR
+name: SP07
+routineType: PROCEDURE
+returnParamater: null
+parameters: []
+routineDefinition: |-
+  procedure sp07 as
+  begin
+  DECLARE
+    i NUMBER: = 0;
+  j NUMBER: = 0;
+  ini DATE: = SYSDATE;
+  BEGIN
+    FOR x IN (
+      SELECT
+        /*+ PARALLEL 10*/
+        t1.cd_crde,
+        t1.sg_tpps,
+        t1.nu_raiz_cnpj_clnt,
+        t1.nu_fili_cnpj_clnt,
+        t1.nu_dv_cnpj_clnt,
+        MIN(t2.nu_clnt) AS nu_clnt
+      FROM
+        (
+          SELECT
+            COUNT(DISTINCT c1.nu_clnt),
+            c1.sg_tpps,
+            c1.nu_raiz_cnpj_clnt,
+            c1.nu_fili_cnpj_clnt,
+            c1.nu_dv_cnpj_clnt,
+            t2.cd_crde
+          FROM
+            ccr.tbccrr_clnt c1
+            INNER JOIN (
+              SELECT
+                sg_tpps,
+                nu_raiz_cnpj_clnt,
+                nu_fili_cnpj_clnt,
+                nu_dv_cnpj_clnt,
+                COUNT(1)
+              FROM
+                ccr.tbccrr_clnt
+              WHERE
+                sg_tpps = 'J'
+              GROUP BY
+                sg_tpps,
+                nu_raiz_cnpj_clnt,
+                nu_fili_cnpj_clnt,
+                nu_dv_cnpj_clnt
+              HAVING
+                COUNT(1) > 1
+            ) c2 ON c1.sg_tpps = c2.sg_tpps
+            AND c1.nu_raiz_cnpj_clnt = c2.nu_raiz_cnpj_clnt
+            AND c1.nu_fili_cnpj_clnt = c2.nu_fili_cnpj_clnt
+            AND c1.nu_dv_cnpj_clnt = c2.nu_dv_cnpj_clnt
+            INNER JOIN ccr.tbccrr_crde_bndr_clnt t2 ON t2.nu_clnt = c1.nu_clnt
+          GROUP BY
+            c1.sg_tpps,
+            c1.nu_raiz_cnpj_clnt,
+            c1.nu_fili_cnpj_clnt,
+            c1.nu_dv_cnpj_clnt,
+            t2.cd_crde
+          HAVING
+            COUNT(DISTINCT c1.nu_clnt) > 1
+        ) t1
+        INNER JOIN ccr.tbccrr_clnt t2 ON t1.sg_tpps = t2.sg_tpps
+        AND t1.nu_raiz_cnpj_clnt = t2.nu_raiz_cnpj_clnt
+        AND t1.nu_fili_cnpj_clnt = t2.nu_fili_cnpj_clnt
+        AND t1.nu_dv_cnpj_clnt = t2.nu_dv_cnpj_clnt
+      GROUP BY
+        t1.cd_crde,
+        t1.sg_tpps,
+        t1.nu_raiz_cnpj_clnt,
+        t1.nu_fili_cnpj_clnt,
+        t1.nu_dv_cnpj_clnt
+    )
+  LOOP
+  BEGIN
+    FOR y IN (
+      SELECT
+        /*+ PARALLEL 10*/
+        cd_bndr,
+        cd_crde,
+        nu_clnt
+      FROM
+        ccr.tbccrr_crde_bndr_clnt
+      WHERE
+        cd_crde = x.cd_crde
+        AND cd_bndr = 7
+        AND nu_clnt IN (
+          SELECT
+            nu_clnt
+          FROM
+            ccr.tbccrr_clnt
+          WHERE
+            sg_tpps = x.sg_tpps
+            AND nu_raiz_cnpj_clnt = x.nu_raiz_cnpj_clnt
+            AND nu_fili_cnpj_clnt = x.nu_fili_cnpj_clnt
+            AND nu_dv_cnpj_clnt = x.nu_dv_cnpj_clnt
+            AND nu_clnt <> x.nu_clnt
+        )
+    )
+  LOOP
+  BEGIN
+  DELETE
+    /*+ PARALLEL 10*/
+  FROM
+    ccr.tbccrr_dmbn_pdv_cncr
+  WHERE
+    cd_bndr = y.cd_bndr
+    AND cd_crde = y.cd_crde
+    AND nu_clnt = y.nu_clnt;
+  DELETE
+    /*+ PARALLEL 10*/
+  FROM
+    ccr.tbccrr_pdv
+  WHERE
+    cd_bndr = y.cd_bndr
+    AND cd_crde = y.cd_crde
+    AND nu_clnt = y.nu_clnt;
+  DELETE
+    /*+ PARALLEL 10*/
+  FROM
+    ccr.tbccrr_crde_bndr_clnt
+  WHERE
+    cd_bndr = y.cd_bndr
+    AND cd_crde = y.cd_crde
+    AND nu_clnt = y.nu_clnt;
+  END;
+  END
+  LOOP;
+  --COMMIT;
+    j: = j + 1;
+  i: = i + 1;
+  IF i > 1000 THEN COMMIT;
+  i: = 0;
+  END IF;
+  END;
+  END
+  LOOP;
+  dbms_output.put_line(
+      'Data de inicio: ' || TO_CHAR(ini, 'DD/MM/YYYY HH24:mm:SS')
+    );
+  dbms_output.put_line('Quantidade de registros afetados: ' || j);
+  dbms_output.put_line(
+      'Data de final: ' || TO_CHAR(SYSDATE, 'DD/MM/YYYY HH24:mm:SS')
+    );
+  COMMIT;
+  END;
+  end sp07;

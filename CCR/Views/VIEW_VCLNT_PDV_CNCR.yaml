@@ -1,0 +1,43 @@
+schema: CCR
+name: VCLNT_PDV_CNCR
+updatedAllowed: true
+insertAllowed: true
+viewDefinition: |-
+  SELECT
+    /*+ use_nl (t1, t2, t3) */
+    T1.NU_CLNT AS NU_CLNT,
+    T2.QT_REG + T3.QT_REG + 1 AS QT_REG,
+    0 AS QT_REG_NVEL_SUPE,
+    T2.QT_REG AS QT_REG_E2,
+    T3.QT_REG AS QT_REG_E3
+  FROM
+    CCR.TBCCRR_CLNT T1,
+    (
+      SELECT
+        NU_CLNT,
+        COUNT(*) AS QT_REG
+      FROM
+        CCR.TBCCRR_PDV
+      WHERE
+        IN_RGST_ATVO = 'S'
+      GROUP BY
+        NU_CLNT
+    ) T2,
+    (
+      SELECT
+        NU_CLNT,
+        COUNT(*) AS QT_REG
+      FROM
+        CCR.TBCCRR_DMBN_PDV_CNCR
+      WHERE
+        IN_RGST_ATVO = 'S'
+        AND CD_TIPO_PLTF_PGMN = 'D'
+      GROUP BY
+        NU_CLNT
+    ) T3
+  WHERE
+    T1.NU_CLNT = T2.NU_CLNT
+    AND T1.NU_CLNT = T3.NU_CLNT
+    AND T1.IN_RGST_ATVO = 'S'
+columns: []
+referencedTables: []

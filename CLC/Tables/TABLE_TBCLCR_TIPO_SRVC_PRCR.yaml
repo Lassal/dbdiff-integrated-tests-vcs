@@ -1,0 +1,77 @@
+name: TBCLCR_TIPO_SRVC_PRCR
+schema: CLC
+columns:
+- name: CD_TIPO_OPRD
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  defaultValue: '1 '
+  dataTypeLength: 1,0
+- name: CD_TIPO_SRVC
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_SRVC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+- name: DC_TIPO_SRVC_AGND
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  dataTypeLength: 50
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_SRVC_PRCR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_SRVC
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_TIPO_OPRD_CLC15
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_OPRD
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_OPRD
+    referencedTableColumnName: CD_TIPO_OPRD
+- !<check-constraint>
+  name: SYS_C0010182
+  type: CHECK
+  checkClause: '"CD_TIPO_SRVC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010183
+  type: CHECK
+  checkClause: '"DC_TIPO_SRVC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010184
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010185
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010186
+  type: CHECK
+  checkClause: '"CD_TIPO_OPRD" IS NOT NULL'

@@ -1,0 +1,30 @@
+name: TBCLCR_TIPO_AGPM_ELO_IRNL
+schema: CLC
+columns:
+- name: CD_TIPO_AGPM_ELO_IRNL
+  ordinalPosition: 1
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: DC_TIPO_AGPM_ELO_IRNL
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_AGPM_ELO_IRNL
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_AGPM_ELO_IRNL
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C009912
+  type: CHECK
+  checkClause: '"CD_TIPO_AGPM_ELO_IRNL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009913
+  type: CHECK
+  checkClause: '"DC_TIPO_AGPM_ELO_IRNL" IS NOT NULL'

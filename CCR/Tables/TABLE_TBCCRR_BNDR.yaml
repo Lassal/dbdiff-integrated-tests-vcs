@@ -1,0 +1,140 @@
+name: TBCCRR_BNDR
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_UUID_BNDR
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 36
+  nullable: false
+  dataTypeLength: 36
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 6
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_BNDR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: NU_AGNC_LQDN_BNDR
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 5,0
+- name: NU_BNCO_LQDN_BNDR
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  defaultValue: 'NULL '
+  dataTypeLength: 4,0
+- name: NU_CNCR_LQDN_BNDR
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 14
+  nullable: true
+  dataTypeLength: 14
+- name: QT_DIA_RERO_EMSR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_BNDR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_BNCO_CCR07
+  type: FOREIGN_KEY
+  columns:
+  - name: NU_BNCO_LQDN_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_BNCO
+    referencedTableColumnName: NU_BNCO
+- !<check-constraint>
+  name: CKCCCRR_BNDR001
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0019925
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019926
+  type: CHECK
+  checkClause: '"NM_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019927
+  type: CHECK
+  checkClause: '"QT_DIA_RERO_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019928
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019929
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019930
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019931
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019932
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019933
+  type: CHECK
+  checkClause: '"NU_BNCO_LQDN_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019934
+  type: CHECK
+  checkClause: '"CD_UUID_BNDR" IS NOT NULL'

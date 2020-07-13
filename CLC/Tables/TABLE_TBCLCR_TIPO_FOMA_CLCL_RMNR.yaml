@@ -1,0 +1,64 @@
+name: TBCLCR_TIPO_FOMA_CLCL_RMNR
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_FOMA_CLCL_RMNR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  defaultValue: '1 '
+  dataTypeLength: 8,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_FOMA_CLCL_RMNR
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_FOMA_CLCL_RMNR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_TIPO_FOMA_CLCL_RMNR
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C0016800
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016801
+  type: CHECK
+  checkClause: '"CD_TIPO_FOMA_CLCL_RMNR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016802
+  type: CHECK
+  checkClause: '"NM_TIPO_FOMA_CLCL_RMNR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016803
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016804
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

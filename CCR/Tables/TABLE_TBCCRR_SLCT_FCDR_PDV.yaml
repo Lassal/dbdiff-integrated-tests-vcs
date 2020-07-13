@@ -1,0 +1,121 @@
+name: TBCCRR_SLCT_FCDR_PDV
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: IN_ACTC_CRTO_CHIP_DNRS
+  ordinalPosition: 8
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: IN_ACTC_CRTO_SEM_CNTO_DNRS
+  ordinalPosition: 9
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: IN_TRNS_FINC
+  ordinalPosition: 5
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NU_PDV_FCDR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 15,0
+- name: NU_SLCT_CLNT_FCDR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 7
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 7,0
+- name: NU_SLCT_PDV_FCDR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 7
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 7,0
+- name: QT_DIA_LQDC_CRED
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: QT_DIA_LQDC_DBTO
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_SLCT_FCDR_PDV
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: NU_SLCT_CLNT_FCDR
+    ordinalPosition: 2
+  - name: NU_SLCT_PDV_FCDR
+    ordinalPosition: 3
+- !<fk-constraint>
+  name: FKR_SLCT_FCDR_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_SLCT_FCDR
+    referencedTableColumnName: CD_BNDR
+  - name: NU_SLCT_CLNT_FCDR
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_SLCT_FCDR
+    referencedTableColumnName: NU_SLCT_CLNT_FCDR
+- !<check-constraint>
+  name: CKCCRR_SLCT_FCDR_PDV_005
+  type: CHECK
+  checkClause: IN_TRNS_FINC in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0041826
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041827
+  type: CHECK
+  checkClause: '"NU_SLCT_CLNT_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041828
+  type: CHECK
+  checkClause: '"NU_SLCT_PDV_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041829
+  type: CHECK
+  checkClause: '"NU_PDV_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041830
+  type: CHECK
+  checkClause: '"IN_TRNS_FINC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041831
+  type: CHECK
+  checkClause: '"QT_DIA_LQDC_DBTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041832
+  type: CHECK
+  checkClause: '"QT_DIA_LQDC_CRED" IS NOT NULL'

@@ -1,0 +1,198 @@
+name: TBCLCR_CNTR_RMSA_MOTR_MSGM_OLD
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_MSGM_CRDE
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: false
+  dataTypeLength: 5
+- name: CD_TIPO_ARQV_PGMN
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_RGST_RMSA_LQDC
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 12
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RMSA_PGMN
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_BNCO
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_CNTR_RMSA_PGMN
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 5,0
+- name: QT_OCRC_INCE
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 12
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 12,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_CNTR_RMSA_MOTR_MSGM
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_MSGM_CRDE
+    ordinalPosition: 9
+  - name: CD_TIPO_ARQV_PGMN
+    ordinalPosition: 5
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+  - name: CD_TIPO_RGST_RMSA_LQDC
+    ordinalPosition: 8
+  - name: DH_INCL_RMSA_PGMN
+    ordinalPosition: 6
+  - name: NU_BNCO
+    ordinalPosition: 7
+  - name: NU_CNTR_RMSA_PGMN
+    ordinalPosition: 4
+- !<fk-constraint>
+  name: FKR_CNTR_RMSA_MOTR_PGMN_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_MOTR_PGMN_OLD
+    referencedTableColumnName: CD_BNDR
+  - name: CD_CRDE
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_MOTR_PGMN_OLD
+    referencedTableColumnName: CD_CRDE
+  - name: CD_TIPO_ARQV_PGMN
+    ordinalPosition: 5
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_MOTR_PGMN_OLD
+    referencedTableColumnName: CD_TIPO_ARQV_PGMN
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_MOTR_PGMN_OLD
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: DH_INCL_RMSA_PGMN
+    ordinalPosition: 6
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_MOTR_PGMN_OLD
+    referencedTableColumnName: DH_INCL_RMSA_PGMN
+  - name: NU_BNCO
+    ordinalPosition: 7
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_MOTR_PGMN_OLD
+    referencedTableColumnName: NU_BNCO
+  - name: NU_CNTR_RMSA_PGMN
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_MOTR_PGMN_OLD
+    referencedTableColumnName: NU_CNTR_RMSA_PGMN
+- !<fk-constraint>
+  name: FKR_TIPO_RGST_RMSA_LQDC_CLC06
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_RGST_RMSA_LQDC
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_RGST_RMSA_LQDC
+    referencedTableColumnName: CD_TIPO_RGST_RMSA_LQDC
+- !<check-constraint>
+  name: SYS_C0013423
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013425
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013426
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013427
+  type: CHECK
+  checkClause: '"CD_TIPO_ARQV_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013428
+  type: CHECK
+  checkClause: '"NU_BNCO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013429
+  type: CHECK
+  checkClause: '"CD_TIPO_RGST_RMSA_LQDC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013431
+  type: CHECK
+  checkClause: '"NU_CNTR_RMSA_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013432
+  type: CHECK
+  checkClause: '"DH_INCL_RMSA_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013433
+  type: CHECK
+  checkClause: '"CD_MSGM_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013434
+  type: CHECK
+  checkClause: '"QT_OCRC_INCE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013435
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0013436
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

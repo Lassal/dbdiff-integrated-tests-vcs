@@ -1,0 +1,161 @@
+name: TBCLCR_RSLD_PNTO_CPTR
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: CD_EMSR
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: CD_PCSR
+  ordinalPosition: 18
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: true
+  dataTypeLength: 4
+- name: CD_PNTO_CPTR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PRDT_BNDR
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 3,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  dataTypeLength: 1
+- name: CD_TIPO_TRNS_BNDR
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: DH_INCL_RGST
+  ordinalPosition: 17
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_SQNC_RSLD_PNTO_CPTR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 8
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 8,0
+- name: QT_TRNS_PNTO_CPTR
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 9,0
+- name: VL_ETRA
+  ordinalPosition: 15
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_ITCM_TRNS_PNTO_CPTR
+  ordinalPosition: 13
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_RMNR_TRNS_PNTO_CPTR
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TAXA_EMBQ
+  ordinalPosition: 16
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_TRNS_PNTO_CPTR
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_VNDA
+  ordinalPosition: 14
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_RSLD_PNTO_CPTR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+  - name: CD_PNTO_CPTR
+    ordinalPosition: 1
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 3
+  - name: NU_SQNC_RSLD_PNTO_CPTR
+    ordinalPosition: 4
+- !<fk-constraint>
+  name: FKR_PNTO_CPTR_CLC02
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_PNTO_CPTR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_PNTO_CPTR
+    referencedTableColumnName: CD_PNTO_CPTR
+- !<check-constraint>
+  name: SYS_C0017407
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017408
+  type: CHECK
+  checkClause: '"CD_PNTO_CPTR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017409
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017410
+  type: CHECK
+  checkClause: '"NU_SQNC_RSLD_PNTO_CPTR" IS NOT NULL'

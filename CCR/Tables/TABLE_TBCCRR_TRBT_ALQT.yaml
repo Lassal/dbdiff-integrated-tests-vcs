@@ -1,0 +1,125 @@
+name: TBCCRR_TRBT_ALQT
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_ALQT_TRBT
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TRBT
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ACAO_RGST
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 5
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: PC_ALQT_TRBT
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 4,2
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_TRBT_ALQT
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+  - name: CD_TIPO_ALQT_TRBT
+    ordinalPosition: 3
+  - name: CD_TRBT
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_BNDR_CCR18
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_BNDR
+    referencedTableColumnName: CD_BNDR
+- !<fk-constraint>
+  name: FKR_CSTM_TRBT_ALQT_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_ALQT_TRBT
+    ordinalPosition: 2
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CSTM_TRBT_ALQT
+    referencedTableColumnName: CD_TIPO_ALQT_TRBT
+  - name: CD_TRBT
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CSTM_TRBT_ALQT
+    referencedTableColumnName: CD_TRBT
+- !<check-constraint>
+  name: CKCCRR_TRBT_ALQT_005
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C009940
+  type: CHECK
+  checkClause: '"CD_TRBT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009941
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009942
+  type: CHECK
+  checkClause: '"CD_TIPO_ALQT_TRBT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009943
+  type: CHECK
+  checkClause: '"PC_ALQT_TRBT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009944
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009945
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009946
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C009947
+  type: CHECK
+  checkClause: '"DH_ACAO_RGST" IS NOT NULL'

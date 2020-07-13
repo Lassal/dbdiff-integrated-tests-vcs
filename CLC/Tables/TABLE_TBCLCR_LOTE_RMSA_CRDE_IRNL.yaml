@@ -1,0 +1,240 @@
+name: TBCLCR_LOTE_RMSA_CRDE_IRNL
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_EMSR
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 13
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_MVMN
+  ordinalPosition: 1
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_DXS_EMSR
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  dataTypeLength: 3
+- name: NU_LOTE_RMSA_CRDE_IRNL
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: NU_RMSA_CRDE
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_RMSA_CRDE_EMSR_IRNL
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: NU_SBSQ_TRNS_IRNL
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: NU_SQNL
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 15,0
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_LOTE_RMSA_CRDE_IRNL
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 4
+  - name: DT_MVMN
+    ordinalPosition: 3
+  - name: NU_DXS_EMSR
+    ordinalPosition: 7
+  - name: NU_LOTE_RMSA_CRDE_IRNL
+    ordinalPosition: 8
+  - name: NU_RMSA_CRDE
+    ordinalPosition: 5
+  - name: NU_RMSA_CRDE_EMSR_IRNL
+    ordinalPosition: 6
+  - name: NU_SBSQ_TRNS_IRNL
+    ordinalPosition: 9
+- !<fk-constraint>
+  name: FKR_CNTR_RMSA_CRDE_IRNL_CLC01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_CRDE_IRNL
+    referencedTableColumnName: CD_BNDR
+  - name: CD_CRDE
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_CRDE_IRNL
+    referencedTableColumnName: CD_CRDE
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 5
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_CRDE_IRNL
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: DT_MVMN
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_CRDE_IRNL
+    referencedTableColumnName: DT_MVMN
+  - name: NU_DXS_EMSR
+    ordinalPosition: 6
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_CRDE_IRNL
+    referencedTableColumnName: NU_DXS_EMSR
+  - name: NU_RMSA_CRDE
+    ordinalPosition: 7
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_CRDE_IRNL
+    referencedTableColumnName: NU_RMSA_CRDE
+  - name: NU_RMSA_CRDE_EMSR_IRNL
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_CNTR_RMSA_CRDE_IRNL
+    referencedTableColumnName: NU_RMSA_CRDE_EMSR_IRNL
+- !<fk-constraint>
+  name: FKR_LNCM_RECB_IRNL_CLC05
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_LNCM_RECB_IRNL
+    referencedTableColumnName: CD_BNDR
+  - name: CD_CRDE
+    ordinalPosition: 2
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_LNCM_RECB_IRNL
+    referencedTableColumnName: CD_CRDE
+  - name: CD_EMSR
+    ordinalPosition: 6
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_LNCM_RECB_IRNL
+    referencedTableColumnName: CD_EMSR
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 4
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_LNCM_RECB_IRNL
+    referencedTableColumnName: CD_TIPO_PLTF_PGMN
+  - name: DT_MVMN
+    ordinalPosition: 3
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_LNCM_RECB_IRNL
+    referencedTableColumnName: DT_MVMN
+  - name: NU_RMSA_CRDE
+    ordinalPosition: 5
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_LNCM_RECB_IRNL
+    referencedTableColumnName: NU_RMSA_CRDE
+  - name: NU_SQNL
+    ordinalPosition: 7
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_LNCM_RECB_IRNL
+    referencedTableColumnName: NU_SQNL
+- !<check-constraint>
+  name: SYS_C0041723
+  type: CHECK
+  checkClause: '"DT_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041724
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041725
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041726
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041727
+  type: CHECK
+  checkClause: '"NU_RMSA_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041728
+  type: CHECK
+  checkClause: '"NU_DXS_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041729
+  type: CHECK
+  checkClause: '"NU_RMSA_CRDE_EMSR_IRNL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041730
+  type: CHECK
+  checkClause: '"NU_LOTE_RMSA_CRDE_IRNL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041731
+  type: CHECK
+  checkClause: '"NU_SBSQ_TRNS_IRNL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041732
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041733
+  type: CHECK
+  checkClause: '"NU_SQNL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041734
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041735
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

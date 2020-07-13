@@ -1,0 +1,49 @@
+name: TBCLCR_STCO_BAXA_VNCM_PDV
+schema: CLC
+columns:
+- name: CD_STCO_BAXA_VNCM_PDV
+  ordinalPosition: 1
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: CHAR
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_STCO_BAXA_VNCM_PDV
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_STCO_BAXA_VNCM_PDV
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_STCO_BAXA_VNCM_PDV
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0015513
+  type: CHECK
+  checkClause: '"CD_STCO_BAXA_VNCM_PDV" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015514
+  type: CHECK
+  checkClause: '"DC_STCO_BAXA_VNCM_PDV" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015515
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015516
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

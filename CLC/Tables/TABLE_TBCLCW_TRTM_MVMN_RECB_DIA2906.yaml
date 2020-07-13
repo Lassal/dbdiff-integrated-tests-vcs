@@ -1,0 +1,173 @@
+name: TBCLCW_TRTM_MVMN_RECB_DIA2906
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_EMSR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_IDTF_CHVE_CRTO
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  dataTypeLength: 10
+- name: CD_NIVL_SGRN_RECB
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: true
+  dataTypeLength: 2
+- name: CD_PCSR
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_TIPO_CNCT_CRTO
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 2,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: DT_LQDC_BNDR_EMSR
+  ordinalPosition: 19
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_BIN_RECB
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: false
+  dataTypeLength: 6
+- name: NU_CRTO_CRPT_PCSR_RECB
+  ordinalPosition: 15
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: true
+  dataTypeLength: 512
+- name: NU_IDTF_RQSE_RECB
+  ordinalPosition: 16
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  dataTypeLength: 11
+- name: NU_RMSA_CRDE
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_RMSA_EMSR
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_SQNL
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 15
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 15,0
+- name: QT_DIA_LQDC_ENVO_EMSR
+  ordinalPosition: 12
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: TX_RGST_LNCM_TRNS_ETNC
+  ordinalPosition: 13
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: false
+  dataTypeLength: 2000
+- name: VL_ITCM_VNDA
+  ordinalPosition: 18
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+constraints:
+- !<check-constraint>
+  name: SYS_C0043207
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0043208
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0043209
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0043210
+  type: CHECK
+  checkClause: '"CD_PCSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0043211
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0043212
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0043213
+  type: CHECK
+  checkClause: '"NU_RMSA_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0043214
+  type: CHECK
+  checkClause: '"NU_RMSA_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0043215
+  type: CHECK
+  checkClause: '"NU_SQNL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0043216
+  type: CHECK
+  checkClause: '"NU_BIN_RECB" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0043217
+  type: CHECK
+  checkClause: '"QT_DIA_LQDC_ENVO_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0043218
+  type: CHECK
+  checkClause: '"TX_RGST_LNCM_TRNS_ETNC" IS NOT NULL'

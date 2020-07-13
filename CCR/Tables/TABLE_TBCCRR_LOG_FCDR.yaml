@@ -1,0 +1,162 @@
+name: TBCCRR_LOG_FCDR
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE_FCDR
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_FTRM_ITVL_FCDR
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_STCO_FCDR
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_FCDR
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_MEIO_CPTR
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ACAO_FIM_RGST
+  ordinalPosition: 15
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_ACAO_INCO_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_ACAO_RGST
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_ASNR_COTR
+  ordinalPosition: 13
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 12
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_FCDR_APSO_FTRA
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: true
+  dataTypeLength: 13
+- name: NU_CLNT_FCDR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_LOG_FCDR
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 2
+  - name: CD_CRDE_FCDR
+    ordinalPosition: 3
+  - name: DH_ACAO_INCO_RGST
+    ordinalPosition: 4
+  - name: NU_CLNT_FCDR
+    ordinalPosition: 1
+- !<check-constraint>
+  name: CKCCRR_LOG_FCDR_015
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0041759
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041760
+  type: CHECK
+  checkClause: '"CD_CRDE_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041761
+  type: CHECK
+  checkClause: '"NU_CLNT_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041762
+  type: CHECK
+  checkClause: '"DH_ACAO_INCO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041763
+  type: CHECK
+  checkClause: '"CD_TIPO_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041764
+  type: CHECK
+  checkClause: '"CD_STCO_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041765
+  type: CHECK
+  checkClause: '"CD_TIPO_MEIO_CPTR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041766
+  type: CHECK
+  checkClause: '"CD_FTRM_ITVL_FCDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041767
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041768
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041769
+  type: CHECK
+  checkClause: '"DH_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0041770
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'

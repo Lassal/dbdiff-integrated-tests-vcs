@@ -1,0 +1,62 @@
+name: TBCLCR_ACAO_AGND_IRNL
+schema: CLC
+columns:
+- name: CD_ACAO_AGND_IRNL
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_TIPO_OPRD
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 1,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_ACAO_AGND_IRNL
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  dataTypeLength: 100
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_ACAO_AGND_IRNL
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_ACAO_AGND_IRNL
+    ordinalPosition: 1
+- !<fk-constraint>
+  name: FKR_TIPO_OPRD_CLC16
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_TIPO_OPRD
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_TIPO_OPRD
+    referencedTableColumnName: CD_TIPO_OPRD
+- !<check-constraint>
+  name: SYS_C0019331
+  type: CHECK
+  checkClause: '"CD_ACAO_AGND_IRNL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019333
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019335
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

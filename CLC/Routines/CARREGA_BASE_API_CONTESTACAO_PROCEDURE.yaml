@@ -1,0 +1,385 @@
+schema: CLC
+name: CARREGA_BASE_API_CONTESTACAO
+routineType: PROCEDURE
+returnParamater: null
+parameters:
+- name: P_DT_RFRN_MVMN_INI
+  ordinalPosition: 1
+  dataType: DATE
+  parameterMode: IN
+- name: P_DT_RFRN_MVMN_FIM
+  ordinalPosition: 2
+  dataType: DATE
+  parameterMode: IN
+routineDefinition: |-
+  PROCEDURE CARREGA_BASE_API_CONTESTACAO (
+    P_DT_RFRN_MVMN_INI IN DATE,
+    P_DT_RFRN_MVMN_FIM IN DATE
+  ) AS
+  BEGIN
+  DECLARE
+    V_DT_RFRN_MVMN_INI DATE;
+  V_DT_RFRN_MVMN_FIM DATE;
+  l_c1 SYS_REFCURSOR;
+  l_c2 SYS_REFCURSOR;
+  l_c3 SYS_REFCURSOR;
+  l_c4 SYS_REFCURSOR;
+  V_BIN_RECB number;
+  V_FINL_CRTO_RECB number;
+  V_BIN_RECB_T number;
+  V_FINL_CRTO_RECB_T number;
+  V_NU_RFRN_ORIG number;
+  V_DT_RFRN_MVMN_ORIG date;
+  V_CD_POCS number;
+  V_CD_PAIS_PDV varchar2(3);
+  V_NM_PDV varchar2(25);
+  V_NM_CIDE_PDV varchar2(13);
+  V_IN_TCNL_TRMN char(1);
+  V_CD_MODO_ETRA_TRNS varchar2(2);
+  V_IN_ENVO_DCMC char(1);
+  V_IN_CNAL_TRNS char(1);
+  V_CD_TIPO_PGMN varchar2(3);
+  V_NU_UNCO_RFRN_CNTA varchar2(41);
+  V_CD_IDTR_TRNS varchar2(15);
+  V_VL_ATZD number;
+  V_CD_MODA_VALR_ATZD varchar2(3);
+  V_CD_RSPS_ATZC varchar2(2);
+  V_VL_TOTL_ATZD number;
+  V_NM_PSPG varchar2(25);
+  V_DT_PRIM_EMBQ date;
+  CURSOR C1 (
+      V_DT_RFRN_MVMN_INI IN DATE,
+      V_DT_RFRN_MVMN_FIM IN DATE
+    ) -- DADOS DA TRANSAÇAO NO OUTGOING
+    IS
+  SELECT
+    LR.DT_RFRN_MVMN,
+    LR.CD_BNDR,
+    LR.CD_TIPO_PLTF_PGMN,
+    LR.CD_CRDE,
+    LR.NU_RMSA_CRDE,
+    LR.CD_EMSR,
+    LR.CD_PCSR,
+    LR.NU_RMSA_EMSR,
+    LR.NU_SQNL,
+    LR.CD_TIPO_TRNS_BNDR_RECB AS CD_TIPO_TRNS_BNDR,
+    LR.DT_VNDA,
+    LR.HR_VNDA,
+    LR.TX_VALR_VNDA,
+    LR.CD_MODA_RECB,
+    LR.CD_PDV_RECB AS CD_PDV,
+    LR.CD_MCC_BNDR_RECB AS CD_MCC_BNDR,
+    LR.CD_EMSR AS NU_BNCO_EMSR,
+    LR.NU_RFRN,
+    LR.CD_PRDT_BNDR_RECB,
+    LR.CD_ATZC_TRNS,
+    LR.CD_MTVO_CHRG_RECB,
+    LR.TX_VALR_TRNS,
+    LR.CD_RASD_CICL_VIDA_TRNS
+  FROM
+    CLC.TBCLCR_LNCM_RECB LR
+  WHERE
+    LR.CD_BNDR = 7
+    AND (
+      LR.SG_ORGM_IFMC_RECB = 'CRD'
+      AND LR.IN_ENVO_ANLT_CRDE_BNDR_EMSR = 'S'
+      AND LR.CD_TIPO_TRNS_BNDR_RECB = '05'
+      AND LR.CD_ERRO_PCSM_LQDC_RECB >= chr(0)
+      AND LR.DT_RERO_EMSR >= V_DT_RFRN_MVMN_INI
+      AND LR.DT_RERO_EMSR <= V_DT_RFRN_MVMN_FIM
+    )
+    OR (
+      LR.SG_ORGM_IFMC_RECB = 'EMI'
+      AND LR.CD_TIPO_TRNS_BNDR_RECB in ('15', '55', '56')
+      AND LR.DT_RFRN_MVMN >= V_DT_RFRN_MVMN_INI
+      AND LR.DT_RFRN_MVMN <= V_DT_RFRN_MVMN_FIM
+    );
+  CURSOR C2 (
+      P_PLTF IN VARCHAR2,
+      P_CRDE IN NUMBER,
+      P_RMSA_CRDE IN NUMBER,
+      P_EMSR IN NUMBER,
+      P_PCSR IN NUMBER,
+      P_RMSA_EMSR IN NUMBER,
+      P_SQNL IN NUMBER,
+      P_DT_RFRN_MVMN IN date
+    ) -- DADOS DO BIN
+    IS
+  SELECT
+    CD_TIPO_CNCT_CRTO,
+    -- 1 CARTAO ORIGINAL E 2 TOKENIZADO
+    NU_BIN_RECB,
+    NU_FINL_CRTO_RECB
+  FROM
+    CLC.TBCLCR_CRTO_CRPT_LNCM_RECB
+  WHERE
+    CD_BNDR = 7
+    AND DT_RFRN_MVMN = P_DT_RFRN_MVMN
+    AND CD_TIPO_PLTF_PGMN = P_PLTF
+    AND CD_CRDE = P_CRDE
+    AND NU_RMSA_CRDE = P_RMSA_CRDE
+    AND CD_EMSR = P_EMSR
+    AND CD_PCSR = P_PCSR
+    AND NU_RMSA_EMSR = P_RMSA_EMSR
+    AND NU_SQNL = P_SQNL;
+  --and CD_TIPO_CNCT_CRTO = P_TIPO_CNCT_CRTO;
+    CURSOR C3 (
+      P_PLTF IN VARCHAR2,
+      P_CRDE IN NUMBER,
+      P_RMSA_CRDE IN NUMBER,
+      P_EMSR IN NUMBER,
+      P_PCSR IN NUMBER,
+      P_RMSA_EMSR IN NUMBER,
+      P_SQNL IN NUMBER,
+      P_DT_RFRN_MVMN IN date
+    ) -- DADOS DA TRANSACAO ELETRONICA
+    IS
+  SELECT
+    TX_RGST_LNCM_TRNS_ETNC
+  FROM
+    CLC.TBCLCR_TRNS_ETNC_LNCM_RECB
+  WHERE
+    CD_BNDR = 7
+    AND DT_RFRN_MVMN = P_DT_RFRN_MVMN
+    AND CD_TIPO_PLTF_PGMN = P_PLTF
+    AND CD_CRDE = P_CRDE
+    AND NU_RMSA_CRDE = P_RMSA_CRDE
+    AND CD_EMSR = P_EMSR
+    AND CD_PCSR = P_PCSR
+    AND NU_RMSA_EMSR = P_RMSA_EMSR
+    AND NU_SQNL = P_SQNL
+  ORDER BY
+    NU_SQNL_RGST_TRNS_ETNC;
+  -- LINHA DA TRANSACAO
+    CURSOR C4 (V_CD_RASD_CICL_VIDA_TRNS IN VARCHAR2) -- DADOS DA TRANSACAO ORIGINAL
+    IS
+  SELECT
+    NU_RFRN,
+    DT_RFRN_MVMN
+  FROM
+    CLC.TBCLCR_LNCM_RECB
+  WHERE
+    CD_BNDR = 7
+    AND CD_RASD_CICL_VIDA_TRNS = V_CD_RASD_CICL_VIDA_TRNS
+    AND CD_TIPO_TRNS_BNDR_RECB not in ('15', '55', '56');
+  BEGIN
+    IF P_DT_RFRN_MVMN_INI IS NULL
+    OR P_DT_RFRN_MVMN_FIM IS NULL THEN
+  SELECT
+    DT_PCSM_ATUL INTO V_DT_RFRN_MVMN_INI
+  FROM
+    CCR.TBCCRR_CICL_PCSM_CDST;
+  V_DT_RFRN_MVMN_FIM: = V_DT_RFRN_MVMN_INI;
+  END IF;
+  for l_c1 in c1(V_DT_RFRN_MVMN_INI, V_DT_RFRN_MVMN_FIM)
+  loop
+    for l_c2 in c2(
+      l_c1.CD_TIPO_PLTF_PGMN,
+      l_c1.CD_CRDE,
+      l_c1.NU_RMSA_CRDE,
+      l_c1.CD_EMSR,
+      l_c1.CD_PCSR,
+      l_c1.NU_RMSA_EMSR,
+      l_c1.NU_SQNL,
+      l_c1.DT_RFRN_MVMN
+    )
+  loop
+    IF l_c2.CD_TIPO_CNCT_CRTO = 1 then V_BIN_RECB: = l_c2.NU_BIN_RECB;
+  V_FINL_CRTO_RECB: = l_c2.NU_FINL_CRTO_RECB;
+  ELSIF l_c2.CD_TIPO_CNCT_CRTO = 2 then V_BIN_RECB_T: = l_c2.NU_BIN_RECB;
+  V_FINL_CRTO_RECB_T: = l_c2.NU_FINL_CRTO_RECB;
+  end if;
+  end
+  loop;
+  if V_BIN_RECB_T is null
+    and V_FINL_CRTO_RECB_T is null then V_BIN_RECB_T: = V_BIN_RECB;
+  V_FINL_CRTO_RECB_T: = V_FINL_CRTO_RECB;
+  end if;
+  for l_c4 in c4(l_c1.CD_RASD_CICL_VIDA_TRNS)
+  loop
+    V_NU_RFRN_ORIG: = l_c4.NU_RFRN;
+  V_DT_RFRN_MVMN_ORIG: = l_c4.DT_RFRN_MVMN;
+  end
+  loop;
+  for l_c3 in c3(
+      l_c1.CD_TIPO_PLTF_PGMN,
+      l_c1.CD_CRDE,
+      l_c1.NU_RMSA_CRDE,
+      l_c1.CD_EMSR,
+      l_c1.CD_PCSR,
+      l_c1.NU_RMSA_EMSR,
+      l_c1.NU_SQNL,
+      l_c1.DT_RFRN_MVMN
+    )
+  loop
+    case
+      SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 3, 2)
+      when '00' then V_CD_POCS: = TO_NUMBER(SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 52, 2));
+  V_CD_PAIS_PDV: = SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 130, 3);
+  V_NM_PDV: = SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 92, 25);
+  V_NM_CIDE_PDV: = SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 117, 13);
+  V_IN_TCNL_TRMN: = SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 156, 1);
+  V_CD_MODO_ETRA_TRNS: = SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 159, 2);
+      when '01' then V_IN_ENVO_DCMC: = SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 23, 1);
+  V_IN_CNAL_TRNS: = SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 116, 1);
+      when '03' then V_CD_TIPO_PGMN: = SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 5, 3);
+  V_NU_UNCO_RFRN_CNTA: = SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 8, 41);
+      when '05' then V_CD_IDTR_TRNS: = SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 5, 15);
+  V_VL_ATZD: = TO_NUMBER(SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 20, 12));
+  V_CD_MODA_VALR_ATZD: = SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 32, 3);
+  V_CD_RSPS_ATZC: = SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 35, 2);
+  V_VL_TOTL_ATZD: = TO_NUMBER(SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 50, 12));
+      when '08' then V_NM_PSPG: = SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 25, 25);
+  V_DT_PRIM_EMBQ: = TO_CHAR(
+        SUBSTR(l_c3.TX_RGST_LNCM_TRNS_ETNC, 92, 6),
+        'YYYYMMDD'
+      );
+    end case;
+    end
+  loop;
+  INSERT INTO
+    CLC.TBCLCR_CTSC_LNCM_RECB (
+      DT_RFRN_MVMN,
+      CD_BNDR,
+      CD_TIPO_PLTF_PGMN,
+      CD_CRDE,
+      NU_RMSA_CRDE,
+      CD_EMSR,
+      CD_PCSR,
+      NU_RMSA_EMSR,
+      NU_SQNL,
+      CD_TIPO_TRNS_BNDR,
+      NU_BIN_RECB,
+      NU_FINL_CRTO_RECB,
+      NU_RFRN_TRNS,
+      CD_POCS,
+      DT_VNDA,
+      HR_VNDA,
+      TX_VALR_VNDA,
+      CD_MODA_RECB,
+      CD_PDV,
+      CD_MCC_BNDR,
+      NU_BNCO_EMSR,
+      CD_PAIS_PDV,
+      NM_PDV,
+      NM_CIDE_PDV,
+      IN_TCNL_TRMN,
+      CD_MODO_ETRA_TRNS,
+      NU_RFRN_CHRG,
+      IN_ENVO_DCMC,
+      IN_CNAL_TRNS,
+      CD_PRDT_BNDR,
+      CD_ATZC_TRNS,
+      CD_MTVO_CHRG_RECB,
+      TX_VALR_TRNS,
+      DT_MVMN_TRNS_ORIG,
+      NU_BIN_TOKN,
+      NU_FINL_CRTO_TOKN,
+      NU_IDTF_RQSE,
+      CD_TIPO_PGMN,
+      NU_UNCO_RFRN_CNTA,
+      CD_IDTR_TRNS,
+      VL_ATZD,
+      CD_MODA_VALR_ATZD,
+      CD_RSPS_ATZC,
+      VL_TOTL_ATZD,
+      NM_PSPG,
+      DT_PRIM_EMBQ,
+      IN_RGST_ATVO,
+      DH_INCL_RGST,
+      CD_USRO_INCL_RGST,
+      CD_TIPO_ACAO_RGST,
+      CD_USRO_ACAO_RGST
+    )
+  values
+    (
+      l_c1.DT_RFRN_MVMN,
+      l_c1.CD_BNDR,
+      l_c1.CD_TIPO_PLTF_PGMN,
+      l_c1.CD_CRDE,
+      l_c1.NU_RMSA_CRDE,
+      l_c1.CD_EMSR,
+      l_c1.CD_PCSR,
+      l_c1.NU_RMSA_EMSR,
+      l_c1.NU_SQNL,
+      l_c1.CD_TIPO_TRNS_BNDR,
+      V_BIN_RECB,
+      V_FINL_CRTO_RECB,
+      l_c1.NU_RFRN,
+      V_CD_POCS,
+      l_c1.DT_VNDA,
+      l_c1.HR_VNDA,
+      l_c1.TX_VALR_VNDA,
+      l_c1.CD_MODA_RECB,
+      l_c1.CD_PDV,
+      l_c1.CD_MCC_BNDR,
+      l_c1.NU_BNCO_EMSR,
+      V_CD_PAIS_PDV,
+      V_NM_PDV,
+      V_NM_CIDE_PDV,
+      V_IN_TCNL_TRMN,
+      V_CD_MODO_ETRA_TRNS,
+      V_NU_RFRN_ORIG,
+      V_IN_ENVO_DCMC,
+      V_IN_CNAL_TRNS,
+      l_c1.CD_PRDT_BNDR_RECB,
+      l_c1.CD_ATZC_TRNS,
+      l_c1.CD_MTVO_CHRG_RECB,
+      l_c1.TX_VALR_TRNS,
+      V_DT_RFRN_MVMN_ORIG,
+      V_BIN_RECB_T,
+      V_FINL_CRTO_RECB_T,
+      null,
+      V_CD_TIPO_PGMN,
+      V_NU_UNCO_RFRN_CNTA,
+      V_CD_IDTR_TRNS,
+      V_VL_ATZD,
+      V_CD_MODA_VALR_ATZD,
+      V_CD_RSPS_ATZC,
+      V_VL_TOTL_ATZD,
+      V_NM_PSPG,
+      V_DT_PRIM_EMBQ,
+      'S',
+      SYSDATE,
+      'ctrlm',
+      'I',
+      'ctrlm'
+    );
+  close c2;
+  close c3;
+  close c4;
+  V_BIN_RECB: = null;
+  V_FINL_CRTO_RECB: = null;
+  V_BIN_RECB_T: = null;
+  V_FINL_CRTO_RECB_T: = null;
+  V_NU_RFRN_ORIG: = null;
+  V_DT_RFRN_MVMN_ORIG: = null;
+  V_CD_POCS: = null;
+  V_CD_PAIS_PDV: = null;
+  V_NM_PDV: = null;
+  V_NM_CIDE_PDV: = null;
+  V_IN_TCNL_TRMN: = null;
+  V_CD_MODO_ETRA_TRNS: = null;
+  V_IN_ENVO_DCMC: = null;
+  V_IN_CNAL_TRNS: = null;
+  V_CD_TIPO_PGMN: = null;
+  V_NU_UNCO_RFRN_CNTA: = null;
+  V_CD_IDTR_TRNS: = null;
+  V_VL_ATZD: = null;
+  V_CD_MODA_VALR_ATZD: = null;
+  V_CD_RSPS_ATZC: = null;
+  V_VL_TOTL_ATZD: = null;
+  V_NM_PSPG: = null;
+  V_DT_PRIM_EMBQ: = null;
+  end
+  loop;
+  close c1;
+  commit;
+  EXCEPTION
+    when others then raise_application_error(
+      -20001,
+      'An error was encountered - ' || SQLCODE || ' -ERROR- ' || SQLERRM
+    );
+  rollback;
+  end;
+  end CARREGA_BASE_API_CONTESTACAO;

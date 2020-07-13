@@ -1,0 +1,99 @@
+name: TBCLCR_PARZ_RMNR_ITCM_ESCN
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_NIVL_FAXA_ITCM
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 9
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NU_SQNL_PARZ_ESCN
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: PC_TAXA_ITCM_DIFR
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 9
+  nullable: true
+  dataTypeLength: 9,9
+- name: PC_TAXA_ITCM_PDRO
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 9
+  nullable: true
+  dataTypeLength: 9,9
+- name: VL_LMTE_MXMO_FAXA_ITCM
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_MXMO_ITCM_DIFR
+  ordinalPosition: 6
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_MXMO_ITCM_PDRO
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_PARZ_RMNR_ITCM_ESCN
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: NU_SQNL_PARZ_ESCN
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C0016787
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016788
+  type: CHECK
+  checkClause: '"NU_SQNL_PARZ_ESCN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016789
+  type: CHECK
+  checkClause: '"CD_NIVL_FAXA_ITCM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016790
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016791
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

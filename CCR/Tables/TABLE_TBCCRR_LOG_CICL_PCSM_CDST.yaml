@@ -1,0 +1,127 @@
+name: TBCCRR_LOG_CICL_PCSM_CDST
+schema: CCR
+columns:
+- name: CD_CICL_PCSM
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 1,0
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_ACAO_RGST
+  ordinalPosition: 10
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_ACAO_FIM_RGST
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DH_ACAO_INCO_RGST
+  ordinalPosition: 2
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_PCSM_ANTR
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_PCSM_ATUL
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_PCSM_PROX
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 7
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_LOG_CICL_PCSM_CDST
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_CICL_PCSM
+    ordinalPosition: 1
+  - name: DH_ACAO_INCO_RGST
+    ordinalPosition: 2
+- !<fk-constraint>
+  name: FKR_CICL_PCSM_CDST_CCR01
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_CICL_PCSM
+    ordinalPosition: 1
+    referencedSchemaName: CCR
+    referencedTableName: TBCCRR_CICL_PCSM_CDST
+    referencedTableColumnName: CD_CICL_PCSM
+- !<check-constraint>
+  name: CKCCRR_LOG_CICL_PCSM_CDST_007
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0017009
+  type: CHECK
+  checkClause: '"CD_CICL_PCSM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017010
+  type: CHECK
+  checkClause: '"DH_ACAO_INCO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017011
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017012
+  type: CHECK
+  checkClause: '"DT_PCSM_ANTR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017013
+  type: CHECK
+  checkClause: '"DT_PCSM_ATUL" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017014
+  type: CHECK
+  checkClause: '"DT_PCSM_PROX" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017015
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017016
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017017
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017018
+  type: CHECK
+  checkClause: '"CD_USRO_ACAO_RGST" IS NOT NULL'

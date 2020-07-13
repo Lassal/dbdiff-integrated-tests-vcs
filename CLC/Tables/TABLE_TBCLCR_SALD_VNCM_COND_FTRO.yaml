@@ -1,0 +1,144 @@
+name: TBCLCR_SALD_VNCM_COND_FTRO
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_LNCM_AGND_PDV
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 10
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_VNCM
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 12
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: QT_TRNS
+  ordinalPosition: 8
+  dataType: NUMBER
+  numericPrecision: 7
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 7,0
+- name: VL_SALD_BAXA_JDCL
+  ordinalPosition: 9
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: true
+  dataTypeLength: 17,2
+- name: VL_SALD_COND
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 2
+  nullable: false
+  dataTypeLength: 17,2
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_SALD_VNCM_COND_FTRO
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_TIPO_LNCM_AGND_PDV
+    ordinalPosition: 3
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 5
+  - name: DT_RFRN_MVMN
+    ordinalPosition: 6
+  - name: DT_VNCM
+    ordinalPosition: 4
+- !<check-constraint>
+  name: CKC_IN_RGST_ATVO_TBCLCR_S
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0015931
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015932
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015933
+  type: CHECK
+  checkClause: '"CD_TIPO_LNCM_AGND_PDV" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015934
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015935
+  type: CHECK
+  checkClause: '"DT_RFRN_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015936
+  type: CHECK
+  checkClause: '"DT_VNCM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015937
+  type: CHECK
+  checkClause: '"VL_SALD_COND" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015938
+  type: CHECK
+  checkClause: '"QT_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015939
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015940
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015941
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'

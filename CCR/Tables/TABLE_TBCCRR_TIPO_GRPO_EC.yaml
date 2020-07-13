@@ -1,0 +1,61 @@
+name: TBCCRR_TIPO_GRPO_EC
+schema: CCR
+columns:
+- name: CD_TIPO_GRPO_EC
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 3
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: NM_TIPO_GRPO_EC
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_TIPO_GRPO_EC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_GRPO_EC
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0015592
+  type: CHECK
+  checkClause: '"CD_TIPO_GRPO_EC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015593
+  type: CHECK
+  checkClause: '"NM_TIPO_GRPO_EC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015594
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015595
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015596
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

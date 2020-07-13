@@ -1,0 +1,223 @@
+name: TBCLCT_TRNS_P2P_LQDC_ATZA
+schema: CLC
+columns:
+- name: CD_ATZC
+  ordinalPosition: 7
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  dataTypeLength: 6
+- name: CD_ATZC_ORIG
+  ordinalPosition: 17
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  dataTypeLength: 6
+- name: CD_BNDR
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_GTWY_TRNS_P2P
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_TRNS_ATZC
+  ordinalPosition: 16
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_TIPO_TRNS_ATZC_ORIG
+  ordinalPosition: 15
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 4,0
+- name: DH_TRNI
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_LOCL_TRNS
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: HR_LOCL_TRNS
+  ordinalPosition: 9
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 13
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+- name: IN_RGST_TOKN
+  ordinalPosition: 21
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: 'null '
+  dataTypeLength: 1
+- name: IN_TRNS_LQDA
+  ordinalPosition: 12
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''N'' '
+  dataTypeLength: 1
+- name: NM_DSNA_TRNS_P2P
+  ordinalPosition: 18
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  dataTypeLength: 40
+- name: NM_RMTN_TRNS_P2P
+  ordinalPosition: 19
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  dataTypeLength: 40
+- name: NU_BIN_RECB
+  ordinalPosition: 10
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_CNTA_PRMR
+  ordinalPosition: 14
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: false
+  dataTypeLength: 19
+- name: NU_FINL_CRTO
+  ordinalPosition: 11
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: NU_IDTF_PTDR
+  ordinalPosition: 20
+  dataType: VARCHAR2
+  textMaxLength: 14
+  nullable: true
+  dataTypeLength: 14
+- name: NU_IDTF_TRNS
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 6,0
+- name: NU_NSU_REDE_CPTR
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: false
+  dataTypeLength: 12
+constraints:
+- !<unique-constraint>
+  name: PKCLCT_TRNS_P2P_LQDC_ATZA
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_TIPO_TRNS_ATZC
+    ordinalPosition: 5
+  - name: DH_TRNI
+    ordinalPosition: 4
+  - name: NU_IDTF_TRNS
+    ordinalPosition: 2
+  - name: NU_NSU_REDE_CPTR
+    ordinalPosition: 3
+- !<check-constraint>
+  name: CKCLCT_TRNS_P2P_LQDC_ATZA_011
+  type: CHECK
+  checkClause: IN_TRNS_LQDA in ('S', 'N')
+- !<check-constraint>
+  name: CKCLCT_TRNS_P2P_LQDC_ATZA_012
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: CKCLCT_TRNS_P2P_LQDC_ATZA_021
+  type: CHECK
+  checkClause: IN_RGST_TOKN in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0016537
+  type: CHECK
+  checkClause: '"NU_IDTF_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016539
+  type: CHECK
+  checkClause: '"NU_NSU_REDE_CPTR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016541
+  type: CHECK
+  checkClause: '"DH_TRNI" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016543
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016545
+  type: CHECK
+  checkClause: '"CD_GTWY_TRNS_P2P" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016546
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016547
+  type: CHECK
+  checkClause: '"DT_LOCL_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016548
+  type: CHECK
+  checkClause: '"HR_LOCL_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016549
+  type: CHECK
+  checkClause: '"NU_BIN_RECB" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016550
+  type: CHECK
+  checkClause: '"NU_FINL_CRTO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016551
+  type: CHECK
+  checkClause: '"IN_TRNS_LQDA" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016552
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016553
+  type: CHECK
+  checkClause: '"NU_CNTA_PRMR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016554
+  type: CHECK
+  checkClause: '"CD_TIPO_TRNS_ATZC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0016555
+  type: CHECK
+  checkClause: '"IN_RGST_TOKN" IS NOT NULL'

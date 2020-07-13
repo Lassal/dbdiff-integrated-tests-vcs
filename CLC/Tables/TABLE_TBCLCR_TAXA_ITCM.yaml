@@ -1,0 +1,51 @@
+name: TBCLCR_TAXA_ITCM
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: PC_TAXA_ITCM
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 9
+  numericScale: 9
+  nullable: false
+  dataTypeLength: 9,9
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TAXA_ITCM
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0019435
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019436
+  type: CHECK
+  checkClause: '"PC_TAXA_ITCM" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019437
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0019438
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

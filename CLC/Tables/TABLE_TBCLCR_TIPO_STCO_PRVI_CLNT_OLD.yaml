@@ -1,0 +1,50 @@
+name: TBCLCR_TIPO_STCO_PRVI_CLNT_OLD
+schema: CLC
+columns:
+- name: CD_TIPO_STCO_PRVI_CLNT
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 3
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: NM_TIPO_STCO_PRVI_CLNT
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  dataTypeLength: 100
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_STCO_PRVI_CLNT
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_TIPO_STCO_PRVI_CLNT
+    ordinalPosition: 1
+- !<check-constraint>
+  name: SYS_C0017480
+  type: CHECK
+  checkClause: '"CD_TIPO_STCO_PRVI_CLNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017481
+  type: CHECK
+  checkClause: '"NM_TIPO_STCO_PRVI_CLNT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017482
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0017483
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

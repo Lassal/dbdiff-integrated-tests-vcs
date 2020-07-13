@@ -1,0 +1,127 @@
+name: TBCLCR_PRMT_DVRG_ATZC_LQDC
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_EMSR
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_PCSR
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  dataTypeLength: 4
+- name: CD_TIPO_ACAO_RGST
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 11
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 10
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_FIM_VGNC_PRMT
+  ordinalPosition: 8
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: DT_INCO_VGNC_PRMT
+  ordinalPosition: 6
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: PC_TLRN_DVRG_ATZC_LQDC
+  ordinalPosition: 7
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 3
+  nullable: false
+  dataTypeLength: 6,3
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_PRMT_DVRG_ATZC_LQDC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_EMSR
+    ordinalPosition: 4
+  - name: CD_PCSR
+    ordinalPosition: 5
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+  - name: DT_INCO_VGNC_PRMT
+    ordinalPosition: 6
+- !<check-constraint>
+  name: SYS_C0010590
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010592
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010594
+  type: CHECK
+  checkClause: '"CD_EMSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010596
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010598
+  type: CHECK
+  checkClause: '"CD_PCSR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010600
+  type: CHECK
+  checkClause: '"DT_INCO_VGNC_PRMT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010602
+  type: CHECK
+  checkClause: '"PC_TLRN_DVRG_ATZC_LQDC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010603
+  type: CHECK
+  checkClause: '"CD_TIPO_ACAO_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010604
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0010605
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

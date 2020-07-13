@@ -1,0 +1,82 @@
+name: TBCCRR_HSTR_CLNT_GRPO_EC
+schema: CCR
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_GRPO_EC
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 17
+  numericScale: 0
+  nullable: true
+  dataTypeLength: 17,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_HSTR
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DH_INCL_RGST
+  ordinalPosition: 7
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: SG_TPPS
+  ordinalPosition: 2
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: TX_IDTR_CPF_CNPJ
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: false
+  dataTypeLength: 11
+constraints:
+- !<unique-constraint>
+  name: PKCCRR_HSTR_CLNT_GRPO_EC
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: DH_HSTR
+    ordinalPosition: 4
+  - name: SG_TPPS
+    ordinalPosition: 3
+  - name: TX_IDTR_CPF_CNPJ
+    ordinalPosition: 2
+- !<check-constraint>
+  name: SYS_C0012863
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012864
+  type: CHECK
+  checkClause: '"SG_TPPS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012865
+  type: CHECK
+  checkClause: '"TX_IDTR_CPF_CNPJ" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012866
+  type: CHECK
+  checkClause: '"DH_HSTR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012867
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0012868
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'

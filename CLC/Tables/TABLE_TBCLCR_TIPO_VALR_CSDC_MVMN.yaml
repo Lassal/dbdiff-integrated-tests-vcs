@@ -1,0 +1,85 @@
+name: TBCLCR_TIPO_VALR_CSDC_MVMN
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_FRNT_TBHO
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_TIPO_VALR_COND_MVMN
+  ordinalPosition: 3
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 2,0
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_TIPO_VALR_COND_MVMN
+  ordinalPosition: 4
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: false
+  dataTypeLength: 50
+- name: DH_INCL_RGST
+  ordinalPosition: 5
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_TIPO_VALR_CSDC_MVMN
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_FRNT_TBHO
+    ordinalPosition: 2
+  - name: CD_TIPO_VALR_COND_MVMN
+    ordinalPosition: 3
+- !<fk-constraint>
+  name: FKR_FRNT_TBHO_CLC11
+  type: FOREIGN_KEY
+  columns:
+  - name: CD_FRNT_TBHO
+    ordinalPosition: 1
+    referencedSchemaName: CLC
+    referencedTableName: TBCLCR_FRNT_TBHO
+    referencedTableColumnName: CD_FRNT_TBHO
+- !<check-constraint>
+  name: SYS_C0018735
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018736
+  type: CHECK
+  checkClause: '"CD_FRNT_TBHO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018737
+  type: CHECK
+  checkClause: '"CD_TIPO_VALR_COND_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018738
+  type: CHECK
+  checkClause: '"DC_TIPO_VALR_COND_MVMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018739
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018740
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

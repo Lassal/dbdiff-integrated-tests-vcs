@@ -1,0 +1,136 @@
+name: TBCLCT_TRTM_LNCM_CRDE_AGPD
+schema: CLC
+columns:
+- name: CD_BNDR
+  ordinalPosition: 1
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 3,0
+- name: CD_CRDE
+  ordinalPosition: 2
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 4,0
+- name: CD_LYOT
+  ordinalPosition: 6
+  dataType: VARCHAR2
+  textMaxLength: 2
+  nullable: false
+  dataTypeLength: 2
+- name: CD_TIPO_PLTF_PGMN
+  ordinalPosition: 3
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 12
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DH_INCL_RGST
+  ordinalPosition: 11
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: DT_RFRN_MVMN
+  ordinalPosition: 10
+  dataType: DATE
+  nullable: true
+  dataTypeLength:
+- name: IN_LNCM_RECB_CRDE_DPLC
+  ordinalPosition: 7
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: NU_CNTR_AGPM_TRNS
+  ordinalPosition: 4
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: NU_SQNL_LNHA_ARQV
+  ordinalPosition: 5
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  dataTypeLength: 10,0
+- name: TX_CHVE_FRTE_TRNS
+  ordinalPosition: 9
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  dataTypeLength: 100
+- name: TX_RGST_LNHA_ARQV
+  ordinalPosition: 8
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: false
+  dataTypeLength: 2000
+constraints:
+- !<unique-constraint>
+  name: PKCLCT_TRTM_LNCM_CRDE_AGPD
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_BNDR
+    ordinalPosition: 1
+  - name: CD_CRDE
+    ordinalPosition: 2
+  - name: CD_TIPO_PLTF_PGMN
+    ordinalPosition: 3
+  - name: NU_CNTR_AGPM_TRNS
+    ordinalPosition: 4
+  - name: NU_SQNL_LNHA_ARQV
+    ordinalPosition: 5
+- !<check-constraint>
+  name: CKCLCT_TRTM_LNCM_CRDE_AGPD_008
+  type: CHECK
+  checkClause: IN_LNCM_RECB_CRDE_DPLC in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0018053
+  type: CHECK
+  checkClause: '"CD_BNDR" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018054
+  type: CHECK
+  checkClause: '"CD_CRDE" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018055
+  type: CHECK
+  checkClause: '"CD_TIPO_PLTF_PGMN" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018056
+  type: CHECK
+  checkClause: '"NU_CNTR_AGPM_TRNS" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018057
+  type: CHECK
+  checkClause: '"NU_SQNL_LNHA_ARQV" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018058
+  type: CHECK
+  checkClause: '"CD_LYOT" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018060
+  type: CHECK
+  checkClause: '"IN_LNCM_RECB_CRDE_DPLC" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018061
+  type: CHECK
+  checkClause: '"TX_RGST_LNHA_ARQV" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018063
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0018065
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'

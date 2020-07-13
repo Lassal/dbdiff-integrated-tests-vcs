@@ -1,0 +1,64 @@
+name: TBCLCR_STCO_SALD_CNGA_CIP
+schema: CLC
+columns:
+- name: CD_STCO_SALD_CNGA_CIP
+  ordinalPosition: 1
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  dataTypeLength: 1
+- name: CD_USRO_INCL_RGST
+  ordinalPosition: 5
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  dataTypeLength: 20
+- name: DC_STCO_SALD_CNGA_CIP
+  ordinalPosition: 2
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  dataTypeLength: 40
+- name: DH_INCL_RGST
+  ordinalPosition: 4
+  dataType: DATE
+  nullable: false
+  dataTypeLength:
+- name: IN_RGST_ATVO
+  ordinalPosition: 3
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''S'' '
+  dataTypeLength: 1
+constraints:
+- !<unique-constraint>
+  name: PKCLCR_STCO_SALD_CNGA_CIP
+  type: PRIMARY_KEY
+  columns:
+  - name: CD_STCO_SALD_CNGA_CIP
+    ordinalPosition: 1
+- !<check-constraint>
+  name: CKCLCR_STCO_SALD_CNGA_CIP_003
+  type: CHECK
+  checkClause: IN_RGST_ATVO in ('S', 'N')
+- !<check-constraint>
+  name: SYS_C0015953
+  type: CHECK
+  checkClause: '"CD_STCO_SALD_CNGA_CIP" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015954
+  type: CHECK
+  checkClause: '"DC_STCO_SALD_CNGA_CIP" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015955
+  type: CHECK
+  checkClause: '"IN_RGST_ATVO" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015956
+  type: CHECK
+  checkClause: '"DH_INCL_RGST" IS NOT NULL'
+- !<check-constraint>
+  name: SYS_C0015957
+  type: CHECK
+  checkClause: '"CD_USRO_INCL_RGST" IS NOT NULL'
