@@ -3,26 +3,26 @@ name: XDBPM_DEBUG
 routineType: PACKAGE
 returnParamater:
   name: TRACE_FOLDER.(--return--)
-  ordinalPosition: 0
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: STARTREWRITETRACE.P_COMMENT
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: WRITEDEBUG(1).P_LOG_MESSAGE
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
-- name: WRITEDEBUG(2).P_LOG_MESSAGE
   ordinalPosition: 1
+- name: WRITEDEBUG(2).P_LOG_MESSAGE
   dataType: CLOB
   parameterMode: IN
-- name: WRITEDEBUG(3).P_XML
   ordinalPosition: 1
+- name: WRITEDEBUG(3).P_XML
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package XDBPM_DEBUG authid CURRENT_USER as C_WRITE_TO_TRACE_FILE constant binary_integer: = 1;
   C_OPEN_QUERY_REWRITE CONSTANT VARCHAR2(4000): = '<xdbpm:XQUERY_REWRITE xmlns:xdbpm="http://xmlns.oracle.com/xdbpm" timestamp="%TIMESTAMP%">';

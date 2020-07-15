@@ -3,134 +3,134 @@ name: UTL_COMPRESS
 routineType: PACKAGE
 returnParamater:
   name: LZ_UNCOMPRESS_OPEN.(--return--)
-  ordinalPosition: 0
   dataType: BINARY_INTEGER
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: ISOPEN.HANDLE
-  ordinalPosition: 1
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 1
 - name: LZ_COMPRESS(1).SRC
-  ordinalPosition: 1
   dataType: RAW
   parameterMode: IN
+  ordinalPosition: 1
 - name: LZ_COMPRESS(1).QUALITY
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 - name: LZ_COMPRESS(2).SRC
-  ordinalPosition: 1
   dataType: BLOB
   parameterMode: IN
+  ordinalPosition: 1
 - name: LZ_COMPRESS(2).QUALITY
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 - name: LZ_COMPRESS(3).SRC
-  ordinalPosition: 1
   dataType: BLOB
   parameterMode: IN
+  ordinalPosition: 1
 - name: LZ_COMPRESS(3).DST
-  ordinalPosition: 2
   dataType: BLOB
   parameterMode: INOUT
+  ordinalPosition: 2
 - name: LZ_COMPRESS(3).QUALITY
-  ordinalPosition: 3
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 3
 - name: LZ_COMPRESS(4).SRC
-  ordinalPosition: 1
   dataType: BFILE
   parameterMode: IN
+  ordinalPosition: 1
 - name: LZ_COMPRESS(4).QUALITY
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 - name: LZ_COMPRESS(5).SRC
-  ordinalPosition: 1
   dataType: BFILE
   parameterMode: IN
+  ordinalPosition: 1
 - name: LZ_COMPRESS(5).DST
-  ordinalPosition: 2
   dataType: BLOB
   parameterMode: INOUT
+  ordinalPosition: 2
 - name: LZ_COMPRESS(5).QUALITY
-  ordinalPosition: 3
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 3
 - name: LZ_COMPRESS_ADD.HANDLE
-  ordinalPosition: 1
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 1
 - name: LZ_COMPRESS_ADD.DST
-  ordinalPosition: 2
   dataType: BLOB
   parameterMode: INOUT
+  ordinalPosition: 2
 - name: LZ_COMPRESS_ADD.SRC
+  dataType: RAW
+  parameterMode: IN
   ordinalPosition: 3
-  dataType: RAW
-  parameterMode: IN
 - name: LZ_COMPRESS_CLOSE.HANDLE
-  ordinalPosition: 1
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 1
 - name: LZ_COMPRESS_CLOSE.DST
-  ordinalPosition: 2
   dataType: BLOB
   parameterMode: INOUT
+  ordinalPosition: 2
 - name: LZ_COMPRESS_OPEN.DST
-  ordinalPosition: 1
   dataType: BLOB
   parameterMode: INOUT
+  ordinalPosition: 1
 - name: LZ_COMPRESS_OPEN.QUALITY
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 - name: LZ_UNCOMPRESS(1).SRC
-  ordinalPosition: 1
   dataType: RAW
   parameterMode: IN
+  ordinalPosition: 1
 - name: LZ_UNCOMPRESS(2).SRC
-  ordinalPosition: 1
   dataType: BLOB
   parameterMode: IN
+  ordinalPosition: 1
 - name: LZ_UNCOMPRESS(3).SRC
-  ordinalPosition: 1
   dataType: BLOB
   parameterMode: IN
+  ordinalPosition: 1
 - name: LZ_UNCOMPRESS(3).DST
-  ordinalPosition: 2
   dataType: BLOB
   parameterMode: INOUT
+  ordinalPosition: 2
 - name: LZ_UNCOMPRESS(4).SRC
-  ordinalPosition: 1
   dataType: BFILE
   parameterMode: IN
+  ordinalPosition: 1
 - name: LZ_UNCOMPRESS(5).SRC
-  ordinalPosition: 1
   dataType: BFILE
   parameterMode: IN
+  ordinalPosition: 1
 - name: LZ_UNCOMPRESS(5).DST
-  ordinalPosition: 2
   dataType: BLOB
   parameterMode: INOUT
-- name: LZ_UNCOMPRESS_CLOSE.HANDLE
-  ordinalPosition: 1
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-- name: LZ_UNCOMPRESS_EXTRACT.HANDLE
-  ordinalPosition: 1
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-- name: LZ_UNCOMPRESS_EXTRACT.DST
   ordinalPosition: 2
+- name: LZ_UNCOMPRESS_CLOSE.HANDLE
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 1
+- name: LZ_UNCOMPRESS_EXTRACT.HANDLE
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 1
+- name: LZ_UNCOMPRESS_EXTRACT.DST
   dataType: RAW
   parameterMode: OUT
+  ordinalPosition: 2
 - name: LZ_UNCOMPRESS_OPEN.SRC
-  ordinalPosition: 1
   dataType: BLOB
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: "PACKAGE utl_compress AS\n/* Define max number of handles for piecewise\
   \ operations */\nUTLCOMP_MAX_HANDLE CONSTANT PLS_INTEGER: = 5;\n/*\n\n  ** Exceptions\n\
   \n  */\ninvalid_handle\nEXCEPTION;\ninvalid_argument\nEXCEPTION;\nbuffer_too_small\n\

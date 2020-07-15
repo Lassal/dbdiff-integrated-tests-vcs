@@ -3,23 +3,23 @@ name: OGC_RELATE
 routineType: FUNCTION
 returnParamater:
   name: (--return--)
-  ordinalPosition: 0
   dataType: NUMBER
   numericPrecision: 38
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: G1
+  dataType: OBJECT
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: OBJECT
-  parameterMode: IN
 - name: G2
-  ordinalPosition: 2
   dataType: OBJECT
   parameterMode: IN
+  ordinalPosition: 2
 - name: PATTERNMATRIX
-  ordinalPosition: 3
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 3
 routineDefinition: |-
   FUNCTION OGC_Relate(
     g1 ST_Geometry,

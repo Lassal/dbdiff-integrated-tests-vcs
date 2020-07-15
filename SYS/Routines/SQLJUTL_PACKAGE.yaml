@@ -3,78 +3,78 @@ name: SQLJUTL
 routineType: PACKAGE
 returnParamater:
   name: URI2VCHAR.(--return--)
-  ordinalPosition: 0
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: BOOL2INT.B
-  ordinalPosition: 1
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 1
 - name: CHAR2IDS.CH
-  ordinalPosition: 1
   dataType: CHAR
   parameterMode: IN
+  ordinalPosition: 1
 - name: CHAR2IYM.CH
-  ordinalPosition: 1
   dataType: CHAR
   parameterMode: IN
-- name: GET_TYPECODE.TID
   ordinalPosition: 1
+- name: GET_TYPECODE.TID
   dataType: RAW
   parameterMode: IN
+  ordinalPosition: 1
 - name: GET_TYPECODE.CODE
-  ordinalPosition: 2
   dataType: NUMBER
   parameterMode: OUT
+  ordinalPosition: 2
 - name: GET_TYPECODE.CLASS
-  ordinalPosition: 3
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 3
 - name: GET_TYPECODE.TYP
-  ordinalPosition: 4
   dataType: NUMBER
   parameterMode: OUT
+  ordinalPosition: 4
 - name: HAS_DEFAULT.L_OWNER
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: HAS_DEFAULT.PROC
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: HAS_DEFAULT.SEQ
-  ordinalPosition: 3
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 3
 - name: HAS_DEFAULT.OVR
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 4
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: HAS_DEFAULT.PKG_NM
-  ordinalPosition: 5
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 5
 - name: IDS2CHAR.IV
-  ordinalPosition: 1
   dataType: INTERVAL DAY TO SECOND
   numericPrecision: 9
   numericScale: 9
   parameterMode: IN
-- name: INT2BOOL.I
   ordinalPosition: 1
+- name: INT2BOOL.I
   dataType: NUMBER
   numericPrecision: 38
   parameterMode: IN
-- name: IYM2CHAR.IV
   ordinalPosition: 1
+- name: IYM2CHAR.IV
   dataType: INTERVAL YEAR TO MONTH
   numericPrecision: 9
   parameterMode: IN
-- name: URI2VCHAR.URI
   ordinalPosition: 1
+- name: URI2VCHAR.URI
   dataType: OBJECT
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package sqljutl as -- The following is required at translate-time for SQLJ
   function has_default(

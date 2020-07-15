@@ -4,49 +4,49 @@ routineType: PACKAGE
 returnParamater: null
 parameters:
 - name: CREATE_COLLECTION.P_URI_NAME
-  ordinalPosition: 1
   dataType: NVARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: CREATE_COLLECTION.P_CREATE_MODE
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: CREATE_COLLECTION.P_DESCRIPTOR
+  dataType: VARCHAR2
+  parameterMode: INOUT
   ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: INOUT
 - name: CREATE_COLLECTION.P_CREATE_TIME
+  dataType: VARCHAR2
+  parameterMode: OUT
   ordinalPosition: 4
-  dataType: VARCHAR2
-  parameterMode: OUT
 - name: DESCRIBE_COLLECTION.P_URI_NAME
-  ordinalPosition: 1
   dataType: NVARCHAR2
   parameterMode: INOUT
+  ordinalPosition: 1
 - name: DESCRIBE_COLLECTION.P_DESCRIPTOR
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 2
 - name: DROP_COLLECTION.P_URI_NAME
-  ordinalPosition: 1
   dataType: NVARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GET_PARAMETERS.P_KEY
-  ordinalPosition: 1
   dataType: PL/SQL TABLE
   parameterMode: INOUT
+  ordinalPosition: 1
 - name: GET_PARAMETERS.P_VALUE
-  ordinalPosition: 2
   dataType: PL/SQL TABLE
   parameterMode: INOUT
+  ordinalPosition: 2
 - name: LIST_COLLECTIONS.P_START_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: LIST_COLLECTIONS.P_RESULTS
-  ordinalPosition: 2
   dataType: REF CURSOR
   parameterMode: OUT
+  ordinalPosition: 2
 routineDefinition: |-
   package DBMS_COLLECTIONS authid current_user as --
   -- Error messages which we can ignore

@@ -3,30 +3,30 @@ name: SDO_OLS_PRESENTATION
 routineType: PACKAGE
 returnParamater:
   name: SPECIFY_THEME_FOR_MAPVIEWER.(--return--)
-  ordinalPosition: 0
   dataType: OPAQUE/XMLTYPE
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: MAKEOPENLS10REQUEST.REQUEST
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 1
 - name: SPECIFY_POI_FOR_MAPVIEWER.OPENLS_POI
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 1
 - name: SPECIFY_POI_FOR_MAPVIEWER.OPENLS_VERSION
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: SPECIFY_THEME_FOR_MAPVIEWER.OPENLS_LAYER
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 1
 - name: SPECIFY_THEME_FOR_MAPVIEWER.OPENLS_VERSION
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   PACKAGE sdo_ols_presentation AUTHID current_user AS FUNCTION makeOpenLS10Request(request XMLTYPE) RETURN XMLTYPE;
   FUNCTION specify_theme_for_mapviewer(

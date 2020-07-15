@@ -3,114 +3,114 @@ name: XS_ADMIN_UTIL
 routineType: PACKAGE
 returnParamater:
   name: XSNAME_TO_ID.(--return--)
-  ordinalPosition: 0
   dataType: NUMBER
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: CHECK_LENGTH.STR
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
-- name: CHECK_LENGTH.MIN_LENGTH
-  ordinalPosition: 2
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-- name: CHECK_LENGTH.MAX_LENGTH
-  ordinalPosition: 3
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-- name: CHECK_SEEDED.OBJ_ID
   ordinalPosition: 1
+- name: CHECK_LENGTH.MIN_LENGTH
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: CHECK_LENGTH.MAX_LENGTH
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 3
+- name: CHECK_SEEDED.OBJ_ID
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 1
 - name: DROP_SCHEMA_OBJECTS.SCHEMA_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GET_OBJECT_ID.OBJ_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GET_OBJECT_ID.OBJ_TYPE
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 - name: GET_OBJECT_ID.WORKSPACE
-  ordinalPosition: 3
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 3
 - name: GET_OBJECT_ID.STATUS_FLAG
-  ordinalPosition: 4
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 4
 - name: GRANT_SYSTEM_PRIVILEGE.PRIV_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GRANT_SYSTEM_PRIVILEGE.USER_NAME
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: GRANT_SYSTEM_PRIVILEGE.USER_TYPE
-  ordinalPosition: 3
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 3
 - name: RAISE_ERROR.ERROR_NUMBER
-  ordinalPosition: 1
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 1
 - name: RAISE_ERROR.ERROR_STR1
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: RAISE_ERROR.ERROR_STR2
-  ordinalPosition: 3
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 3
 - name: RAISE_ERROR.KEEP_STACK
-  ordinalPosition: 4
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 4
 - name: REMOVE_DBUSER_ACES.USER_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: REVOKE_SYSTEM_PRIVILEGE.PRIV_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: REVOKE_SYSTEM_PRIVILEGE.USER_NAME
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: REVOKE_SYSTEM_PRIVILEGE.USER_TYPE
-  ordinalPosition: 3
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 3
 - name: SET_DEFAULT_WORKSPACE.WORKSPACE
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: VALIDATE_DB_OBJECT_NAME.INPUT_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: VALIDATE_DB_OBJECT_NAME.OBJECT_NAME
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: OUT
-- name: VALIDATE_DB_OBJECT_NAME.ERROR_MSG
-  ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: XSNAME_TO_ID.OBJ_NAME
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: XSNAME_TO_ID.OBJ_TYPE
   ordinalPosition: 2
+- name: VALIDATE_DB_OBJECT_NAME.ERROR_MSG
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: XSNAME_TO_ID.OBJ_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: XSNAME_TO_ID.OBJ_TYPE
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   PACKAGE XS_ADMIN_UTIL AUTHID CURRENT_USER AS COMMON_WORKSPACE CONSTANT VARCHAR2(6): = 'XS';
   STRING_MAXLEN CONSTANT PLS_INTEGER: = 4000;

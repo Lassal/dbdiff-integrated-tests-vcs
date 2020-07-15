@@ -3,183 +3,183 @@ name: HTMLDB_CUSTOM_AUTH
 routineType: PACKAGE
 returnParamater:
   name: SESSION_ID_EXISTS.(--return--)
-  ordinalPosition: 0
   dataType: PL/SQL BOOLEAN
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: APPLICATION_PAGE_ITEM_EXISTS.P_ITEM_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: DEFINE_USER_SESSION.P_USER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: DEFINE_USER_SESSION.P_SESSION_ID
-  ordinalPosition: 2
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 2
 - name: GET_COOKIE_PROPS.P_APP_ID
-  ordinalPosition: 1
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 1
 - name: GET_COOKIE_PROPS.P_COOKIE_NAME
+  dataType: VARCHAR2
+  parameterMode: OUT
   ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: OUT
 - name: GET_COOKIE_PROPS.P_COOKIE_PATH
+  dataType: VARCHAR2
+  parameterMode: OUT
   ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: OUT
 - name: GET_COOKIE_PROPS.P_COOKIE_DOMAIN
-  ordinalPosition: 4
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 4
 - name: GET_COOKIE_PROPS.P_SECURE
-  ordinalPosition: 5
   dataType: PL/SQL BOOLEAN
   parameterMode: OUT
+  ordinalPosition: 5
 - name: GET_LDAP_PROPS.P_LDAP_HOST
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 1
 - name: GET_LDAP_PROPS.P_LDAP_PORT
-  ordinalPosition: 2
   dataType: NUMBER
   numericPrecision: 38
   parameterMode: OUT
+  ordinalPosition: 2
 - name: GET_LDAP_PROPS.P_USE_SSL
-  ordinalPosition: 3
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 3
 - name: GET_LDAP_PROPS.P_USE_EXACT_DN
-  ordinalPosition: 4
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 4
 - name: GET_LDAP_PROPS.P_LDAP_DN
-  ordinalPosition: 5
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 5
 - name: GET_LDAP_PROPS.P_SEARCH_FILTER
-  ordinalPosition: 6
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 6
 - name: GET_LDAP_PROPS.P_LDAP_EDIT_FUNCTION
-  ordinalPosition: 7
   dataType: VARCHAR2
   parameterMode: OUT
-- name: LDAP_AUTHENTICATE.P_USERNAME
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LDAP_AUTHENTICATE.P_PASSWORD
-  ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LDAP_AUTHENTICATE.P_LDAP_HOST
-  ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LDAP_AUTHENTICATE.P_LDAP_PORT
-  ordinalPosition: 4
-  dataType: NUMBER
-  parameterMode: IN
-- name: LDAP_AUTHENTICATE.P_USE_SSL
-  ordinalPosition: 5
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LDAP_AUTHENTICATE.P_USE_EXACT_DN
-  ordinalPosition: 6
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LDAP_AUTHENTICATE.P_LDAP_STRING
   ordinalPosition: 7
+- name: LDAP_AUTHENTICATE.P_USERNAME
   dataType: VARCHAR2
   parameterMode: IN
-- name: LDAP_AUTHENTICATE.P_SEARCH_FILTER
-  ordinalPosition: 8
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LDAP_AUTHENTICATE.P_LDAP_EDIT_FUNCTION
-  ordinalPosition: 9
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LDAP_AUTHENTICATE.P_OWNER
-  ordinalPosition: 10
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LDAP_DNPREP.P_USERNAME
   ordinalPosition: 1
+- name: LDAP_AUTHENTICATE.P_PASSWORD
   dataType: VARCHAR2
   parameterMode: IN
-- name: LOGIN.P_UNAME
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LOGIN.P_PASSWORD
   ordinalPosition: 2
+- name: LDAP_AUTHENTICATE.P_LDAP_HOST
   dataType: VARCHAR2
   parameterMode: IN
-- name: LOGIN.P_SESSION_ID
   ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LOGIN.P_APP_PAGE
-  ordinalPosition: 4
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LOGIN.P_ENTRY_POINT
-  ordinalPosition: 5
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LOGIN.P_PRESERVE_CASE
-  ordinalPosition: 6
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-- name: LOGOUT.P_THIS_APP
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LOGOUT.P_NEXT_APP_PAGE_SESS
-  ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LOGOUT.P_NEXT_URL
-  ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LOGOUT_THEN_GO_TO_PAGE.P_ARGS
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: LOGOUT_THEN_GO_TO_URL.P_ARGS
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: POST_LOGIN.P_UNAME
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: POST_LOGIN.P_SESSION_ID
-  ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: POST_LOGIN.P_APP_PAGE
-  ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: POST_LOGIN.P_PRESERVE_CASE
-  ordinalPosition: 4
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-- name: SET_SESSION_ID.P_SESSION_ID
-  ordinalPosition: 1
+- name: LDAP_AUTHENTICATE.P_LDAP_PORT
   dataType: NUMBER
   parameterMode: IN
-- name: SET_USER.P_USER
-  ordinalPosition: 1
+  ordinalPosition: 4
+- name: LDAP_AUTHENTICATE.P_USE_SSL
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 5
+- name: LDAP_AUTHENTICATE.P_USE_EXACT_DN
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 6
+- name: LDAP_AUTHENTICATE.P_LDAP_STRING
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 7
+- name: LDAP_AUTHENTICATE.P_SEARCH_FILTER
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 8
+- name: LDAP_AUTHENTICATE.P_LDAP_EDIT_FUNCTION
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 9
+- name: LDAP_AUTHENTICATE.P_OWNER
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 10
+- name: LDAP_DNPREP.P_USERNAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: LOGIN.P_UNAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: LOGIN.P_PASSWORD
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: LOGIN.P_SESSION_ID
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: LOGIN.P_APP_PAGE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 4
+- name: LOGIN.P_ENTRY_POINT
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 5
+- name: LOGIN.P_PRESERVE_CASE
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+  ordinalPosition: 6
+- name: LOGOUT.P_THIS_APP
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: LOGOUT.P_NEXT_APP_PAGE_SESS
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: LOGOUT.P_NEXT_URL
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: LOGOUT_THEN_GO_TO_PAGE.P_ARGS
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: LOGOUT_THEN_GO_TO_URL.P_ARGS
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: POST_LOGIN.P_UNAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: POST_LOGIN.P_SESSION_ID
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: POST_LOGIN.P_APP_PAGE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: POST_LOGIN.P_PRESERVE_CASE
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+  ordinalPosition: 4
+- name: SET_SESSION_ID.P_SESSION_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 1
+- name: SET_USER.P_USER
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package htmldb_custom_auth as --  Copyright (c) Oracle Corporation 2001-2003. All Rights Reserved.
   --

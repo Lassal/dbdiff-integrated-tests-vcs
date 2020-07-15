@@ -3,50 +3,50 @@ name: XDBPM_TABLE_UPLOAD
 routineType: PACKAGE
 returnParamater:
   name: XML_CONTENT.(--return--)
-  ordinalPosition: 0
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: CONFIGUREUPLOADFOLDER.P_UPLOAD_FOLDER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: CONFIGUREUPLOADFOLDER.P_OWNER
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: CONFIGUREUPLOADFOLDER.P_OBJECT_NAME
-  ordinalPosition: 3
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 3
 - name: CONFIGUREUPLOADFOLDER.P_COLUMN_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 4
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: CONFIGUREUPLOADFOLDER.P_CONTENT_TYPE_FILTER
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 5
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: CREATEXMLINDEXEDTABLE.P_TABLE_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: CREATEXMLINDEXEDTABLE.P_INDEX_NAME
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: CREATEXMLINDEXEDTABLE.P_UPLOAD_FOLDER
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: GETUPLOADFOLDERPATH.P_TABLE_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: GETUPLOADFOLDERPATH.P_OWNER
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   package XDBPM_TABLE_UPLOAD authid CURRENT_USER as -- Metadata For Upload Folder : The Metadata identifies which table to load content into when a document is placed in the folder.
   C_TABLE_UPLOAD_ELEMENT constant varchar2(1024): = 'Target';

@@ -3,50 +3,50 @@ name: XFILES_SEARCH_SERVICES
 routineType: PACKAGE
 returnParamater:
   name: GETXMLSCHEMAROOTNODEMAP.(--return--)
-  ordinalPosition: 0
   dataType: OPAQUE/XMLTYPE
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: GETSUBSTITUTIONGROUP.P_HEAD_ELEMENT
-  ordinalPosition: 1
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETXMLINDEXCHILDNODEMAP.P_PATHID
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETXMLINDEXCHILDNODEMAP.P_PATH_TABLE_NAME
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: GETXMLINDEXCHILDNODEMAP.P_PATH_TABLE_OWNER
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: GETXMLINDEXROOTNODEMAP.P_PATH_TABLE_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETXMLINDEXROOTNODEMAP.P_PATH_TABLE_OWNER
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: GETXMLSCHEMACHILDNODEMAP.P_PROPERTY_NUMBER
-  ordinalPosition: 1
   dataType: NUMBER
   parameterMode: IN
-- name: GETXMLSCHEMAROOTNODEMAP.P_SCHEMA_URL
   ordinalPosition: 1
+- name: GETXMLSCHEMAROOTNODEMAP.P_SCHEMA_URL
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETXMLSCHEMAROOTNODEMAP.P_SCHEMA_OWNER
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: GETXMLSCHEMAROOTNODEMAP.P_GLOBAL_ELEMENT
-  ordinalPosition: 3
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 3
 routineDefinition: |-
   package XFILES_SEARCH_SERVICES AUTHID CURRENT_USER as function getXMLIndexRootNodeMap(
     P_PATH_TABLE_NAME VARCHAR2,

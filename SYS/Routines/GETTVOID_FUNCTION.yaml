@@ -3,18 +3,18 @@ name: GETTVOID
 routineType: FUNCTION
 returnParamater:
   name: (--return--)
-  ordinalPosition: 0
   dataType: RAW
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: TYPE_OID
-  ordinalPosition: 1
   dataType: RAW
   parameterMode: IN
+  ordinalPosition: 1
 - name: VSN
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   Function GetTvoid(type_oid IN RAW, vsn IN PLS_INTEGER) return RAW AS tv_oid RAW(16);
   begin

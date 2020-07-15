@@ -3,19 +3,19 @@ name: OGC_INTERSECTS
 routineType: FUNCTION
 returnParamater:
   name: (--return--)
-  ordinalPosition: 0
   dataType: NUMBER
   numericPrecision: 38
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: G1
+  dataType: OBJECT
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: OBJECT
-  parameterMode: IN
 - name: G2
-  ordinalPosition: 2
   dataType: OBJECT
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   FUNCTION OGC_Intersects(g1 ST_Geometry, g2 ST_Geometry) RETURN Integer DETERMINISTIC IS
   BEGIN

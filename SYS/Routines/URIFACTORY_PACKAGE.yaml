@@ -3,46 +3,46 @@ name: URIFACTORY
 routineType: PACKAGE
 returnParamater:
   name: UNESCAPEURI.(--return--)
-  ordinalPosition: 0
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: ESCAPEURI.UNESCAPEDURL
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETURI.URL
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: REGISTERURLHANDLER.PREFIX
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: REGISTERURLHANDLER.SCHEMANAME
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: REGISTERURLHANDLER.TYPENAME
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: REGISTERURLHANDLER.IGNOREPREFIXCASE
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
   ordinalPosition: 4
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
 - name: REGISTERURLHANDLER.STRIPPREFIX
-  ordinalPosition: 5
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 5
 - name: UNESCAPEURI.ESCAPEDURL
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: UNREGISTERURLHANDLER.PREFIX
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package UriFactory authid current_user as faclist urifaclist;
   -- returns the correct uritype

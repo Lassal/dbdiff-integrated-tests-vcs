@@ -4,25 +4,25 @@ routineType: PACKAGE
 returnParamater: null
 parameters:
 - name: DELETEIMAGEMETADATA.P_RESOURCE_PATH
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
-- name: HANDLE_EVENT.P_PAYLOAD
   ordinalPosition: 1
+- name: HANDLE_EVENT.P_PAYLOAD
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 1
 - name: INSERTIMAGEMETADATA.P_TARGET_RESOURCE
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: UPDATEIMAGEMETADATA.P_TARGET_RESOURCE
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: UPDATEIMAGEMETADATA.P_METADATA_TARGET
-  ordinalPosition: 2
   dataType: REF
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   package IMAGE_PROCESSOR as procedure HANDLE_EVENT(P_PAYLOAD XMLType);
   procedure insertImageMetadata(P_TARGET_RESOURCE VARCHAR2);

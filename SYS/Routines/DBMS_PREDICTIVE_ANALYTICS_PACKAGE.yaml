@@ -4,61 +4,61 @@ routineType: PACKAGE
 returnParamater: null
 parameters:
 - name: EXPLAIN.DATA_TABLE_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: EXPLAIN.EXPLAIN_COLUMN_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: EXPLAIN.RESULT_TABLE_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: EXPLAIN.DATA_SCHEMA_NAME
-  ordinalPosition: 4
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 4
 - name: PREDICT.ACCURACY
-  ordinalPosition: 1
   dataType: NUMBER
   parameterMode: OUT
-- name: PREDICT.DATA_TABLE_NAME
-  ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: PREDICT.CASE_ID_COLUMN_NAME
-  ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: PREDICT.TARGET_COLUMN_NAME
-  ordinalPosition: 4
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: PREDICT.RESULT_TABLE_NAME
-  ordinalPosition: 5
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: PREDICT.DATA_SCHEMA_NAME
-  ordinalPosition: 6
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: PROFILE.DATA_TABLE_NAME
   ordinalPosition: 1
+- name: PREDICT.DATA_TABLE_NAME
   dataType: VARCHAR2
   parameterMode: IN
-- name: PROFILE.TARGET_COLUMN_NAME
   ordinalPosition: 2
+- name: PREDICT.CASE_ID_COLUMN_NAME
   dataType: VARCHAR2
   parameterMode: IN
-- name: PROFILE.RESULT_TABLE_NAME
   ordinalPosition: 3
+- name: PREDICT.TARGET_COLUMN_NAME
   dataType: VARCHAR2
   parameterMode: IN
-- name: PROFILE.DATA_SCHEMA_NAME
   ordinalPosition: 4
+- name: PREDICT.RESULT_TABLE_NAME
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 5
+- name: PREDICT.DATA_SCHEMA_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 6
+- name: PROFILE.DATA_TABLE_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: PROFILE.TARGET_COLUMN_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PROFILE.RESULT_TABLE_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: PROFILE.DATA_SCHEMA_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 4
 routineDefinition: |-
   PACKAGE dbms_predictive_analytics AUTHID CURRENT_USER AS --
   -- PUBLIC PROCEDURES AND FUNCTIONS

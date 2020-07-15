@@ -3,30 +3,30 @@ name: XFILES_USER_SERVICES
 routineType: PACKAGE
 returnParamater:
   name: GETUSERPRIVILEGES.(--return--)
-  ordinalPosition: 0
   dataType: OPAQUE/XMLTYPE
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: RESETUSEROPTIONS.P_NEW_PASSWORD
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: RESETUSEROPTIONS.P_RESET_HOME_FOLDER
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
 - name: RESETUSEROPTIONS.P_RECREATE_HOME_PAGE
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
   ordinalPosition: 3
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
 - name: RESETUSEROPTIONS.P_RESET_PUBLIC_FOLDER
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
   ordinalPosition: 4
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
 - name: RESETUSEROPTIONS.P_RECREATE_PUBLIC_PAGE
-  ordinalPosition: 5
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 5
 routineDefinition: |-
   package XFILES_USER_SERVICES AUTHID CURRENT_USER as procedure RESETUSEROPTIONS(
     P_NEW_PASSWORD VARCHAR2 DEFAULT NULL,
