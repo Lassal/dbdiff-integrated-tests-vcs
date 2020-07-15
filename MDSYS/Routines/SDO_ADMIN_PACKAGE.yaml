@@ -3,142 +3,142 @@ name: SDO_ADMIN
 routineType: PACKAGE
 returnParamater:
   name: SDO_VERSION.(--return--)
-  ordinalPosition: 0
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: CHANGE_INDEX_PARAMETERS.LAYER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: CHANGE_INDEX_PARAMETERS.SDO_LEVEL
-  ordinalPosition: 2
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 2
 - name: CHANGE_INDEX_PARAMETERS.SDO_NUMTILES
-  ordinalPosition: 3
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 3
 - name: POPULATE_INDEX(1).LAYER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: POPULATE_INDEX(2).LAYER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: POPULATE_INDEX(2).MAXTILES
-  ordinalPosition: 2
   dataType: NUMBER
   numericPrecision: 38
   parameterMode: IN
+  ordinalPosition: 2
 - name: POPULATE_INDEX(2).SYNCH_FLAG
-  ordinalPosition: 3
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 3
 - name: POPULATE_INDEX(2).SDO_TILE_FLAG
-  ordinalPosition: 4
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 4
 - name: POPULATE_INDEX_FIXED.LAYER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: POPULATE_INDEX_FIXED.TILE_SIZE
-  ordinalPosition: 2
   dataType: NUMBER
   numericPrecision: 38
   parameterMode: IN
+  ordinalPosition: 2
 - name: POPULATE_INDEX_FIXED.SYNCH_FLAG
-  ordinalPosition: 3
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 3
 - name: POPULATE_INDEX_FIXED.SDO_TILE_FLAG
-  ordinalPosition: 4
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 4
 - name: POPULATE_INDEX_FIXED.SDO_MAXCODE_FLAG
-  ordinalPosition: 5
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 5
 - name: POPULATE_INDEX_FIXED_POINTS.LAYER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: POPULATE_INDEX_FIXED_POINTS.SDO_TILE_FLAG
-  ordinalPosition: 2
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 2
 - name: POPULATE_INDEX_FIXED_POINTS.COMMIT_CNT
-  ordinalPosition: 3
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 3
 - name: SDO_CODE_SIZE.LAYER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: SET_CODE_NULL.LAYER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: SET_CODE_NULL.COMMIT_CNT
-  ordinalPosition: 2
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 2
 - name: UPDATE_INDEX(1).LAYER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: UPDATE_INDEX(1).GID
-  ordinalPosition: 2
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 2
 - name: UPDATE_INDEX(2).LAYER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: UPDATE_INDEX(2).GID
-  ordinalPosition: 2
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 2
 - name: UPDATE_INDEX(2).MAXTILES
-  ordinalPosition: 3
   dataType: NUMBER
   numericPrecision: 38
   parameterMode: IN
+  ordinalPosition: 3
 - name: UPDATE_INDEX(2).REPLACE_FLAG
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
   ordinalPosition: 4
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
 - name: UPDATE_INDEX(2).SDO_TILE_FLAG
-  ordinalPosition: 5
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 5
 - name: UPDATE_INDEX_FIXED.LAYER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: UPDATE_INDEX_FIXED.GID
-  ordinalPosition: 2
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 2
 - name: UPDATE_INDEX_FIXED.TILE_SIZE
-  ordinalPosition: 3
   dataType: NUMBER
   numericPrecision: 38
   parameterMode: IN
+  ordinalPosition: 3
 - name: UPDATE_INDEX_FIXED.REPLACE_FLAG
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
   ordinalPosition: 4
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
 - name: UPDATE_INDEX_FIXED.SDO_TILE_FLAG
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
   ordinalPosition: 5
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
 - name: UPDATE_INDEX_FIXED.SDO_MAXCODE_FLAG
-  ordinalPosition: 6
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 6
 routineDefinition: |-
   package SDO_ADMIN authid current_user as -- NAME:
   --    sdo_version - Return version number as a string

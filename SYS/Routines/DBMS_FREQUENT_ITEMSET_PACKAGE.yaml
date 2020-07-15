@@ -3,58 +3,58 @@ name: DBMS_FREQUENT_ITEMSET
 routineType: PACKAGE
 returnParamater:
   name: FI_TRANSACTIONAL.(--return--)
-  ordinalPosition: 0
   dataType: OPAQUE/XMLTYPE
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: FI_HORIZONTAL.TRANX_CURSOR
-  ordinalPosition: 1
   dataType: REF CURSOR
   parameterMode: IN
+  ordinalPosition: 1
 - name: FI_HORIZONTAL.SUPPORT_THRESHOLD
-  ordinalPosition: 2
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 2
 - name: FI_HORIZONTAL.ITEMSET_LENGTH_MIN
-  ordinalPosition: 3
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 3
 - name: FI_HORIZONTAL.ITEMSET_LENGTH_MAX
-  ordinalPosition: 4
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 4
 - name: FI_HORIZONTAL.INCLUDING_ITEMS
-  ordinalPosition: 5
   dataType: REF CURSOR
   parameterMode: IN
+  ordinalPosition: 5
 - name: FI_HORIZONTAL.EXCLUDING_ITEMS
-  ordinalPosition: 6
   dataType: REF CURSOR
   parameterMode: IN
+  ordinalPosition: 6
 - name: FI_TRANSACTIONAL.TRANX_CURSOR
+  dataType: REF CURSOR
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: REF CURSOR
-  parameterMode: IN
 - name: FI_TRANSACTIONAL.SUPPORT_THRESHOLD
+  dataType: NUMBER
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: NUMBER
-  parameterMode: IN
 - name: FI_TRANSACTIONAL.ITEMSET_LENGTH_MIN
+  dataType: NUMBER
+  parameterMode: IN
   ordinalPosition: 3
-  dataType: NUMBER
-  parameterMode: IN
 - name: FI_TRANSACTIONAL.ITEMSET_LENGTH_MAX
-  ordinalPosition: 4
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 4
 - name: FI_TRANSACTIONAL.INCLUDING_ITEMS
+  dataType: REF CURSOR
+  parameterMode: IN
   ordinalPosition: 5
-  dataType: REF CURSOR
-  parameterMode: IN
 - name: FI_TRANSACTIONAL.EXCLUDING_ITEMS
-  ordinalPosition: 6
   dataType: REF CURSOR
   parameterMode: IN
+  ordinalPosition: 6
 routineDefinition: |-
   PACKAGE dbms_frequent_itemset AUTHID CURRENT_USER AS FUNCTION fi_transactional(
     tranx_cursor IN SYS_REFCURSOR,

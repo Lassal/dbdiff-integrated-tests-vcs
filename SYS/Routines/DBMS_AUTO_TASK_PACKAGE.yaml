@@ -3,68 +3,68 @@ name: DBMS_AUTO_TASK
 routineType: PACKAGE
 returnParamater:
   name: WINDOW_CALENDAR.(--return--)
-  ordinalPosition: 0
   dataType: TABLE
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: CHECK_CLIENT_STATUS_OVERRIDE.CLIENT_ID
-  ordinalPosition: 1
   dataType: BINARY_INTEGER
   parameterMode: IN
-- name: DECODE_ATTRIBUTES.ATTR
   ordinalPosition: 1
+- name: DECODE_ATTRIBUTES.ATTR
   dataType: NUMBER
   parameterMode: IN
-- name: GET_CLIENT_STATUS_OVERRIDE.CLIENT_ID
   ordinalPosition: 1
+- name: GET_CLIENT_STATUS_OVERRIDE.CLIENT_ID
   dataType: BINARY_INTEGER
   parameterMode: IN
-- name: GET_SCHEDULE_DATE.TASKNAME
   ordinalPosition: 1
+- name: GET_SCHEDULE_DATE.TASKNAME
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GET_SCHEDULE_DATE.START_DATE
+  dataType: TIMESTAMP WITH TIME ZONE
+  numericPrecision: 6
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: TIMESTAMP WITH TIME ZONE
-  numericPrecision: 6
-  parameterMode: IN
 - name: GET_SCHEDULE_DATE.END_DATE
-  ordinalPosition: 3
   dataType: TIMESTAMP WITH TIME ZONE
   numericPrecision: 6
   parameterMode: IN
+  ordinalPosition: 3
 - name: GET_SCHEDULE_DATE.SCHEDULED_LIST
-  ordinalPosition: 4
   dataType: TABLE
   parameterMode: OUT
-- name: RECONCILE_ATTRIBUTES.CLI_COMP_ATTR
-  ordinalPosition: 1
-  dataType: NUMBER
-  parameterMode: IN
-- name: RECONCILE_ATTRIBUTES.CLI_REP_ATTR
-  ordinalPosition: 2
-  dataType: NUMBER
-  parameterMode: IN
-- name: RECONCILE_ATTRIBUTES.OP_COMP_ATTR
-  ordinalPosition: 3
-  dataType: NUMBER
-  parameterMode: IN
-- name: RECONCILE_ATTRIBUTES.OP_REP_ATTR
   ordinalPosition: 4
+- name: RECONCILE_ATTRIBUTES.CLI_COMP_ATTR
   dataType: NUMBER
   parameterMode: IN
-- name: RECONCILE_ATTRIBUTES.TASK_COMP_ATTR
-  ordinalPosition: 5
-  dataType: NUMBER
-  parameterMode: IN
-- name: RECONCILE_ATTRIBUTES.TASK_REP_ATTR
-  ordinalPosition: 6
-  dataType: NUMBER
-  parameterMode: IN
-- name: WINDOW_CALENDAR.W
   ordinalPosition: 1
+- name: RECONCILE_ATTRIBUTES.CLI_REP_ATTR
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: RECONCILE_ATTRIBUTES.OP_COMP_ATTR
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 3
+- name: RECONCILE_ATTRIBUTES.OP_REP_ATTR
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 4
+- name: RECONCILE_ATTRIBUTES.TASK_COMP_ATTR
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 5
+- name: RECONCILE_ATTRIBUTES.TASK_REP_ATTR
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 6
+- name: WINDOW_CALENDAR.W
   dataType: REF CURSOR
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   PACKAGE dbms_auto_task AS TYPE window_calendar_entry IS RECORD (
     window_name dba_scheduler_windows.window_name % TYPE,

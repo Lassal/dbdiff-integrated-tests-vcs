@@ -3,50 +3,50 @@ name: DBMS_XA
 routineType: PACKAGE
 returnParamater:
   name: XA_START.(--return--)
-  ordinalPosition: 0
   dataType: BINARY_INTEGER
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: XA_COMMIT.XID
-  ordinalPosition: 1
   dataType: OBJECT
   parameterMode: IN
+  ordinalPosition: 1
 - name: XA_COMMIT.ONEPHASE
-  ordinalPosition: 2
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 2
 - name: XA_END.XID
-  ordinalPosition: 1
   dataType: OBJECT
   parameterMode: IN
+  ordinalPosition: 1
 - name: XA_END.FLAG
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 - name: XA_FORGET.XID
-  ordinalPosition: 1
   dataType: OBJECT
   parameterMode: IN
+  ordinalPosition: 1
 - name: XA_PREPARE.XID
-  ordinalPosition: 1
   dataType: OBJECT
   parameterMode: IN
+  ordinalPosition: 1
 - name: XA_ROLLBACK.XID
-  ordinalPosition: 1
   dataType: OBJECT
   parameterMode: IN
+  ordinalPosition: 1
 - name: XA_SETTIMEOUT.SECONDS
-  ordinalPosition: 1
   dataType: BINARY_INTEGER
   parameterMode: IN
-- name: XA_START.XID
   ordinalPosition: 1
+- name: XA_START.XID
   dataType: OBJECT
   parameterMode: IN
+  ordinalPosition: 1
 - name: XA_START.FLAG
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   PACKAGE dbms_xa AUTHID CURRENT_USER as
   /*

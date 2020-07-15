@@ -3,130 +3,130 @@ name: XDBPM_IMPORT_UTILITIES
 routineType: PACKAGE
 returnParamater:
   name: PATCHXMLREFERENCE.(--return--)
-  ordinalPosition: 0
   dataType: NUMBER
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: CLEARPRINTMODE.P_PRINT_MODE
-  ordinalPosition: 1
   dataType: NUMBER
   parameterMode: IN
-- name: CREATERESOURCE.P_RESOURCE_PATH
   ordinalPosition: 1
+- name: CREATERESOURCE.P_RESOURCE_PATH
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: CREATERESOURCE.P_CONTENT_BLOB
-  ordinalPosition: 2
   dataType: BLOB
   parameterMode: IN
+  ordinalPosition: 2
 - name: CREATERESOURCE.P_DUPLICATE_POLICY
-  ordinalPosition: 3
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 3
 - name: EXPORT.P_PARAMETERS
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
-- name: EXPORT_FILE_AS_SQL.P_RESOURCE_PATH
   ordinalPosition: 1
+- name: EXPORT_FILE_AS_SQL.P_RESOURCE_PATH
   dataType: VARCHAR2
   parameterMode: IN
-- name: EXPORT_FILES_AS_SQL.P_RESOURCE_LIST
   ordinalPosition: 1
+- name: EXPORT_FILES_AS_SQL.P_RESOURCE_LIST
   dataType: VARRAY
   parameterMode: IN
-- name: GETLOBLOCATOR.P_RESOURCE_PATH
   ordinalPosition: 1
+- name: GETLOBLOCATOR.P_RESOURCE_PATH
   dataType: VARCHAR2
   parameterMode: IN
-- name: GETVERSIONDETAILS.P_RESID
   ordinalPosition: 1
+- name: GETVERSIONDETAILS.P_RESID
   dataType: RAW
   parameterMode: IN
+  ordinalPosition: 1
 - name: IMPORT.P_PARAMETERS
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 1
 - name: IMPORTFOLDER.P_RESOURCE_PATH
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: IMPORTLINK.P_LINK_DEFINITION
-  ordinalPosition: 1
   dataType: CLOB
   parameterMode: IN
-- name: IMPORTRESOURCE.P_RESOURCE_PATH
   ordinalPosition: 1
+- name: IMPORTRESOURCE.P_RESOURCE_PATH
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: IMPORTRESOURCE.P_RESOURCE_TEXT
-  ordinalPosition: 2
   dataType: CLOB
   parameterMode: IN
+  ordinalPosition: 2
 - name: MATCHPATH.P_PATH_LIST
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
-- name: PATCHXMLREFERENCE.P_RESOURCE_PATH
   ordinalPosition: 1
+- name: PATCHXMLREFERENCE.P_RESOURCE_PATH
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: PATCHXMLREFERENCE.P_XML_REFERENCE
-  ordinalPosition: 2
   dataType: CLOB
   parameterMode: IN
+  ordinalPosition: 2
 - name: REMOVEACLFOLDER.P_TEMPORARY_ACL_FOLDER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: RESETACLFOLDER.P_TEMPORARY_ACL_FOLDER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: SETDUPLICATEPOLICY.P_DUPLICATE_POLICY
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
-- name: SETPRINTMODE.P_PRINT_MODE
   ordinalPosition: 1
+- name: SETPRINTMODE.P_PRINT_MODE
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 1
 - name: STARTIMPORT.P_DUPLICATE_POLICY
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: STARTIMPORT.P_ROOT_FOLDER
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: UNZIP.P_ZIP_FILE_PATH
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: UNZIP.P_LOG_FILE_PATH
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: UNZIP.P_TARGET_FOLDER
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: UNZIP.P_DUPLICATE_ACTION
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 4
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: UPDATERESOURCE.P_RESOURCE_PATH
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
-- name: UPDATERESOURCE.P_NEW_VALUES
-  ordinalPosition: 2
-  dataType: OPAQUE/XMLTYPE
-  parameterMode: IN
-- name: ZIP.P_PARAMETERS
   ordinalPosition: 1
+- name: UPDATERESOURCE.P_NEW_VALUES
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 2
+- name: ZIP.P_PARAMETERS
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package XDBPM_IMPORT_UTILITIES authid CURRENT_USER as C_LINE_01 constant VARCHAR2(128): = 'declare' || CHR(13) || CHR(10);
   C_LINE_02 constant VARCHAR2(128): = '  V_RESULT  BOOLEAN;' || CHR(13) || CHR(10);

@@ -4,49 +4,49 @@ routineType: PACKAGE
 returnParamater: null
 parameters:
 - name: DISABLE_DEPENDENT.DETAIL_TABLES
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: ENABLE_DEPENDENT.DETAIL_TABLES
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: ESTIMATE_MVIEW_SIZE.STMT_ID
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: ESTIMATE_MVIEW_SIZE.SELECT_CLAUSE
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: ESTIMATE_MVIEW_SIZE.NUM_ROWS
-  ordinalPosition: 3
   dataType: NUMBER
   parameterMode: OUT
+  ordinalPosition: 3
 - name: ESTIMATE_MVIEW_SIZE.NUM_BYTES
-  ordinalPosition: 4
   dataType: NUMBER
   parameterMode: OUT
-- name: SET_LOGFILE_NAME.FILENAME
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: VALIDATE_DIMENSION.DIMENSION_NAME
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: VALIDATE_DIMENSION.DIMENSION_OWNER
-  ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: VALIDATE_DIMENSION.INCREMENTAL
-  ordinalPosition: 3
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-- name: VALIDATE_DIMENSION.CHECK_NULLS
   ordinalPosition: 4
+- name: SET_LOGFILE_NAME.FILENAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: VALIDATE_DIMENSION.DIMENSION_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: VALIDATE_DIMENSION.DIMENSION_OWNER
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: VALIDATE_DIMENSION.INCREMENTAL
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 3
+- name: VALIDATE_DIMENSION.CHECK_NULLS
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+  ordinalPosition: 4
 routineDefinition: |-
   PACKAGE dbms_summary authid current_user
   /*

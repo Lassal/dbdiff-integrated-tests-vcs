@@ -3,42 +3,42 @@ name: UTL_MATCH
 routineType: PACKAGE
 returnParamater:
   name: JARO_WINKLER_SIMILARITY.(--return--)
-  ordinalPosition: 0
   dataType: BINARY_INTEGER
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: EDIT_DISTANCE.S1
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: EDIT_DISTANCE.S2
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: EDIT_DISTANCE_SIMILARITY.S1
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: EDIT_DISTANCE_SIMILARITY.S2
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: JARO_WINKLER.S1
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: JARO_WINKLER.S2
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: JARO_WINKLER_SIMILARITY.S1
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: JARO_WINKLER_SIMILARITY.S2
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   PACKAGE utl_match IS FUNCTION edit_distance(s1 IN VARCHAR2, s2 IN VARCHAR2) RETURN pls_integer;
   PRAGMA interface(c, edit_distance);

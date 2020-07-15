@@ -3,86 +3,86 @@ name: DBMS_LOBUTIL
 routineType: PACKAGE
 returnParamater:
   name: GETLOBMAP(2).(--return--)
-  ordinalPosition: 0
   dataType: OBJECT
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: COPY_PRIMARY_DEDUP(1).LOB_LOC
-  ordinalPosition: 1
   dataType: BLOB
   parameterMode: INOUT
+  ordinalPosition: 1
 - name: COPY_PRIMARY_DEDUP(1).PHASH
+  dataType: RAW
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: RAW
-  parameterMode: IN
 - name: COPY_PRIMARY_DEDUP(1).FHASH
-  ordinalPosition: 3
   dataType: RAW
   parameterMode: IN
+  ordinalPosition: 3
 - name: COPY_PRIMARY_DEDUP(1).SCN
+  dataType: NUMBER
+  parameterMode: IN
   ordinalPosition: 4
-  dataType: NUMBER
-  parameterMode: IN
 - name: COPY_PRIMARY_DEDUP(1).PAR
-  ordinalPosition: 5
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 5
 - name: COPY_PRIMARY_DEDUP(2).LOB_LOC
-  ordinalPosition: 1
   dataType: CLOB
   parameterMode: INOUT
-- name: COPY_PRIMARY_DEDUP(2).PHASH
-  ordinalPosition: 2
-  dataType: RAW
-  parameterMode: IN
-- name: COPY_PRIMARY_DEDUP(2).FHASH
-  ordinalPosition: 3
-  dataType: RAW
-  parameterMode: IN
-- name: COPY_PRIMARY_DEDUP(2).SCN
-  ordinalPosition: 4
-  dataType: NUMBER
-  parameterMode: IN
-- name: COPY_PRIMARY_DEDUP(2).PAR
-  ordinalPosition: 5
-  dataType: NUMBER
-  parameterMode: IN
-- name: GETDEDUPSET(1).LOB_LOC
   ordinalPosition: 1
+- name: COPY_PRIMARY_DEDUP(2).PHASH
+  dataType: RAW
+  parameterMode: IN
+  ordinalPosition: 2
+- name: COPY_PRIMARY_DEDUP(2).FHASH
+  dataType: RAW
+  parameterMode: IN
+  ordinalPosition: 3
+- name: COPY_PRIMARY_DEDUP(2).SCN
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 4
+- name: COPY_PRIMARY_DEDUP(2).PAR
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 5
+- name: GETDEDUPSET(1).LOB_LOC
   dataType: BLOB
   parameterMode: IN
-- name: GETDEDUPSET(2).LOB_LOC
   ordinalPosition: 1
+- name: GETDEDUPSET(2).LOB_LOC
   dataType: CLOB
   parameterMode: IN
-- name: GETEXTENTS.CRS
   ordinalPosition: 1
+- name: GETEXTENTS.CRS
   dataType: REF CURSOR
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETINODE(1).LOB_LOC
-  ordinalPosition: 1
   dataType: BLOB
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETINODE(2).LOB_LOC
-  ordinalPosition: 1
   dataType: CLOB
   parameterMode: IN
-- name: GETLOBMAP(1).LOB_LOC
   ordinalPosition: 1
+- name: GETLOBMAP(1).LOB_LOC
   dataType: BLOB
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETLOBMAP(1).N
-  ordinalPosition: 2
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 2
 - name: GETLOBMAP(2).LOB_LOC
-  ordinalPosition: 1
   dataType: CLOB
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETLOBMAP(2).N
-  ordinalPosition: 2
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   PACKAGE dbms_lobutil AS -- inode query
   FUNCTION getinode(lob_loc IN BLOB) RETURN dbms_lobutil_inode_t DETERMINISTIC;

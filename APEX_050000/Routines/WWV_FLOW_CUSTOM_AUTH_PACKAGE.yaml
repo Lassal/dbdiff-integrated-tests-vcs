@@ -3,34 +3,34 @@ name: WWV_FLOW_CUSTOM_AUTH
 routineType: PACKAGE
 returnParamater:
   name: SESSION_ID_EXISTS.(--return--)
-  ordinalPosition: 0
   dataType: PL/SQL BOOLEAN
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: DEFINE_USER_SESSION.P_USER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: DEFINE_USER_SESSION.P_SESSION_ID
+  dataType: NUMBER
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: NUMBER
-  parameterMode: IN
 - name: FLOW_PAGE_ITEM_EXISTS.P_ITEM_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: REMEMBER_DEEP_LINK.P_URL
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
-- name: SET_SESSION_ID.P_SESSION_ID
   ordinalPosition: 1
+- name: SET_SESSION_ID.P_SESSION_ID
   dataType: NUMBER
   parameterMode: IN
-- name: SET_USER.P_USER
   ordinalPosition: 1
+- name: SET_USER.P_USER
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package wwv_flow_custom_auth as --  Copyright (c) Oracle Corporation 2001-2002. All Rights Reserved.
   --

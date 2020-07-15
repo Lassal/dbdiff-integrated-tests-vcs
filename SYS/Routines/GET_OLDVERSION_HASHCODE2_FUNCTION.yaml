@@ -3,18 +3,18 @@ name: GET_OLDVERSION_HASHCODE2
 routineType: FUNCTION
 returnParamater:
   name: (--return--)
-  ordinalPosition: 0
   dataType: RAW
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: TOID
-  ordinalPosition: 1
   dataType: RAW
   parameterMode: IN
+  ordinalPosition: 1
 - name: VSN
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   FUNCTION get_oldversion_hashcode2 (toid raw, vsn pls_integer) return raw is LANGUAGE C NAME "GET_OLDVSN_HASHCODE2" LIBRARY UTL_OBJECTS_LIB parameters(
     toid RAW,

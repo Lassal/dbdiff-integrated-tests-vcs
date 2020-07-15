@@ -4,17 +4,17 @@ routineType: PACKAGE
 returnParamater: null
 parameters:
 - name: UPDATEIMAGEMETADATA.P_RESID
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: UPDATEIMAGEMETADATA.P_TITLE
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: OPAQUE/XMLTYPE
-  parameterMode: IN
 - name: UPDATEIMAGEMETADATA.P_DESCRIPTION
-  ordinalPosition: 3
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 3
 routineDefinition: |-
   package METADATA_SERVICES AUTHID CURRENT_USER as procedure UPDATEIMAGEMETADATA(
     P_RESID VARCHAR2,

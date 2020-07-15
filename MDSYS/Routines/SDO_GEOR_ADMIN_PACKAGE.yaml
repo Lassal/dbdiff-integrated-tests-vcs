@@ -3,22 +3,22 @@ name: SDO_GEOR_ADMIN
 routineType: PACKAGE
 returnParamater:
   name: UPGRADEGEORASTER.(--return--)
-  ordinalPosition: 0
   dataType: VARRAY
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: CREATEDMLTRIGGER.TABLENAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: CREATEDMLTRIGGER.COLUMNNAME
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: ISRDTNAMEUNIQUE.RDTNAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   PACKAGE SDO_GEOR_ADMIN AUTHID CURRENT_USER AS -- ---------------------------------------------------------------------
   --      procedure to create DML triggers on a georaster table

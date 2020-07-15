@@ -4,50 +4,50 @@ routineType: PACKAGE
 returnParamater: null
 parameters:
 - name: DEQUEUE_LOG_RECORD.CONTEXT
+  dataType: RAW
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: RAW
-  parameterMode: IN
 - name: DEQUEUE_LOG_RECORD.REGINFO
+  dataType: OBJECT
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: OBJECT
-  parameterMode: IN
 - name: DEQUEUE_LOG_RECORD.DESCR
-  ordinalPosition: 3
   dataType: OBJECT
   parameterMode: IN
+  ordinalPosition: 3
 - name: DEQUEUE_LOG_RECORD.PAYLOAD
-  ordinalPosition: 4
   dataType: RAW
   parameterMode: IN
+  ordinalPosition: 4
 - name: DEQUEUE_LOG_RECORD.PAYLOADL
-  ordinalPosition: 5
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 5
 - name: ENQUEUE_LOG_RECORD.LOG_RECORD
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 1
 - name: FOLDER_LOG_RECORD.LOG_RECORD_XML
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
-- name: PROCESSLOGRECORD.P_XMLREF
   ordinalPosition: 1
+- name: PROCESSLOGRECORD.P_XMLREF
   dataType: REF
   parameterMode: IN
+  ordinalPosition: 1
 - name: PROCESSLOGRECORD.P_USER
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: PROCESSLOGRECORD.P_TIMESTAMP
-  ordinalPosition: 3
   dataType: TIMESTAMP WITH TIME ZONE
   numericPrecision: 6
   parameterMode: IN
+  ordinalPosition: 3
 - name: PROCESSLOGRECORD.P_LOG_RECORD_TYPE
-  ordinalPosition: 4
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 4
 routineDefinition: |-
   package XFILES_LOGWRITER AUTHID DEFINER as procedure ENQUEUE_LOG_RECORD(LOG_RECORD XMLTYPE);
   procedure DEQUEUE_LOG_RECORD(

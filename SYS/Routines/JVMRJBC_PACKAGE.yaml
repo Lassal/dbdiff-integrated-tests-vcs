@@ -3,38 +3,38 @@ name: JVMRJBC
 routineType: PACKAGE
 returnParamater:
   name: INIT.(--return--)
-  ordinalPosition: 0
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: DONE.SESSID
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETLOB.SESSID
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETPATH.SESSID
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: PUTLOB.SESSID
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: PUTLOB.L
-  ordinalPosition: 2
   dataType: BLOB
   parameterMode: IN
-- name: PUTPATH.SESSID
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: PUTPATH.PATHNAME
   ordinalPosition: 2
+- name: PUTPATH.SESSID
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
+- name: PUTPATH.PATHNAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   package jvmrjbc as -- this package is definers
   function init return VARCHAR2;

@@ -3,15 +3,15 @@ name: TIMESTAMP_TO_SCN
 routineType: FUNCTION
 returnParamater:
   name: (--return--)
-  ordinalPosition: 0
   dataType: NUMBER
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: QUERY_TIME
-  ordinalPosition: 1
   dataType: TIMESTAMP
   numericPrecision: 6
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   function timestamp_to_scn(query_time IN TIMESTAMP) return NUMBER IS EXTERNAL NAME "ktfexttoscn" WITH CONTEXT PARAMETERS(
     context,

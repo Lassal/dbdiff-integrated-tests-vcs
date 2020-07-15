@@ -3,50 +3,50 @@ name: XDBPM_DOM_UTILITIES
 routineType: PACKAGE
 returnParamater:
   name: VARCHAR_TO_RAW.(--return--)
-  ordinalPosition: 0
   dataType: RAW
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: BOOLEAN_TO_RAW.INPUT
-  ordinalPosition: 1
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 1
 - name: BOOLEAN_TO_VARCHAR.INPUT
-  ordinalPosition: 1
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETBOOLEANVALUE.PARENT
-  ordinalPosition: 1
   dataType: PL/SQL RECORD
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETBOOLEANVALUE.CHILD
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: GETTEXTNODEVALUE.PARENT
-  ordinalPosition: 1
   dataType: PL/SQL RECORD
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETTEXTNODEVALUE.CHILD
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: RAW_TO_BOOLEAN.INPUT
-  ordinalPosition: 1
   dataType: RAW
   parameterMode: IN
+  ordinalPosition: 1
 - name: RAW_TO_VARCHAR.INPUT
-  ordinalPosition: 1
   dataType: RAW
   parameterMode: IN
+  ordinalPosition: 1
 - name: VARCHAR_TO_BOOLEAN.INPUT
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: VARCHAR_TO_RAW.INPUT
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package XDBPM_DOM_UTILITIES authid CURRENT_USER as function boolean_to_varchar(input boolean) return varchar2 deterministic;
   function raw_to_varchar(input raw) return varchar2 deterministic;

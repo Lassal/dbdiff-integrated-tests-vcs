@@ -3,14 +3,14 @@ name: DBMS_XQUERY
 routineType: PACKAGE
 returnParamater:
   name: EVAL.(--return--)
-  ordinalPosition: 0
   dataType: OPAQUE/XMLTYPE
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: EVAL.XQRY
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package dbms_xquery authid current_user is FUNCTION eval(xqry varchar2) return xmltype;
   end;

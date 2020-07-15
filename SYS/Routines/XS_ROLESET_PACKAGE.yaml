@@ -4,65 +4,65 @@ routineType: PACKAGE
 returnParamater: null
 parameters:
 - name: ADD_ROLES(1).ROLE_SET
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: ADD_ROLES(1).ROLE
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: ADD_ROLES(2).ROLE_SET
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: ADD_ROLES(2).ROLE_LIST
-  ordinalPosition: 2
   dataType: VARRAY
   parameterMode: IN
+  ordinalPosition: 2
 - name: CREATE_ROLESET.NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: CREATE_ROLESET.ROLE_LIST
-  ordinalPosition: 2
   dataType: VARRAY
   parameterMode: IN
+  ordinalPosition: 2
 - name: CREATE_ROLESET.DESCRIPTION
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: DELETE_ROLESET.ROLE_SET
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: REMOVE_ROLES(1).ROLE_SET
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: REMOVE_ROLES(2).ROLE_SET
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: REMOVE_ROLES(2).ROLE
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: REMOVE_ROLES(3).ROLE_SET
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: REMOVE_ROLES(3).ROLE_LIST
-  ordinalPosition: 2
   dataType: VARRAY
   parameterMode: IN
-- name: SET_DESCRIPTION.ROLE_SET
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: SET_DESCRIPTION.DESCRIPTION
   ordinalPosition: 2
+- name: SET_DESCRIPTION.ROLE_SET
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
+- name: SET_DESCRIPTION.DESCRIPTION
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   PACKAGE XS_ROLESET AUTHID CURRENT_USER AS -- Enable log based replication for this package
   PRAGMA SUPPLEMENTAL_LOG_DATA(default, AUTO);

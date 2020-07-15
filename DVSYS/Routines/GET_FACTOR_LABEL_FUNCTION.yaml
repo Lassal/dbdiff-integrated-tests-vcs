@@ -3,18 +3,18 @@ name: GET_FACTOR_LABEL
 routineType: FUNCTION
 returnParamater:
   name: (--return--)
-  ordinalPosition: 0
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: P_FACTOR
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: P_POLICY_NAME
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   FUNCTION get_factor_label (p_factor IN VARCHAR2, p_policy_name IN VARCHAR2) RETURN VARCHAR2 IS
   BEGIN

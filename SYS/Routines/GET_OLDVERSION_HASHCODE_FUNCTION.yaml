@@ -3,26 +3,26 @@ name: GET_OLDVERSION_HASHCODE
 routineType: FUNCTION
 returnParamater:
   name: (--return--)
-  ordinalPosition: 0
   dataType: RAW
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: SCHEMA
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: SLEN
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 - name: TYPENAME
-  ordinalPosition: 3
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 3
 - name: TLEN
-  ordinalPosition: 4
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 4
 routineDefinition: |-
   FUNCTION get_oldversion_hashcode (
     schema varchar2,

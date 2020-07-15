@@ -3,91 +3,91 @@ name: XDBPM_XMLSCHEMA_UTILITIES
 routineType: PACKAGE
 returnParamater:
   name: PRINTNESTEDTABLES.(--return--)
-  ordinalPosition: 0
   dataType: OPAQUE/XMLTYPE
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: CLEANUPSCHEMA.P_OWNER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: COMPLETEBULKLOAD.P_TABLE_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: COMPLETEBULKLOAD.P_OWNER
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: DELETEORPHANTYPES.P_REGISTRATION_DATE
-  ordinalPosition: 1
   dataType: TIMESTAMP
   numericPrecision: 6
   parameterMode: IN
+  ordinalPosition: 1
 - name: DISABLETABLENONROOTELEMENTS.P_XML_SCHEMA
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: INOUT
+  ordinalPosition: 1
 - name: DISABLETABLEREFERENCEDELEMENTS.P_XML_SCHEMA
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: INOUT
+  ordinalPosition: 1
 - name: DISABLETABLESUBGROUPMEMBERS.P_XML_SCHEMA
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: INOUT
+  ordinalPosition: 1
 - name: GENERATECREATETABLESTATEMENT.XML_TABLE_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GENERATECREATETABLESTATEMENT.NEW_TABLE_NAME
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: GENERATECYCLEREPORT.P_RESOURCE_PATH
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GENERATESCHEMAFROMTABLE.P_TABLE_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GENERATESCHEMAFROMTABLE.P_OWNER
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: GETDEFAULTTABLENAME.P_RESOURCE_PATH
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: INDEXXMLREFERENCES.INDEX_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: PREPAREBULKLOAD.P_TABLE_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: PREPAREBULKLOAD.P_OWNER
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: PRINTNESTEDTABLES.XML_TABLE
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: RENAMECOLLECTIONTABLE.XMLTABLE
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: RENAMECOLLECTIONTABLE.XPATH
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: RENAMECOLLECTIONTABLE.COLLECTION_TABLE_PREFIX
-  ordinalPosition: 3
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 3
 routineDefinition: |-
   package XDBPM_XMLSCHEMA_UTILITIES authid CURRENT_USER as procedure scopeXMLReferences;
   procedure indexXMLReferences(INDEX_NAME VARCHAR2);

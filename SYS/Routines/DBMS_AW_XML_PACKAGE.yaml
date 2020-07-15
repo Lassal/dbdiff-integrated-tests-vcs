@@ -3,38 +3,38 @@ name: DBMS_AW_XML
 routineType: PACKAGE
 returnParamater:
   name: READAWMETADATA.(--return--)
-  ordinalPosition: 0
   dataType: VARRAY
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: EXECUTE.INPUT
-  ordinalPosition: 1
   dataType: CLOB
   parameterMode: IN
+  ordinalPosition: 1
 - name: EXECUTEFILE.DIRNAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: EXECUTEFILE.FNAME
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: READAWMETADATA.INPUT
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: READAWMETADATA.INPUT2
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
-- name: READAWMETADATA1.BYTEPARAMS
-  ordinalPosition: 1
-  dataType: VARRAY
-  parameterMode: INOUT
-- name: READAWMETADATA1.WSTRPARAMS
   ordinalPosition: 2
+- name: READAWMETADATA1.BYTEPARAMS
   dataType: VARRAY
   parameterMode: INOUT
+  ordinalPosition: 1
+- name: READAWMETADATA1.WSTRPARAMS
+  dataType: VARRAY
+  parameterMode: INOUT
+  ordinalPosition: 2
 routineDefinition: |-
   PACKAGE dbms_aw_xml AUTHID CURRENT_USER AS FUNCTION execute(input IN CLOB) RETURN VARCHAR2;
   FUNCTION readAWMetadata(input varchar2, input2 varchar2) RETURN GENWSTRINGSEQUENCE;

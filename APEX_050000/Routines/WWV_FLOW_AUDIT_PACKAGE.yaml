@@ -4,25 +4,25 @@ routineType: PACKAGE
 returnParamater: null
 parameters:
 - name: AUDIT_ACTION.P_TABLE_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: AUDIT_ACTION.P_ACTION
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: AUDIT_ACTION.P_TABLE_PK
-  ordinalPosition: 3
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 3
 - name: AUDIT_ACTION.P_OBJECT_NAME
-  ordinalPosition: 4
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 4
 - name: REMOVE_AUDIT_TRAIL.P_FLOW_ID
-  ordinalPosition: 1
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package wwv_flow_audit as g_cascade boolean: = false;
   procedure audit_action (

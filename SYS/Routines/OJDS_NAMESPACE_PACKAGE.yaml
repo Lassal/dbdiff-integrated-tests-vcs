@@ -3,14 +3,14 @@ name: OJDS_NAMESPACE
 routineType: PACKAGE
 returnParamater:
   name: READ.(--return--)
-  ordinalPosition: 0
   dataType: LONG RAW
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: WRITE.BYTES
-  ordinalPosition: 1
   dataType: LONG RAW
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package ojds_namespace authid current_user as -- Write the serialized command
   procedure write(bytes long raw);

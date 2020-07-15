@@ -3,26 +3,26 @@ name: XDBPM_SQLLDR_INTERFACE
 routineType: PACKAGE
 returnParamater:
   name: UPLOAD_RESOURCE.(--return--)
-  ordinalPosition: 0
   dataType: NUMBER
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: UPLOAD_RESOURCE.P_RESOURCE_PATH
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: UPLOAD_RESOURCE.P_CREATE_FOLDER
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: UPLOAD_RESOURCE.P_CONTENT
-  ordinalPosition: 3
   dataType: BLOB
   parameterMode: IN
+  ordinalPosition: 3
 - name: UPLOAD_RESOURCE.P_DUPLICATE_POLICY
-  ordinalPosition: 4
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 4
 routineDefinition: |-
   package XDBPM_SQLLDR_INTERFACE authid CURRENT_USER as function UPLOAD_RESOURCE(
     P_RESOURCE_PATH VARCHAR2,
