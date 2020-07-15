@@ -3,19 +3,19 @@ name: XDBPM_MONITOR
 routineType: PACKAGE
 returnParamater:
   name: GETTIME.(--return--)
-  ordinalPosition: 0
   dataType: TIMESTAMP
   numericPrecision: 6
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: GETLOBUSAGE.STATS
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETTIME.STATS
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package XDBPM_MONITOR authid DEFINER as TYPE SESSION_STATISTICS_T is RECORD (
     TIME timestamp,

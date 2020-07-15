@@ -3,70 +3,70 @@ name: XS_DIAG
 routineType: PACKAGE
 returnParamater:
   name: VALIDATE_WORKSPACE.(--return--)
-  ordinalPosition: 0
   dataType: PL/SQL BOOLEAN
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: VALIDATE_ACL.NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: VALIDATE_ACL.ERROR_LIMIT
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 - name: VALIDATE_DATA_SECURITY.POLICY
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: VALIDATE_DATA_SECURITY.TABLE_OWNER
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: VALIDATE_DATA_SECURITY.TABLE_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: VALIDATE_DATA_SECURITY.ERROR_LIMIT
+  dataType: BINARY_INTEGER
+  parameterMode: IN
   ordinalPosition: 4
-  dataType: BINARY_INTEGER
-  parameterMode: IN
 - name: VALIDATE_NAMESPACE_TEMPLATE.NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: VALIDATE_NAMESPACE_TEMPLATE.ERROR_LIMIT
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 - name: VALIDATE_PRINCIPAL.NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: VALIDATE_PRINCIPAL.ERROR_LIMIT
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 - name: VALIDATE_ROLESET.NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: VALIDATE_ROLESET.ERROR_LIMIT
-  ordinalPosition: 2
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
 - name: VALIDATE_SECURITY_CLASS.NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
-- name: VALIDATE_SECURITY_CLASS.ERROR_LIMIT
-  ordinalPosition: 2
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-- name: VALIDATE_WORKSPACE.ERROR_LIMIT
   ordinalPosition: 1
+- name: VALIDATE_SECURITY_CLASS.ERROR_LIMIT
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 2
+- name: VALIDATE_WORKSPACE.ERROR_LIMIT
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: "PACKAGE XS_DIAG AUTHID CURRENT_USER AS -- Exeption when maximum\
   \ number of messages allowed is set to be less than 1.\nERR_INVALID_MSG_MAX CONSTANT\
   \ NUMBER: = -20028;\nEXCP_INVALID_MSG_MAX\nEXCEPTION;\nPRAGMA EXCEPTION_INIT(EXCP_INVALID_MSG_MAX,\

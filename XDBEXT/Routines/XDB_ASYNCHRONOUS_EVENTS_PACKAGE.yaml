@@ -4,29 +4,29 @@ routineType: PACKAGE
 returnParamater: null
 parameters:
 - name: DEQUEUE_EVENT.CONTEXT
+  dataType: RAW
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: RAW
-  parameterMode: IN
 - name: DEQUEUE_EVENT.REGINFO
+  dataType: OBJECT
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: OBJECT
-  parameterMode: IN
 - name: DEQUEUE_EVENT.DESCR
-  ordinalPosition: 3
   dataType: OBJECT
   parameterMode: IN
+  ordinalPosition: 3
 - name: DEQUEUE_EVENT.PAYLOAD
-  ordinalPosition: 4
   dataType: RAW
   parameterMode: IN
+  ordinalPosition: 4
 - name: DEQUEUE_EVENT.PAYLOADL
-  ordinalPosition: 5
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 5
 - name: ENQUEUE_EVENT.PAYLOAD
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package XDB_ASYNCHRONOUS_EVENTS as procedure ENQUEUE_EVENT(payload xmltype);
   procedure DEQUEUE_EVENT(

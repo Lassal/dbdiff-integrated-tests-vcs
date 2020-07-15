@@ -3,14 +3,14 @@ name: GET_ERROR$
 routineType: PACKAGE
 returnParamater:
   name: ERROR_LINES.(--return--)
-  ordinalPosition: 0
   dataType: REF CURSOR
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: ERROR_LINES.CLASSNAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package get_error$ as type myrec is record (errormsg varchar(4000));
   type myrctype is ref cursor return myrec;

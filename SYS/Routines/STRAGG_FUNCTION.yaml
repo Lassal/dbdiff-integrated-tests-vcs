@@ -3,13 +3,13 @@ name: STRAGG
 routineType: FUNCTION
 returnParamater:
   name: (--return--)
-  ordinalPosition: 0
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: INPUT
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: FUNCTION stragg(input varchar2) RETURN varchar2 AGGREGATE USING
   string_agg_type;

@@ -3,22 +3,22 @@ name: SDO_OLS_ROUTE
 routineType: PACKAGE
 returnParamater:
   name: MANEUVERORACLETOOPENLS.(--return--)
-  ordinalPosition: 0
   dataType: OPAQUE/XMLTYPE
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: MAKEOPENLS10REQUEST.REQUEST
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 1
 - name: MANEUVERORACLETOOPENLS.ORACLE
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 1
 - name: MANEUVERORACLETOOPENLS.OPENLS_VERSION
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   PACKAGE sdo_ols_route AUTHID current_user AS FUNCTION maneuverOracleToOpenLS(
     oracle XMLTYPE,

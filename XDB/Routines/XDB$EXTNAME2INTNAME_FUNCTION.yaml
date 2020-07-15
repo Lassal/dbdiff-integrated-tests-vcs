@@ -3,18 +3,18 @@ name: XDB$EXTNAME2INTNAME
 routineType: FUNCTION
 returnParamater:
   name: (--return--)
-  ordinalPosition: 0
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: SCHEMAURL
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: SCHEMAOWNER
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   function xdb$ExtName2IntName (
     schemaURL IN VARCHAR2,

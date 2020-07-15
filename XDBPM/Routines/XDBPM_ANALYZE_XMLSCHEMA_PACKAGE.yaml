@@ -3,58 +3,58 @@ name: XDBPM_ANALYZE_XMLSCHEMA
 routineType: PACKAGE
 returnParamater:
   name: SHOWSQLTYPES.(--return--)
-  ordinalPosition: 0
   dataType: OPAQUE/XMLTYPE
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: ANALYZECOMPLEXTYPE(1).P_COMPLEX_TYPE_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: ANALYZECOMPLEXTYPE(2).P_COMPLEX_TYPE_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: ANALYZECOMPLEXTYPE(2).P_SCHEMA_URL
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: ANALYZEGLOBALELEMENT(1).P_GLOBAL_ELEMENT_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: ANALYZEGLOBALELEMENT(2).P_GLOBAL_ELEMENT_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: ANALYZEGLOBALELEMENT(2).P_SCHEMA_URL
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: ANALYZETYPEHIERARCHY(1).P_GLOBAL_OBJECT_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: ANALYZETYPEHIERARCHY(2).P_GLOBAL_OBJECT_NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: ANALYZETYPEHIERARCHY(2).P_SCHEMA_URL
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: GETCOMPLEXTYPEELEMENTLIST.P_SQLTYPE
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETCOMPLEXTYPEELEMENTLIST.P_SQLSCHEMA
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: SHOWSQLTYPES.SCHEMAFOLDER
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: |-
   package XDBPM_ANALYZE_XMLSCHEMA authid CURRENT_USER as function analyzeTypeHierarchy(P_GLOBAL_OBJECT_NAME VARCHAR2) return XMLTYPE;
   function analyzeTypeHierarchy(

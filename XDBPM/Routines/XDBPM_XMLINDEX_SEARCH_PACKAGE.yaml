@@ -3,38 +3,38 @@ name: XDBPM_XMLINDEX_SEARCH
 routineType: PACKAGE
 returnParamater:
   name: GETROOTNODEMAP.(--return--)
-  ordinalPosition: 0
   dataType: OPAQUE/XMLTYPE
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: GETCHILDNODEMAP.PATHID
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETCHILDNODEMAP.PATHTABLENAME
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: GETCHILDNODEMAP.PATHTABLEOWNER
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: GETPATHIDLENGTH.PATHID
-  ordinalPosition: 1
   dataType: RAW
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETPATHIDPARENT.PATHID
-  ordinalPosition: 1
   dataType: RAW
   parameterMode: IN
-- name: GETROOTNODEMAP.PATHTABLENAME
   ordinalPosition: 1
+- name: GETROOTNODEMAP.PATHTABLENAME
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETROOTNODEMAP.PATHTABLEOWNER
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   package XDBPM_XMLINDEX_SEARCH authid CURRENT_USER as function getRootNodeMap(pathTableName VARCHAR2, pathTableOwner VARCHAR2) return xmlType;
   function getChildNodeMap(

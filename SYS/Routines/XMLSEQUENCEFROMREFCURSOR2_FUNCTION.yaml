@@ -3,13 +3,13 @@ name: XMLSEQUENCEFROMREFCURSOR2
 routineType: FUNCTION
 returnParamater:
   name: (--return--)
-  ordinalPosition: 0
   dataType: VARRAY
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: DATA
-  ordinalPosition: 1
   dataType: REF CURSOR
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: function XMLSequenceFromRefCursor2(data SYS_REFCURSOR) return sys.XMLSequenceType
   authid current_user pipelined using XMLSeqCur2_Imp_t;

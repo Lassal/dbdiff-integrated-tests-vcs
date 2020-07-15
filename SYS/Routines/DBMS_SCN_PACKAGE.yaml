@@ -3,58 +3,58 @@ name: DBMS_SCN
 routineType: PACKAGE
 returnParamater:
   name: GETSCNPARAMSBYCOMPAT.(--return--)
-  ordinalPosition: 0
   dataType: PL/SQL BOOLEAN
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: GETCURRENTSCNPARAMS.RSL
-  ordinalPosition: 1
   dataType: NUMBER
   parameterMode: OUT
+  ordinalPosition: 1
 - name: GETCURRENTSCNPARAMS.HEADROOM_IN_SCN
+  dataType: NUMBER
+  parameterMode: OUT
   ordinalPosition: 2
-  dataType: NUMBER
-  parameterMode: OUT
 - name: GETCURRENTSCNPARAMS.HEADROOM_IN_SEC
+  dataType: NUMBER
+  parameterMode: OUT
   ordinalPosition: 3
-  dataType: NUMBER
-  parameterMode: OUT
 - name: GETCURRENTSCNPARAMS.CUR_SCN_COMPAT
+  dataType: NUMBER
+  parameterMode: OUT
   ordinalPosition: 4
-  dataType: NUMBER
-  parameterMode: OUT
 - name: GETCURRENTSCNPARAMS.MAX_SCN_COMPAT
-  ordinalPosition: 5
   dataType: NUMBER
   parameterMode: OUT
+  ordinalPosition: 5
 - name: GETSCNAUTOROLLOVERPARAMS.EFFECTIVE_AUTO_ROLLOVER_TS
-  ordinalPosition: 1
   dataType: DATE
   parameterMode: OUT
+  ordinalPosition: 1
 - name: GETSCNAUTOROLLOVERPARAMS.TARGET_COMPAT
-  ordinalPosition: 2
   dataType: NUMBER
   parameterMode: OUT
+  ordinalPosition: 2
 - name: GETSCNAUTOROLLOVERPARAMS.IS_ENABLED
-  ordinalPosition: 3
   dataType: PL/SQL BOOLEAN
   parameterMode: OUT
+  ordinalPosition: 3
 - name: GETSCNPARAMSBYCOMPAT.COMPAT
-  ordinalPosition: 1
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 1
 - name: GETSCNPARAMSBYCOMPAT.RSL
+  dataType: NUMBER
+  parameterMode: OUT
   ordinalPosition: 2
-  dataType: NUMBER
-  parameterMode: OUT
 - name: GETSCNPARAMSBYCOMPAT.HEADROOM_IN_SCN
+  dataType: NUMBER
+  parameterMode: OUT
   ordinalPosition: 3
-  dataType: NUMBER
-  parameterMode: OUT
 - name: GETSCNPARAMSBYCOMPAT.HEADROOM_IN_SEC
-  ordinalPosition: 4
   dataType: NUMBER
   parameterMode: OUT
+  ordinalPosition: 4
 routineDefinition: |-
   PACKAGE DBMS_SCN AUTHID CURRENT_USER IS DBMS_SCN_API_MAJOR_VERSION CONSTANT NUMBER: = 1;
   DBMS_SCN_API_MINOR_VERSION CONSTANT NUMBER: = 0;

@@ -3,13 +3,13 @@ name: SYS_NT_COLLECT
 routineType: FUNCTION
 returnParamater:
   name: (--return--)
-  ordinalPosition: 0
   dataType: OPAQUE/XMLTYPE
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: OBJ
-  ordinalPosition: 1
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 1
 routineDefinition: function SYS_NT_COLLECT(obj IN AnyData) return sys.AnyDataSet parallel_enable
   aggregate using SYS_NT_COLLECT_IMP;

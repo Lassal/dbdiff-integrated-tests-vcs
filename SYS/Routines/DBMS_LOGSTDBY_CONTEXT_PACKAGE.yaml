@@ -4,25 +4,25 @@ routineType: PACKAGE
 returnParamater: null
 parameters:
 - name: CLEAR_CONTEXT.NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GET_CONTEXT.NAME
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: GET_CONTEXT.VALUE
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: OUT
-- name: SET_CONTEXT.NAME
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: SET_CONTEXT.VALUE
   ordinalPosition: 2
+- name: SET_CONTEXT.NAME
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
+- name: SET_CONTEXT.VALUE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   PACKAGE dbms_logstdby_context AS PROCEDURE set_context(name IN VARCHAR2, value IN VARCHAR2);
   PROCEDURE get_context(name IN VARCHAR2, value OUT VARCHAR2);

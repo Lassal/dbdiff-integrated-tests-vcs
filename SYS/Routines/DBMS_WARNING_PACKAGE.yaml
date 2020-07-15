@@ -3,54 +3,54 @@ name: DBMS_WARNING
 routineType: PACKAGE
 returnParamater:
   name: GET_WARNING_SETTING_STRING.(--return--)
-  ordinalPosition: 0
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: ADD_WARNING_SETTING_CAT.WARNING_CATEGORY
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: ADD_WARNING_SETTING_CAT.WARNING_VALUE
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: ADD_WARNING_SETTING_CAT.SCOPE
-  ordinalPosition: 3
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 3
 - name: ADD_WARNING_SETTING_NUM.WARNING_NUMBER
-  ordinalPosition: 1
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 1
 - name: ADD_WARNING_SETTING_NUM.WARNING_VALUE
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: ADD_WARNING_SETTING_NUM.SCOPE
+  dataType: VARCHAR2
+  parameterMode: IN
   ordinalPosition: 3
-  dataType: VARCHAR2
-  parameterMode: IN
 - name: GET_CATEGORY.WARNING_NUMBER
-  ordinalPosition: 1
   dataType: BINARY_INTEGER
   parameterMode: IN
+  ordinalPosition: 1
 - name: GET_WARNING_SETTING_CAT.WARNING_CATEGORY
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
-- name: GET_WARNING_SETTING_NUM.WARNING_NUMBER
   ordinalPosition: 1
+- name: GET_WARNING_SETTING_NUM.WARNING_NUMBER
   dataType: BINARY_INTEGER
   parameterMode: IN
-- name: SET_WARNING_SETTING_STRING.VALUE
   ordinalPosition: 1
+- name: SET_WARNING_SETTING_STRING.VALUE
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: SET_WARNING_SETTING_STRING.SCOPE
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   PACKAGE dbms_warning AUTHID CURRENT_USER AS
   /*

@@ -3,45 +3,45 @@ name: DBMS_EDITIONS_UTILITIES
 routineType: PACKAGE
 returnParamater:
   name: COMPARE_EDITION.(--return--)
-  ordinalPosition: 0
   dataType: NUMBER
   numericPrecision: 38
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: COMPARE_EDITION.ED1OBJN
-  ordinalPosition: 1
   dataType: NUMBER
   numericPrecision: 38
   parameterMode: IN
+  ordinalPosition: 1
 - name: COMPARE_EDITION.ED2OBJN
-  ordinalPosition: 2
   dataType: NUMBER
   numericPrecision: 38
   parameterMode: IN
-- name: SET_EDITIONING_VIEWS_READ_ONLY.TABLE_NAME
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: SET_EDITIONING_VIEWS_READ_ONLY.OWNER
   ordinalPosition: 2
+- name: SET_EDITIONING_VIEWS_READ_ONLY.TABLE_NAME
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
+- name: SET_EDITIONING_VIEWS_READ_ONLY.OWNER
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 - name: SET_EDITIONING_VIEWS_READ_ONLY.READ_ONLY
-  ordinalPosition: 3
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
-- name: SET_NULL_COLUMN_VALUES_TO_EXPR.TABLE_NAME
-  ordinalPosition: 1
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: SET_NULL_COLUMN_VALUES_TO_EXPR.COLUMN_NAME
-  ordinalPosition: 2
-  dataType: VARCHAR2
-  parameterMode: IN
-- name: SET_NULL_COLUMN_VALUES_TO_EXPR.EXPRESSION
   ordinalPosition: 3
+- name: SET_NULL_COLUMN_VALUES_TO_EXPR.TABLE_NAME
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
+- name: SET_NULL_COLUMN_VALUES_TO_EXPR.COLUMN_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SET_NULL_COLUMN_VALUES_TO_EXPR.EXPRESSION
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
 routineDefinition: "PACKAGE dbms_editions_utilities AUTHID CURRENT_USER AS ---------------------------------------------------------------------\n\
   -- Overview\n-- This pkg implements the Edition API, which provides helper function\n\
   -- for edition related operations\n---------------------------------------------------------------------\n\

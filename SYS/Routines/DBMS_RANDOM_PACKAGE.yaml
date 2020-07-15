@@ -3,42 +3,42 @@ name: DBMS_RANDOM
 routineType: PACKAGE
 returnParamater:
   name: VALUE(2).(--return--)
-  ordinalPosition: 0
   dataType: NUMBER
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: INITIALIZE.VAL
-  ordinalPosition: 1
   dataType: BINARY_INTEGER
   parameterMode: IN
-- name: RECORD_RANDOM_NUMBER.VAL
   ordinalPosition: 1
+- name: RECORD_RANDOM_NUMBER.VAL
   dataType: NUMBER
   parameterMode: IN
-- name: SEED(1).VAL
   ordinalPosition: 1
+- name: SEED(1).VAL
   dataType: BINARY_INTEGER
   parameterMode: IN
-- name: SEED(2).VAL
   ordinalPosition: 1
+- name: SEED(2).VAL
   dataType: VARCHAR2
   parameterMode: IN
-- name: STRING.OPT
   ordinalPosition: 1
+- name: STRING.OPT
   dataType: CHAR
   parameterMode: IN
-- name: STRING.LEN
-  ordinalPosition: 2
-  dataType: NUMBER
-  parameterMode: IN
-- name: VALUE(2).LOW
   ordinalPosition: 1
+- name: STRING.LEN
   dataType: NUMBER
   parameterMode: IN
-- name: VALUE(2).HIGH
   ordinalPosition: 2
+- name: VALUE(2).LOW
   dataType: NUMBER
   parameterMode: IN
+  ordinalPosition: 1
+- name: VALUE(2).HIGH
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   PACKAGE dbms_random AUTHID DEFINER AS ------------
   --  OVERVIEW

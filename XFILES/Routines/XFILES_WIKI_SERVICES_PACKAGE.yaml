@@ -3,26 +3,26 @@ name: XFILES_WIKI_SERVICES
 routineType: PACKAGE
 returnParamater:
   name: SCHEMAURL_XFILES_WIKI.(--return--)
-  ordinalPosition: 0
   dataType: VARCHAR2
   parameterMode: OUT
+  ordinalPosition: 0
 parameters:
 - name: CREATEWIKIPAGE.P_RESOURCE_PATH
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: CREATEWIKIPAGE.P_COMMENT
-  ordinalPosition: 2
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 2
 - name: UPDATEWIKIPAGE.P_RESOURCE_PATH
-  ordinalPosition: 1
   dataType: VARCHAR2
   parameterMode: IN
+  ordinalPosition: 1
 - name: UPDATEWIKIPAGE.P_CONTENTS
-  ordinalPosition: 2
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   package XFILES_WIKI_SERVICES AUTHID CURRENT_USER as C_NAMESPACE_XFILES_WIKI constant VARCHAR2(128): = XFILES_CONSTANTS.NAMESPACE_XFILES || '/wiki';
   C_NSPREFIX_XFILES_WIKI_WIKI constant VARCHAR2(128): = 'xmlns:wiki="' || C_NAMESPACE_XFILES_WIKI || '"';
