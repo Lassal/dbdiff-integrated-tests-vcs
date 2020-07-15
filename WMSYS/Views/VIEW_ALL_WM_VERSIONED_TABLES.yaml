@@ -2,6 +2,8 @@ schema: WMSYS
 name: ALL_WM_VERSIONED_TABLES
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ LEADING(t) */
@@ -38,5 +40,3 @@ viewDefinition: |-
   where
     t.table_name = at .table_name
     and t.owner = at .owner WITH READ ONLY
-columns: []
-referencedTables: []

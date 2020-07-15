@@ -2,6 +2,8 @@ schema: SYS
 name: USER_EDITIONING_VIEWS_AE
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     ev_obj.name,
@@ -16,5 +18,3 @@ viewDefinition: |-
     ev_obj.obj# = ev.ev_obj#
     /* ensure that the EV belongs to the current schema */
     and ev_obj.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

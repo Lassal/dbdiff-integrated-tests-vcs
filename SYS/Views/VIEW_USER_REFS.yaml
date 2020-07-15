@@ -2,6 +2,8 @@ schema: SYS
 name: USER_REFS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     distinct o.name,
@@ -34,5 +36,3 @@ viewDefinition: |-
     and c .intcol# = ac.intcol#(+)
     and bitand(c .property, 32768) != 32768
     /* not unused column */
-columns: []
-referencedTables: []

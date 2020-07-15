@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_ATTR_MAPPINGS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name DIMENSION_NAME,
@@ -90,5 +92,3 @@ viewDefinition: |-
     AND s1.ref_role(+) = 2
     AND m.map_id = i1.owning_objectid(+)
     AND i1.option_type(+) = 12
-columns: []
-referencedTables: []

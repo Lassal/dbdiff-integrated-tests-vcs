@@ -2,6 +2,8 @@ schema: APEX_050000
 name: APEX_APPLICATION_LOCKED_PAGES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     l.id as lock_id,
@@ -24,5 +26,3 @@ viewDefinition: |-
     and p.id = l.object_id
     and p.flow_id = l.flow_id
     and p.security_group_id = l.security_group_id
-columns: []
-referencedTables: []

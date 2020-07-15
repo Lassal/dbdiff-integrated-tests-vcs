@@ -2,6 +2,8 @@ schema: WMSYS
 name: ALL_WM_CONSTRAINTS
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ LEADING(ct) */
@@ -20,5 +22,3 @@ viewDefinition: |-
   where
     ct.owner = av.owner
     and ct.table_name = av.view_name WITH READ ONLY
-columns: []
-referencedTables: []

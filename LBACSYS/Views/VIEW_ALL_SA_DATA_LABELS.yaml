@@ -2,6 +2,8 @@ schema: LBACSYS
 name: ALL_SA_DATA_LABELS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     p.pol_name AS policy_name,
@@ -24,5 +26,3 @@ viewDefinition: |-
       )
       OR lbacsys.lbac$sa.enforce_read(p.pol_name, l.ilabel) > 0
     )
-columns: []
-referencedTables: []

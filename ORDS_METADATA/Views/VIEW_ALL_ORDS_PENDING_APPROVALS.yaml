@@ -2,6 +2,8 @@ schema: ORDS_METADATA
 name: ALL_ORDS_PENDING_APPROVALS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   WITH sr AS (
     SELECT
@@ -37,5 +39,3 @@ viewDefinition: |-
       s.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
       OR sr.has_catalog = 1
     )
-columns: []
-referencedTables: []

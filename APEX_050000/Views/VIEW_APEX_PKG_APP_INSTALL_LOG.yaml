@@ -2,6 +2,8 @@ schema: APEX_050000
 name: APEX_PKG_APP_INSTALL_LOG
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     w.short_name workspace,
@@ -65,5 +67,3 @@ viewDefinition: |-
       or nvl(t.APP_STATUS, 'x') not in ('COMING_SOON', 'HIDDEN')
     )
     and w.PROVISIONING_COMPANY_ID not in (0, 12)
-columns: []
-referencedTables: []

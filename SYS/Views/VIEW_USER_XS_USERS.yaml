@@ -2,6 +2,8 @@ schema: SYS
 name: USER_XS_USERS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     name,
@@ -15,5 +17,3 @@ viewDefinition: |-
     dba_xs_users
   where
     name = xs_sys_context('XS$SESSION', 'CURRENT_XS_USER')
-columns: []
-referencedTables: []

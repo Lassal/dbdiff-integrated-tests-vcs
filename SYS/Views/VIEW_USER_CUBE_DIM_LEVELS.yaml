@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_DIM_LEVELS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name DIMENSION_NAME,
@@ -27,5 +29,3 @@ viewDefinition: |-
   WHERE
     o.obj#=dl.dim_obj# AND o.owner#=USERENV(' SCHEMAID ')
     AND d.owning_object_id(+)=dl.level_id
-columns: []
-referencedTables: []

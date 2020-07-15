@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CONS_COLUMNS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -34,5 +36,3 @@ viewDefinition: |-
     and c .owner# = userenv('SCHEMAID')
     and col.obj# = ac.obj#(+)
     and col.intcol# = ac.intcol#(+)
-columns: []
-referencedTables: []

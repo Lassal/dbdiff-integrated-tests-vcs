@@ -2,6 +2,8 @@ schema: SYS
 name: DBA_SYNC_CAPTURE_TABLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     distinct sr.table_owner,
@@ -18,5 +20,3 @@ viewDefinition: |-
     AND sr.table_name = tob.name
     AND tob.owner# = tu.user#
     AND tob.obj# = t.obj#
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_TEMPLATES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     a .id as task_id,
@@ -17,5 +19,3 @@ viewDefinition: |-
   where
     a .owner# = userenv('SCHEMAID')
     and bitand(a .property, 6) = 6
-columns: []
-referencedTables: []

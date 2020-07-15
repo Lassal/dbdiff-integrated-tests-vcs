@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_XML_OUT_OF_LINE_TABLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     d.xmlschema as SCHEMA_URL,
@@ -22,5 +24,3 @@ viewDefinition: |-
     and d.owner = u.name
     and o.obj# = op.obj#
     and bitand(op.flags, 32) = 32
-columns: []
-referencedTables: []

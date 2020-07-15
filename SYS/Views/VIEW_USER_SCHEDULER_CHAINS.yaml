@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SCHEDULER_CHAINS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name,
@@ -38,5 +40,3 @@ viewDefinition: |-
   WHERE
     c .obj# = o.obj#
     AND o.owner# = USERENV('SCHEMAID')
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_MAPPINGS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name CUBE_NAME,
@@ -39,5 +41,3 @@ viewDefinition: |-
     AND m.map_id = i2.owning_objectid(+)
     AND m.map_type = i2.object_type(+)
     AND i2.option_type(+) = 21
-columns: []
-referencedTables: []

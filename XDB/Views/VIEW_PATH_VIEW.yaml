@@ -2,6 +2,8 @@ schema: XDB
 name: PATH_VIEW
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ ORDERED */
@@ -56,5 +58,3 @@ viewDefinition: |-
     t2.parent_oid = h.parent_oid
     and t2.childname = h.name
     and t2.parent_oid = r2.sys_nc_oid$
-columns: []
-referencedTables: []

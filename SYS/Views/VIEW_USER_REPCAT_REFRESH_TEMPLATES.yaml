@@ -2,6 +2,8 @@ schema: SYS
 name: USER_REPCAT_REFRESH_TEMPLATES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     refresh_template_name,
@@ -35,5 +37,3 @@ viewDefinition: |-
     and au.user_id = userenv('SCHEMAID')
     and rt.template_type_id = tt.template_type_id
     and bitand(rawtohex(tt.flags), 1) = 1
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_OBJECTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     a .id as object_id,
@@ -54,5 +56,3 @@ viewDefinition: |-
     a .task_id = b.id
     and b.owner# = userenv('SCHEMAID')
     and c .indx = a .type
-columns: []
-referencedTables: []

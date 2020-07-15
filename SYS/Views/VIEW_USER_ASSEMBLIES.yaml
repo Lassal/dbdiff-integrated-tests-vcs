@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ASSEMBLIES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -27,5 +29,3 @@ viewDefinition: |-
   where
     o.owner# = userenv('SCHEMAID')
     and o.obj# = a .obj#
-columns: []
-referencedTables: []

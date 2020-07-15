@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_SQLA_WK_SUM
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     b.name as task_name,
@@ -18,5 +20,3 @@ viewDefinition: |-
     b.owner# = userenv('SCHEMAID')
     and a .task_id = b.id
     and b.advisor_id = 2
-columns: []
-referencedTables: []

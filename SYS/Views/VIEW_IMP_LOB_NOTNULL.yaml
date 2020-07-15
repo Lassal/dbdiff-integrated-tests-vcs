@@ -2,6 +2,8 @@ schema: SYS
 name: IMP_LOB_NOTNULL
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name,
@@ -16,5 +18,3 @@ viewDefinition: |-
     c .obj# = o.obj#
     AND u.user# = o.owner#
     AND o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ILMRESULTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     a .execution_id,
@@ -44,5 +46,3 @@ viewDefinition: |-
   WHERE
     a .execution_id = b.execution_id
     AND b.owner = userenv('SCHEMAID')
-columns: []
-referencedTables: []

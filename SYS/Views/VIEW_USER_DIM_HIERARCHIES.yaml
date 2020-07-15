@@ -2,6 +2,8 @@ schema: SYS
 name: USER_DIM_HIERARCHIES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -15,5 +17,3 @@ viewDefinition: |-
     h.dimobj# = o.obj#
     and o.owner# = u.user#
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

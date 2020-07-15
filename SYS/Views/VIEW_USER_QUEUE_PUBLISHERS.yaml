@@ -2,6 +2,8 @@ schema: SYS
 name: USER_QUEUE_PUBLISHERS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     q.name QUEUE_NAME,
@@ -22,5 +24,3 @@ viewDefinition: |-
     and u.name = t.schema
     and q.table_objno = t.objno
     and q.eventid = p.queue_id
-columns: []
-referencedTables: []

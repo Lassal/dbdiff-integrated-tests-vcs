@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_QUEUE_SUBSCRIBERS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     su.owner OWNER,
@@ -125,5 +127,3 @@ viewDefinition: |-
   where
     su.rule_name = r.rule_name(+)
     and su.owner = r.rule_owner(+)
-columns: []
-referencedTables: []

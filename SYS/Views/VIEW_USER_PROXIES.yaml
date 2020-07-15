@@ -2,6 +2,8 @@ schema: SYS
 name: USER_PROXIES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -44,5 +46,3 @@ viewDefinition: |-
     and p.proxy# = pr.proxy#(+)
     and p.client# = pr.client#(+)
     and p.proxy# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

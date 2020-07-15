@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_XML_SCHEMA_COMPLEX_TYPES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     s.xmldata.schema_owner OWNER,
@@ -118,5 +120,3 @@ viewDefinition: |-
     sys_op_r2o(ct.xmldata.parent_schema) = s.sys_nc_oid$
     and s.xmldata.schema_owner = a .owner
     and s.xmldata.schema_url = a .schema_url
-columns: []
-referencedTables: []

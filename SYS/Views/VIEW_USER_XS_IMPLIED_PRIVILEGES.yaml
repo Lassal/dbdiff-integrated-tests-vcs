@@ -2,6 +2,8 @@ schema: SYS
 name: USER_XS_IMPLIED_PRIVILEGES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     privilege,
@@ -11,5 +13,3 @@ viewDefinition: |-
     sys.dba_xs_implied_privileges
   where
     security_class_owner = sys_context('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

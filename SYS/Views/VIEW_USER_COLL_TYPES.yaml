@@ -2,6 +2,8 @@ schema: SYS
 name: USER_COLL_TYPES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -86,5 +88,3 @@ viewDefinition: |-
     and eo.owner# = eu.user#
     and c .elem_toid = et.tvoid
     and c .package_obj# IS NULL -- filter out plsql types
-columns: []
-referencedTables: []

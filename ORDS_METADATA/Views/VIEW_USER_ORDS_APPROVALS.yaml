@@ -2,6 +2,8 @@ schema: ORDS_METADATA
 name: USER_ORDS_APPROVALS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     c .name title,
@@ -22,5 +24,3 @@ viewDefinition: |-
     c .id = a .client_id
     AND a .schema_id = s.id
     AND s.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

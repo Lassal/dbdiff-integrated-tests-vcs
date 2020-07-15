@@ -2,6 +2,8 @@ schema: WMSYS
 name: USER_WORKSPACE_PRIVS
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     spt.grantee,
@@ -47,5 +49,3 @@ viewDefinition: |-
     wmsys.wm$workspace_priv_table spt
   where
     ult.workspace = spt.workspace WITH READ ONLY
-columns: []
-referencedTables: []

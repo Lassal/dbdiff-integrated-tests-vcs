@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SCHEDULER_JOB_LOG
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   (
     SELECT
@@ -68,5 +70,3 @@ viewDefinition: |-
       and e.class_id = co.obj#(+)
       AND owner = SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA')
   )
-columns: []
-referencedTables: []

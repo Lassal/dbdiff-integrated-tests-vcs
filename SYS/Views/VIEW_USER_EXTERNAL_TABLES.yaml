@@ -2,6 +2,8 @@ schema: SYS
 name: USER_EXTERNAL_TABLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -41,5 +43,3 @@ viewDefinition: |-
   where
     o.owner# = userenv('SCHEMAID')
     and o.obj# = xt.obj#
-columns: []
-referencedTables: []

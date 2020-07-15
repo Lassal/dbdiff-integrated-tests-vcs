@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_HIER_VIEWS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     do .name DIMENSION_NAME,
@@ -21,5 +23,3 @@ viewDefinition: |-
     AND av.view_obj# = vo.obj#
     AND vo.type# != 10 -- not NON-EXISTENT
     AND vo.owner# = do .owner#
-columns: []
-referencedTables: []

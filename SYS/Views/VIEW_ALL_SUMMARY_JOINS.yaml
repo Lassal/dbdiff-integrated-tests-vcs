@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_SUMMARY_JOINS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -77,5 +79,3 @@ viewDefinition: |-
     AND s.obj# = sj.sumobj#
     AND bitand(s.xpflags, 8388608) = 0
     /* NOT REWRITE EQUIVALENCE SUMMARY */
-columns: []
-referencedTables: []

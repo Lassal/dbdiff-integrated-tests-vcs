@@ -2,6 +2,8 @@ schema: SYS
 name: SCHEDULER_BATCH_ERRORS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     array_index,
@@ -13,5 +15,3 @@ viewDefinition: |-
     additional_info
   FROM
     TABLE(SYS.SCHEDULER$_BATCHERR_PIPE)
-columns: []
-referencedTables: []

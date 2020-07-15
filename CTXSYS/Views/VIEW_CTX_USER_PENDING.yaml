@@ -2,6 +2,8 @@ schema: CTXSYS
 name: CTX_USER_PENDING
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ ORDERED USE_NL(i p d)*/
@@ -33,5 +35,3 @@ viewDefinition: |-
     pnd_pid = 0
     and pnd_cid = idx_id
     and idx_owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

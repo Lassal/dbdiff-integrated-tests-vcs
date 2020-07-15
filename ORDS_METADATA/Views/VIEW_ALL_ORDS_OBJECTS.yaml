@@ -2,6 +2,8 @@ schema: ORDS_METADATA
 name: ALL_ORDS_OBJECTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   with sr as (
     select
@@ -99,5 +101,3 @@ viewDefinition: |-
             or sr.has_catalog = 1
         ) s ON n.schema_id = s.schema_id
     ) ORDSSCHMID
-columns: []
-referencedTables: []

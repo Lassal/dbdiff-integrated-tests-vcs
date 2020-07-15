@@ -2,6 +2,8 @@ schema: ORDSYS
 name: SI_IMAGE_FORMAT_CONVERSIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     a .SI_format SI_source_format,
@@ -13,5 +15,3 @@ viewDefinition: |-
     a .read_flg = 'Y'
     and b.write_flg = 'Y'
     and a .si_format <> b.si_format
-columns: []
-referencedTables: []

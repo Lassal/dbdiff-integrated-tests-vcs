@@ -2,6 +2,8 @@ schema: SYS
 name: USER_MINING_MODEL_ATTRIBUTES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -126,5 +128,3 @@ viewDefinition: |-
     o.obj# = a .mod#
     and o.owner# = userenv('SCHEMAID')
     and bitand(a .properties, 4) = 0
-columns: []
-referencedTables: []

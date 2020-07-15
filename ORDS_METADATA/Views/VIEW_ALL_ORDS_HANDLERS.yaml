@@ -2,6 +2,8 @@ schema: ORDS_METADATA
 name: ALL_ORDS_HANDLERS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   WITH sr AS (
     SELECT
@@ -35,5 +37,3 @@ viewDefinition: |-
       ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
       OR sr.has_catalog = 1
     )
-columns: []
-referencedTables: []

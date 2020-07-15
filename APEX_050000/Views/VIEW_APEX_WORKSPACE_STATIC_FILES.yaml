@@ -2,6 +2,8 @@ schema: APEX_050000
 name: APEX_WORKSPACE_STATIC_FILES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     f.id as workspace_file_id,
@@ -47,5 +49,3 @@ viewDefinition: |-
     and w.provisioning_company_id = s.security_group_id
     and w.provisioning_company_id != 0
     and f.security_group_id = w.provisioning_company_id
-columns: []
-referencedTables: []

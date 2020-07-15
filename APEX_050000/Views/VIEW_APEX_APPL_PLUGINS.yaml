@@ -2,6 +2,8 @@ schema: APEX_050000
 name: APEX_APPL_PLUGINS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     p.id as plugin_id,
@@ -95,5 +97,3 @@ viewDefinition: |-
     and s.flow_id (+) = p.flow_id
     and s.plugin_type (+) = p.plugin_type
     and s.plugin (+) = 'PLUGIN_' || p.name
-columns: []
-referencedTables: []

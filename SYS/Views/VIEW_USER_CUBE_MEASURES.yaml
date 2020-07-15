@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_MEASURES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name CUBE_NAME,
@@ -116,5 +118,3 @@ viewDefinition: |-
     AND ss.owner_type(+)=2 --MEASURE
     AND ss.ref_role(+)=16 --CONSISTENT_SOLVE_SPEC
     AND m.measure_id=d.owning_object_id(+)
-columns: []
-referencedTables: []

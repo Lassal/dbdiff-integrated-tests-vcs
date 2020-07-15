@@ -2,6 +2,8 @@ schema: SYS
 name: USER_FLASHBACK_TXN_REPORT
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     COMPENSATING_XID,
@@ -12,5 +14,3 @@ viewDefinition: |-
     TRANSACTION_BACKOUT_REPORT$
   WHERE
     USER # = USERENV('SCHEMAID')
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_DIM_LEVEL_KEY
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -23,5 +25,3 @@ viewDefinition: |-
     and dlk.detailobj# = c .obj#
     and dlk.col# = c .intcol#
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: MDSYS
 name: SDO_ELLIPSOIDS_OLD_FORMAT
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     ELLIPSOID_NAME "NAME",
@@ -33,5 +35,3 @@ viewDefinition: |-
   WHERE
     (INV_FLATTENING IS NULL)
     AND NOT (SEMI_MINOR_AXIS < SEMI_MAJOR_AXIS)
-columns: []
-referencedTables: []

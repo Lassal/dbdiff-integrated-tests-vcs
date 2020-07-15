@@ -2,6 +2,8 @@ schema: CTXSYS
 name: CTX_USER_SECTIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     sgp_name sec_section_group,
@@ -53,5 +55,3 @@ viewDefinition: |-
   where
     sgp.sgp_id = sec.sec_sgp_id
     and sgp_owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

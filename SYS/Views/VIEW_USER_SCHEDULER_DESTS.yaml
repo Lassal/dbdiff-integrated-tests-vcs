@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SCHEDULER_DESTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name,
@@ -21,5 +23,3 @@ viewDefinition: |-
     o.owner# = userenv('SCHEMAID')
     AND o.obj# = d.obj#
     and bitand(d.flags, 8) = 0
-columns: []
-referencedTables: []

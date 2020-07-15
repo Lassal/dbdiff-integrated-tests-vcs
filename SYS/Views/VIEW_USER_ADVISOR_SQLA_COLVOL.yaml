@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_SQLA_COLVOL
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     a .name as task_name,
@@ -23,5 +25,3 @@ viewDefinition: |-
     and e.table# = b.table#
     and a .owner# = userenv('SCHEMAID')
     and a .advisor_id = 2
-columns: []
-referencedTables: []

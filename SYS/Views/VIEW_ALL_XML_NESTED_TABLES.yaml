@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_XML_NESTED_TABLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     x.OWNER,
@@ -23,5 +25,3 @@ viewDefinition: |-
   where
     x.TABLE_NAME = nt.PARENT_TABLE_NAME
     and x.OWNER = nt.OWNER
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_OBJ_COLATTRS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -51,5 +53,3 @@ viewDefinition: |-
     and c .intcol# = ac.intcol#
     and bitand(c .property, 32768) != 32768
     /* not unused column */
-columns: []
-referencedTables: []

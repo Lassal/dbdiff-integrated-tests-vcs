@@ -2,6 +2,8 @@ schema: SYS
 name: USER_JAVA_FIELDS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ no_cartesian(m) ordered use_nl(o m) */
@@ -89,5 +91,3 @@ viewDefinition: |-
   where
     m.own = userenv('SCHEMAID')
     and m.fix != -1
-columns: []
-referencedTables: []

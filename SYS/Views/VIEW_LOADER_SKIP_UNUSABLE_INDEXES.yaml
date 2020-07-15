@@ -2,6 +2,8 @@ schema: SYS
 name: LOADER_SKIP_UNUSABLE_INDEXES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     count(*) as value
@@ -10,5 +12,3 @@ viewDefinition: |-
   where
     upper(name) = 'SKIP_UNUSABLE_INDEXES'
     and value = 'TRUE'
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: CTXSYS
 name: DRV$UNINDEXED2
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     "UNX_IDX_ID",
@@ -11,5 +13,3 @@ viewDefinition: |-
     dr$unindexed
   where
     unx_idx_id = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
-columns: []
-referencedTables: []

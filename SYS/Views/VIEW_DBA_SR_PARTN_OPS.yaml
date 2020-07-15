@@ -2,6 +2,8 @@ schema: SYS
 name: DBA_SR_PARTN_OPS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u1.name owner,
@@ -20,5 +22,3 @@ viewDefinition: |-
       inner join sys.user$ u1 on o1.owner# = u1.user#
     )
     inner join sys.syncref$_partn_ops sts on o1.obj# = sts.table_obj#
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: REPORT_FORMATS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     c .id component_id,
@@ -31,5 +33,3 @@ viewDefinition: |-
     c .id = r.component_id
     AND r.id = fo.report_id
     AND fo.stylesheet_id = f.id(+)
-columns: []
-referencedTables: []

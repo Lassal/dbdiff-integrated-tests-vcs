@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_JOURNAL
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     a .task_id as task_id,
@@ -37,5 +39,3 @@ viewDefinition: |-
     a .task_id = b.id
     and bitand(b.property, 4) = 4
     and b.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

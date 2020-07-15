@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_DIM_MODELS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     do .name DIMENSION_NAME,
@@ -29,5 +31,3 @@ viewDefinition: |-
     AND m.owning_obj_id = do.obj#
     AND do.owner# = USERENV(' SCHEMAID ')
     AND m.model_id = d.owning_object_id(+)
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_DIMNL_MAPPINGS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name CUBE_NAME,
@@ -98,5 +100,3 @@ viewDefinition: |-
     AND m.map_id = s3.owner_id(+)
     AND m.map_type = s3.owner_type(+)
     AND s3.ref_role(+) = 15
-columns: []
-referencedTables: []

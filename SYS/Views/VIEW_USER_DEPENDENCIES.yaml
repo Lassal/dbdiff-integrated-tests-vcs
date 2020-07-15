@@ -2,6 +2,8 @@ schema: SYS
 name: USER_DEPENDENCIES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -164,5 +166,3 @@ viewDefinition: |-
     and po.obj# = d.p_obj#
     and po.owner# = pu.user#
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

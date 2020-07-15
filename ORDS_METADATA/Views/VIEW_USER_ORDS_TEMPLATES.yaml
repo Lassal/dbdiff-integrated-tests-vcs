@@ -2,6 +2,8 @@ schema: ORDS_METADATA
 name: USER_ORDS_TEMPLATES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     ords_templates. "ID",
@@ -22,5 +24,3 @@ viewDefinition: |-
   WHERE
     ords_schemas.id = ords_templates.schema_id
     AND ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

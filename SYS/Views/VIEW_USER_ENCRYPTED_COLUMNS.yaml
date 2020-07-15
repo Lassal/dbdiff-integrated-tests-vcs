@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ENCRYPTED_COLUMNS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     TABLE_NAME,
@@ -13,5 +15,3 @@ viewDefinition: |-
     DBA_ENCRYPTED_COLUMNS
   where
     OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

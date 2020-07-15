@@ -2,6 +2,8 @@ schema: SYS
 name: USER_DIMENSIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -25,5 +27,3 @@ viewDefinition: |-
     o.owner# = u.user#
     and o.obj# = d.obj#
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

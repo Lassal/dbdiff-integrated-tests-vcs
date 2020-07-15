@@ -2,6 +2,8 @@ schema: SYS
 name: USER_JAVA_NCOMPS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ no_cartesian(t) ordered use_nl(o t) */
@@ -19,5 +21,3 @@ viewDefinition: |-
     and o.type# = 29
     and o.owner# = userenv('SCHEMAID')
     and j.short(+) = o.name
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_NAMED_BUILD_SPECS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name CUBE_NAME,
@@ -16,5 +18,3 @@ viewDefinition: |-
     AND syn.owner_id(+) = c .obj#
     AND syn.owner_type(+) = 1
     AND syn.ref_role = 18 -- named build spec
-columns: []
-referencedTables: []

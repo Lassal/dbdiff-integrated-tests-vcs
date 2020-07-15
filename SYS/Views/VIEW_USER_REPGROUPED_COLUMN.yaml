@@ -2,6 +2,8 @@ schema: SYS
 name: USER_REPGROUPED_COLUMN
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     g.oname,
@@ -29,5 +31,3 @@ viewDefinition: |-
     g.sname = u.name
     and u.user# = userenv('SCHEMAID')
     and g.oname = nt.table_name
-columns: []
-referencedTables: []

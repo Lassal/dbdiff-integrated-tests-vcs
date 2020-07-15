@@ -2,6 +2,8 @@ schema: SYS
 name: USER_RULES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     /*+ all_rows */
@@ -21,5 +23,3 @@ viewDefinition: |-
     and o.owner# = USERENV('SCHEMAID')
     and r.ectx# = bo.obj#(+)
     and bo.owner# = bu.user#(+)
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ILMEVALUATIONDETAILS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     b.execution_id,
@@ -64,5 +66,3 @@ viewDefinition: |-
     AND b.execution_id = d.execution_id
     AND d.owner = userenv('SCHEMAID')
     AND c .owner# = e.user#
-columns: []
-referencedTables: []

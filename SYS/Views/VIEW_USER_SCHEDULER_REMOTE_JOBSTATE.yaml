@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SCHEDULER_REMOTE_JOBSTATE
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name,
@@ -43,5 +45,3 @@ viewDefinition: |-
   WHERE
     j.joboid = o.obj#
     and o.owner# = USERENV('SCHEMAID')
-columns: []
-referencedTables: []

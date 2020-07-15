@@ -2,6 +2,8 @@ schema: SYS
 name: USER_JAVA_METHODS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ no_cartesian(m) ordered use_nl(o m) */
@@ -120,5 +122,3 @@ viewDefinition: |-
   where
     m.own = userenv('SCHEMAID')
     and m.mix != -1
-columns: []
-referencedTables: []

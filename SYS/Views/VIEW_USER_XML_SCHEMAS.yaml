@@ -2,6 +2,8 @@ schema: SYS
 name: USER_XML_SCHEMAS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     s.xmldata.schema_url,
@@ -43,5 +45,3 @@ viewDefinition: |-
   where
     u.name = s.xmldata.schema_owner
     and u.user# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

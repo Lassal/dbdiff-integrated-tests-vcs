@@ -2,6 +2,8 @@ schema: SYS
 name: USER_TYPES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -39,5 +41,3 @@ viewDefinition: |-
     and t.supertoid = so.oid$ (+)
     and so.owner# = su.user# (+)
     and t.package_obj# IS NULL -- no PL/SQL types
-columns: []
-referencedTables: []

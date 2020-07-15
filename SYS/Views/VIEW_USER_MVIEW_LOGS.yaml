@@ -2,6 +2,8 @@ schema: SYS
 name: USER_MVIEW_LOGS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     s. "LOG_OWNER",
@@ -29,5 +31,3 @@ viewDefinition: |-
   where
     s.log_owner = u.name
     and u.user# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

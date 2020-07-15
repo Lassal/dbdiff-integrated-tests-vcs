@@ -2,6 +2,8 @@ schema: XDBPM
 name: MISSING_TYPES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     "OWNER",
@@ -31,5 +33,3 @@ viewDefinition: |-
         nvl(ts.OWNER, 'SYS') = nvl(at .OWNER, 'SYS')
         and ts.TYPE_NAME = at .TYPE_NAME
     )
-columns: []
-referencedTables: []

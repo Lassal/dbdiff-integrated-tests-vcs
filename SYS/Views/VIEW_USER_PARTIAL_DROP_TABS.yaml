@@ -2,6 +2,8 @@ schema: SYS
 name: USER_PARTIAL_DROP_TABS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name
@@ -12,5 +14,3 @@ viewDefinition: |-
     o.obj# = t.obj#
     and o.owner# = userenv('SCHEMAID')
     and bitand(t.flags, 32768) = 32768
-columns: []
-referencedTables: []

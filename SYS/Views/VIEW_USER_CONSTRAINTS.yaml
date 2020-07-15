@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CONSTRAINTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     OWNER,
@@ -62,5 +64,3 @@ viewDefinition: |-
     INT $INT$DBA_CONSTRAINTS.OBJECT_TYPE# = 2
     /* tables */
     and INT $INT$DBA_CONSTRAINTS.OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

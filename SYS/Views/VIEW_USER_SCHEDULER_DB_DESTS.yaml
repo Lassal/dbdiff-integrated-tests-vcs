@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SCHEDULER_DB_DESTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name,
@@ -21,5 +23,3 @@ viewDefinition: |-
     AND d.agtdestoid = ao.obj#(+)
     AND bitand(d.flags, 4 + 8) = 4
     AND d.agtdestoid = ad.obj#(+)
-columns: []
-referencedTables: []

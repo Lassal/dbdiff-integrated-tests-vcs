@@ -2,6 +2,8 @@ schema: SYS
 name: USER_XML_TABLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -97,5 +99,3 @@ viewDefinition: |-
     and opq.schemaoid = schm.sys_nc_oid$
     and bitand(opq.flags, 2) = 2
     and opq.elemnum = xel.xmldata.property.prop_number
-columns: []
-referencedTables: []

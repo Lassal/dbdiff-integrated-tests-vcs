@@ -2,6 +2,8 @@ schema: XDBPM
 name: BASE_TYPE_SUMMARY
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     ata.TYPE_NAME,
@@ -36,5 +38,3 @@ viewDefinition: |-
   where
     ata.ATTR_TYPE_NAME = ts.TYPE_NAME
     and nvl(ata.ATTR_TYPE_OWNER, 'SYS') = nvl(ts.OWNER, 'SYS')
-columns: []
-referencedTables: []

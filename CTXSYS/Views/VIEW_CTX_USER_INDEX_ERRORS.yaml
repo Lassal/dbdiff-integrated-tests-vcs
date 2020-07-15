@@ -2,6 +2,8 @@ schema: CTXSYS
 name: CTX_USER_INDEX_ERRORS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     idx_name err_index_name,
@@ -14,5 +16,3 @@ viewDefinition: |-
   where
     idx_id = err_idx_id
     and idx_owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

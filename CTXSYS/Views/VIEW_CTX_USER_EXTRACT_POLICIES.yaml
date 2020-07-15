@@ -2,6 +2,8 @@ schema: CTXSYS
 name: CTX_USER_EXTRACT_POLICIES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     i.idx_name epl_name
@@ -10,5 +12,3 @@ viewDefinition: |-
   where
     INSTR(i.idx_option, 'E') > 0
     and i.idx_owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

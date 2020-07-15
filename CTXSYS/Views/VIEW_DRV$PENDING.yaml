@@ -2,6 +2,8 @@ schema: CTXSYS
 name: DRV$PENDING
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     "PND_CID",
@@ -13,5 +15,3 @@ viewDefinition: |-
     dr$pending
   where
     pnd_cid = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
-columns: []
-referencedTables: []

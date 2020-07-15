@@ -2,6 +2,8 @@ schema: XDB
 name: RESOURCE_VIEW
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     value(p) res,
@@ -11,5 +13,3 @@ viewDefinition: |-
     xdb.xdb$resource p
   where
     under_path(value(p), '/', 8888) = 1
-columns: []
-referencedTables: []

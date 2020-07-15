@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_RECOMMENDATIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     a .id as rec_id,
@@ -34,5 +36,3 @@ viewDefinition: |-
     a .task_id = b.id
     and b.owner# = userenv('SCHEMAID')
     and bitand(b.property, 6) = 4
-columns: []
-referencedTables: []
