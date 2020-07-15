@@ -2,6 +2,8 @@ schema: SYS
 name: USER_FLASHBACK_TXN_STATE
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     COMPENSATING_XID,
@@ -22,5 +24,3 @@ viewDefinition: |-
     TRANSACTION_BACKOUT_STATE$
   WHERE
     USER # = USERENV('SCHEMAID')
-columns: []
-referencedTables: []

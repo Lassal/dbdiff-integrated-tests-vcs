@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SNAPSHOT_LOGS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     log_owner,
@@ -22,5 +24,3 @@ viewDefinition: |-
   where
     s.log_owner = u.name
     and u.user# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

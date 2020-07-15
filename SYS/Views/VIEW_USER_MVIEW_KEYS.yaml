@@ -2,6 +2,8 @@ schema: SYS
 name: USER_MVIEW_KEYS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     distinct u1.name,
@@ -42,5 +44,3 @@ viewDefinition: |-
     AND bitand(sk.detailcolfunction, 2147483648) = 0
     AND bitand(sd.detaileut, 2147483648) = 0
     /* NOT 2nd cube mv pct metadata */
-columns: []
-referencedTables: []

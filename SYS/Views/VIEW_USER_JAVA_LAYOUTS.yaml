@@ -2,6 +2,8 @@ schema: SYS
 name: USER_JAVA_LAYOUTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ no_cartesian(m) ordered use_nl(o m) */
@@ -22,5 +24,3 @@ viewDefinition: |-
     and o.type# = 29
     and o.owner# = userenv('SCHEMAID')
     and j.short(+) = o.name
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_PLSQL_TYPES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     t.typ_name || decode(
@@ -41,5 +43,3 @@ viewDefinition: |-
     and t.package_obj# IS NOT NULL -- only package types
     and o.obj# = t.package_obj# -- match type to its package obj#
     and o.type# <> 10 -- package must not be invalid
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: WMSYS
 name: ALL_MP_GRAPH_WORKSPACES
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     mpg.mp_leaf_workspace,
@@ -20,5 +22,3 @@ viewDefinition: |-
     wmsys.all_workspaces uw
   where
     mpg.mp_leaf_workspace = uw.workspace WITH READ ONLY
-columns: []
-referencedTables: []

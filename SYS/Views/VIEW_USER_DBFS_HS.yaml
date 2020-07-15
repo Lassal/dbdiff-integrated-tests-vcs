@@ -2,6 +2,8 @@ schema: SYS
 name: USER_DBFS_HS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     storeName
@@ -9,5 +11,3 @@ viewDefinition: |-
     DBA_DBFS_HS
   WHERE
     storeOwner = sys_context('USERENV', 'SESSION_USER')
-columns: []
-referencedTables: []

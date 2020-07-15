@@ -2,6 +2,8 @@ schema: SYS
 name: USER_MVIEW_DETAIL_PARTITION
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     m. "OWNER",
@@ -17,5 +19,3 @@ viewDefinition: |-
   where
     u.user# = userenv('SCHEMAID')
     and m.owner = u.name
-columns: []
-referencedTables: []

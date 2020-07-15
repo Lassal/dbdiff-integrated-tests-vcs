@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_DEF_AUDIT_OPTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     substr(t.audit$, 1, 1) || '/' || substr(t.audit$, 2, 1),
@@ -27,5 +29,3 @@ viewDefinition: |-
     o.obj# = t.obj#
     and o.owner# = 0
     and o.name = '_default_auditing_options_'
-columns: []
-referencedTables: []

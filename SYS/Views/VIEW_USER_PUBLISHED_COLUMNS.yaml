@@ -2,6 +2,8 @@ schema: SYS
 name: USER_PUBLISHED_COLUMNS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     s.change_set_name,
@@ -44,5 +46,3 @@ viewDefinition: |-
     )
     AND s.change_table_schema = u.name
     AND u.user# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

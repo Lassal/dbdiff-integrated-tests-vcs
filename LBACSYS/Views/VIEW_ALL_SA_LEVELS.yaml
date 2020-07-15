@@ -2,6 +2,8 @@ schema: LBACSYS
 name: ALL_SA_LEVELS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     p.pol_name as policy_name,
@@ -36,5 +38,3 @@ viewDefinition: |-
     and l.pol# = ul.pol#
     and l.level# <= ul.max_level
     and ul.usr_name = sa_session.sa_user_name(lbac_cache.policy_name(ul.pol#))
-columns: []
-referencedTables: []

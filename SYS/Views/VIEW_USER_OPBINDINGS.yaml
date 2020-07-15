@@ -2,6 +2,8 @@ schema: SYS
 name: USER_OPBINDINGS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     c .name,
@@ -35,5 +37,3 @@ viewDefinition: |-
     a .obj# = b.obj#
     and b.owner# = c .user#
     and b.owner# = userenv ('SCHEMAID')
-columns: []
-referencedTables: []

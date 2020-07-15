@@ -2,6 +2,8 @@ schema: SYS
 name: USER_METADATA_PROPERTIES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     mp.owning_object_id OWNING_OBJECT_ID,
@@ -63,5 +65,3 @@ viewDefinition: |-
     o.obj# = mp.top_obj# -- joined via the top level object id
     AND o.owner# = USERENV('SCHEMAID')
     AND mp.owning_type2 IS NULL
-columns: []
-referencedTables: []

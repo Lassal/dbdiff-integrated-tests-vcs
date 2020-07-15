@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_SCHEDULER_RUNNING_CHAINS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     ju.name,
@@ -153,5 +155,3 @@ viewDefinition: |-
       BITAND(j.job_status, 2 + 256) != 0
       OR jo.subname IS NOT NULL
     )
-columns: []
-referencedTables: []

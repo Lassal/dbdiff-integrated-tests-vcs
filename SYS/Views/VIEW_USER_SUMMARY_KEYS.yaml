@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SUMMARY_KEYS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u1.name,
@@ -41,5 +43,3 @@ viewDefinition: |-
     /* NOT REWRITE EQUIVALENCE SUMMARY */
     AND bitand(sk.detailcolfunction, 2147483648) = 0
     /* NOT 2nd cube mv pct metadata */
-columns: []
-referencedTables: []

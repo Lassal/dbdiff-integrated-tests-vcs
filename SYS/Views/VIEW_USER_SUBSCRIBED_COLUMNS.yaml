@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SUBSCRIBED_COLUMNS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     s.handle,
@@ -24,5 +26,3 @@ viewDefinition: |-
     AND su.user# = userenv('SCHEMAID')
     AND t.change_set_name = x.set_name
     AND x.change_source_name = z.source_name
-columns: []
-referencedTables: []

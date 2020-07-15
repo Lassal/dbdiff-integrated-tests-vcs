@@ -2,6 +2,8 @@ schema: WMSYS
 name: USER_WM_TAB_TRIGGERS
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     trig_name trigger_name,
@@ -23,5 +25,3 @@ viewDefinition: |-
   where
     trig_owner_name = sys_context('userenv', 'current_user')
     and internal_type = 'USER_DEFINED' WITH READ ONLY
-columns: []
-referencedTables: []

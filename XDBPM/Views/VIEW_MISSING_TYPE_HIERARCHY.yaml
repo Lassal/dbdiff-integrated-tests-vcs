@@ -2,6 +2,8 @@ schema: XDBPM
 name: MISSING_TYPE_HIERARCHY
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     level TYPE_LEVEL,
@@ -42,5 +44,3 @@ viewDefinition: |-
   connect by
     SUPERTYPE_NAME = prior at .TYPE_NAME
     and SUPERTYPE_OWNER = prior at .OWNER
-columns: []
-referencedTables: []

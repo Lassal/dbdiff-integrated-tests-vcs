@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SQLTUNE_RATIONALE_PLAN
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     rp.task_id,
@@ -43,5 +45,3 @@ viewDefinition: |-
     and o.task_id = t.id
     and o.exec_name = rp.exec_name
     and t.owner# = SYS_CONTEXT('USERENV', 'CURRENT_USERID')
-columns: []
-referencedTables: []

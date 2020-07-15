@@ -2,6 +2,8 @@ schema: WMSYS
 name: USER_WM_CONSTRAINTS
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ LEADING(ct) */
@@ -19,5 +21,3 @@ viewDefinition: |-
   where
     ct.owner = sys_context('userenv', 'current_user')
     and ct.table_name = uv.view_name WITH READ ONLY
-columns: []
-referencedTables: []

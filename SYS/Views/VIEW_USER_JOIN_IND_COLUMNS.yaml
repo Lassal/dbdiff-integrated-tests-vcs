@@ -2,6 +2,8 @@ schema: SYS
 name: USER_JOIN_IND_COLUMNS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     oi.name,
@@ -31,5 +33,3 @@ viewDefinition: |-
     and co.obj# = oto.obj#
     and ji.tab2col# = co.intcol#
     and oi.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

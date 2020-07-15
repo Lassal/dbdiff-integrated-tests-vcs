@@ -2,6 +2,8 @@ schema: CTXSYS
 name: DRV$USER_EXTRACT_TKDICT
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     "ETD_POLID",
@@ -14,5 +16,3 @@ viewDefinition: |-
     dr$user_extract_tkdict
   where
     etd_polid = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
-columns: []
-referencedTables: []

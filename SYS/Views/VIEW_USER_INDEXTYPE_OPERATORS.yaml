@@ -2,6 +2,8 @@ schema: SYS
 name: USER_INDEXTYPE_OPERATORS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -22,5 +24,3 @@ viewDefinition: |-
     and u1.user# = op.owner#
     and o.owner# = userenv ('SCHEMAID')
     and bitand(i.property, 4) != 4
-columns: []
-referencedTables: []

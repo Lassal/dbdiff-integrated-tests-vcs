@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_XML_SCHEMA_SUBSTGRP_MBRS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     s.xmldata.schema_owner OWNER,
@@ -27,5 +29,3 @@ viewDefinition: |-
     and e.xmldata.property.global = hexToRaw('01')
     and he.sys_nc_oid$ = sys_op_r2o(e.xmldata.HEAD_ELEM_REF)
     and sys_op_r2o(he.xmldata.property.parent_schema) = hs.sys_nc_oid$
-columns: []
-referencedTables: []

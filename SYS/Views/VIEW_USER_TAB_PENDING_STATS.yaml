@@ -2,6 +2,8 @@ schema: SYS
 name: USER_TAB_PENDING_STATS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -62,5 +64,3 @@ viewDefinition: |-
     and tsp.pobj# = ocp.obj#
     and osp.owner# = userenv('SCHEMAID')
     and h.savtime > systimestamp
-columns: []
-referencedTables: []

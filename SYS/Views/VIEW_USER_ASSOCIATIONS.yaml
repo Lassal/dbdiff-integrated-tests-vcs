@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ASSOCIATIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -51,5 +53,3 @@ viewDefinition: |-
     AND a .obj# = c .obj# (+)
     and a .intcol# = c .intcol# (+)
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

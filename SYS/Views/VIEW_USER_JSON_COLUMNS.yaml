@@ -2,6 +2,8 @@ schema: SYS
 name: USER_JSON_COLUMNS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     TABLE_NAME,
@@ -12,5 +14,3 @@ viewDefinition: |-
     INT $DBA_JSON_COLUMNS
   WHERE
     OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

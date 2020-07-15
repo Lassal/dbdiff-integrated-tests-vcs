@@ -2,6 +2,8 @@ schema: WMSYS
 name: ALL_WM_IND_COLUMNS
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ USE_NL(t1 t2) */
@@ -39,5 +41,3 @@ viewDefinition: |-
     and t1.index_name = t2.index_name
     and t1.constraint_type in ('P', 'PN', 'PU')
     and t2.column_name not in ('WM_VERSION', 'WM_DELSTATUS') WITH READ ONLY
-columns: []
-referencedTables: []

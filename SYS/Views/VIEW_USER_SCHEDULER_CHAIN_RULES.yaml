@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SCHEDULER_CHAIN_RULES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     co.name,
@@ -29,5 +31,3 @@ viewDefinition: |-
     AND rm.r_obj# = r.obj#(+)
     AND rm.r_obj# = ro.obj#(+)
     AND ro.owner# = ru.user#
-columns: []
-referencedTables: []

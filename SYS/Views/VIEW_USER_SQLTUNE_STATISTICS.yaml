@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SQLTUNE_STATISTICS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     b.TASK_ID,
@@ -43,5 +45,3 @@ viewDefinition: |-
   WHERE
     b.task_id = t.id
     AND t.owner# = SYS_CONTEXT('USERENV', 'CURRENT_USERID')
-columns: []
-referencedTables: []

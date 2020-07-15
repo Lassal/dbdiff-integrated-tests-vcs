@@ -2,6 +2,8 @@ schema: SYS
 name: USER_TSTZ_TABLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     distinct table_name,
@@ -19,5 +21,3 @@ viewDefinition: |-
     uttc.table_name = o.name
     and o.owner# = userenv('SCHEMAID')
     and o.obj# = t.obj#
-columns: []
-referencedTables: []

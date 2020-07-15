@@ -2,6 +2,8 @@ schema: MDSYS
 name: ALL_ANNOTATION_TEXT_METADATA
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     F_TABLE_SCHEMA OWNER,
@@ -17,5 +19,3 @@ viewDefinition: |-
     a .object_name = F_TABLE_NAME
     and a .owner = F_TABLE_SCHEMA
     and a .object_type in ('TABLE', 'SYNONYM', 'VIEW')
-columns: []
-referencedTables: []

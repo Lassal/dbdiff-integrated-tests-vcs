@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SQLSET_PLANS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     d.name as sqlset_name,
@@ -88,5 +90,3 @@ viewDefinition: |-
     and p.plan_hash_value = l.plan_hash_value
     and p.con_dbid = l.con_dbid
     and d.owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

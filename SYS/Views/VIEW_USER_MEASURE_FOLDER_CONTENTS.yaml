@@ -2,6 +2,8 @@ schema: SYS
 name: USER_MEASURE_FOLDER_CONTENTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name MEASURE_FOLDER_NAME,
@@ -22,5 +24,3 @@ viewDefinition: |-
     AND mf.object_id = m.measure_id
     AND m.cube_obj# = co.obj#
     AND co.owner# = cu.user#
-columns: []
-referencedTables: []

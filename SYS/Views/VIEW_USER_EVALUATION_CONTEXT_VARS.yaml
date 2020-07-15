@@ -2,6 +2,8 @@ schema: SYS
 name: USER_EVALUATION_CONTEXT_VARS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name,
@@ -15,5 +17,3 @@ viewDefinition: |-
   WHERE
     ecv.ec_obj# = o.obj#
     and o.owner# = USERENV('SCHEMAID')
-columns: []
-referencedTables: []

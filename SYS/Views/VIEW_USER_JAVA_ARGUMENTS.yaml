@@ -2,6 +2,8 @@ schema: SYS
 name: USER_JAVA_ARGUMENTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ no_cartesian(mmd) no_cartesian(mag)  ordered use_nl(o mmd) */
@@ -41,5 +43,3 @@ viewDefinition: |-
     and mmd.mix != -1
     and mmd.mix = mag.mix
     and mmd.obn = mag.obn
-columns: []
-referencedTables: []

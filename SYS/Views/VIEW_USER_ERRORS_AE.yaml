@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ERRORS_AE
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -49,5 +51,3 @@ viewDefinition: |-
     o.obj# = e.obj#
     and o.type# in (4, 7, 8, 9, 11, 12, 13, 14, 22, 28, 29, 43, 87)
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

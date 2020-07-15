@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SECONDARY_OBJECTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -27,5 +29,3 @@ viewDefinition: |-
     and s.secobj# = o1.obj#
     and o1.owner# = u1.user#
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

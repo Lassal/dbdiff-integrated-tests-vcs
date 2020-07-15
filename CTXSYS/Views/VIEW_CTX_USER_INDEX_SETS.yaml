@@ -2,6 +2,8 @@ schema: CTXSYS
 name: CTX_USER_INDEX_SETS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     ixs_name
@@ -9,5 +11,3 @@ viewDefinition: |-
     dr$index_set
   where
     ixs_owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

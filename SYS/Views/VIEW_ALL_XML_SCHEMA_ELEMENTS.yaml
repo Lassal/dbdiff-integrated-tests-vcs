@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_XML_SCHEMA_ELEMENTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   (
     select
@@ -85,5 +87,3 @@ viewDefinition: |-
       and s.xmldata.schema_url = a .schema_url
       and PrvtParentChild.sizeArray(e.xmldata.property.prop_number) = 0
   )
-columns: []
-referencedTables: []

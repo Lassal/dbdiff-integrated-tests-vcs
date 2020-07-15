@@ -2,6 +2,8 @@ schema: SYS
 name: USER_JAVA_RESOLVERS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     nvl(j.longdbcs, o.name),
@@ -17,5 +19,3 @@ viewDefinition: |-
     and o.type# = 29
     and o.owner# = userenv('SCHEMAID')
     and j.short(+) = o.name
-columns: []
-referencedTables: []

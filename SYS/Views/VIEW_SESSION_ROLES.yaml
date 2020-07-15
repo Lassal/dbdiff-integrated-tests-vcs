@@ -2,6 +2,8 @@ schema: SYS
 name: SESSION_ROLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name
@@ -12,5 +14,3 @@ viewDefinition: |-
     kzsrorol != userenv('SCHEMAID')
     and kzsrorol != 1
     and u.user# = kzsrorol
-columns: []
-referencedTables: []

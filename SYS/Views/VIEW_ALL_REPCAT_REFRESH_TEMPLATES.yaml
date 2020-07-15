@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_REPCAT_REFRESH_TEMPLATES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     refresh_template_name,
@@ -77,5 +79,3 @@ viewDefinition: |-
     and bitand(rawtohex(tt.flags), 1) = 1
     and rt.owner = u.name
     and u.user# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

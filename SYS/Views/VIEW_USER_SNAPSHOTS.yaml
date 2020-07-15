@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SNAPSHOTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     s. "OWNER",
@@ -35,5 +37,3 @@ viewDefinition: |-
   where
     u.user# = userenv('SCHEMAID')
     and s.owner = u.name
-columns: []
-referencedTables: []

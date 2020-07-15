@@ -2,6 +2,8 @@ schema: SYS
 name: USER_RSRC_MANAGER_SYSTEM_PRIVS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     spm.name,
@@ -17,5 +19,3 @@ viewDefinition: |-
     and sa.grantee# = userenv('SCHEMAID')
   group by
     spm.name
-columns: []
-referencedTables: []

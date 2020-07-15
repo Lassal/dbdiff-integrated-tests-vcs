@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_PARAMETERS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     a .task_id as task_id,
@@ -49,5 +51,3 @@ viewDefinition: |-
       /* system task only parameter */
       bitand(d.flags, 16) = 0
     )
-columns: []
-referencedTables: []

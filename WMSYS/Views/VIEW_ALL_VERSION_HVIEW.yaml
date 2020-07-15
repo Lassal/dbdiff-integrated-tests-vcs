@@ -2,6 +2,8 @@ schema: WMSYS
 name: ALL_VERSION_HVIEW
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     vht.version,
@@ -13,5 +15,3 @@ viewDefinition: |-
     wmsys.wm$workspaces_table$ wt
   where
     vht.workspace# = wt.workspace_lock_id WITH READ ONLY
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_TYPE_VERSIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -27,5 +29,3 @@ viewDefinition: |-
     and o.oid$ = t.tvoid
     and o.type# = 13
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_SQLA_TABLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     b.task_id as task_id,
@@ -17,5 +19,3 @@ viewDefinition: |-
     d.id = b.task_id
     and d.owner# = userenv('SCHEMAID')
     and d.advisor_id = 2
-columns: []
-referencedTables: []

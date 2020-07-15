@@ -2,6 +2,8 @@ schema: SYS
 name: USER_RESUMABLE
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     distinct R.SID as SESSION_ID,
@@ -40,5 +42,3 @@ viewDefinition: |-
     and R.ENABLED = 'YES'
     and NVL(T.SPACE(+), 'NO') = 'NO'
     and S.USER# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

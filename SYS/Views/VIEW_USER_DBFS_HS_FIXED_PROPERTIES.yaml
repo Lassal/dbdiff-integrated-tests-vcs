@@ -2,6 +2,8 @@ schema: SYS
 name: USER_DBFS_HS_FIXED_PROPERTIES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     STORE_NAME,
@@ -11,5 +13,3 @@ viewDefinition: |-
     DBA_DBFS_HS_FIXED_PROPERTIES
   WHERE
     STORE_OWNER = sys_context('USERENV', 'SESSION_USER')
-columns: []
-referencedTables: []

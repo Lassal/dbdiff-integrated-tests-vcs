@@ -2,6 +2,8 @@ schema: ORDS_METADATA
 name: USER_ORDS_PENDING_APPROVALS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     p.id pending_id,
@@ -24,5 +26,3 @@ viewDefinition: |-
     AND a .schema_id = s.id
     AND a .client_id = c .id
     AND s.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

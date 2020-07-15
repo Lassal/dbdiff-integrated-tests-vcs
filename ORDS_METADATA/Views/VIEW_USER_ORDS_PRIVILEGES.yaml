@@ -2,6 +2,8 @@ schema: ORDS_METADATA
 name: USER_ORDS_PRIVILEGES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     sec.id,
@@ -20,5 +22,3 @@ viewDefinition: |-
   WHERE
     sec.schema_id IN (sch.id, 10)
     AND sch.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

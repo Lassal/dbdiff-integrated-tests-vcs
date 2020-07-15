@@ -2,6 +2,8 @@ schema: SYS
 name: USER_PARALLEL_EXECUTE_CHUNKS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     CHUNK_ID,
@@ -30,5 +32,3 @@ viewDefinition: |-
     DBMS_PARALLEL_EXECUTE_CHUNKS$ c
   where
     task_owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

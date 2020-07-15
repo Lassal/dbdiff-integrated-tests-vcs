@@ -2,6 +2,8 @@ schema: MDSYS
 name: ALL_SDO_GEOM_METADATA
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     b.SDO_OWNER OWNER,
@@ -16,5 +18,3 @@ viewDefinition: |-
     b.sdo_table_name = a .object_name
     AND b.sdo_owner = a .owner
     AND a .object_type in ('TABLE', 'SYNONYM', 'VIEW')
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_JAVA_DERIVATIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     nvl(j.longdbcs, o.name),
@@ -18,5 +20,3 @@ viewDefinition: |-
     and j.short(+) = o.name
     and j2.short(+) = t.joxftderivedclassname
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CHANGE_NOTIFICATION_REGS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     r.regid,
@@ -17,5 +19,3 @@ viewDefinition: |-
   where
     u.user# = userenv('SCHEMAID')
     and u.name = r.username
-columns: []
-referencedTables: []

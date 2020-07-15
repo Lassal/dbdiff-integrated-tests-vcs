@@ -2,6 +2,8 @@ schema: CTXSYS
 name: CTX_PREFERENCE_VALUES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ ORDERED INDEX(dr$preference_value) */
@@ -26,5 +28,3 @@ viewDefinition: |-
     and oat_id = prv_oat_id
     and prv_pre_id = pre_id
     and pre_owner# = u.user#
-columns: []
-referencedTables: []

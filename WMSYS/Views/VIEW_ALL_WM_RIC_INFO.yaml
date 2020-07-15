@@ -2,6 +2,8 @@ schema: WMSYS
 name: ALL_WM_RIC_INFO
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ LEADING(rt) */
@@ -21,5 +23,3 @@ viewDefinition: |-
   where
     uv.view_name = rt.ct_name
     and uv.owner = rt.ct_owner WITH READ ONLY
-columns: []
-referencedTables: []

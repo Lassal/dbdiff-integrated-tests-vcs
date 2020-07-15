@@ -2,6 +2,8 @@ schema: SYS
 name: USER_REPAUDIT_COLUMN
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     r.oname,
@@ -26,5 +28,3 @@ viewDefinition: |-
   where
     r.sname = u.name
     and u.user# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_REFRESH_CHILDREN
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     d. "OWNER",
@@ -27,5 +29,3 @@ viewDefinition: |-
   where
     d.rowner = u.name
     and u.user# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

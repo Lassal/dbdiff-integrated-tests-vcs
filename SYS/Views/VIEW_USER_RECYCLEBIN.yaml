@@ -2,6 +2,8 @@ schema: SYS
 name: USER_RECYCLEBIN
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -73,5 +75,3 @@ viewDefinition: |-
     r.owner# = userenv('SCHEMAID')
     and o.obj# = r.obj#
     and r.ts# = t.ts#(+)
-columns: []
-referencedTables: []

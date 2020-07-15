@@ -2,6 +2,8 @@ schema: CTXSYS
 name: CTX_USER_EXTRACT_POLICY_VALUES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ ORDERED */
@@ -39,5 +41,3 @@ viewDefinition: |-
     and idx_id = ixv_idx_id
     and idx_owner# = userenv('SCHEMAID')
     and INSTR(idx_option, 'E') > 0
-columns: []
-referencedTables: []

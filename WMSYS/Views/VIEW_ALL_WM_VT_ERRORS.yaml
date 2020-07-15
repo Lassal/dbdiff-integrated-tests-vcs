@@ -2,6 +2,8 @@ schema: WMSYS
 name: ALL_WM_VT_ERRORS
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     distinct vt.owner,
@@ -32,5 +34,3 @@ viewDefinition: |-
     and vt.index_field = et.index_field
     and vt.owner = at .owner
     and at .table_name in (vt.table_name, vt.table_name || '_LT') WITH READ ONLY
-columns: []
-referencedTables: []

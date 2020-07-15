@@ -2,6 +2,8 @@ schema: SYS
 name: USER_FLASHBACK_ARCHIVE_TABLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     unique o.NAME,
@@ -62,5 +64,3 @@ viewDefinition: |-
     and
     /* show only this user's objects */
     (u.user# = userenv('SCHEMAID'))
-columns: []
-referencedTables: []

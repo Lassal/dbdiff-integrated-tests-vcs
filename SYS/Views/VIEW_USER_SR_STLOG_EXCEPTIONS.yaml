@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SR_STLOG_EXCEPTIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     TABLE_NAME,
@@ -13,5 +15,3 @@ viewDefinition: |-
     DBA_SR_STLOG_EXCEPTIONS
   where
     owner = SYS_CONTEXT ('USERENV', 'SESSION_USER')
-columns: []
-referencedTables: []

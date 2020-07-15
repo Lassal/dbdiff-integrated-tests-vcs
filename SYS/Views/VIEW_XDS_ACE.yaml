@@ -2,6 +2,8 @@ schema: SYS
 name: XDS_ACE
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     a .object_id,
@@ -58,5 +60,3 @@ viewDefinition: |-
   from
     xdb.xdb$acl a,
     table(XMLSequence(extract(a .object_value, '/acl/ace'))) b
-columns: []
-referencedTables: []

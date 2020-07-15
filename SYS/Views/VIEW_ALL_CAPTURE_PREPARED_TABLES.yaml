@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_CAPTURE_PREPARED_TABLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     pt.table_owner,
@@ -18,5 +20,3 @@ viewDefinition: |-
   where
     pt.table_name = at .table_name
     and pt.table_owner = at .owner
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_APPLY_CONFLICT_COLUMNS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     c .object_owner,
@@ -17,5 +19,3 @@ viewDefinition: |-
     c .object_owner = o.owner
     and c .object_name = o.table_name
     and c .column_name = o.column_name
-columns: []
-referencedTables: []

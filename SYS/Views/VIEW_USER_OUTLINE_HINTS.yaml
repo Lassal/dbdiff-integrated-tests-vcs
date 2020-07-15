@@ -2,6 +2,8 @@ schema: SYS
 name: USER_OUTLINE_HINTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.ol_name,
@@ -17,5 +19,3 @@ viewDefinition: |-
     o.ol_name = h.ol_name
     and o.creator = u.name
     and u.user# = USERENV('SCHEMAID')
-columns: []
-referencedTables: []

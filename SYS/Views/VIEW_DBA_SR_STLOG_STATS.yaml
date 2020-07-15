@@ -2,6 +2,8 @@ schema: SYS
 name: DBA_SR_STLOG_STATS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u1.name owner,
@@ -40,5 +42,3 @@ viewDefinition: |-
     and o1.owner# = u1.user#
     and t1.staging_log_obj# = o2.obj#
     and t1.table_obj# = sts.table_obj#
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_EXECUTIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     t.id as task_id,
@@ -46,5 +48,3 @@ viewDefinition: |-
     e.task_id = t.id
     and e.advisor_id = t.advisor_id
     and t.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

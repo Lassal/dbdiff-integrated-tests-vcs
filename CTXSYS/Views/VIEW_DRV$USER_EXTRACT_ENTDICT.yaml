@@ -2,6 +2,8 @@ schema: CTXSYS
 name: DRV$USER_EXTRACT_ENTDICT
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     "EED_POLID",
@@ -16,5 +18,3 @@ viewDefinition: |-
     dr$user_extract_entdict
   where
     eed_polid = SYS_CONTEXT('DR$APPCTX', 'IDXID') with check option
-columns: []
-referencedTables: []

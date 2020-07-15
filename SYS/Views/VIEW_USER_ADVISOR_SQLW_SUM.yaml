@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_SQLW_SUM
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     b.id as workload_id,
@@ -26,5 +28,3 @@ viewDefinition: |-
     and a .workload_id = b.id
     and bitand(b.property, 2) = 0
     and b.advisor_id = 6
-columns: []
-referencedTables: []

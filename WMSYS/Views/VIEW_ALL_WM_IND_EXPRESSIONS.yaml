@@ -2,6 +2,8 @@ schema: WMSYS
 name: ALL_WM_IND_EXPRESSIONS
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ USE_NL(t1 t2) */
@@ -17,5 +19,3 @@ viewDefinition: |-
   where
     t1.index_owner = t2.index_owner
     and t1.index_name = t2.index_name WITH READ ONLY
-columns: []
-referencedTables: []

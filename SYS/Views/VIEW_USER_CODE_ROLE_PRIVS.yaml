@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CODE_ROLE_PRIVS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   (
     select
@@ -28,5 +30,3 @@ viewDefinition: |-
       and c .privilege# = r.user#
       and o.owner# = userenv('SCHEMAID')
   )
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_AQ_AGENT_PRIVS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     u.agent_name,
@@ -15,5 +17,3 @@ viewDefinition: |-
     u.agent_name = t.agent_name
     and usr.user# = USERENV('SCHEMAID')
     and usr.name = t.db_username
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_XS_POLICIES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     name,
@@ -12,5 +14,3 @@ viewDefinition: |-
     sys.dba_xs_policies
   where
     owner = sys_context('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_REPRESOL_STATS_CONTROL
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     r.oname,
@@ -24,5 +26,3 @@ viewDefinition: |-
   where
     r.sname = u.name
     and u.user# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

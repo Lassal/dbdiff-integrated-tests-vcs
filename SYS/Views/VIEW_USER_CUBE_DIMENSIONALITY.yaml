@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_DIMENSIONALITY
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     co.name CUBE_NAME,
@@ -40,5 +42,3 @@ viewDefinition: |-
     AND io_diml.object_type(+) = 16 -- DIMENSIONALITY
     AND io_diml.owning_objectid(+) = diml.dimensionality_id
     AND io_diml.option_type(+) = 33 -- DIMENSIONALITY NAME
-columns: []
-referencedTables: []

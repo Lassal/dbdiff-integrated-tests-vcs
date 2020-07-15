@@ -2,6 +2,8 @@ schema: APEX_050000
 name: APEX_APPLICATION_SUPP_OBJ_CHCK
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     w.short_name workspace,
@@ -76,5 +78,3 @@ viewDefinition: |-
       or nvl(f.BUILD_STATUS, 'x') != 'RUN_AND_HIDDEN'
     )
     and w.PROVISIONING_COMPANY_ID != 0
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_TYPE_METHODS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -37,5 +39,3 @@ viewDefinition: |-
     and o.type# <> 10 -- must not be invalid
     and o.oid$ = m.toid
     and o.subname IS NULL -- get the latest version only
-columns: []
-referencedTables: []

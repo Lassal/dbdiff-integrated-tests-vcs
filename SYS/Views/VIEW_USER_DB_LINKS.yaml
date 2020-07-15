@@ -2,6 +2,8 @@ schema: SYS
 name: USER_DB_LINKS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     l.name,
@@ -13,5 +15,3 @@ viewDefinition: |-
     sys.link$ l
   where
     l.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

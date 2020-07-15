@@ -2,6 +2,8 @@ schema: SYS
 name: USER_VIEWS_AE
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -46,5 +48,3 @@ viewDefinition: |-
     o.obj# = v.obj#
     and o.obj# = t.obj#(+)
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

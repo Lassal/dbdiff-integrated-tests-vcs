@@ -2,6 +2,8 @@ schema: MDSYS
 name: USER_SDO_TOPO_INFO
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     SDO_OWNER OWNER,
@@ -22,5 +24,3 @@ viewDefinition: |-
     TABLE (a .Topo_Geometry_Layers) b
   WHERE
     sdo_owner = sys_context('userenv', 'CURRENT_SCHEMA')
-columns: []
-referencedTables: []

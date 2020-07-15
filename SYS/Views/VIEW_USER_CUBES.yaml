@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name CUBE_NAME,
@@ -100,5 +102,3 @@ viewDefinition: |-
     AND hl.hierarchy_id=h.hierarchy_id(+)
     AND hl.dim_level_id=dl.level_id(+)
     AND h.dim_obj#=od.obj#(+)
-columns: []
-referencedTables: []

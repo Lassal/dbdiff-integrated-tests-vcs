@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_SQLW_JOURNAL
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     a .task_id as workload_id,
@@ -36,5 +38,3 @@ viewDefinition: |-
     a .task_id = b.id
     and b.advisor_id = 6
     and b.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

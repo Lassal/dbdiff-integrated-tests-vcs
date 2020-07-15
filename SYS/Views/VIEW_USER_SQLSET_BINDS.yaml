@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SQLSET_BINDS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     name as sqlset_name,
@@ -49,5 +51,3 @@ viewDefinition: |-
     AND s.id = p.stmt_id
     AND s.con_dbid = p.con_dbid
     AND d.owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

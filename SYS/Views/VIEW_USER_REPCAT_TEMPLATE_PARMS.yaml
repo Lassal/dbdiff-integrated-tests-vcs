@@ -2,6 +2,8 @@ schema: SYS
 name: USER_REPCAT_TEMPLATE_PARMS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     rt.refresh_template_name,
@@ -41,5 +43,3 @@ viewDefinition: |-
         and nvl(rt.public_template, 'N') = 'N'
         and au.user_id = userenv('SCHEMAID')
     )
-columns: []
-referencedTables: []

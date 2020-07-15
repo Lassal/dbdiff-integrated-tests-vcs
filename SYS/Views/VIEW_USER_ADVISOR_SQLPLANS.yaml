@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_SQLPLANS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     t.name task_name,
@@ -82,5 +84,3 @@ viewDefinition: |-
     h.task_id = t.id
     and h.plan_id = p.plan_id
     and t.owner# = SYS_CONTEXT('USERENV', 'CURRENT_USERID')
-columns: []
-referencedTables: []

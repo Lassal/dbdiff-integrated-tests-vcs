@@ -2,6 +2,8 @@ schema: SYS
 name: USER_MEASURE_FOLDERS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name MEASURE_FOLDER_NAME,
@@ -27,5 +29,3 @@ viewDefinition: |-
     mf.obj# = o.obj#
     AND o.owner# = USERENV(' SCHEMAID ')
     AND mf.obj# = d.owning_object_id(+)
-columns: []
-referencedTables: []

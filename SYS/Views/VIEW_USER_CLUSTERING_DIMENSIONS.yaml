@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CLUSTERING_DIMENSIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     d.TABLE_NAME,
@@ -11,5 +13,3 @@ viewDefinition: |-
     DBA_CLUSTERING_DIMENSIONS d
   WHERE
     d.OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

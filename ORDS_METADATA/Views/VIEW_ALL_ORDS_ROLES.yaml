@@ -2,6 +2,8 @@ schema: ORDS_METADATA
 name: ALL_ORDS_ROLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   with sr as (
     select
@@ -29,5 +31,3 @@ viewDefinition: |-
       ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
       or sr.has_catalog = 1
     )
-columns: []
-referencedTables: []

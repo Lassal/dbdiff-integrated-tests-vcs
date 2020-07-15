@@ -2,6 +2,8 @@ schema: SYS
 name: USER_QUEUE_TABLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     t.name QUEUE_TABLE,
@@ -137,5 +139,3 @@ viewDefinition: |-
     and qc.user# = USERENV('SCHEMAID')
     and qc.name = t.schema
     and t.objno = aft.table_objno
-columns: []
-referencedTables: []

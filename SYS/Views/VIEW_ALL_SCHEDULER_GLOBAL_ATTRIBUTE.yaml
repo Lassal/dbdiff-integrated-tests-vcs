@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_SCHEDULER_GLOBAL_ATTRIBUTE
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name,
@@ -12,5 +14,3 @@ viewDefinition: |-
   WHERE
     o.obj# = a .obj#
     AND BITAND(a .flags, 1) != 1
-columns: []
-referencedTables: []

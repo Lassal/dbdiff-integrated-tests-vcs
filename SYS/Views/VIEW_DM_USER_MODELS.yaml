@@ -2,6 +2,8 @@ schema: SYS
 name: DM_USER_MODELS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     m.model_name,
@@ -17,5 +19,3 @@ viewDefinition: |-
   where
     m.model_name = a .model_name(+)
     and target(+) = 'YES'
-columns: []
-referencedTables: []
