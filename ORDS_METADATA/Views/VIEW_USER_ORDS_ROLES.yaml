@@ -2,6 +2,8 @@ schema: ORDS_METADATA
 name: USER_ORDS_ROLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     sec_roles.id,
@@ -17,5 +19,3 @@ viewDefinition: |-
   WHERE
     sec_roles.schema_id IN (ords_schemas.id, 10)
     AND ords_schemas.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

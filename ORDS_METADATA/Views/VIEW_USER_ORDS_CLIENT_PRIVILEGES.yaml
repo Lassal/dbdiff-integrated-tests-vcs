@@ -2,6 +2,8 @@ schema: ORDS_METADATA
 name: USER_ORDS_CLIENT_PRIVILEGES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     p.id client_priv_id,
@@ -26,5 +28,3 @@ viewDefinition: |-
     AND sec.id = p.privilege_id
     AND p.client_id = c .id
     AND sch.parsing_schema = sys_context('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

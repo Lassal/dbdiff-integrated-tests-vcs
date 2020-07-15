@@ -2,6 +2,8 @@ schema: SYS
 name: SYNONYMS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     s.name,
@@ -67,5 +69,3 @@ viewDefinition: |-
     and s.type# = 5
     and s.owner# in (1, userenv('SCHEMAID'))
     and t.node is not null
-columns: []
-referencedTables: []

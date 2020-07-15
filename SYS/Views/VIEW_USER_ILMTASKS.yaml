@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ILMTASKS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     a .execution_id,
@@ -22,5 +24,3 @@ viewDefinition: |-
     sys.ilm_execution$ a
   WHERE
     a .owner = userenv('SCHEMAID')
-columns: []
-referencedTables: []

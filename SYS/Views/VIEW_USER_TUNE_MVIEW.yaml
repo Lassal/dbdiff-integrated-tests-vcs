@@ -2,6 +2,8 @@ schema: SYS
 name: USER_TUNE_MVIEW
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     t.name,
@@ -52,5 +54,3 @@ viewDefinition: |-
   WHERE
     a .task_id = t.id
     AND t.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

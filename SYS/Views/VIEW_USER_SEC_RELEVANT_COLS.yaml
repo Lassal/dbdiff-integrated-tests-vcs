@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SEC_RELEVANT_COLS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     OBJECT_NAME,
@@ -13,5 +15,3 @@ viewDefinition: |-
     ALL_SEC_RELEVANT_COLS
   WHERE
     OBJECT_OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

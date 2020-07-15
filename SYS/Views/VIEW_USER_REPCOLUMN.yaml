@@ -2,6 +2,8 @@ schema: SYS
 name: USER_REPCOLUMN
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     r.sname,
@@ -78,5 +80,3 @@ viewDefinition: |-
     r.sname = u.name
     and u.user# = userenv('SCHEMAID')
     and r.oname = nt.table_name
-columns: []
-referencedTables: []

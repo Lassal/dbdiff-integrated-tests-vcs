@@ -2,6 +2,8 @@ schema: CTXSYS
 name: CTX_USER_AUTO_OPTIMIZE_INDEXES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.aoi_idxname aoi_index_name,
@@ -10,5 +12,3 @@ viewDefinition: |-
     dr$autoopt o
   where
     o.aoi_ownid = userenv('SCHEMAID')
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_QUEUES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     q.name NAME,
@@ -43,5 +45,3 @@ viewDefinition: |-
     and u.name = t.schema
     and q.table_objno = t.objno
     and q.service_name = s.name (+)
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: WMSYS
 name: ALL_WORKSPACE_SAVEPOINTS
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     t.savepoint,
@@ -46,5 +48,3 @@ viewDefinition: |-
     t.workspace = asi.workspace
     and t.workspace = max .pw (+)
     and t.version = parent_vers.parent_version (+) WITH READ ONLY
-columns: []
-referencedTables: []

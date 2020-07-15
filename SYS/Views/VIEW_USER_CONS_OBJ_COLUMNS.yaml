@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CONS_OBJ_COLUMNS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     oc.name,
@@ -63,5 +65,3 @@ viewDefinition: |-
     and ot.owner# = ut.user#
     and bitand(c .property, 32768) != 32768
     /* not unused column */
-columns: []
-referencedTables: []

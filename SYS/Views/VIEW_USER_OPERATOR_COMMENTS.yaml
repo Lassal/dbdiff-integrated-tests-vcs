@@ -2,6 +2,8 @@ schema: SYS
 name: USER_OPERATOR_COMMENTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -17,5 +19,3 @@ viewDefinition: |-
     and c .obj# = op.obj#
     and u.user# = o.owner#
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

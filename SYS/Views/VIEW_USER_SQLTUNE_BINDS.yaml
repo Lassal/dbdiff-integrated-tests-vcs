@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SQLTUNE_BINDS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     b.task_id,
@@ -17,5 +19,3 @@ viewDefinition: |-
     and b.task_id = o.task_id
     and o.task_id = t.id
     and t.owner# = SYS_CONTEXT('USERENV', 'CURRENT_USERID')
-columns: []
-referencedTables: []

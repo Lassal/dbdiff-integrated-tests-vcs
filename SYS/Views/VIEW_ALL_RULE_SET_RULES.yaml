@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_RULE_SET_RULES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     /*+ all_rows */
@@ -65,5 +67,3 @@ viewDefinition: |-
     and ro.owner# = ru.user#
     and rm.ectx# = eo.obj#(+)
     and eo.owner# = eu.user#(+)
-columns: []
-referencedTables: []

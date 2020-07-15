@@ -2,6 +2,8 @@ schema: SYS
 name: USER_EXTERNAL_LOCATIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -16,5 +18,3 @@ viewDefinition: |-
     o.owner# = userenv('SCHEMAID')
     and o.obj# = xl.obj#
     and o.obj# = xt.obj#
-columns: []
-referencedTables: []

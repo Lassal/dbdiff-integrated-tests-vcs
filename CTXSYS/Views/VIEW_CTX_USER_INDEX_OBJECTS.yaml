@@ -2,6 +2,8 @@ schema: CTXSYS
 name: CTX_USER_INDEX_OBJECTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     idx_name ixo_index_name,
@@ -19,5 +21,3 @@ viewDefinition: |-
     and ixo_obj_id = obj_id
     and ixo_idx_id = idx_id
     and idx_owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

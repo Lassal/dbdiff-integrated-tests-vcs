@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SEQUENCES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -21,5 +23,3 @@ viewDefinition: |-
   where
     o.owner# = userenv('SCHEMAID')
     and o.obj# = s.obj#
-columns: []
-referencedTables: []

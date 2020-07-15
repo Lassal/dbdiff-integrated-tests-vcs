@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ERROR_TRANSLATIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -17,5 +19,3 @@ viewDefinition: |-
   where
     s.obj# = o.obj#
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

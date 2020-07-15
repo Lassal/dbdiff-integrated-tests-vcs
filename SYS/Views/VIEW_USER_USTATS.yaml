@@ -2,6 +2,8 @@ schema: SYS
 name: USER_USTATS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -139,5 +141,3 @@ viewDefinition: |-
     and s.statstype# = o1.obj#
     and o1.owner# = u1.user#
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

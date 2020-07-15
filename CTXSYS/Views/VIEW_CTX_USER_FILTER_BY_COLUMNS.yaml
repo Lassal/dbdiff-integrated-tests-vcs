@@ -2,6 +2,8 @@ schema: CTXSYS
 name: CTX_USER_FILTER_BY_COLUMNS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     idx_name fbc_index_name,
@@ -23,5 +25,3 @@ viewDefinition: |-
     and idx_table_owner# = u.user#
     and idx_table# = o.obj#
     and idx_owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_IND_PENDING_STATS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -153,5 +155,3 @@ viewDefinition: |-
     and bitand(i.flags, 4096) = 0 -- not a fake index
     and h.savtime > systimestamp
     and ot.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

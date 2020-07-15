@@ -2,6 +2,8 @@ schema: SYS
 name: USER_COL_PENDING_STATS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -142,5 +144,3 @@ viewDefinition: |-
     and os.type# = 34
     and h.savtime > systimestamp
     and os.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

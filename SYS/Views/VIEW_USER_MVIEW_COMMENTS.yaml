@@ -2,6 +2,8 @@ schema: SYS
 name: USER_MVIEW_COMMENTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -18,5 +20,3 @@ viewDefinition: |-
     and o.obj# = c .obj#(+)
     and c .col#(+) is NULL
     and o.obj# = t.obj#
-columns: []
-referencedTables: []

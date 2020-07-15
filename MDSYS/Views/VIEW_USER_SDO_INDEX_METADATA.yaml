@@ -2,6 +2,8 @@ schema: MDSYS
 name: USER_SDO_INDEX_METADATA
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     SDO_INDEX_OWNER,
@@ -59,5 +61,3 @@ viewDefinition: |-
           and sdo_index_owner = sys_context('userenv', 'CURRENT_USER')
       )
     )
-columns: []
-referencedTables: []

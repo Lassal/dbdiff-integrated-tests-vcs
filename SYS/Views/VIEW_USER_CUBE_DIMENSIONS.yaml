@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_DIMENSIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name DIMENSION_NAME,
@@ -64,5 +66,3 @@ viewDefinition: |-
      AND syn.owner_id(+) = dim.obj#
      AND syn.owner_type(+) = 11
      AND syn.ref_role(+) = 23 -- CustomOrder
-columns: []
-referencedTables: []

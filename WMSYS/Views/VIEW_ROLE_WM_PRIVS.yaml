@@ -2,6 +2,8 @@ schema: WMSYS
 name: ROLE_WM_PRIVS
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     grantee role,
@@ -57,5 +59,3 @@ viewDefinition: |-
       where
         sys_context('userenv', 'current_user') = 'SYS'
     ) WITH READ ONLY
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SCHEDULER_PROGRAMS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     po.name,
@@ -39,5 +41,3 @@ viewDefinition: |-
   WHERE
     po.owner# = USERENV('SCHEMAID')
     AND p.obj# = po.obj#
-columns: []
-referencedTables: []

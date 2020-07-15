@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SCHEDULER_GROUP_MEMBERS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     wgm.group_name,
@@ -40,5 +42,3 @@ viewDefinition: |-
         AND cmo.obj#(+) = wg.member_oid2
         AND cmo.owner# = cmu.user#(+)
     ) wgm
-columns: []
-referencedTables: []

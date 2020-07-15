@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_APPLY_REPERROR_HANDLERS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     rh. "APPLY_NAME",
@@ -22,5 +24,3 @@ viewDefinition: |-
     rh.apply_name = a .apply_name
     and rh.object_owner = t.owner
     and rh.object_name = t.table_name
-columns: []
-referencedTables: []

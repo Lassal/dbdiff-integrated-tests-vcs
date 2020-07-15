@@ -2,6 +2,8 @@ schema: WMSYS
 name: ALL_WORKSPACES
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     asp.workspace,
@@ -136,5 +138,3 @@ viewDefinition: |-
       asp.freeze_owner,
       instr(asp.freeze_owner, ',', 1, 2) + 1
     ) WITH READ ONLY
-columns: []
-referencedTables: []

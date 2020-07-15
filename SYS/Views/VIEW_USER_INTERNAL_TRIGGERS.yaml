@@ -2,6 +2,8 @@ schema: SYS
 name: USER_INTERNAL_TRIGGERS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -46,5 +48,3 @@ viewDefinition: |-
     o.owner# = userenv('SCHEMAID')
     and t.obj# = o.obj#
     and bitand(t.trigflag, 8) = 8
-columns: []
-referencedTables: []

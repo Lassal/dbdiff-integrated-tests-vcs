@@ -2,6 +2,8 @@ schema: SYS
 name: USER_OPANCILLARY
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     distinct u.name,
@@ -24,5 +26,3 @@ viewDefinition: |-
     and o1.owner# = u1.user#
     and a .obj# = a1.obj#
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

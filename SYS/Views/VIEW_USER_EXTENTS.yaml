@@ -2,6 +2,8 @@ schema: SYS
 name: USER_EXTENTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     ds.segment_name,
@@ -39,5 +41,3 @@ viewDefinition: |-
     and e.ktfbuesegtsn = ds.tablespace_id
     and bitand(NVL(ds.segment_flags, 0), 1) = 1
     and bitand(NVL(ds.segment_flags, 0), 65536) = 0
-columns: []
-referencedTables: []

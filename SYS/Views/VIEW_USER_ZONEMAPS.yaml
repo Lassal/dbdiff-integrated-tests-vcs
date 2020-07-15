@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ZONEMAPS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     z. "OWNER",
@@ -28,5 +30,3 @@ viewDefinition: |-
   where
     u.user# = userenv('SCHEMAID')
     and z.owner = u.name
-columns: []
-referencedTables: []

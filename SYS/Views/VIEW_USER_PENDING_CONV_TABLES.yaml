@@ -2,6 +2,8 @@ schema: SYS
 name: USER_PENDING_CONV_TABLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name
@@ -13,5 +15,3 @@ viewDefinition: |-
     and bitand(o.flags, 4096) = 4096
     /* type evolved flg */
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

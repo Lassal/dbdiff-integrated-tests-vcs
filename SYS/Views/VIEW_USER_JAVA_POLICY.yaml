@@ -2,6 +2,8 @@ schema: SYS
 name: USER_JAVA_POLICY
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     djp.kind,
@@ -35,5 +37,3 @@ viewDefinition: |-
       or u.name = 'PUBLIC'
       or u.user# = userenv('SCHEMAID')
     )
-columns: []
-referencedTables: []

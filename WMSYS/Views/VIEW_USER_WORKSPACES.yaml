@@ -2,6 +2,8 @@ schema: WMSYS
 name: USER_WORKSPACES
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     st.workspace,
@@ -124,5 +126,3 @@ viewDefinition: |-
       st.freeze_owner,
       instr(st.freeze_owner, ',', 1, 2) + 1
     ) WITH READ ONLY
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_LOG
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     a .id as task_id,
@@ -41,5 +43,3 @@ viewDefinition: |-
     and a .advisor_id = e.advisor_id(+)
     and a .owner# = userenv('SCHEMAID')
     and bitand(a .property, 6) = 4
-columns: []
-referencedTables: []

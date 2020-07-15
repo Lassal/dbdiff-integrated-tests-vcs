@@ -2,6 +2,8 @@ schema: WMSYS
 name: USER_MP_PARENT_WORKSPACES
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     mp.workspace mp_leaf_workspace,
@@ -20,5 +22,3 @@ viewDefinition: |-
     wmsys.user_workspaces uw
   where
     mp.workspace = uw.workspace WITH READ ONLY
-columns: []
-referencedTables: []

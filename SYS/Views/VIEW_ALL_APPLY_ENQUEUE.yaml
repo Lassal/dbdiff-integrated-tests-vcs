@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_APPLY_ENQUEUE
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     e. "RULE_OWNER",
@@ -15,5 +17,3 @@ viewDefinition: |-
     e.rule_owner = r.rule_owner
     and e.rule_name = r.rule_name
     and e.destination_queue_name = '"' || aq.owner || '"' || '.' || '"' || aq.name || '"'
-columns: []
-referencedTables: []

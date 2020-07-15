@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_REPFLAVOR_OBJECTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     UNIQUE fo.fname,
@@ -21,5 +23,3 @@ viewDefinition: |-
       OR fo.type = 'SNAPSHOT'
       and o.object_type IN ('VIEW', 'TABLE')
     )
-columns: []
-referencedTables: []

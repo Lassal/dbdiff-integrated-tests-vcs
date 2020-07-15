@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_HIERARCHIES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name DIMENSION_NAME,
@@ -58,5 +60,3 @@ viewDefinition: |-
     AND syn.owner_id(+) = h.hierarchy_id
     AND syn.owner_type(+) = 13
     AND syn.ref_role(+) = 23 -- CustomOrder
-columns: []
-referencedTables: []

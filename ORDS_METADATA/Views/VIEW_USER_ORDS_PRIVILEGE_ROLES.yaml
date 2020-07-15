@@ -2,6 +2,8 @@ schema: ORDS_METADATA
 name: USER_ORDS_PRIVILEGE_ROLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     sec_privilege_roles.privilege_id,
@@ -15,5 +17,3 @@ viewDefinition: |-
   WHERE
     sec_privilege_roles.role_id = USER_ORDS_ROLES.id
     AND sec_privilege_roles.privilege_id = USER_ORDS_PRIVILEGES.id
-columns: []
-referencedTables: []

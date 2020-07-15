@@ -2,6 +2,8 @@ schema: SYS
 name: USER_INDEXTYPE_COMMENTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -17,5 +19,3 @@ viewDefinition: |-
     and u.user# = o.owner#
     and c .obj# = i.obj#
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: ALL_TSTZ_TABLES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ leading(actt, o, u, t) */
@@ -29,5 +31,3 @@ viewDefinition: |-
     and attc.owner = u.name
     and o.owner# = u.user#
     and o.obj# = t.obj#
-columns: []
-referencedTables: []

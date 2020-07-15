@@ -2,6 +2,8 @@ schema: WMSYS
 name: ALL_WM_LOCKED_TABLES
 updatedAllowed: false
 insertAllowed: false
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ LEADING(t) */
@@ -16,5 +18,3 @@ viewDefinition: |-
   where
     t.owner = s.owner
     and t.table_name = s.view_name WITH READ ONLY
-columns: []
-referencedTables: []

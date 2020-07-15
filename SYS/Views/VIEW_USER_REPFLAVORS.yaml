@@ -2,6 +2,8 @@ schema: SYS
 name: USER_REPFLAVORS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     f.flavor_id,
@@ -17,5 +19,3 @@ viewDefinition: |-
   where
     f.created_by = userenv('SCHEMAID')
     and f.created_by = u.user#
-columns: []
-referencedTables: []

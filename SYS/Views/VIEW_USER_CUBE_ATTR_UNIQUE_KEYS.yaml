@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_ATTR_UNIQUE_KEYS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name DIMENSION_NAME,
@@ -18,5 +20,3 @@ viewDefinition: |-
     AND a .attribute_id = av.attribute_id
     AND av.is_unique_key = 1
     AND av.owning_dim_id = dl.level_id
-columns: []
-referencedTables: []

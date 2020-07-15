@@ -2,6 +2,8 @@ schema: SYS
 name: USER_RSRC_CONSUMER_GROUP_PRIVS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     g.name,
@@ -25,5 +27,3 @@ viewDefinition: |-
     o.obj# = g.obj#
     and o.grantee# = u.user#
     and o.grantee# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

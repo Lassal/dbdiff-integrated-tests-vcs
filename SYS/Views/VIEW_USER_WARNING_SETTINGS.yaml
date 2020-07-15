@@ -2,6 +2,8 @@ schema: SYS
 name: USER_WARNING_SETTINGS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name,
@@ -56,5 +58,3 @@ viewDefinition: |-
     AND o.obj# = w.obj_no
     AND o.type# IN (7, 8, 9, 11, 12, 13, 14)
     AND o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

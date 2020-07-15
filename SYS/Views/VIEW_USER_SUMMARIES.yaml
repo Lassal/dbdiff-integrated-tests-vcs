@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SUMMARIES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -77,5 +79,3 @@ viewDefinition: |-
     and bitand(s.xpflags, 8388608) = 0
     /* NOT REWRITE EQUIVALENCE SUMMARY */
     and o.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

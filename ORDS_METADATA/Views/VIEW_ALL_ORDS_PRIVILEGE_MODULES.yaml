@@ -2,6 +2,8 @@ schema: ORDS_METADATA
 name: ALL_ORDS_PRIVILEGE_MODULES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     sec_privilege_modules.module_id,
@@ -15,5 +17,3 @@ viewDefinition: |-
   WHERE
     sec_privilege_modules.module_id = ALL_ORDS_MODULES.id
     AND sec_privilege_modules.privilege_id = ALL_ORDS_PRIVILEGES.id
-columns: []
-referencedTables: []

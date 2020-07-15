@@ -2,6 +2,8 @@ schema: SYS
 name: USER_TRIGGER_ORDERING
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     trigger_name,
@@ -12,5 +14,3 @@ viewDefinition: |-
     sys. "_DBA_TRIGGER_ORDERING"
   where
     trigger_owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

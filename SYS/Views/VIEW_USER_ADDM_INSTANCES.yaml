@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADDM_INSTANCES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     a .task_id as task_id,
@@ -20,5 +22,3 @@ viewDefinition: |-
   where
     a .task_id = tn.id
     and tn.owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

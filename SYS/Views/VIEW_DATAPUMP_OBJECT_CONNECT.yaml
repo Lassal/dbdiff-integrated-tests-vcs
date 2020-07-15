@@ -2,6 +2,8 @@ schema: SYS
 name: DATAPUMP_OBJECT_CONNECT
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     unique a .type,
@@ -19,5 +21,3 @@ viewDefinition: |-
     sys.metaview$ a
   where
     bitand(a .properties, 2 + 4) = 0
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SQLSET_STATEMENTS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     f.name as sqlset_name,
@@ -77,5 +79,3 @@ viewDefinition: |-
     AND f.id = s.sqlset_id
     AND owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
     AND p.parsing_schema_name = u.NAME(+)
-columns: []
-referencedTables: []

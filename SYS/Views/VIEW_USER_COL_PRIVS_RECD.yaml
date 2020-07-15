@@ -2,6 +2,8 @@ schema: SYS
 name: USER_COL_PRIVS_RECD
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -61,5 +63,3 @@ viewDefinition: |-
     and oa.grantee# = userenv('SCHEMAID')
     and bitand(oa.option$, 8) = 8
     /* Common, and maybe Local, priv */
-columns: []
-referencedTables: []

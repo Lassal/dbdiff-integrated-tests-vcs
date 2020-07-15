@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_ATTRIBUTES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name DIMENSION_NAME,
@@ -124,5 +126,3 @@ viewDefinition: |-
     AND a.attribute_id = i3.owning_objectid(+)
     AND i3.object_type(+) = 15 --ATTRIBUTE
     AND i3.option_type(+) = 2  --IS_MULTI_LINGUAL
-columns: []
-referencedTables: []

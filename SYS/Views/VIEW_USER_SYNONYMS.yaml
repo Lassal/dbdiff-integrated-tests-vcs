@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SYNONYMS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     SYNONYM_NAME,
@@ -13,5 +15,3 @@ viewDefinition: |-
     NO_ROOT_SW_FOR_LOCAL(INT $DBA_SYNONYMS)
   where
     OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

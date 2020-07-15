@@ -2,6 +2,8 @@ schema: SYS
 name: USER_TAB_STATS_HISTORY
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -65,5 +67,3 @@ viewDefinition: |-
     and userenv('SCHEMAID') = 0
     /* SYS */
     and h.savtime <= systimestamp -- exclude pending statistics
-columns: []
-referencedTables: []

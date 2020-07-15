@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SUBSCR_REGISTRATIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     r.reg_id,
@@ -58,5 +60,3 @@ viewDefinition: |-
   where
     r.user# = cu.user#
     and cu.user# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

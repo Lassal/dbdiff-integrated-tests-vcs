@@ -2,6 +2,8 @@ schema: SYS
 name: USER_REPPRIORITY_GROUP
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     r.priority_group,
@@ -31,5 +33,3 @@ viewDefinition: |-
   where
     r.sname = u.name
     and u.user# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

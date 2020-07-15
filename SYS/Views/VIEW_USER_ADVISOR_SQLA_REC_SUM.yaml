@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_SQLA_REC_SUM
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     max(a .task_id) as task_id,
@@ -20,5 +22,3 @@ viewDefinition: |-
   group by
     a .task_id,
     a .rec_id
-columns: []
-referencedTables: []

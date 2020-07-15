@@ -2,6 +2,8 @@ schema: SYS
 name: USER_UNUSED_COL_TABS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     o.name,
@@ -17,5 +19,3 @@ viewDefinition: |-
     and bitand(c .property, 1024) != 1024 -- not NTAB's setid col
   group by
     o.name
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: DBA_JAVA_CLASSES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     /*+ no_cartesian(m) ordered use_nl(o m)*/
@@ -85,5 +87,3 @@ viewDefinition: |-
     sys.user$ u
   where
     m.own = u.user#
-columns: []
-referencedTables: []

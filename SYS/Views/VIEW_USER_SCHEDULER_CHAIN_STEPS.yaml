@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SCHEDULER_CHAIN_STEPS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name,
@@ -71,5 +73,3 @@ viewDefinition: |-
   WHERE
     cs.oid = o.obj#
     AND o.owner# = USERENV('SCHEMAID')
-columns: []
-referencedTables: []

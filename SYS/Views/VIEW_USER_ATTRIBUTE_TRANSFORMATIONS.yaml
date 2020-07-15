@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ATTRIBUTE_TRANSFORMATIONS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     t.transformation_id,
@@ -18,5 +20,3 @@ viewDefinition: |-
     u.user# = USERENV('SCHEMAID')
     and u.name = t.owner
     and t.transformation_id = at .transformation_id
-columns: []
-referencedTables: []

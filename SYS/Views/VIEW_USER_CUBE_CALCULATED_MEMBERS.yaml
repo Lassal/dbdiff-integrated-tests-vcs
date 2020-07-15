@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CUBE_CALCULATED_MEMBERS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name DIMENSION_NAME,
@@ -19,5 +21,3 @@ viewDefinition: |-
     AND cm.member_id = syn.owner_id(+)
     AND syn.owner_type = 6 --CALC_MEMBER
     AND syn.ref_role = 19 -- MEMBER_EXPRESSION_ROLE
-columns: []
-referencedTables: []

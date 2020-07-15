@@ -2,6 +2,8 @@ schema: CTXSYS
 name: CTX_USER_SESSION_SQES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name sqe_owner,
@@ -13,5 +15,3 @@ viewDefinition: |-
   where
     u.user# = s.sqe_owner#
     and u.user# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

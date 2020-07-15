@@ -2,6 +2,8 @@ schema: CTXSYS
 name: CTX_USER_EXTRACT_STOP_ENTITIES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     i.idx_name ese_policy_name,
@@ -25,5 +27,3 @@ viewDefinition: |-
   where
     i.idx_owner# = userenv('SCHEMAID')
     and e.ese_pol_id = i.idx_id
-columns: []
-referencedTables: []

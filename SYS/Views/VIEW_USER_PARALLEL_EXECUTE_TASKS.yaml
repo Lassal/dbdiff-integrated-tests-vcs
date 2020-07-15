@@ -2,6 +2,8 @@ schema: SYS
 name: USER_PARALLEL_EXECUTE_TASKS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     task_name,
@@ -54,5 +56,3 @@ viewDefinition: |-
     DBMS_PARALLEL_EXECUTE_TASK$
   where
     task_owner# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

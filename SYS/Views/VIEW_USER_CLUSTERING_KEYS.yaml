@@ -2,6 +2,8 @@ schema: SYS
 name: USER_CLUSTERING_KEYS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     owner,
@@ -15,5 +17,3 @@ viewDefinition: |-
     DBA_CLUSTERING_KEYS
   WHERE
     owner = SYS_CONTEXT('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

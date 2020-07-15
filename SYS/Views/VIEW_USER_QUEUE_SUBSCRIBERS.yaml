@@ -2,6 +2,8 @@ schema: SYS
 name: USER_QUEUE_SUBSCRIBERS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     q.name QUEUE_NAME,
@@ -47,5 +49,3 @@ viewDefinition: |-
     and bitand(t.flags, 1) = 1
     and q.usage != 1
     and s.rule_name = r.rule_name(+)
-columns: []
-referencedTables: []

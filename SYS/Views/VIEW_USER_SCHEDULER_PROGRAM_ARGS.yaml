@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SCHEDULER_PROGRAM_ARGS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     o.name,
@@ -140,5 +142,3 @@ viewDefinition: |-
     AND o.owner# = USERENV('SCHEMAID')
     AND a .user_type_num = t_o.obj#(+)
     AND t_o.owner# = t_u.user#(+)
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: ORDS_METADATA
 name: ALL_ORDS_PRIVILEGE_MAPPINGS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   SELECT
     sec_privilege_mappings.privilege_id,
@@ -17,5 +19,3 @@ viewDefinition: |-
     sec_privileges
   WHERE
     sec_privileges.id = sec_privilege_mappings.privilege_id
-columns: []
-referencedTables: []

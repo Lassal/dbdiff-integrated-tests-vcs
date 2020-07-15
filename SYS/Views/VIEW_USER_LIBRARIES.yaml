@@ -2,6 +2,8 @@ schema: SYS
 name: USER_LIBRARIES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     LIBRARY_NAME,
@@ -15,5 +17,3 @@ viewDefinition: |-
     NO_ROOT_SW_FOR_LOCAL(INT $DBA_LIBRARIES)
   where
     OWNER = SYS_CONTEXT('USERENV', 'CURRENT_USER')
-columns: []
-referencedTables: []

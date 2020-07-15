@@ -2,6 +2,8 @@ schema: SYS
 name: USER_SUMMARY_AGGREGATES
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     u.name,
@@ -44,5 +46,3 @@ viewDefinition: |-
     AND o.owner# = userenv('SCHEMAID')
     AND bitand(s.xpflags, 8388608) = 0
     /* NOT REWRITE EQUIVALENCE SUMMARY */
-columns: []
-referencedTables: []

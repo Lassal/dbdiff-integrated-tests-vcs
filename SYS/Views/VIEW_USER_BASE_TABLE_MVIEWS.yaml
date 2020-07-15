@@ -2,6 +2,8 @@ schema: SYS
 name: USER_BASE_TABLE_MVIEWS
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     s. "OWNER",
@@ -14,5 +16,3 @@ viewDefinition: |-
   where
     s.owner = u.name
     and u.user# = userenv('SCHEMAID')
-columns: []
-referencedTables: []

@@ -2,6 +2,8 @@ schema: SYS
 name: USER_ADVISOR_SQLW_COLVOL
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     b.workload_id as workload_id,
@@ -23,5 +25,3 @@ viewDefinition: |-
     and e.table# = b.table#
     and bitand(c .property, 2) = 0
     and c .advisor_id = 6
-columns: []
-referencedTables: []

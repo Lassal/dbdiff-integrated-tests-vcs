@@ -2,6 +2,8 @@ schema: SYS
 name: DBA_FLASHBACK_ARCHIVE
 updatedAllowed: true
 insertAllowed: true
+columns: []
+referencedTables: []
 viewDefinition: |-
   select
     f.OWNERNAME,
@@ -16,5 +18,3 @@ viewDefinition: |-
     decode(bitand(f.flags, 1), 1, 'DEFAULT', NULL)
   from
     SYS_FBA_FA f
-columns: []
-referencedTables: []
