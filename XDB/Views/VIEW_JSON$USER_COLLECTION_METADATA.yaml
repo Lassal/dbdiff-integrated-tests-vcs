@@ -2,8 +2,52 @@ schema: XDB
 name: JSON$USER_COLLECTION_METADATA
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CREATED_ON
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: CREATE_MODE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 10
+- name: JSON_DESCRIPTOR
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 4000
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: OBJECT_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 10
+- name: URI_NAME
+  dataType: NVARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 255
+referencedTables:
+- schema: XDB
+  name: JSON$COLLECTION_METADATA
 viewDefinition: |-
   select
     URI_NAME,
