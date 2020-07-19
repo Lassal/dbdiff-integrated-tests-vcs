@@ -2,8 +2,39 @@ schema: MDSYS
 name: ALL_SDO_LRS_METADATA
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 32
+- name: DIM_POS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: DIM_UNIT
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 32
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 32
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 32
+referencedTables:
+- schema: MDSYS
+  name: SDO_LRS_METADATA_TABLE
 viewDefinition: |-
   SELECT
     SDO_OWNER OWNER,

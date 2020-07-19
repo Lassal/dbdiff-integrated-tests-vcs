@@ -2,8 +2,63 @@ schema: CTXSYS
 name: CTX_USER_FILTER_BY_COLUMNS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FBC_COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 256
+- name: FBC_COLUMN_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 30
+- name: FBC_INDEX_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: FBC_SECTION_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: FBC_SECTION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: FBC_SECTION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 7
+- name: FBC_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: FBC_TABLE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: CTXSYS
+  name: DR$INDEX
+- schema: CTXSYS
+  name: DR$INDEX_CDI_COLUMN
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     idx_name fbc_index_name,

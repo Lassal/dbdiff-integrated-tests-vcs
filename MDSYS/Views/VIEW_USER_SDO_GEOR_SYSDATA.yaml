@@ -2,8 +2,44 @@ schema: MDSYS
 name: USER_SDO_GEOR_SYSDATA
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 1024
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 1024
+- name: METADATA_COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 1024
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 1024
+- name: OTHER_TABLE_NAMES
+  dataType: SDO_STRING_ARRAY
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: RASTER_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: RDT_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 32
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 32
+referencedTables:
+- schema: MDSYS
+  name: ALL_SDO_GEOR_SYSDATA
 viewDefinition: |-
   SELECT
     TABLE_NAME,

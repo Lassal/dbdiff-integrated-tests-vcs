@@ -2,8 +2,127 @@ schema: APEX_050000
 name: APEX_APPL_TEMPLATE_OPT_GROUPS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 255
+- name: CREATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength: 30
+- name: DISPLAY_SEQUENCE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength:
+- name: HELP_TEXT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 4000
+- name: IS_ADVANCED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  ordinalPosition: 13
+  dataTypeLength: 1
+- name: IS_SUBSCRIBED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 3
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 255
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 30
+- name: NULL_TEXT
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 30
+- name: SUBSCRIBED_FROM
+  dataType: VARCHAR2
+  textMaxLength: 72
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 72
+- name: SUBSCRIBED_FROM_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: TEMPLATE_OPT_GROUP_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TEMPLATE_TYPES
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength: 255
+- name: THEME_NUMBER
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_AUTHORIZED
+- schema: APEX_050000
+  name: WWV_FLOW_TEMPLATE_OPTIONS
+- schema: APEX_050000
+  name: WWV_FLOW_TEMPLATE_OPT_GROUPS
 viewDefinition: |-
   select
     o.id as template_opt_group_id,

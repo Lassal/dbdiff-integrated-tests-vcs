@@ -2,8 +2,37 @@ schema: MDSYS
 name: SDO_TOPO_TRANSACT_DATA$
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: PARENT_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: TOPOLOGY_ID
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 20
+- name: TOPO_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: TOPO_OP
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 3
+- name: TOPO_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: MDSYS
+  name: SDO_TOPO_TRANSACT_DATA
 viewDefinition: |-
   select
     TOPOLOGY_ID,

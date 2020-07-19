@@ -2,8 +2,16 @@ schema: CTXSYS
 name: CTX_USER_INDEX_SETS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: IXS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+referencedTables:
+- schema: CTXSYS
+  name: DR$INDEX_SET
 viewDefinition: |-
   select
     ixs_name

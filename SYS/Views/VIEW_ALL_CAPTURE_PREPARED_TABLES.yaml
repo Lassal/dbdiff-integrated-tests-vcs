@@ -2,8 +2,58 @@ schema: SYS
 name: ALL_CAPTURE_PREPARED_TABLES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SCN
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: SUPPLEMENTAL_LOG_DATA_ALL
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 8
+- name: SUPPLEMENTAL_LOG_DATA_FK
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 8
+- name: SUPPLEMENTAL_LOG_DATA_PK
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 8
+- name: SUPPLEMENTAL_LOG_DATA_UI
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 8
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TABLE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TIMESTAMP
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: ALL_TABLES
+- schema: SYS
+  name: DBA_CAPTURE_PREPARED_TABLES
 viewDefinition: |-
   select
     pt.table_owner,

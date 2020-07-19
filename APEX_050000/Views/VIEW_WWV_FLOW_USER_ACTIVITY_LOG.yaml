@@ -2,8 +2,150 @@ schema: APEX_050000
 name: WWV_FLOW_USER_ACTIVITY_LOG
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_INFO
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 4000
+- name: COMPONENT_ATTRIBUTE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: COMPONENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 255
+- name: COMPONENT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: CONTENT_LENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength:
+- name: DATAGRID_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: ELAP
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: FLOW_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: INFORMATION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: IP_ADDRESS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 4000
+- name: IR_REPORT_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: IR_SEARCH
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength: 4000
+- name: NUM_ROWS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: PAGE_MODE
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 1
+- name: SESSION_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: SQLERRM
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 4000
+- name: SQLERRM_COMPONENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 255
+- name: SQLERRM_COMPONENT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 255
+- name: STEP_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: TIME_STAMP
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: USERID
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 255
+- name: USER_AGENT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 4000
+- name: WEBPAGE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength:
+- name: WEBSHEET_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: WORKSHEET_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_ACTIVITY_LOG
+- schema: APEX_050000
+  name: WWV_FLOW_CURRENT_SGID
 viewDefinition: |-
   select
     time_stamp,

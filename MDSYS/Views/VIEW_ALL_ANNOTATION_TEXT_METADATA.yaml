@@ -2,8 +2,45 @@ schema: MDSYS
 name: ALL_ANNOTATION_TEXT_METADATA
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 1024
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 1024
+- name: MAP_BASE_SCALE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 32
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 32
+- name: TEXT_ATTRIBUTES
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: TEXT_EXPRESSION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+referencedTables:
+- schema: MDSYS
+  name: SDO_ANNOTATION_TEXT_METADATA
 viewDefinition: |-
   SELECT
     F_TABLE_SCHEMA OWNER,

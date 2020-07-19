@@ -2,8 +2,22 @@ schema: MDSYS
 name: SDO_RELATEMASK_TABLE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SDO_MASK
+  dataType: CHAR
+  textMaxLength: 9
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 9
+- name: SDO_RELATION
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+referencedTables:
+- schema: MDSYS
+  name: MD$RELATE
 viewDefinition: |-
   select
     sdo_mask,

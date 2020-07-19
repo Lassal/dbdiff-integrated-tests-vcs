@@ -2,8 +2,39 @@ schema: SYS
 name: ALL_CAPTURE_PREPARED_DATABASE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SUPPLEMENTAL_LOG_DATA_ALL
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 8
+- name: SUPPLEMENTAL_LOG_DATA_FK
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 8
+- name: SUPPLEMENTAL_LOG_DATA_PK
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 8
+- name: SUPPLEMENTAL_LOG_DATA_UI
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 8
+- name: TIMESTAMP
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DBA_CAPTURE_PREPARED_DATABASE
 viewDefinition: |-
   select
     "TIMESTAMP",

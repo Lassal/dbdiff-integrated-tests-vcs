@@ -2,8 +2,206 @@ schema: APEX_050000
 name: APEX_APPLICATION_TEMP_REGION
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 255
+- name: COMPONENT_COMMENT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 31
+  dataTypeLength: 4000
+- name: COMPONENT_SIGNATURE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 33
+  dataTypeLength: 4000
+- name: DEFAULT_BUTTON_POSITION
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength: 30
+- name: DEFAULT_BUTTON_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: DEFAULT_FIELD_ALIGNMENT
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength: 30
+- name: DEFAULT_FIELD_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: DEFAULT_LABEL_ALIGNMENT
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength: 30
+- name: DEFAULT_REQ_FIELD_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: DEFAULT_TEMPLATE_OPTIONS
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 255
+- name: IS_SUBSCRIBED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength: 3
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength: 255
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength:
+- name: LAYOUT
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength: 10
+- name: PLUG_FONT_SIZE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 255
+- name: PLUG_HEADING_BGCOLOR
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 255
+- name: PLUG_TABLE_BGCOLOR
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 255
+- name: PRESET_TEMPLATE_OPTIONS
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 255
+- name: REGION_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 32
+  dataTypeLength:
+- name: SUBSCRIBED_FROM
+  dataType: VARCHAR2
+  textMaxLength: 297
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength: 297
+- name: SUB_REGION_HEADER_ENTRY_TEMPL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 4000
+- name: SUB_REGION_HEADER_TEMPLATE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 4000
+- name: SUB_REGION_TEMPLATE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 4000
+- name: TEMPLATE
+  dataType: CLOB
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength:
+- name: TEMPLATE2
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: TEMPLATE3
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: TEMPLATE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: THEME_CLASS
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 40
+- name: THEME_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TRANSLATABLE
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength: 3
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOWS
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_FLOW_PAGE_PLUG_TEMPLATES
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     w.short_name workspace,

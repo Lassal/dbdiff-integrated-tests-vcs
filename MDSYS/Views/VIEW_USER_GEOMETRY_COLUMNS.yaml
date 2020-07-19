@@ -2,8 +2,65 @@ schema: MDSYS
 name: USER_GEOMETRY_COLUMNS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COORD_DIMENSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: F_GEOMETRY_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 64
+- name: F_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 64
+- name: F_TABLE_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 64
+- name: GEOMETRY_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: G_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 64
+- name: G_TABLE_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 64
+- name: MAX_PPR
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: SRID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: STORAGE_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+referencedTables:
+- schema: MDSYS
+  name: OGIS_GEOMETRY_COLUMNS
 viewDefinition: |-
   select
     "F_TABLE_SCHEMA",

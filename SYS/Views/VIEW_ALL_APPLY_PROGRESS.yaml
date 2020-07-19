@@ -2,8 +2,61 @@ schema: SYS
 name: ALL_APPLY_PROGRESS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLIED_MESSAGE_CREATE_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: APPLIED_MESSAGE_NUMBER
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: APPLY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: APPLY_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: OLDEST_MESSAGE_NUMBER
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: OLDEST_TRANSACTION_ID
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: SOURCE_DATABASE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: SOURCE_ROOT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: SPILL_MESSAGE_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: ALL_APPLY
+- schema: SYS
+  name: DBA_APPLY_PROGRESS
 viewDefinition: |-
   select
     ap.apply_name,

@@ -2,8 +2,107 @@ schema: MDSYS
 name: USER_SDO_TOPO_METADATA
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CHILD_LAYER_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 32
+- name: DIGITS_RIGHT_OF_DECIMAL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: EDGE_SEQUENCE
+  dataType: VARCHAR2
+  textMaxLength: 27
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 27
+- name: FACE_SEQUENCE
+  dataType: VARCHAR2
+  textMaxLength: 27
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 27
+- name: NODE_SEQUENCE
+  dataType: VARCHAR2
+  textMaxLength: 27
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 27
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 32
+- name: SRID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 64
+- name: TABLE_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 64
+- name: TG_LAYER_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: TG_LAYER_LEVEL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: TG_LAYER_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 10
+- name: TG_SEQUENCE
+  dataType: VARCHAR2
+  textMaxLength: 25
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 25
+- name: TOLERANCE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: TOPOLOGY
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 20
+- name: TOPOLOGY_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: MDSYS
+  name: SDO_TOPO_LAYER_TABLE
+- schema: MDSYS
+  name: SDO_TOPO_METADATA_TABLE
 viewDefinition: |-
   SELECT
     SDO_OWNER OWNER,

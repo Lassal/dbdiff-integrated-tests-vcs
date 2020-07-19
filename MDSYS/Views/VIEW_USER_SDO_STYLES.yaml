@@ -2,8 +2,43 @@ schema: MDSYS
 name: USER_SDO_STYLES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DEFINITION
+  dataType: CLOB
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: GEOMETRY
+  dataType: SDO_GEOMETRY
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: IMAGE
+  dataType: BLOB
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 32
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 32
+referencedTables:
+- schema: MDSYS
+  name: SDO_STYLES_TABLE
 viewDefinition: |-
   SELECT
     NAME,

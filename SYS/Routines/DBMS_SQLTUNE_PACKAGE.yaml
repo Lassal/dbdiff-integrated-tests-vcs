@@ -211,34 +211,6 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: CAP_STS_CBK.SQLSET_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: CAP_STS_CBK.ITERATIONS
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: CAP_STS_CBK.CAP_OPTION
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: CAP_STS_CBK.CAP_MODE
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 4
-- name: CAP_STS_CBK.CBK_PROC_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 5
-- name: CAP_STS_CBK.BASIC_FILTER
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 6
-- name: CAP_STS_CBK.SQLSET_OWNER
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 7
 - name: CAPTURE_CURSOR_CACHE_SQLSET.SQLSET_NAME
   dataType: VARCHAR2
   parameterMode: IN
@@ -271,10 +243,34 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 8
-- name: CHECK_SQL_PROFILE_PRIV.PRIV
+- name: CAP_STS_CBK.SQLSET_NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: CAP_STS_CBK.ITERATIONS
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: CAP_STS_CBK.CAP_OPTION
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: CAP_STS_CBK.CAP_MODE
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 4
+- name: CAP_STS_CBK.CBK_PROC_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 5
+- name: CAP_STS_CBK.BASIC_FILTER
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 6
+- name: CAP_STS_CBK.SQLSET_OWNER
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 7
 - name: CHECK_SQLSET_PRIVS.SQLSET_NAME
   dataType: VARCHAR2
   parameterMode: IN
@@ -291,6 +287,10 @@ parameters:
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
   ordinalPosition: 4
+- name: CHECK_SQL_PROFILE_PRIV.PRIV
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
 - name: CHECK_TUNING_TASK_STATUS.TASK_NAME
   dataType: VARCHAR2
   parameterMode: IN
@@ -313,22 +313,6 @@ parameters:
   ordinalPosition: 3
 - name: CONFIGURE_TUNING_TASK_XML.SHOW_SQL_ONLY
   dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 4
-- name: CREATE_SQL_PLAN_BASELINE.TASK_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: CREATE_SQL_PLAN_BASELINE.OBJECT_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: CREATE_SQL_PLAN_BASELINE.PLAN_HASH_VALUE
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 3
-- name: CREATE_SQL_PLAN_BASELINE.OWNER_NAME
-  dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 4
 - name: CREATE_SQLSET(1).SQLSET_NAME
@@ -355,6 +339,22 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
+- name: CREATE_SQL_PLAN_BASELINE.TASK_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: CREATE_SQL_PLAN_BASELINE.OBJECT_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: CREATE_SQL_PLAN_BASELINE.PLAN_HASH_VALUE
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 3
+- name: CREATE_SQL_PLAN_BASELINE.OWNER_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 4
 - name: CREATE_STGTAB_SQLPROF.TABLE_NAME
   dataType: VARCHAR2
   parameterMode: IN
@@ -575,20 +575,20 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
-- name: DROP_SQL_PROFILE.NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: DROP_SQL_PROFILE.IGNORE
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-  ordinalPosition: 2
 - name: DROP_SQLSET.SQLSET_NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
 - name: DROP_SQLSET.SQLSET_OWNER
   dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: DROP_SQL_PROFILE.NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: DROP_SQL_PROFILE.IGNORE
+  dataType: PL/SQL BOOLEAN
   parameterMode: IN
   ordinalPosition: 2
 - name: DROP_TUNING_TASK.TASK_NAME

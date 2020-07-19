@@ -2,8 +2,66 @@ schema: SYS
 name: ALL_APPLY_DML_HANDLERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLY_DATABASE_LINK
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: APPLY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: ASSEMBLE_LOBS
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 1
+- name: ERROR_HANDLER
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 1
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OBJECT_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: OPERATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 13
+- name: SET_BY
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 10
+- name: USER_PROCEDURE
+  dataType: VARCHAR2
+  textMaxLength: 98
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 98
+referencedTables:
+- schema: SYS
+  name: ALL_TABLES
+- schema: SYS
+  name: DBA_APPLY_DML_HANDLERS
 viewDefinition: |-
   select
     h.object_owner,

@@ -2,8 +2,36 @@ schema: WMSYS
 name: ALL_VERSION_HVIEW
 updatedAllowed: false
 insertAllowed: false
-columns: []
-referencedTables: []
+columns:
+- name: PARENT_VERSION
+  dataType: NUMBER
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: VERSION
+  dataType: NUMBER
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: WORKSPACE_ID
+  dataType: NUMBER
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+referencedTables:
+- schema: WMSYS
+  name: WM$VERSION_HIERARCHY_TABLE$
+- schema: WMSYS
+  name: WM$WORKSPACES_TABLE$
 viewDefinition: |-
   select
     vht.version,

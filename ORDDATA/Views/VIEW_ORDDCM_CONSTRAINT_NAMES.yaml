@@ -2,8 +2,16 @@ schema: ORDDATA
 name: ORDDCM_CONSTRAINT_NAMES
 updatedAllowed: false
 insertAllowed: false
-columns: []
-referencedTables: []
+columns:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 64
+referencedTables:
+- schema: ORDDATA
+  name: ORDDCM_CT_PRED_SET_TMP
 viewDefinition: |-
   SELECT
     NAME

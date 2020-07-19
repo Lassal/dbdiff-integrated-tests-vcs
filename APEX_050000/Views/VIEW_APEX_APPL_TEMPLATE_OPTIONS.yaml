@@ -2,8 +2,232 @@ schema: APEX_050000
 name: APEX_APPL_TEMPLATE_OPTIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: BREADCRUMB_TEMPLATE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 255
+- name: BREADCRUMB_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: BUTTON_TEMPLATE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength: 255
+- name: BUTTON_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength:
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 34
+  dataTypeLength: 255
+- name: CREATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 35
+  dataTypeLength:
+- name: CSS_CLASSES
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 26
+  dataTypeLength: 255
+- name: DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength: 30
+- name: DISPLAY_SEQUENCE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength:
+- name: FIELD_TEMPLATE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength: 255
+- name: FIELD_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: GROUP_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength:
+- name: HELP_TEXT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength: 4000
+- name: IS_ADVANCED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength: 1
+- name: IS_SUBSCRIBED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 31
+  dataTypeLength: 3
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 36
+  dataTypeLength: 255
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 37
+  dataTypeLength:
+- name: LIST_TEMPLATE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 255
+- name: LIST_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 30
+- name: PAGE_TEMPLATE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 255
+- name: PAGE_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: REGION_TEMPLATE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 255
+- name: REGION_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: REPORT_TEMPLATE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 255
+- name: REPORT_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: SUBSCRIBED_FROM
+  dataType: VARCHAR2
+  textMaxLength: 72
+  nullable: true
+  ordinalPosition: 32
+  dataTypeLength: 72
+- name: SUBSCRIBED_FROM_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 33
+  dataTypeLength:
+- name: TEMPLATE_OPTION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TEMPLATE_TYPES
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength: 255
+- name: THEME_NUMBER
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: VIRTUAL_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength:
+- name: VIRTUAL_TEMPLATE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength: 255
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_AUTHORIZED
+- schema: APEX_050000
+  name: WWV_FLOW_BUTTON_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_FIELD_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_LIST_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_MENU_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_PAGE_PLUG_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_ROW_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_TEMPLATE_OPTIONS
 viewDefinition: |-
   select
     o.id as template_option_id,

@@ -2,8 +2,102 @@ schema: APEX_050000
 name: APEX_WORKSPACE_DEVELOPERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACCOUNT_LOCKED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 3
+- name: AVAILABLE_SCHEMAS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: DATE_CREATED
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength:
+- name: DATE_LAST_UPDATED
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 240
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 240
+- name: EMAIL
+  dataType: VARCHAR2
+  textMaxLength: 240
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 240
+- name: FIRST_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 255
+- name: FIRST_SCHEMA_PROVISIONED
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 30
+- name: IS_ADMIN
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 12
+- name: IS_APPLICATION_DEVELOPER
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 12
+- name: LAST_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 255
+- name: PASSWORD_VERSION
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: false
+  ordinalPosition: 16
+  dataTypeLength: 20
+- name: USER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 100
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: WORKSPACE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: WORKSPACE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+referencedTables:
+- schema: APEX_050000
+  name: APEX_WORKSPACE_APEX_USERS
 viewDefinition: |-
   select
     "WORKSPACE_ID",

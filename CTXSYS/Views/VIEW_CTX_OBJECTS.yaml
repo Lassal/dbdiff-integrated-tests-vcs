@@ -2,8 +2,30 @@ schema: CTXSYS
 name: CTX_OBJECTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OBJ_CLASS
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: OBJ_DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 80
+- name: OBJ_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+referencedTables:
+- schema: CTXSYS
+  name: DR$CLASS
+- schema: CTXSYS
+  name: DR$OBJECT
 viewDefinition: |-
   select
     cla_name obj_class,

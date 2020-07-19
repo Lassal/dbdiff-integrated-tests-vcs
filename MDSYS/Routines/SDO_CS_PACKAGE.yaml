@@ -23,6 +23,46 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 4
+- name: CONVERT_2D_SRID_TO_3D.SRID2D
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 1
+- name: CONVERT_2D_SRID_TO_3D.VERT_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: CONVERT_2D_SRID_TO_3D.ELLIPSOIDAL
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: CONVERT_2D_SRID_TO_3D.UOM_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 4
+- name: CONVERT_2D_TO_3D.GEOM2D
+  dataType: OBJECT
+  parameterMode: IN
+  ordinalPosition: 1
+- name: CONVERT_2D_TO_3D.HEIGHT
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: CONVERT_2D_TO_3D.VERT_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 3
+- name: CONVERT_2D_TO_3D.ELLIPSOIDAL
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 4
+- name: CONVERT_2D_TO_3D.UOM_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 5
+- name: CONVERT_3D_SRID_TO_2D.SRID3D
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 1
 - name: CONVERT_MIXED_AXES_UNITS.SRID
   dataType: NUMBER
   parameterMode: IN
@@ -91,46 +131,6 @@ parameters:
   dataType: CLOB
   parameterMode: OUT
   ordinalPosition: 2
-- name: CONVERT_2D_SRID_TO_3D.SRID2D
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 1
-- name: CONVERT_2D_SRID_TO_3D.VERT_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: CONVERT_2D_SRID_TO_3D.ELLIPSOIDAL
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: CONVERT_2D_SRID_TO_3D.UOM_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 4
-- name: CONVERT_2D_TO_3D.GEOM2D
-  dataType: OBJECT
-  parameterMode: IN
-  ordinalPosition: 1
-- name: CONVERT_2D_TO_3D.HEIGHT
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: CONVERT_2D_TO_3D.VERT_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 3
-- name: CONVERT_2D_TO_3D.ELLIPSOIDAL
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 4
-- name: CONVERT_2D_TO_3D.UOM_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 5
-- name: CONVERT_3D_SRID_TO_2D.SRID3D
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 1
 - name: CREATE_CONCATENATED_OP.OP_ID
   dataType: NUMBER
   parameterMode: IN
@@ -661,6 +661,10 @@ parameters:
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 2
+- name: GET_3D_WKT.SRID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 1
 - name: GET_AXIS_ORDER.SRID
   dataType: NUMBER
   parameterMode: IN
@@ -693,10 +697,6 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
-- name: GET_3D_WKT.SRID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 1
 - name: INTERNAL_DENSIFY_PRIOR_TO_TFM.MBR
   dataType: OBJECT
   parameterMode: IN

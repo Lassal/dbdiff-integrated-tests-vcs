@@ -2,8 +2,56 @@ schema: MDSYS
 name: USER_SDO_CACHED_MAPS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_MAP
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 32
+- name: DEFINITION
+  dataType: CLOB
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+- name: IS_INTERNAL
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 4
+- name: IS_ONLINE
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 3
+- name: MAP_ADAPTER
+  dataType: BLOB
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 32
+- name: TILES_TABLE
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 32
+referencedTables:
+- schema: MDSYS
+  name: SDO_CACHED_MAPS_TABLE
 viewDefinition: |-
   SELECT
     NAME,

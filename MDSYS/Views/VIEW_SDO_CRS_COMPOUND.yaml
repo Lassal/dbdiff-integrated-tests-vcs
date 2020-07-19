@@ -2,8 +2,49 @@ schema: MDSYS
 name: SDO_CRS_COMPOUND
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CMPD_HORIZ_SRID
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 10,0
+- name: CMPD_VERT_SRID
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 10,0
+- name: COORD_REF_SYS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 80
+- name: DATA_SOURCE
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 40
+- name: INFORMATION_SOURCE
+  dataType: VARCHAR2
+  textMaxLength: 254
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 254
+- name: SRID
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 10,0
+referencedTables:
+- schema: MDSYS
+  name: SDO_COORD_REF_SYS
 viewDefinition: |-
   SELECT
     SRID,

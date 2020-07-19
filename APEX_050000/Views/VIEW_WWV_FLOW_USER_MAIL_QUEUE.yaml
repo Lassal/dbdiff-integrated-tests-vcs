@@ -2,8 +2,98 @@ schema: APEX_050000
 name: WWV_FLOW_USER_MAIL_QUEUE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 255
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: MAIL_BCC
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 2000
+- name: MAIL_BODY
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: MAIL_BODY_HTML
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: MAIL_CC
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 2000
+- name: MAIL_FROM
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 2000
+- name: MAIL_MESSAGE_CREATED
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: MAIL_MESSAGE_CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 255
+- name: MAIL_REPLYTO
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 2000
+- name: MAIL_SEND_COUNT
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 2,0
+- name: MAIL_SEND_ERROR
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 4000
+- name: MAIL_SUBJ
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 2000
+- name: MAIL_TO
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 2000
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_CURRENT_SGID
+- schema: APEX_050000
+  name: WWV_FLOW_MAIL_QUEUE
 viewDefinition: |-
   select
     id,

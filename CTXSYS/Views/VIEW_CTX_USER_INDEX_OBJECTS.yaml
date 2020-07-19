@@ -2,8 +2,34 @@ schema: CTXSYS
 name: CTX_USER_INDEX_OBJECTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: IXO_CLASS
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: IXO_INDEX_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: IXO_OBJECT
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+referencedTables:
+- schema: CTXSYS
+  name: DR$CLASS
+- schema: CTXSYS
+  name: DR$INDEX
+- schema: CTXSYS
+  name: DR$INDEX_OBJECT
+- schema: CTXSYS
+  name: DR$OBJECT
 viewDefinition: |-
   select
     idx_name ixo_index_name,

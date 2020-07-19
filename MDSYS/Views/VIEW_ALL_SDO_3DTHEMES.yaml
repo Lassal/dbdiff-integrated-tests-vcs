@@ -2,8 +2,57 @@ schema: MDSYS
 name: ALL_SDO_3DTHEMES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_TABLE
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 64
+- name: DEFINITION
+  dataType: CLOB
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 32
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 32
+- name: STYLE_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 32
+- name: THEME_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 2048
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 2048
+- name: THEME_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 32
+referencedTables:
+- schema: MDSYS
+  name: SDO_3DTHEMES_TABLE
 viewDefinition: |-
   SELECT
     SDO_OWNER OWNER,

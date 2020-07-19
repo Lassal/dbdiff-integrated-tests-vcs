@@ -2,8 +2,85 @@ schema: SYS
 name: ALL_APPLY_ERROR_MESSAGES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ERROR_MESSAGE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: ERROR_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: LOCAL_TRANSACTION_ID
+  dataType: VARCHAR2
+  textMaxLength: 22
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 22
+- name: MESSAGE
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: MESSAGE_ID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: OBJECT_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: OPERATION
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 100
+- name: POSITION
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: PRIMARY_KEY
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 4000
+- name: SOURCE_OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: SOURCE_OBJECT_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: TRANSACTION_MESSAGE_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: ALL_APPLY_ERROR
+- schema: SYS
+  name: APPLY$_ERROR_TXN
 viewDefinition: |-
   select
     t.msg_id,

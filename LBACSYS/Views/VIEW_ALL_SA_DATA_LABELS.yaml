@@ -2,8 +2,33 @@ schema: LBACSYS
 name: ALL_SA_DATA_LABELS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: LABEL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 4000
+- name: LABEL_TAG
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 10,0
+- name: POLICY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+referencedTables:
+- schema: LBACSYS
+  name: OLS$LAB
+- schema: LBACSYS
+  name: SA$ADMIN
+- schema: LBACSYS
+  name: SA$POL
 viewDefinition: |-
   SELECT
     p.pol_name AS policy_name,

@@ -528,6 +528,34 @@ parameters:
   dataType: CLOB
   parameterMode: IN
   ordinalPosition: 1
+- name: GETLENGTH(1).LOB_LOC
+  dataType: BLOB
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GETLENGTH(2).LOB_LOC
+  dataType: CLOB
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GETLENGTH(3).FILE_LOC
+  dataType: BFILE
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GETOPTIONS(1).LOB_LOC
+  dataType: BLOB
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GETOPTIONS(1).OPTION_TYPES
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: GETOPTIONS(2).LOB_LOC
+  dataType: CLOB
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GETOPTIONS(2).OPTION_TYPES
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 2
 - name: GET_DBFS_LINK(1).LOB_LOC
   dataType: BLOB
   parameterMode: IN
@@ -583,34 +611,6 @@ parameters:
 - name: GET_DEDUPLICATE_REGIONS(2).REGION_TABLE
   dataType: PL/SQL TABLE
   parameterMode: INOUT
-  ordinalPosition: 2
-- name: GETLENGTH(1).LOB_LOC
-  dataType: BLOB
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GETLENGTH(2).LOB_LOC
-  dataType: CLOB
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GETLENGTH(3).FILE_LOC
-  dataType: BFILE
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GETOPTIONS(1).LOB_LOC
-  dataType: BLOB
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GETOPTIONS(1).OPTION_TYPES
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: GETOPTIONS(2).LOB_LOC
-  dataType: CLOB
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GETOPTIONS(2).OPTION_TYPES
-  dataType: BINARY_INTEGER
-  parameterMode: IN
   ordinalPosition: 2
 - name: GET_STORAGE_LIMIT(1).LOB_LOC
   dataType: CLOB
@@ -926,22 +926,6 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
-- name: SET_DBFS_LINK(1).LOB_LOC
-  dataType: BLOB
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SET_DBFS_LINK(1).STORAGE_PATH
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SET_DBFS_LINK(2).LOB_LOC
-  dataType: CLOB
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SET_DBFS_LINK(2).STORAGE_PATH
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
 - name: SETOPTIONS(1).LOB_LOC
   dataType: BLOB
   parameterMode: INOUT
@@ -966,6 +950,22 @@ parameters:
   dataType: BINARY_INTEGER
   parameterMode: IN
   ordinalPosition: 3
+- name: SET_DBFS_LINK(1).LOB_LOC
+  dataType: BLOB
+  parameterMode: INOUT
+  ordinalPosition: 1
+- name: SET_DBFS_LINK(1).STORAGE_PATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SET_DBFS_LINK(2).LOB_LOC
+  dataType: CLOB
+  parameterMode: INOUT
+  ordinalPosition: 1
+- name: SET_DBFS_LINK(2).STORAGE_PATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 - name: SUBSTR(1).LOB_LOC
   dataType: BLOB
   parameterMode: IN

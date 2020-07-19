@@ -2,8 +2,40 @@ schema: CTXSYS
 name: DRV$USER_EXTRACT_STOP_ENTITY
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ESE_COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: ESE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 512
+- name: ESE_POL_ID
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 38,0
+- name: ESE_STATUS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: ESE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+referencedTables:
+- schema: CTXSYS
+  name: DR$USER_EXTRACT_STOP_ENTITY
 viewDefinition: |-
   select
     "ESE_POL_ID",

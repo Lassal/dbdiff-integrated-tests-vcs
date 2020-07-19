@@ -2,8 +2,34 @@ schema: CTXSYS
 name: CTX_SECTION_GROUPS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SGP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: SGP_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SGP_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+referencedTables:
+- schema: CTXSYS
+  name: DR$CLASS
+- schema: CTXSYS
+  name: DR$OBJECT
+- schema: CTXSYS
+  name: DR$SECTION_GROUP
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     u.name sgp_owner,

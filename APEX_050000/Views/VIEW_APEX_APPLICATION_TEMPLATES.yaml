@@ -2,8 +2,117 @@ schema: APEX_050000
 name: APEX_APPLICATION_TEMPLATES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 255
+- name: IS_DEFAULT
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 3
+- name: IS_SUBSCRIBED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 3
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 255
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: REFERENCE_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: TEMPLATE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: TEMPLATE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 512
+- name: TEMPLATE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 20
+- name: THEME_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOWS
+- schema: APEX_050000
+  name: WWV_FLOW_BUTTON_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_CALS
+- schema: APEX_050000
+  name: WWV_FLOW_CAL_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_FIELD_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_LIST_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_MENU_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_PAGE_PLUGS
+- schema: APEX_050000
+  name: WWV_FLOW_PAGE_PLUG_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_POPUP_LOV_TEMPLATE
+- schema: APEX_050000
+  name: WWV_FLOW_ROW_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_STEPS
+- schema: APEX_050000
+  name: WWV_FLOW_STEP_BUTTONS
+- schema: APEX_050000
+  name: WWV_FLOW_STEP_ITEMS
+- schema: APEX_050000
+  name: WWV_FLOW_TEMPLATES
+- schema: APEX_050000
+  name: WWV_FLOW_THEMES
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     w.short_name workspace,

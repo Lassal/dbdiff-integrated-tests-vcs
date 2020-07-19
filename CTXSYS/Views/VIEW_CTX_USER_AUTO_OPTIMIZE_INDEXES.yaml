@@ -2,8 +2,22 @@ schema: CTXSYS
 name: CTX_USER_AUTO_OPTIMIZE_INDEXES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AOI_INDEX_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: AOI_PARTITION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+referencedTables:
+- schema: CTXSYS
+  name: DR$AUTOOPT
 viewDefinition: |-
   select
     o.aoi_idxname aoi_index_name,

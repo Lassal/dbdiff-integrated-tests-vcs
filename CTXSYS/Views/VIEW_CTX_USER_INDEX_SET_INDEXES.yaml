@@ -2,8 +2,30 @@ schema: CTXSYS
 name: CTX_USER_INDEX_SET_INDEXES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: IXX_COLLIST
+  dataType: VARCHAR2
+  textMaxLength: 500
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 500
+- name: IXX_INDEX_SET_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: IXX_STORAGE
+  dataType: VARCHAR2
+  textMaxLength: 500
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 500
+referencedTables:
+- schema: CTXSYS
+  name: DR$INDEX_SET
+- schema: CTXSYS
+  name: DR$INDEX_SET_INDEX
 viewDefinition: |-
   select
     ixs_name ixx_index_set_name,
