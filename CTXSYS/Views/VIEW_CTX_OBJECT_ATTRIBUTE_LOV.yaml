@@ -2,8 +2,52 @@ schema: CTXSYS
 name: CTX_OBJECT_ATTRIBUTE_LOV
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OAL_ATTRIBUTE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+- name: OAL_CLASS
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: OAL_DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 80
+- name: OAL_LABEL
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 30
+- name: OAL_OBJECT
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: OAL_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 10
+referencedTables:
+- schema: CTXSYS
+  name: DR$CLASS
+- schema: CTXSYS
+  name: DR$OBJECT
+- schema: CTXSYS
+  name: DR$OBJECT_ATTRIBUTE
+- schema: CTXSYS
+  name: DR$OBJECT_ATTRIBUTE_LOV
 viewDefinition: |-
   select
     cla_name oal_class,

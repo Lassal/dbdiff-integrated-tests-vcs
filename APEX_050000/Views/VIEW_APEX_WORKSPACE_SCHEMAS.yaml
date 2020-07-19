@@ -2,8 +2,57 @@ schema: APEX_050000
 name: APEX_WORKSPACE_SCHEMAS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: FIRST_SCHEMA_PROVISIONED
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 30
+- name: SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 30
+- name: SCHEMA_CREATED
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: WORKSPACE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: WORKSPACE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOWS
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: SYS
+  name: ALL_USERS
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     w.PROVISIONING_COMPANY_ID workspace_id,

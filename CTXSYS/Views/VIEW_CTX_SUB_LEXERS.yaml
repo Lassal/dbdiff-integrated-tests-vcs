@@ -2,8 +2,56 @@ schema: CTXSYS
 name: CTX_SUB_LEXERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SLX_ALT_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 30
+- name: SLX_LANGUAGE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 30
+- name: SLX_LANG_DEPENDENT
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 1
+- name: SLX_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: SLX_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SLX_SUB_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: SLX_SUB_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 128
+referencedTables:
+- schema: CTXSYS
+  name: DR$PREFERENCE
+- schema: CTXSYS
+  name: DR$SUB_LEXER
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     u1.name slx_owner,

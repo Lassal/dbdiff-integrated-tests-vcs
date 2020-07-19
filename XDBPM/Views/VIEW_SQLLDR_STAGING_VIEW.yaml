@@ -2,8 +2,40 @@ schema: XDBPM
 name: SQLLDR_STAGING_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CONTENT
+  dataType: BLOB
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: CREATE_FOLDER
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+- name: DUPLICATE_POLICY
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 10
+- name: RESOURCE_PATH
+  dataType: VARCHAR2
+  textMaxLength: 700
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 700
+- name: RESULT
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1,0
+referencedTables:
+- schema: XDBPM
+  name: SQLLDR_STAGING_TARGET
 viewDefinition: |-
   SELECT
     "RESULT",

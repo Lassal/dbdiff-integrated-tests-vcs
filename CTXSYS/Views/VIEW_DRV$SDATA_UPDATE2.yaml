@@ -2,8 +2,57 @@ schema: CTXSYS
 name: DRV$SDATA_UPDATE2
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SDU_DOCID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: SDU_IDX_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: SDU_IXP_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: SDU_NV_CDATA
+  dataType: VARCHAR2
+  textMaxLength: 250
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 250
+- name: SDU_NV_DDATA
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: SDU_NV_NDATA
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: SDU_NV_RDATA
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: SDU_NV_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 30
+- name: SDU_SDATA_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: CTXSYS
+  name: DR$SDATA_UPDATE
 viewDefinition: |-
   select
     "SDU_IDX_ID",

@@ -2,8 +2,22 @@ schema: CTXSYS
 name: CTX_CLASSES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CLA_DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 80
+- name: CLA_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 30
+referencedTables:
+- schema: CTXSYS
+  name: DR$CLASS
 viewDefinition: |-
   select
     cla_name,

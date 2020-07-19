@@ -2,7 +2,48 @@ schema: OLAPSYS
 name: ALL$OLAP2_AW_CUBE_AGG_OP
 updatedAllowed: true
 insertAllowed: true
-columns: []
+columns:
+- name: AW_AGGSPEC_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: AW_CUBE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 90
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 90
+- name: AW_DIMENSION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: AW_MEASURE_NAME
+  dataType: VARCHAR2
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: AW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: AW_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: OPERATOR
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
 referencedTables: []
 viewDefinition: |-
   SELECT

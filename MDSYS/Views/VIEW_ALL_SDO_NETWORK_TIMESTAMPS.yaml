@@ -2,8 +2,34 @@ schema: MDSYS
 name: ALL_SDO_NETWORK_TIMESTAMPS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: LAST_DML_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: NETWORK
+  dataType: VARCHAR2
+  textMaxLength: 24
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 24
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 32
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 32
+referencedTables:
+- schema: MDSYS
+  name: SDO_NETWORK_TIMESTAMPS
 viewDefinition: |-
   SELECT
     "OWNER",

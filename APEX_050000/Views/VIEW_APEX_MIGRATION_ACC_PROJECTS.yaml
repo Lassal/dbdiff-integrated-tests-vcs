@@ -2,8 +2,190 @@ schema: APEX_050000
 name: APEX_MIGRATION_ACC_PROJECTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACCDB_PATHNAME
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 1000
+- name: ACCESSVERSION
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 400
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength: 400
+- name: DBID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 17
+  dataTypeLength:
+- name: DBNAME
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 400
+- name: DBSIZE
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 100
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 2000
+- name: FORMS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: ISAPPDB
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 1,0
+- name: ISATTACHEDDB
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength: 1,0
+- name: JETVERSION
+  dataType: FLOAT
+  numericPrecision: 126
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 126
+- name: LAST_MODIFIED_BY
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength: 400
+- name: LAST_MODIFIED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: LINKDBID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: MIGRATION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 100
+- name: MODULES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: PAGES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: PROJECT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PROJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 400
+- name: PROJECT_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 400
+- name: QUERIES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: RELATIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: REPORTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength: 30
+- name: STARTUPFORM
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength: 1000
+- name: TABLES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 27
+  dataTypeLength: 255
+- name: WORKSPACE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 28
+  dataTypeLength:
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_MIG_ACCESS
+- schema: APEX_050000
+  name: WWV_MIG_ACC_FORMS
+- schema: APEX_050000
+  name: WWV_MIG_ACC_MODULES
+- schema: APEX_050000
+  name: WWV_MIG_ACC_PAGES
+- schema: APEX_050000
+  name: WWV_MIG_ACC_QUERIES
+- schema: APEX_050000
+  name: WWV_MIG_ACC_RELATIONS
+- schema: APEX_050000
+  name: WWV_MIG_ACC_REPORTS
+- schema: APEX_050000
+  name: WWV_MIG_ACC_TABLES
+- schema: APEX_050000
+  name: WWV_MIG_PROJECTS
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     a .project_id project_id,

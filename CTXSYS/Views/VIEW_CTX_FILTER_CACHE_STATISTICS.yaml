@@ -2,8 +2,52 @@ schema: CTXSYS
 name: CTX_FILTER_CACHE_STATISTICS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FCS_ENTRIES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: FCS_HITS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: FCS_INDEX_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: FCS_INDEX_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: FCS_PARTITION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+- name: FCS_REQUESTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: FCS_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+referencedTables:
+- schema: CTXSYS
+  name: DR$INDEX
+- schema: CTXSYS
+  name: DR$INDEX_PARTITION
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     u1.name fcs_index_owner,

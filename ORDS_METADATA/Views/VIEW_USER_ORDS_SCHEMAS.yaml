@@ -2,8 +2,52 @@ schema: ORDS_METADATA
 name: USER_ORDS_SCHEMAS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AUTO_REST_AUTH
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: OPS_ALLOWED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: PARSING_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: PATTERN
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 255
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 30
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 10
+referencedTables:
+- schema: ORDS_METADATA
+  name: ORDS_SCHEMAS
+- schema: ORDS_METADATA
+  name: ORDS_URL_MAPPINGS
 viewDefinition: |-
   SELECT
     ords_schemas.id,

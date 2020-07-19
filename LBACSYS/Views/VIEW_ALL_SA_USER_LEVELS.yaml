@@ -2,8 +2,52 @@ schema: LBACSYS
 name: ALL_SA_USER_LEVELS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DEF_LEVEL
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 30
+- name: MAX_LEVEL
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 30
+- name: MIN_LEVEL
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 30
+- name: POLICY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: ROW_LEVEL
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: USER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 1024
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 1024
+referencedTables:
+- schema: LBACSYS
+  name: OLS$LEVELS
+- schema: LBACSYS
+  name: OLS$USER_LEVELS
+- schema: LBACSYS
+  name: SA$ADMIN
+- schema: LBACSYS
+  name: SA$POL
 viewDefinition: |-
   SELECT
     DISTINCT p.pol_name AS policy_name,

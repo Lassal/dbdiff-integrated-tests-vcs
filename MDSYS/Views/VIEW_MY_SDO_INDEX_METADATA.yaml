@@ -2,8 +2,211 @@ schema: MDSYS
 name: MY_SDO_INDEX_METADATA
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SDO_COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 2048
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 2048
+- name: SDO_COMMIT_INTERVAL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: SDO_DML_BATCH_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 35
+  dataTypeLength:
+- name: SDO_FIXED_META
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: SDO_INDEX_DIMS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength:
+- name: SDO_INDEX_GEODETIC
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 32
+  dataTypeLength: 8
+- name: SDO_INDEX_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 32
+- name: SDO_INDEX_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 32
+- name: SDO_INDEX_PARTITION
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength: 32
+- name: SDO_INDEX_PRIMARY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: SDO_INDEX_STATUS
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 33
+  dataTypeLength: 32
+- name: SDO_INDEX_TABLE
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 32
+- name: SDO_INDEX_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 32
+- name: SDO_INDEX_VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 31
+  dataTypeLength:
+- name: SDO_INITIAL_EXTENT
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength: 32
+- name: SDO_LAYER_GTYPE
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength: 32
+- name: SDO_LEVEL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: SDO_MAXLEVEL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: SDO_MAX_EXTENTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: SDO_MIN_EXTENTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength:
+- name: SDO_NEXT_EXTENT
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength: 32
+- name: SDO_NL_INDEX_TABLE
+  dataType: VARCHAR2
+  textMaxLength: 33
+  nullable: true
+  ordinalPosition: 34
+  dataTypeLength: 33
+- name: SDO_NUMTILES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: SDO_PARTITIONED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength:
+- name: SDO_PCTINCREASE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: SDO_ROOT_MBR
+  dataType: SDO_GEOMETRY
+  nullable: true
+  ordinalPosition: 37
+  dataTypeLength:
+- name: SDO_RTREE_DIMENSIONALITY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: SDO_RTREE_ENT_XPND
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 36
+  dataTypeLength:
+- name: SDO_RTREE_FANOUT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: SDO_RTREE_HEIGHT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: SDO_RTREE_NUM_NODES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: SDO_RTREE_PCTFREE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength:
+- name: SDO_RTREE_QUALITY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength:
+- name: SDO_RTREE_ROOT
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 32
+- name: SDO_RTREE_SEQ_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 32
+- name: SDO_TABLESPACE
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 32
+- name: SDO_TSNAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 32
+referencedTables:
+- schema: MDSYS
+  name: SDO_INDEX_METADATA_TABLE
 viewDefinition: |-
   select
     SDO_INDEX_OWNER,

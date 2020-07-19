@@ -51,66 +51,6 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
-- name: CREATE_COL_ATTRIBUTE.P_COLUMN_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 1
-- name: CREATE_COL_ATTRIBUTE.P_COLUMN_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: CREATE_COL_ATTRIBUTE.P_LABEL
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: CREATE_COL_ATTRIBUTE.P_HELP_TEXT
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 4
-- name: CREATE_COL_ATTRIBUTE.P_FORMAT_MASK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 5
-- name: CREATE_COL_ATTRIBUTE.P_DEFAULT_VALUE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 6
-- name: CREATE_COL_ATTRIBUTE.P_FORM_FORMAT_MASK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 7
-- name: CREATE_COL_ATTRIBUTE.P_FORM_DISPLAY_WIDTH
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 8
-- name: CREATE_COL_ATTRIBUTE.P_FORM_DISPLAY_HEIGHT
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 9
-- name: CREATE_COL_ATTRIBUTE.P_FORM_DATA_TYPE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 10
-- name: CREATE_COL_ATTRIBUTE.P_REPORT_FORMAT_MASK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 11
-- name: CREATE_COL_ATTRIBUTE.P_REPORT_COL_ALIGNMENT
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 12
-- name: CREATE_COL_SYNONYM.P_SYN_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 1
-- name: CREATE_COL_SYNONYM.P_COLUMN_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: CREATE_COL_SYNONYM.P_SYN_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
 - name: CREATE_COLUMN_HINT.P_COLUMN_ID
   dataType: NUMBER
   parameterMode: IN
@@ -447,6 +387,66 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 42
+- name: CREATE_COL_ATTRIBUTE.P_COLUMN_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 1
+- name: CREATE_COL_ATTRIBUTE.P_COLUMN_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: CREATE_COL_ATTRIBUTE.P_LABEL
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: CREATE_COL_ATTRIBUTE.P_HELP_TEXT
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 4
+- name: CREATE_COL_ATTRIBUTE.P_FORMAT_MASK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 5
+- name: CREATE_COL_ATTRIBUTE.P_DEFAULT_VALUE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 6
+- name: CREATE_COL_ATTRIBUTE.P_FORM_FORMAT_MASK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 7
+- name: CREATE_COL_ATTRIBUTE.P_FORM_DISPLAY_WIDTH
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 8
+- name: CREATE_COL_ATTRIBUTE.P_FORM_DISPLAY_HEIGHT
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 9
+- name: CREATE_COL_ATTRIBUTE.P_FORM_DATA_TYPE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 10
+- name: CREATE_COL_ATTRIBUTE.P_REPORT_FORMAT_MASK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 11
+- name: CREATE_COL_ATTRIBUTE.P_REPORT_COL_ALIGNMENT
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 12
+- name: CREATE_COL_SYNONYM.P_SYN_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 1
+- name: CREATE_COL_SYNONYM.P_COLUMN_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: CREATE_COL_SYNONYM.P_SYN_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
 - name: CREATE_GROUP.P_GROUP_ID
   dataType: NUMBER
   parameterMode: IN
@@ -1007,15 +1007,15 @@ parameters:
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 1
-- name: REMOVE_COL_ATTR_BY_NAME.P_COLUMN_NAME
-  dataType: VARCHAR2
+- name: REMOVE_COLUMN_HINT.P_COLUMN_ID
+  dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 1
 - name: REMOVE_COL_ATTRIBUTE.P_COLUMN_ID
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 1
-- name: REMOVE_COL_SYN_BY_NAME.P_SYN_NAME
+- name: REMOVE_COL_ATTR_BY_NAME.P_COLUMN_NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
@@ -1023,8 +1023,8 @@ parameters:
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 1
-- name: REMOVE_COLUMN_HINT.P_COLUMN_ID
-  dataType: NUMBER
+- name: REMOVE_COL_SYN_BY_NAME.P_SYN_NAME
+  dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
 - name: REMOVE_GROUP.P_GROUP_ID
@@ -1143,62 +1143,6 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 5
-- name: UPDATE_COL_ATTRIBUTE.P_COLUMN_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 1
-- name: UPDATE_COL_ATTRIBUTE.P_COLUMN_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: UPDATE_COL_ATTRIBUTE.P_LABEL
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: UPDATE_COL_ATTRIBUTE.P_HELP_TEXT
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 4
-- name: UPDATE_COL_ATTRIBUTE.P_FORMAT_MASK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 5
-- name: UPDATE_COL_ATTRIBUTE.P_DEFAULT_VALUE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 6
-- name: UPDATE_COL_ATTRIBUTE.P_FORM_FORMAT_MASK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 7
-- name: UPDATE_COL_ATTRIBUTE.P_FORM_DISPLAY_WIDTH
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 8
-- name: UPDATE_COL_ATTRIBUTE.P_FORM_DISPLAY_HEIGHT
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 9
-- name: UPDATE_COL_ATTRIBUTE.P_FORM_DATA_TYPE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 10
-- name: UPDATE_COL_ATTRIBUTE.P_REPORT_FORMAT_MASK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 11
-- name: UPDATE_COL_ATTRIBUTE.P_REPORT_COL_ALIGNMENT
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 12
-- name: UPDATE_COL_SYNONYM.P_SYN_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 1
-- name: UPDATE_COL_SYNONYM.P_SYN_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
 - name: UPDATE_COLUMN_HINT.P_COLUMN_ID
   dataType: NUMBER
   parameterMode: IN
@@ -1307,6 +1251,62 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 27
+- name: UPDATE_COL_ATTRIBUTE.P_COLUMN_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 1
+- name: UPDATE_COL_ATTRIBUTE.P_COLUMN_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: UPDATE_COL_ATTRIBUTE.P_LABEL
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: UPDATE_COL_ATTRIBUTE.P_HELP_TEXT
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 4
+- name: UPDATE_COL_ATTRIBUTE.P_FORMAT_MASK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 5
+- name: UPDATE_COL_ATTRIBUTE.P_DEFAULT_VALUE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 6
+- name: UPDATE_COL_ATTRIBUTE.P_FORM_FORMAT_MASK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 7
+- name: UPDATE_COL_ATTRIBUTE.P_FORM_DISPLAY_WIDTH
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 8
+- name: UPDATE_COL_ATTRIBUTE.P_FORM_DISPLAY_HEIGHT
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 9
+- name: UPDATE_COL_ATTRIBUTE.P_FORM_DATA_TYPE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 10
+- name: UPDATE_COL_ATTRIBUTE.P_REPORT_FORMAT_MASK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 11
+- name: UPDATE_COL_ATTRIBUTE.P_REPORT_COL_ALIGNMENT
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 12
+- name: UPDATE_COL_SYNONYM.P_SYN_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 1
+- name: UPDATE_COL_SYNONYM.P_SYN_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 - name: UPDATE_CR_FROM_AD.P_APPLICATION_ID
   dataType: NUMBER
   parameterMode: IN

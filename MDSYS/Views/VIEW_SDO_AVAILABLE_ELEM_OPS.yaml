@@ -2,8 +2,36 @@ schema: MDSYS
 name: SDO_AVAILABLE_ELEM_OPS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COORD_OP_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: IS_IMPLEMENTED
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 1,0
+- name: SOURCE_SRID
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 10,0
+- name: TARGET_SRID
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 10,0
+referencedTables:
+- schema: MDSYS
+  name: SDO_COORD_OPS
 viewDefinition: |-
   (
     SELECT

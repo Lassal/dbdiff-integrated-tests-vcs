@@ -2,8 +2,16 @@ schema: CTXSYS
 name: CTX_USER_THESAURI
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: THS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+referencedTables:
+- schema: CTXSYS
+  name: DR$THS
 viewDefinition: |-
   select
     ths_name

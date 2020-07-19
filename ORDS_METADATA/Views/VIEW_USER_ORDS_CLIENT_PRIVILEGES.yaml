@@ -2,8 +2,79 @@ schema: ORDS_METADATA
 name: USER_ORDS_CLIENT_PRIVILEGES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CLIENT_CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 255
+- name: CLIENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength: 255
+- name: CLIENT_PRIV_CLIENT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: CLIENT_PRIV_CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: CLIENT_PRIV_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: CLIENT_PRIV_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 255
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 4000
+- name: LABEL
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 255
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 255
+- name: PARSING_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength: 30
+- name: PRIV_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+referencedTables:
+- schema: ORDS_METADATA
+  name: OAUTH_CLIENTS
+- schema: ORDS_METADATA
+  name: OAUTH_CLIENT_PRIVILEGES
+- schema: ORDS_METADATA
+  name: ORDS_SCHEMAS
+- schema: ORDS_METADATA
+  name: SEC_PRIVILEGES
 viewDefinition: |-
   SELECT
     p.id client_priv_id,

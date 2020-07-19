@@ -2,8 +2,233 @@ schema: APEX_050000
 name: APEX_APPL_PLUGIN_ATTRIBUTES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: ATTRIBUTE_SCOPE
+  dataType: VARCHAR2
+  textMaxLength: 15
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 15
+- name: ATTRIBUTE_SEQUENCE
+  dataType: NUMBER
+  numericPrecision: 2
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength: 2,0
+- name: ATTRIBUTE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 30
+- name: COLUMN_DATA_TYPES
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength: 255
+- name: COMPONENT_COMMENT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 34
+  dataTypeLength: 4000
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 35
+  dataTypeLength: 255
+- name: CREATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 36
+  dataTypeLength:
+- name: DEFAULT_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 4000
+- name: DEPENDING_ON_ATTRIBUTE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength:
+- name: DEPENDING_ON_COMP_PROP_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength:
+- name: DEPENDING_ON_CONDITION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength: 30
+- name: DEPENDING_ON_EXPRESSION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength: 4000
+- name: DISPLAY_LENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: DISPLAY_SEQUENCE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength:
+- name: EXAMPLES
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 32
+  dataTypeLength: 4000
+- name: HELP_TEXT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 33
+  dataTypeLength: 4000
+- name: IS_COMMON
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 3
+- name: IS_REQUIRED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 3
+- name: IS_TRANSLATABLE
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  ordinalPosition: 26
+  dataTypeLength: 1
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 37
+  dataTypeLength: 255
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 38
+  dataTypeLength:
+- name: MAX_LENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: MAX_VALUE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: MIN_VALUE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: PLUGIN_ATTRIBUTE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PLUGIN_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: PLUGIN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 45
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 45
+- name: PROMPT
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength: 255
+- name: REFERENCE_SCOPE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  ordinalPosition: 31
+  dataTypeLength: 10
+- name: SHOW_IN_WIZARD
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 3
+- name: SQL_MAX_COLUMN_COUNT
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength: 3,0
+- name: SQL_MIN_COLUMN_COUNT
+  dataType: NUMBER
+  numericPrecision: 3
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength: 3,0
+- name: SUPPORTED_UI_TYPES
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength: 255
+- name: UNIT
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength: 30
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_AUTHORIZED_AND_4411
+- schema: APEX_050000
+  name: WWV_FLOW_PLUGINS
+- schema: APEX_050000
+  name: WWV_FLOW_PLUGIN_ATTRIBUTES
 viewDefinition: |-
   select
     a .id as plugin_attribute_id,

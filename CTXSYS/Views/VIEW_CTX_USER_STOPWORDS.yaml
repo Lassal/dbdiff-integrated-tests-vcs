@@ -2,8 +2,48 @@ schema: CTXSYS
 name: CTX_USER_STOPWORDS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SPW_LANGUAGE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 30
+- name: SPW_LANG_DEPENDENT
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 1
+- name: SPW_PATTERN
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 512
+- name: SPW_STOPLIST
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: SPW_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 10
+- name: SPW_WORD
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 80
+referencedTables:
+- schema: CTXSYS
+  name: DR$STOPLIST
+- schema: CTXSYS
+  name: DR$STOPWORD
 viewDefinition: |-
   select
     spl_name spw_stoplist,

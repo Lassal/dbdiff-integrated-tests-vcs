@@ -2,8 +2,163 @@ schema: APEX_050000
 name: APEX_APPLICATION_TEMP_BC
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AFTER_LAST
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 4000
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 255
+- name: BEFORE_FIRST
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 4000
+- name: BETWEEN_LEVELS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 4000
+- name: BREADCRUMB_LINK_ATTRIBUTES
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 4000
+- name: BREADCRUMB_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 24
+  dataTypeLength:
+- name: COMPONENT_COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength: 4000
+- name: COMPONENT_SIGNATURE
+  dataType: VARCHAR2
+  textMaxLength: 1624
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength: 1624
+- name: CURRENT_PAGE_OPTION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 4000
+- name: DEFAULT_TEMPLATE_OPTIONS
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 255
+- name: IS_SUBSCRIBED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 3
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength: 255
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: MAX_LEVELS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: NON_CURRENT_PAGE_OPTION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 4000
+- name: PRESET_TEMPLATE_OPTIONS
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 255
+- name: START_WITH
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 255
+- name: SUBSCRIBED_FROM
+  dataType: VARCHAR2
+  textMaxLength: 297
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 297
+- name: TEMPLATE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength: 255
+- name: THEME_CLASS
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 40
+- name: THEME_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: TRANSLATABLE
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength: 3
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOWS
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_FLOW_MENU_TEMPLATES
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     w.short_name workspace,

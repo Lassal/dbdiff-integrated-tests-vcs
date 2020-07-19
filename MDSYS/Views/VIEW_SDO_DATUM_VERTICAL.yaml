@@ -2,8 +2,84 @@ schema: MDSYS
 name: SDO_DATUM_VERTICAL
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DATA_SOURCE
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 40
+- name: DATUM_ID
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 10,0
+- name: DATUM_NAME
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 80
+- name: ELLIPSOID_ID
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 10,0
+- name: INFORMATION_SOURCE
+  dataType: VARCHAR2
+  textMaxLength: 254
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 254
+- name: PRIME_MERIDIAN_ID
+  dataType: NUMBER
+  numericPrecision: 10
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 10,0
+- name: ROTATE_X
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: ROTATE_Y
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: ROTATE_Z
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: SCALE_ADJUST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: SHIFT_X
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: SHIFT_Y
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: SHIFT_Z
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+referencedTables:
+- schema: MDSYS
+  name: SDO_DATUMS
 viewDefinition: |-
   SELECT
     DATUM_ID,

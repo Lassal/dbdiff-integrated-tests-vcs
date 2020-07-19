@@ -2,8 +2,63 @@ schema: WMSYS
 name: USER_WM_VERSIONED_TABLES
 updatedAllowed: false
 insertAllowed: false
-columns: []
-referencedTables: []
+columns:
+- name: CONFLICT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
+- name: DIFF
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 4000
+- name: HISTORY
+  dataType: VARCHAR2
+  textMaxLength: 22
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 22
+- name: NOTIFICATION
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 3
+- name: NOTIFYWORKSPACES
+  dataType: VARCHAR2
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: STATE
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 11
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: VALIDTIME
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 3
+referencedTables:
+- schema: WMSYS
+  name: WM$VERSIONED_TABLES
 viewDefinition: |-
   select
     t.table_name,

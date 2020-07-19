@@ -2,8 +2,20 @@ schema: MDSYS
 name: SDO_PROJECTIONS_OLD_FORMAT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 80
+referencedTables:
+- schema: MDSYS
+  name: SDO_COORD_OPS
+- schema: MDSYS
+  name: SDO_COORD_REF_SYS
+- schema: MDSYS
+  name: SDO_PROJECTIONS_OLD_SNAPSHOT
 viewDefinition: |-
   (
     SELECT

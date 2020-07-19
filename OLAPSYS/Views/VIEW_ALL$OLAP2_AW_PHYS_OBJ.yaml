@@ -2,7 +2,37 @@ schema: OLAPSYS
 name: ALL$OLAP2_AW_PHYS_OBJ
 updatedAllowed: true
 insertAllowed: true
-columns: []
+columns:
+- name: AW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: AW_OBJECT_DATATYPE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: AW_OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 90
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 90
+- name: AW_OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: AW_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 30
 referencedTables: []
 viewDefinition: |-
   SELECT

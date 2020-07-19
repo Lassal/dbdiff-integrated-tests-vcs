@@ -2,8 +2,22 @@ schema: APEX_050000
 name: APEX_STANDARD_CONDITIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: D
+  dataType: VARCHAR2
+  textMaxLength: 54
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 54
+- name: R
+  dataType: VARCHAR2
+  textMaxLength: 99
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 99
+referencedTables:
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     'EXISTS' d,

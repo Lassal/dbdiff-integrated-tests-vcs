@@ -2,8 +2,157 @@ schema: APEX_050000
 name: APEX_MIGRATION_ACC_RPTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 400
+- name: CREATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: DBID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: GRIDX
+  dataType: NUMBER
+  numericPrecision: 11
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 11,0
+- name: GRIDY
+  dataType: NUMBER
+  numericPrecision: 11
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 11,0
+- name: HAS_MODULE
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 1,0
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength: 400
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: MIGRATION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 100
+- name: PAGE_FOOTER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: PAGE_HEADER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: PROJECT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PROJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 400
+- name: RECORDSOURCE
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 2000
+- name: REPORT_CAPTION
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 1000
+- name: REPORT_ID
+  dataType: NUMBER
+  numericPrecision: 11
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 11,0
+- name: REPORT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 1000
+- name: SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength: 30
+- name: TAG
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 4000
+- name: VISIBLE
+  dataType: NUMBER
+  numericPrecision: 11
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 11,0
+- name: WIDTH
+  dataType: NUMBER
+  numericPrecision: 11
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 11,0
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 22
+  dataTypeLength: 255
+- name: WORKSPACE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 23
+  dataTypeLength:
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_MIG_ACCESS
+- schema: APEX_050000
+  name: WWV_MIG_ACC_REPORTS
+- schema: APEX_050000
+  name: WWV_MIG_PROJECTS
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     a .project_id project_id,

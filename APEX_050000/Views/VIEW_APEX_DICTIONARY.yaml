@@ -2,8 +2,51 @@ schema: APEX_050000
 name: APEX_DICTIONARY
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APEX_VIEW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: COLUMN_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: COMMENT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 6
+- name: PARENT_VIEW
+  dataType: VARCHAR2
+  textMaxLength: 29
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 29
+referencedTables:
+- schema: SYS
+  name: ALL_COL_COMMENTS
+- schema: SYS
+  name: ALL_TAB_COLUMNS
+- schema: SYS
+  name: ALL_TAB_COMMENTS
+- schema: SYS
+  name: ALL_VIEWS
 viewDefinition: |-
   select
     apex_view_name,

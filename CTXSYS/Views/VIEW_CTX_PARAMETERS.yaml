@@ -2,8 +2,22 @@ schema: CTXSYS
 name: CTX_PARAMETERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: PAR_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: PAR_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 500
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 500
+referencedTables:
+- schema: CTXSYS
+  name: DR$PARAMETER
 viewDefinition: |-
   select
     par_name,

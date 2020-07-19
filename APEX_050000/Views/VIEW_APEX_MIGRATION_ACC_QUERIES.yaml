@@ -2,8 +2,103 @@ schema: APEX_050000
 name: APEX_MIGRATION_ACC_QUERIES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 400
+- name: CREATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: DBID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 400
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: MIGRATION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 100
+- name: PROJECT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PROJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 400
+- name: QUERY_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: QUERY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 400
+- name: QUERY_SQL
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: QUERY_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 400
+- name: SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 30
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 14
+  dataTypeLength: 255
+- name: WORKSPACE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 15
+  dataTypeLength:
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_MIG_ACCESS
+- schema: APEX_050000
+  name: WWV_MIG_ACC_QUERIES
+- schema: APEX_050000
+  name: WWV_MIG_PROJECTS
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     a .project_id project_id,

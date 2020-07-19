@@ -2,8 +2,28 @@ schema: LBACSYS
 name: ALL_SA_USER_PRIVS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: POLICY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: USER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 1024
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 1024
+- name: USER_PRIVILEGES
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+referencedTables:
+- schema: LBACSYS
+  name: ALL_SA_USERS
 viewDefinition: |-
   SELECT
     user_name,

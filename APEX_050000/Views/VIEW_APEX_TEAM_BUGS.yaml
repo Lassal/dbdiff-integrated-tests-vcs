@@ -2,8 +2,198 @@ schema: APEX_050000
 name: APEX_TEAM_BUGS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACTUAL_FIX_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength:
+- name: ASSIGNED_TO
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 255
+- name: BUG_DESCRIPTION
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: BUG_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: BUG_SEVERITY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: BUG_STATUS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: BUG_TITLE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 30
+  dataTypeLength: 255
+- name: CREATED_ON
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 31
+  dataTypeLength:
+- name: CUSTOMER_ISSUE
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength:
+- name: CUSTOMER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength: 255
+- name: DUPLICATE_OF_BUG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: ESTIMATED_FIX_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: FIX_BY_RELEASE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 255
+- name: FRIENDLY_BUG_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: IMPACT_OF_FIX
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength: 4000
+- name: PAGE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength:
+- name: PRIORITY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: PRODUCT_COMPONENT
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength: 255
+- name: PRODUCT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength: 255
+- name: PRODUCT_VERSION
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength: 255
+- name: RELATED_FEATURE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: RELATED_TODO_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: REPORTED_BROWSER
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 255
+- name: REPORTED_OPERATING_SYSTEM
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 255
+- name: REPORTED_PLATFORM
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 255
+- name: TAGS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength: 4000
+- name: TARGET_MILESTONE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 32
+  dataTypeLength: 255
+- name: UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 33
+  dataTypeLength:
+- name: WORKSPACE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: WORKSPACE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_BUGS
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_FLOW_CURRENT_SGID
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     w.PROVISIONING_COMPANY_ID workspace_id,

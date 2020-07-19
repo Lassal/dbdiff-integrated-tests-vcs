@@ -2,8 +2,40 @@ schema: MDSYS
 name: USER_SDO_TIN_PC_SYSDATA
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 1024
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 1024
+- name: DEP_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 32
+- name: DEP_TABLE_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 32
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 32
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 32
+referencedTables:
+- schema: MDSYS
+  name: ALL_SDO_TIN_PC_SYSDATA
 viewDefinition: |-
   SELECT
     "OWNER",

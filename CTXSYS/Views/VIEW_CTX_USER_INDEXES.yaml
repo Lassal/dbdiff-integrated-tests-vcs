@@ -2,8 +2,121 @@ schema: CTXSYS
 name: CTX_USER_INDEXES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: IDX_CHARSET_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 256
+- name: IDX_DOCID_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: IDX_FORMAT_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 256
+- name: IDX_ID
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 38,0
+- name: IDX_KEY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 256
+- name: IDX_LANGUAGE_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 256
+- name: IDX_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: IDX_QUERY_STATS_ENABLED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 3
+- name: IDX_STATUS
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength: 12
+- name: IDX_SYNC_INTERVAL
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 2000
+- name: IDX_SYNC_JOBNAME
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 50
+- name: IDX_SYNC_MEMORY
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 100
+- name: IDX_SYNC_PARA_DEGREE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: IDX_SYNC_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 20
+- name: IDX_TABLE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: IDX_TABLE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: IDX_TEXT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 256
+- name: IDX_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 7
+referencedTables:
+- schema: CTXSYS
+  name: DR$INDEX
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     idx_id,
