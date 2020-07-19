@@ -3,38 +3,46 @@ name: XDB_RVTRIG_PKG
 routineType: PACKAGE
 returnParamater: null
 parameters:
-- name: RVTRIG_DEL.PATH
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
 - name: RVTRIG_DEL.RES
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 1
-- name: RVTRIG_INS.PATH
+  packageRoutineName: RVTRIG_DE
+- name: RVTRIG_DEL.PATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
+  packageRoutineName: RVTRIG_DE
 - name: RVTRIG_INS.RES
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 1
-- name: RVTRIG_UPD.N_PATH
+  packageRoutineName: RVTRIG_IN
+- name: RVTRIG_INS.PATH
   dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 4
-- name: RVTRIG_UPD.N_RES
-  dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 2
-- name: RVTRIG_UPD.O_PATH
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
+  packageRoutineName: RVTRIG_IN
 - name: RVTRIG_UPD.O_RES
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 1
+  packageRoutineName: RVTRIG_UP
+- name: RVTRIG_UPD.N_RES
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+  ordinalPosition: 2
+  packageRoutineName: RVTRIG_UP
+- name: RVTRIG_UPD.O_PATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+  packageRoutineName: RVTRIG_UP
+- name: RVTRIG_UPD.N_PATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 4
+  packageRoutineName: RVTRIG_UP
 routineDefinition: package XDB_RVTRIG_PKG wrapped a000000 1 abcd abcd abcd abcd abcd
   abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd 9 11d d2 e7L5J9C9fKiefHIEHX1UEiLsvrcwg5DIf8sVfC82Jk4YYtaOzFDoZTP6YdOK65CkbI21tZkJ
   UKkmEeraAyXCLW0IRlUA7H7pUSA0MHWj5vVLXEYJ3lyhL5RqpkuRDOKe7lXQoYCoAhwjBU / 2 rXUbSz77E

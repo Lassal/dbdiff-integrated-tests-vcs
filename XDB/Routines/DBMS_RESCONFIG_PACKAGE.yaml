@@ -6,83 +6,103 @@ returnParamater:
   dataType: VARRAY
   parameterMode: OUT
   ordinalPosition: 0
+  packageRoutineName: GETRESCONFIGPATH
 parameters:
-- name: ADDREPOSITORYRESCONFIG.POS
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 2
 - name: ADDREPOSITORYRESCONFIG.RCPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: ADDRESCONFIG.POS
+  packageRoutineName: ADDREPOSITORYRESCONFI
+- name: ADDREPOSITORYRESCONFIG.POS
   dataType: BINARY_INTEGER
   parameterMode: IN
-  ordinalPosition: 3
-- name: ADDRESCONFIG.RCPATH
-  dataType: VARCHAR2
-  parameterMode: IN
   ordinalPosition: 2
+  packageRoutineName: ADDREPOSITORYRESCONFI
 - name: ADDRESCONFIG.RESPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: APPENDRESCONFIG.APPENDOPTION
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 3
-- name: APPENDRESCONFIG.RCPATH
+  packageRoutineName: ADDRESCONFI
+- name: ADDRESCONFIG.RCPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
+  packageRoutineName: ADDRESCONFI
+- name: ADDRESCONFIG.POS
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 3
+  packageRoutineName: ADDRESCONFI
 - name: APPENDRESCONFIG.RESPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+  packageRoutineName: APPENDRESCONFI
+- name: APPENDRESCONFIG.RCPATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+  packageRoutineName: APPENDRESCONFI
+- name: APPENDRESCONFIG.APPENDOPTION
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 3
+  packageRoutineName: APPENDRESCONFI
 - name: DELETEREPOSITORYRESCONFIG.POS
   dataType: BINARY_INTEGER
   parameterMode: IN
   ordinalPosition: 1
-- name: DELETERESCONFIG(1).POS
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 2
+  packageRoutineName: DELETEREPOSITORYRESCONFI
 - name: DELETERESCONFIG(1).RESPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: DELETERESCONFIG(2).DELETEOPTION
+  packageRoutineName: DELETERESCONFIG(1
+- name: DELETERESCONFIG(1).POS
   dataType: BINARY_INTEGER
   parameterMode: IN
-  ordinalPosition: 3
-- name: DELETERESCONFIG(2).RCPATH
-  dataType: VARCHAR2
-  parameterMode: IN
   ordinalPosition: 2
+  packageRoutineName: DELETERESCONFIG(1
 - name: DELETERESCONFIG(2).RESPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+  packageRoutineName: DELETERESCONFIG(2
+- name: DELETERESCONFIG(2).RCPATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+  packageRoutineName: DELETERESCONFIG(2
+- name: DELETERESCONFIG(2).DELETEOPTION
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 3
+  packageRoutineName: DELETERESCONFIG(2
 - name: GETLISTENERS.PATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+  packageRoutineName: GETLISTENER
 - name: GETREPOSITORYRESCONFIG.POS
   dataType: BINARY_INTEGER
   parameterMode: IN
   ordinalPosition: 1
-- name: GETRESCONFIG.POS
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 2
+  packageRoutineName: GETREPOSITORYRESCONFI
 - name: GETRESCONFIG.RESPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+  packageRoutineName: GETRESCONFI
+- name: GETRESCONFIG.POS
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 2
+  packageRoutineName: GETRESCONFI
 - name: GETRESCONFIGPATHS.RESPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+  packageRoutineName: GETRESCONFIGPATH
 routineDefinition: "PACKAGE dbms_resconfig AUTHID CURRENT_USER IS ------------\n--\
   \ CONSTANTS\n--\n------------\nDELETE_RESOURCE CONSTANT NUMBER: = 1;\nDELETE_RECURSIVE\
   \ CONSTANT NUMBER: = 2;\nAPPEND_RESOURCE CONSTANT NUMBER: = 1;\nAPPEND_RECURSIVE\
