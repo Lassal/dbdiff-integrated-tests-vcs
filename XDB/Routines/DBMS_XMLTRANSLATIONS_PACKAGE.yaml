@@ -6,113 +6,91 @@ returnParamater:
   dataType: OPAQUE/XMLTYPE
   parameterMode: OUT
   ordinalPosition: 0
-  packageRoutineName: UPDATETRANSLATIO
 parameters:
 - name: EXTRACTXLIFF(1).DOC
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: EXTRACTXLIFF(1
 - name: EXTRACTXLIFF(1).XPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
-  packageRoutineName: EXTRACTXLIFF(1
 - name: EXTRACTXLIFF(1).NAMESPACE
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
-  packageRoutineName: EXTRACTXLIFF(1
 - name: EXTRACTXLIFF(2).ABSPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: EXTRACTXLIFF(2
 - name: EXTRACTXLIFF(2).XPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
-  packageRoutineName: EXTRACTXLIFF(2
 - name: EXTRACTXLIFF(2).NAMESPACE
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
-  packageRoutineName: EXTRACTXLIFF(2
 - name: GETBASEDOCUMENT.DOC
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: GETBASEDOCUMEN
 - name: MERGEXLIFF(1).DOC
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: MERGEXLIFF(1
 - name: MERGEXLIFF(1).XLIFF
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 2
-  packageRoutineName: MERGEXLIFF(1
 - name: MERGEXLIFF(2).XLIFF
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: MERGEXLIFF(2
 - name: SETSOURCELANG.DOC
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: SETSOURCELAN
 - name: SETSOURCELANG.XPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
-  packageRoutineName: SETSOURCELAN
 - name: SETSOURCELANG.LANG
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
-  packageRoutineName: SETSOURCELAN
 - name: SETSOURCELANG.NAMESPACE
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 4
-  packageRoutineName: SETSOURCELAN
 - name: TRANSLATEXML.DOC
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: TRANSLATEXM
 - name: TRANSLATEXML.LANG
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
-  packageRoutineName: TRANSLATEXM
 - name: UPDATETRANSLATION.DOC
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: UPDATETRANSLATIO
 - name: UPDATETRANSLATION.XPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
-  packageRoutineName: UPDATETRANSLATIO
 - name: UPDATETRANSLATION.LANG
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
-  packageRoutineName: UPDATETRANSLATIO
 - name: UPDATETRANSLATION.VALUE
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 4
-  packageRoutineName: UPDATETRANSLATIO
 - name: UPDATETRANSLATION.NAMESPACE
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 5
-  packageRoutineName: UPDATETRANSLATIO
 routineDefinition: |-
   package dbms_xmltranslations authid current_user is function translatexml (doc in xmltype, lang in varchar2) return xmltype;
   function getbasedocument (doc in xmltype) return xmltype;
