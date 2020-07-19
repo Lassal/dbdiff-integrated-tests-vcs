@@ -11,10 +11,18 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: CREATEFILE.CONTENT
+  dataType: BLOB
+  parameterMode: IN
+  ordinalPosition: 2
 - name: CREATEFILE.PATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: CREATEFILE2.LOCATOR
+  dataType: BLOB
+  parameterMode: INOUT
+  ordinalPosition: 2
 - name: CREATEFILE2.PATH
   dataType: VARCHAR2
   parameterMode: IN
@@ -35,10 +43,18 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: GETALLPROPERTIES.CONTENT
+  dataType: BLOB
+  parameterMode: OUT
+  ordinalPosition: 2
 - name: GETALLPROPERTIES.PATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: GETCONTENTBYPATH(1).CONTENT
+  dataType: BLOB
+  parameterMode: INOUT
+  ordinalPosition: 2
 - name: GETCONTENTBYPATH(1).PATH
   dataType: VARCHAR2
   parameterMode: IN
@@ -47,18 +63,72 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: GETEVERYTHING.CONTENT
+  dataType: BLOB
+  parameterMode: OUT
+  ordinalPosition: 5
+- name: GETEVERYTHING.CREATIONDATE
+  dataType: VARCHAR2
+  parameterMode: OUT
+  ordinalPosition: 2
+- name: GETEVERYTHING.GUID
+  dataType: VARCHAR2
+  parameterMode: OUT
+  ordinalPosition: 4
+- name: GETEVERYTHING.ITEM_TYPE
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: OUT
+  ordinalPosition: 6
+- name: GETEVERYTHING.MODIFICATIONDATE
+  dataType: VARCHAR2
+  parameterMode: OUT
+  ordinalPosition: 3
 - name: GETEVERYTHING.PATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: GETPATH(1).CONTENT
+  dataType: BLOB
+  parameterMode: OUT
+  ordinalPosition: 3
+- name: GETPATH(1).ITEM_TYPE
+  dataType: NUMBER
+  numericPrecision: 38
+  parameterMode: OUT
+  ordinalPosition: 4
 - name: GETPATH(1).PATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: GETPATH(1).PROPERTIES
+  dataType: TABLE
+  parameterMode: INOUT
+  ordinalPosition: 2
+- name: GETPATH(2).AMOUNT
+  dataType: NUMBER
+  parameterMode: INOUT
+  ordinalPosition: 3
+- name: GETPATH(2).CONTENT
+  dataType: RAW
+  parameterMode: OUT
+  ordinalPosition: 5
+- name: GETPATH(2).OFFSET
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 4
 - name: GETPATH(2).PATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: GETPATH(2).PROPERTIES
+  dataType: TABLE
+  parameterMode: INOUT
+  ordinalPosition: 2
+- name: GETPROPERTY.DATETYPE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 - name: GETPROPERTY.PATH
   dataType: VARCHAR2
   parameterMode: IN
@@ -71,84 +141,14 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: RENAMEPATH.OLDPATH
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: CREATEFILE.CONTENT
-  dataType: BLOB
-  parameterMode: IN
-  ordinalPosition: 2
-- name: CREATEFILE2.LOCATOR
-  dataType: BLOB
-  parameterMode: INOUT
-  ordinalPosition: 2
-- name: GETALLPROPERTIES.CONTENT
-  dataType: BLOB
-  parameterMode: OUT
-  ordinalPosition: 2
-- name: GETCONTENTBYPATH(1).CONTENT
-  dataType: BLOB
-  parameterMode: INOUT
-  ordinalPosition: 2
-- name: GETEVERYTHING.CREATIONDATE
-  dataType: VARCHAR2
-  parameterMode: OUT
-  ordinalPosition: 2
-- name: GETPATH(1).PROPERTIES
-  dataType: TABLE
-  parameterMode: INOUT
-  ordinalPosition: 2
-- name: GETPATH(2).PROPERTIES
-  dataType: TABLE
-  parameterMode: INOUT
-  ordinalPosition: 2
-- name: GETPROPERTY.DATETYPE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
 - name: RENAMEPATH.NEWPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
-- name: GETEVERYTHING.MODIFICATIONDATE
+- name: RENAMEPATH.OLDPATH
   dataType: VARCHAR2
-  parameterMode: OUT
-  ordinalPosition: 3
-- name: GETPATH(1).CONTENT
-  dataType: BLOB
-  parameterMode: OUT
-  ordinalPosition: 3
-- name: GETPATH(2).AMOUNT
-  dataType: NUMBER
-  parameterMode: INOUT
-  ordinalPosition: 3
-- name: GETEVERYTHING.GUID
-  dataType: VARCHAR2
-  parameterMode: OUT
-  ordinalPosition: 4
-- name: GETPATH(1).ITEM_TYPE
-  dataType: NUMBER
-  numericPrecision: 38
-  parameterMode: OUT
-  ordinalPosition: 4
-- name: GETPATH(2).OFFSET
-  dataType: NUMBER
   parameterMode: IN
-  ordinalPosition: 4
-- name: GETEVERYTHING.CONTENT
-  dataType: BLOB
-  parameterMode: OUT
-  ordinalPosition: 5
-- name: GETPATH(2).CONTENT
-  dataType: RAW
-  parameterMode: OUT
-  ordinalPosition: 5
-- name: GETEVERYTHING.ITEM_TYPE
-  dataType: NUMBER
-  numericPrecision: 38
-  parameterMode: OUT
-  ordinalPosition: 6
+  ordinalPosition: 1
 routineDefinition: package dbms_xdb_content wrapped a000000 1 abcd abcd abcd abcd
   abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd 9 622 24c 5sYyrcUMzBmjhtt5fgQJ0ijliv4wgw3DvsDWfC8u1
   + p + iHJTwPLFqGJUtqh / bZEolIJKXtQ + BmZPLNveR + 4a50PCu1AFjWXUD5OsuCIQz42awV46M0K

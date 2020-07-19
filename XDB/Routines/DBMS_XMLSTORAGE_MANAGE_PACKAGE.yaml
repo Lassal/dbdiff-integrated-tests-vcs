@@ -7,35 +7,15 @@ returnParamater:
   parameterMode: OUT
   ordinalPosition: 0
 parameters:
+- name: DISABLEINDEXESANDCONSTRAINTS.CLEAR
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+  ordinalPosition: 4
+- name: DISABLEINDEXESANDCONSTRAINTS.COLUMN_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
 - name: DISABLEINDEXESANDCONSTRAINTS.OWNER_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: ENABLEINDEXESANDCONSTRAINTS.OWNER_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: EXCHANGEPOSTPROC.OWNER_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: EXCHANGEPREPROC.OWNER_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GETSIDXDEFFROMVIEW.VIEWNAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: INDEXXMLREFERENCES.OWNER_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: RENAMECOLLECTIONTABLE.OWNER_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: XPATH2TABCOLMAPPING.OWNER_NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
@@ -43,78 +23,98 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
-- name: ENABLEINDEXESANDCONSTRAINTS.TABLE_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: EXCHANGEPOSTPROC.TABLE_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: EXCHANGEPREPROC.TABLE_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: INDEXXMLREFERENCES.TABLE_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: RENAMECOLLECTIONTABLE.TAB_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: XPATH2TABCOLMAPPING.TABLE_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: DISABLEINDEXESANDCONSTRAINTS.COLUMN_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
 - name: ENABLEINDEXESANDCONSTRAINTS.COLUMN_NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
+- name: ENABLEINDEXESANDCONSTRAINTS.OWNER_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: ENABLEINDEXESANDCONSTRAINTS.TABLE_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: EXCHANGEPOSTPROC.OWNER_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: EXCHANGEPOSTPROC.TABLE_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: EXCHANGEPREPROC.OWNER_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: EXCHANGEPREPROC.TABLE_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: GETSIDXDEFFROMVIEW.VIEWNAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
 - name: INDEXXMLREFERENCES.COLUMN_NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
-- name: RENAMECOLLECTIONTABLE.COL_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: XPATH2TABCOLMAPPING.COLUMN_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: DISABLEINDEXESANDCONSTRAINTS.CLEAR
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-  ordinalPosition: 4
 - name: INDEXXMLREFERENCES.INDEX_NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 4
-- name: RENAMECOLLECTIONTABLE.XPATH
+- name: INDEXXMLREFERENCES.OWNER_NAME
   dataType: VARCHAR2
   parameterMode: IN
-  ordinalPosition: 4
-- name: XPATH2TABCOLMAPPING.XPATH
+  ordinalPosition: 1
+- name: INDEXXMLREFERENCES.TABLE_NAME
   dataType: VARCHAR2
   parameterMode: IN
-  ordinalPosition: 4
+  ordinalPosition: 2
 - name: RENAMECOLLECTIONTABLE.COLLECTION_TABLE_NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 5
-- name: XPATH2TABCOLMAPPING.NAMESPACES
+- name: RENAMECOLLECTIONTABLE.COL_NAME
   dataType: VARCHAR2
   parameterMode: IN
-  ordinalPosition: 5
+  ordinalPosition: 3
 - name: RENAMECOLLECTIONTABLE.NAMESPACES
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 6
+- name: RENAMECOLLECTIONTABLE.OWNER_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: RENAMECOLLECTIONTABLE.TAB_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: RENAMECOLLECTIONTABLE.XPATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 4
+- name: XPATH2TABCOLMAPPING.COLUMN_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: XPATH2TABCOLMAPPING.NAMESPACES
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 5
+- name: XPATH2TABCOLMAPPING.OWNER_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: XPATH2TABCOLMAPPING.TABLE_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: XPATH2TABCOLMAPPING.XPATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 4
 routineDefinition: |-
   PACKAGE DBMS_XMLSTORAGE_MANAGE authid CURRENT_USER AS procedure renameCollectionTable (
     owner_name varchar2 default user,

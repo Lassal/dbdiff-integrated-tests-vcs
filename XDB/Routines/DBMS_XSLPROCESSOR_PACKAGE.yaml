@@ -11,6 +11,18 @@ parameters:
   dataType: CLOB
   parameterMode: IN
   ordinalPosition: 1
+- name: CLOB2FILE.CSID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 4
+- name: CLOB2FILE.FLOCATION
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: CLOB2FILE.FNAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
 - name: FREEPROCESSOR.P
   dataType: PL/SQL RECORD
   parameterMode: IN
@@ -19,6 +31,10 @@ parameters:
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: NEWSTYLESHEET(1).REFURL
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 - name: NEWSTYLESHEET(1).XMLDOC
   dataType: PL/SQL RECORD
   parameterMode: IN
@@ -27,54 +43,206 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: NEWSTYLESHEET(2).REFURL
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 - name: PROCESSXSL(1).P
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: PROCESSXSL(1).SS
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PROCESSXSL(1).XMLDOC
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 3
+- name: PROCESSXSL(10).BUFFER
+  dataType: VARCHAR2
+  parameterMode: INOUT
+  ordinalPosition: 4
 - name: PROCESSXSL(10).P
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: PROCESSXSL(10).SS
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PROCESSXSL(10).XMLDF
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 3
+- name: PROCESSXSL(11).CL
+  dataType: CLOB
+  parameterMode: INOUT
+  ordinalPosition: 4
 - name: PROCESSXSL(11).P
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: PROCESSXSL(11).SS
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PROCESSXSL(11).XMLDF
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 3
+- name: PROCESSXSL(2).CL
+  dataType: CLOB
+  parameterMode: IN
+  ordinalPosition: 3
 - name: PROCESSXSL(2).P
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: PROCESSXSL(2).SS
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PROCESSXSL(3).DIR
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 4
+- name: PROCESSXSL(3).FILENAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 5
 - name: PROCESSXSL(3).P
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: PROCESSXSL(3).SS
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PROCESSXSL(3).XMLDOC
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 3
+- name: PROCESSXSL(4).DIR
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 4
+- name: PROCESSXSL(4).FILENAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 5
 - name: PROCESSXSL(4).P
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: PROCESSXSL(4).SS
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PROCESSXSL(4).URL
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: PROCESSXSL(5).BUFFER
+  dataType: VARCHAR2
+  parameterMode: INOUT
+  ordinalPosition: 4
 - name: PROCESSXSL(5).P
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: PROCESSXSL(5).SS
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PROCESSXSL(5).XMLDOC
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 3
+- name: PROCESSXSL(6).CL
+  dataType: CLOB
+  parameterMode: INOUT
+  ordinalPosition: 4
 - name: PROCESSXSL(6).P
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: PROCESSXSL(6).SS
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PROCESSXSL(6).XMLDOC
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 3
+- name: PROCESSXSL(7).CL
+  dataType: CLOB
+  parameterMode: INOUT
+  ordinalPosition: 4
+- name: PROCESSXSL(7).ISOUTPUTXML
+  dataType: PL/SQL BOOLEAN
+  parameterMode: OUT
+  ordinalPosition: 5
 - name: PROCESSXSL(7).P
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: PROCESSXSL(7).SS
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PROCESSXSL(7).XMLDOC
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 3
 - name: PROCESSXSL(8).P
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: PROCESSXSL(8).SS
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PROCESSXSL(8).XMLDF
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 3
+- name: PROCESSXSL(9).DIR
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 4
+- name: PROCESSXSL(9).FILENAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 5
 - name: PROCESSXSL(9).P
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: PROCESSXSL(9).SS
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PROCESSXSL(9).XMLDF
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 3
+- name: READ2CLOB.CSID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 3
 - name: READ2CLOB.FLOCATION
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: READ2CLOB.FNAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: REMOVEPARAM.NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 - name: REMOVEPARAM.SS
   dataType: PL/SQL RECORD
   parameterMode: IN
@@ -87,102 +255,22 @@ parameters:
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
-- name: SELECTSINGLENODE.N
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: SETERRORLOG.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: SETPARAM.SS
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: SHOWWARNINGS.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: TRANSFORMNODE.N
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: VALUEOF(1).N
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: VALUEOF(2).N
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: CLOB2FILE.FLOCATION
+- name: SELECTNODES.NAMESPACE
   dataType: VARCHAR2
   parameterMode: IN
-  ordinalPosition: 2
-- name: NEWSTYLESHEET(1).REFURL
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: NEWSTYLESHEET(2).REFURL
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PROCESSXSL(1).SS
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PROCESSXSL(10).SS
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PROCESSXSL(11).SS
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PROCESSXSL(2).SS
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PROCESSXSL(3).SS
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PROCESSXSL(4).SS
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PROCESSXSL(5).SS
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PROCESSXSL(6).SS
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PROCESSXSL(7).SS
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PROCESSXSL(8).SS
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PROCESSXSL(9).SS
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 2
-- name: READ2CLOB.FNAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: REMOVEPARAM.NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
+  ordinalPosition: 3
 - name: SELECTNODES.PATTERN
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
+- name: SELECTSINGLENODE.N
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: SELECTSINGLENODE.NAMESPACE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
 - name: SELECTSINGLENODE.PATTERN
   dataType: VARCHAR2
   parameterMode: IN
@@ -191,154 +279,66 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
+- name: SETERRORLOG.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
 - name: SETPARAM.NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
-- name: SHOWWARNINGS.YES
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-  ordinalPosition: 2
-- name: TRANSFORMNODE.SS
+- name: SETPARAM.SS
   dataType: PL/SQL RECORD
   parameterMode: IN
-  ordinalPosition: 2
-- name: VALUEOF(1).PATTERN
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: VALUEOF(2).PATTERN
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: CLOB2FILE.FNAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PROCESSXSL(1).XMLDOC
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PROCESSXSL(10).XMLDF
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PROCESSXSL(11).XMLDF
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PROCESSXSL(2).CL
-  dataType: CLOB
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PROCESSXSL(3).XMLDOC
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PROCESSXSL(4).URL
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PROCESSXSL(5).XMLDOC
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PROCESSXSL(6).XMLDOC
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PROCESSXSL(7).XMLDOC
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PROCESSXSL(8).XMLDF
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PROCESSXSL(9).XMLDF
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 3
-- name: READ2CLOB.CSID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 3
-- name: SELECTNODES.NAMESPACE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: SELECTSINGLENODE.NAMESPACE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
+  ordinalPosition: 1
 - name: SETPARAM.VAL
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
-- name: VALUEOF(1).VAL
-  dataType: VARCHAR2
-  parameterMode: OUT
-  ordinalPosition: 3
-- name: VALUEOF(2).NAMESPACE
-  dataType: VARCHAR2
+- name: SHOWWARNINGS.P
+  dataType: PL/SQL RECORD
   parameterMode: IN
-  ordinalPosition: 3
-- name: CLOB2FILE.CSID
-  dataType: NUMBER
+  ordinalPosition: 1
+- name: SHOWWARNINGS.YES
+  dataType: PL/SQL BOOLEAN
   parameterMode: IN
-  ordinalPosition: 4
-- name: PROCESSXSL(10).BUFFER
-  dataType: VARCHAR2
-  parameterMode: INOUT
-  ordinalPosition: 4
-- name: PROCESSXSL(11).CL
-  dataType: CLOB
-  parameterMode: INOUT
-  ordinalPosition: 4
-- name: PROCESSXSL(3).DIR
-  dataType: VARCHAR2
+  ordinalPosition: 2
+- name: TRANSFORMNODE.N
+  dataType: PL/SQL RECORD
   parameterMode: IN
-  ordinalPosition: 4
-- name: PROCESSXSL(4).DIR
-  dataType: VARCHAR2
+  ordinalPosition: 1
+- name: TRANSFORMNODE.SS
+  dataType: PL/SQL RECORD
   parameterMode: IN
-  ordinalPosition: 4
-- name: PROCESSXSL(5).BUFFER
-  dataType: VARCHAR2
-  parameterMode: INOUT
-  ordinalPosition: 4
-- name: PROCESSXSL(6).CL
-  dataType: CLOB
-  parameterMode: INOUT
-  ordinalPosition: 4
-- name: PROCESSXSL(7).CL
-  dataType: CLOB
-  parameterMode: INOUT
-  ordinalPosition: 4
-- name: PROCESSXSL(9).DIR
-  dataType: VARCHAR2
+  ordinalPosition: 2
+- name: VALUEOF(1).N
+  dataType: PL/SQL RECORD
   parameterMode: IN
-  ordinalPosition: 4
+  ordinalPosition: 1
 - name: VALUEOF(1).NAMESPACE
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 4
-- name: PROCESSXSL(3).FILENAME
+- name: VALUEOF(1).PATTERN
   dataType: VARCHAR2
   parameterMode: IN
-  ordinalPosition: 5
-- name: PROCESSXSL(4).FILENAME
+  ordinalPosition: 2
+- name: VALUEOF(1).VAL
   dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 5
-- name: PROCESSXSL(7).ISOUTPUTXML
-  dataType: PL/SQL BOOLEAN
   parameterMode: OUT
-  ordinalPosition: 5
-- name: PROCESSXSL(9).FILENAME
+  ordinalPosition: 3
+- name: VALUEOF(2).N
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: VALUEOF(2).NAMESPACE
   dataType: VARCHAR2
   parameterMode: IN
-  ordinalPosition: 5
+  ordinalPosition: 3
+- name: VALUEOF(2).PATTERN
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 routineDefinition: |-
   package dbms_xslprocessor authid current_user as
   /**
