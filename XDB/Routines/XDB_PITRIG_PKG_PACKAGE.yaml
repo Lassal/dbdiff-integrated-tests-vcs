@@ -3,114 +3,141 @@ name: XDB_PITRIG_PKG
 routineType: PACKAGE
 returnParamater: null
 parameters:
-- name: PITRIG_DEL.DELOID
-  dataType: RAW
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PITRIG_DEL.NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
 - name: PITRIG_DEL.OWNER
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+  packageRoutineName: PITRIG_DE
+- name: PITRIG_DEL.NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+  packageRoutineName: PITRIG_DE
+- name: PITRIG_DEL.DELOID
+  dataType: RAW
+  parameterMode: IN
+  ordinalPosition: 3
+  packageRoutineName: PITRIG_DE
 - name: PITRIG_DEL.TBLOID
   dataType: RAW
   parameterMode: IN
   ordinalPosition: 4
-- name: PITRIG_DELMETADATA.CUSER
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 6
-- name: PITRIG_DELMETADATA.DELOID
-  dataType: RAW
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PITRIG_DELMETADATA.NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
+  packageRoutineName: PITRIG_DE
 - name: PITRIG_DELMETADATA.OWNER
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: PITRIG_DELMETADATA.RESID
+  packageRoutineName: PITRIG_DELMETADAT
+- name: PITRIG_DELMETADATA.NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+  packageRoutineName: PITRIG_DELMETADAT
+- name: PITRIG_DELMETADATA.DELOID
   dataType: RAW
   parameterMode: IN
-  ordinalPosition: 5
+  ordinalPosition: 3
+  packageRoutineName: PITRIG_DELMETADAT
 - name: PITRIG_DELMETADATA.TBLOID
   dataType: RAW
   parameterMode: IN
   ordinalPosition: 4
-- name: PITRIG_DROP.NAME
+  packageRoutineName: PITRIG_DELMETADAT
+- name: PITRIG_DELMETADATA.RESID
+  dataType: RAW
+  parameterMode: IN
+  ordinalPosition: 5
+  packageRoutineName: PITRIG_DELMETADAT
+- name: PITRIG_DELMETADATA.CUSER
   dataType: VARCHAR2
   parameterMode: IN
-  ordinalPosition: 2
+  ordinalPosition: 6
+  packageRoutineName: PITRIG_DELMETADAT
 - name: PITRIG_DROP.OWNER
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: PITRIG_DROPMETADATA.NAME
+  packageRoutineName: PITRIG_DRO
+- name: PITRIG_DROP.NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
+  packageRoutineName: PITRIG_DRO
 - name: PITRIG_DROPMETADATA.OWNER
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: PITRIG_TRUNCATE.NAME
+  packageRoutineName: PITRIG_DROPMETADAT
+- name: PITRIG_DROPMETADATA.NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
+  packageRoutineName: PITRIG_DROPMETADAT
 - name: PITRIG_TRUNCATE.OWNER
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: PITRIG_UPD.CUSER
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 5
-- name: PITRIG_UPD.DELOID
-  dataType: RAW
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PITRIG_UPD.NAME
+  packageRoutineName: PITRIG_TRUNCAT
+- name: PITRIG_TRUNCATE.NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
+  packageRoutineName: PITRIG_TRUNCAT
 - name: PITRIG_UPD.OWNER
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+  packageRoutineName: PITRIG_UP
+- name: PITRIG_UPD.NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+  packageRoutineName: PITRIG_UP
+- name: PITRIG_UPD.DELOID
+  dataType: RAW
+  parameterMode: IN
+  ordinalPosition: 3
+  packageRoutineName: PITRIG_UP
 - name: PITRIG_UPD.TBLOID
   dataType: RAW
   parameterMode: IN
   ordinalPosition: 4
-- name: PITRIG_UPDMETADATA.CUSER
+  packageRoutineName: PITRIG_UP
+- name: PITRIG_UPD.CUSER
   dataType: VARCHAR2
   parameterMode: IN
-  ordinalPosition: 6
-- name: PITRIG_UPDMETADATA.DELOID
-  dataType: RAW
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PITRIG_UPDMETADATA.NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
+  ordinalPosition: 5
+  packageRoutineName: PITRIG_UP
 - name: PITRIG_UPDMETADATA.OWNER
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: PITRIG_UPDMETADATA.RESID
+  packageRoutineName: PITRIG_UPDMETADAT
+- name: PITRIG_UPDMETADATA.NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+  packageRoutineName: PITRIG_UPDMETADAT
+- name: PITRIG_UPDMETADATA.DELOID
   dataType: RAW
   parameterMode: IN
-  ordinalPosition: 5
+  ordinalPosition: 3
+  packageRoutineName: PITRIG_UPDMETADAT
 - name: PITRIG_UPDMETADATA.TBLOID
   dataType: RAW
   parameterMode: IN
   ordinalPosition: 4
+  packageRoutineName: PITRIG_UPDMETADAT
+- name: PITRIG_UPDMETADATA.RESID
+  dataType: RAW
+  parameterMode: IN
+  ordinalPosition: 5
+  packageRoutineName: PITRIG_UPDMETADAT
+- name: PITRIG_UPDMETADATA.CUSER
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 6
+  packageRoutineName: PITRIG_UPDMETADAT
 routineDefinition: |-
   package XDB_PITRIG_PKG authid current_user AS procedure pitrig_del(
     owner varchar2,
