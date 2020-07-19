@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_GEOR_SYSDATA
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: INSERT
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     owner VARCHAR2(32);
@@ -34,4 +35,3 @@ eventActionBody: |-
     :new.other_table_names
   );
   END;
-executionOrder: 1

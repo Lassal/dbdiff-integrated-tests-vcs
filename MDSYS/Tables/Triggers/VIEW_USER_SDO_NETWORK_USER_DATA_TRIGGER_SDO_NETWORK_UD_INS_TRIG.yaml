@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_USER_DATA
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: INSERT
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     user_name VARCHAR2(32);
@@ -42,4 +43,3 @@ eventActionBody: |-
       :n.category_id
     );
   END;
-executionOrder: 1

@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_GEOM_METADATA
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: UPDATE
+executionOrder: 1
 eventActionBody: |-
   declare
   BEGIN
@@ -17,4 +18,3 @@ eventActionBody: |-
       :n.srid
     );
   END;
-executionOrder: 1

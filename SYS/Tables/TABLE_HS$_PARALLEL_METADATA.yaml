@@ -7,6 +7,13 @@ columns:
   nullable: false
   ordinalPosition: 1
   dataTypeLength: 128
+- name: HISTOGRAM
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''N'' '
+  ordinalPosition: 8
+  dataTypeLength: 1
 - name: HIST_COLUMN
   dataType: VARCHAR2
   textMaxLength: 128
@@ -19,13 +26,6 @@ columns:
   nullable: true
   ordinalPosition: 12
   dataTypeLength: 128
-- name: HISTOGRAM
-  dataType: VARCHAR2
-  textMaxLength: 1
-  nullable: false
-  defaultValue: '''N'' '
-  ordinalPosition: 8
-  dataTypeLength: 1
 - name: IND_AVAILABLE
   dataType: VARCHAR2
   textMaxLength: 1
@@ -58,19 +58,19 @@ columns:
   defaultValue: 0
   ordinalPosition: 22
   dataTypeLength:
-- name: NUM_PARTITION_COLUMNS
-  dataType: NUMBER
-  numericScale: 0
-  nullable: true
-  defaultValue: 0
-  ordinalPosition: 16
-  dataTypeLength:
 - name: NUM_PARTITIONS
   dataType: NUMBER
   numericScale: 0
   nullable: true
   defaultValue: 0
   ordinalPosition: 15
+  dataTypeLength:
+- name: NUM_PARTITION_COLUMNS
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  defaultValue: 0
+  ordinalPosition: 16
   dataTypeLength:
 - name: PARALLEL
   dataType: VARCHAR2
@@ -116,6 +116,13 @@ columns:
   nullable: false
   ordinalPosition: 2
   dataTypeLength: 128
+- name: SAMPLED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  defaultValue: '''N'' '
+  ordinalPosition: 7
+  dataTypeLength: 1
 - name: SAMPLE_CAP
   dataType: VARCHAR2
   textMaxLength: 1
@@ -136,13 +143,6 @@ columns:
   nullable: true
   ordinalPosition: 14
   dataTypeLength: 128
-- name: SAMPLED
-  dataType: VARCHAR2
-  textMaxLength: 1
-  nullable: false
-  defaultValue: '''N'' '
-  ordinalPosition: 7
-  dataTypeLength: 1
 constraints:
 - !<unique-constraint>
   name: HS_PARALLEL_METADATA_PK
@@ -150,10 +150,10 @@ constraints:
   columns:
   - name: DBLINK
     ordinalPosition: 1
-  - name: REMOTE_SCHEMA_NAME
-    ordinalPosition: 3
   - name: REMOTE_TABLE_NAME
     ordinalPosition: 2
+  - name: REMOTE_SCHEMA_NAME
+    ordinalPosition: 3
 - !<unique-constraint>
   name: SYS_C004542
   type: UNIQUE

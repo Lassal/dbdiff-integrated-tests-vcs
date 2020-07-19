@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_JAVA_OBJECTS
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: DELETE
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     user_name VARCHAR2(256);
@@ -15,4 +16,3 @@ eventActionBody: |-
     NLS_UPPER(SDO_OWNER) = NLS_UPPER(user_name)
     AND constraint = :o.name;
   END;
-executionOrder: 1

@@ -4,6 +4,7 @@ targetObjectName: SDO_COORD_OP_METHODS
 targetObjectType: TABLE
 eventTiming: BEFORE EACH ROW
 event: INSERT OR UPDATE OR DELETE
+executionOrder: 1
 eventActionBody: |-
   BEGIN
     MDSYS.MDERR.RAISE_MD_ERROR(
@@ -13,4 +14,3 @@ eventActionBody: |-
       'This cannot change the actual implementation status of a method.'
     );
   END;
-executionOrder: 1

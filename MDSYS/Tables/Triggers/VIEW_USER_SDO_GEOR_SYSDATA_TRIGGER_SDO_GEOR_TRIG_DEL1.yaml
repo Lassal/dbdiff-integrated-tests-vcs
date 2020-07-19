@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_GEOR_SYSDATA
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: DELETE
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     owner VARCHAR2(32);
@@ -26,4 +27,3 @@ eventActionBody: |-
   end if;
   SDO_GEOR_DEF.deleteMetaEntry(user, :old.rdt_table_name, :old.raster_id);
   END;
-executionOrder: 1

@@ -4,8 +4,8 @@ targetObjectName: SDO_FEATURE_USAGE
 targetObjectType: TABLE
 eventTiming: AFTER EACH ROW
 event: UPDATE OR DELETE
+executionOrder: 1
 eventActionBody: |-
   BEGIN
     mdsys.mdprvt_feature.sdo_invalidate_feature(:old.feature_name);
   END;
-executionOrder: 1

@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_JAVA_OBJECTS
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: UPDATE
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     user_name VARCHAR2(256);
@@ -32,4 +33,3 @@ eventActionBody: |-
     NLS_UPPER(sdo_owner) = NLS_UPPER(user_name)
     AND constraint = :o.name;
   END;
-executionOrder: 1

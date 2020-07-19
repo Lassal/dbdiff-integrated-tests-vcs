@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_TIMESTAMPS
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: DELETE
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     user_name VARCHAR2(256);
@@ -16,4 +17,3 @@ eventActionBody: |-
     AND network = :o.network
     AND table_name = :o.table_name;
   END;
-executionOrder: 1

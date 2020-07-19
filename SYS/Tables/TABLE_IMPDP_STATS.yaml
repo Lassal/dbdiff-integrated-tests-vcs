@@ -1,17 +1,6 @@
 schema: SYS
 name: IMPDP_STATS
 columns:
-- name: CH1
-  dataType: VARCHAR2
-  textMaxLength: 1000
-  nullable: true
-  ordinalPosition: 29
-  dataTypeLength: 1000
-- name: CL1
-  dataType: CLOB
-  nullable: true
-  ordinalPosition: 30
-  dataTypeLength:
 - name: C1
   dataType: VARCHAR2
   textMaxLength: 128
@@ -48,6 +37,17 @@ columns:
   nullable: true
   ordinalPosition: 10
   dataTypeLength: 128
+- name: CH1
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength: 1000
+- name: CL1
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength:
 - name: D1
   dataType: DATE
   nullable: true
@@ -144,18 +144,18 @@ columns:
   nullable: true
   ordinalPosition: 1
   dataTypeLength: 128
-- name: TYPE
-  dataType: CHAR
-  textMaxLength: 1
-  nullable: true
-  ordinalPosition: 2
-  dataTypeLength: 1
 - name: T1
   dataType: TIMESTAMP(6) WITH TIME ZONE
   numericScale: 6
   nullable: true
   ordinalPosition: 25
   dataTypeLength:
+- name: TYPE
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
 - name: VERSION
   dataType: NUMBER
   nullable: true

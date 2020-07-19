@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_METADATA
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: INSERT
+executionOrder: 1
 eventActionBody: |-
   declare
     user_name varchar2(32);
@@ -106,4 +107,3 @@ eventActionBody: |-
     ) then execute immediate 'BEGIN mdsys.mdprvt_feature.sdo_register_feature(''NDM''); END;';
   END IF;
   END;
-executionOrder: 1
