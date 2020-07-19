@@ -4,6 +4,7 @@ targetObjectName: OGIS_SPATIAL_REFERENCE_SYSTEMS
 targetObjectType: TABLE
 eventTiming: BEFORE EACH ROW
 event: DELETE
+executionOrder: 1
 eventActionBody: |-
   BEGIN
   DELETE FROM
@@ -11,4 +12,3 @@ eventActionBody: |-
   WHERE
     SRID = :old.srid;
   END;
-executionOrder: 1

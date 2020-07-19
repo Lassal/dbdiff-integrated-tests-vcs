@@ -4,8 +4,8 @@ targetObjectName: EMPLOYEES
 targetObjectType: TABLE
 eventTiming: BEFORE STATEMENT
 event: INSERT OR UPDATE OR DELETE
+executionOrder: 1
 eventActionBody: |-
   BEGIN
     secure_dml;
   END secure_employees;
-executionOrder: 1

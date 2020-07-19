@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_LOCKS_WM
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: UPDATE
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     user_name VARCHAR2(256);
@@ -40,4 +41,3 @@ eventActionBody: |-
     NLS_UPPER(sdo_owner) = NLS_UPPER(user_name)
     AND lock_id = :o.lock_id;
   END;
-executionOrder: 1

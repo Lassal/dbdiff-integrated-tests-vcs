@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_TIMESTAMPS
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: INSERT
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     user_name VARCHAR2(32);
@@ -20,4 +21,3 @@ eventActionBody: |-
   EXCEPTION
     WHEN OTHERS THEN RAISE;
   END;
-executionOrder: 1

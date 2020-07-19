@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_CONSTRAINTS
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: DELETE
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     err_msg VARCHAR2(200);
@@ -22,4 +23,3 @@ eventActionBody: |-
   EXCEPTION
     when others then raise;
   END sdo_network_cons_del_trig;
-executionOrder: 1

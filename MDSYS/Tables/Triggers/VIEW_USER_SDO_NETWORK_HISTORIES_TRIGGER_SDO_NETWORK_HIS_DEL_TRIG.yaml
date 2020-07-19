@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_HISTORIES
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: DELETE
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     user_name VARCHAR2(256);
@@ -15,4 +16,3 @@ eventActionBody: |-
     NLS_UPPER(OWNER) = NLS_UPPER(user_name)
     AND network = :o.network;
   END;
-executionOrder: 1

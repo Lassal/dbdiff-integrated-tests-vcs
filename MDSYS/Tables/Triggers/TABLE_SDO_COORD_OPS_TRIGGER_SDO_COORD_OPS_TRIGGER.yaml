@@ -4,8 +4,8 @@ targetObjectName: SDO_COORD_OPS
 targetObjectType: TABLE
 eventTiming: BEFORE EACH ROW
 event: INSERT OR UPDATE OR DELETE
+executionOrder: 1
 eventActionBody: |-
   BEGIN
     MDSYS.sdo_cs.sdo_cs_context_invalidate;
   END;
-executionOrder: 1

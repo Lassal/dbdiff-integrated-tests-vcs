@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_CONSTRAINTS
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: INSERT
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     err_msg VARCHAR2(200);
@@ -25,4 +26,3 @@ eventActionBody: |-
   EXCEPTION
     when others then raise;
   END sdo_network_cons_ins_trig;
-executionOrder: 1

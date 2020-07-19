@@ -4,6 +4,7 @@ targetObjectName: SDO_COORD_OP_PARAM_VALS
 targetObjectType: TABLE
 eventTiming: AFTER STATEMENT
 event: INSERT OR UPDATE OR DELETE
+executionOrder: 1
 eventActionBody: |-
   BEGIN
   update
@@ -14,4 +15,3 @@ eventActionBody: |-
   where
     wktext = 'Getting updated';
   end;
-executionOrder: 1

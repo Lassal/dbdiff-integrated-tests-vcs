@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_LOCKS_WM
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: INSERT
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     user_name VARCHAR2(32);
@@ -36,4 +37,3 @@ eventActionBody: |-
       :n.adjusted_path_filter
     );
   END;
-executionOrder: 1

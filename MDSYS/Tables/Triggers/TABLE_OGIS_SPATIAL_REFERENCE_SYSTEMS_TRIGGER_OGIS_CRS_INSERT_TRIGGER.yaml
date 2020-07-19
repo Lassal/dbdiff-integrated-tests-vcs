@@ -4,6 +4,7 @@ targetObjectName: OGIS_SPATIAL_REFERENCE_SYSTEMS
 targetObjectType: TABLE
 eventTiming: BEFORE EACH ROW
 event: INSERT
+executionOrder: 1
 eventActionBody: |-
   BEGIN
     IF(nls_upper(TRIM(:new.srtext)) like 'GEOGCS%') THEN
@@ -94,4 +95,3 @@ eventActionBody: |-
     );
   END IF;
   END;
-executionOrder: 1

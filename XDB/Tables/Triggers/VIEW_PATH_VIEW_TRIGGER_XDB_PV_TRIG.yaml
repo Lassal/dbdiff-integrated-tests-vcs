@@ -4,6 +4,7 @@ targetObjectName: PATH_VIEW
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: INSERT OR UPDATE OR DELETE
+executionOrder: 1
 eventActionBody: |-
   begin
     if inserting then xdb.xdb_pvtrig_pkg.pvtrig_ins(:new.res, :new.link, :new.path);
@@ -22,4 +23,3 @@ eventActionBody: |-
   );
   end if;
   end;
-executionOrder: 1

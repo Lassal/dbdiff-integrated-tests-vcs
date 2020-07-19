@@ -4,6 +4,7 @@ targetObjectName: SDO_COORD_REF_SYSTEM
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: DELETE
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     already_exists NUMBER;
@@ -21,4 +22,3 @@ eventActionBody: |-
   WHERE
     srid = :old.srid;
   END;
-executionOrder: 1

@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_TIMESTAMPS
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: UPDATE
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     user_name VARCHAR2(256);
@@ -24,4 +25,3 @@ eventActionBody: |-
     AND NLS_UPPER(network) = NLS_UPPER(:o.network)
     AND NLS_UPPER(table_name) = NLS_UPPER(:o.table_name);
   END;
-executionOrder: 1

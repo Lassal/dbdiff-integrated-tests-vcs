@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_METADATA
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: UPDATE
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     user_name VARCHAR2(256);
@@ -92,4 +93,3 @@ eventActionBody: |-
     NLS_UPPER(SDO_OWNER) = NLS_UPPER(user_name)
     AND NLS_UPPER(NETWORK) = NLS_UPPER(:o.network);
   END;
-executionOrder: 1

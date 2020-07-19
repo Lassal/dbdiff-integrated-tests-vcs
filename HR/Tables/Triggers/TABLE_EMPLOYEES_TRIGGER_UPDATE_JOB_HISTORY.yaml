@@ -4,6 +4,7 @@ targetObjectName: EMPLOYEES
 targetObjectType: TABLE
 eventTiming: AFTER EACH ROW
 event: UPDATE
+executionOrder: 1
 eventActionBody: |-
   BEGIN
     add_job_history(
@@ -14,4 +15,3 @@ eventActionBody: |-
       :old.department_id
     );
   END;
-executionOrder: 1

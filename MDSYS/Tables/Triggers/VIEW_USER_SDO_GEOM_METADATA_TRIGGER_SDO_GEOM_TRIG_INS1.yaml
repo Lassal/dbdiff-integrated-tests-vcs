@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_GEOM_METADATA
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: INSERT
+executionOrder: 1
 eventActionBody: |-
   declare
     tname varchar2(32);
@@ -71,4 +72,3 @@ eventActionBody: |-
     );
   END IF;
   END;
-executionOrder: 1

@@ -36,24 +36,24 @@ constraints:
   name: SDO_PK_TIN_PC
   type: PRIMARY_KEY
   columns:
-  - name: DEP_TABLE_NAME
-    ordinalPosition: 2
   - name: DEP_TABLE_SCHEMA
     ordinalPosition: 1
+  - name: DEP_TABLE_NAME
+    ordinalPosition: 2
 - !<unique-constraint>
   name: SDO_UNQ_PCATTR_TIN_PC
   type: UNIQUE
   columns:
-  - name: COLUMN_NAME
-    ordinalPosition: 3
-  - name: DEP_TABLE_NAME
-    ordinalPosition: 5
-  - name: DEP_TABLE_SCHEMA
-    ordinalPosition: 4
   - name: SDO_OWNER
     ordinalPosition: 1
   - name: TABLE_NAME
     ordinalPosition: 2
+  - name: COLUMN_NAME
+    ordinalPosition: 3
+  - name: DEP_TABLE_SCHEMA
+    ordinalPosition: 4
+  - name: DEP_TABLE_NAME
+    ordinalPosition: 5
 - !<check-constraint>
   name: SYS_C006411
   type: CHECK

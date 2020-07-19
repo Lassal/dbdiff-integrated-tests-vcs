@@ -4,6 +4,7 @@ targetObjectName: SDO_TOPO_TRANSACT_DATA$
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: INSERT
+executionOrder: 1
 eventActionBody: |-
   declare
   begin
@@ -18,4 +19,3 @@ eventActionBody: |-
       :n.parent_id
     );
   end;
-executionOrder: 1
