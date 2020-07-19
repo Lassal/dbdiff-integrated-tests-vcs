@@ -6,103 +6,83 @@ returnParamater:
   dataType: RAW
   parameterMode: OUT
   ordinalPosition: 0
-  packageRoutineName: UNCHECKOU
 parameters:
 - name: CHECKIN.PATHNAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: CHECKI
 - name: CHECKIN_INT.PATHNAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: CHECKIN_IN
 - name: CHECKIN_INT.RESID
   dataType: RAW
   parameterMode: OUT
   ordinalPosition: 2
-  packageRoutineName: CHECKIN_IN
 - name: CHECKOUT.PATHNAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: CHECKOU
 - name: GETCONTENTSBLOBBYRESID.RESID
   dataType: RAW
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: GETCONTENTSBLOBBYRESI
 - name: GETCONTENTSCLOBBYRESID.RESID
   dataType: RAW
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: GETCONTENTSCLOBBYRESI
 - name: GETCONTENTSXMLBYRESID.RESID
   dataType: RAW
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: GETCONTENTSXMLBYRESI
 - name: GETPREDECESSORS.PATHNAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: GETPREDECESSOR
 - name: GETPREDSBYRESID.RESID
   dataType: RAW
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: GETPREDSBYRESI
 - name: GETRESOURCEBYRESID.RESID
   dataType: RAW
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: GETRESOURCEBYRESI
 - name: GETSUCCESSORS.PATHNAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: GETSUCCESSOR
 - name: GETSUCCSBYRESID.RESID
   dataType: RAW
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: GETSUCCSBYRESI
 - name: ISCHECKEDOUT.PATHNAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: ISCHECKEDOU
 - name: MAKEVERSIONED.PATHNAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: MAKEVERSIONE
 - name: MAKEVERSIONED_INT.PATHNAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: MAKEVERSIONED_IN
 - name: MAKEVERSIONED_INT.RESID
   dataType: RAW
   parameterMode: OUT
   ordinalPosition: 2
-  packageRoutineName: MAKEVERSIONED_IN
 - name: UNCHECKOUT.PATHNAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: UNCHECKOU
 - name: UNCHECKOUT_INT.PATHNAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: UNCHECKOUT_IN
 - name: UNCHECKOUT_INT.RESID
   dataType: RAW
   parameterMode: OUT
   ordinalPosition: 2
-  packageRoutineName: UNCHECKOUT_IN
 routineDefinition: |-
   package DBMS_XDB_VERSION authid current_user as SUBTYPE resid_type is RAW(16);
   TYPE resid_list_type is VARRAY(1000) of RAW(16);
