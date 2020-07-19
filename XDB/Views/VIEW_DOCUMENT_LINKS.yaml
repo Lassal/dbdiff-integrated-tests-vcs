@@ -2,8 +2,46 @@ schema: XDB
 name: DOCUMENT_LINKS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: LINK_FORM
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 8
+- name: LINK_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 8
+- name: SOURCE_ID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: SOURCE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 17
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 17
+- name: TARGET_ID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: TARGET_PATH
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+referencedTables:
+- schema: XDB
+  name: XDB$D_LINK
+- schema: XDB
+  name: XDB$RESOURCE
 viewDefinition: |-
   SELECT
     dl.source_id,

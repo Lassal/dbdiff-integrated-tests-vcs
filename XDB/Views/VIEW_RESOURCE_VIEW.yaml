@@ -2,8 +2,26 @@ schema: XDB
 name: RESOURCE_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ANY_PATH
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+- name: RES
+  dataType: XMLTYPE
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: RESID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: XDB
+  name: XDB$RESOURCE
 viewDefinition: |-
   select
     value(p) res,

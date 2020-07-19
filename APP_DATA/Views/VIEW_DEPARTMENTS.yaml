@@ -2,8 +2,30 @@ schema: APP_DATA
 name: DEPARTMENTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DEPARTMENT_ID
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 4,0
+- name: DEPARTMENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: MANAGER_ID
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 6,0
+referencedTables:
+- schema: APP_DATA
+  name: DEPARTMENTS#
 viewDefinition: |-
   SELECT
     "DEPARTMENT_ID",

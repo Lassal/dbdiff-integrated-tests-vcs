@@ -2,8 +2,84 @@ schema: XDB
 name: XDB$ROOT_INFO_V
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FTP_PORT
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 5,0
+- name: FTP_PROTOCOL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: HTTP2_HOST
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 4000
+- name: HTTP2_PORT
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 5,0
+- name: HTTP2_PROTOCOL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 4000
+- name: HTTP_HOST
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
+- name: HTTP_PORT
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 5,0
+- name: HTTP_PROTOCOL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: NFS_PORT
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 5,0
+- name: NFS_PROTOCOL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 4000
+- name: RCLIST
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: RESOURCE_ROOT
+  dataType: ROWID
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: XDB
+  name: XDB$ROOT_INFO
 viewDefinition: |-
   select
     "RESOURCE_ROOT",

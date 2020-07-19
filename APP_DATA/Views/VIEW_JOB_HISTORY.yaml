@@ -2,8 +2,40 @@ schema: APP_DATA
 name: JOB_HISTORY
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DEPARTMENT_ID
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 4,0
+- name: EMPLOYEE_ID
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 6,0
+- name: END_DATE
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: JOB_ID
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 10
+- name: START_DATE
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: APP_DATA
+  name: JOB_HISTORY#
 viewDefinition: |-
   SELECT
     "EMPLOYEE_ID",
