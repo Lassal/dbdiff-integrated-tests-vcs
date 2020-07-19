@@ -35,47 +35,139 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: PARSE(1).CSID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 2
 - name: PARSE(2).P
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: PARSEBUFFER.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: PARSECLOB.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: PARSEDTD.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: PARSEDTDBUFFER.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: PARSEDTDCLOB.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: RETAINCDATASECTION.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: SETBASEDIR.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: SETDOCTYPE.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: SETERRORLOG.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: SETPRESERVEWHITESPACE.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: SETVALIDATIONMODE.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: SHOWWARNINGS.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: WRITEERRORS.P
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: PARSE(1).CSID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
 - name: PARSE(2).URL
   dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PARSEBUFFER.DOC
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PARSECLOB.DOC
+  dataType: CLOB
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PARSEDTD.URL
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PARSEDTDBUFFER.DTD
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: PARSEDTDCLOB.DTD
+  dataType: CLOB
+  parameterMode: IN
+  ordinalPosition: 2
+- name: RETAINCDATASECTION.FLAG
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETBASEDIR.DIR
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETDOCTYPE.DTD
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETERRORLOG.FILENAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETPRESERVEWHITESPACE.YES
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETVALIDATIONMODE.YES
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SHOWWARNINGS.YES
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+  ordinalPosition: 2
+- name: WRITEERRORS.ERR_NUM
+  dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 2
 - name: PARSE(2).CSID
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 3
-- name: PARSEBUFFER.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: PARSEBUFFER.DOC
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PARSECLOB.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: PARSECLOB.DOC
-  dataType: CLOB
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PARSEDTD.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: PARSEDTD.URL
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
 - name: PARSEDTD.ROOT
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: PARSEDTDBUFFER.ROOT
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: PARSEDTDCLOB.ROOT
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: WRITEERRORS.ERR_MSG
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
@@ -83,98 +175,6 @@ parameters:
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 4
-- name: PARSEDTDBUFFER.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: PARSEDTDBUFFER.DTD
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PARSEDTDBUFFER.ROOT
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: PARSEDTDCLOB.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: PARSEDTDCLOB.DTD
-  dataType: CLOB
-  parameterMode: IN
-  ordinalPosition: 2
-- name: PARSEDTDCLOB.ROOT
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: RETAINCDATASECTION.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: RETAINCDATASECTION.FLAG
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETBASEDIR.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: SETBASEDIR.DIR
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETDOCTYPE.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: SETDOCTYPE.DTD
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETERRORLOG.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: SETERRORLOG.FILENAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETPRESERVEWHITESPACE.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: SETPRESERVEWHITESPACE.YES
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETVALIDATIONMODE.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: SETVALIDATIONMODE.YES
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SHOWWARNINGS.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: SHOWWARNINGS.YES
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-  ordinalPosition: 2
-- name: WRITEERRORS.P
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: WRITEERRORS.ERR_NUM
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: WRITEERRORS.ERR_MSG
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
 routineDefinition: |-
   package dbms_xmlparser AUTHID CURRENT_USER IS
   /**

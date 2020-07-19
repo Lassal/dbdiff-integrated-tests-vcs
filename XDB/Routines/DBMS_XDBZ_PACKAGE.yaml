@@ -11,126 +11,126 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: ADD_APPLICATION_PRINCIPAL.FLAGS
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 2
 - name: CHANGE_APPLICATION_MEMBERSHIP.USER_NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: DELETE_APPLICATION_PRINCIPAL.NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: DISABLE_HIERARCHY.OBJECT_SCHEMA
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: ENABLE_HIERARCHY.OBJECT_SCHEMA
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GET_ACLOID.ACLPATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GET_USERID.USERNAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: IS_HIERARCHY_ENABLED.OBJECT_SCHEMA
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: SET_APPLICATION_PRINCIPAL.PRINCIPAL_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: VALIDATEACL.ACLOID
+  dataType: RAW
+  parameterMode: IN
+  ordinalPosition: 1
+- name: VALIDATEFUSIONACL.ACLOID
+  dataType: RAW
+  parameterMode: IN
+  ordinalPosition: 1
+- name: ADD_APPLICATION_PRINCIPAL.FLAGS
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 2
 - name: CHANGE_APPLICATION_MEMBERSHIP.GROUP_NAME
   dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: DELETE_APPLICATION_PRINCIPAL.OP_MODE
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: DISABLE_HIERARCHY.OBJECT_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: ENABLE_HIERARCHY.OBJECT_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: GET_ACLOID.ACLOID
+  dataType: RAW
+  parameterMode: OUT
+  ordinalPosition: 2
+- name: GET_USERID.USERID
+  dataType: RAW
+  parameterMode: OUT
+  ordinalPosition: 2
+- name: IS_HIERARCHY_ENABLED.OBJECT_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SET_APPLICATION_PRINCIPAL.ALLOW_REGISTRATION
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+  ordinalPosition: 2
+- name: VALIDATEACL.SKIP_SCACL
+  dataType: BINARY_INTEGER
   parameterMode: IN
   ordinalPosition: 2
 - name: CHANGE_APPLICATION_MEMBERSHIP.OP_MODE
   dataType: BINARY_INTEGER
   parameterMode: IN
   ordinalPosition: 3
-- name: CHANGE_APPLICATION_MEMBERSHIP.USER_FLAGS
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 4
-- name: DELETE_APPLICATION_PRINCIPAL.NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: DELETE_APPLICATION_PRINCIPAL.OP_MODE
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: DISABLE_HIERARCHY.OBJECT_SCHEMA
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: DISABLE_HIERARCHY.OBJECT_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
 - name: DISABLE_HIERARCHY.HIERARCHY_TYPE
   dataType: BINARY_INTEGER
   parameterMode: IN
   ordinalPosition: 3
-- name: DISABLE_HIERARCHY.DELETE_OLD_VERSIONS
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-  ordinalPosition: 4
-- name: ENABLE_HIERARCHY.OBJECT_SCHEMA
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: ENABLE_HIERARCHY.OBJECT_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
 - name: ENABLE_HIERARCHY.HIERARCHY_TYPE
   dataType: BINARY_INTEGER
   parameterMode: IN
   ordinalPosition: 3
-- name: ENABLE_HIERARCHY.SCHEMAREG
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-  ordinalPosition: 4
-- name: GET_ACLOID.ACLPATH
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GET_ACLOID.ACLOID
-  dataType: RAW
-  parameterMode: OUT
-  ordinalPosition: 2
-- name: GET_USERID.USERNAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GET_USERID.USERID
-  dataType: RAW
-  parameterMode: OUT
-  ordinalPosition: 2
 - name: GET_USERID.FORMAT
   dataType: BINARY_INTEGER
   parameterMode: IN
   ordinalPosition: 3
-- name: IS_HIERARCHY_ENABLED.OBJECT_SCHEMA
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: IS_HIERARCHY_ENABLED.OBJECT_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
 - name: IS_HIERARCHY_ENABLED.HIERARCHY_TYPE
   dataType: BINARY_INTEGER
   parameterMode: IN
   ordinalPosition: 3
-- name: SET_APPLICATION_PRINCIPAL.PRINCIPAL_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: SET_APPLICATION_PRINCIPAL.ALLOW_REGISTRATION
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-  ordinalPosition: 2
 - name: SET_APPLICATION_PRINCIPAL.PRINCIPAL_GUID
   dataType: RAW
   parameterMode: IN
   ordinalPosition: 3
+- name: CHANGE_APPLICATION_MEMBERSHIP.USER_FLAGS
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 4
+- name: DISABLE_HIERARCHY.DELETE_OLD_VERSIONS
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+  ordinalPosition: 4
+- name: ENABLE_HIERARCHY.SCHEMAREG
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+  ordinalPosition: 4
 - name: SET_APPLICATION_PRINCIPAL.GROUP_MEMBERSHIP
   dataType: RAW
   parameterMode: IN
   ordinalPosition: 4
-- name: VALIDATEACL.ACLOID
-  dataType: RAW
-  parameterMode: IN
-  ordinalPosition: 1
-- name: VALIDATEACL.SKIP_SCACL
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: VALIDATEFUSIONACL.ACLOID
-  dataType: RAW
-  parameterMode: IN
-  ordinalPosition: 1
 routineDefinition: |-
   PACKAGE dbms_xdbz AUTHID CURRENT_USER IS ------------
   -- CONSTANTS

@@ -11,34 +11,14 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: ADDREPOSITORYRESCONFIG.POS
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 2
 - name: ADDRESCONFIG.RESPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: ADDRESCONFIG.RCPATH
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: ADDRESCONFIG.POS
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 3
 - name: APPENDRESCONFIG.RESPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: APPENDRESCONFIG.RCPATH
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: APPENDRESCONFIG.APPENDOPTION
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 3
 - name: DELETEREPOSITORYRESCONFIG.POS
   dataType: BINARY_INTEGER
   parameterMode: IN
@@ -47,22 +27,10 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: DELETERESCONFIG(1).POS
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 2
 - name: DELETERESCONFIG(2).RESPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: DELETERESCONFIG(2).RCPATH
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: DELETERESCONFIG(2).DELETEOPTION
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 3
 - name: GETLISTENERS.PATH
   dataType: VARCHAR2
   parameterMode: IN
@@ -75,14 +43,46 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: GETRESCONFIG.POS
-  dataType: BINARY_INTEGER
-  parameterMode: IN
-  ordinalPosition: 2
 - name: GETRESCONFIGPATHS.RESPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: ADDREPOSITORYRESCONFIG.POS
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: ADDRESCONFIG.RCPATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: APPENDRESCONFIG.RCPATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: DELETERESCONFIG(1).POS
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: DELETERESCONFIG(2).RCPATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: GETRESCONFIG.POS
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: ADDRESCONFIG.POS
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 3
+- name: APPENDRESCONFIG.APPENDOPTION
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 3
+- name: DELETERESCONFIG(2).DELETEOPTION
+  dataType: BINARY_INTEGER
+  parameterMode: IN
+  ordinalPosition: 3
 routineDefinition: "PACKAGE dbms_resconfig AUTHID CURRENT_USER IS ------------\n--\
   \ CONSTANTS\n--\n------------\nDELETE_RESOURCE CONSTANT NUMBER: = 1;\nDELETE_RECURSIVE\
   \ CONSTANT NUMBER: = 2;\nAPPEND_RESOURCE CONSTANT NUMBER: = 1;\nAPPEND_RECURSIVE\
