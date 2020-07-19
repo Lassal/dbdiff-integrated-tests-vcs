@@ -31,6 +31,10 @@ parameters:
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: GETCONTENTBLOB.CSID
+  dataType: BINARY_INTEGER
+  parameterMode: OUT
+  ordinalPosition: 2
 - name: GETCONTENTBLOB.RES
   dataType: PL/SQL RECORD
   parameterMode: IN
@@ -63,10 +67,18 @@ parameters:
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: GETCUSTOMMETADATA.NAMESPACE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
 - name: GETCUSTOMMETADATA.RES
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: GETCUSTOMMETADATA.XPATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 - name: GETDISPLAYNAME.RES
   dataType: PL/SQL RECORD
   parameterMode: IN
@@ -103,10 +115,18 @@ parameters:
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: HASCHANGED.BNAMESPACE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
 - name: HASCHANGED.RES
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
+- name: HASCHANGED.XPATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 - name: HASCHARACTERSETCHANGED.RES
   dataType: PL/SQL RECORD
   parameterMode: IN
@@ -179,150 +199,82 @@ parameters:
   dataType: PL/SQL RECORD
   parameterMode: IN
   ordinalPosition: 1
-- name: SETACL.RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SETAUTHOR.RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SETCHARACTERSET.RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SETCOMMENT.RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SETCONTENT(1).RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SETCONTENT(2).RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SETCONTENT(3).RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SETCONTENT(4).RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SETCONTENT(5).RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SETCONTENT(6).RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SETCONTENTTYPE.RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SETCUSTOMMETADATA.RES
-  dataType: PL/SQL RECORD
-  parameterMode: IN
-  ordinalPosition: 1
-- name: SETDISPLAYNAME.RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SETLANGUAGE.RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: SETOWNER.RES
-  dataType: PL/SQL RECORD
-  parameterMode: INOUT
-  ordinalPosition: 1
-- name: GETCONTENTBLOB.CSID
-  dataType: BINARY_INTEGER
-  parameterMode: OUT
-  ordinalPosition: 2
-- name: GETCUSTOMMETADATA.XPATH
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: HASCHANGED.XPATH
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
 - name: SETACL.ACLPATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
+- name: SETACL.RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
 - name: SETAUTHOR.AUTHOR
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
+- name: SETAUTHOR.RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
 - name: SETCHARACTERSET.CHARSET
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
+- name: SETCHARACTERSET.RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
 - name: SETCOMMENT.COMMENT
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
+- name: SETCOMMENT.RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
 - name: SETCONTENT(1).DATA
   dataType: CLOB
   parameterMode: IN
   ordinalPosition: 2
-- name: SETCONTENT(2).DATA
-  dataType: BLOB
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETCONTENT(3).DATA
-  dataType: OPAQUE/XMLTYPE
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETCONTENT(4).DATA
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETCONTENT(5).DATA
-  dataType: REF
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETCONTENT(6).DATA
-  dataType: BFILE
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETCONTENTTYPE.CONTTYPE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETCUSTOMMETADATA.XPATH
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETDISPLAYNAME.NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETLANGUAGE.LANG
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETOWNER.OWNER
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: GETCUSTOMMETADATA.NAMESPACE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: HASCHANGED.BNAMESPACE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
+- name: SETCONTENT(1).RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
 - name: SETCONTENT(2).CSID
   dataType: BINARY_INTEGER
   parameterMode: IN
   ordinalPosition: 3
+- name: SETCONTENT(2).DATA
+  dataType: BLOB
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETCONTENT(2).RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
+- name: SETCONTENT(3).DATA
+  dataType: OPAQUE/XMLTYPE
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETCONTENT(3).RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
+- name: SETCONTENT(4).DATA
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETCONTENT(4).RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
+- name: SETCONTENT(5).DATA
+  dataType: REF
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETCONTENT(5).RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
 - name: SETCONTENT(5).STICKY
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
@@ -331,6 +283,22 @@ parameters:
   dataType: BINARY_INTEGER
   parameterMode: IN
   ordinalPosition: 3
+- name: SETCONTENT(6).DATA
+  dataType: BFILE
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETCONTENT(6).RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
+- name: SETCONTENTTYPE.CONTTYPE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETCONTENTTYPE.RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
 - name: SETCUSTOMMETADATA.NAMESPACE
   dataType: VARCHAR2
   parameterMode: IN
@@ -339,6 +307,38 @@ parameters:
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 4
+- name: SETCUSTOMMETADATA.RES
+  dataType: PL/SQL RECORD
+  parameterMode: IN
+  ordinalPosition: 1
+- name: SETCUSTOMMETADATA.XPATH
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETDISPLAYNAME.NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETDISPLAYNAME.RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
+- name: SETLANGUAGE.LANG
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETLANGUAGE.RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
+- name: SETOWNER.OWNER
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETOWNER.RES
+  dataType: PL/SQL RECORD
+  parameterMode: INOUT
+  ordinalPosition: 1
 routineDefinition: |-
   PACKAGE dbms_xdbresource AUTHID CURRENT_USER IS --------------------------------------------
   -- TYPES

@@ -7,10 +7,22 @@ returnParamater:
   parameterMode: OUT
   ordinalPosition: 0
 parameters:
+- name: CLOB2URL.BASEDIR
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
 - name: CLOB2URL.CL
   dataType: CLOB
   parameterMode: IN
   ordinalPosition: 1
+- name: CLOB2URL.CSID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 4
+- name: CLOB2URL.URL
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
 - name: FP2BLOB.FP
   dataType: PL/SQL RECORD
   parameterMode: IN
@@ -19,30 +31,18 @@ parameters:
   dataType: RAW
   parameterMode: IN
   ordinalPosition: 1
-- name: URL2CLOB.URL
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: CLOB2URL.URL
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
 - name: URL2CLOB.BASEDIR
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
-- name: CLOB2URL.BASEDIR
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
 - name: URL2CLOB.CSID
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 3
-- name: CLOB2URL.CSID
-  dataType: NUMBER
+- name: URL2CLOB.URL
+  dataType: VARCHAR2
   parameterMode: IN
-  ordinalPosition: 4
+  ordinalPosition: 1
 routineDefinition: package dbms_clobutil wrapped a000000 1 abcd abcd abcd abcd abcd
   abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd 9 1c0 171 RB9ye544tgqrN2XYZyiSSO0m7Ukwg43IAPZqfC9A2vjqaBHWva8LLlsQbnbMk9NJTOxZrKAM
   qGOEBbUPMUbIJdFM29kpQVsp8OYAGL3uQ9IzzEFyu7BkcrGC5 / / aCjV / 85JxV6g3aZ5ewiWo hQvr1JkwUMCMQ26XOJ
