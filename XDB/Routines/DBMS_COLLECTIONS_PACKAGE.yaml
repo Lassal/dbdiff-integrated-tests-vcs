@@ -3,50 +3,61 @@ name: DBMS_COLLECTIONS
 routineType: PACKAGE
 returnParamater: null
 parameters:
-- name: CREATE_COLLECTION.P_CREATE_MODE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: CREATE_COLLECTION.P_CREATE_TIME
-  dataType: VARCHAR2
-  parameterMode: OUT
-  ordinalPosition: 4
-- name: CREATE_COLLECTION.P_DESCRIPTOR
-  dataType: VARCHAR2
-  parameterMode: INOUT
-  ordinalPosition: 3
 - name: CREATE_COLLECTION.P_URI_NAME
   dataType: NVARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: DESCRIBE_COLLECTION.P_DESCRIPTOR
+  packageRoutineName: CREATE_COLLECTIO
+- name: CREATE_COLLECTION.P_CREATE_MODE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+  packageRoutineName: CREATE_COLLECTIO
+- name: CREATE_COLLECTION.P_DESCRIPTOR
+  dataType: VARCHAR2
+  parameterMode: INOUT
+  ordinalPosition: 3
+  packageRoutineName: CREATE_COLLECTIO
+- name: CREATE_COLLECTION.P_CREATE_TIME
   dataType: VARCHAR2
   parameterMode: OUT
-  ordinalPosition: 2
+  ordinalPosition: 4
+  packageRoutineName: CREATE_COLLECTIO
 - name: DESCRIBE_COLLECTION.P_URI_NAME
   dataType: NVARCHAR2
   parameterMode: INOUT
   ordinalPosition: 1
+  packageRoutineName: DESCRIBE_COLLECTIO
+- name: DESCRIBE_COLLECTION.P_DESCRIPTOR
+  dataType: VARCHAR2
+  parameterMode: OUT
+  ordinalPosition: 2
+  packageRoutineName: DESCRIBE_COLLECTIO
 - name: DROP_COLLECTION.P_URI_NAME
   dataType: NVARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+  packageRoutineName: DROP_COLLECTIO
 - name: GET_PARAMETERS.P_KEY
   dataType: PL/SQL TABLE
   parameterMode: INOUT
   ordinalPosition: 1
+  packageRoutineName: GET_PARAMETER
 - name: GET_PARAMETERS.P_VALUE
   dataType: PL/SQL TABLE
   parameterMode: INOUT
   ordinalPosition: 2
-- name: LIST_COLLECTIONS.P_RESULTS
-  dataType: REF CURSOR
-  parameterMode: OUT
-  ordinalPosition: 2
+  packageRoutineName: GET_PARAMETER
 - name: LIST_COLLECTIONS.P_START_NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+  packageRoutineName: LIST_COLLECTION
+- name: LIST_COLLECTIONS.P_RESULTS
+  dataType: REF CURSOR
+  parameterMode: OUT
+  ordinalPosition: 2
+  packageRoutineName: LIST_COLLECTION
 routineDefinition: |-
   package DBMS_COLLECTIONS authid current_user as --
   -- Error messages which we can ignore
