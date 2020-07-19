@@ -2,8 +2,36 @@ schema: APP_DATA
 name: JOBS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: JOB_ID
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 10
+- name: JOB_TITLE
+  dataType: VARCHAR2
+  textMaxLength: 35
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 35
+- name: MAX_SALARY
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 6,0
+- name: MIN_SALARY
+  dataType: NUMBER
+  numericPrecision: 6
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 6,0
+referencedTables:
+- schema: APP_DATA
+  name: JOBS#
 viewDefinition: |-
   SELECT
     "JOB_ID",

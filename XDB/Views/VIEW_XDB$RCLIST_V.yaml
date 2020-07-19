@@ -2,8 +2,15 @@ schema: XDB
 name: XDB$RCLIST_V
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: RCLIST
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: XDB
+  name: XDB$ROOT_INFO
 viewDefinition: |-
   (
     select
