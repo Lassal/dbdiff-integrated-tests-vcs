@@ -2,8 +2,25 @@ schema: CTXSYS
 name: DRV$TREE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: IDXID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: NODE_SEQ
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: SECID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: CTXSYS
+  name: DR$TREE
 viewDefinition: |-
   select
     "IDXID",

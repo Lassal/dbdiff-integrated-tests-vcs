@@ -2,8 +2,106 @@ schema: WMSYS
 name: USER_WM_POLICIES
 updatedAllowed: false
 insertAllowed: false
-columns: []
-referencedTables: []
+columns:
+- name: CHK_OPTION
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 3
+- name: DEL
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 3
+- name: ENABLE
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 3
+- name: FUNCTION
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: IDX
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 3
+- name: INS
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 3
+- name: LONG_PREDICATE
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 3
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PACKAGE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: PF_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: POLICY_GROUP
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: POLICY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: POLICY_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 24
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 24
+- name: SEL
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 3
+- name: STATIC_POLICY
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 3
+- name: UPD
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 3
+referencedTables:
+- schema: WMSYS
+  name: ALL_WM_POLICIES
 viewDefinition: |-
   select
     object_name,

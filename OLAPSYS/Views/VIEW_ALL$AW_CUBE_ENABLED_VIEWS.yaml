@@ -2,7 +2,48 @@ schema: OLAPSYS
 name: ALL$AW_CUBE_ENABLED_VIEWS
 updatedAllowed: true
 insertAllowed: true
-columns: []
+columns:
+- name: AW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: AW_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: CUBE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: HIERCOMBO_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: HIERCOMBO_STR
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: SYSTEM_VIEWNAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: USER_VIEWNAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
 referencedTables: []
 viewDefinition: |-
   SELECT

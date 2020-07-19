@@ -2,8 +2,114 @@ schema: APEX_050000
 name: APEX_REST_RESOURCE_TEMPLATES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 4000
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 255
+- name: CREATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: ETAG_QUERY
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 4000
+- name: ETAG_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength: 30
+- name: HANDLERS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 255
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: MODULE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: MODULE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 255
+- name: PRIORITY
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: ROW_VERSION_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: TEMPLATE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: URI_TEMPLATE
+  dataType: VARCHAR2
+  textMaxLength: 600
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 600
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: WORKSPACE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_FLOW_RT$HANDLERS
+- schema: APEX_050000
+  name: WWV_FLOW_RT$MODULES
+- schema: APEX_050000
+  name: WWV_FLOW_RT$TEMPLATES
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     w.provisioning_company_id workspace_id,

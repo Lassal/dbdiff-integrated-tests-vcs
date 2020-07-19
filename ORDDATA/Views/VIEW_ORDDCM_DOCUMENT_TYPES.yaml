@@ -2,8 +2,28 @@ schema: ORDDATA
 name: ORDDCM_DOCUMENT_TYPES
 updatedAllowed: false
 insertAllowed: false
-columns: []
-referencedTables: []
+columns:
+- name: DOC_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 100
+- name: DOC_TYPE_DSC
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: SCHEMA_URL
+  dataType: VARCHAR2
+  textMaxLength: 700
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 700
+referencedTables:
+- schema: ORDDATA
+  name: ORDDCM_DOC_TYPES
 viewDefinition: |-
   SELECT
     DOC_TYPE,

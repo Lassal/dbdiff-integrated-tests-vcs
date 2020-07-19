@@ -2,8 +2,74 @@ schema: LBACSYS
 name: ALL_SA_USERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DEFAULT_READ_LABEL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 4000
+- name: DEFAULT_ROW_LABEL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 4000
+- name: DEFAULT_WRITE_LABEL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 4000
+- name: MAX_READ_LABEL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: MAX_WRITE_LABEL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: MIN_WRITE_LABEL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
+- name: POLICY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: USER_LABELS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: USER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 1024
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 1024
+- name: USER_PRIVILEGES
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+referencedTables:
+- schema: LBACSYS
+  name: DBA_OLS_USERS
+- schema: LBACSYS
+  name: SA$ADMIN
+- schema: LBACSYS
+  name: SA$POL
 viewDefinition: |-
   SELECT
     user_name,

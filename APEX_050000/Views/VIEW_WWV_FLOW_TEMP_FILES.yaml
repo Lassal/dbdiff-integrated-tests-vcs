@@ -2,8 +2,50 @@ schema: APEX_050000
 name: WWV_FLOW_TEMP_FILES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: BLOB_CONTENT
+  dataType: BLOB
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: CREATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: FILENAME
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 400
+- name: ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: MIME_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 400
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_CURRENT_SGID
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     id,

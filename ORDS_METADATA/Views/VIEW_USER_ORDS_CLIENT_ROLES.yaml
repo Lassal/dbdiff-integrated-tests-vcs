@@ -2,8 +2,34 @@ schema: ORDS_METADATA
 name: USER_ORDS_CLIENT_ROLES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CLIENT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: CLIENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: ROLE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: ROLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 255
+referencedTables:
+- schema: ORDS_METADATA
+  name: ALL_ORDS_CLIENT_ROLES
+- schema: ORDS_METADATA
+  name: ORDS_SCHEMAS
 viewDefinition: |-
   SELECT
     ALL_ORDS_CLIENT_ROLES.client_id,

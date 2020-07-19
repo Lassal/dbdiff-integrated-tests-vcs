@@ -2,8 +2,27 @@ schema: MDSYS
 name: SDO_ANGLE_UNITS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CONVERSION_FACTOR
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: SDO_UNIT
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 80
+- name: UNIT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 2083
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 2083
+referencedTables:
+- schema: MDSYS
+  name: SDO_UNITS_OF_MEASURE
 viewDefinition: |-
   SELECT
     SHORT_NAME "SDO_UNIT",

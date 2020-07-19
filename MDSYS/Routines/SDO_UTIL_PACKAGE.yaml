@@ -227,6 +227,10 @@ parameters:
   dataType: OBJECT
   parameterMode: IN
   ordinalPosition: 2
+- name: CONVERT3007TO3008.GEOMETRY
+  dataType: OBJECT
+  parameterMode: IN
+  ordinalPosition: 1
 - name: CONVERT_DISTANCE.SRID
   dataType: NUMBER
   parameterMode: IN
@@ -251,10 +255,6 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
-- name: CONVERT3007TO3008.GEOMETRY
-  dataType: OBJECT
-  parameterMode: IN
-  ordinalPosition: 1
 - name: DROP_WORK_TABLES.OIDSTR
   dataType: VARCHAR2
   parameterMode: IN
@@ -303,12 +303,12 @@ parameters:
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 3
-- name: EXTRACT_ALL.GEOMETRY
+- name: EXTRACT3D.GEOMETRY
   dataType: OBJECT
   parameterMode: IN
   ordinalPosition: 1
-- name: EXTRACT_ALL.FLATTEN
-  dataType: NUMBER
+- name: EXTRACT3D.LABEL
+  dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
 - name: EXTRACTVOIDS.GEOMETRY
@@ -319,12 +319,12 @@ parameters:
   dataType: VARRAY
   parameterMode: IN
   ordinalPosition: 2
-- name: EXTRACT3D.GEOMETRY
+- name: EXTRACT_ALL.GEOMETRY
   dataType: OBJECT
   parameterMode: IN
   ordinalPosition: 1
-- name: EXTRACT3D.LABEL
-  dataType: VARCHAR2
+- name: EXTRACT_ALL.FLATTEN
+  dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 2
 - name: EXTRUDE(1).GEOMETRY
@@ -371,70 +371,6 @@ parameters:
   dataType: CLOB
   parameterMode: IN
   ordinalPosition: 1
-- name: FROM_GMLGEOMETRY(1).GEOMETRY
-  dataType: CLOB
-  parameterMode: IN
-  ordinalPosition: 1
-- name: FROM_GMLGEOMETRY(2).GEOMETRY
-  dataType: CLOB
-  parameterMode: IN
-  ordinalPosition: 1
-- name: FROM_GMLGEOMETRY(2).SRSNAMESPACE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: FROM_GMLGEOMETRY(3).GEOMETRY
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: FROM_GMLGEOMETRY(4).GEOMETRY
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: FROM_GMLGEOMETRY(4).SRSNAMESPACE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: FROM_GMLGEOMETRY(5).GEOMETRY
-  dataType: CLOB
-  parameterMode: IN
-  ordinalPosition: 1
-- name: FROM_GMLGEOMETRY(5).COORDORDER
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: FROM_GMLGEOMETRY(6).GEOMETRY
-  dataType: CLOB
-  parameterMode: IN
-  ordinalPosition: 1
-- name: FROM_GMLGEOMETRY(6).SRSNAMESPACE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: FROM_GMLGEOMETRY(6).COORDORDER
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 3
-- name: FROM_GMLGEOMETRY(7).GEOMETRY
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: FROM_GMLGEOMETRY(7).COORDORDER
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: FROM_GMLGEOMETRY(8).GEOMETRY
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: FROM_GMLGEOMETRY(8).SRSNAMESPACE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: FROM_GMLGEOMETRY(8).COORDORDER
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 3
 - name: FROM_GML311GEOMETRY(1).GEOMETRY
   dataType: CLOB
   parameterMode: IN
@@ -499,6 +435,70 @@ parameters:
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 3
+- name: FROM_GMLGEOMETRY(1).GEOMETRY
+  dataType: CLOB
+  parameterMode: IN
+  ordinalPosition: 1
+- name: FROM_GMLGEOMETRY(2).GEOMETRY
+  dataType: CLOB
+  parameterMode: IN
+  ordinalPosition: 1
+- name: FROM_GMLGEOMETRY(2).SRSNAMESPACE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: FROM_GMLGEOMETRY(3).GEOMETRY
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: FROM_GMLGEOMETRY(4).GEOMETRY
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: FROM_GMLGEOMETRY(4).SRSNAMESPACE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: FROM_GMLGEOMETRY(5).GEOMETRY
+  dataType: CLOB
+  parameterMode: IN
+  ordinalPosition: 1
+- name: FROM_GMLGEOMETRY(5).COORDORDER
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: FROM_GMLGEOMETRY(6).GEOMETRY
+  dataType: CLOB
+  parameterMode: IN
+  ordinalPosition: 1
+- name: FROM_GMLGEOMETRY(6).SRSNAMESPACE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: FROM_GMLGEOMETRY(6).COORDORDER
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 3
+- name: FROM_GMLGEOMETRY(7).GEOMETRY
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: FROM_GMLGEOMETRY(7).COORDORDER
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: FROM_GMLGEOMETRY(8).GEOMETRY
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: FROM_GMLGEOMETRY(8).SRSNAMESPACE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: FROM_GMLGEOMETRY(8).COORDORDER
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 3
 - name: FROM_KMLGEOMETRY(1).GEOMETRY
   dataType: CLOB
   parameterMode: IN
@@ -517,10 +517,6 @@ parameters:
   ordinalPosition: 1
 - name: FROM_WKTGEOMETRY(2).GEOMETRY
   dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GET_BOUNDARY.GEOMETRY
-  dataType: OBJECT
   parameterMode: IN
   ordinalPosition: 1
 - name: GETLABELBYELEMENT.SOURCEGEOMETRY
@@ -567,6 +563,10 @@ parameters:
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 2
+- name: GET_BOUNDARY.GEOMETRY
+  dataType: OBJECT
+  parameterMode: IN
+  ordinalPosition: 1
 - name: HYBRID_TILES.GEOM
   dataType: OBJECT
   parameterMode: IN
@@ -948,50 +948,22 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: TOGNOMONIC.GEOM
+  dataType: OBJECT
+  parameterMode: IN
+  ordinalPosition: 1
+- name: TOGNOMONIC.LONGITUDE
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: TOGNOMONIC.LATITUDE
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 3
 - name: TO_CLOB.GEOMETRY
   dataType: OBJECT
   parameterMode: IN
   ordinalPosition: 1
-- name: TO_GMLGEOMETRY(1).GEOMETRY
-  dataType: OBJECT
-  parameterMode: IN
-  ordinalPosition: 1
-- name: TO_GMLGEOMETRY(2).GEOMETRY
-  dataType: OBJECT
-  parameterMode: IN
-  ordinalPosition: 1
-- name: TO_GMLGEOMETRY(2).SRSNAMESPACE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: TO_GMLGEOMETRY(2).SRSNSALIAS
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: TO_GMLGEOMETRY(3).GEOMETRY
-  dataType: OBJECT
-  parameterMode: IN
-  ordinalPosition: 1
-- name: TO_GMLGEOMETRY(3).COORDORDER
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: TO_GMLGEOMETRY(4).GEOMETRY
-  dataType: OBJECT
-  parameterMode: IN
-  ordinalPosition: 1
-- name: TO_GMLGEOMETRY(4).SRSNAMESPACE
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
-- name: TO_GMLGEOMETRY(4).SRSNSALIAS
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 3
-- name: TO_GMLGEOMETRY(4).COORDORDER
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 4
 - name: TO_GML311GEOMETRY(1).GEOMETRY
   dataType: OBJECT
   parameterMode: IN
@@ -1072,18 +1044,46 @@ parameters:
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 4
-- name: TOGNOMONIC.GEOM
+- name: TO_GMLGEOMETRY(1).GEOMETRY
   dataType: OBJECT
   parameterMode: IN
   ordinalPosition: 1
-- name: TOGNOMONIC.LONGITUDE
+- name: TO_GMLGEOMETRY(2).GEOMETRY
+  dataType: OBJECT
+  parameterMode: IN
+  ordinalPosition: 1
+- name: TO_GMLGEOMETRY(2).SRSNAMESPACE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: TO_GMLGEOMETRY(2).SRSNSALIAS
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 3
+- name: TO_GMLGEOMETRY(3).GEOMETRY
+  dataType: OBJECT
+  parameterMode: IN
+  ordinalPosition: 1
+- name: TO_GMLGEOMETRY(3).COORDORDER
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 2
-- name: TOGNOMONIC.LATITUDE
-  dataType: NUMBER
+- name: TO_GMLGEOMETRY(4).GEOMETRY
+  dataType: OBJECT
+  parameterMode: IN
+  ordinalPosition: 1
+- name: TO_GMLGEOMETRY(4).SRSNAMESPACE
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 2
+- name: TO_GMLGEOMETRY(4).SRSNSALIAS
+  dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
+- name: TO_GMLGEOMETRY(4).COORDORDER
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 4
 - name: TO_KMLGEOMETRY.GEOMETRY
   dataType: OBJECT
   parameterMode: IN
@@ -1108,6 +1108,10 @@ parameters:
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 2
+- name: VALIDATE_3DTHEME.THEME_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
 - name: VALIDATE_SCENE.SCENE_NAME
   dataType: VARCHAR2
   parameterMode: IN
@@ -1125,10 +1129,6 @@ parameters:
   parameterMode: IN
   ordinalPosition: 1
 - name: VALIDATE_WKTGEOMETRY(2).GEOMETRY
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: VALIDATE_3DTHEME.THEME_NAME
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1

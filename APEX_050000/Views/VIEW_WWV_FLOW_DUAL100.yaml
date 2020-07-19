@@ -2,8 +2,15 @@ schema: APEX_050000
 name: WWV_FLOW_DUAL100
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: I
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_CURRENT_SGID
 viewDefinition: |-
   select
     level i

@@ -379,6 +379,34 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 8
+- name: SETUP.HDL_COL
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+  ordinalPosition: 1
+- name: SETUP.IDX_COL
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+  ordinalPosition: 2
+- name: SETUP.MOWN_COL
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+  ordinalPosition: 3
+- name: SETUP.MAS_COL
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+  ordinalPosition: 4
+- name: SETUP.RBSEG_COL
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+  ordinalPosition: 5
+- name: SETUP.INFLAG_COL
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+  ordinalPosition: 6
+- name: SETUP.RCSCN
+  dataType: NUMBER
+  parameterMode: OUT
+  ordinalPosition: 7
 - name: SET_UP(1).MOWN_COL
   dataType: PL/SQL TABLE
   parameterMode: IN
@@ -611,34 +639,6 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 9
-- name: SETUP.HDL_COL
-  dataType: PL/SQL TABLE
-  parameterMode: IN
-  ordinalPosition: 1
-- name: SETUP.IDX_COL
-  dataType: PL/SQL TABLE
-  parameterMode: IN
-  ordinalPosition: 2
-- name: SETUP.MOWN_COL
-  dataType: PL/SQL TABLE
-  parameterMode: IN
-  ordinalPosition: 3
-- name: SETUP.MAS_COL
-  dataType: PL/SQL TABLE
-  parameterMode: IN
-  ordinalPosition: 4
-- name: SETUP.RBSEG_COL
-  dataType: PL/SQL TABLE
-  parameterMode: IN
-  ordinalPosition: 5
-- name: SETUP.INFLAG_COL
-  dataType: PL/SQL TABLE
-  parameterMode: IN
-  ordinalPosition: 6
-- name: SETUP.RCSCN
-  dataType: NUMBER
-  parameterMode: OUT
-  ordinalPosition: 7
 - name: SUBSCRIBE.CSET
   dataType: VARCHAR2
   parameterMode: IN
@@ -1171,6 +1171,14 @@ parameters:
   dataType: BINARY_INTEGER
   parameterMode: INOUT
   ordinalPosition: 8
+- name: WRAPUP.HDL_COL
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+  ordinalPosition: 1
+- name: WRAPUP.RBSEG_COL
+  dataType: PL/SQL TABLE
+  parameterMode: IN
+  ordinalPosition: 2
 - name: WRAP_UP(1).MOWN_COL
   dataType: PL/SQL TABLE
   parameterMode: IN
@@ -1323,14 +1331,6 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 9
-- name: WRAPUP.HDL_COL
-  dataType: PL/SQL TABLE
-  parameterMode: IN
-  ordinalPosition: 1
-- name: WRAPUP.RBSEG_COL
-  dataType: PL/SQL TABLE
-  parameterMode: IN
-  ordinalPosition: 2
 routineDefinition: PACKAGE dbms_snapshot_utl wrapped a000000 1 abcd abcd abcd abcd
   abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd 9 55da ef8 ZnBbg / Me + qT4NGoHgiR7SpZKJXIwg81xuiCGRfO59nPV0n3KW
   + lukQMxqxAObIOzLaI + Go7G ruZtItJreHCutaoX9Wtak9MHgxrNPlY2MRTaLK3 + iIddbgKAn4

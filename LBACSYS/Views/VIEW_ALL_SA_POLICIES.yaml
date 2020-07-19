@@ -2,8 +2,36 @@ schema: LBACSYS
 name: ALL_SA_POLICIES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: POLICY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: POLICY_OPTIONS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 8
+referencedTables:
+- schema: LBACSYS
+  name: SA$ADMIN
+- schema: LBACSYS
+  name: SA$POL
 viewDefinition: |-
   SELECT
     p.pol_name as policy_name,

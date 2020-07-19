@@ -2,8 +2,51 @@ schema: ORDS_METADATA
 name: USER_ORDS_PRIVILEGE_MAPPINGS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 255
+- name: CREATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: PATTERN
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 255
+- name: PRIVILEGE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 255
+- name: UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+referencedTables:
+- schema: ORDS_METADATA
+  name: ALL_ORDS_PRIVILEGE_MAPPINGS
+- schema: ORDS_METADATA
+  name: ORDS_SCHEMAS
 viewDefinition: |-
   SELECT
     ALL_ORDS_PRIVILEGE_MAPPINGS.privilege_id,

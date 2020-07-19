@@ -2,8 +2,82 @@ schema: APEX_050000
 name: APEX_APPLICATION_BREADCRUMBS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 255
+- name: BREADCRUMB_ENTRIES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: BREADCRUMB_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength:
+- name: BREADCRUMB_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: COMPONENT_COMMENT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 4000
+- name: COMPONENT_SIGNATURE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength: 255
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 255
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOWS
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_FLOW_MENUS
+- schema: APEX_050000
+  name: WWV_FLOW_MENU_OPTIONS
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     w.short_name workspace,

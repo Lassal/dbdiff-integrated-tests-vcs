@@ -2,8 +2,50 @@ schema: MDSYS
 name: USER_SDO_NETWORK_FEATURE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FEATURE_LAYER_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: FEATURE_LAYER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 20
+- name: FEATURE_LAYER_TYPE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: FEATURE_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 20
+- name: HIERARCHY_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 20
+- name: NETWORK
+  dataType: VARCHAR2
+  textMaxLength: 24
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 24
+- name: RELATION_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 20
+referencedTables:
+- schema: MDSYS
+  name: SDO_NETWORK_FEATURE
 viewDefinition: |-
   SELECT
     NETWORK,

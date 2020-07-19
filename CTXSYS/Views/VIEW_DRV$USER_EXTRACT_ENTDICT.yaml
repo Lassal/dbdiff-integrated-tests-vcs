@@ -2,8 +2,53 @@ schema: CTXSYS
 name: DRV$USER_EXTRACT_ENTDICT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: EED_ALTCNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: EED_ENTID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: EED_LANG
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+- name: EED_MENTION
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 512
+- name: EED_NORMID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: EED_POLID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: EED_STATUS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: EED_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 3000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 3000
+referencedTables:
+- schema: CTXSYS
+  name: DR$USER_EXTRACT_ENTDICT
 viewDefinition: |-
   select
     "EED_POLID",

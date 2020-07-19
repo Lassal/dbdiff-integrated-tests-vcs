@@ -2,8 +2,176 @@ schema: APEX_050000
 name: APEX_APPL_LOAD_TABLES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: COLUMN_NAMES_LOV_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength: 4000
+- name: COMPONENT_SIGNATURE
+  dataType: VARCHAR2
+  textMaxLength: 388
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength: 388
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength: 255
+- name: CREATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: IS_UK1_CASE_SENSITIVE
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  ordinalPosition: 13
+  dataTypeLength: 1
+- name: IS_UK2_CASE_SENSITIVE
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 1
+- name: IS_UK3_CASE_SENSITIVE
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 1
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength: 255
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: LOAD_TABLE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 26
+  dataTypeLength:
+- name: LOOKUPS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 255
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 255
+- name: RULES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: SKIP_VALIDATION
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  ordinalPosition: 20
+  dataTypeLength: 1
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength: 255
+- name: UNIQUE_COLUMN_1
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength: 30
+- name: UNIQUE_COLUMN_2
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 30
+- name: UNIQUE_COLUMN_3
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 30
+- name: VERSION_COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 30
+- name: WIZARD_PAGE_IDS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 4000
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+- name: WORKSPACE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOWS
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_FLOW_LOAD_TABLES
+- schema: APEX_050000
+  name: WWV_FLOW_LOAD_TABLE_LOOKUPS
+- schema: APEX_050000
+  name: WWV_FLOW_LOAD_TABLE_RULES
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     w.short_name workspace,

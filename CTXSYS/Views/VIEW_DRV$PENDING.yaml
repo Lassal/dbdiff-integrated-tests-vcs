@@ -2,8 +2,36 @@ schema: CTXSYS
 name: DRV$PENDING
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: PND_CID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PND_LOCK_FAILED
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 1
+- name: PND_PID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: PND_ROWID
+  dataType: ROWID
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: PND_TIMESTAMP
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+referencedTables:
+- schema: CTXSYS
+  name: DR$PENDING
 viewDefinition: |-
   select
     "PND_CID",

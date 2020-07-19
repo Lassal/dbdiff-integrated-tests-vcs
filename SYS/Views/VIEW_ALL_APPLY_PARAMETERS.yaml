@@ -2,8 +2,36 @@ schema: SYS
 name: ALL_APPLY_PARAMETERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PARAMETER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: SET_BY_USER
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 3
+- name: VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: ALL_APPLY
+- schema: SYS
+  name: DBA_APPLY_PARAMETERS
 viewDefinition: |-
   select
     pa.apply_name,

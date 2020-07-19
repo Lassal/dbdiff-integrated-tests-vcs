@@ -2,8 +2,50 @@ schema: ORDS_METADATA
 name: ALL_ORDS_ROLES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 255
+- name: CREATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: SCHEMA_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength:
+- name: UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+referencedTables:
+- schema: ORDS_METADATA
+  name: ORDS_SCHEMAS
+- schema: ORDS_METADATA
+  name: SEC_ROLES
 viewDefinition: |-
   with sr as (
     select

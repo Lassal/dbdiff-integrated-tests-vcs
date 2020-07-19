@@ -2,8 +2,36 @@ schema: CTXSYS
 name: CTX_THES_PHRASES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: THP_PHRASE
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 256
+- name: THP_QUALIFIER
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 256
+- name: THP_SCOPE_NOTE
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 2000
+- name: THP_THESAURUS
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+referencedTables:
+- schema: CTXSYS
+  name: DR$THS
+- schema: CTXSYS
+  name: DR$THS_PHRASE
 viewDefinition: |-
   select
     ths_name thp_thesaurus,

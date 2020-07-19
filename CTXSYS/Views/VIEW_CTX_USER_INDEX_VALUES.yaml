@@ -2,8 +2,50 @@ schema: CTXSYS
 name: CTX_USER_INDEX_VALUES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: IXV_ATTRIBUTE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 30
+- name: IXV_CLASS
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: IXV_INDEX_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: IXV_OBJECT
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+- name: IXV_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 500
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 500
+referencedTables:
+- schema: CTXSYS
+  name: DR$CLASS
+- schema: CTXSYS
+  name: DR$INDEX
+- schema: CTXSYS
+  name: DR$INDEX_VALUE
+- schema: CTXSYS
+  name: DR$OBJECT
+- schema: CTXSYS
+  name: DR$OBJECT_ATTRIBUTE
+- schema: CTXSYS
+  name: DR$OBJECT_ATTRIBUTE_LOV
 viewDefinition: |-
   select
     /*+ ORDERED */

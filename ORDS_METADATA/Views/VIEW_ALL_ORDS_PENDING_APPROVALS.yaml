@@ -2,8 +2,78 @@ schema: ORDS_METADATA
 name: ALL_ORDS_PENDING_APPROVALS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPROVAL_CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 255
+- name: APPROVAL_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: APPROVAL_USER
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength: 255
+- name: CLIENT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: CLIENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: PENDING_CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 255
+- name: PENDING_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: REDIRECT_URI
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 2000
+- name: RESPONSE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 30
+- name: SCHEMA_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength:
+- name: STATE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+referencedTables:
+- schema: ORDS_METADATA
+  name: OAUTH_APPROVALS
+- schema: ORDS_METADATA
+  name: OAUTH_CLIENTS
+- schema: ORDS_METADATA
+  name: OAUTH_PENDING_APPROVALS
+- schema: ORDS_METADATA
+  name: ORDS_SCHEMAS
 viewDefinition: |-
   WITH sr AS (
     SELECT

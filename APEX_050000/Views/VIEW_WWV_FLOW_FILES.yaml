@@ -2,8 +2,123 @@ schema: APEX_050000
 name: WWV_FLOW_FILES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BLOB_CONTENT
+  dataType: BLOB
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: CONTENT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 128
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 255
+- name: CREATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: DAD_CHARSET
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 4000
+- name: DOC_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: FILENAME
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 400
+- name: FILE_CHARSET
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 128
+- name: FILE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 255
+- name: FLOW_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: LANGUAGE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 30
+- name: LAST_UPDATED
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: MIME_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 255
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 400
+- name: TITLE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 255
+- name: UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_STATIC_FILES
+- schema: APEX_050000
+  name: WWV_FLOW_CURRENT_SGID
+- schema: APEX_050000
+  name: WWV_FLOW_STATIC_FILES
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     id,

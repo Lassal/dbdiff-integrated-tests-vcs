@@ -2,8 +2,25 @@ schema: CTXSYS
 name: DRV$WAITING
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: WTG_CID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: WTG_PID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: WTG_ROWID
+  dataType: ROWID
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: CTXSYS
+  name: DR$WAITING
 viewDefinition: |-
   select
     "WTG_CID",

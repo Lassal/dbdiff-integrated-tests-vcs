@@ -2,7 +2,31 @@ schema: XDBPM
 name: DATABASE_SUMMARY
 updatedAllowed: true
 insertAllowed: true
-columns: []
+columns:
+- name: DB_CHARACTERSET
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 256
+- name: HOST_NAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 64
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 9
+- name: SERVICE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
 referencedTables: []
 viewDefinition: |-
   select

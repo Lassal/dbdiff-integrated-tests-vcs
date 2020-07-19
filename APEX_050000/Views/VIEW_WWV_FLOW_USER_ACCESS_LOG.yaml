@@ -2,8 +2,63 @@ schema: APEX_050000
 name: WWV_FLOW_USER_ACCESS_LOG
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACCESS_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: APPLICATION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: AUTHENTICATION_METHOD
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: AUTHENTICATION_RESULT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: CUSTOM_STATUS_TEXT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 4000
+- name: IP_ADDRESS
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 255
+- name: LOGIN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 255
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 255
+- name: REMOTE_USER
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 255
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_CURRENT_SGID
+- schema: APEX_050000
+  name: WWV_FLOW_USER_ACCESS_LOG_V
 viewDefinition: |-
   select
     login_name,

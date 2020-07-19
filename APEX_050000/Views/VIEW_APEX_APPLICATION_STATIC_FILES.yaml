@@ -2,8 +2,85 @@ schema: APEX_050000
 name: APEX_APPLICATION_STATIC_FILES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_FILE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 255
+- name: CREATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: FILE_CHARSET
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: FILE_CONTENT
+  dataType: BLOB
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: FILE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 255
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 255
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: MIME_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 255
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_AUTHORIZED
+- schema: APEX_050000
+  name: WWV_FLOW_STATIC_FILES
 viewDefinition: |-
   select
     a .id as application_file_id,

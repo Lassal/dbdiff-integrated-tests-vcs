@@ -2,8 +2,70 @@ schema: APEX_050000
 name: APEX_APPLICATION_LOCKED_PAGES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: LOCKED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 255
+- name: LOCKED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: LOCK_COMMENT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 4000
+- name: LOCK_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PAGE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: PAGE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 255
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_AUTHORIZED
+- schema: APEX_050000
+  name: WWV_FLOW_LOCK_PAGE
+- schema: APEX_050000
+  name: WWV_FLOW_STEPS
 viewDefinition: |-
   select
     l.id as lock_id,

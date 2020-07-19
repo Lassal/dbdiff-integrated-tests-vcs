@@ -2,8 +2,22 @@ schema: ORDSYS
 name: SI_IMAGE_FORMAT_CONVERSIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SI_SOURCE_FORMAT
+  dataType: VARCHAR2
+  textMaxLength: 1400
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 1400
+- name: SI_TARGET_FORMAT
+  dataType: VARCHAR2
+  textMaxLength: 1400
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 1400
+referencedTables:
+- schema: ORDSYS
+  name: SI_IMAGE_FORMATS_TAB
 viewDefinition: |-
   SELECT
     a .SI_format SI_source_format,

@@ -2,8 +2,98 @@ schema: ORDS_METADATA
 name: ALL_ORDS_SERVICES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_PATH
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 255
+- name: HANDLER_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 12
+  dataTypeLength:
+- name: ITEMS_PER_PAGE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: METHOD
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 10
+- name: MODULE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 255
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: PATTERN
+  dataType: VARCHAR2
+  textMaxLength: 600
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 600
+- name: PRIORITY
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: PRIVILEGE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 255
+- name: SOURCE
+  dataType: CLOB
+  nullable: false
+  ordinalPosition: 14
+  dataTypeLength:
+- name: SOURCE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 13
+  dataTypeLength: 30
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 30
+- name: TEMPLATE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength:
+referencedTables:
+- schema: ORDS_METADATA
+  name: ORDS_HANDLERS
+- schema: ORDS_METADATA
+  name: ORDS_MODULES
+- schema: ORDS_METADATA
+  name: ORDS_SCHEMAS
+- schema: ORDS_METADATA
+  name: ORDS_TEMPLATES
+- schema: ORDS_METADATA
+  name: SEC_PRIVILEGES
+- schema: ORDS_METADATA
+  name: SEC_PRIVILEGE_MODULES
 viewDefinition: |-
   SELECT
     s.parsing_schema owner,

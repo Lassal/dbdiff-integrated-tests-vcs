@@ -2,8 +2,39 @@ schema: MDSYS
 name: USER_SDO_NETWORK_JAVA_OBJECTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CLASS
+  dataType: BLOB
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: CLASS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 200
+- name: JAVA_INTERFACE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 32
+referencedTables:
+- schema: MDSYS
+  name: SDO_NETWORK_CONSTRAINTS
 viewDefinition: |-
   SELECT
     constraint name,

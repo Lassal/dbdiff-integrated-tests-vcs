@@ -2,8 +2,102 @@ schema: APEX_050000
 name: APEX_APPLICATION_ALL_AUTH
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 255
+- name: AUTHORIZATION_SCHEME
+  dataType: VARCHAR2
+  textMaxLength: 259
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 259
+- name: COMPONENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
+- name: COMPONENT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: PAGE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 7
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+referencedTables:
+- schema: APEX_050000
+  name: APEX_APPLICATIONS
+- schema: APEX_050000
+  name: APEX_APPLICATION_BC_ENTRIES
+- schema: APEX_050000
+  name: APEX_APPLICATION_COMPUTATIONS
+- schema: APEX_050000
+  name: APEX_APPLICATION_LIST_ENTRIES
+- schema: APEX_050000
+  name: APEX_APPLICATION_NAV_BAR
+- schema: APEX_050000
+  name: APEX_APPLICATION_PAGES
+- schema: APEX_050000
+  name: APEX_APPLICATION_PAGE_BRANCHES
+- schema: APEX_050000
+  name: APEX_APPLICATION_PAGE_BUTTONS
+- schema: APEX_050000
+  name: APEX_APPLICATION_PAGE_COMP
+- schema: APEX_050000
+  name: APEX_APPLICATION_PAGE_DA
+- schema: APEX_050000
+  name: APEX_APPLICATION_PAGE_FLASH5_S
+- schema: APEX_050000
+  name: APEX_APPLICATION_PAGE_IR_COL
+- schema: APEX_050000
+  name: APEX_APPLICATION_PAGE_ITEMS
+- schema: APEX_050000
+  name: APEX_APPLICATION_PAGE_PROC
+- schema: APEX_050000
+  name: APEX_APPLICATION_PAGE_REGIONS
+- schema: APEX_050000
+  name: APEX_APPLICATION_PAGE_REG_COLS
+- schema: APEX_050000
+  name: APEX_APPLICATION_PAGE_RPT_COLS
+- schema: APEX_050000
+  name: APEX_APPLICATION_PAGE_VAL
+- schema: APEX_050000
+  name: APEX_APPLICATION_PARENT_TABS
+- schema: APEX_050000
+  name: APEX_APPLICATION_PROCESSES
+- schema: APEX_050000
+  name: APEX_APPLICATION_TABS
 viewDefinition: |-
   select
     workspace,

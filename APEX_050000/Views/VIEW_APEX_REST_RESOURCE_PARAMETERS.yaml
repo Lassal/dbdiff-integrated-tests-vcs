@@ -2,8 +2,114 @@ schema: APEX_050000
 name: APEX_REST_RESOURCE_PARAMETERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACCESS_METHOD
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 6
+- name: BIND_VARIABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 30
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 4000
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 255
+- name: CREATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: HANDLER_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: HANDLER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 10
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 255
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: PARAMETER_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: PARAMETER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 100
+- name: PARAM_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 9
+- name: ROW_VERSION_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: SOURCE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 13
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: WORKSPACE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_FLOW_RT$HANDLERS
+- schema: APEX_050000
+  name: WWV_FLOW_RT$PARAMETERS
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     w.provisioning_company_id workspace_id,

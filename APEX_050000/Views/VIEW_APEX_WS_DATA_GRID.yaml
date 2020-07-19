@@ -2,8 +2,79 @@ schema: APEX_050000
 name: APEX_WS_DATA_GRID
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 255
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength: 255
+- name: CREATED_ON
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: DATA_GRID_ALIAS
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 255
+- name: DATA_GRID_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: DATA_GRID_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 255
+- name: INTERACTIVE_REPORT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 255
+- name: UPDATED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 255
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_FLOW_WS_APPLICATIONS
+- schema: APEX_050000
+  name: WWV_FLOW_WS_WEBSHEET_ATTR
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     w.short_name workspace,

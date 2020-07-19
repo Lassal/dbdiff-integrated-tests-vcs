@@ -2,8 +2,93 @@ schema: APEX_050000
 name: APEX_MIGRATION_PROJECTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACCDB_PATHNAME
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 1000
+- name: ACCESSVERSION
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 400
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 2000
+- name: JETVERSION
+  dataType: FLOAT
+  numericPrecision: 126
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 126
+- name: LAST_MODIFIED_BY
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 400
+- name: LAST_MODIFIED_ON
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: MIGRATION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 100
+- name: PROJECT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PROJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 400
+- name: PROJECT_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 400
+- name: SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 30
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength: 255
+- name: WORKSPACE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength:
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_MIG_ACCESS
+- schema: APEX_050000
+  name: WWV_MIG_PROJECTS
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     a .project_id project_id,

@@ -2,8 +2,27 @@ schema: CTXSYS
 name: DRV$ONLINE_PENDING
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ONL_CID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: ONL_INDEXPARTITION
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+- name: ONL_ROWID
+  dataType: VARCHAR2
+  textMaxLength: 18
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 18
+referencedTables:
+- schema: CTXSYS
+  name: DR$ONLINE_PENDING
 viewDefinition: |-
   select
     "ONL_CID",

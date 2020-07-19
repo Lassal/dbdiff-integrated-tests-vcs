@@ -2,8 +2,62 @@ schema: APEX_050000
 name: APEX_UI_DEFAULTS_LOV_DATA
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 30
+- name: LAST_UPDATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 255
+- name: LAST_UPDATED_ON
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: LOV_DISP_SEQUENCE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: LOV_DISP_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: LOV_RETURN_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 30
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_CURRENT_SGID
+- schema: APEX_050000
+  name: WWV_FLOW_HNT_COLUMN_INFO
+- schema: APEX_050000
+  name: WWV_FLOW_HNT_LOV_DATA
+- schema: APEX_050000
+  name: WWV_FLOW_HNT_TABLE_INFO
 viewDefinition: |-
   select
     t.schema,

@@ -2,8 +2,95 @@ schema: CTXSYS
 name: CTX_USER_INDEX_PARTITIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: IXP_DOCID_COUNT
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 38,0
+- name: IXP_ID
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 38,0
+- name: IXP_INDEX_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: IXP_INDEX_PARTITION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 30
+- name: IXP_STATUS
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength: 12
+- name: IXP_SYNC_INTERVAL
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 2000
+- name: IXP_SYNC_JOBNAME
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 50
+- name: IXP_SYNC_MEMORY
+  dataType: VARCHAR2
+  textMaxLength: 100
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 100
+- name: IXP_SYNC_PARA_DEGREE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: IXP_SYNC_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 20
+- name: IXP_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: IXP_TABLE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: IXP_TABLE_PARTITION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+referencedTables:
+- schema: CTXSYS
+  name: DR$INDEX
+- schema: CTXSYS
+  name: DR$INDEX_PARTITION
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     ixp_id,

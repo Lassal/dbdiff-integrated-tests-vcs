@@ -2,8 +2,17 @@ schema: MDSYS
 name: GEODETIC_SRIDS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SRID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: MDSYS
+  name: CS_SRS
+- schema: MDSYS
+  name: SDO_COORD_REF_SYS
 viewDefinition: |-
   select
     srid

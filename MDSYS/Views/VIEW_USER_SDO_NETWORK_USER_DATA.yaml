@@ -2,8 +2,46 @@ schema: MDSYS
 name: USER_SDO_NETWORK_USER_DATA
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CATEGORY_ID
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: DATA_LENGTH
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: DATA_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 32
+- name: DATA_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 12
+- name: NETWORK
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 32
+- name: TABLE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 12
+referencedTables:
+- schema: MDSYS
+  name: SDO_NETWORK_USER_DATA
 viewDefinition: |-
   SELECT
     network,

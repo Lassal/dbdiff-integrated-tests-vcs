@@ -2,8 +2,90 @@ schema: APEX_050000
 name: APEX_WORKSPACE_SESSIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APEX_SESSION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: REMOTE_ADDR
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 255
+- name: SESSION_CREATED
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength:
+- name: SESSION_IDLE_TIMEOUT_ON
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: SESSION_LANG
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 5
+- name: SESSION_LIFE_TIMEOUT_ON
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength:
+- name: SESSION_MAX_IDLE_SEC
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength: 5,0
+- name: SESSION_TERRITORY
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 255
+- name: SESSION_TIME_ZONE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 255
+- name: USER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: WORKSPACE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: WORKSPACE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 255
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_FLOW_SESSIONS$
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     w.workspace_id workspace_id,

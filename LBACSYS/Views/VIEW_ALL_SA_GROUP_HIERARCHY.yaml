@@ -2,8 +2,33 @@ schema: LBACSYS
 name: ALL_SA_GROUP_HIERARCHY
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: GROUP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: HIERARCHY_LEVEL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: POLICY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+referencedTables:
+- schema: LBACSYS
+  name: OLS$GROUPS
+- schema: LBACSYS
+  name: OLS$USER_GROUPS
+- schema: LBACSYS
+  name: SA$ADMIN
+- schema: LBACSYS
+  name: SA$POL
 viewDefinition: |-
   SELECT
     p.pol_name as policy_name,

@@ -2,8 +2,22 @@ schema: ORDSYS
 name: SI_VALUES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SI_SUPPORTED_VALUE
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: SI_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 255
+referencedTables:
+- schema: ORDSYS
+  name: SI_VALUES_TAB
 viewDefinition: |-
   select
     SI_value,

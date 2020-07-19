@@ -2,8 +2,15 @@ schema: APEX_050000
 name: WWV_FLOW_MINUTES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: MINUTE_VALUE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_DUAL100
 viewDefinition: |-
   select
     i -1

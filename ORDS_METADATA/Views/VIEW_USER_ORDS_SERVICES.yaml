@@ -2,8 +2,84 @@ schema: ORDS_METADATA
 name: USER_ORDS_SERVICES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_PATH
+  dataType: VARCHAR2
+  textMaxLength: 257
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 257
+- name: HANDLER_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: ITEMS_PER_PAGE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: METHOD
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 10
+- name: MODULE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: PATTERN
+  dataType: VARCHAR2
+  textMaxLength: 600
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 600
+- name: PRIORITY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: PRIVILEGE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 255
+- name: SOURCE
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: SOURCE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 32
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: TEMPLATE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+referencedTables:
+- schema: ORDS_METADATA
+  name: ALL_ORDS_SERVICES
+- schema: ORDS_METADATA
+  name: ORDS_OBJECTS
 viewDefinition: |-
   SELECT
     ALL_ORDS_SERVICES.method,

@@ -2,8 +2,54 @@ schema: LBACSYS
 name: ALL_SA_GROUPS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: GROUP_NUM
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 4,0
+- name: LONG_NAME
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 80
+- name: PARENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: PARENT_NUM
+  dataType: NUMBER
+  numericPrecision: 4
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4,0
+- name: POLICY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: SHORT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 30
+referencedTables:
+- schema: LBACSYS
+  name: OLS$GROUPS
+- schema: LBACSYS
+  name: OLS$USER_GROUPS
+- schema: LBACSYS
+  name: SA$ADMIN
+- schema: LBACSYS
+  name: SA$POL
 viewDefinition: |-
   SELECT
     p.pol_name as policy_name,

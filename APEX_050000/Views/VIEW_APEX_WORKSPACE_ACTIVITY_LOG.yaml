@@ -2,8 +2,207 @@ schema: APEX_050000
 name: APEX_WORKSPACE_ACTIVITY_LOG
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AGENT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 4000
+- name: APEX_SESSION_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: APEX_USER
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 255
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: APPLICATION_INFO
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength: 4000
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: APPLICATION_SCHEMA_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: CONTENT_LENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength:
+- name: DEBUG_PAGE_VIEW_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 34
+  dataTypeLength:
+- name: ELAPSED_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: ERROR_MESSAGE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 4000
+- name: ERROR_ON_COMPONENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength: 255
+- name: ERROR_ON_COMPONENT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 255
+- name: INTERACTIVE_REPORT_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength:
+- name: IP_ADDRESS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 4000
+- name: IR_SAVED_REPORT_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: IR_SEARCH
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength: 4000
+- name: LOG_CONTEXT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 4000
+- name: PAGE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: PAGE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 255
+- name: PAGE_VIEW_MODE
+  dataType: VARCHAR2
+  textMaxLength: 15
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength: 15
+- name: PAGE_VIEW_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 23
+  nullable: true
+  ordinalPosition: 32
+  dataTypeLength: 23
+- name: REGIONS_FROM_CACHE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength:
+- name: REQUEST_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 33
+  dataTypeLength: 4000
+- name: ROWS_QUERIED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: SECONDS_AGO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: THINK_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: VIEW_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+- name: WORKSPACE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 31
+  dataTypeLength:
+- name: WS_APPLICATION_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength:
+- name: WS_DATAGRID_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength:
+- name: WS_PAGE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength:
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOWS
+- schema: APEX_050000
+  name: WWV_FLOW_ACTIVITY_LOG
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANY_SCHEMAS
+- schema: APEX_050000
+  name: WWV_FLOW_STEPS
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     w.short_name workspace,

@@ -2,8 +2,26 @@ schema: MDSYS
 name: SDO_ELLIPSOIDS_OLD_FORMAT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: INVERSE_FLATTENING
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 80
+- name: SEMI_MAJOR_AXIS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: MDSYS
+  name: SDO_ELLIPSOIDS
 viewDefinition: |-
   SELECT
     ELLIPSOID_NAME "NAME",

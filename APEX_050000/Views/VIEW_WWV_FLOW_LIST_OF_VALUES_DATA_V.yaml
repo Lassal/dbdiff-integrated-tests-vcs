@@ -2,8 +2,52 @@ schema: APEX_050000
 name: WWV_FLOW_LIST_OF_VALUES_DATA_V
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: LOV_DISP_SEQUENCE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: LOV_DISP_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: LOV_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: LOV_RETURN_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: LOV_TEMPLATE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: REQUIRED_PATCH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOW_CURRENT_SGID
+- schema: APEX_050000
+  name: WWV_FLOW_LIST_OF_VALUES_DATA
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     id,

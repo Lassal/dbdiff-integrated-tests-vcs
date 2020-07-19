@@ -2,8 +2,51 @@ schema: MDSYS
 name: CS_SRS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AUTH_NAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 256
+- name: AUTH_SRID
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: CS_BOUNDS
+  dataType: SDO_GEOMETRY
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: CS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 80
+- name: SRID
+  dataType: NUMBER
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: WKTEXT
+  dataType: VARCHAR2
+  textMaxLength: 2046
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 2046
+- name: WKTEXT3D
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
+referencedTables:
+- schema: MDSYS
+  name: SDO_CS_SRS
 viewDefinition: |-
   (
     SELECT

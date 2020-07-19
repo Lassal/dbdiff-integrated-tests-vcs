@@ -2,8 +2,21 @@ schema: APEX_050000
 name: WWV_FLOW_FEEDBACK_TYPES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: THE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     1 id,

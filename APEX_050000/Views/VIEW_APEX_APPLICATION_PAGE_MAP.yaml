@@ -2,8 +2,75 @@ schema: APEX_050000
 name: APEX_APPLICATION_PAGE_MAP
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLICATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: APPLICATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 255
+- name: BREADCRUMB
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 255
+- name: FULL_BREADCRUMB
+  dataType: VARCHAR2
+  textMaxLength: 2058
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 2058
+- name: HELP_TEXT
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: PAGE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: PAGE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 255
+- name: PAGE_TITLE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 255
+- name: WORKSPACE
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 255
+- name: WORKSPACE_DISPLAY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+referencedTables:
+- schema: APEX_050000
+  name: WWV_FLOWS
+- schema: APEX_050000
+  name: WWV_FLOW_COMPANIES
+- schema: APEX_050000
+  name: WWV_FLOW_CURRENT_SGID
+- schema: APEX_050000
+  name: WWV_FLOW_MENU_OPTIONS
+- schema: APEX_050000
+  name: WWV_FLOW_STEPS
 viewDefinition: |-
   select
     w.short_name workspace,

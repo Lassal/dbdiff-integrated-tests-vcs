@@ -1205,6 +1205,22 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: DELETE_FEATURES.FEATURE_LAYER_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 1
+- name: DELETE_FEATURES.FEATURE_IDS
+  dataType: VARRAY
+  parameterMode: IN
+  ordinalPosition: 2
+- name: DELETE_FEATURES.DELETE_NET_ELEMS
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+  ordinalPosition: 3
+- name: DELETE_FEATURES.DELETE_CHILDREN
+  dataType: PL/SQL BOOLEAN
+  parameterMode: IN
+  ordinalPosition: 4
 - name: DELETE_FEATURE_ELEMENTS.FEATURE_LAYER_ID
   dataType: NUMBER
   parameterMode: IN
@@ -1234,22 +1250,6 @@ parameters:
   parameterMode: IN
   ordinalPosition: 3
 - name: DELETE_FEATURE_ELEMENTS_AT.DELETE_NET_ELEMS
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-  ordinalPosition: 4
-- name: DELETE_FEATURES.FEATURE_LAYER_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 1
-- name: DELETE_FEATURES.FEATURE_IDS
-  dataType: VARRAY
-  parameterMode: IN
-  ordinalPosition: 2
-- name: DELETE_FEATURES.DELETE_NET_ELEMS
-  dataType: PL/SQL BOOLEAN
-  parameterMode: IN
-  ordinalPosition: 3
-- name: DELETE_FEATURES.DELETE_CHILDREN
   dataType: PL/SQL BOOLEAN
   parameterMode: IN
   ordinalPosition: 4
@@ -1509,22 +1509,6 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: GET_FEATURE_ELEMENTS.FEATURE_LAYER_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GET_FEATURE_ELEMENTS.FEATURE_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: GET_FEATURE_LAYER_ID.NETWORK_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GET_FEATURE_LAYER_ID.FEATURE_LAYER_NAME
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 2
 - name: GET_FEATURES_ON_LINKS.FEATURE_LAYER_ID
   dataType: NUMBER
   parameterMode: IN
@@ -1539,6 +1523,22 @@ parameters:
   ordinalPosition: 1
 - name: GET_FEATURES_ON_NODES.NODE_IDS
   dataType: VARRAY
+  parameterMode: IN
+  ordinalPosition: 2
+- name: GET_FEATURE_ELEMENTS.FEATURE_LAYER_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GET_FEATURE_ELEMENTS.FEATURE_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: GET_FEATURE_LAYER_ID.NETWORK_NAME
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GET_FEATURE_LAYER_ID.FEATURE_LAYER_NAME
+  dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 2
 - name: GET_GEOMETRY.NETWORK
@@ -1561,14 +1561,6 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: GET_IN_LINKS.NETWORK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GET_IN_LINKS.NODE_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 2
 - name: GET_INVALID_LINKS.NETWORK
   dataType: VARCHAR2
   parameterMode: IN
@@ -1581,39 +1573,15 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: GET_ISOLATED_NODES.NETWORK
+- name: GET_IN_LINKS.NETWORK
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: GET_LINK_COST_COLUMN.NETWORK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GET_LINK_DIRECTION.NETWORK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GET_LINK_GEOM_COLUMN.NETWORK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GET_LINK_GEOMETRY.NETWORK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GET_LINK_GEOMETRY.LINK_ID
+- name: GET_IN_LINKS.NODE_ID
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 2
-- name: GET_LINK_GEOMETRY.START_PERCENTAGE
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 3
-- name: GET_LINK_GEOMETRY.END_PERCENTAGE
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 4
-- name: GET_LINK_PARTITION_COLUMN.NETWORK
+- name: GET_ISOLATED_NODES.NETWORK
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
@@ -1633,6 +1601,38 @@ parameters:
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 2
+- name: GET_LINK_COST_COLUMN.NETWORK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GET_LINK_DIRECTION.NETWORK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GET_LINK_GEOMETRY.NETWORK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GET_LINK_GEOMETRY.LINK_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: GET_LINK_GEOMETRY.START_PERCENTAGE
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 3
+- name: GET_LINK_GEOMETRY.END_PERCENTAGE
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 4
+- name: GET_LINK_GEOM_COLUMN.NETWORK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GET_LINK_PARTITION_COLUMN.NETWORK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
 - name: GET_LINK_TABLE_NAME.NETWORK
   dataType: VARCHAR2
   parameterMode: IN
@@ -1689,6 +1689,22 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: GET_NODES_IN_CHILD_NETWORK.NETWORK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GET_NODES_IN_CHILD_NETWORK.NODE_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
+- name: GET_NODES_IN_PATH.NETWORK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
+- name: GET_NODES_IN_PATH.PATH_ID
+  dataType: NUMBER
+  parameterMode: IN
+  ordinalPosition: 2
 - name: GET_NODE_COST_COLUMN.NETWORK
   dataType: VARCHAR2
   parameterMode: IN
@@ -1701,10 +1717,6 @@ parameters:
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 2
-- name: GET_NODE_GEOM_COLUMN.NETWORK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
 - name: GET_NODE_GEOMETRY.NETWORK
   dataType: VARCHAR2
   parameterMode: IN
@@ -1713,6 +1725,10 @@ parameters:
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 2
+- name: GET_NODE_GEOM_COLUMN.NETWORK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
 - name: GET_NODE_HIERARCHY_LEVEL.NETWORK
   dataType: VARCHAR2
   parameterMode: IN
@@ -1741,22 +1757,6 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
-- name: GET_NODES_IN_CHILD_NETWORK.NETWORK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GET_NODES_IN_CHILD_NETWORK.NODE_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 2
-- name: GET_NODES_IN_PATH.NETWORK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
-- name: GET_NODES_IN_PATH.PATH_ID
-  dataType: NUMBER
-  parameterMode: IN
-  ordinalPosition: 2
 - name: GET_NODE_TABLE_NAME.NETWORK
   dataType: VARCHAR2
   parameterMode: IN
@@ -1914,6 +1914,10 @@ parameters:
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 1
+- name: GET_TOPOLOGY.NETWORK
+  dataType: VARCHAR2
+  parameterMode: IN
+  ordinalPosition: 1
 - name: GET_TOPO_LINK_GEOMETRY.NETWORK
   dataType: VARCHAR2
   parameterMode: IN
@@ -1922,10 +1926,6 @@ parameters:
   dataType: NUMBER
   parameterMode: IN
   ordinalPosition: 2
-- name: GET_TOPOLOGY.NETWORK
-  dataType: VARCHAR2
-  parameterMode: IN
-  ordinalPosition: 1
 - name: GET_TOPO_NODE_GEOMETRY.NETWORK
   dataType: VARCHAR2
   parameterMode: IN
