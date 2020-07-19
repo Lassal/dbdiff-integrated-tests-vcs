@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_LRS_METADATA
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: DELETE
+executionOrder: 1
 eventActionBody: |-
   declare
     user_name varchar2(32);
@@ -18,4 +19,3 @@ eventActionBody: |-
     AND SDO_TABLE_NAME = nls_upper(:n.table_name)
     AND SDO_COLUMN_NAME = nls_upper(:n.column_name);
   END;
-executionOrder: 1

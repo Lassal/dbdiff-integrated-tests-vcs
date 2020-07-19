@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_GEOM_METADATA
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: DELETE
+executionOrder: 1
 eventActionBody: |-
   declare
   BEGIN
@@ -13,4 +14,3 @@ eventActionBody: |-
       :n.column_name
     );
   END;
-executionOrder: 1

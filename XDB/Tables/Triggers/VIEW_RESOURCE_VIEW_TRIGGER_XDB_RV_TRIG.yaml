@@ -4,6 +4,7 @@ targetObjectName: RESOURCE_VIEW
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: INSERT OR UPDATE OR DELETE
+executionOrder: 1
 eventActionBody: |-
   begin
     if inserting then xdb_rvtrig_pkg.rvtrig_ins(:new.res, :new.any_path);
@@ -18,4 +19,3 @@ eventActionBody: |-
   );
   end if;
   end;
-executionOrder: 1

@@ -4,6 +4,7 @@ targetObjectName: USER_ANNOTATION_TEXT_METADATA
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: INSERT OR UPDATE OR DELETE
+executionOrder: 1
 eventActionBody: |-
   declare
     tname varchar2(32);
@@ -54,4 +55,3 @@ eventActionBody: |-
     AND F_TEXT_COLUMN = :o.column_name;
   END IF;
   end;
-executionOrder: 1

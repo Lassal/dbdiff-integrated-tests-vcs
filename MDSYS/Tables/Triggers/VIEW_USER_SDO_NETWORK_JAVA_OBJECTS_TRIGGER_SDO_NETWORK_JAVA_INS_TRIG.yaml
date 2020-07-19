@@ -4,6 +4,7 @@ targetObjectName: USER_SDO_NETWORK_JAVA_OBJECTS
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: INSERT
+executionOrder: 1
 eventActionBody: |-
   DECLARE
     user_name VARCHAR2(32);
@@ -31,4 +32,3 @@ eventActionBody: |-
       :n.java_interface
     );
   END;
-executionOrder: 1

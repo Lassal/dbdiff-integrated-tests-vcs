@@ -4,6 +4,7 @@ targetObjectName: ORDIMAGE_METADATA_TABLE
 targetObjectType: TABLE
 eventTiming: AFTER EACH ROW
 event: UPDATE OR DELETE
+executionOrder: 1
 eventActionBody: |-
   BEGIN
     IF (deleting) THEN xdb.xdb_pitrig_pkg.pitrig_delmetadata(
@@ -25,4 +26,3 @@ eventActionBody: |-
   );
   END IF;
   END;
-executionOrder: 1
