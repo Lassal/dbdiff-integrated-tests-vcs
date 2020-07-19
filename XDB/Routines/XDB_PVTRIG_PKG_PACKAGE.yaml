@@ -7,62 +7,50 @@ parameters:
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: PVTRIG_DE
 - name: PVTRIG_DEL.LINK
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 2
-  packageRoutineName: PVTRIG_DE
 - name: PVTRIG_DEL.PATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
-  packageRoutineName: PVTRIG_DE
 - name: PVTRIG_INS.RES
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: PVTRIG_IN
 - name: PVTRIG_INS.LINK
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 2
-  packageRoutineName: PVTRIG_IN
 - name: PVTRIG_INS.PATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 3
-  packageRoutineName: PVTRIG_IN
 - name: PVTRIG_UPD.O_RES
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 1
-  packageRoutineName: PVTRIG_UP
 - name: PVTRIG_UPD.N_RES
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 2
-  packageRoutineName: PVTRIG_UP
 - name: PVTRIG_UPD.O_LINK
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 3
-  packageRoutineName: PVTRIG_UP
 - name: PVTRIG_UPD.N_LINK
   dataType: OPAQUE/XMLTYPE
   parameterMode: IN
   ordinalPosition: 4
-  packageRoutineName: PVTRIG_UP
 - name: PVTRIG_UPD.O_PATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 5
-  packageRoutineName: PVTRIG_UP
 - name: PVTRIG_UPD.N_PATH
   dataType: VARCHAR2
   parameterMode: IN
   ordinalPosition: 6
-  packageRoutineName: PVTRIG_UP
 routineDefinition: |-
   package XDB_PVTRIG_PKG authid current_user AS procedure pvtrig_ins(res sys.xmltype, link sys.xmltype, path varchar2) is language C name "INSERT_XDBPV" library xdb.PATH_VIEW_LIB with context parameters (
     context,
