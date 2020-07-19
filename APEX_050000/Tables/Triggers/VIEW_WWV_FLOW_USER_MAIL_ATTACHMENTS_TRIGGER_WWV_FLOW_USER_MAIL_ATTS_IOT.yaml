@@ -4,6 +4,7 @@ targetObjectName: WWV_FLOW_USER_MAIL_ATTACHMENTS
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: DELETE
+executionOrder: 1
 eventActionBody: |-
   begin
   delete from
@@ -12,4 +13,3 @@ eventActionBody: |-
     id = :old.id
     and security_group_id = wwv_flow_security.g_security_group_id;
   end wwv_flow_user_mail_atts_iot;
-executionOrder: 1

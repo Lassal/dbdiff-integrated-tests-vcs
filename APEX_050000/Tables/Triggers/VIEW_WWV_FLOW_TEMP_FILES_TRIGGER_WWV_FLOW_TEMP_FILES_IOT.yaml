@@ -4,6 +4,7 @@ targetObjectName: WWV_FLOW_TEMP_FILES
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: DELETE
+executionOrder: 1
 eventActionBody: |-
   begin
   delete from
@@ -13,4 +14,3 @@ eventActionBody: |-
     and security_group_id = wwv_flow_security.g_security_group_id
     and session_id = wwv_flow.g_instance;
   end wwv_flow_temp_files_iot;
-executionOrder: 1

@@ -4,6 +4,7 @@ targetObjectName: WWV_FLOW_FILES
 targetObjectType: VIEW
 eventTiming: INSTEAD OF
 event: INSERT OR UPDATE OR DELETE
+executionOrder: 1
 eventActionBody: |-
   declare
     l_new_doc_size number;
@@ -90,4 +91,3 @@ eventActionBody: |-
   end if;
   end if;
   end;
-executionOrder: 1
