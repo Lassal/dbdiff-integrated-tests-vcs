@@ -2,8 +2,47 @@ schema: SYS
 name: ALL$OLAP2_AWS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AW
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: AW_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: AW_VERSION
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SF_VERSION
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 8
+referencedTables:
+- schema: SYS
+  name: ALL_AWS
+- schema: SYS
+  name: AW$
+- schema: SYS
+  name: AW_PROP$
+- schema: SYS
+  name: DBA_USERS
+- schema: SYS
+  name: OBJ$
 viewDefinition: |-
   select
     aws11g.owner,

@@ -2,8 +2,19 @@ schema: SYS
 name: KU$_MV_DEPTBL_OBJNUM_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: KU$_SCHEMAOBJ_VIEW
+- schema: SYS
+  name: MLOG$
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   select
     tlo.obj_num

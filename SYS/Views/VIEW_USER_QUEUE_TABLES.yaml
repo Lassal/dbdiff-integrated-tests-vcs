@@ -2,8 +2,89 @@ schema: SYS
 name: USER_QUEUE_TABLES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMPATIBLE
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 6
+- name: MESSAGE_GROUPING
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 13
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 257
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 257
+- name: OWNER_INSTANCE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: PRIMARY_INSTANCE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: QUEUE_TABLE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: RECIPIENTS
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 8
+- name: SECONDARY_INSTANCE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: SECURE
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 3
+- name: SORT_ORDER
+  dataType: VARCHAR2
+  textMaxLength: 22
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 22
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 7
+- name: USER_COMMENT
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 50
+referencedTables:
+- schema: SYS
+  name: AQ$_QUEUE_TABLE_AFFINITIES
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: COLTYPE$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: USER$
+- schema: SYSTEM
+  name: AQ$_QUEUE_TABLES
 viewDefinition: |-
   select
     t.name QUEUE_TABLE,

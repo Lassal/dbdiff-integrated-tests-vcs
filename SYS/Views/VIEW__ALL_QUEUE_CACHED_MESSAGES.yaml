@@ -2,8 +2,45 @@ schema: SYS
 name: _ALL_QUEUE_CACHED_MESSAGES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: MSGID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: QUEUE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: QUEUE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SUBSCRIBER_BITMAP
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: GV$AQ_MSGBM
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
+- schema: SYSTEM
+  name: AQ$_QUEUES
+- schema: SYSTEM
+  name: AQ$_QUEUE_TABLES
 viewDefinition: |-
   select
     q.name QUEUE_NAME,

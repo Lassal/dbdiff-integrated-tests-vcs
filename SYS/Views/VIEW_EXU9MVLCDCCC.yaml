@@ -2,8 +2,37 @@ schema: SYS
 name: EXU9MVLCDCCC
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CHANGE_TABLE_OBJ#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: CREATED
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: CREATED_SCN
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: CDC_CHANGE_COLUMNS$
+- schema: SYS
+  name: CDC_CHANGE_TABLES$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     column_name,

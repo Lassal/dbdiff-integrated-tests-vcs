@@ -2,8 +2,199 @@ schema: SYS
 name: ALL_QUEUE_SCHEDULES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AVG_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: AVG_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength:
+- name: AVG_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength:
+- name: CURRENT_START_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: CURRENT_START_TIME
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 8
+- name: DESTINATION
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: ELAPSED_DEQUEUE_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 32
+  dataTypeLength:
+- name: ELAPSED_PICKLE_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 33
+  dataTypeLength:
+- name: FAILURES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength:
+- name: INSTANCE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: JOB_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 34
+  dataTypeLength: 128
+- name: LAST_ERROR_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength:
+- name: LAST_ERROR_MSG
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength: 4000
+- name: LAST_ERROR_TIME
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength: 8
+- name: LAST_RUN_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: LAST_RUN_TIME
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 8
+- name: LATENCY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: MAX_BYTES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength:
+- name: MAX_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: MESSAGE_DELIVERY_MODE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 31
+  dataTypeLength: 10
+- name: NEXT_RUN_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: NEXT_RUN_TIME
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 8
+- name: NEXT_TIME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
+- name: PROCESS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 4
+- name: PROPAGATION_WINDOW
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: QNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: SCHEDULE_DISABLED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 1
+- name: SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SESSION_ID
+  dataType: VARCHAR2
+  textMaxLength: 82
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 82
+- name: START_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: START_TIME
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 8
+- name: TOTAL_BYTES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: TOTAL_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: TOTAL_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: _ALL_QUEUE_SCHEDULES
 viewDefinition: |-
   select
     "SCHEMA",

@@ -2,8 +2,71 @@ schema: SYS
 name: ALL_REPCAT_TEMPLATE_SITES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: INSTANTIATION_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: REFRESH_GROUP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: REFRESH_TEMPLATE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: REPAPI_SITE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: SITE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 10
+- name: TEMPLATE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: USER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ALL_USERS
+- schema: SYS
+  name: SNAP_SITE$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYSTEM
+  name: REPCAT$_REFRESH_TEMPLATES
+- schema: SYSTEM
+  name: REPCAT$_TEMPLATE_SITES
+- schema: SYSTEM
+  name: REPCAT$_TEMPLATE_TYPES
+- schema: SYSTEM
+  name: REPCAT$_USER_AUTHORIZATIONS
 viewDefinition: |-
   select
     ts.refresh_template_name,

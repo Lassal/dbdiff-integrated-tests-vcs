@@ -2,8 +2,30 @@ schema: SYS
 name: _ALL_INSTANTIATION_DDL
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DDL_NUM
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: DDL_TEXT
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: PHASE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: REFRESH_TEMPLATE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYSTEM
+  name: REPCAT$_INSTANTIATION_DDL
 viewDefinition: |-
   select
     refresh_template_id,

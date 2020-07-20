@@ -2,8 +2,30 @@ schema: SYS
 name: USER_GOLDENGATE_PRIVILEGES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CREATE_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: GRANT_SELECT_PRIVILEGES
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 3
+- name: PRIVILEGE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 7
+referencedTables:
+- schema: SYS
+  name: GOLDENGATE$_PRIVILEGES
+- schema: SYS
+  name: USER_USERS
 viewDefinition: |-
   select
     decode(

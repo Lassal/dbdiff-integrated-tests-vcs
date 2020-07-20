@@ -2,8 +2,66 @@ schema: SYS
 name: ALL_SUMDELTA
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DMLOPERATION
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 1
+- name: HIGHROWID
+  dataType: ROWID
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength:
+- name: LOWROWID
+  dataType: ROWID
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: PARTITIONOBJ#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: SCN
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: SEQUENCE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: TABLEOBJ#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TIMESTAMP
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: XID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: SUMDELTA$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: |-
   select
     s.TABLEOBJ#,

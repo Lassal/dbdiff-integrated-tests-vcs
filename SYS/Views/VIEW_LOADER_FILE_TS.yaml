@@ -2,8 +2,28 @@ schema: SYS
 name: LOADER_FILE_TS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FILENAME
+  dataType: VARCHAR2
+  textMaxLength: 513
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 513
+- name: FILENO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: TABLESPACENO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: FILE$
+- schema: SYS
+  name: V$DBFILE
 viewDefinition: |-
   select
     file$.ts#,

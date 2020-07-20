@@ -2,8 +2,39 @@ schema: SYS
 name: USER_ILMTASKS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMPLETION_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: CREATION_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: START_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: STATE
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 9
+- name: TASK_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: ILM_EXECUTION$
 viewDefinition: |-
   SELECT
     a .execution_id,

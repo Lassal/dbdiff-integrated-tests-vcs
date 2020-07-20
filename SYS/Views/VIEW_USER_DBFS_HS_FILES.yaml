@@ -2,8 +2,58 @@ schema: SYS
 name: USER_DBFS_HS_FILES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BACKUPFILENAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 256
+- name: ENDOFFSET
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: PATH
+  dataType: VARCHAR2
+  textMaxLength: 1024
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1024
+- name: SEQUENCENUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: STARTOFFSET
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: TARBALLID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: TARENDOFFSET
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: TARSTARTOFFSET
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DBFS_HS$_BACKUPFILETABLE
+- schema: SYS
+  name: DBFS_HS$_CONTENTFNMAPTBL
+- schema: SYS
+  name: DBFS_HS$_SFLOCATORTABLE
+- schema: SYS
+  name: DBFS_HS$_STOREID2POLICYCTX
 viewDefinition: |-
   SELECT
     APT.path,

@@ -2,8 +2,30 @@ schema: SYS
 name: USER_DBFS_HS_PROPERTIES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: PROPERTYNAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 256
+- name: PROPERTYVALUE
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 256
+- name: STORENAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 256
+referencedTables:
+- schema: SYS
+  name: DBA_DBFS_HS_PROPERTIES
+- schema: SYS
+  name: USER_DBFS_HS
 viewDefinition: |-
   SELECT
     RP.storeName,

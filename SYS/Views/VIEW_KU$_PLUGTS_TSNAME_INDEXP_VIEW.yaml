@@ -2,8 +2,112 @@ schema: SYS
 name: KU$_PLUGTS_TSNAME_INDEXP_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: CLASS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: INCL_CONST
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 1,0
+- name: INCL_GRANT
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 1,0
+- name: INCL_TRIG
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 1,0
+- name: LEVEL_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: PACKAGE
+  dataType: CHAR
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 11
+- name: PKG_SCHEMA
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 3
+- name: PREPOST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: TS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 30
+- name: TS_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: TTS_CLOSURE_CHK
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 1,0
+- name: TTS_FULL_CHK
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 1,0
+- name: USER_NAME
+  dataType: VARCHAR2
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: KU$_TTSP_IDX_TABLESPACE_VIEW
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   select
     '1',

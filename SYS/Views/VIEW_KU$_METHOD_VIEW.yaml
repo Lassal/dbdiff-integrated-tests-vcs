@@ -2,8 +2,114 @@ schema: SYS
 name: KU$_METHOD_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ARGUMENT_LIST
+  dataType: KU$_ARGUMENT_LIST_T
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: EXTERNVARNAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 4000
+- name: METHOD_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: PARAMETERS_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: PROCC
+  dataType: KU$_PROCC_T
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: PROCEDUREINFO
+  dataType: KU$_PROCINFO_T
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: PROCJAVA
+  dataType: KU$_PROCJAVA_T
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: PROCPLSQL
+  dataType: KU$_PROCPLSQL_T
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: PROPERTIES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: RESULTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: SPARE1
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: SPARE2
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: SPARE3
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: TOID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: VERSION_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: XFLAGS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: KU$_ARGUMENT_VIEW
+- schema: SYS
+  name: KU$_PROCC_VIEW
+- schema: SYS
+  name: KU$_PROCINFO_VIEW
+- schema: SYS
+  name: KU$_PROCJAVA_VIEW
+- schema: SYS
+  name: KU$_PROCPLSQL_VIEW
+- schema: SYS
+  name: METHOD$
+- schema: SYS
+  name: OBJ$
 viewDefinition: |-
   select
     m.toid,

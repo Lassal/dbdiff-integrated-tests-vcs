@@ -2,8 +2,30 @@ schema: SYS
 name: ALL_XML_SCHEMA_NAMESPACES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SCHEMA_URL
+  dataType: VARCHAR2
+  textMaxLength: 700
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 700
+- name: TARGET_NAMESPACE
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 2000
+referencedTables:
+- schema: SYS
+  name: ALL_XML_SCHEMAS
+- schema: XDB
+  name: XDB$SCHEMA
 viewDefinition: |-
   select
     s.xmldata.schema_owner OWNER,

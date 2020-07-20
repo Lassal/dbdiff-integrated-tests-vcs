@@ -2,8 +2,34 @@ schema: SYS
 name: ALL_TSTZ_TABLES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: UPGRADE_IN_PROGRESS
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 3
+referencedTables:
+- schema: SYS
+  name: ALL_TSTZ_TAB_COLS
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: TAB$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     /*+ leading(actt, o, u, t) */

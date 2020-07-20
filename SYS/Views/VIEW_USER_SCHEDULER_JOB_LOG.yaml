@@ -2,8 +2,106 @@ schema: SYS
 name: USER_SCHEDULER_JOB_LOG
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ADDITIONAL_INFO
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: CLIENT_ID
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 64
+- name: CREDENTIAL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 261
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 261
+- name: CREDENTIAL_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 261
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 261
+- name: DESTINATION
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 128
+- name: DESTINATION_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 128
+- name: GLOBAL_UID
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 32
+- name: JOB_CLASS
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: JOB_NAME
+  dataType: VARCHAR2
+  textMaxLength: 261
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 261
+- name: JOB_SUBNAME
+  dataType: VARCHAR2
+  textMaxLength: 261
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 261
+- name: LOG_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: LOG_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: OPERATION
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 30
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 30
+- name: USER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SCHEDULER$_EVENT_LOG
 viewDefinition: |-
   (
     SELECT

@@ -2,8 +2,70 @@ schema: SYS
 name: KU$_XSSCLASS_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CTIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: MTIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: PARENT_LIST
+  dataType: KU$_XSSECCLSH_LIST_T
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: PRIV_LIST
+  dataType: KU$_XSPRIV_LIST_T
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: SCID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+- name: XS_OBJ
+  dataType: KU$_XSOBJ_T
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: KU$_XSOBJ_VIEW
+- schema: SYS
+  name: KU$_XSPRIV_VIEW
+- schema: SYS
+  name: KU$_XSSECCLSH_VIEW
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: XS$OBJ
+- schema: SYS
+  name: XS$SECCLS
 viewDefinition: |-
   select
     '1',

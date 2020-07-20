@@ -2,8 +2,114 @@ schema: SYS
 name: USER_APPLY_ERROR
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: ERROR_CREATION_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: ERROR_MESSAGE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 4000
+- name: ERROR_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: ERROR_POSITION
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: ERROR_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 23
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 23
+- name: LOCAL_TRANSACTION_ID
+  dataType: VARCHAR2
+  textMaxLength: 22
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 22
+- name: MESSAGE_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: MESSAGE_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: QUEUE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: QUEUE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: RECIPIENT_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: RECIPIENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 128
+- name: SOURCE_COMMIT_POSITION
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: SOURCE_COMMIT_SCN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: SOURCE_DATABASE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: SOURCE_ROOT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 128
+- name: SOURCE_TRANSACTION_ID
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: DBA_APPLY_ERROR
+- schema: SYS
+  name: STREAMS$_APPLY_PROCESS
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     p.apply_name,

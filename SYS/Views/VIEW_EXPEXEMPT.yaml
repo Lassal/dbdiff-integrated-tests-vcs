@@ -2,8 +2,17 @@ schema: SYS
 name: EXPEXEMPT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: SYSAUTH$
+- schema: SYS
+  name: SYSTEM_PRIVILEGE_MAP
 viewDefinition: |-
   SELECT
     COUNT(*)

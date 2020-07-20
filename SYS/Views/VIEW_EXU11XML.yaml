@@ -2,8 +2,24 @@ schema: SYS
 name: EXU11XML
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FLAGS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: TOBJID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: NTAB$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OPQTYPE$
 viewDefinition: |-
   SELECT
     o.obj#,

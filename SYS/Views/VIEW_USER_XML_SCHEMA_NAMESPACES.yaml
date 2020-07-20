@@ -2,8 +2,22 @@ schema: SYS
 name: USER_XML_SCHEMA_NAMESPACES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SCHEMA_URL
+  dataType: VARCHAR2
+  textMaxLength: 700
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 700
+- name: TARGET_NAMESPACE
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 2000
+referencedTables:
+- schema: SYS
+  name: DBA_XML_SCHEMA_NAMESPACES
 viewDefinition: |-
   select
     TARGET_NAMESPACE,

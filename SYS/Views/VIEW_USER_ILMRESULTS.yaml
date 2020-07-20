@@ -2,8 +2,52 @@ schema: SYS
 name: USER_ILMRESULTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: COMPLETION_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: JOB_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: JOB_STATE
+  dataType: VARCHAR2
+  textMaxLength: 35
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 35
+- name: START_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: STATISTICS
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: TASK_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: ILM_EXECUTION$
+- schema: SYS
+  name: ILM_RESULTS$
 viewDefinition: |-
   SELECT
     a .execution_id,

@@ -2,8 +2,22 @@ schema: SYS
 name: USER_REPRESOLUTION_METHOD
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CONFLICT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 10
+- name: METHOD_NAME
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 80
+referencedTables:
+- schema: SYSTEM
+  name: REPCAT$_RESOLUTION_METHOD
 viewDefinition: |-
   select
     decode(

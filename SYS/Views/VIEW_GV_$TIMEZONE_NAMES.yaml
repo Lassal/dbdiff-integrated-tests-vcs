@@ -2,8 +2,27 @@ schema: SYS
 name: GV_$TIMEZONE_NAMES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: TZABBREV
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 64
+- name: TZNAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 64
+referencedTables:
+- schema: SYS
+  name: GV$TIMEZONE_NAMES
 viewDefinition: |-
   select
     "TZNAME",

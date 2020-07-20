@@ -2,8 +2,73 @@ schema: SYS
 name: ALL_STREAMS_MESSAGE_CONSUMERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: NEGATIVE_RULE_SET_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: NEGATIVE_RULE_SET_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: NOTIFICATION_ACTION
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 256
+- name: NOTIFICATION_CONTEXT
+  dataType: ANYDATA
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: NOTIFICATION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 9
+- name: QUEUE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: QUEUE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: RULE_SET_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: RULE_SET_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: STREAMS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ALL_QUEUES
+- schema: SYS
+  name: ALL_RULE_SETS
+- schema: SYS
+  name: DBA_STREAMS_MESSAGE_CONSUMERS
 viewDefinition: |-
   select
     c."STREAMS_NAME",

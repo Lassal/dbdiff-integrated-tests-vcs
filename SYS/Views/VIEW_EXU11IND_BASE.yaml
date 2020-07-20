@@ -2,8 +2,205 @@ schema: SYS
 name: EXU11IND_BASE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BITMAP
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: BLEVEL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: BTCLUSTERFLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: BTNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength: 128
+- name: BTOBJID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength:
+- name: BTOWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 12
+  dataTypeLength: 128
+- name: BTOWNERID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 13
+  dataTypeLength:
+- name: BTPROPERTY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: CLUFAC
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 33
+  dataTypeLength:
+- name: CLUSTER$
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: DBLKKEY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 32
+  dataTypeLength:
+- name: DEFLOG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength:
+- name: DEGREE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength:
+- name: DISTKEY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength:
+- name: IBLOCKNO
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength:
+- name: IDOBJID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: IFILENO
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: IFLAGS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 35
+  dataTypeLength:
+- name: INAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: INITRANS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 19
+  dataTypeLength:
+- name: INSTANCES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength:
+- name: IOBJID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: IOWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: IOWNERID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: ISPACE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: ITSNO
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength:
+- name: LBLKKEY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 31
+  dataTypeLength:
+- name: LEAFCNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength:
+- name: MAXTRANS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 20
+  dataTypeLength:
+- name: PCTFREE$
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 18
+  dataTypeLength:
+- name: PRECCNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 34
+  dataTypeLength:
+- name: PROPERTY
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 16
+  dataTypeLength:
+- name: ROWCNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength:
+- name: SYSGENCONST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 36
+  dataTypeLength:
+- name: TSDEFLOG
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 24
+  dataTypeLength:
+- name: TYPE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 27
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: IND$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: TAB$
+- schema: SYS
+  name: TS$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     i$.obj#,

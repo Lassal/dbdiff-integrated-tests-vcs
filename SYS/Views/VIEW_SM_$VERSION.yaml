@@ -2,8 +2,26 @@ schema: SYS
 name: SM_$VERSION
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CREATED
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: VERSION_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: VERSION_TEXT
+  dataType: CHAR
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 9
+referencedTables:
+- schema: SYS
+  name: DBA_OBJECTS
 viewDefinition: |-
   select
     '7.3.2.0.0' version_text,

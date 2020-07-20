@@ -2,8 +2,191 @@ schema: SYS
 name: USER_SQLSET_STATEMENTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACTION
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 64
+- name: ACTIVE_STAT_PERIOD
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength:
+- name: BINDS_CAPTURED
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 1
+- name: BIND_DATA
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: BUFFER_GETS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: COMMAND_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength:
+- name: CON_DBID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: CPU_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: DIRECT_WRITES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: DISK_READS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: ELAPSED_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: END_OF_FETCH_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: EXECUTIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: FETCHES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: FIRST_LOAD_TIME
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength: 19
+- name: FORCE_MATCHING_SIGNATURE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: MODULE
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 64
+- name: OPTIMIZER_COST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength:
+- name: OPTIMIZER_ENV
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: OTHER
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength:
+- name: PARSING_SCHEMA_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: PARSING_SCHEMA_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: PLAN_HASH_VALUE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength:
+- name: PLAN_TIMESTAMP
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 31
+  dataTypeLength:
+- name: PRIORITY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength:
+- name: ROWS_PROCESSED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: SQLSET_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: SQLSET_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SQL_ID
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 13
+- name: SQL_SEQ
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 32
+  dataTypeLength:
+- name: SQL_TEXT
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: STAT_PERIOD
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: WRH$_SQLTEXT
+- schema: SYS
+  name: WRI$_SQLSET_DEFINITIONS
+- schema: SYS
+  name: WRI$_SQLSET_MASK
+- schema: SYS
+  name: WRI$_SQLSET_PLANS
+- schema: SYS
+  name: WRI$_SQLSET_STATEMENTS
+- schema: SYS
+  name: WRI$_SQLSET_STATISTICS
+- schema: SYS
+  name: X$MODACT_LENGTH
 viewDefinition: |-
   select
     f.name as sqlset_name,

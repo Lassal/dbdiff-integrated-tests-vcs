@@ -2,8 +2,73 @@ schema: SYS
 name: COL
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CHARACTER_SET_NAME
+  dataType: VARCHAR2
+  textMaxLength: 44
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 44
+- name: CNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: COLNO
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: COLTYPE
+  dataType: VARCHAR2
+  textMaxLength: 265
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 265
+- name: DEFAULTVAL
+  dataType: LONG
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: NULLS
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 19
+- name: PRECISION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: SCALE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: WIDTH
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: COLTYPE$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: _BASE_USER
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: |-
   select
     t.name,

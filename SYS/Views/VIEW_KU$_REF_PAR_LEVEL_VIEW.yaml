@@ -2,8 +2,22 @@ schema: SYS
 name: KU$_REF_PAR_LEVEL_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: LVL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: OBJ#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: CDEF$
+- schema: SYS
+  name: PARTOBJ$
 viewDefinition: |-
   select
     obj#,

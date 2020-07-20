@@ -2,8 +2,92 @@ schema: SYS
 name: USER_USERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACCOUNT_STATUS
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 32
+- name: COMMON
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 3
+- name: CREATED
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: DEFAULT_TABLESPACE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: EXPIRY_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: EXTERNAL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 4000
+- name: INITIAL_RSRC_CONSUMER_GROUP
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: LOCK_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: ORACLE_MAINTAINED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 1
+- name: PROXY_ONLY_CONNECT
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 1
+- name: TEMPORARY_TABLESPACE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 30
+- name: USERNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: USER_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: PROFILE$
+- schema: SYS
+  name: RESOURCE_GROUP_MAPPING$
+- schema: SYS
+  name: TS$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: USER_ASTATUS_MAP
 viewDefinition: |-
   select
     u.name,

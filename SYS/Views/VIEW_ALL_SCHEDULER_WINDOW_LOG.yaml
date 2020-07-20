@@ -2,8 +2,68 @@ schema: SYS
 name: ALL_SCHEDULER_WINDOW_LOG
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ADDITIONAL_INFO
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: CLIENT_ID
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 64
+- name: GLOBAL_UID
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 32
+- name: LOG_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: LOG_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: OPERATION
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 30
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: USER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: WINDOW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 261
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 261
+referencedTables:
+- schema: SYS
+  name: DBA_SCHEDULER_WINDOW_LOG
 viewDefinition: |-
   SELECT
     "LOG_ID",

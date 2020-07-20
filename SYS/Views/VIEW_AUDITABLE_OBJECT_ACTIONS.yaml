@@ -2,8 +2,21 @@ schema: SYS
 name: AUDITABLE_OBJECT_ACTIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACTION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 64
+referencedTables:
+- schema: SYS
+  name: X$AUD_OBJ_ACTIONS
 viewDefinition: |-
   select
     INDX,

@@ -2,8 +2,42 @@ schema: SYS
 name: ALL_STREAMS_TRANSFORM_FUNCTION
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CUSTOM_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 11
+- name: RULE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: RULE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TRANSFORM_FUNCTION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: VALUE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: ALL_RULES
+- schema: SYS
+  name: DBA_STREAMS_TRANSFORM_FUNCTION
 viewDefinition: |-
   select
     tf. "RULE_OWNER",

@@ -2,8 +2,84 @@ schema: SYS
 name: USER_REGISTRY
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMP_ID
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: COMP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: CONTROL
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: MODIFIED
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 20
+- name: NAMESPACE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: OTHER_SCHEMAS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 4000
+- name: PARENT_ID
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 30
+- name: PROCEDURE
+  dataType: VARCHAR2
+  textMaxLength: 61
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 61
+- name: SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: STARTUP
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 8
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 11
+- name: VERSION
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+referencedTables:
+- schema: SYS
+  name: REGISTRY$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     r.cid,

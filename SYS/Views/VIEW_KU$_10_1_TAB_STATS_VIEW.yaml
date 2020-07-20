@@ -2,8 +2,52 @@ schema: SYS
 name: KU$_10_1_TAB_STATS_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: PTAB_INFO_LIST
+  dataType: KU$_10_1_PTAB_STATS_LIST_T
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TAB_INFO
+  dataType: KU$_10_1_TAB_PTAB_STATS_T
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: KU$_10_1_PTAB_STATS_VIEW
+- schema: SYS
+  name: KU$_10_1_TAB_ONLY_STATS_VIEW
+- schema: SYS
+  name: KU$_SCHEMAOBJ_VIEW
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: TAB$
 viewDefinition: |-
   select
     '1',

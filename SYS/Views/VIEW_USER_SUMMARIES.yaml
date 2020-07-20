@@ -2,8 +2,112 @@ schema: SYS
 name: USER_SUMMARIES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CONTAINER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: CONTAINER_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: CONTAINS_VIEWS
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 1
+- name: FULLREFRESHTIM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: INCREFRESHTIM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: INC_REFRESHABLE
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 1
+- name: KNOWN_STALE
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 1
+- name: LAST_REFRESH_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: LAST_REFRESH_SCN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: QUERY
+  dataType: LONG
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: QUERY_LEN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: REFRESH_METHOD
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 11
+- name: RESTRICTED_SYNTAX
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 1
+- name: SUMMARY
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 1
+- name: SUMMARY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: UNUSABLE
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SNAP$
+- schema: SYS
+  name: SUM$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     u.name,

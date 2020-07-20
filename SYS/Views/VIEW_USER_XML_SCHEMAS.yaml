@@ -2,8 +2,64 @@ schema: SYS
 name: USER_XML_SCHEMAS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BINARY
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 3
+- name: HIDDEN
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 3
+- name: HIER_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 11
+- name: INT_OBJNAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: LOCAL
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 3
+- name: QUAL_SCHEMA_URL
+  dataType: VARCHAR2
+  textMaxLength: 865
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 865
+- name: SCHEMA
+  dataType: XMLTYPE
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: SCHEMA_ID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: SCHEMA_URL
+  dataType: VARCHAR2
+  textMaxLength: 700
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 700
+referencedTables:
+- schema: SYS
+  name: USER$
+- schema: XDB
+  name: XDB$SCHEMA
 viewDefinition: |-
   select
     s.xmldata.schema_url,

@@ -2,8 +2,42 @@ schema: SYS
 name: KU$_10_1_PROXY_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CLIENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: CRED_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: FLAGS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: PROXY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: PROXY_ROLE_LIST
+  dataType: KU$_PROXY_ROLE_LIST_T
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: USER_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: KU$_PROXY_VIEW
 viewDefinition: |-
   select
     t. *

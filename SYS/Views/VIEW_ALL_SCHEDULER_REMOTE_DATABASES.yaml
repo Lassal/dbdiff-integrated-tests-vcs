@@ -2,8 +2,28 @@ schema: SYS
 name: ALL_SCHEDULER_REMOTE_DATABASES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DATABASE_LINK
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 512
+- name: DATABASE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 512
+- name: REGISTERED_AS
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 11
+referencedTables:
+- schema: SYS
+  name: SCHEDULER$_REMOTE_DBS
 viewDefinition: |-
   SELECT
     database_name,

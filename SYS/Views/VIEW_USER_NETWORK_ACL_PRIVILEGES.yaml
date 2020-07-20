@@ -2,8 +2,44 @@ schema: SYS
 name: USER_NETWORK_ACL_PRIVILEGES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: HOST
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 1000
+- name: LOWER_PORT
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 5,0
+- name: PRIVILEGE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 7
+- name: UPPER_PORT
+  dataType: NUMBER
+  numericPrecision: 5
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 5,0
+referencedTables:
+- schema: SYS
+  name: DBA_XS_OBJECTS
+- schema: SYS
+  name: NACL$_HOST
 viewDefinition: |-
   select
     host,

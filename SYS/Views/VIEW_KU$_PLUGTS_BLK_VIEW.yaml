@@ -2,8 +2,36 @@ schema: SYS
 name: KU$_PLUGTS_BLK_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: PLSQL
+  dataType: KU$_PROCOBJ_LINES
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: PREPOST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: DUAL
+- schema: SYS
+  name: KU$_PREPOST_VIEW
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   select
     '1',

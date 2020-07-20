@@ -2,8 +2,55 @@ schema: SYS
 name: USER_CUBE_DIMENSIONALITY
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CUBE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: DIMENSIONALITY_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: DIMENSIONALITY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 200
+- name: DIMENSION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: ET_ATTR_PREFIX
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 200
+- name: IS_SPARSE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: ORDER_NUM
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OLAP_CUBES$
+- schema: SYS
+  name: OLAP_DIMENSIONALITY$
+- schema: SYS
+  name: OLAP_IMPL_OPTIONS$
 viewDefinition: |-
   SELECT
     co.name CUBE_NAME,

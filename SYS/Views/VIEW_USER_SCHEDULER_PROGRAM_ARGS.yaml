@@ -2,8 +2,60 @@ schema: SYS
 name: USER_SCHEDULER_PROGRAM_ARGS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ARGUMENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: ARGUMENT_POSITION
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: ARGUMENT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 257
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 257
+- name: DEFAULT_ANYDATA_VALUE
+  dataType: ANYDATA
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: DEFAULT_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: METADATA_ATTRIBUTE
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 19
+- name: OUT_ARGUMENT
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 5
+- name: PROGRAM_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SCHEDULER$_PROGRAM_ARGUMENT
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     o.name,

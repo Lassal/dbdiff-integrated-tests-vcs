@@ -2,8 +2,45 @@ schema: SYS
 name: SYSSEGOBJ
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BLOCK#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: FILE#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: OBJ#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PCTFREE$
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: PCTUSED$
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 7
+referencedTables:
+- schema: SYS
+  name: CLU$
+- schema: SYS
+  name: IND$
+- schema: SYS
+  name: TAB$
 viewDefinition: |-
   select
     obj#,

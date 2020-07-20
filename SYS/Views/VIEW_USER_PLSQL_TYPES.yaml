@@ -2,8 +2,46 @@ schema: SYS
 name: USER_PLSQL_TYPES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ATTRIBUTES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: CONTAINS_PLSQL
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 3
+- name: PACKAGE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TYPECODE
+  dataType: VARCHAR2
+  textMaxLength: 58
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 58
+- name: TYPE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 136
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 136
+- name: TYPE_OID
+  dataType: RAW
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: TYPE$
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: |-
   select
     t.typ_name || decode(

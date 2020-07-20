@@ -2,8 +2,15 @@ schema: SYS
 name: LOADER_DB_OPEN_READ_WRITE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: RESULTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$DATABASE
 viewDefinition: |-
   select
     count(*)

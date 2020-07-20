@@ -2,8 +2,35 @@ schema: SYS
 name: KU$_REFPAR_LEVEL
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: REFPAR_LEVEL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: PARTOBJ$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: TAB$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     sys.dbms_metadata_util.ref_par_level(t.obj#),

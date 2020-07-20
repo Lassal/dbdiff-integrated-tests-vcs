@@ -2,8 +2,77 @@ schema: SYS
 name: _ALL_SQLSET_STATEMENTS_ONLY
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACTION
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 64
+- name: COMMAND_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: CON_DBID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: FORCE_MATCHING_SIGNATURE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: MODULE
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 64
+- name: PARSING_SCHEMA_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: SQLSET_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: SQLSET_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SQLSET_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: SQL_ID
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 13
+- name: SQL_SEQ
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: WRI$_SQLSET_DEFINITIONS
+- schema: SYS
+  name: WRI$_SQLSET_STATEMENTS
+- schema: SYS
+  name: X$MODACT_LENGTH
 viewDefinition: |-
   select
     d.name as sqlset_name,

@@ -2,8 +2,47 @@ schema: SYS
 name: DATAPUMP_PATHS_VERSION
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FULL_PATH
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 200
+- name: HET_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: OBJECT_PATH
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 200
+- name: SEQ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: TAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: IMPCALLOUTREG$
+- schema: SYS
+  name: METANAMETRANS$
+- schema: SYS
+  name: METASCRIPT$
 viewDefinition: |-
   select
     m.htype,

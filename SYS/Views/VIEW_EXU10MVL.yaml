@@ -2,8 +2,194 @@ schema: SYS
 name: EXU10MVL
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CAPTURED_VALUES
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  ordinalPosition: 16
+  dataTypeLength: 1
+- name: CHANGE_SET_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength: 128
+- name: CREATED_SCN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: CREATED_TIME
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: CTOBJ#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: FILE_VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: HIGHEST_SCN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 31
+  dataTypeLength:
+- name: HIGHEST_TIMESTAMP
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 32
+  dataTypeLength:
+- name: LAST_ALTERED
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: LOG_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: LOG_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: LOG_OWNERID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: LOWEST_SCN
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 20
+  dataTypeLength:
+- name: MVL_BACKCOMPAT_VIEW
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength: 128
+- name: MVL_FLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: MVL_OLDEST_NEW
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: MVL_OLDEST_NEW_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength:
+- name: MVL_OLDEST_OID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength:
+- name: MVL_OLDEST_OID_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength:
+- name: MVL_OLDEST_PK
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: MVL_OLDEST_PK_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength:
+- name: MVL_OLDEST_RID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: MVL_OLDEST_RID_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength:
+- name: MVL_OLDEST_SEQ
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 33
+  dataTypeLength:
+- name: MVL_OLDEST_SEQ_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 34
+  dataTypeLength:
+- name: MVL_PHYSMVL
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength: 128
+- name: MVL_TEMP_LOG
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 128
+- name: MVL_V7TRIGGER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 128
+- name: SOURCE_SCHEMA_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 12
+  dataTypeLength: 128
+- name: SOURCE_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 13
+  dataTypeLength: 128
+- name: USING_OID_FLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: USING_PRIMARYKEY_FLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: USING_ROWID_FLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: USING_SEQUENCE_FLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: CDC_CHANGE_TABLES$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     ct.obj#,

@@ -2,8 +2,16 @@ schema: SYS
 name: USER_DBFS_HS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: STORENAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 256
+referencedTables:
+- schema: SYS
+  name: DBA_DBFS_HS
 viewDefinition: |-
   SELECT
     storeName

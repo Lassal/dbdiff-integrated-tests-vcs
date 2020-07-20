@@ -2,8 +2,16 @@ schema: SYS
 name: KU$_XMLSCHEMA_SPECIAL_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: XMLSCHEMA_XML_DOC
+  dataType: CHAR
+  textMaxLength: 134
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 134
+referencedTables:
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     '<?xml version="1.0"?><ROWSET><ROW> <XMLSCHEMA_T> <VERS_MAJOR>1</VERS_MAJOR> <VERS_MINOR>0 </VERS_MINOR> </XMLSCHEMA_T> </ROW></ROWSET>' xmlschema_xml_doc

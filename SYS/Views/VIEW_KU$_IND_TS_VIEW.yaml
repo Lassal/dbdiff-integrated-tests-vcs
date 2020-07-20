@@ -2,8 +2,28 @@ schema: SYS
 name: KU$_IND_TS_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: OWNER_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+referencedTables:
+- schema: SYS
+  name: KU$_TTS_IND_VIEW
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   select
     i.owner_num,

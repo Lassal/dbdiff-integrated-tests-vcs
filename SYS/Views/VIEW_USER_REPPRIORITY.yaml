@@ -2,8 +2,82 @@ schema: SYS
 name: USER_REPPRIORITY
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CHAR_VALUE
+  dataType: CHAR
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 255
+- name: DATA_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 9
+- name: DATE_VALUE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: FIXED_DATA_LENGTH
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: LARGE_CHAR_VALUE
+  dataType: CHAR
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 2000
+- name: NCHAR_VALUE
+  dataType: NCHAR
+  textMaxLength: 500
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 500
+- name: NUMBER_VALUE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: NVARCHAR2_VALUE
+  dataType: NVARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 1000
+- name: PRIORITY
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: PRIORITY_GROUP
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: RAW_VALUE
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: VARCHAR2_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: USER$
+- schema: SYSTEM
+  name: REPCAT$_PRIORITY
+- schema: SYSTEM
+  name: REPCAT$_PRIORITY_GROUP
 viewDefinition: |-
   select
     p.priority_group,

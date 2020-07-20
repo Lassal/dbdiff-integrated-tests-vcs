@@ -2,8 +2,35 @@ schema: SYS
 name: USER_BASE_TABLE_MVIEWS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: MASTER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: MVIEW_ID
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: MVIEW_LAST_REFRESH_TIME
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: DBA_BASE_TABLE_MVIEWS
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     s. "OWNER",

@@ -2,8 +2,20 @@ schema: SYS
 name: ALL_SUMMAP
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMMIT_SCN
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: XID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: SNAP_XCMT$
 viewDefinition: |-
   select
     XID,

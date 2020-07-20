@@ -2,8 +2,49 @@ schema: SYS
 name: USER_CHANGE_NOTIFICATION_REGS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CALLBACK
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 256
+- name: CHANGELAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: OPERATIONS_FILTER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: REGFLAGS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: REGID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 63
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 63
+- name: TIMEOUT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DBA_CHANGE_NOTIFICATION_REGS
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     r.regid,

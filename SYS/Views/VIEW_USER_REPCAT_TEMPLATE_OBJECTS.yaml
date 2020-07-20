@@ -2,8 +2,71 @@ schema: SYS
 name: USER_REPCAT_TEMPLATE_OBJECTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DDL_NUM
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: DDL_TEXT
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: DERIVED_FROM_ONAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: DERIVED_FROM_SNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: FLAVOR_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: MASTER_ROLLBACK_SEGMENT
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 200
+- name: REFRESH_TEMPLATE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+referencedTables:
+- schema: SYS
+  name: ALL_USERS
+- schema: SYSTEM
+  name: REPCAT$_OBJECT_TYPES
+- schema: SYSTEM
+  name: REPCAT$_REFRESH_TEMPLATES
+- schema: SYSTEM
+  name: REPCAT$_TEMPLATE_OBJECTS
+- schema: SYSTEM
+  name: REPCAT$_TEMPLATE_TYPES
+- schema: SYSTEM
+  name: REPCAT$_USER_AUTHORIZATIONS
 viewDefinition: |-
   select
     rt.refresh_template_name,

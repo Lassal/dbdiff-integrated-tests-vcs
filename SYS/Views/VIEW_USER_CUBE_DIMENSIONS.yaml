@@ -2,8 +2,76 @@ schema: SYS
 name: USER_CUBE_DIMENSIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ADD_UNIQUE_KEY_PREFIX
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 3
+- name: AW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: CUSTOM_ORDER
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: DEFAULT_HIERARCHY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: DESCRIPTION
+  dataType: NVARCHAR2
+  textMaxLength: 300
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 300
+- name: DIMENSION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: DIMENSION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: DIMENSION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 17
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 17
+- name: HIERARCHY_CONSISTENCY_RULE
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 200
+referencedTables:
+- schema: SYS
+  name: AW$
+- schema: SYS
+  name: NLS_SESSION_PARAMETERS
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OLAP_CUBE_DIMENSIONS$
+- schema: SYS
+  name: OLAP_DESCRIPTIONS$
+- schema: SYS
+  name: OLAP_HIERARCHIES$
+- schema: SYS
+  name: OLAP_IMPL_OPTIONS$
+- schema: SYS
+  name: OLAP_SYNTAX$
 viewDefinition: |-
   SELECT
     o.name DIMENSION_NAME,

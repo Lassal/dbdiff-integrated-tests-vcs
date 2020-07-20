@@ -2,8 +2,91 @@ schema: SYS
 name: GV_$BACKUP_NONLOGGED
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BLOCK#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: BLOCKS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: FILE#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: INST_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: NONLOGGED_CHANGE#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: NONLOGGED_TIME
+  dataType: VARCHAR2
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: OBJECT#
+  dataType: VARCHAR2
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: PIECE#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: REASON
+  dataType: CHAR
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 7
+- name: RECID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: RESETLOGS_CHANGE#
+  dataType: VARCHAR2
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: RESETLOGS_TIME
+  dataType: VARCHAR2
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: SET_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: SET_STAMP
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: STAMP
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: GV$BACKUP_NONLOGGED
 viewDefinition: |-
   select
     "INST_ID",

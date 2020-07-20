@@ -2,8 +2,180 @@ schema: SYS
 name: USER_AUDIT_OBJECT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACTION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 28
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 28
+- name: CLIENT_ID
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 128
+- name: COMMENT_TEXT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 4000
+- name: ECONTEXT_ID
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 64
+- name: ENTRYID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 14
+  dataTypeLength:
+- name: EXTENDED_TIMESTAMP
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: GLOBAL_UID
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength: 32
+- name: INSTANCE_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: NEW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 128
+- name: NEW_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: OBJ_EDITION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength: 128
+- name: OBJ_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: OS_PROCESS
+  dataType: VARCHAR2
+  textMaxLength: 16
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength: 16
+- name: OS_USERNAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 255
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: PRIV_USED
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 40
+- name: PROXY_SESSIONID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: RETURNCODE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 16
+  dataTypeLength:
+- name: SCN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength:
+- name: SESSIONID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 13
+  dataTypeLength:
+- name: SESSION_CPU
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: SES_ACTIONS
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 19
+- name: SQL_BIND
+  dataType: NVARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength: 2000
+- name: SQL_TEXT
+  dataType: NVARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength: 2000
+- name: STATEMENTID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 15
+  dataTypeLength:
+- name: TERMINAL
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 255
+- name: TIMESTAMP
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: TRANSACTIONID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength:
+- name: USERHOST
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: USERNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: USER_AUDIT_TRAIL
 viewDefinition: |-
   select
     OS_USERNAME,

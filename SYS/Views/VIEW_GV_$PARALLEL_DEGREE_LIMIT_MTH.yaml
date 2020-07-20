@@ -2,8 +2,26 @@ schema: SYS
 name: GV_$PARALLEL_DEGREE_LIMIT_MTH
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: INST_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 40
+referencedTables:
+- schema: SYS
+  name: GV$PARALLEL_DEGREE_LIMIT_MTH
 viewDefinition: |-
   select
     "INST_ID",

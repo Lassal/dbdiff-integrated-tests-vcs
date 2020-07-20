@@ -2,8 +2,48 @@ schema: SYS
 name: EXU9MVLCDCST
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CHANGE_TABLE_OBJ#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: HANDLE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: MV_COLVEC
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: MV_FLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: VIEW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: VIEW_STATUS
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: CDC_CHANGE_TABLES$
+- schema: SYS
+  name: CDC_SUBSCRIBED_TABLES$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     handle,

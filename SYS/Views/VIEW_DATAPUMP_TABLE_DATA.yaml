@@ -2,8 +2,27 @@ schema: SYS
 name: DATAPUMP_TABLE_DATA
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: HET_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: OBJECT_PATH
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 200
+- name: SEQ_NUM
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: METANAMETRANS$
 viewDefinition: |-
   select
     htype,

@@ -2,8 +2,49 @@ schema: SYS
 name: USER_REPRESOL_STATS_CONTROL
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CREATED
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: LAST_PURGE_END_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: LAST_PURGE_START_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: ONAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PURGED_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 9
+- name: STATUS_UPDATE_DATE
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: USER$
+- schema: SYSTEM
+  name: REPCAT$_RESOL_STATS_CONTROL
 viewDefinition: |-
   select
     r.oname,

@@ -2,8 +2,49 @@ schema: SYS
 name: USER_COMPARISON_ROW_DIF
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMPARISON_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: INDEX_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: LAST_UPDATE_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: LOCAL_ROWID
+  dataType: ROWID
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: REMOTE_ROWID
+  dataType: ROWID
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: SCAN_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 3
+referencedTables:
+- schema: SYS
+  name: DBA_COMPARISON_ROW_DIF
 viewDefinition: |-
   SELECT
     comparison_name,

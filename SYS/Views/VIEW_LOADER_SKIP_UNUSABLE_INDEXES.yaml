@@ -2,8 +2,15 @@ schema: SYS
 name: LOADER_SKIP_UNUSABLE_INDEXES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: VALUE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$PARAMETER
 viewDefinition: |-
   select
     count(*) as value

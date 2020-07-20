@@ -2,8 +2,61 @@ schema: SYS
 name: KU$_M_VIEW_FH_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: MVIEW
+  dataType: KU$_M_VIEW_T
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: MVIEW_IDX_LIST
+  dataType: KU$_INDEX_LIST_T
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: MVIEW_TAB
+  dataType: KU$_FHTABLE_T
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: SOWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+- name: VNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: IND$
+- schema: SYS
+  name: KU$_ALL_INDEX_VIEW
+- schema: SYS
+  name: KU$_FHTABLE_VIEW
+- schema: SYS
+  name: KU$_M_VIEW_VIEW
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     '2',
