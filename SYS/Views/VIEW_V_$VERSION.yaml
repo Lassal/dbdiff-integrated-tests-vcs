@@ -2,8 +2,21 @@ schema: SYS
 name: V_$VERSION
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BANNER
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 80
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$VERSION
 viewDefinition: |-
   select
     "BANNER",

@@ -2,8 +2,98 @@ schema: SYS
 name: ALL_SCHEDULER_FILE_WATCHERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 240
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 240
+- name: CREDENTIAL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: CREDENTIAL_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: DESTINATION
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: DESTINATION_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: DIRECTORY_PATH
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: ENABLED
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 5
+- name: FILE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 512
+- name: FILE_WATCHER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: LAST_MODIFIED_TIME
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: MIN_FILE_SIZE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: STEADY_STATE_DURATION
+  dataType: INTERVAL DAY(3) TO SECOND(0)
+  numericPrecision: 3
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 3,0
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: SCHEDULER$_FILE_WATCHER
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: |-
   SELECT
     u.name,

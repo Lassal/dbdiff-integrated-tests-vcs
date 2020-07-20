@@ -2,8 +2,40 @@ schema: SYS
 name: V_$REPLAY_CONTEXT_SEQUENCE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CONTEXT_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: SEQUENCE_HASH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: SEQUENCE_START_VALUE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: VALUES_CAPTURED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: VALUES_REPLAYED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$REPLAY_CONTEXT_SEQUENCE
 viewDefinition: |-
   select
     "CONTEXT_ID",

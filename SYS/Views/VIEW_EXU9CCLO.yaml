@@ -2,8 +2,40 @@ schema: SYS
 name: EXU9CCLO
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CNO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: COLNAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: COLNO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: OWNERID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PROPERTY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: CDEF$
+- schema: SYS
+  name: CON$
+- schema: SYS
+  name: EXU9CCL
 viewDefinition: |-
   SELECT
     a .ownerid,

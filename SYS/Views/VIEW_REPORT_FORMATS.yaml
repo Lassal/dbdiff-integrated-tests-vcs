@@ -2,8 +2,72 @@ schema: SYS
 name: REPORT_FORMATS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMPONENT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: COMPONENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 256
+- name: FORMAT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: REPORT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: REPORT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: TEXT_LINESIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 6
+- name: XSLT_DATA
+  dataType: XMLTYPE
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: XSLT_FILENAME
+  dataType: VARCHAR2
+  textMaxLength: 500
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 500
+referencedTables:
+- schema: SYS
+  name: WRI$_EMX_FILES
+- schema: SYS
+  name: WRI$_REPT_COMPONENTS
+- schema: SYS
+  name: WRI$_REPT_FORMATS
+- schema: SYS
+  name: WRI$_REPT_REPORTS
 viewDefinition: |-
   SELECT
     c .id component_id,

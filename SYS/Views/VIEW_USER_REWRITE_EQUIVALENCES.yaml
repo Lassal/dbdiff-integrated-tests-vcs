@@ -2,8 +2,40 @@ schema: SYS
 name: USER_REWRITE_EQUIVALENCES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DESTINATION_STMT
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: REWRITE_MODE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 10
+- name: SOURCE_STMT
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DBA_REWRITE_EQUIVALENCES
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     m. "OWNER",

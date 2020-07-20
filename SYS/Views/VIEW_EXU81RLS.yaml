@@ -2,8 +2,73 @@ schema: SYS
 name: EXU81RLS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CHKOPT
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: ENABLED
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength:
+- name: OBJNAM
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OBJOWN
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: POLFUN
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: POLICY
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: POLOWN
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: POLSCH
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: SPOLICY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: STMTS
+  dataType: VARCHAR2
+  textMaxLength: 28
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 28
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: RLS$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     u.name,

@@ -2,8 +2,38 @@ schema: SYS
 name: ALL_REPGROUPED_COLUMN
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: GROUP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+- name: ONAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: SNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ALL_TAB_COLUMNS
+- schema: SYS
+  name: DBA_REPGROUPED_COLUMN
+- schema: SYS
+  name: _ALL_REPL_NESTED_TABLE_NAMES
 viewDefinition: |-
   select
     g.sname,

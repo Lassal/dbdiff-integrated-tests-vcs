@@ -2,8 +2,70 @@ schema: SYS
 name: _USER_COMPARISON_ROW_DIF
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMPARISON_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: IDX_VAL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: LAST_UPDATE_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: LOC_ROWID
+  dataType: ROWID
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: RMT_ROWID
+  dataType: ROWID
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: SCAN_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: SPARE1
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: SPARE2
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: SPARE3
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: SPARE4
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 1000
+- name: STATUS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: COMPARISON$
+- schema: SYS
+  name: COMPARISON_ROW_DIF$
 viewDefinition: |-
   SELECT
     d. "COMPARISON_ID",

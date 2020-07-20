@@ -2,8 +2,16 @@ schema: SYS
 name: ALL_REGISTRY_BANNERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BANNER
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 80
+referencedTables:
+- schema: SYS
+  name: REGISTRY$
 viewDefinition: |-
   SELECT
     banner

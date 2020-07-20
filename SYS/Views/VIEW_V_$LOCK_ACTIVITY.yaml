@@ -2,8 +2,38 @@ schema: SYS
 name: V_$LOCK_ACTIVITY
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACTION_VAL
+  dataType: CHAR
+  textMaxLength: 21
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 21
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: COUNTER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: FROM_VAL
+  dataType: CHAR
+  textMaxLength: 4
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 4
+- name: TO_VAL
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: V$LOCK_ACTIVITY
 viewDefinition: |-
   select
     "FROM_VAL",

@@ -2,8 +2,86 @@ schema: SYS
 name: EXU8TGRU
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACTION
+  dataType: LONG
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: ACTIONSIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: BASENAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: BASEOBJECT
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: BASETYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: BTOWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 128
+- name: BTOWNERID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: DEFINITION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: ENABLED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OWNERID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PROPERTY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: WHENCLAUSE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: EXU8TGR
 viewDefinition: |-
   SELECT
     "OWNERID",

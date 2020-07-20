@@ -2,8 +2,73 @@ schema: SYS
 name: ALL_REPRESOLUTION_STATISTICS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CONFLICT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 10
+- name: FUNCTION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 386
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 386
+- name: METHOD_NAME
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 80
+- name: ONAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: PRIMARY_KEY_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength: 2000
+- name: PRIORITY_GROUP
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 30
+- name: REFERENCE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: RESOLVED_DATE
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: SNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
+- schema: SYSTEM
+  name: REPCAT$_RESOLUTION_STATISTICS
 viewDefinition: |-
   select
     sname,

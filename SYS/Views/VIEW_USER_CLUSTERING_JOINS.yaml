@@ -2,8 +2,52 @@ schema: SYS
 name: USER_CLUSTERING_JOINS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: TAB1_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: TAB1_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: TAB1_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TAB2_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: TAB2_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: TAB2_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: DBA_CLUSTERING_JOINS
 viewDefinition: |-
   select
     j.TABLE_NAME,

@@ -2,8 +2,21 @@ schema: SYS
 name: V_$ACTIVE_SESS_POOL_MTH
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 40
+referencedTables:
+- schema: SYS
+  name: V$ACTIVE_SESS_POOL_MTH
 viewDefinition: |-
   select
     "NAME",

@@ -2,8 +2,419 @@ schema: SYS
 name: USER_SQLSET_PLANS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACCESS_PREDICATES
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 38
+  dataTypeLength: 4000
+- name: ACTIVE_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 69
+  dataTypeLength:
+- name: BYTES
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength: 38,0
+- name: CARDINALITY
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength: 38,0
+- name: CON_DBID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: COST
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength: 38,0
+- name: CPU_COST
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 35
+  dataTypeLength: 38,0
+- name: CR_BUFFER_GETS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 47
+  dataTypeLength:
+- name: CU_BUFFER_GETS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 48
+  dataTypeLength:
+- name: DEPTH
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength: 38,0
+- name: DISK_READS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 49
+  dataTypeLength:
+- name: DISK_WRITES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 50
+  dataTypeLength:
+- name: DISTRIBUTION
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 34
+  dataTypeLength: 30
+- name: ELAPSED_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 51
+  dataTypeLength:
+- name: ESTIMATED_ONEPASS_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 61
+  dataTypeLength:
+- name: ESTIMATED_OPTIMAL_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 60
+  dataTypeLength:
+- name: EXECUTIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 44
+  dataTypeLength:
+- name: FILTER_PREDICATES
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 39
+  dataTypeLength: 4000
+- name: FORCE_MATCHING_SIGNATURE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: ID
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 22
+  dataTypeLength: 38,0
+- name: IO_COST
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 36
+  dataTypeLength: 38,0
+- name: LAST_CR_BUFFER_GETS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 54
+  dataTypeLength:
+- name: LAST_CU_BUFFER_GETS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 55
+  dataTypeLength:
+- name: LAST_DEGREE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 64
+  dataTypeLength:
+- name: LAST_DISK_READS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 56
+  dataTypeLength:
+- name: LAST_DISK_WRITES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 57
+  dataTypeLength:
+- name: LAST_ELAPSED_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 58
+  dataTypeLength:
+- name: LAST_EXECUTION
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 63
+  dataTypeLength: 10
+- name: LAST_MEMORY_USED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 62
+  dataTypeLength:
+- name: LAST_OUTPUT_ROWS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 53
+  dataTypeLength:
+- name: LAST_STARTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 52
+  dataTypeLength:
+- name: LAST_TEMPSEG_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 71
+  dataTypeLength:
+- name: MAX_TEMPSEG_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 70
+  dataTypeLength:
+- name: MULTIPASSES_EXECUTIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 68
+  dataTypeLength:
+- name: OBJECT_ALIAS
+  dataType: VARCHAR2
+  textMaxLength: 261
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 261
+- name: OBJECT_INSTANCE
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 38,0
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 128
+- name: OBJECT_NODE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 128
+- name: OBJECT_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 128
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 30
+- name: ONEPASS_EXECUTIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 67
+  dataTypeLength:
+- name: OPERATION
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 30
+- name: OPTIMAL_EXECUTIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 66
+  dataTypeLength:
+- name: OPTIMIZER
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength: 255
+- name: OPTIONS
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 255
+- name: OTHER
+  dataType: LONG
+  nullable: true
+  ordinalPosition: 33
+  dataTypeLength:
+- name: OTHER_TAG
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength: 255
+- name: OTHER_XML
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 43
+  dataTypeLength:
+- name: OUTPUT_ROWS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 46
+  dataTypeLength:
+- name: PARENT_ID
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength: 38,0
+- name: PARTITION_ID
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 32
+  dataTypeLength: 38,0
+- name: PARTITION_START
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength: 255
+- name: PARTITION_STOP
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 31
+  dataTypeLength: 255
+- name: PLAN_HASH_VALUE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: PLAN_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: POLICY
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 59
+  dataTypeLength: 10
+- name: POSITION
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength: 38,0
+- name: PROJECTION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 40
+  dataTypeLength: 4000
+- name: QBLOCK_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 42
+  dataTypeLength: 128
+- name: REMARKS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 4000
+- name: SEARCH_COLUMNS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: SQLSET_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: SQLSET_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SQL_ID
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 13
+- name: SQL_SEQ
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength:
+- name: STARTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 45
+  dataTypeLength:
+- name: STATEMENT_ID
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 30
+- name: TEMP_SPACE
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 37
+  dataTypeLength: 38,0
+- name: TIME
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 41
+  dataTypeLength: 38,0
+- name: TIMESTAMP
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: TOTAL_EXECUTIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 65
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: WRI$_SQLSET_DEFINITIONS
+- schema: SYS
+  name: WRI$_SQLSET_PLANS
+- schema: SYS
+  name: WRI$_SQLSET_PLAN_LINES
+- schema: SYS
+  name: WRI$_SQLSET_STATEMENTS
 viewDefinition: |-
   select
     d.name as sqlset_name,

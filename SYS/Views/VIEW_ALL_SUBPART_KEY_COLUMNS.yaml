@@ -2,8 +2,55 @@ schema: SYS
 name: ALL_SUBPART_KEY_COLUMNS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: COLUMN_POSITION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OBJECT_TYPE
+  dataType: CHAR
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 5
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ATTRCOL$
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: IND$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: SUBPARTCOL$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: |-
   select
     u.name,

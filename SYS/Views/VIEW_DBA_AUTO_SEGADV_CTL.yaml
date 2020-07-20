@@ -2,8 +2,79 @@ schema: SYS
 name: DBA_AUTO_SEGADV_CTL
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AUTO_TASKID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: CREATION_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: END_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: PARTITION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: PROCESSED_TASKID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: REASON
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 40
+- name: REASON_VALUE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: SEGMENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: SEGMENT_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: SEGMENT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 18
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 18
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 40
+- name: TABLESPACE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+referencedTables:
+- schema: SYS
+  name: WRI$_SEGADV_OBJLIST
 viewDefinition: |-
   select
     stats.auto_taskid,

@@ -2,8 +2,27 @@ schema: SYS
 name: _ALL_SQLSET_STS_TOPACK
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: SQLSET_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: WRI$_SQLSET_STS_TOPACK
 viewDefinition: |-
   select
     sqlset_id,

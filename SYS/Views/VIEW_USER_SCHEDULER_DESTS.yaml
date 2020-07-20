@@ -2,8 +2,36 @@ schema: SYS
 name: USER_SCHEDULER_DESTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 240
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 240
+- name: DESTINATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: DESTINATION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 8
+- name: ENABLED
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 5
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SCHEDULER$_DESTINATIONS
 viewDefinition: |-
   SELECT
     o.name,

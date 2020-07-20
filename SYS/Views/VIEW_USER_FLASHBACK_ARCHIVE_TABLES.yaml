@@ -2,8 +2,54 @@ schema: SYS
 name: USER_FLASHBACK_ARCHIVE_TABLES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ARCHIVE_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 53
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 53
+- name: FLASHBACK_ARCHIVE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 255
+- name: OWNER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 13
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: DBA_USERS
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: SYS_FBA_FA
+- schema: SYS
+  name: SYS_FBA_TRACKEDTABLES
+- schema: SYS
+  name: SYS_FBA_USERS
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
 viewDefinition: |-
   select
     unique o.NAME,

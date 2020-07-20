@@ -2,8 +2,84 @@ schema: SYS
 name: KU$_ASSOC_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: CPU_COST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: INTERFACE_VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: IO_COST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: NET_COST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: OBJCOL
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: OBJ_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: SELECTIVITY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: SPARE2
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: STATS_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: ASSOCIATION$
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: KU$_SCHEMAOBJ_VIEW
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   select
     '1',

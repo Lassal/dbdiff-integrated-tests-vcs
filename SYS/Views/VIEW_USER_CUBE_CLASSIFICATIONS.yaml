@@ -2,8 +2,59 @@ schema: SYS
 name: USER_CUBE_CLASSIFICATIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CLASSIFICATION
+  dataType: NVARCHAR2
+  textMaxLength: 300
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 300
+- name: LANGUAGE
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 80
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 386
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 386
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 18
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 18
+- name: ORDER_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OLAP_ATTRIBUTES$
+- schema: SYS
+  name: OLAP_CALCULATED_MEMBERS$
+- schema: SYS
+  name: OLAP_CUBES$
+- schema: SYS
+  name: OLAP_DESCRIPTIONS$
+- schema: SYS
+  name: OLAP_DIM_LEVELS$
+- schema: SYS
+  name: OLAP_HIERARCHIES$
+- schema: SYS
+  name: OLAP_HIER_LEVELS$
+- schema: SYS
+  name: OLAP_MEASURES$
+- schema: SYS
+  name: OLAP_MODELS$
+- schema: SYS
+  name: OLAP_MODEL_ASSIGNMENTS$
 viewDefinition: |-
   SELECT
     CASE

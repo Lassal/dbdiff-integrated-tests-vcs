@@ -2,8 +2,40 @@ schema: SYS
 name: USER_TAB_STATS_HISTORY
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: PARTITION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: STATS_UPDATE_TIME
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: SUBPARTITION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: TABSUBPART$
+- schema: SYS
+  name: WRI$_OPTSTAT_TAB_HISTORY
+- schema: SYS
+  name: X$KQFTA
 viewDefinition: |-
   select
     o.name,

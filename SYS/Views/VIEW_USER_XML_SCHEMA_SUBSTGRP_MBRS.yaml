@@ -2,8 +2,62 @@ schema: SYS
 name: USER_XML_SCHEMA_SUBSTGRP_MBRS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ELEMENT
+  dataType: XMLTYPE
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: ELEMENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 256
+- name: HEAD_ELEMENT
+  dataType: XMLTYPE
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: HEAD_ELEMENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 256
+- name: HEAD_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: HEAD_SCHEMA_URL
+  dataType: VARCHAR2
+  textMaxLength: 700
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 700
+- name: HEAD_TARGET_NAMESPACE
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 2000
+- name: SCHEMA_URL
+  dataType: VARCHAR2
+  textMaxLength: 700
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 700
+- name: TARGET_NAMESPACE
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 2000
+referencedTables:
+- schema: SYS
+  name: DBA_XML_SCHEMA_SUBSTGRP_MBRS
 viewDefinition: |-
   select
     SCHEMA_URL,

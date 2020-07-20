@@ -2,8 +2,36 @@ schema: SYS
 name: GV_$REPLAY_CONTEXT_SYSDATE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CONTEXT_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: INST_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: REPLAYED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 1
+- name: SYSDATE_VALUE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: GV$REPLAY_CONTEXT_SYSDATE
 viewDefinition: |-
   select
     "INST_ID",

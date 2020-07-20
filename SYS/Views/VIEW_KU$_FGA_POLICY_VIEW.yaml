@@ -2,8 +2,102 @@ schema: SYS
 name: KU$_FGA_POLICY_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AUDIT_TRAIL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: BASE_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: ENABLE_FLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: PCOL
+  dataType: KU$_FGA_REL_COL_LIST_T
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: PCOL_OPT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: PFNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: PFSCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: POWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 128
+- name: PPNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: PTXT
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: STMT_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: FGA$
+- schema: SYS
+  name: FGACOL$
+- schema: SYS
+  name: KU$_SCHEMAOBJ_VIEW
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     '1',

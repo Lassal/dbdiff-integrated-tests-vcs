@@ -2,8 +2,22 @@ schema: SYS
 name: DATABASE_COMPATIBLE_LEVEL
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: V$PARAMETER
 viewDefinition: |-
   select
     value,

@@ -2,8 +2,87 @@ schema: SYS
 name: TABLE_PRIVILEGES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ALTER_PRIV
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 1
+- name: CREATED
+  dataType: VARCHAR2
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: DELETE_PRIV
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 1
+- name: GRANTEE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: GRANTOR
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: INDEX_PRIV
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 1
+- name: INSERT_PRIV
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 1
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: REFERENCES_PRIV
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 1
+- name: SELECT_PRIV
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 1
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: UPDATE_PRIV
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: X$KZSRO
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: |-
   select
     ue.name,

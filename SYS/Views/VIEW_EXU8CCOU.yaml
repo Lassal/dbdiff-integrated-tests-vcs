@@ -2,8 +2,49 @@ schema: SYS
 name: EXU8CCOU
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CLUSTER$
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: PROPERTY
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength:
+- name: SEQ
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TCOLNAM
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: TNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TOWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TOWNERID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: EXU8CCO
 viewDefinition: |-
   SELECT
     "TNAME",

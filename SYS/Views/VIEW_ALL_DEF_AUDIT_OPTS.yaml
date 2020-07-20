@@ -2,8 +2,102 @@ schema: SYS
 name: ALL_DEF_AUDIT_OPTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ALT
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 3
+- name: AUD
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 3
+- name: COM
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 3
+- name: DEL
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 3
+- name: EXE
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 3
+- name: FBK
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 3
+- name: GRA
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 3
+- name: IND
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 3
+- name: INS
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 3
+- name: LOC
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 3
+- name: REA
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 3
+- name: REF
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 3
+- name: REN
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 3
+- name: SEL
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 3
+- name: UPD
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 3
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: TAB$
 viewDefinition: |-
   select
     substr(t.audit$, 1, 1) || '/' || substr(t.audit$, 2, 1),

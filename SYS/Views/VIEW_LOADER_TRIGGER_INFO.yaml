@@ -2,8 +2,51 @@ schema: SYS
 name: LOADER_TRIGGER_INFO
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ENABLED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: TABLE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: TRIGGER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TRIGGER_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: TRIGGER$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: |-
   select
     u1.name,

@@ -2,8 +2,81 @@ schema: SYS
 name: ALL_INDEXTYPES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ARRAY_DML
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 3
+- name: IMPLEMENTATION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: IMPLEMENTATION_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: IMPLEMENTATION_VERSION
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: INDEXTYPE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: INTERFACE_VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: MAINTENANCE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 14
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 14
+- name: NUMBER_OF_OPERATORS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PARTITIONING
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 10
+referencedTables:
+- schema: SYS
+  name: INDOP$
+- schema: SYS
+  name: INDTYPES$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: TYPE$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: |-
   select
     u.name,

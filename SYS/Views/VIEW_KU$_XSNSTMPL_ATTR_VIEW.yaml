@@ -2,8 +2,44 @@ schema: SYS
 name: KU$_XSNSTMPL_ATTR_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ATTR_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: DEF_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: EVENT_CBK
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: NS_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: XS$NSTMPL_ATTR
 viewDefinition: |-
   select
     '1',

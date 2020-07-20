@@ -2,8 +2,175 @@ schema: SYS
 name: USER_ADVISOR_SQLSTATS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ATTR1
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: BUFFER_GETS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: CON_DBID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 30
+  dataTypeLength:
+- name: CPU_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: DIRECT_WRITES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: DISK_READS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: ELAPSED_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: END_OF_FETCH_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: EXECUTIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength:
+- name: EXECUTION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: EXECUTION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: FETCHES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: IO_INTERCONNECT_BYTES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength:
+- name: OBJECT_ID
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 38,0
+- name: OPTIMIZER_COST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength:
+- name: OTHER
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength:
+- name: PARSE_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: PHYSICAL_READ_BYTES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: PHYSICAL_READ_REQUESTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: PHYSICAL_WRITE_BYTES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: PHYSICAL_WRITE_REQUESTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: PLAN_HASH_VALUE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: PLAN_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: ROWS_PROCESSED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: SQL_ID
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 13
+- name: TASK_ID
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 38,0
+- name: TASK_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TESTEXEC_FIRST_EXEC_IGNORED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength: 1
+- name: TESTEXEC_TOTAL_EXECS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength:
+- name: USER_IO_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: WRI$_ADV_EXECUTIONS
+- schema: SYS
+  name: WRI$_ADV_SQLT_PLAN_HASH
+- schema: SYS
+  name: WRI$_ADV_SQLT_PLAN_STATS
+- schema: SYS
+  name: WRI$_ADV_TASKS
 viewDefinition: |-
   SELECT
     t.name task_name,

@@ -2,8 +2,60 @@ schema: SYS
 name: EXU8ORFS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLNAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: OBJNO
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: OWNERID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: PROPERTY
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: REFTYP
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: RNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: ROBJID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength:
+- name: SOID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: ATTRCOL$
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: REFCON$
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   SELECT
     o$.obj#,

@@ -2,8 +2,18 @@ schema: SYS
 name: SESSION_PRIVS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: PRIVILEGE
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 40
+referencedTables:
+- schema: SYS
+  name: SYSTEM_PRIVILEGE_MAP
+- schema: SYS
+  name: V$ENABLEDPRIVS
 viewDefinition: |-
   select
     spm.name

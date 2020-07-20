@@ -2,8 +2,72 @@ schema: SYS
 name: USER_ILMOBJECTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DELETED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 3
+- name: ENABLED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 3
+- name: INHERITED_FROM
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 20
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: OBJECT_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 18
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 18
+- name: POLICY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SUBOBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ILM$
+- schema: SYS
+  name: ILMOBJ$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: REDEF_OBJECT$
+- schema: SYS
+  name: TS$
+- schema: SYS
+  name: TSQ$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
 viewDefinition: |-
   select
     a .name,

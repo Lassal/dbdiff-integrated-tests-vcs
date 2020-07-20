@@ -2,8 +2,38 @@ schema: SYS
 name: USER_IND_EXPRESSIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_EXPRESSION
+  dataType: LONG
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: COLUMN_POSITION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: INDEX_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: ICOL$
+- schema: SYS
+  name: IND$
+- schema: SYS
+  name: OBJ$
 viewDefinition: |-
   select
     idx.name,

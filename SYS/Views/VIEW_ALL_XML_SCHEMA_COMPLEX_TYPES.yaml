@@ -2,8 +2,80 @@ schema: SYS
 name: ALL_XML_SCHEMA_COMPLEX_TYPES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 256
+- name: BASE_SCHEMA_URL
+  dataType: VARCHAR2
+  textMaxLength: 700
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 700
+- name: BASE_TARGET_NAMESPACE
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 2000
+- name: COMPLEX_TYPE
+  dataType: XMLTYPE
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: COMPLEX_TYPE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 256
+- name: MAINTAIN_DOM
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SCHEMA_URL
+  dataType: VARCHAR2
+  textMaxLength: 700
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 700
+- name: SQL_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 128
+- name: SQL_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 128
+- name: TARGET_NAMESPACE
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 2000
+referencedTables:
+- schema: SYS
+  name: ALL_XML_SCHEMAS
+- schema: XDB
+  name: XDB$COMPLEX_TYPE
+- schema: XDB
+  name: XDB$SCHEMA
+- schema: XDB
+  name: XDB$SIMPLE_TYPE
 viewDefinition: |-
   select
     s.xmldata.schema_owner OWNER,

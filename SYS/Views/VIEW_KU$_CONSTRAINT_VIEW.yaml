@@ -2,8 +2,92 @@ schema: SYS
 name: KU$_CONSTRAINT_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: BASE_OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: COL
+  dataType: KU$_SIMPLE_COL_T
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: CON0
+  dataType: KU$_CONSTRAINT0_T
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: CON1
+  dataType: KU$_CONSTRAINT1_T
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: CON_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: FLAGS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: OWNER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: TYPE_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: CCOL$
+- schema: SYS
+  name: CDEF$
+- schema: SYS
+  name: CON$
+- schema: SYS
+  name: KU$_CONSTRAINT0_VIEW
+- schema: SYS
+  name: KU$_CONSTRAINT1_VIEW
+- schema: SYS
+  name: KU$_SCHEMAOBJ_VIEW
+- schema: SYS
+  name: KU$_SIMPLE_COL_VIEW
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     '1',

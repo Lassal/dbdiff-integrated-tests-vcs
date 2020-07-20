@@ -2,8 +2,185 @@ schema: SYS
 name: KU$_USER_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ASTATUS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: ASTATUS_12
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: CTIME
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 19
+- name: DATATS
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 30
+- name: DEFGRP_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: DEFGRP_SEQ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: DEFROLE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: DEFSCHCLASS
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength: 128
+- name: EDN_TYPES
+  dataType: KU$_USER_EDITIONING_LIST_T
+  nullable: true
+  ordinalPosition: 31
+  dataTypeLength:
+- name: EXPTIME
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 19
+- name: EXT_USERNAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength: 4000
+- name: LCOUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: LTIME
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 19
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: PASSWORD
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: PROFNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 128
+- name: PROFNUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: PTIME
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 19
+- name: SPARE1
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: SPARE2
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength:
+- name: SPARE3
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength:
+- name: SPARE4
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength: 1000
+- name: SPARE4_12
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength: 1000
+- name: SPARE5
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength: 1000
+- name: SPARE6
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength: 19
+- name: TEMPTS
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 30
+- name: TYPE_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: USER_AUDIT
+  dataType: VARCHAR2
+  textMaxLength: 38
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 38
+- name: USER_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: KU$_USER_BASE_VIEW
+- schema: SYS
+  name: KU$_USER_EDITIONING_VIEW
 viewDefinition: |-
   select
     ubv. *,

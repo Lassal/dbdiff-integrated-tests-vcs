@@ -2,8 +2,43 @@ schema: SYS
 name: USER_SR_STLOG_STATS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: NUM_DELETES
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: NUM_INSERTS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: NUM_UPDATES
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: PSL_MODE
+  dataType: VARCHAR2
+  textMaxLength: 33
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 33
+- name: STAGING_LOG_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: DBA_SR_STLOG_STATS
 viewDefinition: |-
   select
     TABLE_NAME,

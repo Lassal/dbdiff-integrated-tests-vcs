@@ -2,8 +2,95 @@ schema: SYS
 name: ALL_REPOBJECT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: GENERATION_STATUS
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 9
+- name: GNAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 30
+- name: GROUP_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 128
+- name: ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: INTERNAL_PACKAGE_EXISTS
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 1
+- name: MIN_COMMUNICATION
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 1
+- name: NESTED_TABLE
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 1
+- name: OBJECT_COMMENT
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 80
+- name: ONAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: REPLICATION_TRIGGER_EXISTS
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 1
+- name: SNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 10
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 16
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 16
+referencedTables:
+- schema: SYS
+  name: ALL_OBJECTS
+- schema: SYS
+  name: ALL_USERS
+- schema: SYS
+  name: REPCAT_REPOBJECT
+- schema: SYS
+  name: USER_REPGROUP_PRIVILEGES
+- schema: SYS
+  name: USER_REPOBJECT
 viewDefinition: |-
   select
     r.sname,

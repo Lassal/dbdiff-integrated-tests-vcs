@@ -2,8 +2,99 @@ schema: SYS
 name: USER_RECYCLEBIN
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_OBJECT
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 13
+  dataTypeLength:
+- name: CAN_PURGE
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 3
+- name: CAN_UNDROP
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 3
+- name: CREATETIME
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 19
+- name: DROPSCN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: DROPTIME
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 19
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: OPERATION
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 9
+- name: ORIGINAL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: PARTITION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: PURGE_OBJECT
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 14
+  dataTypeLength:
+- name: RELATED
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 12
+  dataTypeLength:
+- name: SPACE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: TS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 30
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 25
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 25
+referencedTables:
+- schema: SYS
+  name: RECYCLEBIN$
+- schema: SYS
+  name: TS$
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: |-
   select
     o.name,

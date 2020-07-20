@@ -2,8 +2,76 @@ schema: SYS
 name: FLASHBACK_TRANSACTION_QUERY
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMMIT_SCN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: COMMIT_TIMESTAMP
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: LOGON_USER
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: OPERATION
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 32
+- name: ROW_ID
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 19
+- name: START_SCN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: START_TIMESTAMP
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 256
+- name: TABLE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 32
+- name: UNDO_CHANGE#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: UNDO_SQL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 4000
+- name: XID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: X$KTUQQRY
 viewDefinition: |-
   select
     xid,

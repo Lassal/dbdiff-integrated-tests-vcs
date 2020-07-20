@@ -2,8 +2,40 @@ schema: SYS
 name: EXU10R2DEFPSWITCHES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CCFLAGS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: CODETYPE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: NLSLENSEM
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 4000
+- name: OPTLEVEL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+- name: WARNINGS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: V$PARAMETER
 viewDefinition: |-
   SELECT
     a .value,

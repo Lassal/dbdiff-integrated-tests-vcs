@@ -2,8 +2,82 @@ schema: SYS
 name: USER_CUBE_ATTR_MAPPINGS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ATTRIBUTE_EXPRESSION
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: ATTRIBUTE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: DIMENSION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: LANGUAGE
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 200
+- name: MAP_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: MAP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: OWNER_MAP_DIMENSION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 17
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 17
+- name: OWNER_MAP_HIERARCHY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: OWNER_MAP_LEVEL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: OWNER_MAP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OLAP_ATTRIBUTES$
+- schema: SYS
+  name: OLAP_DIM_LEVELS$
+- schema: SYS
+  name: OLAP_HIERARCHIES$
+- schema: SYS
+  name: OLAP_HIER_LEVELS$
+- schema: SYS
+  name: OLAP_IMPL_OPTIONS$
+- schema: SYS
+  name: OLAP_MAPPINGS$
+- schema: SYS
+  name: OLAP_SYNTAX$
 viewDefinition: |-
   SELECT
     o.name DIMENSION_NAME,

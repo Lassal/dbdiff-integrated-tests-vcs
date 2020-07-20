@@ -2,8 +2,43 @@ schema: SYS
 name: ALL_XML_SCHEMA_SUBSTGRP_HEAD
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ELEMENT
+  dataType: XMLTYPE
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: ELEMENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 256
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SCHEMA_URL
+  dataType: VARCHAR2
+  textMaxLength: 700
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 700
+- name: TARGET_NAMESPACE
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 2000
+referencedTables:
+- schema: SYS
+  name: ALL_XML_SCHEMAS
+- schema: XDB
+  name: XDB$ELEMENT
+- schema: XDB
+  name: XDB$SCHEMA
 viewDefinition: |-
   select
     s.xmldata.schema_owner OWNER,

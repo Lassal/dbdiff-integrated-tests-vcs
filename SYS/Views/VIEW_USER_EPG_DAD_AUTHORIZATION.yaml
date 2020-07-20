@@ -2,8 +2,16 @@ schema: SYS
 name: USER_EPG_DAD_AUTHORIZATION
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DAD_NAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 64
+referencedTables:
+- schema: SYS
+  name: EPG$_AUTH
 viewDefinition: |-
   select
     ea.dadname

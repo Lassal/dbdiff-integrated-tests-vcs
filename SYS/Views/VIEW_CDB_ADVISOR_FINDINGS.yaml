@@ -2,7 +2,101 @@ schema: SYS
 name: CDB_ADVISOR_FINDINGS
 updatedAllowed: true
 insertAllowed: true
-columns: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: EXECUTION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: FILTERED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 1
+- name: FINDING_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: FINDING_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: FLAGS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: IMPACT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: IMPACT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 4000
+- name: MESSAGE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 4000
+- name: MORE_INFO
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 4000
+- name: OBJECT_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PARENT
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength:
+- name: TASK_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: TASK_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 11
+- name: TYPE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
 referencedTables: []
 viewDefinition: |-
   SELECT

@@ -2,8 +2,80 @@ schema: SYS
 name: KU$_PROCJAVA_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CLASSLENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: CLASSNAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
+- name: COOKIESIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: FLAGS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 4000
+- name: FLAGSLENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: METHODLENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: METHODNAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 4000
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: OWNERLENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: OWNERNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: PROCEDURE_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: USERSIGLEN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: USERSIGNATURE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: PROCEDUREJAVA$
 viewDefinition: |-
   select
     obj#,

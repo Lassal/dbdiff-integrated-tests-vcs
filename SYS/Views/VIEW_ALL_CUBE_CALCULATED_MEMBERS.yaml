@@ -2,8 +2,57 @@ schema: SYS
 name: ALL_CUBE_CALCULATED_MEMBERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DIMENSION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: EXPRESSION
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: IS_CUSTOM_AGGREGATE
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 3
+- name: MEMBER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: STORAGE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 10
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: OLAP_CALCULATED_MEMBERS$
+- schema: SYS
+  name: OLAP_SYNTAX$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: |-
   SELECT
     u.name OWNER,

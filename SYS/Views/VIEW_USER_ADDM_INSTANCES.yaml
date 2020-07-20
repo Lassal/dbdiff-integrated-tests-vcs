@@ -2,8 +2,66 @@ schema: SYS
 name: USER_ADDM_INSTANCES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACTIVE_SESSIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: DATABASE_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: HOST_NAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 64
+- name: INSTANCE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 16
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 16
+- name: INSTANCE_NUMBER
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: LOCAL_TASK_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: METER_LEVEL
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 6
+- name: PERC_ACTIVE_SESS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 10
+- name: TASK_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: WRI$_ADV_ADDM_INST
+- schema: SYS
+  name: WRI$_ADV_TASKS
 viewDefinition: |-
   select
     a .task_id as task_id,

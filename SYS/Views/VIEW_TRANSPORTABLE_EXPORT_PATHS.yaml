@@ -2,8 +2,23 @@ schema: SYS
 name: TRANSPORTABLE_EXPORT_PATHS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OBJECT_PATH
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 200
+- name: TAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DBA_EXPORT_PATHS
+- schema: SYS
+  name: DUAL
 viewDefinition: |-
   select
     OBJECT_PATH,

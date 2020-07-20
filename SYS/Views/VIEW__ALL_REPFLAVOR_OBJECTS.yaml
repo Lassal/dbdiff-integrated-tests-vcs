@@ -2,8 +2,76 @@ schema: SYS
 name: _ALL_REPFLAVOR_OBJECTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMNS_PRESENT
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: FLAG
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: FLAVOR_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: GNAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: GOWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: HASHCODE
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: ONAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: PUBLISHED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 1
+- name: SNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: TYPE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: VERSION#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: ALL_OBJECTS
+- schema: SYSTEM
+  name: REPCAT$_FLAVORS
+- schema: SYSTEM
+  name: REPCAT$_FLAVOR_OBJECTS
+- schema: SYSTEM
+  name: REPCAT$_REPOBJECT
 viewDefinition: |-
   SELECT
     fo.flavor_id,

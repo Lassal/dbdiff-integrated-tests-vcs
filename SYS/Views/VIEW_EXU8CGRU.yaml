@@ -2,8 +2,59 @@ schema: SYS
 name: EXU8CGRU
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: CREATORID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: GRANTEE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: GRANTOR
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: GRANTORID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: OBJID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PRIV
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 40
+- name: SEQUENCE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: WGO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: EXU8CGR
 viewDefinition: |-
   SELECT
     "OBJID",

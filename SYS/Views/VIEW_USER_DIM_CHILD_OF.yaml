@@ -2,8 +2,53 @@ schema: SYS
 name: USER_DIM_CHILD_OF
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CHILD_LEVEL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: DIMENSION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: HIERARCHY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: JOIN_KEY_ID
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 40
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PARENT_LEVEL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: POSITION
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DBA_DIM_CHILD_OF
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     d. "OWNER",

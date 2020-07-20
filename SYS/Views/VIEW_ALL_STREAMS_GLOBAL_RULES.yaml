@@ -2,8 +2,62 @@ schema: SYS
 name: ALL_STREAMS_GLOBAL_RULES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: INCLUDE_TAGGED_LCR
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 3
+- name: RULE_CONDITION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 4000
+- name: RULE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: RULE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: RULE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 9
+- name: SOURCE_DATABASE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: STREAMS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: STREAMS_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 11
+referencedTables:
+- schema: SYS
+  name: ALL_RULES
+- schema: SYS
+  name: DBA_STREAMS_GLOBAL_RULES
+- schema: SYS
+  name: _ALL_STREAMS_PROCESSES
 viewDefinition: |-
   select
     r.streams_name,

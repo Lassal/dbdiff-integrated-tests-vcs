@@ -2,8 +2,127 @@ schema: SYS
 name: V_$ADVISOR_PROGRESS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ADVISOR_METRIC1
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: ADVISOR_NAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 64
+- name: BENEFIT_MAX
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: BENEFIT_SOFAR
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: ELAPSED_SECONDS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: EXECUTION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength: 64
+- name: FINDINGS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: LAST_UPDATE_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: METRIC1_DESC
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength: 64
+- name: OPNAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 64
+- name: RECOMMENDATIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: SERIAL#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: SID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: SOFAR
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: START_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: TARGET_DESC
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 32
+- name: TASK_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TIME_REMAINING
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: TOTALWORK
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: UNITS
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 32
+- name: USERNAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+referencedTables:
+- schema: SYS
+  name: V$ADVISOR_PROGRESS
 viewDefinition: |-
   select
     "SID",

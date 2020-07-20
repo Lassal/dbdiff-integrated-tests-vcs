@@ -2,8 +2,53 @@ schema: SYS
 name: USER_MINING_MODELS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ALGORITHM
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+- name: BUILD_DURATION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
+- name: CREATION_DATE
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: MINING_FUNCTION
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: MODEL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: MODEL_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: COM$
+- schema: SYS
+  name: MODEL$
+- schema: SYS
+  name: OBJ$
 viewDefinition: |-
   select
     o.name,

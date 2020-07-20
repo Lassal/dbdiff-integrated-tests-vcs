@@ -2,8 +2,94 @@ schema: SYS
 name: V_$FLASHBACK_TXN_GRAPH
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BACKOUT_SEQ
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: COMPENSATING_TXN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 255
+- name: COMPENSATING_XID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: CONFLICT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 32
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: DEP_TXN_CONF_SQL_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: DEP_TXN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 255
+- name: DEP_XID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: INTERESTING
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: NUM_PREDS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: NUM_SUCCS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: ORIGINAL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: PARENT_XID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: TXN_CONF_SQL_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: TXN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 255
+- name: XID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$FLASHBACK_TXN_GRAPH
 viewDefinition: |-
   select
     "COMPENSATING_XID",

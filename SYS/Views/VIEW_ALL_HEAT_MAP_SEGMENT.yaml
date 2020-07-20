@@ -2,8 +2,58 @@ schema: SYS
 name: ALL_HEAT_MAP_SEGMENT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FULL_SCAN
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: LOOKUP_SCAN
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SEGMENT_READ_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: SEGMENT_WRITE_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: SUBOBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
+- schema: SYS
+  name: _SYS_HEAT_MAP_SEG_HISTOGRAM
 viewDefinition: |-
   select
     u.name,

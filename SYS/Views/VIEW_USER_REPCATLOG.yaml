@@ -2,8 +2,93 @@ schema: SYS
 name: USER_REPCATLOG
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ERRNUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: GNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 128
+- name: ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: MASTER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: MESSAGE
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 200
+- name: ONAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: REQUEST
+  dataType: VARCHAR2
+  textMaxLength: 29
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 29
+- name: ROLE
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 9
+- name: SNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: SOURCE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 14
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 14
+- name: TIMESTAMP
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 12
+- name: USERID
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: REPCAT_REPCATLOG
+- schema: SYS
+  name: USER_USERS
 viewDefinition: |-
   select
     r.id,

@@ -2,8 +2,46 @@ schema: SYS
 name: USER_ADVISOR_JOURNAL
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: EXECUTION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: JOURNAL_ENTRY
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: JOURNAL_ENTRY_SEQ
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: JOURNAL_ENTRY_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 12
+- name: TASK_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TASK_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: WRI$_ADV_JOURNAL
+- schema: SYS
+  name: WRI$_ADV_TASKS
 viewDefinition: |-
   select
     a .task_id as task_id,

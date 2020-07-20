@@ -2,8 +2,26 @@ schema: SYS
 name: V_$EDITIONABLE_TYPES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: EDITIONABLE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 64
+- name: TYPE#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$EDITIONABLE_TYPES
 viewDefinition: |-
   select
     "EDITIONABLE_TYPE",

@@ -2,7 +2,30 @@ schema: SYS
 name: CDB_SYNC_CAPTURE_TABLES
 updatedAllowed: true
 insertAllowed: true
-columns: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: ENABLED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 3
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TABLE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
 referencedTables: []
 viewDefinition: |-
   SELECT

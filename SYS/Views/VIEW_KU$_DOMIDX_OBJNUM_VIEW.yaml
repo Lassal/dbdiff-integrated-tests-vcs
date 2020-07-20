@@ -2,8 +2,55 @@ schema: SYS
 name: KU$_DOMIDX_OBJNUM_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PROPERTY
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 1,0
+- name: PROPERTY2
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 1,0
+- name: SCHEMA_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TABLE_TYPE
+  dataType: VARCHAR2
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: TS_NUM
+  dataType: NUMBER
+  numericPrecision: 1
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 1,0
+referencedTables:
+- schema: SYS
+  name: IND$
+- schema: SYS
+  name: KU$_SCHEMAOBJ_VIEW
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   select
     i.obj#,

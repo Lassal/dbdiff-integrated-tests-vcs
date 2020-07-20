@@ -2,8 +2,32 @@ schema: SYS
 name: EXU81RGSU
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: INSTSITE
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: OWNERID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: REFGROUP
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: EXU81RGS
 viewDefinition: |-
   SELECT
     "REFGROUP",

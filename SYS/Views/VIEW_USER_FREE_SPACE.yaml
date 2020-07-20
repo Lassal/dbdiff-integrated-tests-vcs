@@ -2,8 +2,57 @@ schema: SYS
 name: USER_FREE_SPACE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BLOCKS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: BLOCK_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: BYTES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: FILE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: RELATIVE_FNO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TABLESPACE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 30
+referencedTables:
+- schema: SYS
+  name: FET$
+- schema: SYS
+  name: FILE$
+- schema: SYS
+  name: RECYCLEBIN$
+- schema: SYS
+  name: TS$
+- schema: SYS
+  name: TSQ$
+- schema: SYS
+  name: UET$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KTFBFE
+- schema: SYS
+  name: X$KTFBUE
 viewDefinition: |-
   select
     ts.name,

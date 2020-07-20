@@ -2,8 +2,61 @@ schema: SYS
 name: ALL_SCHEDULER_JOB_CLASSES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 240
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 240
+- name: JOB_CLASS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: LOGGING_LEVEL
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 11
+- name: LOG_HISTORY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: RESOURCE_CONSUMER_GROUP
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: SERVICE
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 64
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: SCHEDULER$_CLASS
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: |-
   SELECT
     u.name,

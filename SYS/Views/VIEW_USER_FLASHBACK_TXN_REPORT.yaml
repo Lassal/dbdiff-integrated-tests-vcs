@@ -2,8 +2,31 @@ schema: SYS
 name: USER_FLASHBACK_TXN_REPORT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMMIT_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: COMPENSATING_TXN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 256
+- name: COMPENSATING_XID
+  dataType: RAW
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: XID_REPORT
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: TRANSACTION_BACKOUT_REPORT$
 viewDefinition: |-
   SELECT
     COMPENSATING_XID,

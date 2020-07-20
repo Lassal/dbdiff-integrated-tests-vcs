@@ -2,8 +2,48 @@ schema: SYS
 name: USER_RULES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: RULE_ACTION_CONTEXT
+  dataType: RE$NV_LIST
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: RULE_COMMENT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: RULE_CONDITION
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: RULE_EVALUATION_CONTEXT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: RULE_EVALUATION_CONTEXT_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: RULE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: RULE$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     /*+ all_rows */

@@ -2,8 +2,45 @@ schema: SYS
 name: KU$_M_VIEW_LOG_PFH_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: MVIEWLOG
+  dataType: KU$_M_VIEW_LOG_T
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: MVIEWLOG_TAB
+  dataType: KU$_PFHTABLE_T
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: TABOBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: KU$_M_VIEW_LOG_VIEW
+- schema: SYS
+  name: KU$_PFHTABLE_VIEW
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     '1',

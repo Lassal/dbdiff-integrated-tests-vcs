@@ -2,8 +2,50 @@ schema: SYS
 name: USER_OBJECT_SIZE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CODE_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: ERROR_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PARSED_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: SOURCE_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 18
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 18
+referencedTables:
+- schema: SYS
+  name: CODE_SIZE
+- schema: SYS
+  name: ERROR_SIZE
+- schema: SYS
+  name: PARSED_SIZE
+- schema: SYS
+  name: SOURCE_SIZE
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: |-
   select
     name,

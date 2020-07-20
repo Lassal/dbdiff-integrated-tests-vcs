@@ -2,8 +2,26 @@ schema: SYS
 name: USER_RSRC_MANAGER_SYSTEM_PRIVS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ADMIN_OPTION
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 3
+- name: PRIVILEGE
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 40
+referencedTables:
+- schema: SYS
+  name: SYSAUTH$
+- schema: SYS
+  name: SYSTEM_PRIVILEGE_MAP
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     spm.name,

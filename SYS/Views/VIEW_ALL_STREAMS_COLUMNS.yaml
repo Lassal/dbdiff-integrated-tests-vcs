@@ -2,8 +2,52 @@ schema: SYS
 name: ALL_STREAMS_COLUMNS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLY_REASON
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 40
+- name: APPLY_VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SYNC_CAPTURE_REASON
+  dataType: VARCHAR2
+  textMaxLength: 39
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 39
+- name: SYNC_CAPTURE_VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ALL_OBJECTS
+- schema: SYS
+  name: DBA_STREAMS_COLUMNS
 viewDefinition: |-
   select
     s. "OWNER",

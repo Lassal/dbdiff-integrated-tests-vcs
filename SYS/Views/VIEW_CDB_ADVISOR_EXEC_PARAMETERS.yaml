@@ -2,7 +2,93 @@ schema: SYS
 name: CDB_ADVISOR_EXEC_PARAMETERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 4000
+- name: EXECUTION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: EXECUTION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: IS_DEFAULT
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 1
+- name: IS_MODIFIABLE_ANYTIME
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 1
+- name: IS_OUTPUT
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 1
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PARAMETER_FLAGS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 13
+  dataTypeLength:
+- name: PARAMETER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: PARAMETER_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 10
+- name: PARAMETER_TYPE#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 14
+  dataTypeLength:
+- name: PARAMETER_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
+- name: TASK_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: TASK_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
 referencedTables: []
 viewDefinition: |-
   SELECT

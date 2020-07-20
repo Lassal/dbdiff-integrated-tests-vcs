@@ -2,8 +2,28 @@ schema: SYS
 name: EXU81NOS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: TOBJID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TOWNER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: ASSOCIATION$
+- schema: SYS
+  name: COLTYPE$
+- schema: SYS
+  name: IND$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   SELECT
     to $.obj#,

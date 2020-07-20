@@ -2,8 +2,38 @@ schema: SYS
 name: KU$_XSROLE_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+- name: XS_GRANT_LIST
+  dataType: KU$_XSRGRANT_LIST_T
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: XS_OBJ
+  dataType: KU$_XSOBJ_T
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: KU$_XSOBJ_VIEW
+- schema: SYS
+  name: KU$_XSROLE_GRANT_VIEW
+- schema: SYS
+  name: XS$OBJ
+- schema: SYS
+  name: XS$PRIN
 viewDefinition: |-
   select
     '1',

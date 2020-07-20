@@ -2,8 +2,26 @@ schema: SYS
 name: USER_RESOURCE_LIMITS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: LIMIT
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 40
+- name: RESOURCE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 32
+referencedTables:
+- schema: SYS
+  name: PROFILE$
+- schema: SYS
+  name: RESOURCE_MAP
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     m.name,

@@ -2,8 +2,97 @@ schema: SYS
 name: USER_PARALLEL_EXECUTE_TASKS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: APPLY_CROSSEDITION_TRIGGER
+  dataType: VARCHAR2
+  textMaxLength: 130
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 130
+- name: CHUNK_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 12
+- name: EDITION
+  dataType: VARCHAR2
+  textMaxLength: 130
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 130
+- name: FIRE_APPLY_TRIGGER
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 10
+- name: JOB_CLASS
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 128
+- name: JOB_PREFIX
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: LANGUAGE_FLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: NUMBER_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: PARALLEL_LEVEL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: SQL_STMT
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 19
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: TABLE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: TASK_COMMENT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
+- name: TASK_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: DBMS_PARALLEL_EXECUTE_TASK$
 viewDefinition: |-
   select
     task_name,

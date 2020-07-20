@@ -2,8 +2,46 @@ schema: SYS
 name: AUDITABLE_SYSTEM_ACTIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACTION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: COMPONENT
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 64
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 64
+- name: TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DUAL
+- schema: SYS
+  name: V$SQLCOMMAND
+- schema: SYS
+  name: V$UNIFIED_AUDIT_RECORD_FORMAT
+- schema: SYS
+  name: X$AUD_DPAPI_ACTIONS
+- schema: SYS
+  name: X$AUD_DP_ACTIONS
+- schema: SYS
+  name: X$AUD_DV_OBJ_EVENTS
+- schema: SYS
+  name: X$AUD_OLS_ACTIONS
+- schema: SYS
+  name: X$AUD_XS_ACTIONS
 viewDefinition: |-
   select
     audit_type,

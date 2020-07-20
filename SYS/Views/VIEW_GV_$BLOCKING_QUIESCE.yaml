@@ -2,8 +2,25 @@ schema: SYS
 name: GV_$BLOCKING_QUIESCE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: INST_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: SID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: GV$BLOCKING_QUIESCE
 viewDefinition: |-
   select
     "INST_ID",

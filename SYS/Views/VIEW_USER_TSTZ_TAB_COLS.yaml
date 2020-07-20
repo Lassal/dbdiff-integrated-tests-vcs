@@ -2,8 +2,36 @@ schema: SYS
 name: USER_TSTZ_TAB_COLS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: QUALIFIED_COL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ATTRIBUTE$
+- schema: SYS
+  name: COLLECTION$
+- schema: SYS
+  name: COLTYPE$
+- schema: SYS
+  name: DEPENDENCY$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: USER_ALL_TABLES
+- schema: SYS
+  name: USER_NESTED_TABLE_COLS
+- schema: SYS
+  name: USER_TAB_COLS
 viewDefinition: |-
   with va_of_tstz_typ as (
     select

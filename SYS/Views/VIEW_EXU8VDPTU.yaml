@@ -2,8 +2,30 @@ schema: SYS
 name: EXU8VDPTU
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CHILD
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: COWNER
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: PARENT
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: POWNER
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: EXU8VDPT
 viewDefinition: |-
   SELECT
     "PARENT",

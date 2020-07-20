@@ -2,8 +2,63 @@ schema: SYS
 name: USER_SCHEDULER_NOTIFICATIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BODY
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: EVENT
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 19
+- name: EVENT_FLAG
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength:
+- name: FILTER_CONDITION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
+- name: JOB_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: JOB_SUBNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: RECIPIENT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: SENDER
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: SUBJECT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: SCHEDULER$_NOTIFICATION
 viewDefinition: |-
   SELECT
     sr.job_name,

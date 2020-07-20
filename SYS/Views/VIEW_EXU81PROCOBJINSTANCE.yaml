@@ -2,8 +2,86 @@ schema: SYS
 name: EXU81PROCOBJINSTANCE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CLASS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: LEVEL#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: OBJID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: OWNERID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: PACKAGE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: PAR_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength: 128
+- name: PAR_OBJID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 12
+  dataTypeLength:
+- name: PAR_PROPERTY
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 13
+  dataTypeLength:
+- name: PKG_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength: 128
+- name: PREPOST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: TYPE#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: EXPDEPOBJ$
+- schema: SYS
+  name: EXU81OBJ
+- schema: SYS
+  name: EXU81PROCOBJ
+- schema: SYS
+  name: TAB$
 viewDefinition: |-
   SELECT
     o.name,

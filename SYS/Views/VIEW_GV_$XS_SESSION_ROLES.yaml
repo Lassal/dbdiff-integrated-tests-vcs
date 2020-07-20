@@ -2,8 +2,37 @@ schema: SYS
 name: GV_$XS_SESSION_ROLES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: FLAGS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: INST_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: ROLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: ROLE_WSPACE
+  dataType: VARCHAR2
+  textMaxLength: 129
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 129
+referencedTables:
+- schema: SYS
+  name: GV$XS_SESSION_ROLE
 viewDefinition: |-
   select
     "INST_ID",

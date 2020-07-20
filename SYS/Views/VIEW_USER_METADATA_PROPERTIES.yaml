@@ -2,8 +2,44 @@ schema: SYS
 name: USER_METADATA_PROPERTIES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OWNING_OBJECT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: OWNING_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 23
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 23
+- name: PROPERTY_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: PROPERTY_KEY
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: PROPERTY_ORDER
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: PROPERTY_VALUE
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OLAP_METADATA_PROPERTIES$
 viewDefinition: |-
   SELECT
     mp.owning_object_id OWNING_OBJECT_ID,

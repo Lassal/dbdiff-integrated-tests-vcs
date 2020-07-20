@@ -2,8 +2,33 @@ schema: SYS
 name: USER_COMPARISON_COLUMNS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: COLUMN_POSITION
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: COMPARISON_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: INDEX_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: DBA_COMPARISON_COLUMNS
 viewDefinition: |-
   SELECT
     comparison_name,

@@ -2,8 +2,21 @@ schema: SYS
 name: DEFERRCOUNT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DESTINATION
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: ERRCOUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DEFERROR
 viewDefinition: |-
   SELECT
     count(1) errcount,

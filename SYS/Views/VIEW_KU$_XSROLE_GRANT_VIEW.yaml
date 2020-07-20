@@ -2,8 +2,69 @@ schema: SYS
 name: KU$_XSROLE_GRANT_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: END_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: GRANTEE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: GRANTEE_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: GRANTER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: GRANTER_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: ROLE_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: START_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: XS$OBJ
+- schema: SYS
+  name: XS$ROLE_GRANT
 viewDefinition: |-
   select
     '1',

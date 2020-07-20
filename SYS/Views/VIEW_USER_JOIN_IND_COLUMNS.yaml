@@ -2,8 +2,58 @@ schema: SYS
 name: USER_JOIN_IND_COLUMNS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: INDEX_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: INNER_TABLE_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: INNER_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: INNER_TABLE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OUTER_TABLE_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: OUTER_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: OUTER_TABLE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: JIJOIN$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     oi.name,

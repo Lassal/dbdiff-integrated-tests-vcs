@@ -2,8 +2,65 @@ schema: SYS
 name: ORA_KGLR7_IDL_SB4
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: LENGTH
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OBJ#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PART
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: PIECE
+  dataType: UNDEFINED
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: PIECE#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: IDL_SB4$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: ORA_KGLR7_OBJECTS
+- schema: SYS
+  name: SYSAUTH$
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: |-
   select
     /*+ index(i i_idl_sb41) +*/

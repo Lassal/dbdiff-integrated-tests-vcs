@@ -2,8 +2,195 @@ schema: SYS
 name: KU$_XSPRIN_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ASTATUS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 30
+  dataTypeLength:
+- name: CREDENTIAL
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 128
+- name: CTIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 33
+  dataTypeLength: 4000
+- name: DURATION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: ENABLE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: END_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: EXPTIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength:
+- name: EXT_SRC
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: FAILEDLOGINS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: GUID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: LSLOGONTIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 29
+  dataTypeLength:
+- name: LTIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength:
+- name: MTIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength:
+- name: NOTE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength: 4000
+- name: OBJACL_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: PFNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength: 128
+- name: PNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 128
+- name: POWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 128
+- name: PRIN_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: PROFILE_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: PTIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength:
+- name: SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: SCOPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: START_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: STATUS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength:
+- name: SYSTEM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: TABLESPACE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 30
+- name: TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: VERIFIER
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 31
+  dataTypeLength: 256
+- name: VERIFIER_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 32
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: PROFNAME$
+- schema: SYS
+  name: XS$PRIN
+- schema: SYS
+  name: XS$VERIFIERS
 viewDefinition: |-
   select
     '1',

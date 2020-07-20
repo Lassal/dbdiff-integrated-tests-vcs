@@ -2,8 +2,63 @@ schema: SYS
 name: EXU92TSP
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FLAGS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: HIBOUNDLEN
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: HIBOUNDVAL
+  dataType: LONG
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: OBJID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: OWNERID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: SPART_POSITION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: SUBPNAME
+  dataType: VARCHAR2
+  textMaxLength: 132
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 132
+- name: TSNAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 30
+- name: TSNO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DEFSUBPART$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: TS$
 viewDefinition: |-
   SELECT
     dsp.bo#,

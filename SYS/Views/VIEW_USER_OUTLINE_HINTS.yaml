@@ -2,8 +2,40 @@ schema: SYS
 name: USER_OUTLINE_HINTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: HINT
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: JOIN_POS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: NODE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: STAGE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: OUTLN
+  name: OL$
+- schema: OUTLN
+  name: OL$HINTS
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     o.ol_name,

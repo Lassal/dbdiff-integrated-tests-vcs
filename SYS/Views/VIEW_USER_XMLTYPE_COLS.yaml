@@ -2,8 +2,39 @@ schema: SYS
 name: USER_XMLTYPE_COLS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: QUALIFIED_COL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: SCHEMA_ID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: SCHEMA_URL
+  dataType: VARCHAR2
+  textMaxLength: 700
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 700
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: DBA_XMLTYPE_COLS
 viewDefinition: |-
   select
     SCHEMA_ID,

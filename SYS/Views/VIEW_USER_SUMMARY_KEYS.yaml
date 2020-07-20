@@ -2,8 +2,73 @@ schema: SYS
 name: USER_SUMMARY_KEYS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CONTAINER_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: DETAILOBJ_ALIAS
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: DETAILOBJ_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: DETAILOBJ_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: DETAILOBJ_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: DETAILOBJ_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 5
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: POSITION_IN_SELECT
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: SUMMARY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SUM$
+- schema: SYS
+  name: SUMDETAIL$
+- schema: SYS
+  name: SUMKEY$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     u1.name,

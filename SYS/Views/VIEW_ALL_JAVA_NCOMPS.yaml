@@ -2,8 +2,56 @@ schema: SYS
 name: ALL_JAVA_NCOMPS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: INITIALIZER
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: LIBRARY
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: LIBRARYFILE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SOURCE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: JAVASNM$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: SYSAUTH$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: |-
   select
     /*+ no_cartesian(t) ordered use_nl(o t) */

@@ -2,8 +2,86 @@ schema: SYS
 name: USER_REPPARAMETER_COLUMN
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CONFLICT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 10
+- name: FUNCTION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 386
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 386
+- name: METHOD_NAME
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 80
+- name: ONAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: PARAMETER_COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 4000
+- name: PARAMETER_SEQUENCE_NO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: PARAMETER_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: PRIORITY_GROUP
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 30
+- name: REFERENCE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: SEQUENCE_NO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: SNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: DBA_REPPARAMETER_COLUMN
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: USER_TAB_COLUMNS
+- schema: SYS
+  name: _USER_REPL_NESTED_TABLE_NAMES
+- schema: SYSTEM
+  name: REPCAT$_PARAMETER_COLUMN
+- schema: SYSTEM
+  name: REPCAT$_REPCOLUMN
+- schema: SYSTEM
+  name: REPCAT$_RESOLUTION
 viewDefinition: |-
   select
     p.sname,

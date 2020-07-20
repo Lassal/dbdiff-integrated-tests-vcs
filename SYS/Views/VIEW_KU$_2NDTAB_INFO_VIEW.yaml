@@ -2,8 +2,68 @@ schema: SYS
 name: KU$_2NDTAB_INFO_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FLAGS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: INDEX_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: INDEX_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: INTERFACE_VRSN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TS_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TYPE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: TYPE_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: IND$
+- schema: SYS
+  name: INDTYPES$
+- schema: SYS
+  name: KU$_PTABLE_TS_VIEW
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: PARTOBJ$
+- schema: SYS
+  name: SECOBJ$
+- schema: SYS
+  name: TAB$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     distinct o.obj#,

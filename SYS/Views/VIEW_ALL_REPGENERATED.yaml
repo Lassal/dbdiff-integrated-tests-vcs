@@ -2,8 +2,80 @@ schema: SYS
 name: ALL_REPGENERATED
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_ONAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: BASE_SNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: BASE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 12
+- name: DISTRIBUTED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 1
+- name: ONAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: PACKAGE_PREFIX
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: PROCEDURE_PREFIX
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: REASON
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 30
+- name: SNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 12
+referencedTables:
+- schema: SYS
+  name: ALL_OBJECTS
+- schema: SYS
+  name: ALL_USERS
+- schema: SYS
+  name: REPCAT_GENERATED
+- schema: SYS
+  name: REPCAT_REPOBJECT
+- schema: SYS
+  name: USER_REPGENERATED
+- schema: SYS
+  name: USER_REPGROUP_PRIVILEGES
 viewDefinition: |-
   select
     r.sname,

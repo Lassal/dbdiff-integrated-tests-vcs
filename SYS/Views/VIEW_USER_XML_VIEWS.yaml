@@ -2,8 +2,46 @@ schema: SYS
 name: USER_XML_VIEWS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ELEMENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 2000
+- name: SCHEMA_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: VIEW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: XMLSCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 700
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 700
+referencedTables:
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: COLTYPE$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OPQTYPE$
+- schema: SYS
+  name: VIEW$
+- schema: XDB
+  name: XDB$ELEMENT
+- schema: XDB
+  name: XDB$SCHEMA
 viewDefinition: |-
   select
     o.name,

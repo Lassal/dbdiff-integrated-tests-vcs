@@ -2,8 +2,125 @@ schema: SYS
 name: USER_SCHEDULER_RUNNING_CHAINS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CHAIN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: CHAIN_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: COMPLETED
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 5
+- name: DURATION
+  dataType: INTERVAL DAY(9) TO SECOND(6)
+  numericPrecision: 9
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 9,6
+- name: END_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: ERROR_CODE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: JOB_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: JOB_SUBNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: PAUSE
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 5
+- name: PAUSE_BEFORE
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 5
+- name: RESTART_ON_FAILURE
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 5
+- name: RESTART_ON_RECOVERY
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 5
+- name: SKIP
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 5
+- name: START_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: STATE
+  dataType: VARCHAR2
+  textMaxLength: 15
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 15
+- name: STEP_JOB_LOG_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: STEP_JOB_SUBNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 128
+- name: STEP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SCHEDULER$_JOB
+- schema: SYS
+  name: SCHEDULER$_STEP
+- schema: SYS
+  name: SCHEDULER$_STEP_STATE
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     jo.name,

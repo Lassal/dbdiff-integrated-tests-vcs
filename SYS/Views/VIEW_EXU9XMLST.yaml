@@ -2,8 +2,25 @@ schema: SYS
 name: EXU9XMLST
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SCHEMAOID
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 32
+- name: TOBJID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: NTAB$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OPQTYPE$
 viewDefinition: |-
   SELECT
     RAWTOHEX(opq.schemaoid),

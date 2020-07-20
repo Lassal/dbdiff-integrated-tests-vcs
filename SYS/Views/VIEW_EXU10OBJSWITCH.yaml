@@ -2,8 +2,37 @@ schema: SYS
 name: EXU10OBJSWITCH
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMPFLGS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+- name: NLSLENSEM
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: OBJID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: OPTLEVEL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: SETTINGS$
 viewDefinition: |-
   SELECT
     a .obj#,

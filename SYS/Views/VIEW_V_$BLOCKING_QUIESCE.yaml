@@ -2,8 +2,20 @@ schema: SYS
 name: V_$BLOCKING_QUIESCE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: SID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$BLOCKING_QUIESCE
 viewDefinition: |-
   select
     "SID",

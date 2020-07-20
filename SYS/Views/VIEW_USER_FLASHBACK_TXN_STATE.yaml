@@ -2,8 +2,31 @@ schema: SYS
 name: USER_FLASHBACK_TXN_STATE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BACKOUT_MODE
+  dataType: VARCHAR2
+  textMaxLength: 16
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 16
+- name: COMPENSATING_XID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: DEPENDENT_XID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: XID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: TRANSACTION_BACKOUT_STATE$
 viewDefinition: |-
   SELECT
     COMPENSATING_XID,

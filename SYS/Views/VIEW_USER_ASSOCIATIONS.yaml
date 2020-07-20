@@ -2,8 +2,83 @@ schema: SYS
 name: USER_ASSOCIATIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: DEF_CPU_COST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: DEF_IO_COST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: DEF_NET_COST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: DEF_SELECTIVITY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: INTERFACE_VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: MAINTENANCE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 14
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 14
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OBJECT_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 9
+- name: STATSTYPE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: STATSTYPE_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ASSOCIATION$
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: |-
   select
     u.name,

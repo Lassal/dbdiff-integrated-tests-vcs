@@ -2,8 +2,30 @@ schema: SYS
 name: KU_NOEXP_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: OBJ_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: KU_NOEXP_TAB
+- schema: SYS
+  name: NOEXP$
 viewDefinition: |-
   SELECT
     decode(

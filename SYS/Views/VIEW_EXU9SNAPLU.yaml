@@ -2,8 +2,110 @@ schema: SYS
 name: EXU9SNAPLU
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FILE_VER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: FLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: INV_SNAPL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: LOG_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: LOG_OWNERID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: LOG_TABLE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: LOG_TRIGGER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: MASTER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: MTIME
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength:
+- name: OID_SNAPL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: OLDEST
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: OLDEST_NEW
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: OLDEST_OID
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: OLDEST_PK
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: PRIMKEY_SNAPL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: ROWID_SNAPL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: SEQ_SNAPL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: TEMP_LOG
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 128
+- name: YOUNGEST
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: EXU9SNAPL
 viewDefinition: |-
   SELECT
     "LOG_OWNER",

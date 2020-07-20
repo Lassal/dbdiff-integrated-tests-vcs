@@ -2,8 +2,107 @@ schema: SYS
 name: KU$_COLLECTION_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CHARSETFORM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: CHARSETID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: COLL_TOID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: COLL_TYPE
+  dataType: KU$_SIMPLE_TYPE_T
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: COLL_VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: ELEM_TOID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: ELEM_VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: LENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: PRECISION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: PROPERTIES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: SCALE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: SPARE1
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: SPARE2
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: SPARE3
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: SYNOBJ
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: TOID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TYPEMD
+  dataType: KU$_SIMPLE_TYPE_T
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: UPPER_BOUND
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: COLLECTION$
+- schema: SYS
+  name: KU$_SIMPLE_TYPE_VIEW
 viewDefinition: |-
   select
     toid,

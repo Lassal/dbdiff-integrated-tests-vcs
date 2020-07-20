@@ -2,8 +2,24 @@ schema: SYS
 name: NLS_INSTANCE_PARAMETERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: PARAMETER
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: VALUE
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 64
+referencedTables:
+- schema: SYS
+  name: DUAL
+- schema: SYS
+  name: V$SYSTEM_PARAMETER
 viewDefinition: |-
   select
     substr(upper(name), 1, 30),

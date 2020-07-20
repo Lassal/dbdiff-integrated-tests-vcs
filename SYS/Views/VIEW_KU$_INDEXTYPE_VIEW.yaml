@@ -2,8 +2,60 @@ schema: SYS
 name: KU$_INDEXTYPE_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: IMPL_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: INDARRAY
+  dataType: KU$_INDARRAYTYPE_LIST_T
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: OPERATORS
+  dataType: KU$_INDEXOP_LIST_T
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: PROPERTY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: SCHEMA_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: INDTYPES$
+- schema: SYS
+  name: KU$_INDARRAYTYPE_VIEW
+- schema: SYS
+  name: KU$_INDEXOP_VIEW
+- schema: SYS
+  name: KU$_SCHEMAOBJ_VIEW
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   select
     '1',

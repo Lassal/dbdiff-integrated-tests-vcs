@@ -2,8 +2,16 @@ schema: SYS
 name: USER_EDITIONED_TYPES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 23
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 23
+referencedTables:
+- schema: SYS
+  name: USER_EDITIONING$
 viewDefinition: |-
   select
     decode(

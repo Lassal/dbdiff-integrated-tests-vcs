@@ -2,8 +2,28 @@ schema: SYS
 name: TABLE_EXPORT_OBJECTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 2000
+- name: NAMED
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 1
+- name: OBJECT_PATH
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 200
+referencedTables:
+- schema: SYS
+  name: DBA_EXPORT_OBJECTS
 viewDefinition: |-
   select
     OBJECT_PATH,

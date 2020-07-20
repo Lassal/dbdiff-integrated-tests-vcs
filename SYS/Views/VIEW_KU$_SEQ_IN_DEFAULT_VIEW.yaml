@@ -2,8 +2,19 @@ schema: SYS
 name: KU$_SEQ_IN_DEFAULT_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   select
     unique c .obj#

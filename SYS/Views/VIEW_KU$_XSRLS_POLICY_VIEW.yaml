@@ -2,8 +2,113 @@ schema: SYS
 name: KU$_XSRLS_POLICY_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: CHECK_OPT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: ENABLE_FLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: GNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: LONG_PRED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: PFNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 128
+- name: PFSCHMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 128
+- name: POLICY_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 33
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 33
+- name: PPNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 128
+- name: REL_COLS
+  dataType: KU$_RLS_SEC_REL_COL_LIST_T
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: REL_COLS_OPT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: RLS_ASSOC_LIST
+  dataType: KU$_RLS_ASSOC_LIST_T
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: STMT_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: KU$_SCHEMAOBJ_VIEW
+- schema: SYS
+  name: RLS$
+- schema: SYS
+  name: RLS_CSA$
+- schema: SYS
+  name: RLS_SC$
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   select
     '1',

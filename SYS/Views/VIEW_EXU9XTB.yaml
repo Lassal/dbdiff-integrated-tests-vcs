@@ -2,8 +2,70 @@ schema: SYS
 name: EXU9XTB
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DEFAULT_DIR
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: DIRECTORY
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 4000
+- name: NR_LOCATIONS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: OBJID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PARAM_CLOB
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: PAR_TYPE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: POSITION
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: REJECT_LIMIT
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: EXTERNAL_LOCATION$
+- schema: SYS
+  name: EXTERNAL_TAB$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   SELECT
     et$.obj#,

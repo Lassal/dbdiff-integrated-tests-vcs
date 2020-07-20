@@ -2,8 +2,36 @@ schema: SYS
 name: USER_MINING_MODEL_SETTINGS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: MODEL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SETTING_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: SETTING_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 7
+- name: SETTING_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: MODELSET$
+- schema: SYS
+  name: OBJ$
 viewDefinition: |-
   select
     o.name,

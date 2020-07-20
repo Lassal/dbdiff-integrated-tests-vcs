@@ -2,8 +2,28 @@ schema: SYS
 name: PRODUCT_COMPONENT_VERSION
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: PRODUCT
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 80
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 80
+- name: VERSION
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 80
+referencedTables:
+- schema: SYS
+  name: V$VERSION
 viewDefinition: |-
   (
     select

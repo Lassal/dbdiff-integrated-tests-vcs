@@ -2,8 +2,50 @@ schema: SYS
 name: V_$LOADISTAT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: INDEXNAME
+  dataType: VARCHAR2
+  textMaxLength: 31
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 31
+- name: MESSAGE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: MESSAGE_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 31
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 31
+- name: SUBNAME
+  dataType: VARCHAR2
+  textMaxLength: 31
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 31
+- name: TABNAME
+  dataType: VARCHAR2
+  textMaxLength: 31
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 31
+referencedTables:
+- schema: SYS
+  name: V$LOADISTAT
 viewDefinition: |-
   select
     "OWNER",

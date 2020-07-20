@@ -2,8 +2,92 @@ schema: SYS
 name: USER_REPFLAVOR_COLUMNS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CNAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: FNAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 30
+- name: GNAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: GROUP_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: ONAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: POS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: SNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: TOP
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 128
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: TYPE_HASHCODE
+  dataType: VARCHAR2
+  textMaxLength: 34
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 34
+- name: TYPE_MOD
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 3
+- name: TYPE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 128
+- name: TYPE_TOID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DBA_REPFLAVOR_COLUMNS
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: USER_TAB_COLUMNS
+- schema: SYS
+  name: _USER_REPL_NESTED_TABLE_NAMES
 viewDefinition: |-
   SELECT
     fc.fname,

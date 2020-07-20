@@ -2,8 +2,34 @@ schema: SYS
 name: USER_RSRC_CONSUMER_GROUP_PRIVS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: GRANTED_GROUP
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: GRANT_OPTION
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 3
+- name: INITIAL_GROUP
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 3
+referencedTables:
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: RESOURCE_CONSUMER_GROUP$
+- schema: SYS
+  name: RESOURCE_GROUP_MAPPING$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     g.name,

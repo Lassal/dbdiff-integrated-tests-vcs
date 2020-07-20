@@ -2,8 +2,32 @@ schema: SYS
 name: KU$_CLU_TS_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: OWNER_NUM
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 30
+referencedTables:
+- schema: SYS
+  name: CLU$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: TS$
 viewDefinition: |-
   select
     o.owner#,

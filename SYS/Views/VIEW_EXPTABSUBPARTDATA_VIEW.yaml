@@ -2,8 +2,60 @@ schema: SYS
 name: EXPTABSUBPARTDATA_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DSPBND
+  dataType: BLOB
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: DSPTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: PDEFTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: PONO
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: SPBND
+  dataType: BLOB
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: SPTS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: TDEFTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: UDEFTS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DEFSUBPART$
+- schema: SYS
+  name: EXPTABSUBPART
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: PARTOBJ$
+- schema: SYS
+  name: TABCOMPART$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     sp.bhiboundval SPBND,

@@ -2,8 +2,22 @@ schema: SYS
 name: INDEX_HISTOGRAM
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: KEYS_WITH_REPEAT_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: REPEAT_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: X$KDXHS
+- schema: SYS
+  name: X$KDXST
 viewDefinition: |-
   select
     hist.indx * power(2, stats.kdxstscl -4) repeat_count,
