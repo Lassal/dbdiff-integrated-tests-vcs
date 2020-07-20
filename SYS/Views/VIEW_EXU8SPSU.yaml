@@ -2,8 +2,28 @@ schema: SYS
 name: EXU8SPSU
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: LINE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: OBJ#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: SOURCE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SOURCE$
 viewDefinition: |-
   SELECT
     o.obj#,

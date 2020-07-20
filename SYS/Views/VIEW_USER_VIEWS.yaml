@@ -2,8 +2,101 @@ schema: SYS
 name: USER_VIEWS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BEQUEATH
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 12
+- name: CONTAINER_DATA
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 1
+- name: EDITIONING_VIEW
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 1
+- name: OID_TEXT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 4000
+- name: OID_TEXT_LENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: ORIGIN_CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: READ_ONLY
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 1
+- name: SUPERVIEW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 128
+- name: TEXT
+  dataType: LONG
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: TEXT_LENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: TEXT_VC
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: TYPE_TEXT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: TYPE_TEXT_LENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: VIEW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: VIEW_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 128
+- name: VIEW_TYPE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: INT$DBA_VIEWS
 viewDefinition: |-
   select
     VIEW_NAME,

@@ -2,8 +2,56 @@ schema: SYS
 name: ALL_STORED_SETTINGS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OBJECT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 12
+- name: ORIGIN_CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PARAM_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: PARAM_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: INT$DBA_STORED_SETTINGS
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: SYSAUTH$
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: |-
   SELECT
     owner,

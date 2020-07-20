@@ -2,8 +2,22 @@ schema: SYS
 name: EXU9NLS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: PROPS$
 viewDefinition: |-
   SELECT
     name,

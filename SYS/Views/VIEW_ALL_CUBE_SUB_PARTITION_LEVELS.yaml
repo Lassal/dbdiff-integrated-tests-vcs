@@ -2,6 +2,78 @@ schema: SYS
 name: ALL_CUBE_SUB_PARTITION_LEVELS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CUBE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PARTITION_DIMENSION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: PARTITION_HIERARCHY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: PARTITION_LEVEL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: PRECOMPUTE_PERCENT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: SUB_PARTITION_LEVEL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 200
+- name: SUB_PARTITION_LEVEL_ORDER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: OLAP_CUBES$
+- schema: SYS
+  name: OLAP_CUBE_DIMENSIONS$
+- schema: SYS
+  name: OLAP_DIMENSIONALITY$
+- schema: SYS
+  name: OLAP_DIM_LEVELS$
+- schema: SYS
+  name: OLAP_HIERARCHIES$
+- schema: SYS
+  name: OLAP_HIER_LEVELS$
+- schema: SYS
+  name: OLAP_IMPL_OPTIONS$
+- schema: SYS
+  name: OLAP_MULTI_OPTIONS$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: null

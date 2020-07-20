@@ -2,8 +2,78 @@ schema: SYS
 name: EXU9MVLCDCS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CREATED
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 255
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 255
+- name: EARLIEST_SCN
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: HANDLE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength:
+- name: LAST_EXTENDED
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: LAST_PURGED
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: LATEST_SCN
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: MVL_INVALID
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 1
+- name: SET_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 1
+- name: USERNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: CDC_CHANGE_TABLES$
+- schema: SYS
+  name: CDC_SUBSCRIBED_TABLES$
+- schema: SYS
+  name: CDC_SUBSCRIBERS$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     s.set_name,

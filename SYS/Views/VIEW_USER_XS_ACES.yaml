@@ -2,8 +2,75 @@ schema: SYS
 name: USER_XS_ACES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACE_ORDER
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: ACL
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: END_DATE
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: GRANT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 5
+- name: INVERTED_PRINCIPAL
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 3
+- name: PRINCIPAL
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: PRINCIPAL_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 11
+- name: PRIVILEGE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: SECURITY_CLASS
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 128
+- name: SECURITY_CLASS_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 128
+- name: START_DATE
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DBA_XS_ACES
 viewDefinition: |-
   select
     acl,

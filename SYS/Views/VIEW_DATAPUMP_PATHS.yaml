@@ -2,8 +2,33 @@ schema: SYS
 name: DATAPUMP_PATHS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FULL_PATH
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 200
+- name: HET_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: OBJECT_PATH
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 200
+- name: SEQ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DATAPUMP_PATHS_VERSION
 viewDefinition: |-
   select
     m.het_type,

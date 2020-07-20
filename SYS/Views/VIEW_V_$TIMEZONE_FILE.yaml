@@ -2,8 +2,26 @@ schema: SYS
 name: V_$TIMEZONE_FILE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: FILENAME
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 20
+- name: VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$TIMEZONE_FILE
 viewDefinition: |-
   select
     "FILENAME",

@@ -2,8 +2,21 @@ schema: SYS
 name: EXU8CPO
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: PARAMETER
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 64
+- name: VALUE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$OPTION
 viewDefinition: |-
   SELECT
     parameter,

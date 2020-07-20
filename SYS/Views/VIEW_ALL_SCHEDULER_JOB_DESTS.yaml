@@ -2,6 +2,130 @@ schema: SYS
 name: ALL_SCHEDULER_JOB_DESTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CREDENTIAL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: CREDENTIAL_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: DESTINATION
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: DESTINATION_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: ENABLED
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 5
+- name: FAILURE_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: JOB_DEST_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: JOB_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: JOB_SUBNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: LAST_END_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: LAST_START_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: NEXT_START_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: REFS_ENABLED
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 5
+- name: RETRY_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: RUN_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: STATE
+  dataType: VARCHAR2
+  textMaxLength: 15
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 15
+referencedTables:
+- schema: SYS
+  name: ALL_SCHEDULER_DB_DESTS
+- schema: SYS
+  name: ALL_SCHEDULER_EXTERNAL_DESTS
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: SCHEDULER$_COMB_LW_JOB
+- schema: SYS
+  name: SCHEDULER$_DESTINATIONS
+- schema: SYS
+  name: SCHEDULER$_JOB
+- schema: SYS
+  name: SCHEDULER$_LWJOB_OBJ
+- schema: SYS
+  name: SCHEDULER$_WINDOW_GROUP
+- schema: SYS
+  name: SCHEDULER$_WINGRP_MEMBER
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: null

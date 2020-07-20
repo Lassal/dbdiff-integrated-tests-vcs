@@ -2,8 +2,25 @@ schema: SYS
 name: KU$_USER_EDITIONING_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: TYPE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 64
+- name: USER_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: USER_EDITIONING$
+- schema: SYS
+  name: V$EDITIONABLE_TYPES
 viewDefinition: |-
   select
     u.user#,

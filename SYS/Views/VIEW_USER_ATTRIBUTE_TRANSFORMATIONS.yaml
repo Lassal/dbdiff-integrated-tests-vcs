@@ -2,8 +2,48 @@ schema: SYS
 name: USER_ATTRIBUTE_TRANSFORMATIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ATTRIBUTE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: ATTRIBUTE_TRANSFORMATION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: FROM_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 257
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 257
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TO_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 385
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 385
+- name: TRANSFORMATION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: ATTRIBUTE_TRANSFORMATIONS$
+- schema: SYS
+  name: TRANSFORMATIONS$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     t.transformation_id,

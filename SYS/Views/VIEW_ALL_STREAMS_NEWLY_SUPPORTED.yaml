@@ -2,8 +2,36 @@ schema: SYS
 name: ALL_STREAMS_NEWLY_SUPPORTED
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMPATIBLE
+  dataType: CHAR
+  textMaxLength: 4
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: REASON
+  dataType: VARCHAR2
+  textMaxLength: 39
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 39
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ALL_OBJECTS
+- schema: SYS
+  name: DBA_STREAMS_NEWLY_SUPPORTED
 viewDefinition: |-
   select
     s. "OWNER",

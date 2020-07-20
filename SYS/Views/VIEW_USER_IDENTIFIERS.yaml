@@ -2,8 +2,71 @@ schema: SYS
 name: USER_IDENTIFIERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: LINE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 13
+- name: ORIGIN_CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: SIGNATURE
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 32
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 18
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 18
+- name: USAGE
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 11
+- name: USAGE_CONTEXT_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: USAGE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: INT$DBA_IDENTIFIERS
 viewDefinition: |-
   select
     NAME,

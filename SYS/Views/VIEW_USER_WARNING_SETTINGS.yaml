@@ -2,8 +2,39 @@ schema: SYS
 name: USER_WARNING_SETTINGS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OBJECT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 12
+- name: SETTING
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 7
+- name: WARNING
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 40
+referencedTables:
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: |-
   SELECT
     o.name,

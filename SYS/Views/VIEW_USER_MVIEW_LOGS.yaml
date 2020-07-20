@@ -2,8 +2,122 @@ schema: SYS
 name: USER_MVIEW_LOGS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMMIT_SCN_BASED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 3
+- name: FILTER_COLUMNS
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 3
+- name: INCLUDE_NEW_VALUES
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 3
+- name: LAST_PURGE_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: LAST_PURGE_STATUS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: LOG_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: LOG_TABLE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: LOG_TRIGGER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: MASTER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: NUM_ROWS_PURGED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: OBJECT_ID
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 3
+- name: PRIMARY_KEY
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 3
+- name: PURGE_ASYNCHRONOUS
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 3
+- name: PURGE_DEFERRED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 3
+- name: PURGE_INTERVAL
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 200
+- name: PURGE_START
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: ROWIDS
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 3
+- name: SEQUENCE
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 3
+- name: STAGING_LOG
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 3
+referencedTables:
+- schema: SYS
+  name: DBA_MVIEW_LOGS
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     s. "LOG_OWNER",

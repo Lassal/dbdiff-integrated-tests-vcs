@@ -2,8 +2,32 @@ schema: SYS
 name: GV_$OPTION
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: INST_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PARAMETER
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 64
+- name: VALUE
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 64
+referencedTables:
+- schema: SYS
+  name: GV$OPTION
 viewDefinition: |-
   select
     "INST_ID",

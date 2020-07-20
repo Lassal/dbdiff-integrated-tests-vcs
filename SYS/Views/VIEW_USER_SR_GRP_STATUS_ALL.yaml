@@ -2,8 +2,96 @@ schema: SYS
 name: USER_SR_GRP_STATUS_ALL
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_TBLS_REFR_STATUS
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 13
+- name: CURRENT_GROUP
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 1
+- name: CURRENT_RUN
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 1
+- name: ERROR_MESSAGE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 4000
+- name: ERROR_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: EXECUTE_END_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: EXECUTE_START_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: GROUP_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: NUM_MVS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength:
+- name: NUM_MVS_ABORTED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: NUM_MVS_COMPLETED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: NUM_TBLS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: OPERATION
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 7
+- name: PREPARE_END_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: PREPARE_START_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 10
+referencedTables:
+- schema: SYS
+  name: DBA_SR_GRP_STATUS_ALL
 viewDefinition: |-
   select
     GROUP_ID,

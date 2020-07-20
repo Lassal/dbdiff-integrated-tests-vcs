@@ -2,8 +2,111 @@ schema: SYS
 name: EXU8TYPTU
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AUDIT$
+  dataType: VARCHAR2
+  textMaxLength: 38
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength: 38
+- name: DEPORDER
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 14
+  dataTypeLength:
+- name: MTIME
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 19
+- name: OWNERID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: PROPERTY
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength:
+- name: ROOTTOID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: SQLVER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: TABOBJNO
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength:
+- name: THASHCODE
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: TNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TOID
+  dataType: RAW
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: TOWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TVERSION
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 12
+  dataTypeLength:
+- name: TYPEID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: TYPOBJNO
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TYPOBJSTATUS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: COLTYPE$
+- schema: SYS
+  name: DEPENDENCY$
+- schema: SYS
+  name: EXU816SQV
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: SYSAUTH$
+- schema: SYS
+  name: TYPE$
+- schema: SYS
+  name: TYPE_MISC$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     o.name,

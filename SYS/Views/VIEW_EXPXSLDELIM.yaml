@@ -2,8 +2,16 @@ schema: SYS
 name: EXPXSLDELIM
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: XSLDELIMITER
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 4
+referencedTables:
+- schema: SYS
+  name: METAXSLPARAM$
 viewDefinition: |-
   SELECT
     SUBSTR(DEFAULT_VAL, 2, 4)

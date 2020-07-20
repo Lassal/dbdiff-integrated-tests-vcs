@@ -2,8 +2,52 @@ schema: SYS
 name: USER_REPFLAVORS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CREATED_BY
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: CREATION_DATE
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: FLAVOR_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: FNAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 30
+- name: GNAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: GROUP_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: PUBLISHED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: USER$
+- schema: SYSTEM
+  name: REPCAT$_FLAVORS
 viewDefinition: |-
   select
     f.flavor_id,

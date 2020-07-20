@@ -2,8 +2,31 @@ schema: SYS
 name: KU$_TABCLST_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BASE_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: BASE_OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: CLST
+  dataType: KU$_CLST_T
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: CLST$
+- schema: SYS
+  name: KU$_CLST_VIEW
+- schema: SYS
+  name: KU$_SCHEMAOBJ_VIEW
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   select
     k.clstobj#,

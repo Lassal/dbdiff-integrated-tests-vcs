@@ -2,8 +2,63 @@ schema: SYS
 name: USER_DEPENDENCIES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DEPENDENCY_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 4
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: REFERENCED_LINK_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: REFERENCED_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: REFERENCED_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: REFERENCED_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 18
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 18
+- name: SCHEMAID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 18
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 18
+referencedTables:
+- schema: SYS
+  name: DEPENDENCY$
+- schema: SYS
+  name: DISK_AND_FIXED_OBJECTS
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: |-
   select
     o.name,

@@ -2,8 +2,77 @@ schema: SYS
 name: ALL_SQLSET_BINDS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CAPTURED
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 1
+- name: CON_DBID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: FORCE_MATCHING_SIGNATURE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: PLAN_HASH_VALUE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: POSITION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: SQLSET_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: SQLSET_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SQLSET_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: SQL_ID
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 13
+- name: SQL_SEQ
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: VALUE
+  dataType: ANYDATA
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: WRI$_SQLSET_BINDS
+- schema: SYS
+  name: WRI$_SQLSET_DEFINITIONS
+- schema: SYS
+  name: WRI$_SQLSET_PLANS
+- schema: SYS
+  name: WRI$_SQLSET_STATEMENTS
 viewDefinition: |-
   select
     name as sqlset_name,

@@ -2,8 +2,86 @@ schema: SYS
 name: ALL_STREAMS_TABLE_RULES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DML_CONDITION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: INCLUDE_TAGGED_LCR
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 3
+- name: RULE_CONDITION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 4000
+- name: RULE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength: 128
+- name: RULE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength: 128
+- name: RULE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 7
+- name: SOURCE_DATABASE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: STREAMS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: STREAMS_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 12
+- name: SUBSETTING_OPERATION
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 6
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: TABLE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ALL_RULES
+- schema: SYS
+  name: DBA_STREAMS_TABLE_RULES
+- schema: SYS
+  name: _ALL_STREAMS_PROCESSES
 viewDefinition: |-
   select
     tr.streams_name,

@@ -2,8 +2,137 @@ schema: SYS
 name: HS_PARALLEL_METADATA
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DBLINK
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: HISTOGRAM
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength: 1
+- name: HIST_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 128
+- name: HIST_COLUMN_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 128
+- name: IND_AVAILABLE
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  ordinalPosition: 9
+  dataTypeLength: 1
+- name: NCOL_AVG_VAL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: NCOL_MAX_VAL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: NCOL_MIN_VAL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: NUM_BUCKETS
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: NUM_PARTITIONS
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: NUM_PARTITION_COLUMNS
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: PARALLEL
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 1
+- name: PARALLEL_DEGREE
+  dataType: NUMBER
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: PARTITION_COL_NAMES
+  dataType: HSBLKNAMLST
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: PARTITION_COL_TYPES
+  dataType: HSBLKNAMLST
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: RANGE_PARTITIONED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 1
+- name: REMOTE_SCHEMA_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: REMOTE_TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: SAMPLED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 1
+- name: SAMPLE_CAP
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength: 1
+- name: SAMPLE_COLUMN
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 128
+- name: SAMPLE_COLUMN_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: HS$_PARALLEL_METADATA
 viewDefinition: |-
   select
     "DBLINK",

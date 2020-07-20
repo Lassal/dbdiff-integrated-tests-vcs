@@ -2,8 +2,34 @@ schema: SYS
 name: USER_REPAUDIT_ATTRIBUTE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ATTRIBUTE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: DATA_LENGTH
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: DATA_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 9
+- name: SOURCE
+  dataType: VARCHAR2
+  textMaxLength: 386
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 386
+referencedTables:
+- schema: SYSTEM
+  name: REPCAT$_AUDIT_ATTRIBUTE
 viewDefinition: |-
   select
     attribute,

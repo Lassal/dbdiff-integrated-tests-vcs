@@ -2,6 +2,136 @@ schema: SYS
 name: ALL_SCHEDULER_RUNNING_JOBS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CPU_USED
+  dataType: INTERVAL DAY(3) TO SECOND(2)
+  numericPrecision: 3
+  numericScale: 2
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 3,2
+- name: CREDENTIAL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 128
+- name: CREDENTIAL_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 128
+- name: DESTINATION
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 128
+- name: DESTINATION_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 128
+- name: DETACHED
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 5
+- name: ELAPSED_TIME
+  dataType: INTERVAL DAY(3) TO SECOND(2)
+  numericPrecision: 3
+  numericScale: 2
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 3,2
+- name: JOB_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: JOB_STYLE
+  dataType: VARCHAR2
+  textMaxLength: 17
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 17
+- name: JOB_SUBNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: LOG_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: RESOURCE_CONSUMER_GROUP
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 32
+- name: RUNNING_INSTANCE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: SESSION_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: SLAVE_OS_PROCESS_ID
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 12
+- name: SLAVE_PROCESS_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: GV$PROCESS
+- schema: SYS
+  name: GV$SCHEDULER_INMEM_MDINFO
+- schema: SYS
+  name: GV$SCHEDULER_INMEM_RTINFO
+- schema: SYS
+  name: GV$SCHEDULER_RUNNING_JOBS
+- schema: SYS
+  name: GV$SESSION
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: SCHEDULER$_COMB_LW_JOB
+- schema: SYS
+  name: SCHEDULER$_JOB
+- schema: SYS
+  name: SCHEDULER$_LWJOB_OBJ
+- schema: SYS
+  name: SCHEDULER$_PROGRAM
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$DATABASE
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: null

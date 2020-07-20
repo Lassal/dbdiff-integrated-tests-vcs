@@ -2,8 +2,105 @@ schema: SYS
 name: USER_SQLTUNE_STATISTICS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACTION
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 64
+- name: BUFFER_GETS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: COMMAND_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: CPU_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: DIRECT_WRITES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: DISK_READS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: ELAPSED_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: END_OF_FETCH_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: EXECUTIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: FETCHES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: MODULE
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 64
+- name: OBJECT_ID
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 38,0
+- name: OPTIMIZER_COST
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: OPTIMIZER_ENV
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: PARSING_SCHEMA_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: ROWS_PROCESSED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: TASK_ID
+  dataType: NUMBER
+  numericPrecision: 38
+  numericScale: 0
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 38,0
+referencedTables:
+- schema: SYS
+  name: WRI$_ADV_SQLT_STATISTICS
+- schema: SYS
+  name: WRI$_ADV_TASKS
+- schema: SYS
+  name: X$MODACT_LENGTH
 viewDefinition: |-
   SELECT
     b.TASK_ID,

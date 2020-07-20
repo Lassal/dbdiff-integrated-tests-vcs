@@ -2,8 +2,34 @@ schema: SYS
 name: SYSCATALOG
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CREATOR
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: REMARKS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: TABLETYPE
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 8
+- name: TNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: SYSCATALOG_
 viewDefinition: |-
   select
     tname,

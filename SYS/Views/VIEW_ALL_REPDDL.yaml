@@ -2,8 +2,53 @@ schema: SYS
 name: ALL_REPDDL
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DDL_NUM
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: LINE
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: LOG_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: MASTER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: ROLE
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 1
+- name: SOURCE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TEXT
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 2000
+referencedTables:
+- schema: SYS
+  name: ALL_REPCATLOG
+- schema: SYSTEM
+  name: REPCAT$_DDL
 viewDefinition: |-
   select
     r.log_id,

@@ -2,8 +2,42 @@ schema: SYS
 name: USER_SUBPARTITION_TEMPLATES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: HIGH_BOUND
+  dataType: LONG
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: SUBPARTITION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 132
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 132
+- name: SUBPARTITION_POSITION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: TABLESPACE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 30
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: DEFSUBPART$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: TS$
 viewDefinition: |-
   select
     o.name,

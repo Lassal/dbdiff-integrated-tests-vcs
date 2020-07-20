@@ -2,8 +2,79 @@ schema: SYS
 name: ALL_EXTERNAL_TABLES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACCESS_PARAMETERS
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: ACCESS_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 7
+- name: DEFAULT_DIRECTORY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: DEFAULT_DIRECTORY_OWNER
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 3
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PROPERTY
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 10
+- name: REJECT_LIMIT
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 40
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TYPE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: TYPE_OWNER
+  dataType: CHAR
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 3
+referencedTables:
+- schema: SYS
+  name: EXTERNAL_TAB$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: |-
   select
     u.name,

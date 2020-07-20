@@ -2,8 +2,41 @@ schema: SYS
 name: V_$REPLAY_CONTEXT_LOB
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CONTEXT_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: LOB_ID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: LOB_VERSION_BASE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: LOB_VERSION_WRAP
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: MATCHED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: V$REPLAY_CONTEXT_LOB
 viewDefinition: |-
   select
     "CONTEXT_ID",

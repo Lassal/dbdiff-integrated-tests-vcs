@@ -2,8 +2,50 @@ schema: SYS
 name: USER_REPPROP
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DBLINK
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: HOW
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 13
+- name: ONAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: PROPAGATE_COMMENT
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 80
+- name: SNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 16
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 16
+referencedTables:
+- schema: SYS
+  name: REPCAT_REPOBJECT
+- schema: SYS
+  name: REPCAT_REPPROP
+- schema: SYS
+  name: USER_USERS
 viewDefinition: |-
   select
     r.sname,

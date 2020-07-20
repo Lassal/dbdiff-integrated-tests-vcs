@@ -2,8 +2,38 @@ schema: SYS
 name: KU$_PART_COL_NAMES_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: PARTCOL$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: SUBPARTCOL$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     u.name,

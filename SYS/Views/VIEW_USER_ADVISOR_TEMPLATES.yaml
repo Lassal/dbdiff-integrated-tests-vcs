@@ -2,8 +2,55 @@ schema: SYS
 name: USER_ADVISOR_TEMPLATES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ADVISOR_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: CREATED
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 256
+- name: LAST_MODIFIED
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: READ_ONLY
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 5
+- name: SOURCE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: TASK_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TASK_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: WRI$_ADV_TASKS
 viewDefinition: |-
   select
     a .id as task_id,

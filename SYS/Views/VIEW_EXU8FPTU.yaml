@@ -2,8 +2,104 @@ schema: SYS
 name: EXU8FPTU
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AUDIT$
+  dataType: VARCHAR2
+  textMaxLength: 38
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 38
+- name: DOBJNO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: MTIME
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 19
+- name: OBJNO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: OWNERID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: PROPERTY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: ROOTTOID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: SQLVER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: THASHCODE
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: TNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TOID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: TOWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TVERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: TYPEID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: TYPOBJSTATUS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DEPENDENCY$
+- schema: SYS
+  name: EXU816SQV
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: SYSAUTH$
+- schema: SYS
+  name: TYPE$
+- schema: SYS
+  name: TYPE_MISC$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     o.name,

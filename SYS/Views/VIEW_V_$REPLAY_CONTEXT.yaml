@@ -2,8 +2,136 @@ schema: SYS
 name: V_$REPLAY_CONTEXT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CHECKSUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: CONTEXT_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: CONTEXT_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength:
+- name: DATABASE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: ENDIANNESS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: ENV_HASH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: LOBS_CAPTURED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength:
+- name: LOBS_REPLAYED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: PROTOCOL_VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: RESET_LOG_COUNTER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: RESET_LOG_SCN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: SCN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: SEQUENCE_VALUES_CAPTURED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: SEQUENCE_VALUES_REPLAYED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: SID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: SQL_HASH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: SYSDATE_VALUES_CAPTURED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: SYSDATE_VALUES_REPLAYED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: SYSGUID_VALUES_CAPTURED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: SYSGUID_VALUES_REPLAYED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: SYSTIMESTAMP_VALUES_CAPTURED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: SYSTIMESTAMP_VALUES_REPLAYED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: TIMEZONE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 4000
+- name: UNIQUE_SEQUENCES_CAPTURED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$REPLAY_CONTEXT
 viewDefinition: |-
   select
     "CONTEXT_ID",

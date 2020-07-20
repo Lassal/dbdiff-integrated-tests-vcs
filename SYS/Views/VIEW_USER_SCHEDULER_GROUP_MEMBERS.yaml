@@ -2,8 +2,28 @@ schema: SYS
 name: USER_SCHEDULER_GROUP_MEMBERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: GROUP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: MEMBER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 523
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 523
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SCHEDULER$_WINDOW_GROUP
+- schema: SYS
+  name: SCHEDULER$_WINGRP_MEMBER
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     wgm.group_name,

@@ -2,8 +2,21 @@ schema: SYS
 name: REPORT_FILES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DATA
+  dataType: XMLTYPE
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: FILENAME
+  dataType: VARCHAR2
+  textMaxLength: 500
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 500
+referencedTables:
+- schema: SYS
+  name: WRI$_EMX_FILES
 viewDefinition: |-
   SELECT
     f.name filename,

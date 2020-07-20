@@ -2,8 +2,64 @@ schema: SYS
 name: USER_AW_PROP
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: AW_NUMBER
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: FULL_PROPERTY_VALUE
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: OBJ_ID
+  dataType: NUMBER
+  numericPrecision: 20
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 20,0
+- name: OBJ_NAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 256
+- name: PROPERTY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 256
+- name: PROPERTY_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: PROPERTY_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 4000
+- name: PROPERTY_VALUE_LENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: AW$
+- schema: SYS
+  name: AW_PROP$
 viewDefinition: |-
   SELECT
     a .awseq#,

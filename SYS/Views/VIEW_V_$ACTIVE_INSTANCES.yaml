@@ -2,8 +2,26 @@ schema: SYS
 name: V_$ACTIVE_INSTANCES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: INST_NAME
+  dataType: VARCHAR2
+  textMaxLength: 60
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 60
+- name: INST_NUMBER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$ACTIVE_INSTANCES
 viewDefinition: |-
   select
     "INST_NUMBER",

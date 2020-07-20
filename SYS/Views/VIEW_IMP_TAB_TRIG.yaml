@@ -2,8 +2,31 @@ schema: SYS
 name: IMP_TAB_TRIG
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TNAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TYPE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: TRIGGER$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     o.name,

@@ -2,8 +2,16 @@ schema: SYS
 name: IMP9COMPAT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMPATIBLE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: V$PARAMETER
 viewDefinition: |-
   SELECT
     value

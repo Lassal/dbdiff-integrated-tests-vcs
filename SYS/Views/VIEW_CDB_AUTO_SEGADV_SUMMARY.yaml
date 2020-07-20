@@ -2,7 +2,59 @@ schema: SYS
 name: CDB_AUTO_SEGADV_SUMMARY
 updatedAllowed: true
 insertAllowed: true
-columns: []
+columns:
+- name: AUTO_TASKID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: END_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: RECOMMENDATIONS_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: SEGMENTS_PROCESSED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: SEGMENTS_SELECTED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: SNAPID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: START_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: TABLESPACE_PROCESSED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TABLESPACE_SELECTED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
 referencedTables: []
 viewDefinition: |-
   SELECT

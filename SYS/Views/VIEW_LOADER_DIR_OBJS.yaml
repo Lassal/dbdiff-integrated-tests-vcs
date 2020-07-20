@@ -2,8 +2,48 @@ schema: SYS
 name: LOADER_DIR_OBJS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: EXECUTE
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 5
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PATH
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+- name: READ
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 5
+- name: WRITE
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 5
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$DIR
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: |-
   select
     o.name,

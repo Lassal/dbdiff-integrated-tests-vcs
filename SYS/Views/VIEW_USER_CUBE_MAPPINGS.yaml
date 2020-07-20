@@ -2,8 +2,60 @@ schema: SYS
 name: USER_CUBE_MAPPINGS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AGGREGATION_METHOD
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 200
+- name: CUBE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: FROM_CLAUSE
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: IS_SOLVED
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 1
+- name: MAP_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: MAP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: QUERY
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: WHERE_CLAUSE
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OLAP_IMPL_OPTIONS$
+- schema: SYS
+  name: OLAP_MAPPINGS$
+- schema: SYS
+  name: OLAP_SYNTAX$
 viewDefinition: |-
   SELECT
     o.name CUBE_NAME,

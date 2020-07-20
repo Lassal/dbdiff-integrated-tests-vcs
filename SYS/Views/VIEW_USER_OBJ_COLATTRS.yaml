@@ -2,8 +2,34 @@ schema: SYS
 name: USER_OBJ_COLATTRS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+- name: SUBSTITUTABLE
+  dataType: VARCHAR2
+  textMaxLength: 15
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 15
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ATTRCOL$
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: COLTYPE$
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: |-
   select
     o.name,

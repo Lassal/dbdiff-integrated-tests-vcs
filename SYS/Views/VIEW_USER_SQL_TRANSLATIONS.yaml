@@ -2,8 +2,85 @@ schema: SYS
 name: USER_SQL_TRANSLATIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACTION
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 64
+- name: CLIENT_INFO
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 64
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 4000
+- name: ENABLED
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 5
+- name: HASH_VALUE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: MODULE
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 64
+- name: PARSING_SCHEMA_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: PARSING_USER_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: PROFILE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: REGISTRATION_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: SQL_ID
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 13
+- name: SQL_TEXT
+  dataType: CLOB
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+- name: TRANSLATED_TEXT
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: SQLTXL_SQL$
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: |-
   select
     o.name,

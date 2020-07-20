@@ -2,8 +2,72 @@ schema: SYS
 name: V_$NONLOGGED_BLOCK
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BLOCK#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: BLOCKS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: FILE#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: NONLOGGED_END_CHANGE#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: NONLOGGED_END_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: NONLOGGED_START_CHANGE#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: NONLOGGED_START_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: OBJECT#
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 40
+- name: REASON
+  dataType: CHAR
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 7
+- name: RESETLOGS_CHANGE#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: RESETLOGS_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$NONLOGGED_BLOCK
 viewDefinition: |-
   select
     "FILE#",

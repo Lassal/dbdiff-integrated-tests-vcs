@@ -2,8 +2,28 @@ schema: SYS
 name: USER_XS_IMPLIED_PRIVILEGES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: IMPLIED_PRIVILEGE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: PRIVILEGE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SECURITY_CLASS
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: DBA_XS_IMPLIED_PRIVILEGES
 viewDefinition: |-
   select
     privilege,

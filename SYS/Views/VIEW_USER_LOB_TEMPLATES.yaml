@@ -2,8 +2,50 @@ schema: SYS
 name: USER_LOB_TEMPLATES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: LOB_COL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+- name: LOB_SEGMENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 132
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 132
+- name: SUBPARTITION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 132
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 132
+- name: TABLESPACE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 30
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ATTRCOL$
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: DEFSUBPART$
+- schema: SYS
+  name: DEFSUBPARTLOB$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: TS$
 viewDefinition: |-
   select
     o.name,

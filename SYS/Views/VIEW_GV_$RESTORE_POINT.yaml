@@ -2,8 +2,65 @@ schema: SYS
 name: GV_$RESTORE_POINT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: DATABASE_INCARNATION#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: GUARANTEE_FLASHBACK_DATABASE
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 3
+- name: INST_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: PRESERVED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 3
+- name: RESTORE_POINT_TIME
+  dataType: TIMESTAMP(9)
+  numericScale: 9
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: SCN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: STORAGE_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: TIME
+  dataType: TIMESTAMP(9)
+  numericScale: 9
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: GV$RESTORE_POINT
 viewDefinition: |-
   select
     "INST_ID",

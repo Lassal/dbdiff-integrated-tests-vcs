@@ -2,8 +2,110 @@ schema: SYS
 name: EXPPIOTMAP
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BLOCK
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: BLOCKSIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: BO
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength:
+- name: DOBJ
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: FILENO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: FREELISTS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength:
+- name: GROUPS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: INITEXTNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: INITRANS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 16
+  dataTypeLength:
+- name: LOGGING
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 13
+  dataTypeLength:
+- name: MAXTRANS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 17
+  dataTypeLength:
+- name: OBJ
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PARTNO
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength:
+- name: PCTFREE$
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: PCTUSED$
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 15
+  dataTypeLength:
+- name: POOL
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 7
+- name: TS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: TSNAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 12
+  dataTypeLength: 30
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: PARTOBJ$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: TABPART$
+- schema: SYS
+  name: TS$
 viewDefinition: |-
   SELECT
     t.obj#,

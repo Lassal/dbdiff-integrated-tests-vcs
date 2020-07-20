@@ -2,8 +2,67 @@ schema: SYS
 name: ALL_FILE_GROUP_FILES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 4000
+- name: FILE_BLOCK_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: FILE_DIRECTORY
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: FILE_GROUP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: FILE_GROUP_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: FILE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength: 512
+- name: FILE_SIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: FILE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 32
+- name: VERSION
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: VERSION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: _ALL_FILE_GROUP_FILES
 viewDefinition: |-
   select
     file_group_owner,

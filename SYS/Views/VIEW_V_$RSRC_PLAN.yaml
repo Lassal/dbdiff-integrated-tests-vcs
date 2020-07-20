@@ -2,8 +2,97 @@ schema: SYS
 name: V_$RSRC_PLAN
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: CPU_MANAGED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 3
+- name: DIRECTIVE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 32
+- name: ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: INSTANCE_CAGING
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 3
+- name: IS_TOP_PLAN
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 5
+- name: MEMORY_LIMIT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: MEMORY_MIN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 32
+- name: PARALLEL_EXECUTION_MANAGED
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 32
+- name: PARALLEL_SERVERS_ACTIVE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: PARALLEL_SERVERS_TOTAL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: PARALLEL_SERVER_LIMIT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: PROFILE
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 32
+- name: SHARES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: UTILIZATION_LIMIT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$RSRC_PLAN
 viewDefinition: |-
   select
     "ID",

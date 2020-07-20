@@ -2,8 +2,77 @@ schema: SYS
 name: USER_ADVISOR_LOG
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACTIVITY_COUNTER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: ERROR_MESSAGE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 4000
+- name: EXECUTION_END
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: EXECUTION_START
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: METRIC_UNITS
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 64
+- name: PCT_COMPLETION_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: PROGRESS_METRIC
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: RECOMMENDATION_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 11
+- name: STATUS_MESSAGE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: TASK_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TASK_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: WRI$_ADV_EXECUTIONS
+- schema: SYS
+  name: WRI$_ADV_TASKS
 viewDefinition: |-
   select
     a .id as task_id,

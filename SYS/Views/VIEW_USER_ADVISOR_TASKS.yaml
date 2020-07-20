@@ -2,8 +2,155 @@ schema: SYS
 name: USER_ADVISOR_TASKS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACTIVITY_COUNTER
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: ADVISOR_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 25
+  dataTypeLength:
+- name: ADVISOR_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: CREATED
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 256
+- name: ERROR_MESSAGE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength: 4000
+- name: EXECUTION_END
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: EXECUTION_START
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: EXECUTION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 128
+- name: HOW_CREATED
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength: 30
+- name: LAST_EXECUTION
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: LAST_MODIFIED
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: METRIC_UNITS
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 64
+- name: PARENT_REC_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: PARENT_TASK_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: PCT_COMPLETION_TIME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: PROGRESS_METRIC
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: READ_ONLY
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength: 5
+- name: RECOMMENDATION_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: SOURCE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength: 128
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 11
+- name: STATUS#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength:
+- name: STATUS_MESSAGE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 4000
+- name: SYSTEM_TASK
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength: 5
+- name: TASK_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TASK_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: WRI$_ADV_EXECUTIONS
+- schema: SYS
+  name: WRI$_ADV_TASKS
 viewDefinition: |-
   select
     a .id as task_id,

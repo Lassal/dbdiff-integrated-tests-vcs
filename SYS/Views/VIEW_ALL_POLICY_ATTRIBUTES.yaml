@@ -2,8 +2,52 @@ schema: SYS
 name: ALL_POLICY_ATTRIBUTES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ATTRIBUTE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: NAMESPACE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OBJECT_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: POLICY_GROUP
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: POLICY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ALL_SYNONYMS
+- schema: SYS
+  name: ALL_TABLES
+- schema: SYS
+  name: ALL_VIEWS
+- schema: SYS
+  name: DBA_POLICY_ATTRIBUTES
 viewDefinition: |-
   SELECT
     OBJECT_OWNER,

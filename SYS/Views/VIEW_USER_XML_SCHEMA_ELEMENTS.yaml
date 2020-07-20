@@ -2,8 +2,104 @@ schema: SYS
 name: USER_XML_SCHEMA_ELEMENTS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DEFAULT_TABLE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 128
+- name: ELEMENT
+  dataType: XMLTYPE
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: ELEMENT_ID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: ELEMENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 2000
+- name: GLOBAL
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: IS_REF
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: MAINTAIN_DOM
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: MAINTAIN_ORDER
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: PARENT_ELEMENT_ID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: SCHEMA_URL
+  dataType: VARCHAR2
+  textMaxLength: 700
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 700
+- name: SQL_COL_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 128
+- name: SQL_INLINE
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: SQL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 128
+- name: SQL_SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 128
+- name: SQL_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: TARGET_NAMESPACE
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 2000
+- name: TYPE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 2000
+referencedTables:
+- schema: SYS
+  name: DBA_XML_SCHEMA_ELEMENTS
 viewDefinition: |-
   select
     SCHEMA_URL,

@@ -2,8 +2,24 @@ schema: SYS
 name: KU$_OBJPKG_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: PACKAGE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: SCHEMA
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: EXPPKGOBJ$
+- schema: SYS
+  name: SESSION_ROLES
 viewDefinition: |-
   select
     distinct p.package,

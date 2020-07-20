@@ -2,8 +2,39 @@ schema: SYS
 name: USER_CUBE_DIM_LEVELS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DESCRIPTION
+  dataType: NVARCHAR2
+  textMaxLength: 300
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 300
+- name: DIMENSION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: LEVEL_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: LEVEL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: NLS_SESSION_PARAMETERS
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OLAP_DESCRIPTIONS$
+- schema: SYS
+  name: OLAP_DIM_LEVELS$
 viewDefinition: |-
   SELECT
     o.name DIMENSION_NAME,

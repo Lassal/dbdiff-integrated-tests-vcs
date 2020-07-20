@@ -2,8 +2,85 @@ schema: SYS
 name: ALL_XDS_ACL_REFRESH
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACL_MVIEW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: ACL_STATUS
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 5
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 240
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 240
+- name: REFRESH_ABILITY
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 11
+- name: REFRESH_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: REFRESH_MODE
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 9
+- name: REPEAT_INTERVAL
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 4000
+- name: SCHEMA_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: START_DATE
+  dataType: TIMESTAMP(6) WITH TIME ZONE
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: USER_SUPPLIED_MV
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: DBA_XDS_ACL_REFRESH
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: |-
   select
     s.schema_name,

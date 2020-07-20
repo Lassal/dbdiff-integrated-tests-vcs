@@ -2,8 +2,128 @@ schema: SYS
 name: KU$_XSACL_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACE_LIST
+  dataType: KU$_XSACE_LIST_T
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: ACLID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: CTIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 4000
+- name: FLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: MTIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: OWNER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: PARAM_LIST
+  dataType: KU$_XSACLPARAM_LIST_T
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: PARENT_ACLID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: PARENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 128
+- name: PARENT_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 128
+- name: SCID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: SCLASS_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: SCLASS_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+- name: XS_OBJ
+  dataType: KU$_XSOBJ_T
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: XS_SCL
+  dataType: KU$_XSSCLASS_T
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: KU$_XSACE_VIEW
+- schema: SYS
+  name: KU$_XSACLPARAM_VIEW
+- schema: SYS
+  name: KU$_XSOBJ_VIEW
+- schema: SYS
+  name: KU$_XSSCLASS_VIEW
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: XS$ACL
+- schema: SYS
+  name: XS$OBJ
 viewDefinition: |-
   select
     '1',

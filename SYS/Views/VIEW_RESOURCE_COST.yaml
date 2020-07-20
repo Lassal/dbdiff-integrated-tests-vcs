@@ -2,8 +2,23 @@ schema: SYS
 name: RESOURCE_COST
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: RESOURCE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 32
+- name: UNIT_COST
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: RESOURCE_COST$
+- schema: SYS
+  name: RESOURCE_MAP
 viewDefinition: |-
   select
     m.name,

@@ -2,8 +2,62 @@ schema: SYS
 name: ALL_TSTZ_TAB_COLS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: NESTED
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: QUALIFIED_COL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 4000
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: VIRTUAL_COLUMN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: ATTRCOL$
+- schema: SYS
+  name: ATTRIBUTE$
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: COLLECTION$
+- schema: SYS
+  name: COLTYPE$
+- schema: SYS
+  name: DEPENDENCY$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: TAB$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: |-
   with rw (p_obj#, d_obj#, property) as (
     select

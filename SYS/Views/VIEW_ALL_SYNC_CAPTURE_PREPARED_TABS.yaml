@@ -2,8 +2,34 @@ schema: SYS
 name: ALL_SYNC_CAPTURE_PREPARED_TABS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SCN
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TABLE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TIMESTAMP
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: ALL_TABLES
+- schema: SYS
+  name: DBA_SYNC_CAPTURE_PREPARED_TABS
 viewDefinition: |-
   select
     pt.table_owner,

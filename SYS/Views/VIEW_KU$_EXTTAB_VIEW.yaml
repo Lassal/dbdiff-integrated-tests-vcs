@@ -2,8 +2,59 @@ schema: SYS
 name: KU$_EXTTAB_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DEFAULT_DIR
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: LOCATION
+  dataType: KU$_EXTLOC_LIST_T
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: NR_LOCATIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PARAM_CLOB
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: PAR_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: PROPERTY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: REJECT_LIMIT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: EXTERNAL_LOCATION$
+- schema: SYS
+  name: EXTERNAL_TAB$
 viewDefinition: |-
   select
     et.obj#,

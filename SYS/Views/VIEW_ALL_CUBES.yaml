@@ -2,6 +2,143 @@ schema: SYS
 name: ALL_CUBES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: CONSISTENT_SOLVE_SPEC
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: CUBE_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: CUBE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: CUBE_STORAGE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 200
+- name: DEFAULT_BUILD_SPEC
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: NVARCHAR2
+  textMaxLength: 300
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 300
+- name: MEASURE_STORAGE
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 200
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PARTITION_DIMENSION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 128
+- name: PARTITION_HIERARCHY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 128
+- name: PARTITION_LEVEL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 128
+- name: PRECOMPUTE_CONDITION
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: PRECOMPUTE_PERCENT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: PRECOMPUTE_PERCENT_TOP
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: REFRESH_MVIEW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 200
+- name: REWRITE_MVIEW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 200
+- name: SPARSE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 200
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 200
+- name: SQL_CUBE_STORAGE_TYPE
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: AW$
+- schema: SYS
+  name: DEPENDENCY$
+- schema: SYS
+  name: NLS_SESSION_PARAMETERS
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: OLAP_CUBES$
+- schema: SYS
+  name: OLAP_DESCRIPTIONS$
+- schema: SYS
+  name: OLAP_DIM_LEVELS$
+- schema: SYS
+  name: OLAP_HIERARCHIES$
+- schema: SYS
+  name: OLAP_HIER_LEVELS$
+- schema: SYS
+  name: OLAP_IMPL_OPTIONS$
+- schema: SYS
+  name: OLAP_SYNTAX$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: null

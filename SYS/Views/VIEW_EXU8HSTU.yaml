@@ -2,8 +2,41 @@ schema: SYS
 name: EXU8HSTU
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BUCKET
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: ENDPTHASH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: ENDPTVAL
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 1000
+- name: INTCOL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: POBJID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TOWNERID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: EXU8HST
 viewDefinition: |-
   SELECT
     "POBJID",

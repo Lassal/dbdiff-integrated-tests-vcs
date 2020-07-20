@@ -2,8 +2,99 @@ schema: SYS
 name: ALL_QUEUES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DEQUEUE_ENABLED
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 7
+- name: ENQUEUE_ENABLED
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 7
+- name: MAX_RETRIES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: NETWORK_NAME
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 512
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: QID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: QUEUE_TABLE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: QUEUE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 20
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 20
+- name: RETENTION
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 40
+- name: RETRY_DELAY
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: SHARDED
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 5
+- name: USER_COMMENT
+  dataType: VARCHAR2
+  textMaxLength: 50
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 50
+referencedTables:
+- schema: SYS
+  name: DBA_SERVICES
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
+- schema: SYSTEM
+  name: AQ$_QUEUES
+- schema: SYSTEM
+  name: AQ$_QUEUE_TABLES
 viewDefinition: |-
   select
     u.name OWNER,

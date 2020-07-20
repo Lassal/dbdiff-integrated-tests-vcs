@@ -2,8 +2,51 @@ schema: SYS
 name: USER_ADVISOR_SQLW_TEMPLATES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CREATE_DATE
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 256
+- name: MODIFY_DATE
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: READ_ONLY
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 5
+- name: SOURCE
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: WORKLOAD_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: WORKLOAD_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: WRI$_ADV_SQLW_SUM
+- schema: SYS
+  name: WRI$_ADV_TASKS
 viewDefinition: |-
   select
     b.id as workload_id,

@@ -2,8 +2,112 @@ schema: SYS
 name: KU$_JOB_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CHARENV
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 4000
+- name: COWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: ENV
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: FAILURES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: FIELD1
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: FLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: INTERVAL_NUM
+  dataType: VARCHAR2
+  textMaxLength: 400
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 400
+- name: JOB_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: LAST_DATE
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 19
+- name: LOWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: NEXT_DATE
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 19
+- name: NLSENV
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: POWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: POWNER_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: THIS_DATE
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 19
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+- name: WHAT
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: JOB$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     '1',

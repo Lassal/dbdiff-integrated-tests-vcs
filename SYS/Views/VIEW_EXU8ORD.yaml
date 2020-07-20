@@ -2,8 +2,27 @@ schema: SYS
 name: EXU8ORD
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DLEVEL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: D_OWNER#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: OBJ#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DEPENDENCY$
+- schema: SYS
+  name: OBJ$
 viewDefinition: |-
   SELECT
     /*+ no_filtering */

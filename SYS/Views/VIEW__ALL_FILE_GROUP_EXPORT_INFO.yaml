@@ -2,8 +2,70 @@ schema: SYS
 name: _ALL_FILE_GROUP_EXPORT_INFO
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: EXPORT_SCN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: EXPORT_TIME
+  dataType: DATE
+  nullable: false
+  ordinalPosition: 8
+  dataTypeLength:
+- name: EXPORT_VERSION
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: FILE_GROUP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: FILE_GROUP_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PLATFORM_NAME
+  dataType: VARCHAR2
+  textMaxLength: 101
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength: 101
+- name: SOURCE_GLOBAL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 128
+- name: VERSION_GUID
+  dataType: RAW
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: VERSION_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: VERSION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: FGR$_FILE_GROUP_EXPORT_INFO
+- schema: SYS
+  name: FGR$_FILE_GROUP_VERSIONS
+- schema: SYS
+  name: _ALL_FILE_GROUPS
 viewDefinition: |-
   select
     g.file_group_owner,

@@ -2,8 +2,44 @@ schema: SYS
 name: USER_TS_QUOTAS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BLOCKS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: BYTES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: DROPPED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 3
+- name: MAX_BLOCKS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: MAX_BYTES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: TABLESPACE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+referencedTables:
+- schema: SYS
+  name: TBS_SPACE_USAGE
+- schema: SYS
+  name: TS$
 viewDefinition: |-
   select
     ts.name,

@@ -2,8 +2,20 @@ schema: SYS
 name: PUBLIC_DEPENDENCY
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OBJECT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: REFERENCED_OBJECT_ID
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DEPENDENCY$
 viewDefinition: |-
   select
     d.d_obj#,

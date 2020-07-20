@@ -2,7 +2,30 @@ schema: SYS
 name: CDB_SCHEDULER_REMOTE_DATABASES
 updatedAllowed: true
 insertAllowed: true
-columns: []
+columns:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: DATABASE_LINK
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 512
+- name: DATABASE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 512
+- name: REGISTERED_AS
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 11
 referencedTables: []
 viewDefinition: |-
   SELECT

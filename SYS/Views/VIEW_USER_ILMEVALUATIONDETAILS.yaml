@@ -2,8 +2,71 @@ schema: SYS
 name: USER_ILMEVALUATIONDETAILS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMMENTS
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 4000
+- name: JOB_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 128
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: OBJECT_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 18
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 18
+- name: POLICY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: SELECTED_FOR_EXECUTION
+  dataType: VARCHAR2
+  textMaxLength: 42
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 42
+- name: SUBOBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: TASK_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: ILM$
+- schema: SYS
+  name: ILM_EXECUTION$
+- schema: SYS
+  name: ILM_EXECUTIONDETAILS$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   SELECT
     b.execution_id,

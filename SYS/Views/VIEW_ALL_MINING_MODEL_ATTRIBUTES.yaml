@@ -2,8 +2,83 @@ schema: SYS
 name: ALL_MINING_MODEL_ATTRIBUTES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ATTRIBUTE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: ATTRIBUTE_SPEC
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 4000
+- name: ATTRIBUTE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 11
+- name: DATA_LENGTH
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: DATA_PRECISION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: DATA_SCALE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: DATA_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 106
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 106
+- name: MODEL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TARGET
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 3
+- name: USAGE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 8
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 8
+referencedTables:
+- schema: SYS
+  name: MODELATT$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: |-
   select
     u.name,

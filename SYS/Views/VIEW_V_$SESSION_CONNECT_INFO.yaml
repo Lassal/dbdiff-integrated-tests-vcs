@@ -2,8 +2,84 @@ schema: SYS
 name: V_$SESSION_CONNECT_INFO
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AUTHENTICATION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 26
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 26
+- name: CLIENT_CHARSET
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 40
+- name: CLIENT_CONNECTION
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 13
+- name: CLIENT_DRIVER
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 30
+- name: CLIENT_LOBATTR
+  dataType: VARCHAR2
+  textMaxLength: 23
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 23
+- name: CLIENT_OCI_LIBRARY
+  dataType: VARCHAR2
+  textMaxLength: 27
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 27
+- name: CLIENT_REGID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: CLIENT_VERSION
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 40
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: NETWORK_SERVICE_BANNER
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: OSUSER
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 30
+- name: SERIAL#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: SID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: V$SESSION_CONNECT_INFO
 viewDefinition: |-
   select
     "SID",

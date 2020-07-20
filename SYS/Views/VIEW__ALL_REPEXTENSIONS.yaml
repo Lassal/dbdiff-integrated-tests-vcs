@@ -2,8 +2,81 @@ schema: SYS
 name: _ALL_REPEXTENSIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BREAK_TRANS_TO_MASTERDEF
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 3
+- name: BREAK_TRANS_TO_NEW_MASTERS
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 3
+- name: CYCLE_SECONDS_MDEF
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: CYCLE_SECONDS_NEW
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: EXPORT_REQUIRED
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 3
+- name: EXTENSION_ID
+  dataType: RAW
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: EXTENSION_STATUS
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 13
+- name: FLASHBACK_SCN
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: MASTERDEF
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: PERCENTAGE_FOR_CATCHUP_MDEF
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: PERCENTAGE_FOR_CATCHUP_NEW
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: REPCATLOG_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: REQUEST
+  dataType: VARCHAR2
+  textMaxLength: 15
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 15
+referencedTables:
+- schema: SYS
+  name: DBA_REPEXTENSIONS
 viewDefinition: |-
   select
     r.extension_id,

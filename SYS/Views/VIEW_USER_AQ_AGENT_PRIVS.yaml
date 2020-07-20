@@ -2,8 +2,32 @@ schema: SYS
 name: USER_AQ_AGENT_PRIVS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AGENT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: HTTP_ENABLED
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4
+- name: SMTP_ENABLED
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4
+referencedTables:
+- schema: SYS
+  name: USER$
+- schema: SYSTEM
+  name: AQ$_INTERNET_AGENTS
+- schema: SYSTEM
+  name: AQ$_INTERNET_AGENT_PRIVS
 viewDefinition: |-
   SELECT
     u.agent_name,

@@ -2,8 +2,45 @@ schema: SYS
 name: USER_AWS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: AW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: AW_NUMBER
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: AW_VERSION
+  dataType: VARCHAR2
+  textMaxLength: 4
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4
+- name: FROZEN
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 6
+- name: GENERATIONS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: PAGESPACES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: AW$
+- schema: SYS
+  name: PS$
 viewDefinition: |-
   SELECT
     a .awseq#,

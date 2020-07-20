@@ -2,8 +2,22 @@ schema: SYS
 name: ALL_SCHEDULER_WINGROUP_MEMBERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: WINDOW_GROUP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: WINDOW_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: DBA_SCHEDULER_WINGROUP_MEMBERS
 viewDefinition: |-
   SELECT
     "WINDOW_GROUP_NAME",

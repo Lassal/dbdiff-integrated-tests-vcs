@@ -2,8 +2,22 @@ schema: SYS
 name: USER_JAVA_COMPILER_OPTIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: OPTION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 64
+- name: VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: JAVA$COMPILER$OPTIONS
 viewDefinition: |-
   select
     o.property,

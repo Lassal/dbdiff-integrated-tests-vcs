@@ -2,8 +2,52 @@ schema: SYS
 name: USER_LOG_GROUPS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ALWAYS
+  dataType: VARCHAR2
+  textMaxLength: 11
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 11
+- name: GENERATED
+  dataType: VARCHAR2
+  textMaxLength: 14
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 14
+- name: LOG_GROUP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: LOG_GROUP_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 19
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 19
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: CDEF$
+- schema: SYS
+  name: CON$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: USER$
 viewDefinition: |-
   select
     ou.name,

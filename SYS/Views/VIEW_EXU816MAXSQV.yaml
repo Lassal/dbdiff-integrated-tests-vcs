@@ -2,8 +2,21 @@ schema: SYS
 name: EXU816MAXSQV
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SQL_VERSION
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: VERSION#
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: SQL_VERSION$
 viewDefinition: |-
   SELECT
     sv.version#,

@@ -2,8 +2,22 @@ schema: SYS
 name: LOADER_PARAM_INFO
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BLOCKSZ
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 4000
+- name: SERIALIZABLE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 4000
+referencedTables:
+- schema: SYS
+  name: V$PARAMETER
 viewDefinition: |-
   select
     v1.value,

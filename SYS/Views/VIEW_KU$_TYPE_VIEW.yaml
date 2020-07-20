@@ -2,8 +2,134 @@ schema: SYS
 name: KU$_TYPE_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ATTRIBUTE_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: ATTR_LIST
+  dataType: KU$_TYPE_ATTR_LIST_T
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: COLLECTION
+  dataType: KU$_COLLECTION_T
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: COMPILER_INFO
+  dataType: KU$_SWITCH_COMPILER_T
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: EXTERNNAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 4000
+- name: EXTERNTYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: HASHCODE
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: HIDMETHOD_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: METHOD_LIST
+  dataType: KU$_METHOD_LIST_T
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: METHOD_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: OID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: PROPERTIES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: SCHEMA_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: SOURCE_LINES
+  dataType: KU$_SOURCE_LIST_T
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: SUPERTYPE_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: TYPEID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TYPE_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: KU$_COLLECTION_VIEW
+- schema: SYS
+  name: KU$_EDITION_SCHEMAOBJ_VIEW
+- schema: SYS
+  name: KU$_METHOD_VIEW
+- schema: SYS
+  name: KU$_SCHEMAOBJ_VIEW
+- schema: SYS
+  name: KU$_SWITCH_COMPILER_VIEW
+- schema: SYS
+  name: KU$_TYPE_ATTR_VIEW
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: TYPE$
 viewDefinition: |-
   select
     '1',

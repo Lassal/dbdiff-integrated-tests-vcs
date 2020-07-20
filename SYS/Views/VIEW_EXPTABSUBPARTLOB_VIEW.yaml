@@ -2,8 +2,52 @@ schema: SYS
 name: EXPTABSUBPARTLOB_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: LCDEFTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: LFTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: LPDEFTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: LSPDEFTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: PONO
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: SPTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: DEFSUBPARTLOB$
+- schema: SYS
+  name: EXPTABSUBPARTLOBFRAG
+- schema: SYS
+  name: LOBCOMPPART$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: PARTLOB$
+- schema: SYS
+  name: TABCOMPART$
+- schema: SYS
+  name: TABSUBPART$
 viewDefinition: |-
   SELECT
     tp.obj# PONO,

@@ -2,8 +2,93 @@ schema: SYS
 name: KU$_XSACE_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACE_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: ACLID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: END_DATE
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: ORDER_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: PRIN_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: PRIN_INVERT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: PRIN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: PRIN_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: PRIV_LIST
+  dataType: KU$_XSACEPRIV_LIST_T
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: START_DATE
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+- name: XS_FLAG
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: XS_OBJ
+  dataType: KU$_XSOBJ_T
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: KU$_XSACEPRIV_VIEW
+- schema: SYS
+  name: KU$_XSOBJ_VIEW
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: XS$ACE
+- schema: SYS
+  name: XS$OBJ
 viewDefinition: |-
   select
     '1',

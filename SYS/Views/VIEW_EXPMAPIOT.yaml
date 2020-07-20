@@ -2,8 +2,95 @@ schema: SYS
 name: EXPMAPIOT
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BLOCK
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: DOBJ
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: FILENO
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 4
+  dataTypeLength:
+- name: FREELISTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: GROUPS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: INITEXTNT
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength:
+- name: INITRANS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 14
+  dataTypeLength:
+- name: LOGGING
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 11
+  dataTypeLength:
+- name: MAXTRANS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 15
+  dataTypeLength:
+- name: OBJ
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+- name: PCTFREE$
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: PCTUSED$
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 13
+  dataTypeLength:
+- name: POOL
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 7
+- name: TS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 3
+  dataTypeLength:
+- name: TSNAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 10
+  dataTypeLength: 30
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: SEG$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: TAB$
+- schema: SYS
+  name: TS$
 viewDefinition: |-
   SELECT
     t.obj#,

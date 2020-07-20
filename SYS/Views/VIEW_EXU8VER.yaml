@@ -2,8 +2,15 @@ schema: SYS
 name: EXU8VER
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: VERSION
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: PROPS$
 viewDefinition: |-
   SELECT
     TO_NUMBER(value $)

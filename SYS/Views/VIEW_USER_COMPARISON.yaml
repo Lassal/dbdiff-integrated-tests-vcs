@@ -2,8 +2,113 @@ schema: SYS
 name: USER_COMPARISON
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COMPARISON_MODE
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 5
+- name: COMPARISON_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: CYCLIC_INDEX_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 4000
+- name: DBLINK_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 128
+- name: LAST_UPDATE_TIME
+  dataType: TIMESTAMP(6)
+  numericScale: 6
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: LOCAL_CONVERGE_TAG
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: MAX_NUM_BUCKETS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: MIN_ROWS_IN_BUCKET
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: NULL_VALUE
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 4000
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 17
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 17
+- name: REMOTE_CONVERGE_TAG
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: REMOTE_OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 128
+- name: REMOTE_OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 17
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 17
+- name: REMOTE_SCHEMA_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: SCAN_MODE
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 9
+- name: SCAN_PERCENT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: SCHEMA_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: DBA_COMPARISON
 viewDefinition: |-
   SELECT
     comparison_name,

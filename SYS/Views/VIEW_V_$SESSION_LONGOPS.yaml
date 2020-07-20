@@ -2,8 +2,154 @@ schema: SYS
 name: V_$SESSION_LONGOPS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CONTEXT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength:
+- name: ELAPSED_SECONDS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: LAST_UPDATE_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: MESSAGE
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 512
+- name: OPNAME
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 64
+- name: QCSID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength:
+- name: SERIAL#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: SID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: SOFAR
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: SQL_ADDRESS
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: SQL_EXEC_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength:
+- name: SQL_EXEC_START
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: SQL_HASH_VALUE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: SQL_ID
+  dataType: VARCHAR2
+  textMaxLength: 13
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 13
+- name: SQL_PLAN_HASH_VALUE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: SQL_PLAN_LINE_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength:
+- name: SQL_PLAN_OPERATION
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength: 30
+- name: SQL_PLAN_OPTIONS
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength: 30
+- name: START_TIME
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: TARGET
+  dataType: VARCHAR2
+  textMaxLength: 64
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 64
+- name: TARGET_DESC
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 32
+- name: TIMESTAMP
+  dataType: DATE
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: TIME_REMAINING
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: TOTALWORK
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: UNITS
+  dataType: VARCHAR2
+  textMaxLength: 32
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 32
+- name: USERNAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 30
+referencedTables:
+- schema: SYS
+  name: V$SESSION_LONGOPS
 viewDefinition: |-
   select
     "SID",

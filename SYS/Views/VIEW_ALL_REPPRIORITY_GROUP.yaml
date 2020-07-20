@@ -2,8 +2,46 @@ schema: SYS
 name: ALL_REPPRIORITY_GROUP
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DATA_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 9
+- name: FIXED_DATA_LENGTH
+  dataType: NUMBER
+  numericScale: 0
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: GNAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 6
+  dataTypeLength: 30
+- name: PRIORITY_COMMENT
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 80
+- name: PRIORITY_GROUP
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 30
+- name: SNAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 30
+referencedTables:
+- schema: SYSTEM
+  name: REPCAT$_PRIORITY_GROUP
 viewDefinition: |-
   select
     sname,

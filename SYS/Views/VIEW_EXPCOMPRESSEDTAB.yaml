@@ -2,8 +2,22 @@ schema: SYS
 name: EXPCOMPRESSEDTAB
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: SPARE1
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: TOBJ$
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: SEG$
+- schema: SYS
+  name: TAB$
 viewDefinition: |-
   SELECT
     s.spare1,

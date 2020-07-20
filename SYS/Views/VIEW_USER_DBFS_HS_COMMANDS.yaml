@@ -2,8 +2,29 @@ schema: SYS
 name: USER_DBFS_HS_COMMANDS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: STORECOMMAND
+  dataType: VARCHAR2
+  textMaxLength: 512
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 512
+- name: STOREFLAGS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: STORENAME
+  dataType: VARCHAR2
+  textMaxLength: 256
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 256
+referencedTables:
+- schema: SYS
+  name: DBA_DBFS_HS_COMMANDS
+- schema: SYS
+  name: USER_DBFS_HS
 viewDefinition: |-
   SELECT
     RC.StoreName,

@@ -2,8 +2,76 @@ schema: SYS
 name: KU$_ROLLBACK_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: EXTSIZE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: INIEXTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: MAXEXTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: MINEXTS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 30
+- name: OPTIMAL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: TABLESPACE
+  dataType: KU$_TABLESPACE_T
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: USER_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: US_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: KU$_TABLESPACE_VIEW
+- schema: SYS
+  name: SEG$
+- schema: SYS
+  name: SESSION_ROLES
+- schema: SYS
+  name: UNDO$
+- schema: SYS
+  name: V$ROLLSTAT
 viewDefinition: |-
   select
     '1',

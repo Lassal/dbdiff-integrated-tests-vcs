@@ -2,8 +2,91 @@ schema: SYS
 name: KU$_QUEUE_TABLE_VIEW
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FLAGS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 257
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 257
+- name: OBJ_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: OWNER_INSTANCE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: PRIMARY_INSTANCE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: SCHEMA_OBJ
+  dataType: KU$_SCHEMAOBJ_T
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: SECONDARY_INSTANCE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+- name: SORT_COLS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: STORAGE_CLAUSE
+  dataType: KU$_QTAB_STORAGE_T
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: TABLE_COMMENT
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 2000
+- name: UDATA_TYPE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: VERS_MAJOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 1
+- name: VERS_MINOR
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 1
+referencedTables:
+- schema: SYS
+  name: AQ$_QUEUE_TABLE_AFFINITIES
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: COLTYPE$
+- schema: SYS
+  name: KU$_QTAB_STORAGE_VIEW
+- schema: SYS
+  name: KU$_SCHEMAOBJ_VIEW
+- schema: SYS
+  name: USER$
+- schema: SYSTEM
+  name: AQ$_QUEUE_TABLES
 viewDefinition: |-
   select
     '1',

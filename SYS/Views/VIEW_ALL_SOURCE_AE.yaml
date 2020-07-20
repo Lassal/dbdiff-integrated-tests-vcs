@@ -2,6 +2,59 @@ schema: SYS
 name: ALL_SOURCE_AE
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: EDITION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 128
+- name: LINE
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: TEXT
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: TYPE
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 12
+referencedTables:
+- schema: SYS
+  name: DEPENDENCY$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: SOURCE$
+- schema: SYS
+  name: SYSAUTH$
+- schema: SYS
+  name: TRIGGER$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: X$KZSRO
+- schema: SYS
+  name: _ACTUAL_EDITION_OBJ
 viewDefinition: null

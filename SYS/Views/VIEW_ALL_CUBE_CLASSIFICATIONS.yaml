@@ -2,6 +2,75 @@ schema: SYS
 name: ALL_CUBE_CLASSIFICATIONS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CLASSIFICATION
+  dataType: NVARCHAR2
+  textMaxLength: 300
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 300
+- name: LANGUAGE
+  dataType: VARCHAR2
+  textMaxLength: 80
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 80
+- name: OBJECT_NAME
+  dataType: VARCHAR2
+  textMaxLength: 386
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 386
+- name: OBJECT_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 18
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 18
+- name: ORDER_NUM
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: DEPENDENCY$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: OLAP_ATTRIBUTES$
+- schema: SYS
+  name: OLAP_CALCULATED_MEMBERS$
+- schema: SYS
+  name: OLAP_CUBES$
+- schema: SYS
+  name: OLAP_DESCRIPTIONS$
+- schema: SYS
+  name: OLAP_DIM_LEVELS$
+- schema: SYS
+  name: OLAP_HIERARCHIES$
+- schema: SYS
+  name: OLAP_HIER_LEVELS$
+- schema: SYS
+  name: OLAP_MEASURES$
+- schema: SYS
+  name: OLAP_MEAS_FOLDER_CONTENTS$
+- schema: SYS
+  name: OLAP_MODELS$
+- schema: SYS
+  name: OLAP_MODEL_ASSIGNMENTS$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: null

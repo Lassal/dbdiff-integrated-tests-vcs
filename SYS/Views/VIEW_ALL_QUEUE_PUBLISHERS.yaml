@@ -2,8 +2,69 @@ schema: SYS
 name: ALL_QUEUE_PUBLISHERS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: PUBLISHER_ADDRESS
+  dataType: VARCHAR2
+  textMaxLength: 1024
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 1024
+- name: PUBLISHER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: PUBLISHER_PROTOCOL
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: PUBLISHER_RULE
+  dataType: VARCHAR2
+  textMaxLength: 2000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 2000
+- name: PUBLISHER_RULESET
+  dataType: VARCHAR2
+  textMaxLength: 257
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 257
+- name: PUBLISHER_RULE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 257
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 257
+- name: PUBLISHER_TRANSFORMATION
+  dataType: VARCHAR2
+  textMaxLength: 257
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 257
+- name: QUEUE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: QUEUE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: AQ$_PUBLISHER
+- schema: SYS
+  name: USER$
+- schema: SYSTEM
+  name: AQ$_QUEUES
+- schema: SYSTEM
+  name: AQ$_QUEUE_TABLES
 viewDefinition: |-
   select
     t.schema QUEUE_OWNER,

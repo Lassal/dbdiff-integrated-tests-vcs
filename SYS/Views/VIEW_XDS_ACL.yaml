@@ -2,8 +2,49 @@ schema: SYS
 name: XDS_ACL
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ACLID
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: DESCRIPTION
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 4000
+- name: INHERITANCE_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 16
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 16
+- name: PARENT_ACL_PATH
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 4000
+- name: SECURITY_CLASS_NAME
+  dataType: XMLTYPE
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength:
+- name: SECURITY_CLASS_NS
+  dataType: XMLTYPE
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: SHARED
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 5
+referencedTables:
+- schema: XDB
+  name: XDB$ACL
 viewDefinition: |-
   select
     a .object_id,

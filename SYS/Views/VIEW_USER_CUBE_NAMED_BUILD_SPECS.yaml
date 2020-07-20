@@ -2,8 +2,25 @@ schema: SYS
 name: USER_CUBE_NAMED_BUILD_SPECS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: CUBE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: NAMED_BUILD_SPEC
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OLAP_CUBES$
+- schema: SYS
+  name: OLAP_SYNTAX$
 viewDefinition: |-
   SELECT
     o.name CUBE_NAME,

@@ -2,6 +2,118 @@ schema: SYS
 name: ALL_CUBE_DIM_MAPPINGS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: DIMENSION_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: FROM_CLAUSE
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: HIERARCHY_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: JOIN_CONDITION
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength:
+- name: KEY_EXPRESSION
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: LEVEL_EXPRESSION
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength:
+- name: LEVEL_ID_EXPRESSION
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength:
+- name: LEVEL_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: MAPPED_DIMENSION_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 17
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 17
+- name: MAPPED_HIERARCHY_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength: 5
+- name: MAP_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: MAP_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 128
+- name: OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: PARENT_EXPRESSION
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength:
+- name: PARENT_LEVEL_ID_EXPRESSION
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength:
+- name: QUERY
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: WHERE_CLAUSE
+  dataType: CLOB
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: OBJAUTH$
+- schema: SYS
+  name: OLAP_DIM_LEVELS$
+- schema: SYS
+  name: OLAP_HIERARCHIES$
+- schema: SYS
+  name: OLAP_HIER_LEVELS$
+- schema: SYS
+  name: OLAP_MAPPINGS$
+- schema: SYS
+  name: OLAP_SYNTAX$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: V$ENABLEDPRIVS
+- schema: SYS
+  name: X$KZSRO
 viewDefinition: null

@@ -2,8 +2,139 @@ schema: SYS
 name: GV_$BH
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BLOCK#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength:
+- name: CACHEHINT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 21
+  dataTypeLength:
+- name: CELL_FLASH_CACHE
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength: 7
+- name: CLASS#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength:
+- name: CON_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength:
+- name: DIRECT
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 1
+- name: DIRTY
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 12
+  dataTypeLength: 1
+- name: FILE#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength:
+- name: FLASH_CACHE
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 22
+  dataTypeLength: 7
+- name: FORCED_READS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength:
+- name: FORCED_WRITES
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: INST_ID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength:
+- name: LOBID
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength:
+- name: LOCK_ELEMENT_ADDR
+  dataType: RAW
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength:
+- name: LOCK_ELEMENT_CLASS
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength:
+- name: LOCK_ELEMENT_NAME
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength:
+- name: NEW
+  dataType: CHAR
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 1
+- name: OBJD
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength:
+- name: PING
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 14
+  dataTypeLength: 1
+- name: STALE
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 1
+- name: STATUS
+  dataType: VARCHAR2
+  textMaxLength: 10
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 10
+- name: TEMP
+  dataType: VARCHAR2
+  textMaxLength: 1
+  nullable: true
+  ordinalPosition: 13
+  dataTypeLength: 1
+- name: TS#
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength:
+- name: XNC
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: GV$BH
 viewDefinition: |-
   select
     "INST_ID",

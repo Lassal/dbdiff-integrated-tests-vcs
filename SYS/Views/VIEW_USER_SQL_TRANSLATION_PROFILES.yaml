@@ -2,8 +2,54 @@ schema: SYS
 name: USER_SQL_TRANSLATION_PROFILES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: FOREIGN_SQL_SYNTAX
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 5
+- name: LOG_TRANSLATION_ERROR
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 5
+- name: PROFILE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: RAISE_TRANSLATION_ERROR
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 5
+- name: TRACE_TRANSLATION
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 5
+- name: TRANSLATE_NEW_SQL
+  dataType: VARCHAR2
+  textMaxLength: 5
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 5
+- name: TRANSLATOR
+  dataType: VARCHAR2
+  textMaxLength: 261
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 261
+referencedTables:
+- schema: SYS
+  name: SQLTXL$
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: |-
   select
     o.name,

@@ -2,8 +2,15 @@ schema: SYS
 name: EXU8BSZ
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: BLOCKSIZE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength:
+referencedTables:
+- schema: SYS
+  name: TS$
 viewDefinition: |-
   SELECT
     ts$.blocksize

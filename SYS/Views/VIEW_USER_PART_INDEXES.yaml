@@ -2,8 +2,175 @@ schema: SYS
 name: USER_PART_INDEXES
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: ALIGNMENT
+  dataType: VARCHAR2
+  textMaxLength: 12
+  nullable: true
+  ordinalPosition: 10
+  dataTypeLength: 12
+- name: DEF_BUFFER_POOL
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 24
+  dataTypeLength: 7
+- name: DEF_CELL_FLASH_CACHE
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 26
+  dataTypeLength: 7
+- name: DEF_FLASH_CACHE
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 25
+  dataTypeLength: 7
+- name: DEF_FREELISTS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 21
+  dataTypeLength:
+- name: DEF_FREELIST_GROUPS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 22
+  dataTypeLength:
+- name: DEF_INITIAL_EXTENT
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 15
+  dataTypeLength: 40
+- name: DEF_INI_TRANS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 13
+  dataTypeLength:
+- name: DEF_LOGGING
+  dataType: VARCHAR2
+  textMaxLength: 7
+  nullable: true
+  ordinalPosition: 23
+  dataTypeLength: 7
+- name: DEF_MAX_EXTENTS
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 18
+  dataTypeLength: 40
+- name: DEF_MAX_SIZE
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 19
+  dataTypeLength: 40
+- name: DEF_MAX_TRANS
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 14
+  dataTypeLength:
+- name: DEF_MIN_EXTENTS
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 17
+  dataTypeLength: 40
+- name: DEF_NEXT_EXTENT
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 16
+  dataTypeLength: 40
+- name: DEF_PARAMETERS
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 27
+  dataTypeLength: 1000
+- name: DEF_PCT_FREE
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 12
+  dataTypeLength:
+- name: DEF_PCT_INCREASE
+  dataType: VARCHAR2
+  textMaxLength: 40
+  nullable: true
+  ordinalPosition: 20
+  dataTypeLength: 40
+- name: DEF_SUBPARTITION_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength:
+- name: DEF_TABLESPACE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 30
+  nullable: true
+  ordinalPosition: 11
+  dataTypeLength: 30
+- name: INDEX_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 1
+  dataTypeLength: 128
+- name: INTERVAL
+  dataType: VARCHAR2
+  textMaxLength: 1000
+  nullable: true
+  ordinalPosition: 28
+  dataTypeLength: 1000
+- name: LOCALITY
+  dataType: VARCHAR2
+  textMaxLength: 6
+  nullable: true
+  ordinalPosition: 9
+  dataTypeLength: 6
+- name: PARTITIONING_KEY_COUNT
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 7
+  dataTypeLength:
+- name: PARTITIONING_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 9
+- name: PARTITION_COUNT
+  dataType: NUMBER
+  nullable: false
+  ordinalPosition: 5
+  dataTypeLength:
+- name: SUBPARTITIONING_KEY_COUNT
+  dataType: NUMBER
+  nullable: true
+  ordinalPosition: 8
+  dataTypeLength:
+- name: SUBPARTITIONING_TYPE
+  dataType: VARCHAR2
+  textMaxLength: 9
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 9
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: false
+  ordinalPosition: 2
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: IND$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: PARTOBJ$
+- schema: SYS
+  name: TS$
 viewDefinition: |-
   select
     io.name,

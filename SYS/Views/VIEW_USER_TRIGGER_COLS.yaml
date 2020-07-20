@@ -2,6 +2,68 @@ schema: SYS
 name: USER_TRIGGER_COLS
 updatedAllowed: true
 insertAllowed: true
-columns: []
-referencedTables: []
+columns:
+- name: COLUMN_LIST
+  dataType: VARCHAR2
+  textMaxLength: 3
+  nullable: true
+  ordinalPosition: 6
+  dataTypeLength: 3
+- name: COLUMN_NAME
+  dataType: VARCHAR2
+  textMaxLength: 4000
+  nullable: true
+  ordinalPosition: 5
+  dataTypeLength: 4000
+- name: COLUMN_USAGE
+  dataType: VARCHAR2
+  textMaxLength: 17
+  nullable: true
+  ordinalPosition: 7
+  dataTypeLength: 17
+- name: TABLE_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 4
+  dataTypeLength: 128
+- name: TABLE_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 3
+  dataTypeLength: 128
+- name: TRIGGER_NAME
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 2
+  dataTypeLength: 128
+- name: TRIGGER_OWNER
+  dataType: VARCHAR2
+  textMaxLength: 128
+  nullable: true
+  ordinalPosition: 1
+  dataTypeLength: 128
+referencedTables:
+- schema: SYS
+  name: ATTRCOL$
+- schema: SYS
+  name: ATTRIBUTE$
+- schema: SYS
+  name: COL$
+- schema: SYS
+  name: COLLECTION$
+- schema: SYS
+  name: COLTYPE$
+- schema: SYS
+  name: OBJ$
+- schema: SYS
+  name: TRIGGER$
+- schema: SYS
+  name: TRIGGERCOL$
+- schema: SYS
+  name: USER$
+- schema: SYS
+  name: _CURRENT_EDITION_OBJ
 viewDefinition: null
